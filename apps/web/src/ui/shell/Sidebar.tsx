@@ -18,7 +18,7 @@ export function Sidebar() {
       <button
         type="button"
         onClick={() => {
-          showSection(key);
+          void showSection(key);
         }}
         id={`nav-${key}`}
         aria-current={at === key ? 'page' : undefined}

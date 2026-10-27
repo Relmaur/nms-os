@@ -6,6 +6,19 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-10-27
+### Changed
+- The main page's frame is React: the header with its search, Export and Import, the sidebar, the tab bar and the storage banner (ADR-0004 step 3, now complete). It works as before, at the same addresses; it now shows at once instead of waiting for your log to load.
+- The Codex landing and the system panel on desktop lose a stray gap above their titles, and small labels sit a pixel or two tighter: Tailwind's own base styles replace the v3 compatibility layer.
+### Fixed
+- A search typed in the header before the wiki index had loaded never showed wiki results; they now fill in when the index arrives.
+- Picking a guide passage in the header search could open its book at the top instead of at the passage; it now scrolls there.
+- ArrowUp in the header search with nothing highlighted now goes to the last result (it went to the second-to-last).
+- Accessibility: Systems and Outlaw Run have a top-level heading, and the whole page (header, sidebar, tab bar) is axe-gated in `pnpm check`.
+### Internal
+- `main.js`, `nav.js` and `companion.js` are gone, with every inline `on…=""` handler and the `window` exports; a test keeps handlers from coming back. Section routing is `src/ui/shell/section-store.ts`; systems search is `searchSystems()` in `@atlas/core`.
+- The Tailwind v3 shims are gone (`tailwind-v3-preflight.css`, `tailwind-v3-spacing.css`, the fixed line heights), checked with a before/after screenshot diff of every screen.
+
 ## [3.7.1] - 2026-10-27
 ### Fixed
 - "Keep screen on" sometimes took two taps to turn on. When the system had let the screen sleep (battery saver, a moment away from the app), the first tap switched off a setting that still read as on. A tap now always flips what the switch shows.

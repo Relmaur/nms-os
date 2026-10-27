@@ -89,6 +89,7 @@ export function Search() {
     () =>
       onWikiEntries(() => {
         setResults(current => (current.query.trim() ? find(current.query) : current));
+        setActive(-1); // the wiki group lands ahead of the books, so the old position would point elsewhere
       }),
     []
   );
@@ -134,19 +135,22 @@ export function Search() {
     const query = results.query;
     close();
     if (hit.type === 'system') {
-      showSection('systems');
+      void showSection('systems');
       openSystem(hit.system.id);
     } else if (hit.type === 'wiki') {
       location.assign(`wiki/#/a/${encodeURIComponent(hit.entry.path ?? '')}?q=${encodeURIComponent(query)}`);
     } else {
-      showSection(hit.book.section);
-      flash(hit.book.el);
+      const { el } = hit.book;
+      void showSection(hit.book.section).then(() => {
+        flash(el);
+      });
     }
   };
 
   const move = (step: number) => {
     if (!results.hits.length) return;
-    const next = (active + step + results.hits.length) % results.hits.length;
+    const count = results.hits.length;
+    const next = active < 0 && step < 0 ? count - 1 : (active + step + count) % count; // ArrowUp from none: the last
     setActive(next);
     document.getElementById(`search-hit-${String(next)}`)?.scrollIntoView({ block: 'nearest' });
   };

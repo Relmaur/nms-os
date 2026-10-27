@@ -79,7 +79,7 @@ test('the sidebar and tab bar mark the open section and count the log', () => {
     </>
   );
   act(() => {
-    showSection('book1');
+    void showSection('book1');
   });
   expect(document.getElementById('nav-guides')?.getAttribute('aria-current')).toBe('page'); // a book is in Guides
   expect(screen.getByRole('link', { name: /More/ }).getAttribute('aria-current')).toBe('page');
@@ -87,7 +87,7 @@ test('the sidebar and tab bar mark the open section and count the log', () => {
   expect(document.getElementById('sidebarOutlawCount')?.textContent).toBe('1/1');
   expect(document.getElementById('tabOutlawBadge')?.textContent).toBe('1');
   act(() => {
-    showSection('systems');
+    void showSection('systems');
   });
   expect(document.getElementById('nav-systems')?.getAttribute('aria-current')).toBe('page');
   expect(screen.getByRole('link', { name: 'Systems' }).getAttribute('aria-current')).toBe('page');

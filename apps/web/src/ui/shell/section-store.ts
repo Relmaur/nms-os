@@ -26,10 +26,11 @@ function resolve(key: string): { section: string; newSystem: boolean } {
   return { section: document.getElementById(`sec-${key}`) ? key : 'home', newSystem: false };
 }
 
-export function showSection(key: string): void {
+// Resolves once the section is on screen (after the view transition's swap), so a caller can scroll within it.
+export function showSection(key: string): Promise<void> {
   if (key === 'wiki') {
     location.href = 'wiki/'; // the Codex is its own page
-    return;
+    return Promise.resolve();
   }
   const { section, newSystem } = resolve(key);
   const swap = () => {
@@ -41,8 +42,12 @@ export function showSection(key: string): void {
   const animate = current !== '' && current !== section && !matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Switching again mid-animation skips the transition, which rejects its promises; the DOM still updates, so the
   // rejection is expected and must not surface as an uncaught error.
-  if (animate && 'startViewTransition' in document) document.startViewTransition(swap).ready.catch(() => undefined);
-  else swap();
+  let shown = Promise.resolve();
+  if (animate && 'startViewTransition' in document) {
+    const transition = document.startViewTransition(swap);
+    transition.ready.catch(() => undefined);
+    shown = transition.updateCallbackDone.catch(() => undefined);
+  } else swap();
   current = section;
   listeners.forEach(listener => {
     listener();
@@ -50,12 +55,13 @@ export function showSection(key: string): void {
   if (location.hash !== `#${section}`) history.replaceState(null, '', `#${section}`);
   if (newSystem) hooks.get('new-system')?.();
   hooks.get(section)?.();
+  return shown;
 }
 
 // Back/forward and home-screen shortcuts (./#calculators) change only the hash.
 export function startSections(): void {
   window.addEventListener('hashchange', () => {
-    showSection(location.hash.slice(1) || 'home');
+    void showSection(location.hash.slice(1) || 'home');
   });
-  showSection(location.hash.slice(1) || 'home');
+  void showSection(location.hash.slice(1) || 'home');
 }

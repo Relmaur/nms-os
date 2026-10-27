@@ -1,6 +1,8 @@
 // The bottom tab bar below lg (the Codex page carries a static copy). Home, Systems and Outlaw have their own tab;
 // every other section lives under More.
 import { useEffect } from 'react';
+import { rankOutlaw } from '@atlas/core/systems-model';
+import { appState, isLoaded, subscribe } from '../../app/store.ts';
 import { useOutlawReady } from './counts.ts';
 import { useSection } from './section-store.ts';
 
@@ -11,11 +13,24 @@ export function TabBar() {
   const { ready } = useOutlawReady();
   const at = OWN_TAB.has(section) ? section : 'more';
 
-  // Ready stations on the installed app's icon too (where the platform supports badges).
+  // Ready stations on the installed app's icon too (where the platform supports badges). It keeps counting while the
+  // app sits minimised, which is when the icon matters: on its own minute timer, since the screens' clock pauses
+  // while the page is hidden.
   useEffect(() => {
     if (!('setAppBadge' in navigator)) return;
-    (ready ? navigator.setAppBadge(ready) : navigator.clearAppBadge()).catch(() => undefined);
-  }, [ready]);
+    const update = () => {
+      if (!isLoaded()) return;
+      const count = rankOutlaw(appState.systems, appState.outlaw.restockHours).filter(row => row.status.ready).length;
+      (count ? navigator.setAppBadge(count) : navigator.clearAppBadge()).catch(() => undefined);
+    };
+    update();
+    const timer = setInterval(update, 60_000);
+    const unsubscribe = subscribe(update);
+    return () => {
+      clearInterval(timer);
+      unsubscribe();
+    };
+  }, []);
 
   const tab = (key: string, href: string, icon: string, label: string, badge?: number) => {
     const active = at === key;

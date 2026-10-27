@@ -95,7 +95,7 @@ export function useSystemFilter(): SystemFilter {
 export function filterByTag(tag: string): void {
   closeSystemPanel();
   setSystemFilter({ tags: [tag] });
-  showSection('systems');
+  void showSection('systems');
 }
 
 // Another tab deleted the system on show. Saving an open edit would bring it back, so the editor closes and says why.

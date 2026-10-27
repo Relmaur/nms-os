@@ -12,7 +12,7 @@ export function Header() {
         href="#home"
         onClick={event => {
           event.preventDefault();
-          showSection('home');
+          void showSection('home');
         }}
         className="flex items-center gap-3 shrink-0 min-w-0 rounded-lg"
       >

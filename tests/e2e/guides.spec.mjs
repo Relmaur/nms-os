@@ -32,5 +32,7 @@ test('the header search finds text in a book and scrolls to it', async ({ page }
   const hit = page.locator('#globalSearchResults .search-hit').filter({ hasText: 'Self-Sufficient' }).first();
   await hit.click();
   await expect(page.locator('#sec-book4')).toBeVisible();
-  await expect(page.locator('#sec-book4 .search-flash')).toContainText('Golden Triangle');
+  const flashed = page.locator('#sec-book4 .search-flash');
+  await expect(flashed).toContainText('Golden Triangle');
+  await expect(flashed).toBeInViewport(); // scrolled to, not left at the top of the book
 });
