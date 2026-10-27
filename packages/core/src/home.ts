@@ -1,15 +1,14 @@
 // What the Home screen shows (pure; `now` is injectable for tests): the current system, the warp-back list and the
 // next outlaw stations to hit.
-import { lastVisit, rankOutlaw, type OutlawStatus, type System } from './systems-model.ts';
+import { lastVisit, type System } from './systems-model.ts';
+import { outlawSummary, type OutlawRow } from './outlaw.ts';
 import type { OutlawSettings } from './state.ts';
+
+export type { OutlawRow } from './outlaw.ts';
 
 export const HOME_RECENT_LIMIT = 5;
 export const HOME_OUTLAW_LIMIT = 3;
 
-export interface OutlawRow {
-  system: System;
-  status: OutlawStatus;
-}
 export interface HomeSummary {
   current: System | undefined; // the system visited (or added) most recently
   recent: System[];
@@ -28,18 +27,16 @@ export function lastActivity(system: System): number {
 
 export function homeSummary(state: { systems: System[]; outlaw: OutlawSettings }, now: number): HomeSummary {
   const [current, ...rest] = [...state.systems].sort((a, b) => lastActivity(b) - lastActivity(a));
-  const rows = rankOutlaw(state.systems, state.outlaw.restockHours, now);
-  const ready = rows.filter(row => row.status.ready);
-  const runPackets = Math.min(ready.length, state.outlaw.runSize) * state.outlaw.packetsPerVisit;
+  const outlaw = outlawSummary(state, now);
   return {
     current,
     recent: rest.slice(0, HOME_RECENT_LIMIT),
     outlaw: {
-      total: rows.length,
-      ready: ready.length,
-      next: ready.slice(0, HOME_OUTLAW_LIMIT),
-      soonest: ready.length ? undefined : rows[0],
-      runNanites: runPackets * state.outlaw.nanitesPerPacket
+      total: outlaw.rows.length,
+      ready: outlaw.ready.length,
+      next: outlaw.ready.slice(0, HOME_OUTLAW_LIMIT),
+      soonest: outlaw.ready.length ? undefined : outlaw.rows[0],
+      runNanites: outlaw.runNanites
     }
   };
 }
