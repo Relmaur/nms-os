@@ -3,15 +3,20 @@
 // every due timer one push carrying only its id, which the device's service worker turns into the notification
 // from text it kept itself.
 import { z } from 'zod';
+import { readCapped } from './capacity.ts';
 
-export const MAX_TIMERS = 50;
+export const MAX_TIMERS = 20; // kept per device: well above what a player runs at once
+const MAX_SENT = 50; // accepted in a request (older apps send up to 50); the soonest MAX_TIMERS are kept
 const MAX_BODY_BYTES = 16 * 1024;
 const MINUTE_MS = 60_000;
 const HOUR_MS = 60 * MINUTE_MS;
 const MAX_AHEAD_MS = 30 * 24 * HOUR_MS + HOUR_MS; // the app's 30-day timer cap, with room for clock drift
 export const GIVE_UP_MS = HOUR_MS; // a push still failing an hour after its time is dropped
+const LATE_GRACE_MS = MINUTE_MS;
 export const CLAIM_MS = 2 * MINUTE_MS; // a row being sent (or waiting to retry) is skipped by other runs until then
-export const PER_RUN = 40; // within a Free-plan invocation's subrequest budget
+// Pushes per cron run: each costs ~0.5 ms of CPU to encrypt and sign, and a Free-plan run gets 10 ms; Paid gets 30 s.
+export const PER_RUN = { free: 12, paid: 40 } as const;
+const SCAN = 100; // due rows read per run, before the per-device cap
 const PARALLEL = 6;
 const PER_DEVICE = 5; // per run, so no one device's backlog crowds out everyone else's
 
@@ -59,7 +64,7 @@ export type Subscription = z.infer<typeof SubscriptionSchema>;
 const ScheduleSchema = z.object({
   subscription: SubscriptionSchema,
   now: z.number().int().optional(), // the device's clock when it sent this, to correct for a wrong clock
-  timers: z.array(z.object({ id: z.string().max(200), at: z.number() })).max(MAX_TIMERS)
+  timers: z.array(z.object({ id: z.string().max(200), at: z.number() })).max(MAX_SENT)
 });
 export interface Due {
   deviceId: string;
@@ -68,70 +73,117 @@ export interface Due {
   subscription: string; // as stored (JSON)
 }
 
+export interface Device {
+  tokenHash: string;
+  subscription: string;
+  updatedAt: number;
+  timers: { id: string; at: number }[];
+}
+// The writes a schedule needs, worked out by planSchedule() so an unchanged schedule writes nothing.
+export interface ScheduleChange {
+  device: { subscription: string } | null; // register, or refresh the subscription / last-contact time
+  remove: string[];
+  upsert: { id: string; at: number; nextTry: number }[];
+}
+
 export interface PushStore {
-  deviceToken(id: string): Promise<string | null>;
-  // Registers the device on first use and replaces its whole schedule.
-  saveDevice(
-    id: string,
-    tokenHash: string,
-    subscription: string,
-    timers: { id: string; at: number }[],
-    now: number
-  ): Promise<void>;
+  device(id: string): Promise<Device | null>;
+  // Applies a change for the device's owner only (`tokenHash`), so a racing registration can't take it over.
+  applySchedule(id: string, tokenHash: string, change: ScheduleChange, now: number): Promise<void>;
   removeDevice(id: string): Promise<void>;
-  // Rows due and not claimed (`next_try <= now`), oldest first, at most `perDevice` from any one device.
-  due(now: number, limit: number, perDevice: number): Promise<Due[]>;
+  // Rows due and not claimed (`next_try <= now`), oldest first.
+  due(now: number, limit: number): Promise<Due[]>;
+  // Drops rows over an hour late, so a backlog can't grow without end.
+  prune(before: number): Promise<void>;
   // Marks rows as taken until `until`, so an overlapping run skips them and a failure waits that long to retry.
   claim(rows: { deviceId: string; timerId: string }[], until: number): Promise<void>;
   sent(deviceId: string, timerId: string): Promise<void>;
   purgeDevices(before: number): Promise<void>;
 }
 
-// The schedule as kept: well-formed ids only, one entry per id, times moved onto the relay's clock, nothing over an
-// hour late or past the 30-day cap. A bad entry is dropped rather than refusing the device's whole schedule.
+// The schedule as kept: well-formed ids only, one entry per id, times moved onto the relay's clock, nothing already
+// over (the app is open and announces those itself; a minute's grace covers a schedule sent just before the end) or
+// past the 30-day cap. A bad entry is dropped rather than refusing the device's whole schedule. With no backdating,
+// a timer can't be placed ahead of others: rows come due in the order their times arrive.
 export function cleanSchedule(
   timers: { id: string; at: number }[],
   deviceNow: number | undefined,
   now: number
 ): { id: string; at: number }[] {
-  const skew = deviceNow === undefined ? 0 : now - deviceNow;
+  // A clock off by under a minute is mostly network delay, which differs on every send; correcting for it would make
+  // an unchanged schedule look changed each time.
+  const measured = deviceNow === undefined ? 0 : now - deviceNow;
+  const skew = Math.abs(measured) < 60_000 ? 0 : measured;
   const kept = new Map<string, number>();
   for (const timer of timers) {
     const at = Math.round(timer.at + skew);
-    if (!TIMER_ID.test(timer.id) || !Number.isFinite(at) || at <= now - GIVE_UP_MS || at > now + MAX_AHEAD_MS) continue;
+    if (!TIMER_ID.test(timer.id) || !Number.isFinite(at) || at <= now - LATE_GRACE_MS || at > now + MAX_AHEAD_MS)
+      continue;
     if (!kept.has(timer.id)) kept.set(timer.id, at);
   }
-  return [...kept].map(([id, at]) => ({ id, at }));
+  return [...kept]
+    .map(([id, at]) => ({ id, at }))
+    .sort((a, b) => a.at - b.at)
+    .slice(0, MAX_TIMERS);
 }
 
+// Only what changed is written: a new or moved timer (queued no earlier than now, so a backdated one can't jump
+// ahead of others), a removed one, and the device row when it's new, its subscription changed, or a day has passed
+// (its last-contact time drives the 60-day purge).
+export function planSchedule(
+  known: Device | null,
+  subscription: string,
+  timers: { id: string; at: number }[],
+  now: number
+): ScheduleChange {
+  const before = new Map((known?.timers ?? []).map(timer => [timer.id, timer.at]));
+  const ids = new Set(timers.map(timer => timer.id));
+  return {
+    device:
+      !known || known.subscription !== subscription || now - known.updatedAt > 24 * HOUR_MS ? { subscription } : null,
+    remove: [...before.keys()].filter(id => !ids.has(id)),
+    upsert: timers
+      .filter(timer => before.get(timer.id) !== timer.at)
+      .map(timer => ({ ...timer, nextTry: Math.max(timer.at, now) }))
+  };
+}
+
+const isEmpty = (change: ScheduleChange) => !change.device && !change.remove.length && !change.upsert.length;
+
+// `admitNew` decides whether a device may register now (rate limits, the relay's capacity); it returns the refusal.
 export async function handlePush(
   request: Request,
   id: string,
   tokenHash: string,
   store: PushStore,
   reply: (status: number, body?: BodyInit | null, headers?: Record<string, string>) => Response,
-  now: number
+  now: number,
+  admitNew: () => Promise<Response | null> = () => Promise.resolve(null)
 ): Promise<Response> {
-  const known = await store.deviceToken(id);
-  if (known !== null && known !== tokenHash) return reply(401);
+  const known = await store.device(id);
+  if (known && known.tokenHash !== tokenHash) return reply(401);
   switch (request.method) {
     case 'DELETE':
-      if (known !== null) await store.removeDevice(id);
+      if (known) await store.removeDevice(id);
       return reply(204);
     case 'PUT': {
-      if (Number(request.headers.get('Content-Length') ?? 0) > MAX_BODY_BYTES) return reply(413);
-      const text = await request.text();
-      if (text.length > MAX_BODY_BYTES) return reply(413);
+      const bytes = await readCapped(request, MAX_BODY_BYTES);
+      if (!bytes) return reply(413);
       let json: unknown;
       try {
-        json = JSON.parse(text);
+        json = JSON.parse(new TextDecoder().decode(bytes));
       } catch {
         return reply(400);
       }
       const parsed = ScheduleSchema.safeParse(json);
       if (!parsed.success) return reply(400);
+      if (!known) {
+        const refused = await admitNew();
+        if (refused) return refused;
+      }
       const { subscription, timers, now: deviceNow } = parsed.data;
-      await store.saveDevice(id, tokenHash, JSON.stringify(subscription), cleanSchedule(timers, deviceNow, now), now);
+      const change = planSchedule(known, JSON.stringify(subscription), cleanSchedule(timers, deviceNow, now), now);
+      if (!isEmpty(change)) await store.applySchedule(id, tokenHash, change, now);
       return reply(204);
     }
     default:
@@ -149,14 +201,30 @@ export function sendResult(status: number): SendResult {
   return 'failed';
 }
 
+// One timer per device in turn (oldest first within each), at most PER_DEVICE from any one, so a device with a long
+// queue never fills a run while another waits.
+export function takeTurns(rows: Due[], limit: number): Due[] {
+  const byDevice = new Map<string, Due[]>();
+  for (const row of rows) byDevice.set(row.deviceId, [...(byDevice.get(row.deviceId) ?? []), row]);
+  const picked: Due[] = [];
+  for (let turn = 0; turn < PER_DEVICE && picked.length < limit; turn++)
+    for (const queue of byDevice.values()) {
+      const row = queue[turn];
+      if (row && picked.length < limit) picked.push(row);
+    }
+  return picked;
+}
+
 // One push per due timer, at most PER_RUN a run, a few at a time. Rows are claimed first, so a run that overlaps
 // the next minute's never sends them twice, and a row that keeps failing waits its turn instead of blocking others.
 export async function deliver(
   store: PushStore,
   send: (subscription: Subscription, timerId: string) => Promise<SendResult>,
-  now: number
+  now: number,
+  perRun: number = PER_RUN.free
 ): Promise<{ sent: number; dropped: number }> {
-  const rows = await store.due(now, PER_RUN, PER_DEVICE);
+  await store.prune(now - GIVE_UP_MS);
+  const rows = takeTurns(await store.due(now, SCAN), perRun);
   await store.claim(rows, now + CLAIM_MS);
   let sent = 0;
   let dropped = 0;

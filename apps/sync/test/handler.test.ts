@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { handle, MAX_BLOB_BYTES, type Vault, type VaultStore } from '../src/handler.ts';
+import { handle, MAX_BLOB_BYTES, type Capacity, type Options, type Vault, type VaultStore } from '../src/handler.ts';
 import { deriveSyncKeys, newSyncCode, type SyncKeys } from '@atlas/core/sync-crypto';
 
 const ORIGIN = 'https://relmaur.github.io';
@@ -14,14 +14,14 @@ function memoryStore(): VaultStore & { vaults: Map<string, Vault & { updatedAt: 
       vaults.set(id, { tokenHash, version: 1, blob, updatedAt: now });
       return Promise.resolve(true);
     },
-    update(id, version, blob, now) {
+    update(id, tokenHash, version, blob, now) {
       const vault = vaults.get(id);
-      if (vault?.version !== version) return Promise.resolve(false);
+      if (vault?.version !== version || vault.tokenHash !== tokenHash) return Promise.resolve(false);
       vaults.set(id, { ...vault, version: version + 1, blob, updatedAt: now });
       return Promise.resolve(true);
     },
-    remove(id) {
-      vaults.delete(id);
+    remove(id, tokenHash) {
+      if (vaults.get(id)?.tokenHash === tokenHash) vaults.delete(id);
       return Promise.resolve();
     },
     touch(id, now) {
@@ -41,7 +41,13 @@ beforeEach(async () => {
 
 const call = (
   method: string,
-  init: { body?: Uint8Array<ArrayBuffer>; version?: number; token?: string; origin?: string } = {}
+  init: {
+    body?: Uint8Array<ArrayBuffer>;
+    version?: number;
+    token?: string;
+    origin?: string;
+    options?: Partial<Options>;
+  } = {}
 ) =>
   handle(
     new Request(`https://atlas-sync.example.workers.dev/v1/vaults/${keys.vaultId}`, {
@@ -54,7 +60,7 @@ const call = (
       ...(init.body && { body: init.body })
     }),
     store,
-    { origins: [ORIGIN], now: () => 1000 }
+    { origins: [ORIGIN], now: () => 1000, ...init.options }
   );
 const bytes = (...values: number[]) => new Uint8Array(values);
 
@@ -64,7 +70,7 @@ test('a vault is created at version 1, read back, and moves on one version per w
   expect(created.status).toBe(200);
   expect(await created.json()).toEqual({ version: 1 });
   expect(created.headers.get('Access-Control-Allow-Origin')).toBe(ORIGIN);
-  expect(created.headers.get('Access-Control-Expose-Headers')).toBe('ETag');
+  expect(created.headers.get('Access-Control-Expose-Headers')).toBe('ETag, Retry-After');
 
   const read = await call('GET');
   expect(read.headers.get('ETag')).toBe('"1"');
@@ -95,7 +101,7 @@ test('another token is refused everywhere, and a missing one too', async () => {
   expect(store.vaults.get(keys.vaultId)?.blob).toEqual(bytes(1));
 });
 
-test('writes need a version and a body no larger than 1 MB', async () => {
+test('writes need a version and a body no larger than the cap', async () => {
   expect((await call('PUT', { body: bytes(1) })).status).toBe(428);
   expect((await call('PUT', { body: new Uint8Array(0), version: 0 })).status).toBe(400);
   expect((await call('PUT', { body: new Uint8Array(MAX_BLOB_BYTES + 1), version: 0 })).status).toBe(413);
@@ -132,4 +138,86 @@ test('unknown paths are 404, and a client over its budget gets 429', async () =>
     allow: () => Promise.resolve(false)
   });
   expect(limited.status).toBe(429);
+});
+
+const at = (state: Capacity['state'], storageFull = false) => ({
+  capacity: () => Promise.resolve({ state, storageFull })
+});
+
+test('busy: new vaults are turned away, existing ones keep syncing', async () => {
+  await call('PUT', { body: bytes(1), version: 0 });
+  const busy = at('busy');
+  expect((await call('PUT', { body: bytes(2), version: 1, options: busy })).status).toBe(200);
+  expect((await call('GET', { options: busy })).status).toBe(200);
+  keys = await deriveSyncKeys(newSyncCode());
+  const refused = await call('PUT', { body: bytes(1), version: 0, options: busy });
+  expect(refused.status).toBe(503);
+  expect(await refused.json()).toEqual({ capacity: 'busy' });
+  expect((await call('PUT', { body: bytes(1), version: 0, options: at('ok', true) })).status).toBe(503); // out of room
+});
+
+test('full: everyone gets a clear 503 until midnight UTC, with CORS; deleting still works', async () => {
+  await call('PUT', { body: bytes(1), version: 0 });
+  const full = { ...at('full'), now: () => Date.parse('2026-10-27T23:00:00Z') };
+  const response = await call('GET', { options: full });
+  expect(response.status).toBe(503);
+  expect(await response.json()).toEqual({ capacity: 'full' });
+  expect(response.headers.get('Retry-After')).toBe('3600');
+  expect(response.headers.get('Access-Control-Allow-Origin')).toBe(ORIGIN);
+  expect(response.headers.get('Access-Control-Expose-Headers')).toContain('Retry-After');
+  expect((await call('DELETE', { options: full })).status).toBe(204);
+  expect(store.vaults.size).toBe(0);
+});
+
+test('a failing database answers 503 with CORS, not an error page', async () => {
+  const broken = { ...store, get: () => Promise.reject(new Error('D1_ERROR: daily limit')) };
+  const response = await handle(
+    new Request(`https://atlas-sync.example.workers.dev/v1/vaults/${keys.vaultId}`, {
+      headers: { Origin: ORIGIN, Authorization: `Bearer ${keys.token}` }
+    }),
+    broken,
+    { origins: [ORIGIN] }
+  );
+  expect(response.status).toBe(503);
+  expect(await response.json()).toEqual({ capacity: 'unavailable' });
+  expect(response.headers.get('Access-Control-Allow-Origin')).toBe(ORIGIN);
+});
+
+test('new vaults draw on their own, smaller budget; the status summary needs no token', async () => {
+  const kinds: string[] = [];
+  const allow = (_key: string, kind: string) => {
+    kinds.push(kind);
+    return Promise.resolve(kind !== 'create');
+  };
+  expect((await call('PUT', { body: bytes(1), version: 0, options: { allow } })).status).toBe(429);
+  expect(kinds).toEqual(['any', 'create']);
+  const status = await handle(new Request('https://atlas-sync.example.workers.dev/v1/status'), store, {
+    origins: [],
+    status: () => Promise.resolve({ plan: 'free', days: [] })
+  });
+  expect(await status.json()).toEqual({ plan: 'free', days: [] });
+});
+
+test('a body sent without Content-Length is still cut at the cap', async () => {
+  const big = new Uint8Array(MAX_BLOB_BYTES + 1);
+  const stream = new ReadableStream({
+    start(controller) {
+      controller.enqueue(big.subarray(0, 100_000));
+      controller.enqueue(big.subarray(100_000));
+      controller.close();
+    }
+  });
+  const response = await handle(
+    new Request(`https://atlas-sync.example.workers.dev/v1/vaults/${keys.vaultId}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${keys.token}`, 'If-Match': '"0"' },
+      body: stream,
+      // @ts-expect-error -- streaming request bodies need this flag (Node/undici); the Workers types don't list it
+      duplex: 'half'
+    }),
+    store,
+    { origins: [] }
+  );
+  expect(response.status).toBe(413);
+  expect(store.vaults.size).toBe(0);
 });

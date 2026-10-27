@@ -1,4 +1,5 @@
-# The sync relay (ADR-0005), deployed by CI (.github/workflows/pages.yml) to <name>.<account>.workers.dev.
+# The relay (ADR-0005 sync, ADR-0006 push), deployed from a developer machine with `wrangler deploy` to
+# atlas-sync.atlas-companion.workers.dev.
 # Setup and secrets: docs/deploy.md.
 name = "atlas-sync"
 main = "src/index.ts"
@@ -10,6 +11,8 @@ workers_dev = true
 enabled = false
 
 [vars]
+# "free" or "paid": the plan's daily limits drive the relay's guardrails (src/capacity.ts). Set "paid" after upgrading.
+PLAN = "free"
 ALLOWED_ORIGINS = "https://relmaur.github.io,http://localhost:5173,http://localhost:4173"
 # The contact push services see with each push (VAPID). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
 VAPID_SUBJECT = "https://relmaur.github.io/nms-os/"
@@ -20,11 +23,22 @@ database_name = "atlas-sync"
 database_id = "d50bb89b-0f72-4a67-9728-dcd7fae755ee"
 migrations_dir = "migrations"
 
-# 60 requests a minute per client is far above what syncing needs.
+# Per client (an IPv4 address or an IPv6 /64): 60 requests a minute is far above what syncing needs; registering a
+# new vault or push device (3 a minute) and sending push schedules (4 a minute) get their own, smaller budgets.
 [[ratelimits]]
 name = "LIMITER"
 namespace_id = "1001"
 simple = { limit = 60, period = 60 }
+
+[[ratelimits]]
+name = "CREATE_LIMITER"
+namespace_id = "1002"
+simple = { limit = 3, period = 60 }
+
+[[ratelimits]]
+name = "PUSH_LIMITER"
+namespace_id = "1003"
+simple = { limit = 4, period = 60 }
 
 # Daily, 04:23 UTC: delete vaults untouched for a year and push devices silent for 60 days.
 # Every minute: send the timer pushes that are due (ADR-0006).
