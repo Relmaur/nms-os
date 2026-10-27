@@ -1,5 +1,5 @@
 // The recipe planner against a frozen subset of the wiki dataset (tests/fixtures/game-data-subset.json).
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { makeCatalog, findItem, planRecipes, expandPlan, collectRaw, countSteps } from '../../assets/lib/planner.js';

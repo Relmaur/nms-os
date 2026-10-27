@@ -1,6 +1,6 @@
 // The service worker precaches SHELL so the installed app works offline. Every module a page imports must be in
 // it (a missing one breaks that page offline), and every listed file must exist (except files built by index:wiki).
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';

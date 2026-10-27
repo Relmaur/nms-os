@@ -1,7 +1,7 @@
 // Inline on…="" handlers run in the global scope, but the app's functions live in ES modules. Every function a
 // handler calls must therefore be exposed with Object.assign(window, {…}) by that page's modules (ADR-0001).
 // This checks it statically, across the HTML and the templates the modules render.
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 

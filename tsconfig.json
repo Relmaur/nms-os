@@ -1,0 +1,10 @@
+{
+  // Type-checks the shared packages, the scripts and the tests in one program (`pnpm typecheck`).
+  // The web app and its service worker have their own configs (DOM vs. WebWorker globals).
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": ["node"]
+  },
+  "include": ["packages/*/src", "packages/*/test", "*.config.ts"]
+}

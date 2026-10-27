@@ -1,5 +1,5 @@
-// scripts/lib/wikitext.mjs against real page sources (tests/fixtures/wikitext/, CC BY-SA 3.0).
-import { test } from 'node:test';
+// wikitext.ts against real page sources (tests/fixtures/wikitext/, CC BY-SA 3.0).
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
@@ -10,13 +10,23 @@ import {
   toFrontmatter,
   parseFrontmatter,
   categoryFor,
-  slugify
-} from '../../scripts/lib/wikitext.mjs';
+  slugify,
+  type Article,
+  type Page
+} from '../src/wikitext.ts';
 
-const FIXTURES = new URL('../fixtures/wikitext/', import.meta.url);
-const pages = JSON.parse(fs.readFileSync(new URL('pages.json', FIXTURES), 'utf8'));
-const article = slug =>
-  buildArticle({ ...pages[slug], content: fs.readFileSync(new URL(`${slug}.wiki`, FIXTURES), 'utf8') });
+const FIXTURES = new URL('../../../tests/fixtures/wikitext/', import.meta.url);
+const pages = JSON.parse(fs.readFileSync(new URL('pages.json', FIXTURES), 'utf8')) as Record<
+  string,
+  Omit<Page, 'content'>
+>;
+const build = (slug: string) =>
+  buildArticle({ ...pages[slug]!, content: fs.readFileSync(new URL(`${slug}.wiki`, FIXTURES), 'utf8') });
+const article = (slug: string): Article => {
+  const result = build(slug);
+  if (result.excluded !== undefined) throw new Error(`${slug} was excluded: ${result.excluded}`);
+  return result;
+};
 
 test('Oxygen: infobox facts, refiner recipes and the in-game description', () => {
   const { category, meta, body } = article('oxygen');
@@ -66,7 +76,7 @@ test('Stasis Device: blueprint craft recipe, value and a multi-line table', () =
 
 test('Craft output quantity: a Bionic Lure craft yields 20', () => {
   const [craft] = article('bionic-lure').meta.data.recipes.filter(recipe => recipe.type === 'craft');
-  assert.deepEqual(craft.outputs, [{ name: 'Bionic Lure', qty: 20 }]);
+  assert.deepEqual(craft?.outputs, [{ name: 'Bionic Lure', qty: 20 }]);
   assert.deepEqual(
     craft.inputs.map(input => input.name),
     ['Amino Chamber', 'Ion Battery', 'Lubricant']
@@ -76,7 +86,7 @@ test('Craft output quantity: a Bionic Lure craft yields 20', () => {
 test('cooking recipes keep self-multiplying entries as data (the planner skips them)', () => {
   const recipes = article('wild-yeast').meta.data.recipes;
   assert.deepEqual(
-    recipes.map(recipe => recipe.inputs[0].name),
+    recipes.map(recipe => recipe.inputs[0]?.name),
     ['Wild Yeast', 'Faecium']
   );
   assert.ok(recipes.every(recipe => recipe.type === 'cook' && recipe.seconds === 2.5));
@@ -95,8 +105,8 @@ test('repair and dismantle recipes, and nested tables leave no raw markup', () =
 test('archived variants are obsolete; player-found multi-tools are excluded', () => {
   const atlas = article('blaze-javelin-atlas');
   assert.equal(atlas.meta.obsolete, true);
-  assert.equal(atlas.meta.data.recipes[0].obsolete, true);
-  assert.deepEqual(article('player-found-multitool'), { excluded: 'player-found multi-tool' });
+  assert.equal(atlas.meta.data.recipes[0]?.obsolete, true);
+  assert.deepEqual(build('player-found-multitool'), { excluded: 'player-found multi-tool' });
 });
 
 test('templates parse positional, numbered and named parameters with nesting', () => {

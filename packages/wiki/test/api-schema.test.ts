@@ -1,6 +1,6 @@
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { InvalidResponse, readEmbeddedIn, readRevisions } from '../../scripts/lib/api-schema.mjs';
+import { InvalidResponse, readEmbeddedIn, readRevisions } from '../src/api-schema.ts';
 
 const page = (overrides = {}) => ({
   pageid: 1,

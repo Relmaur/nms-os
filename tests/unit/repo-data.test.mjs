@@ -1,5 +1,5 @@
 // The committed data files every fresh clone and every deploy start from must be well-formed.
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 

@@ -1,0 +1,14 @@
+{
+  "name": "@atlas/wiki",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Mirrors the No Man's Sky wiki's game-data pages into wiki/ and builds the derived indexes. Run with Node (types are stripped).",
+  "type": "module",
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@atlas/core": "workspace:*",
+    "zod": "^4.3.6"
+  }
+}

@@ -1,9 +1,11 @@
-// ESLint flat config. Rules catch real bugs (undefined names, unused code, accidental globals), not style.
+// ESLint flat config. Rules catch real bugs (undefined names, unused code, unhandled promises, unsafe `any`), not
+// style: Prettier owns formatting. TypeScript gets typescript-eslint's strictest type-aware rules (ADR-0004).
 import js from '@eslint/js';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
-  { ignores: ['node_modules/', 'wiki/offline-bundle.js', 'test-results/', 'playwright-report/'] },
+  { ignores: ['**/node_modules/', 'wiki/offline-bundle.js', 'test-results/', 'playwright-report/', '**/dist/'] },
   js.configs.recommended,
   {
     rules: {
@@ -12,7 +14,7 @@ export default [
     }
   },
   {
-    files: ['scripts/**/*.mjs', 'tests/**/*.mjs', '*.config.js'],
+    files: ['scripts/**/*.mjs', 'tests/**/*.mjs', '*.config.js', '*.config.ts', 'packages/wiki/**/*.ts'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.node } }
   },
   {
@@ -42,5 +44,25 @@ export default [
       sourceType: 'script',
       globals: { ...globals.browser, tailwind: 'writable' }
     }
+  },
+  ...tseslint.configs.strictTypeChecked.map(config => ({ ...config, files: ['**/*.ts'] })),
+  {
+    files: ['**/*.ts'],
+    languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } },
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
+      // Numbers in messages and template strings are the common, safe case.
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }]
+    }
+  },
+  {
+    // Tests index fixtures they just wrote; a wrong guess fails the test anyway.
+    files: ['packages/*/test/**/*.ts'],
+    rules: { '@typescript-eslint/no-non-null-assertion': 'off' }
+  },
+  {
+    // Shared logic must run in the browser, in Node scripts and in a future API alike.
+    files: ['packages/core/src/**/*.ts'],
+    rules: { 'no-restricted-imports': ['error', { patterns: ['node:*'] }] }
   }
 ];

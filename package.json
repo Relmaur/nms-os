@@ -10,16 +10,16 @@
   },
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "sync:wiki": "node scripts/sync-wiki.mjs",
-    "verify:wiki": "node scripts/sync-wiki.mjs --verify",
-    "index:wiki": "node scripts/sync-wiki.mjs --index-only",
-    "typecheck": "tsc -b",
+    "sync:wiki": "node packages/wiki/src/sync.ts",
+    "verify:wiki": "node packages/wiki/src/sync.ts --verify",
+    "index:wiki": "node packages/wiki/src/sync.ts --index-only",
+    "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --test \"tests/unit/**/*.test.mjs\"",
+    "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "pnpm lint && pnpm test && pnpm test:e2e"
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm test:e2e"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

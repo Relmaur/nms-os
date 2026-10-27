@@ -1,11 +1,34 @@
 // Wikitext → Markdown + structured data for the wiki mirror (pure: no network, no file system).
-// Used by scripts/sync-wiki.mjs and covered by tests/unit/wikitext.test.mjs.
+// Used by packages/wiki/src/sync.ts and covered by packages/wiki/test/wikitext.test.ts.
+import { z } from 'zod';
+import { RecipeSchema, type Recipe, type RecipeItem, type RecipeType } from '@atlas/core/game-data';
+
+export { slugify } from '@atlas/core/slug';
+
+export interface Template {
+  name: string;
+  key: string;
+  positional: string[];
+  named: Record<string, string>;
+}
+export interface Context {
+  title: string;
+}
+// One page as fetched from the wiki, with the infobox kind it was found through.
+export interface Page {
+  pageId: number;
+  title: string;
+  kind: string;
+  revId: number;
+  revTimestamp: string;
+  content: string;
+}
 
 export const WIKI_BASE = 'https://nomanssky.fandom.com';
 export const LICENSE = "CC BY-SA 3.0 (No Man's Sky Wiki contributors)";
 
 // Infobox template -> kind, in priority order (a page's kind is the first of these it embeds).
-export const SCOPE = {
+export const SCOPE: Record<string, string> = {
   'Resource infobox': 'resource',
   'Product infobox': 'product',
   'Technology infobox NEXT': 'technology',
@@ -35,18 +58,10 @@ export const FOLDERS = [
 export const ARCHIVED_VARIANT =
   /\((Release|Foundation|Pathfinder|Atlas|Atlas Rises|NEXT|Abyss|Visions|Beyond|Synthesis|Living Ship|ExoMech|Desolation|Origins|Frontiers|Prisms|Expeditions|Waypoint|Interceptor|Fractal|Singularity|Echoes|Orbital|Worlds Part I+)\)$/i;
 
-// Must match WikiSearch.slugify() in assets/lib/search.js.
-export function slugify(title) {
-  return title
-    .replace(/[^a-zA-Z0-9_\-\s]/g, '')
-    .trim()
-    .replace(/\s+/g, '_');
-}
-
 // ---------------------------------------------------------------------------
 // Frontmatter (strings and objects are JSON, which is valid YAML)
 // ---------------------------------------------------------------------------
-export function toFrontmatter(fields) {
+export function toFrontmatter(fields: object): string {
   const lines = Object.entries(fields)
     .filter(([, value]) => value !== undefined && value !== null && value !== '')
     .map(
@@ -56,28 +71,29 @@ export function toFrontmatter(fields) {
   return `---\n${lines.join('\n')}\n---\n\n`;
 }
 
-export function parseFrontmatter(text) {
+export function parseFrontmatter(text: string): { meta: Record<string, unknown>; body: string } {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
   if (!match) return { meta: {}, body: text };
-  const meta = {};
-  for (const line of match[1].split(/\r?\n/)) {
+  const meta: Record<string, unknown> = {};
+  for (const line of (match[1] ?? '').split(/\r?\n/)) {
     const kv = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
     if (!kv) continue;
-    let value = kv[2].trim();
-    if (/^["{[]/.test(value)) {
+    const raw = (kv[2] ?? '').trim();
+    let value: unknown = raw;
+    if (/^["{[]/.test(raw)) {
       try {
-        value = JSON.parse(value);
+        value = JSON.parse(raw);
       } catch {
-        value = value.slice(1, -1);
+        value = raw.slice(1, -1);
       }
-    } else if (value.startsWith("'")) {
-      value = value.slice(1, -1).replace(/''/g, "'");
-    } else if (value === 'true' || value === 'false') {
-      value = value === 'true';
-    } else if (/^-?\d+(\.\d+)?$/.test(value)) {
-      value = Number(value);
+    } else if (raw.startsWith("'")) {
+      value = raw.slice(1, -1).replace(/''/g, "'");
+    } else if (raw === 'true' || raw === 'false') {
+      value = raw === 'true';
+    } else if (/^-?\d+(\.\d+)?$/.test(raw)) {
+      value = Number(raw);
     }
-    meta[kv[1]] = value;
+    meta[kv[1] ?? ''] = value;
   }
   return { meta, body: text.slice(match[0].length) };
 }
@@ -86,7 +102,7 @@ export function parseFrontmatter(text) {
 // Wikitext parsing
 // ---------------------------------------------------------------------------
 // Index just past the "}}" that closes the "{{" at start, or -1.
-export function closeBraces(text, start) {
+export function closeBraces(text: string, start: number): number {
   let depth = 0;
   for (let i = start; i < text.length - 1; i++) {
     if (text[i] === '{' && text[i + 1] === '{') {
@@ -102,8 +118,8 @@ export function closeBraces(text, start) {
 }
 
 // Split on a separator that is not inside {{templates}} or [[links]].
-export function splitTop(text, sep = '|') {
-  const parts = [];
+export function splitTop(text: string, sep = '|'): string[] {
+  const parts: string[] = [];
   let depth = 0;
   let current = '';
   for (let i = 0; i < text.length; i++) {
@@ -125,34 +141,38 @@ export function splitTop(text, sep = '|') {
       current = '';
       continue;
     }
-    current += text[i];
+    current += text.charAt(i);
   }
   parts.push(current);
   return parts;
 }
 
-export function parseTemplate(inner) {
-  const [rawName, ...rest] = splitTop(inner);
+export function parseTemplate(inner: string): Template {
+  const [rawName = '', ...rest] = splitTop(inner);
   const name = rawName
     .trim()
     .replace(/_/g, ' ')
     .replace(/^template:/i, '');
-  const positional = [];
-  const named = {};
+  const positional: (string | undefined)[] = [];
+  const named: Record<string, string> = {};
   for (const part of rest) {
     const kv = part.match(/^\s*(\w[\w\s-]*?)\s*=([\s\S]*)$/);
-    if (!kv) positional.push(part.trim());
-    else if (/^\d+$/.test(kv[1])) positional[Number(kv[1]) - 1] = kv[2].trim();
-    else named[kv[1].toLowerCase()] = kv[2].trim();
+    if (!kv) {
+      positional.push(part.trim());
+      continue;
+    }
+    const [, key = '', value = ''] = kv;
+    if (/^\d+$/.test(key)) positional[Number(key) - 1] = value.trim();
+    else named[key.toLowerCase()] = value.trim();
   }
   return { name, key: name.toLowerCase(), positional: Array.from(positional, p => p ?? ''), named };
 }
 
 // Replace each top-level {{template}} with render(template); nested ones are left to the renderer.
-export function mapTemplates(text, render) {
+export function mapTemplates(text: string, render: (template: Template) => string): string {
   let out = '';
   let i = 0;
-  while (true) {
+  for (;;) {
     const start = text.indexOf('{{', i);
     if (start === -1) {
       out += text.slice(i);
@@ -169,8 +189,8 @@ export function mapTemplates(text, render) {
   return out;
 }
 
-export function topTemplates(text) {
-  const found = [];
+export function topTemplates(text: string): Template[] {
+  const found: Template[] = [];
   mapTemplates(text, template => {
     found.push(template);
     return '';
@@ -178,7 +198,7 @@ export function topTemplates(text) {
   return found;
 }
 
-export const ENTITIES = {
+export const ENTITIES: Record<string, string> = {
   nbsp: ' ',
   amp: '&',
   quot: '"',
@@ -193,29 +213,29 @@ export const ENTITIES = {
   hellip: '…',
   deg: '°'
 };
-export function decodeEntities(text) {
+export function decodeEntities(text: string): string {
   return text
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
-    .replace(/&([a-z]+);/gi, (m, name) => ENTITIES[name.toLowerCase()] ?? m);
+    .replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n: string) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&([a-z]+);/gi, (m, name: string) => ENTITIES[name.toLowerCase()] ?? m);
 }
 
 // Inline templates that stand for a word or a link; everything else (navboxes, queries, banners,
 // layout helpers) renders as nothing.
-export const INLINE = {
+export const INLINE: Record<string, (template: Template, ctx: Context) => string> = {
   units: () => ' Units',
   nanites: () => ' Nanites',
   quicksilver: () => ' Quicksilver',
-  link: t => `[[${t.positional[0]}]]`,
-  ilink: t => `[[${t.positional[0]}]]`,
-  class: t => `${t.positional[0]}-class`,
+  link: t => `[[${String(t.positional[0])}]]`,
+  ilink: t => `[[${String(t.positional[0])}]]`,
+  class: t => `${String(t.positional[0])}-class`,
   pagename: (t, ctx) => ctx.title,
   '!': () => '|'
 };
 
 // Recipe templates. Ingredient lists look like "Name,qty;Name,qty"; refiner and cooking
 // recipes append ";outputQty;seconds%Label".
-export function parseIngredients(spec) {
+export function parseIngredients(spec: string): RecipeItem[] {
   return spec
     .split(';')
     .map(item => item.trim())
@@ -227,24 +247,25 @@ export function parseIngredients(spec) {
     });
 }
 
-export function parseProcess(spec, type, title) {
+export function parseProcess(spec: string, type: RecipeType, title: string): Recipe {
   const pieces = spec
     .split(';')
     .map(piece => piece.trim())
     .filter(Boolean);
   const inputs = parseIngredients(pieces.filter(piece => piece.includes(',')).join(';'));
   const [outQty, timing = ''] = pieces.filter(piece => !piece.includes(','));
-  const [time, ...label] = timing.split('%');
+  const [time, ...rest] = timing.split('%');
+  const label = rest.join('%').trim();
   return {
     type,
     inputs,
     outputs: [{ name: title, qty: Number(outQty) || 1 }],
-    ...(time && { seconds: Number(time) }),
-    ...(label.length && label.join('%').trim() && { label: label.join('%').trim() })
+    ...(time ? { seconds: Number(time) } : {}),
+    ...(label ? { label } : {})
   };
 }
 
-export function parseRecipes(template, title) {
+export function parseRecipes(template: Template, title: string): Recipe[] {
   const specs = template.positional.filter(Boolean);
   switch (template.key) {
     case 'craft': // "Name,qty;Name,qty" with an optional ";outputQty"
@@ -258,13 +279,15 @@ export function parseRecipes(template, title) {
           type: 'craft',
           inputs: parseIngredients(pieces.filter(piece => piece.includes(',')).join(';')),
           outputs: [{ name: title, qty: outQty }],
-          ...(template.named.blueprint === 'yes' && { blueprint: true })
+          ...(template.named.blueprint === 'yes' ? { blueprint: true as const } : {})
         };
       });
     case 'craftobsolete': {
-      const inputs = [];
-      for (let i = 0; i + 1 < specs.length; i += 2)
-        inputs.push({ name: plainText(specs[i]), qty: Number(specs[i + 1]) || specs[i + 1] });
+      const inputs: RecipeItem[] = [];
+      for (let i = 0; i + 1 < specs.length; i += 2) {
+        const [name = '', qty = ''] = specs.slice(i, i + 2);
+        inputs.push({ name: plainText(name), qty: Number(qty) || qty });
+      }
       return inputs.length ? [{ type: 'craft', obsolete: true, inputs, outputs: [{ name: title, qty: 1 }] }] : [];
     }
     case 'poc-refine':
@@ -286,18 +309,18 @@ export function parseRecipes(template, title) {
   }
 }
 
-export const RECIPE_LABELS = {
+export const RECIPE_LABELS: Record<RecipeType, string> = {
   craft: 'Crafting',
   refine: 'Refiner',
   cook: 'Nutrient Processor',
   repair: 'Repair',
   dismantle: 'Dismantle'
 };
-export function recipeLine(recipe) {
-  const list = items => items.map(item => `${item.qty} × [[${item.name}]]`).join(' + ');
+export function recipeLine(recipe: Recipe): string {
+  const list = (items: RecipeItem[]) => items.map(item => `${item.qty} × [[${item.name}]]`).join(' + ');
   const head = [
     `**${RECIPE_LABELS[recipe.type]}${recipe.obsolete ? ' (obsolete)' : ''}**`,
-    recipe.label && `*${recipe.label}*`,
+    recipe.label !== undefined && recipe.label !== '' && `*${recipe.label}*`,
     recipe.seconds !== undefined && `${recipe.seconds} s per unit`,
     recipe.blueprint && 'needs the blueprint'
   ]
@@ -308,7 +331,7 @@ export function recipeLine(recipe) {
   return `- ${head}: ${list(recipe.inputs)} → ${recipe.outputs.map(item => `${item.qty} × ${item.name}`).join(' + ')}`;
 }
 
-export function expandTemplates(text, ctx) {
+export function expandTemplates(text: string, ctx: Context): string {
   return mapTemplates(text, template => {
     if (SCOPE_KEYS.has(template.key)) return '';
     const recipes = parseRecipes(template, ctx.title);
@@ -319,10 +342,10 @@ export function expandTemplates(text, ctx) {
 }
 
 // [[File:…|caption with [[links]]]] needs bracket matching, not a regex.
-export function removeBracketed(text, prefix) {
+export function removeBracketed(text: string, prefix: RegExp): string {
   let out = '';
   let i = 0;
-  while (true) {
+  for (;;) {
     const found = text.slice(i).search(prefix);
     if (found === -1) {
       out += text.slice(i);
@@ -347,18 +370,21 @@ export function removeBracketed(text, prefix) {
   return out;
 }
 
-export function convertLinks(text) {
+export function convertLinks(text: string): string {
   return removeBracketed(text, /\[\[\s*:?(File|Image|Media|Category|[a-z]{2}(-[a-z]+)?):/i)
-    .replace(/\[\[([^\]|]+?)(?:#[^\]|]*)?(?:\|([^\]]*))?\]\]([a-z]*)/g, (_, target, label, suffix) => {
-      target = target.trim().replace(/_/g, ' ');
+    .replace(
+      /\[\[([^\]|]+?)(?:#[^\]|]*)?(?:\|([^\]]*))?\]\]([a-z]*)/g,
+      (_, rawTarget: string, label: string | undefined, suffix: string) => {
+      const target = rawTarget.trim().replace(/_/g, ' ');
       const shown = `${label ?? target}${suffix}`.trim();
       return shown === target ? `[[${target}]]` : `[[${target}|${shown}]]`;
-    })
+      }
+    )
     .replace(/\[(https?:\/\/[^\s\]]+)\s+([^\]]+)\]/g, '[$2]($1)')
     .replace(/\[(https?:\/\/[^\s\]]+)\]/g, '<$1>');
 }
 
-export function convertInline(text) {
+export function convertInline(text: string): string {
   return text
     .replace(/('{2,5})[ \t]*\n/g, '$1') // bold/italic opened at a line end
     .replace(/'''''(.+?)'''''/g, '***$1***')
@@ -373,19 +399,19 @@ export function convertInline(text) {
 
 // MediaWiki tables -> Markdown tables; multi-line cells are joined with <br>.
 // Innermost tables first, so a table nested in a cell doesn't leave its parent's "|}" behind.
-export function convertTables(text) {
+export function convertTables(text: string): string {
   const innermost = /^[ \t]*\{\|[^\n]*\n((?:(?!^[ \t]*\{\|)[\s\S])*?)^[ \t]*\|\}[^\n]*$/m;
-  while (innermost.test(text)) text = text.replace(innermost, (_, inner) => tableToMarkdown(inner));
+  while (innermost.test(text)) text = text.replace(innermost, (_, inner: string) => tableToMarkdown(inner));
   return text;
 }
 
-export function tableToMarkdown(inner) {
-  const rows = [];
-  let row = null;
+export function tableToMarkdown(inner: string): string {
+  const rows: string[][][] = [];
+  let row: string[][] | null = null;
   let headerRow = false;
-  const cellText = raw => {
+  const cellText = (raw: string) => {
     const parts = splitTop(raw);
-    return (parts.length > 1 && /=|^\s*$/.test(parts[0]) ? parts.slice(1).join('|') : raw).trim();
+    return (parts.length > 1 && /=|^\s*$/.test(parts[0] ?? '') ? parts.slice(1).join('|') : raw).trim();
   };
   for (const line of inner.split('\n')) {
     const trimmed = line.trim();
@@ -396,22 +422,23 @@ export function tableToMarkdown(inner) {
     }
     if (trimmed.startsWith('!') || trimmed.startsWith('|')) {
       const isHeader = trimmed.startsWith('!');
+      const current: string[][] = row ?? [];
       if (!row) {
-        row = [];
-        rows.push(row);
+        rows.push(current);
         if (rows.length === 1) headerRow = isHeader;
       }
+      row = current;
       trimmed
         .slice(1)
         .split(isHeader ? /!!|\|\|/ : /\|\|/)
-        .forEach(cell => row.push([cellText(cell)]));
+        .forEach(cell => current.push([cellText(cell)]));
     } else if (row?.length && trimmed) {
-      row[row.length - 1].push(trimmed.replace(/^(?:[-*#]|1\.)\s+/, '• '));
+      row.at(-1)?.push(trimmed.replace(/^(?:[-*#]|1\.)\s+/, '• '));
     }
   }
   if (!rows.length) return '';
   const width = Math.max(...rows.map(r => r.length));
-  const cell = lines =>
+  const cell = (lines: string[]) =>
     lines
       .filter(Boolean)
       .join('<br>')
@@ -423,28 +450,31 @@ export function tableToMarkdown(inner) {
   return `\n${md.join('\n')}\n`;
 }
 
-export function convertBlocks(text) {
+export function convertBlocks(text: string): string {
   return text
     .split('\n')
     .map(line => {
       if (/^\s*[|!{]/.test(line)) return line; // table rows
       const heading = line.match(/^(={2,6})\s*(.+?)\s*\1\s*$/);
-      if (heading) return `\n${'#'.repeat(heading[1].length)} ${heading[2].replace(/\*\*/g, '')}\n`;
+      if (heading) {
+        const [, level = '', title = ''] = heading;
+        return `\n${'#'.repeat(level.length)} ${title.replace(/\*\*/g, '')}\n`;
+      }
       const list = line.match(/^([*#:;]+)\s*(.*)$/);
       if (!list) return line;
-      const marks = list[1];
-      const last = marks[marks.length - 1];
-      if (last === ';') return `**${list[2]}**`;
-      if (last === ':' && !/[*#]/.test(marks)) return list[2];
-      return `${'  '.repeat(marks.length - 1)}${last === '#' ? '1.' : '-'} ${list[2]}`;
+      const [, marks = '', item = ''] = list;
+      const last = marks.at(-1);
+      if (last === ';') return `**${item}**`;
+      if (last === ':' && !/[*#]/.test(marks)) return item;
+      return `${'  '.repeat(marks.length - 1)}${last === '#' ? '1.' : '-'} ${item}`;
     })
     .join('\n');
 }
 
 // A heading followed only by headings of the same or a higher level (or nothing) has no content.
-export function dropEmptyHeadings(markdown) {
+export function dropEmptyHeadings(markdown: string): string {
   const lines = markdown.split('\n');
-  const level = line => line.match(/^(#{1,6}) /)?.[1].length || 0;
+  const level = (line: string) => line.match(/^(#{1,6}) /)?.[1]?.length ?? 0;
   return lines
     .filter((line, i) => {
       const own = level(line);
@@ -455,7 +485,7 @@ export function dropEmptyHeadings(markdown) {
     .join('\n');
 }
 
-export function cleanSource(text) {
+export function cleanSource(text: string): string {
   return text
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<ref[^>/]*\/>/gi, '')
@@ -466,7 +496,7 @@ export function cleanSource(text) {
     .replace(/__[A-Z]+__/g, '');
 }
 
-export function renderWikitext(text, ctx) {
+export function renderWikitext(text: string, ctx: Context): string {
   let md = cleanSource(text);
   md = expandTemplates(md, ctx);
   md = convertLinks(md);
@@ -482,7 +512,7 @@ export function renderWikitext(text, ctx) {
 }
 
 // Plain text for infobox values and ingredient names.
-export function plainText(text) {
+export function plainText(text: unknown): string {
   let out = cleanSource(String(text));
   out = mapTemplates(out, template => {
     const inline = INLINE[template.key];
@@ -501,7 +531,7 @@ export function plainText(text) {
 // ---------------------------------------------------------------------------
 // Page -> article
 // ---------------------------------------------------------------------------
-export const FACT_LABELS = {
+export const FACT_LABELS: Record<string, string> = {
   category: 'Category',
   subcategory: 'Subcategory',
   type: 'Type',
@@ -554,7 +584,7 @@ export const HIDDEN_FIELDS = new Set([
   'build'
 ]);
 
-export function categoryFor(kind, fields) {
+export function categoryFor(kind: string, fields: Record<string, string>): string {
   switch (kind) {
     case 'resource':
       return 'resources';
@@ -580,7 +610,7 @@ export function categoryFor(kind, fields) {
   return 'products';
 }
 
-export function summarize(markdown) {
+export function summarize(markdown: string): string {
   const paragraph = markdown
     .split(/\n{2,}/)
     .map(block => block.trim())
@@ -595,16 +625,61 @@ export function summarize(markdown) {
 }
 
 // The in-game text, when the page quotes it, makes the best summary.
-export function gameDescription(markdown) {
+export function gameDescription(markdown: string): string {
   const match = markdown.match(/^##\s+(?:in-)?game description\s*\n([\s\S]*?)(?=^#{1,2}\s|(?![\s\S]))/im);
-  return match ? match[1] : '';
+  return match?.[1] ?? '';
 }
 
-export function buildArticle(page) {
+// The frontmatter of a mirrored article, as written by buildArticle() and read back by the sync and the indexer.
+export const ArticleMetaSchema = z.looseObject({
+  title: z.string().optional(),
+  category: z.string().optional(),
+  kind: z.string().optional(),
+  summary: z.string().optional(),
+  pageId: z.int().optional(),
+  revId: z.int().optional(),
+  revTimestamp: z.string().optional(),
+  version: z.string().optional(),
+  obsolete: z.boolean().optional(),
+  status: z.enum(['current', 'removed']).optional(),
+  source: z.string().optional(),
+  license: z.string().optional(),
+  data: z
+    .looseObject({
+      fields: z.record(z.string(), z.string()).optional(),
+      value: z.number().optional(),
+      recipes: z.array(RecipeSchema).optional()
+    })
+    .optional()
+});
+export type ArticleMeta = z.infer<typeof ArticleMetaSchema>;
+
+export interface Article {
+  excluded?: undefined;
+  category: string;
+  meta: {
+    title: string;
+    category: string;
+    kind: string;
+    summary: string;
+    pageId: number;
+    revId: number;
+    revTimestamp: string;
+    version: string;
+    obsolete: boolean;
+    status: 'current';
+    source: string;
+    license: string;
+    data: { fields: Record<string, string>; value?: number; recipes: Recipe[] };
+  };
+  body: string;
+}
+
+export function buildArticle(page: Page): Article | { excluded: string } {
   const templates = topTemplates(cleanSource(page.content));
   const infobox = templates.find(template => SCOPE_KEYS.has(template.key));
-  const fields = {};
-  Object.entries(infobox?.named || {}).forEach(([key, value]) => {
+  const fields: Record<string, string> = {};
+  Object.entries(infobox?.named ?? {}).forEach(([key, value]) => {
     const text = plainText(value);
     if (text) fields[key] = text;
   });
@@ -614,7 +689,7 @@ export function buildArticle(page) {
   const version = templates.find(template => template.key === 'version')?.positional[0]?.trim() || '';
   const obsolete = templates.some(template => template.key === 'obsolete') || ARCHIVED_VARIANT.test(page.title);
   const recipes = templates.flatMap(template => parseRecipes(template, page.title));
-  const value = Number(String(fields.value || '').replace(/,/g, ''));
+  const value = Number((fields.value || '').replace(/,/g, ''));
 
   const facts = Object.entries(fields)
     .filter(([key]) => !HIDDEN_FIELDS.has(key))
@@ -643,7 +718,7 @@ export function buildArticle(page) {
       status: 'current',
       source: `${WIKI_BASE}/wiki/${encodeURIComponent(page.title.replace(/ /g, '_'))}`,
       license: LICENSE,
-      data: { fields, ...(fields.value && Number.isFinite(value) && { value }), recipes }
+      data: { fields, ...(fields.value && Number.isFinite(value) ? { value } : {}), recipes }
     },
     body: `${body}\n`
   };

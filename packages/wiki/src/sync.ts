@@ -1,20 +1,20 @@
-#!/usr/bin/env node
 // Mirrors the game-data pages of the No Man's Sky wiki into wiki/<category>/<slug>.md and rebuilds the Codex indexes.
 //
-//   node scripts/sync-wiki.mjs               sync every in-scope page from the live wiki, record the verification, reindex
-//   node scripts/sync-wiki.mjs --verify      dry run: report how the archive differs from the live wiki (exit 1 if it does)
-//   node scripts/sync-wiki.mjs --index-only  reindex the committed archive only (no network)
+//   pnpm sync:wiki     sync every in-scope page from the live wiki, record the verification, reindex
+//   pnpm verify:wiki   dry run: report how the archive differs from the live wiki (exit 1 if it does)
+//   pnpm index:wiki    reindex the committed archive only (no network)
 //
 // Scope: main-namespace pages that use one of the game-data infoboxes in SCOPE. Player discoveries (planets,
 // creatures, bases, player-found ships and multi-tools) and community pages are out of scope.
 // Every article is rendered from the page's wikitext at a recorded revision id. MediaWiki revisions are immutable,
 // so an archived revId equal to the live revId means the copy matches the wiki's source exactly.
 //
-// Zero dependencies — Node 18+ (native fetch).
+// Node 24+ runs this file as-is (type stripping); its only dependency is Zod, for the response schemas.
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { z } from 'zod';
 import {
   WIKI_BASE,
   LICENSE,
@@ -24,35 +24,67 @@ import {
   toFrontmatter,
   parseFrontmatter,
   summarize,
-  buildArticle
-} from './lib/wikitext.mjs';
-import { InvalidResponse, readEmbeddedIn, readRevisions } from './lib/api-schema.mjs';
+  buildArticle,
+  ArticleMetaSchema,
+  type ArticleMeta,
+  type Page
+} from './wikitext.ts';
+import { InvalidResponse, readEmbeddedIn, readRevisions } from './api-schema.ts';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
 const WIKI_API = `${WIKI_BASE}/api.php`;
 const USER_AGENT = 'nms-os-sync-wiki/3.0 (personal offline companion app)';
 const BATCH = 50; // pages per revisions request (the API maximum for content)
 const REQUEST_DELAY_MS = 250;
 const REQUEST_TIMEOUT_MS = 30000; // a stalled connection must reach the retry/unreachable path, not hang the CI job
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const describe = (err: unknown) => (err instanceof Error ? err.message : String(err));
+
+type Params = Record<string, string | number>;
+interface ScopePage {
+  pageId: number;
+  title: string;
+  kind: string;
+}
+interface ArchiveEntry {
+  file: string;
+  text: string;
+  meta: ArticleMeta;
+}
+interface FileWrite {
+  file: string;
+  text: string;
+}
+
+const ApiFailure = z.looseObject({ error: z.looseObject({ code: z.string(), info: z.string() }) });
+const Continuation = z.looseObject({ continue: z.record(z.string(), z.union([z.string(), z.number()])).optional() });
+const Redirects = z.looseObject({
+  query: z.looseObject({
+    normalized: z.array(z.looseObject({ from: z.string(), to: z.string() })).optional(),
+    redirects: z.array(z.looseObject({ from: z.string(), to: z.string() })).optional()
+  })
+});
+const Aliases = z.record(z.string(), z.string());
 
 // ---------------------------------------------------------------------------
 // MediaWiki API
 // ---------------------------------------------------------------------------
-async function api(params, attempt = 1) {
+async function api(params: Params, attempt = 1): Promise<unknown> {
   const url = new URL(WIKI_API);
-  Object.entries({ format: 'json', formatversion: '2', ...params }).forEach(([key, value]) =>
-    url.searchParams.set(key, String(value))
-  );
+  const query: Params = { format: 'json', formatversion: '2', ...params };
+  for (const [key, value] of Object.entries(query)) {
+    url.searchParams.set(key, String(value));
+  }
   try {
     const res = await fetch(url, {
       headers: { 'User-Agent': USER_AGENT },
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-    const data = await res.json();
-    if (data.error) throw new Error(`${data.error.code}: ${data.error.info}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url.href}`);
+    const data: unknown = await res.json();
+    const failure = ApiFailure.safeParse(data);
+    if (failure.success) throw new Error(`${failure.data.error.code}: ${failure.data.error.info}`);
     return data;
   } catch (err) {
     if (attempt >= 4) throw err;
@@ -62,10 +94,10 @@ async function api(params, attempt = 1) {
 }
 
 // pageId -> { pageId, title, kind } for every page embedding an in-scope infobox.
-async function fetchScope() {
-  const pages = new Map();
+async function fetchScope(): Promise<Map<number, ScopePage>> {
+  const pages = new Map<number, ScopePage>();
   for (const [template, kind] of Object.entries(SCOPE)) {
-    let cont = {};
+    let cont: Params | null = {};
     while (cont) {
       const data = await api({
         action: 'query',
@@ -78,16 +110,16 @@ async function fetchScope() {
       for (const page of readEmbeddedIn(data, template)) {
         if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind });
       }
-      cont = data.continue || null;
+      cont = Continuation.parse(data).continue ?? null;
       await sleep(REQUEST_DELAY_MS);
     }
   }
   return pages;
 }
 
-async function fetchRevisions(scope) {
+async function fetchRevisions(scope: Map<number, ScopePage>): Promise<Page[]> {
   const ids = [...scope.keys()].sort((a, b) => a - b);
-  const pages = [];
+  const pages: Page[] = [];
   for (let i = 0; i < ids.length; i += BATCH) {
     const data = await api({
       action: 'query',
@@ -98,7 +130,8 @@ async function fetchRevisions(scope) {
     });
     for (const page of readRevisions(data)) {
       pages.push({
-        ...scope.get(page.pageid),
+        pageId: page.pageid,
+        kind: scope.get(page.pageid)?.kind ?? '',
         title: page.title,
         revId: page.revid,
         revTimestamp: page.timestamp,
@@ -116,13 +149,21 @@ async function fetchRevisions(scope) {
 // ---------------------------------------------------------------------------
 // Archive
 // ---------------------------------------------------------------------------
-async function readArchive() {
-  const byPageId = new Map();
+// Frontmatter is validated, but the original object is kept: Zod rebuilds objects in schema key order, and the
+// derived JSON must keep the archive's order byte-for-byte.
+function readMeta(file: string, meta: Record<string, unknown>): ArticleMeta {
+  const parsed = ArticleMetaSchema.safeParse(meta);
+  if (!parsed.success) throw new Error(`wiki/${file}: invalid frontmatter (${parsed.error.issues[0]?.path.join('.') ?? '?'})`);
+  return meta;
+}
+
+async function readArchive(): Promise<Map<number, ArchiveEntry>> {
+  const byPageId = new Map<number, ArchiveEntry>();
   for (const folder of FOLDERS) {
     const dir = path.join(WIKI_DIR, folder);
     for (const file of (await fs.readdir(dir).catch(() => [])).filter(name => name.endsWith('.md'))) {
       const text = await fs.readFile(path.join(dir, file), 'utf8');
-      const { meta } = parseFrontmatter(text);
+      const meta = readMeta(`${folder}/${file}`, parseFrontmatter(text).meta);
       if (meta.pageId) byPageId.set(meta.pageId, { file: `${folder}/${file}`, text, meta });
     }
   }
@@ -130,27 +171,27 @@ async function readArchive() {
 }
 
 // Compares the live wiki with the archive and returns what a sync would change.
-function plan(livePages, archive) {
-  const writes = [];
-  const deletes = [];
-  const excluded = [];
-  const outdated = [];
-  const missing = [];
-  const taken = new Set();
-  const kept = new Set();
-  const titles = new Set();
-  const recipeNames = new Set();
+function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
+  const writes: FileWrite[] = [];
+  const deletes: string[] = [];
+  const excluded: { title: string; reason: string }[] = [];
+  const outdated: { title: string; archived: number | undefined; live: number }[] = [];
+  const missing: string[] = [];
+  const taken = new Set<string>();
+  const kept = new Set<number>();
+  const titles = new Set<string>();
+  const recipeNames = new Set<string>();
   for (const page of [...livePages].sort((a, b) => a.pageId - b.pageId)) {
     const article = buildArticle(page);
-    if (article.excluded) {
+    if (article.excluded !== undefined) {
       excluded.push({ title: page.title, reason: article.excluded });
       continue;
     }
     kept.add(page.pageId);
     titles.add(page.title.toLowerCase());
-    article.meta.data.recipes.forEach(recipe =>
-      [...recipe.inputs, ...recipe.outputs].forEach(item => recipeNames.add(String(item.name)))
-    );
+    for (const recipe of article.meta.data.recipes) {
+      for (const item of [...recipe.inputs, ...recipe.outputs]) recipeNames.add(item.name);
+    }
     let slug = slugify(page.title) || String(page.pageId);
     if (taken.has(`${article.category}/${slug.toLowerCase()}`)) slug = `${slug}_${page.pageId}`;
     taken.add(`${article.category}/${slug.toLowerCase()}`);
@@ -163,10 +204,10 @@ function plan(livePages, archive) {
     if (existing && existing.file !== file) deletes.push(existing.file);
     if (!existing || existing.file !== file || existing.text !== text) writes.push({ file, text });
   }
-  const removed = [];
+  const removed: string[] = [];
   for (const [pageId, entry] of archive) {
     if (kept.has(pageId) || entry.meta.status === 'removed') continue;
-    removed.push(entry.meta.title);
+    removed.push(entry.meta.title ?? '');
     writes.push({ file: entry.file, text: entry.text.replace(/^status: "current"$/m, 'status: "removed"') });
   }
   const unknownNames = [...recipeNames].filter(name => name && !titles.has(name.toLowerCase())).sort();
@@ -175,12 +216,17 @@ function plan(livePages, archive) {
 
 // Recipe ingredients named by an old title (e.g. "Rigogen") reach their page through a wiki redirect.
 // Returns { aliases: { oldName: currentTitle }, unlinked: [names with no in-scope page] }.
-async function resolveAliases(names, titles) {
-  const aliases = {};
+async function resolveAliases(
+  names: string[],
+  titles: Set<string>
+): Promise<{ aliases: Record<string, string>; unlinked: string[] }> {
+  const aliases: Record<string, string> = {};
   for (let i = 0; i < names.length; i += BATCH) {
-    const data = await api({ action: 'query', redirects: 1, titles: names.slice(i, i + BATCH).join('|') });
-    const normalized = new Map((data.query.normalized || []).map(entry => [entry.to, entry.from]));
-    for (const redirect of data.query.redirects || []) {
+    const { query } = Redirects.parse(
+      await api({ action: 'query', redirects: 1, titles: names.slice(i, i + BATCH).join('|') })
+    );
+    const normalized = new Map((query.normalized ?? []).map(entry => [entry.to, entry.from]));
+    for (const redirect of query.redirects ?? []) {
       if (titles.has(redirect.to.toLowerCase())) aliases[normalized.get(redirect.from) ?? redirect.from] = redirect.to;
     }
     await sleep(REQUEST_DELAY_MS);
@@ -189,13 +235,13 @@ async function resolveAliases(names, titles) {
   return { aliases: sorted, unlinked: names.filter(name => !(name in sorted)) };
 }
 
-async function writeVerification(report) {
+async function writeVerification(report: object): Promise<void> {
   await fs.writeFile(path.join(WIKI_DIR, 'verification.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
-async function sync({ dryRun }) {
+async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   const checkedAt = new Date().toISOString();
-  let livePages;
+  let livePages: Page[];
   try {
     const scope = await fetchScope();
     console.log(`🔎 ${scope.size} wiki pages use a game-data infobox.`);
@@ -206,7 +252,7 @@ async function sync({ dryRun }) {
       console.error(`❌ The wiki returned data the mirror can't validate: ${err.message}. Nothing was written.`);
       await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'invalid-response', reason: err.message });
     } else {
-      console.warn(`⚠️  Wiki unreachable (${err.message}); the archive was not checked.`);
+      console.warn(`⚠️  Wiki unreachable (${describe(err)}); the archive was not checked.`);
       await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'unreachable' });
     }
     return false;
@@ -214,10 +260,10 @@ async function sync({ dryRun }) {
 
   const changes = plan(livePages, await readArchive());
   const committedAliases = await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '');
-  const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles).catch(err => {
+  const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles).catch((err: unknown) => {
     // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
-    console.warn(`⚠️  Couldn't refresh redirect aliases (${err.message}); keeping the committed aliases.json.`);
-    return { aliases: JSON.parse(committedAliases || '{}'), unlinked: changes.unknownNames };
+    console.warn(`⚠️  Couldn't refresh redirect aliases (${describe(err)}); keeping the committed aliases.json.`);
+    return { aliases: Aliases.parse(JSON.parse(committedAliases || '{}')), unlinked: changes.unknownNames };
   });
   const aliasesText = `${JSON.stringify(aliases, null, 2)}\n`;
   const aliasesChanged = committedAliases !== aliasesText;
@@ -260,12 +306,14 @@ async function sync({ dryRun }) {
       .sort(),
     aliases: Object.keys(aliases).length,
     unlinkedIngredients: unlinked,
-    ...(dryRun && {
-      outdated: changes.outdated,
-      missing: changes.missing,
-      removedUpstream: changes.removed,
-      filesToRewrite: differences
-    })
+    ...(dryRun
+      ? {
+          outdated: changes.outdated,
+          missing: changes.missing,
+          removedUpstream: changes.removed,
+          filesToRewrite: differences
+        }
+      : {})
   };
   await writeVerification(report);
 
@@ -287,35 +335,39 @@ async function sync({ dryRun }) {
 // Indexes (derived, git-ignored): index.json, offline-bundle.js, game-data.json
 // Committed inputs: the .md archive and aliases.json.
 // ---------------------------------------------------------------------------
-async function buildIndexes() {
-  const articles = [];
-  const items = [];
+async function buildIndexes(): Promise<void> {
+  const articles: (Record<string, unknown> & { category: string; title: string })[] = [];
+  const items: object[] = [];
   for (const base of ['', 'custom/']) {
     for (const folder of FOLDERS) {
       const dir = path.join(WIKI_DIR, base, folder);
       const files = (await fs.readdir(dir).catch(() => [])).filter(file => file.endsWith('.md')).sort();
       for (const file of files) {
-        const { meta, body } = parseFrontmatter(await fs.readFile(path.join(dir, file), 'utf8'));
+        const parsed = parseFrontmatter(await fs.readFile(path.join(dir, file), 'utf8'));
+        const { body } = parsed;
+        const meta = readMeta(`${base}${folder}/${file}`, parsed.meta);
         const slug = file.slice(0, -3);
         const isWiki = !base && Boolean(meta.revId);
         const entry = {
-          title: String(meta.title || slug.replace(/_/g, ' ')),
+          title: meta.title || slug.replace(/_/g, ' '),
           slug,
           category: folder,
           path: `wiki/${base}${folder}/${file}`,
-          summary: String(meta.summary || summarize(body)),
+          summary: meta.summary || summarize(body),
           source: isWiki ? 'wiki' : 'custom',
-          ...(isWiki && {
-            url: meta.source,
-            kind: meta.kind,
-            revId: meta.revId,
-            revTimestamp: meta.revTimestamp,
-            version: meta.version,
-            ...(meta.obsolete && { obsolete: true }),
-            ...(meta.status === 'removed' && { removed: true })
-          })
+          ...(isWiki
+            ? {
+                url: meta.source,
+                kind: meta.kind,
+                revId: meta.revId,
+                revTimestamp: meta.revTimestamp,
+                version: meta.version,
+                ...(meta.obsolete ? { obsolete: true } : {}),
+                ...(meta.status === 'removed' ? { removed: true } : {})
+              }
+            : {})
         };
-        articles.push({ ...entry, body, ...(meta.data?.recipes?.length && { recipes: meta.data.recipes }) });
+        articles.push({ ...entry, body, ...(meta.data?.recipes?.length ? { recipes: meta.data.recipes } : {}) });
         if (isWiki)
           items.push({
             ...entry,
@@ -328,7 +380,9 @@ async function buildIndexes() {
   }
   articles.sort((a, b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title));
 
-  const aliases = JSON.parse(await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '{}'));
+  const aliases = Aliases.parse(
+    JSON.parse(await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '{}'))
+  );
   // The light index only carries what the main app's header search shows.
   const index = articles.map(({ title, category, path, summary, source, obsolete, removed }) => ({
     title,
@@ -336,8 +390,8 @@ async function buildIndexes() {
     path,
     summary,
     source,
-    ...(obsolete && { obsolete }),
-    ...(removed && { removed })
+    ...(obsolete ? { obsolete } : {}),
+    ...(removed ? { removed } : {})
   }));
   await fs.writeFile(path.join(WIKI_DIR, 'index.json'), `${JSON.stringify(index)}\n`, 'utf8');
   // Loaded via <script>: the Codex's full-text search, and the fallback when fetch() is unavailable (file://).
@@ -357,7 +411,7 @@ async function buildIndexes() {
   );
 }
 
-async function run() {
+async function run(): Promise<void> {
   const args = process.argv.slice(2);
   await fs.mkdir(WIKI_DIR, { recursive: true });
   if (args.includes('--verify')) {
@@ -369,7 +423,7 @@ async function run() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  run().catch(err => {
+  run().catch((err: unknown) => {
     console.error('❌ sync-wiki failed:', err);
     process.exitCode = 1;
   });
