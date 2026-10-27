@@ -1,5 +1,5 @@
-// Mounts the React screens into index.html once the state has loaded (the header, sidebar and banner are still
-// vanilla).
+// Mounts the main page's React roots into index.html: the frame (header, sidebar, tab bar, storage banner) right
+// away, and the screens once the state has loaded, so none flashes the built-in defaults.
 import { StrictMode, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Home } from './home/Home.tsx';
@@ -11,6 +11,17 @@ import { Guides } from './guides/Guides.tsx';
 import { Book } from './guides/Book.tsx';
 import { More } from './more/More.tsx';
 import { BOOKS } from '@atlas/core/guides';
+import { Header } from './shell/Header.tsx';
+import { Sidebar } from './shell/Sidebar.tsx';
+import { TabBar } from './shell/TabBar.tsx';
+import { StorageBanner } from './shell/StorageBanner.tsx';
+
+const FRAME: [string, ReactNode][] = [
+  ['headerRoot', <Header />],
+  ['sidebarNav', <Sidebar />],
+  ['tabBarRoot', <TabBar />],
+  ['storageBannerRoot', <StorageBanner />]
+];
 
 const SCREENS: [string, ReactNode][] = [
   ['homeRoot', <Home />],
@@ -23,9 +34,17 @@ const SCREENS: [string, ReactNode][] = [
   ['moreRoot', <More />]
 ];
 
-export function mountScreens(): void {
-  for (const [id, screen] of SCREENS) {
+function mount(roots: [string, ReactNode][]): void {
+  for (const [id, node] of roots) {
     const container = document.getElementById(id);
-    if (container) createRoot(container).render(<StrictMode>{screen}</StrictMode>);
+    if (container) createRoot(container).render(<StrictMode>{node}</StrictMode>);
   }
+}
+
+export function mountFrame(): void {
+  mount(FRAME);
+}
+
+export function mountScreens(): void {
+  mount(SCREENS);
 }

@@ -4,11 +4,11 @@ import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { DEFAULT_FILTER } from '@atlas/core/systems-list';
 import { appState, setAppState } from '../../app/store.ts';
-import { showSection } from '../../app/nav.js';
+import { showSection } from '../shell/section-store.ts';
 import { SystemPanel } from './SystemPanel.tsx';
 import { closeSystemPanel, getPanel, openSystem, openSystemEditor, setSystemFilter } from './panel-store.ts';
 
-vi.mock('../../app/nav.js', () => ({ showSection: vi.fn() }));
+vi.mock('../shell/section-store.ts', () => ({ showSection: vi.fn() }));
 
 const system = (id: string) => appState.systems.find(item => item.id === id);
 const stored = () =>

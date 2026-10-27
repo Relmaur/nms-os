@@ -1,5 +1,5 @@
-// Accessibility (axe) on the main screens. Screens already moved to React (ADR-0004 step 3) are gated: any violation
-// fails. The rest report only (violations attached and summarised as an annotation) until their move.
+// Accessibility (axe) on every screen and the page frame: any violation in the gated region fails. An entry without a
+// region reports only (violations attached and summarised as an annotation); none is left.
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from './fixtures.mjs';
 
@@ -26,6 +26,7 @@ const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
+  ['Page frame (header, sidebar, tab bar)', './', '#homeNow', 'body'],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System panel', './#systems', '#systemNotes', '#systemPanel', openPanel],

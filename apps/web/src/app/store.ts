@@ -1,7 +1,7 @@
 // The app state, one document (docs/state-schema.md): loading, saving, and the hook that re-renders after a save.
 // Only this module reassigns `appState`; others read the live binding and mutate it, then call saveAppState().
-// Vanilla screens re-render through onSave(); React screens subscribe() (see src/ui/useAppState.ts). Both fire
-// after every load, save and adoption of another tab's copy.
+// React screens subscribe() (see src/ui/useAppState.ts), which fires after every load, save and adoption of another
+// tab's copy.
 import { buildState, migrateLegacyState, stateTimestamp, type AppState } from '@atlas/core/state';
 import { validateState, describeErrors } from '@atlas/core/schema';
 import { isPlainObject } from '@atlas/core/util';
@@ -18,11 +18,6 @@ export function setAppState(next: AppState): void {
   changed();
 }
 
-let renderAll = () => {};
-export function onSave(render: () => void): void {
-  renderAll = render;
-}
-
 // A version number that changes whenever appState may have: React's useSyncExternalStore compares it, since the
 // state object itself is mutated in place.
 let version = 0;
@@ -34,6 +29,8 @@ export function subscribe(listener: () => void): () => void {
 export function getVersion(): number {
   return version;
 }
+// Before the first load, appState holds only the built-in defaults.
+export const isLoaded = (): boolean => version > 0;
 function changed(): void {
   version += 1;
   listeners.forEach(listener => {
@@ -165,7 +162,6 @@ export function persistState(): boolean {
 // Returns whether the state reached storage (the banner already reports a failure; notes also show it inline).
 export function saveAppState(): boolean {
   const saved = persistState();
-  renderAll();
   changed();
   return saved;
 }
@@ -196,7 +192,6 @@ window.addEventListener('storage', event => {
   adoptHooks.forEach(run => {
     run();
   });
-  renderAll();
   changed();
   reportStatus({ fromOtherTab: true });
 });

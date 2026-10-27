@@ -6,6 +6,7 @@ import {
   outlawStatus,
   rankOutlaw,
   systemHaystack,
+  searchSystems,
   HOUR_MS,
   type System
 } from '../src/systems-model.ts';
@@ -128,4 +129,20 @@ test('unsafe ids are made safe; generated and legacy ids are kept', () => {
   assert.equal(normalizeSystem({ id: 'camp-01' }).id, 'camp-01');
   assert.match(normalizeSystem({ id: "');('" }).id, /^sys-/, 'nothing usable left: a fresh id');
   assert.equal(normalizeSystem({ planets: [{ id: 'pl "x"', name: 'P' }] }).planets[0]?.id, 'pl--x-');
+});
+
+test('the header search matches systems holding every word typed, in any field', () => {
+  const systems = [
+    normalizeSystem({ name: 'Ekwa Nexus', region: 'Odyalutai', tags: ['trade-hub'] }),
+    normalizeSystem({ name: 'Hesper Drift', notes: 'Nexus of storms' })
+  ];
+  assert.deepEqual(
+    searchSystems(systems, 'nexus').map(system => system.name),
+    ['Ekwa Nexus', 'Hesper Drift']
+  );
+  assert.deepEqual(
+    searchSystems(systems, 'NEXUS odya').map(system => system.name),
+    ['Ekwa Nexus']
+  );
+  assert.deepEqual(searchSystems(systems, '   '), []);
 });

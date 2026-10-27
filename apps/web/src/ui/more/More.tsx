@@ -5,7 +5,7 @@ import { guideProgress } from '@atlas/core/guides';
 import { exportState, importState } from '../../app/backup.ts';
 import { useAppState } from '../useAppState.ts';
 import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device-store.ts';
-import { useWikiCount } from './wiki-count.ts';
+import { useWikiCount } from '../shell/wiki-index.ts';
 
 export function More() {
   const { checklists } = useAppState();

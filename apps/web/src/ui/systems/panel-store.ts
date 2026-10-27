@@ -6,7 +6,7 @@ import { DEFAULT_FILTER, type SystemFilter } from '@atlas/core/systems-list';
 import type { System } from '@atlas/core/systems-model';
 import { appState, onAdopt } from '../../app/store.ts';
 import { showToast } from '../../app/ui.ts';
-import { showSection } from '../../app/nav.js';
+import { showSection } from '../shell/section-store.ts';
 
 export type EditorPreset = Partial<Pick<System, 'tags' | 'conflict'>>;
 export interface PanelState {

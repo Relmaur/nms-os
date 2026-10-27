@@ -25,83 +25,20 @@
         <span id="toastMessage">Action completed</span>
     </div>
 
-    <!-- Top Header -->
-    <header class="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-[1600px] mx-auto h-14 lg:h-16 px-4 sm:px-6 flex items-center gap-3 sm:gap-4">
-            <a href="#home" onclick="showSection('home'); return false;" class="flex items-center gap-3 shrink-0 min-w-0 rounded-lg">
-                <span class="w-8 h-8 lg:w-9 lg:h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center"><i class="ph-fill ph-planet text-lg lg:text-xl text-red-500"></i></span>
-                <span class="font-display font-bold text-sm sm:text-base tracking-wider text-white whitespace-nowrap">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</span>
-            </a>
-
-            <!-- Global search: your systems, wiki articles and the guides -->
-            <div id="globalSearch" class="hidden md:block relative flex-1 max-w-xl mx-auto">
-                <div class="flex items-center gap-2">
-                    <div class="relative flex-1">
-                        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                        <input type="search" id="globalSearchInput" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="globalSearchResults" aria-autocomplete="list" aria-label="Search your systems, the wiki and the guides" placeholder="Search systems, the wiki and the guides…" oninput="handleGlobalSearch(this.value)" onfocus="handleGlobalSearch(this.value)" onkeydown="handleGlobalSearchKey(event)" class="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-400 focus:outline-hidden transition">
-                        <kbd class="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">/</kbd>
-                    </div>
-                    <button onclick="closeGlobalSearch()" class="md:hidden h-10 px-2 text-sm font-medium text-cyan-300">Cancel</button>
-                </div>
-                <div id="globalSearchResults" role="listbox" aria-label="Search results" class="hidden absolute left-0 right-0 top-full mt-2 max-h-[72vh] overflow-y-auto overscroll-contain rounded-2xl border border-slate-700 bg-slate-950 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.75)] p-2"></div>
-            </div>
-
-            <div class="ml-auto md:ml-0 flex items-center gap-1.5 sm:gap-2 shrink-0">
-                <button onclick="openGlobalSearch()" aria-label="Search" class="md:hidden w-10 h-10 -mr-2 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
-                    <i class="ph-bold ph-magnifying-glass text-xl"></i>
-                </button>
-                <button onclick="exportStateJSON()" title="Export nms_state.json" aria-label="Export nms_state.json" class="hidden md:flex h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-emerald-300 items-center gap-2 transition">
-                    <i class="ph-bold ph-download-simple text-base"></i>
-                    <span class="hidden xl:inline">Export</span>
-                </button>
-                <label id="importDropzone" title="Import nms_state.json (click or drop the file here)" ondragover="handleStateDragOver(event)" ondragleave="setDropzoneActive(false)" ondrop="handleStateDrop(event)" class="hidden md:flex cursor-pointer h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-700 text-xs font-medium text-amber-300 items-center gap-2 transition focus-within:ring-2 focus-within:ring-cyan-400">
-                    <i class="ph-bold ph-upload-simple text-base"></i>
-                    <span class="hidden xl:inline">Import</span>
-                    <input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only" aria-label="Import nms_state.json">
-                </label>
-            </div>
-        </div>
-    </header>
+    <!-- Top header: logo, search, Export/Import (React: src/ui/shell/Header.tsx) -->
+    <header id="headerRoot" class="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800"></header>
 
     <!-- Main Workspace Container -->
     <div class="flex-1 max-w-[1600px] w-full mx-auto flex relative">
 
-        <!-- Desktop navigation (the bottom tab bar replaces it below lg) -->
-        <aside id="sidebarNav" aria-label="Primary" class="hidden lg:flex lg:sticky lg:top-16 lg:h-[calc(100dvh-4rem)] lg:w-72 lg:shrink-0 flex-col">
-            <nav class="flex-1 overflow-y-auto overscroll-contain px-3 py-6 space-y-8">
-                <div>
-                    <p class="nav-group-label">Companion</p>
-                    <ul class="space-y-1">
-                        <li><button onclick="showSection('home')" id="nav-home" class="nav-btn"><span class="nav-tile text-cyan-300"><i class="ph-bold ph-house"></i></span><span class="truncate">Home</span></button></li>
-                        <li><button onclick="showSection('systems')" id="nav-systems" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-planet"></i></span><span class="truncate">Systems</span><span id="sidebarSystemsCount" class="nav-count">0</span></button></li>
-                        <li><button onclick="showSection('outlaw')" id="nav-outlaw" class="nav-btn"><span class="nav-tile text-red-300"><i class="ph-bold ph-skull"></i></span><span class="truncate">Outlaw Run</span><span id="sidebarOutlawCount" class="nav-count">0</span></button></li>
-                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span></button></li>
-                        <li><a href="wiki/" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span><i class="ph-bold ph-arrow-up-right text-xs text-slate-400 ml-2"></i></a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <p class="nav-group-label">Library</p>
-                    <ul class="space-y-1">
-                        <li><button onclick="showSection('guides')" id="nav-guides" class="nav-btn"><span class="nav-tile text-sky-300"><i class="ph-bold ph-book-open-text"></i></span><span class="truncate">Guides</span><span class="nav-count" data-guides-progress>0%</span></button></li>
-                        <li><button onclick="showSection('more')" id="nav-more" class="nav-btn"><span class="nav-tile text-slate-300"><i class="ph-bold ph-gear-six"></i></span><span class="truncate">Device &amp; data</span></button></li>
-                    </ul>
-                </div>
-            </nav>
-        </aside>
+        <!-- Desktop navigation, the bottom tab bar replaces it below lg (React: src/ui/shell/Sidebar.tsx) -->
+        <aside id="sidebarNav" aria-label="Primary" class="hidden lg:flex lg:sticky lg:top-16 lg:h-[calc(100dvh-4rem)] lg:w-72 lg:shrink-0 flex-col"></aside>
 
         <!-- Main Content Area -->
         <main class="app-main flex-1 min-w-0 px-4 py-5 sm:p-6 lg:p-8">
 
-            <!-- Storage problems: shown until resolved or dismissed (assets/app/main.js) -->
-            <div id="storageBanner" role="alert" class="hidden mb-5 rounded-xl border border-amber-500/50 bg-amber-500/10 px-4 py-3 text-sm text-amber-100 items-start gap-3">
-                <i class="ph-fill ph-warning text-xl text-amber-300 shrink-0"></i>
-                <p id="storageBannerText" class="flex-1 min-w-0"></p>
-                <div class="flex shrink-0 gap-2">
-                    <button id="storageBannerExport" onclick="exportStateJSON()" class="h-9 px-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold">Export backup</button>
-                    <button onclick="dismissStorageBanner()" aria-label="Dismiss" class="w-9 h-9 rounded-lg text-amber-200 hover:bg-amber-500/20 flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
-                </div>
-            </div>
+            <!-- Storage problems: shown until resolved or dismissed (React: src/ui/shell/StorageBanner.tsx) -->
+            <div id="storageBannerRoot"></div>
 
             <!-- ===================================================================== -->
             <!-- HOME: what you need mid-session (React: src/ui/home/Home.tsx)             -->
@@ -150,18 +87,12 @@
         </main>
     </div>
 
-    <!-- Bottom tab bar (below lg); the Codex page carries the same bar -->
-    <nav id="tabBar" aria-label="Primary" class="tab-bar lg:hidden">
-        <a href="#home" data-tab="home" class="tab-item"><i class="ph-bold ph-house" data-icon></i><span>Home</span></a>
-        <a href="#systems" data-tab="systems" class="tab-item"><i class="ph-bold ph-planet" data-icon></i><span>Systems</span></a>
-        <a href="#outlaw" data-tab="outlaw" class="tab-item"><span class="relative"><i class="ph-bold ph-skull" data-icon></i><span id="tabOutlawBadge" class="tab-badge hidden"></span></span><span>Outlaw</span></a>
-        <a href="wiki/" data-tab="codex" class="tab-item"><i class="ph-bold ph-books" data-icon></i><span>Codex</span></a>
-        <a href="#more" data-tab="more" class="tab-item"><i class="ph-bold ph-dots-three-circle" data-icon></i><span>More</span></a>
-    </nav>
+    <!-- Bottom tab bar below lg; the Codex page carries the same bar (React: src/ui/shell/TabBar.tsx) -->
+    <div id="tabBarRoot"></div>
 
     <!-- System detail / editor: side panel from md, bottom sheet below. Rendered by React (src/ui/systems/SystemPanel.tsx) -->
     <div id="systemPanelRoot"></div>
 
-    <script type="module" src="src/app/main.js"></script>
+    <script type="module" src="src/app/main.ts"></script>
 </body>
 </html>

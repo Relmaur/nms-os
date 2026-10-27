@@ -270,6 +270,16 @@ export function systemHaystack(system: System): string {
     .toLowerCase();
 }
 
+// The header search's "Your systems": every word typed must appear somewhere in the system.
+export function searchSystems(systems: System[], query: string): System[] {
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+  if (!tokens.length) return [];
+  return systems.filter(system => {
+    const haystack = systemHaystack(system);
+    return tokens.every(token => haystack.includes(token));
+  });
+}
+
 export function systemTags(system: System): Set<string> {
   return new Set([...system.tags, ...system.planets.flatMap(planet => planet.tags)]);
 }
