@@ -60,7 +60,7 @@ test('ids that could break out of an inline handler are rejected', () => {
   );
 });
 
-test('timers and sessions are checked when present', () => {
+test('timers and sessions load when present, and a damaged entry never rejects the log', () => {
   const ok = {
     timers: [{ id: 't1', label: 'Frostwort', startedAt: '2026-10-27T10:00:00Z', endsAt: '2026-10-27T11:00:00Z' }],
     session: { startedAt: '2026-10-27T10:00:00Z' },
@@ -68,10 +68,7 @@ test('timers and sessions are checked when present', () => {
   };
   assert.equal(validateState(ok).ok, true);
   assert.equal(validateState({ session: null }).ok, true);
-  assert.equal(
-    describeErrors(
-      validateState({ timers: [{ label: 'x', startedAt: 'soon', endsAt: '2026-10-27T11:00:00Z' }] }).errors
-    ),
-    'timers[0].startedAt must be a date'
-  );
+  // A damaged entry doesn't reject the document (buildState drops it); a wrong container still does.
+  assert.equal(validateState({ timers: [{ label: 5, endsAt: null }] }).ok, true);
+  assert.equal(describeErrors(validateState({ timers: 'soon' }).errors), 'timers must be a list');
 });

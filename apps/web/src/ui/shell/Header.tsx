@@ -10,6 +10,7 @@ export function Header() {
   const [dropping, setDropping] = useState(false);
   const { session, timers } = useAppState();
   const active = session !== null || timers.length > 0;
+  const done = timers.some(timer => timer.alerted); // announced and not yet dismissed
   return (
     <div className="max-w-[1600px] mx-auto h-14 lg:h-16 px-4 sm:px-6 flex items-center gap-3 sm:gap-4">
       <a
@@ -41,15 +42,22 @@ export function Header() {
         </button>
         <button
           type="button"
+          id="sessionButton"
           onClick={openSessionSheet}
-          aria-label={active ? 'Session and timers (running)' : 'Session and timers'}
+          aria-label={
+            done
+              ? 'Session and timers (a timer is done)'
+              : active
+                ? 'Session and timers (running)'
+                : 'Session and timers'
+          }
           title="Session and timers"
           className="relative w-10 h-10 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 md:bg-slate-900 md:border md:border-slate-800 md:hover:bg-slate-800 transition"
         >
           <i className="ph-bold ph-timer text-xl md:text-base" aria-hidden="true" />
           {active && (
             <span
-              className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950"
+              className={`absolute top-2 right-2 w-2 h-2 rounded-full ring-2 ring-slate-950 ${done ? 'bg-emerald-400' : 'bg-cyan-400'}`}
               aria-hidden="true"
             />
           )}

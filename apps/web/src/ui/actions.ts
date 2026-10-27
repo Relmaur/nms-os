@@ -3,7 +3,7 @@ import type { OutlawSettings } from '@atlas/core/state';
 import { newId, normalizeSystem, tagSlug, type System } from '@atlas/core/systems-model';
 import { clampOutlawSetting } from '@atlas/core/outlaw';
 import { MAX_SESSIONS, type PastSession } from '@atlas/core/session';
-import type { Timer, TimerKind } from '@atlas/core/timers';
+import { MAX_TIMER_MS, type Timer, type TimerKind } from '@atlas/core/timers';
 import type { ParsedOutlawSystem } from '@atlas/core/systems-list';
 import { appState, saveAppState } from '../app/store.ts';
 import { showToast, haptic } from '../app/ui.ts';
@@ -149,7 +149,8 @@ export function toggleChecklist(id: string): void {
   saveAppState();
 }
 
-// A play session: started when you sit down to play; ending it files it with the past ones and returns it.
+// A play session: started when you sit down to play; ending it files it with the past ones and returns it, and
+// Resume (from the recap) undoes an End tapped by mistake.
 export function startSession(): void {
   appState.session = { startedAt: new Date().toISOString(), timersDone: 0 };
   haptic();
@@ -166,7 +167,19 @@ export function endSession(): PastSession | null {
   return ended;
 }
 
+export function resumeSession(ended: PastSession): void {
+  appState.sessions = appState.sessions.filter(
+    session => !(session.startedAt === ended.startedAt && session.endedAt === ended.endedAt)
+  );
+  appState.session = { startedAt: ended.startedAt, timersDone: ended.timersDone };
+  saveAppState();
+}
+
 export function addTimer(kind: TimerKind, label: string, durationMs: number): void {
+  if (!(durationMs > 0 && durationMs <= MAX_TIMER_MS)) {
+    showToast('A timer can run up to 30 days.');
+    return;
+  }
   const now = Date.now();
   appState.timers.push({
     id: newId('timer'),
@@ -192,7 +205,10 @@ export function markAlerted(ids: string[]): Timer[] {
   const marked = appState.timers.filter(timer => ids.includes(timer.id) && !timer.alerted);
   if (!marked.length) return [];
   for (const timer of marked) timer.alerted = true;
-  if (appState.session) appState.session.timersDone += marked.length;
+  // Only timers that finished during the session count toward it (an imported backup can carry older ones).
+  const { session } = appState;
+  if (session)
+    session.timersDone += marked.filter(timer => Date.parse(timer.endsAt) >= Date.parse(session.startedAt)).length;
   saveAppState();
   return marked;
 }

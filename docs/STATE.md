@@ -7,33 +7,38 @@ _Last updated: 2026-10-27_
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
-Nothing in progress. **ADR-0004 step 3 (React, screen by screen) is done** as of 3.8.0:
+Nothing in progress. **ADR-0004 steps 3 and 4 are done**: every screen is React (3.8.0), and Session mode with timers shipped in 3.9.0.
+
+History of step 3:
 - Steps 1–2 shipped in 3.1.0.
 - The React foundation and Home shipped in 3.2.0.
 - Systems, the system panel and Outlaw Run shipped in 3.3.0.
 - Calculators shipped in 3.4.0, with the recipe planner rebuilt as a build order ("Build it upward", owner's pick; brief in `apps/web/.impeccable/surfaces/`).
+- 3.9.0: Session mode (owner's picks: a session bar; refiner, crop, custom and outlaw timers; in-app plus system alerts; saved in the log).
 - 3.8.0: the main page's frame (header and search, sidebar, tab bar, storage banner) is React; no inline handlers remain; the Tailwind v3 shims are gone.
 - 3.7.1: "Keep screen on" turns on with one tap after the system dropped the lock (owner report).
 - 3.7.0: Guides, the six books and More are React; checklist steps are real checkboxes.
 - 3.6.0: the Codex is React, with each article's index up front on phones; every phone sheet closes by its grab bar (no ✕), and the system editor swipes too.
 - 3.5.0: Calculators gets a tool dock with the planner first (owner's request), and ticks carry over when what was gathered still covers a smaller need. The DESIGN.md names ("The Ship's Console", colour names) stay as recorded (owner deferred to the recommendation).
 
-Next: ADR-0004 step 4, Session mode and timers (below).
+Next: cross-device sync, behind the Data Privacy gate (below).
 
 ## Blockers
 None.
 
 ## Open decisions
 - **Ythgall's 4th supercharged slot:** `nms_state.json` says R3C7, Book III says R3C8. Needs an in-game check.
+- **Refining time unit:** the wiki's refining `seconds` is read as per unit made (as the Codex shows it, and the data fits: higher-yield recipes have lower times), so 300 Chromatic Metal by Stellar Fusion (30 per batch, 4.8 s) times 24 minutes. Worth timing one multi-output run in-game to confirm.
 - **Outlaw restock timer default (24 h)** is a guess; the in-game restock time is unknown.
 - **SaaS / hosted version** (owner request 2026-10-27; on hold since 2026-10-26, stack first). Comes back with cross-device sync. It will trigger the Data Privacy gate (accounts, PII, GDPR/LFPDPPP) and needs an ADR. Also to check: Hello Games' fan-content terms, and CC BY-SA obligations for serving wiki content in a hosted product.
 
 ## Next steps
-1. **Session mode + timers**, built natively in React (ADR-0004 step 4). Plan it as its own cycle.
-2. **Cross-device sync** (Data Privacy gate, `apps/api`: Hono + Drizzle + Postgres), then the recommendations engine on `wiki/game-data.json`.
-3. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
+1. **Cross-device sync** (Data Privacy gate, `apps/api`: Hono + Drizzle + Postgres), then the recommendations engine on `wiki/game-data.json`.
+2. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
 
 ## Known residuals
+- **Timer alerts need the app running:** with no push server, a finished timer alerts while the browser runs the app (open, or in the background on desktop or a phone kept awake); a suspended phone shows it on return. Real background alerts would need Web Push, which means a server: part of the sync decision.
+- **Crop harvest times are player input:** the wiki states them only in article prose ("approximately 60 minutes"), not as data; a later wiki-sync parser could extract them.
 - **Book content is hand-written:** the six books (`src/ui/guides/books/`) were ported as written. Their game facts (slot counts, prices, recipes) predate the wiki mirror and aren't sourced from it (the invariant in AGENTS.md, ADR-0003). A later content pass could link claims to Codex articles or drop what the wiki contradicts; owner's call.
 - **Codex rendering:** it still renders Markdown in the browser (bundled `marked` 12 + DOMPurify), now in React. ADR-0004's move to build time is left for its own slice: it reshapes the 3,160-article data pipeline.
 - **Visual differences from Tailwind v4 (1–5 px):** small labels (10–11px text) take v4's proportional line heights rather than their parent's fixed one, a few headings with both `leading-*` and a responsive `text-*` class are slightly taller, and dropdowns are 2–4px narrower. Checked by a before/after screenshot diff of every screen at 3.8.0.

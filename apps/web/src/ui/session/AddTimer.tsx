@@ -2,7 +2,14 @@
 // remembered per crop) or anything else (your time).
 import { useMemo, useState } from 'react';
 import { formatCountdown } from '@atlas/core/format';
-import { lastCropMinutes, recipeInputs, refineDuration, refineOptions, type TimerKind } from '@atlas/core/timers';
+import {
+  MAX_TIMER_MS,
+  lastCropMinutes,
+  recipeInputs,
+  refineDuration,
+  refineOptions,
+  type TimerKind
+} from '@atlas/core/timers';
 import { addTimer } from '../actions.ts';
 import { useGameData } from '../calculators/game-data.ts';
 import { useAppState } from '../useAppState.ts';
@@ -60,6 +67,7 @@ function RefineForm() {
   const recipe = option?.recipes[Math.min(pick, option.recipes.length - 1)];
   const qty = Math.floor(Number(amount));
   const ms = recipe ? refineDuration(recipe, qty) : null;
+  const tooLong = ms !== null && ms > MAX_TIMER_MS;
 
   if (data.status === 'failed')
     return (
@@ -88,13 +96,13 @@ function RefineForm() {
               setName(event.target.value);
               setPick(0);
             }}
-            placeholder={data.status === 'ready' ? 'Activated Quartzite' : 'Loading recipes…'}
+            placeholder={data.status === 'ready' ? 'Pick what it makes' : 'Loading recipes…'}
             autoComplete="off"
             className={FIELD}
           />
         </label>
         <label className="block">
-          <span className="block text-xs text-slate-400 mb-1">Amount</span>
+          <span className="block text-xs text-slate-400 mb-1">Amount made</span>
           <input
             type="number"
             inputMode="numeric"
@@ -133,13 +141,14 @@ function RefineForm() {
       {recipe && ms !== null && (
         <p className="text-xs text-slate-400">
           <span className="font-mono text-cyan-300 tabular-nums">{formatCountdown(ms)}</span> from{' '}
-          {recipeInputs(recipe)}, at the wiki’s refining time ({String(recipe.seconds)} s per batch).
+          {recipeInputs(recipe)}, at the wiki’s refining time ({String(recipe.seconds)} s per unit made).
         </p>
       )}
       {name.trim() && !option && data.status === 'ready' && (
         <p className="text-xs text-slate-400">Pick something a refiner makes from the list.</p>
       )}
-      <button type="submit" disabled={!option || ms === null} className="start-timer">
+      {tooLong && <TooLong />}
+      <button type="submit" disabled={!option || ms === null || tooLong} className="start-timer">
         <i className="ph-bold ph-play" aria-hidden="true" /> Start refiner timer
       </button>
     </form>
@@ -152,7 +161,8 @@ function TimedForm({ kind }: { kind: 'crop' | 'custom' }) {
   const [minutes, setMinutes] = useState('');
   const crop = kind === 'crop';
   const total = Number(minutes);
-  const valid = name.trim() !== '' && total > 0;
+  const tooLong = total * 60_000 > MAX_TIMER_MS;
+  const valid = name.trim() !== '' && total > 0 && !tooLong;
   return (
     <form
       className="space-y-3"
@@ -176,7 +186,7 @@ function TimedForm({ kind }: { kind: 'crop' | 'custom' }) {
               const last = crop ? lastCropMinutes(timers, event.target.value) : null;
               if (last !== null) setMinutes(String(last));
             }}
-            placeholder={crop ? 'Frostwort' : 'Frigate mission'}
+            placeholder={crop ? 'Crop name' : 'What you’re waiting on'}
             autoComplete="off"
             className={FIELD}
           />
@@ -215,9 +225,14 @@ function TimedForm({ kind }: { kind: 'crop' | 'custom' }) {
           ? 'Your harvest time: the wiki only gives it in prose, so you set it, and the next one starts from it.'
           : 'Your time, for anything: a frigate mission, a settlement job, a storm.'}
       </p>
+      {tooLong && <TooLong />}
       <button type="submit" disabled={!valid} className="start-timer">
         <i className="ph-bold ph-play" aria-hidden="true" /> {crop ? 'Start crop timer' : 'Start timer'}
       </button>
     </form>
   );
+}
+
+function TooLong() {
+  return <p className="text-xs text-amber-200">A timer can run up to 30 days.</p>;
 }

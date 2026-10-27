@@ -38,7 +38,7 @@ export function SessionBar() {
       onClick={openSessionSheet}
       aria-haspopup="dialog"
       aria-controls="sessionSheet"
-      className="session-bar group w-full mb-5 flex items-center gap-3 h-12 pl-3.5 pr-2.5 rounded-xl text-left"
+      className={`session-bar ${done.length ? 'is-done' : ''} group w-full mb-5 flex items-center gap-3 h-12 pl-3.5 pr-2.5 rounded-xl text-left`}
     >
       <span className={`session-dot ${session ? 'is-live' : ''}`} aria-hidden="true" />
       <span className="shrink-0 flex flex-col leading-tight">
@@ -75,13 +75,15 @@ function NextUp({ soonest, done, now }: { soonest: Timer | undefined; done: Time
     <>
       <i className={`ph-bold ${TIMER_ICON[soonest.kind]} text-cyan-300 shrink-0`} aria-hidden="true" />
       <span className="truncate text-sm text-slate-200">{soonest.label}</span>
-      <span className="shrink-0 font-mono text-sm text-cyan-300 tabular-nums">
+      <span className="shrink-0 font-mono text-base font-semibold text-cyan-300 tabular-nums">
         {formatCountdown(timerStatus(soonest, now).remaining)}
       </span>
       {done.length > 0 && (
-        <span className="shrink-0 flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-xs text-emerald-200">
+        <span className="shrink-0 flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-sm font-semibold text-emerald-200">
           <i className="ph-bold ph-check" aria-hidden="true" />
-          {done.length} done
+          {done.length}
+          {/* The word is screen-reader text on phones, where the timer's name needs the room. */}
+          <span className="sr-only sm:not-sr-only"> done</span>
         </span>
       )}
     </>

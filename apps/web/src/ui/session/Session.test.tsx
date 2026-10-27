@@ -5,7 +5,7 @@ import { buildState } from '@atlas/core/state';
 import { makeCatalog } from '@atlas/core/planner';
 import { appState, setAppState } from '../../app/store.ts';
 import { setGameDataForTests } from '../calculators/game-data.ts';
-import { markAlerted } from '../actions.ts';
+import { markAlerted, resumeSession } from '../actions.ts';
 import { SessionBar } from './SessionBar.tsx';
 import { SessionSheet } from './SessionSheet.tsx';
 import { closeSessionSheet, openSessionSheet } from './sheet-store.ts';
@@ -47,7 +47,7 @@ test('a session starts from the sheet, the bar shows it, and ending it shows the
   expect(appState.session).toBeNull();
   expect(appState.sessions).toHaveLength(1);
   expect(within(sheet()).getByRole('heading', { name: 'Session recap' })).toBeTruthy();
-  expect(document.getElementById('sessionRecap')?.textContent).toContain('Visits0 to 0 systems');
+  expect(document.getElementById('sessionRecap')?.textContent).toContain('Visits0 · 0 systems');
 });
 
 test('a refiner timer takes the wiki’s time for whole batches', async () => {
@@ -55,8 +55,8 @@ test('a refiner timer takes the wiki’s time for whole batches', async () => {
   open();
   const form = within(sheet());
   await userEvent.type(form.getByLabelText('What it makes'), 'Enriched Carbon');
-  await userEvent.clear(form.getByLabelText('Amount'));
-  await userEvent.type(form.getByLabelText('Amount'), '4');
+  await userEvent.clear(form.getByLabelText('Amount made'));
+  await userEvent.type(form.getByLabelText('Amount made'), '4');
   expect(sheet().textContent).toContain('3:00'); // 4 batches × 45 s
   await userEvent.click(form.getByRole('button', { name: /Start refiner timer/ }));
   const [timer] = appState.timers;
@@ -113,4 +113,30 @@ test('a finished timer is announced once and counts toward the session; Dismiss 
   open();
   await userEvent.click(within(sheet()).getByRole('button', { name: 'Dismiss Storm' }));
   expect(appState.timers).toEqual([]);
+});
+
+test('Resume undoes an End; a timer that finished before the session doesn’t count toward it', () => {
+  const state = buildState({ systems: [] });
+  state.session = { startedAt: minutesAgo(30), timersDone: 0 };
+  state.timers = [
+    {
+      id: 'old',
+      kind: 'custom',
+      label: 'From a backup',
+      startedAt: minutesAgo(600),
+      endsAt: minutesAgo(500),
+      alerted: false
+    }
+  ];
+  act(() => {
+    setAppState(state);
+  });
+  markAlerted(['old']);
+  expect(appState.session?.timersDone).toBe(0);
+  const ended = { startedAt: minutesAgo(30), endedAt: minutesAgo(1), timersDone: 2 };
+  appState.session = null;
+  appState.sessions = [ended];
+  resumeSession(ended);
+  expect(appState.session).toEqual({ startedAt: ended.startedAt, timersDone: 2 });
+  expect(appState.sessions).toEqual([]);
 });

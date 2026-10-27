@@ -45,14 +45,15 @@ function arm(): void {
   if (next === armedFor) return;
   clearTimeout(armed);
   armedFor = next;
-  // Timeouts are capped near 24.8 days; a longer timer re-arms when its time comes nearer.
+  // At most a minute at a time: browser timeouts don't count a laptop's sleep, so a long wait could end that much
+  // late; checking each minute catches up after waking.
   if (next !== null)
     armed = setTimeout(
       () => {
         armedFor = null; // always re-arm, even if this fired before the timer was due
         arm();
       },
-      Math.min(Math.max(0, next - Date.now()) + 50, 2 ** 31 - 1)
+      Math.min(Math.max(0, next - Date.now()) + 50, 60_000)
     );
 }
 

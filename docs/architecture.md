@@ -26,6 +26,7 @@ nms-os/                          pnpm workspace
 │   ├── index.html               Main app: Home, Systems, Outlaw Run, Calculators, Guides (6 books), More
 │   ├── wiki/index.html          The Codex page, served at /wiki/ (hash routes #/?q=… and #/a/<path>)
 │   ├── src/ui/                  The whole UI in React (ADR-0004), mounted by mount.tsx
+│   │   ├── session/             The session bar, the Session sheet (timers, add a timer, recap) and timer-runner.ts (alerts)
 │   │   ├── shell/               The main page's frame: header + search, sidebar, tab bar, storage banner; section-store.ts (hash routing), wiki-index.ts
 │   │   ├── home/ systems/ outlaw/ calculators/ guides/ more/   One folder per screen; systems/ also holds the system panel and editor; guides/books/ holds the six books; more/device-store.ts is keep-awake, install and storage protection
 │   │   ├── systems/panel-store.ts   Which system the panel shows + the Systems filter (shared by several screens)
@@ -66,6 +67,7 @@ nms-os/                          pnpm workspace
 - **State:** `useAppState()` returns the live `appState` and re-renders on every change. The store mutates one object in place, so React subscribes to `getVersion()` through `useSyncExternalStore`; the version moves after every load, save and adopted tab copy. Components change state only through actions (`src/ui/actions.ts`) that mutate, `saveAppState()` and confirm.
 - **What a screen shows** is computed by a pure function in `@atlas/core` (e.g. `homeSummary()`), unit-tested; components only render it. `useNow()` supplies the clock (every minute and on returning to the app).
 - **Screen state shared across screens** that isn't saved (which system the panel shows, the Systems filter) lives in a small store next to its screen (`src/ui/systems/panel-store.ts`), read with `useSyncExternalStore`. Other screens call it through direct imports (`openSystem` from the header search), never `window`.
+- **Session and timers:** `timer-runner.ts` (started by `main.ts` after the state loads) arms one timeout for the next unannounced finish and re-arms after every change and on returning to the app. It marks the timer `alerted` before announcing (toast, vibration, and a notification through the service worker, whose `notificationclick` opens the app), so a finish is announced once across reloads and tabs. A web app can't wake itself without a push server: a timer that finishes while the browser has suspended the page is announced on return. Notification permission is asked only from the tap that adds a timer.
 - **Notes and other typing** keep their draft in the component and save through the store; the two-tab rules (unsaved typing is carried into another tab's copy; stored text shows whenever nothing is being typed) live with the notes in `SystemDetails.tsx`.
 - Tests: component tests next to the screen (`*.test.tsx`, Vitest + Testing Library in happy-dom); axe gates every screen and the whole page frame (`tests/e2e/a11y.spec.mjs`). Under happy-dom, DOMPurify drops the tags of a document's first element (browsers don't), so Markdown fixtures start with a paragraph.
 

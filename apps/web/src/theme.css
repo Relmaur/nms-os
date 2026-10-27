@@ -818,3 +818,14 @@ label.list-row:active {
 .wake-chip.session-start:hover {
   background: rgba(16, 185, 129, 0.2);
 }
+/* A timer waiting to be dismissed lights the bar: an emerald edge and the capstone's settled glow, blooming once. */
+.session-bar.is-done {
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 12px 32px -8px rgba(52, 211, 153, 0.35);
+  animation: capstone-bloom 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .session-bar.is-done {
+    animation: none;
+  }
+}

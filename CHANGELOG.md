@@ -5,6 +5,13 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+
+## [3.9.0] - 2026-10-27
+### Added
+- Session mode: tap Start session on Home (or the timer button in the header) when you sit down to play. A slim bar at the top of every screen keeps time, shows the next timer's countdown and tallies this session's visits and packet runs. End it for a recap you can copy (or Resume, if you ended it by mistake); More lists your last five sessions.
+- Timers, in the Session sheet: a refiner run, timed by the wiki's refining time per unit for the batches you make; a crop, with the harvest time you set, remembered for next time; and any custom timer, with quick times. Outlaw stations still restocking count down beside them.
+- A finished timer shows a banner, vibrates and, if you allow it, sends a notification; tapping it opens the app. Alerts come while the browser runs the app; a phone that put the app to sleep shows them when you return.
+- Timers and sessions are saved in your log, so they survive reloads and travel with Export and Import. Older saves load unchanged.
 ### Internal
 - The phone sheet drag test waits until the sheet has no animation left running before touching its bar; comparing two quick position reads (3.7.1) could pass mid-slide.
 

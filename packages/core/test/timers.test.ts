@@ -26,11 +26,13 @@ const timer = (over: Partial<Timer>): Timer => ({
   ...over
 });
 
-test('a refiner run takes whole batches at the wiki’s seconds per batch', () => {
+test('a refiner run takes the wiki’s time per unit made, over whole batches', () => {
   const recipe = { outputs: [{ name: 'Activated Quartzite', qty: 1 }], seconds: 0.36 };
   assert.equal(refineDuration(recipe, 250), 90_000);
-  // Two per batch: 5 makes 3 batches.
-  assert.equal(refineDuration({ outputs: [{ name: 'Glass', qty: 2 }], seconds: 1 }, 5), 3000);
+  // 30 per batch at 4.8 s a unit: 300 takes 24 minutes, and 301 rounds up to an 11th batch.
+  const stellar = { outputs: [{ name: 'Chromatic Metal', qty: 30 }], seconds: 4.8 };
+  assert.equal(refineDuration(stellar, 300), 24 * 60_000);
+  assert.equal(refineDuration(stellar, 301), 330 * 4800);
   assert.equal(refineDuration({ outputs: [{ name: 'X', qty: 1 }] }, 10), null); // no wiki time
   assert.equal(refineDuration(recipe, 0), null);
 });

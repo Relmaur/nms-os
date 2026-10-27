@@ -21,6 +21,7 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   // The refiner timer's recipes come from the cached wiki dataset too.
   await page.goto('./#home');
   await page.locator('#startSession').click();
+  await page.locator('#sessionBar').click();
   await page.locator('#sessionSheet').getByLabel('What it makes').fill('Enriched Carbon');
   await page
     .locator('#sessionSheet')

@@ -48,9 +48,10 @@ export const StateDocumentSchema = object({
     })
   ).nullish(),
   logbook: list(withId).nullish(), // legacy, migrated by buildState()
-  timers: list(object({ id: id.nullish(), label: text, startedAt: date, endsAt: date })).nullish(),
-  session: object({ startedAt: date }).nullish(),
-  sessions: list(object({ startedAt: date, endedAt: date })).nullish()
+  // Entries are checked by buildState(), which drops a damaged one: a bad timer must not set the whole log aside.
+  timers: list(object({})).nullish(),
+  session: object({}).nullish(),
+  sessions: list(object({})).nullish()
 });
 
 export type StateDocument = z.infer<typeof StateDocumentSchema>;

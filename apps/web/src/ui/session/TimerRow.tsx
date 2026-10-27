@@ -17,7 +17,9 @@ export function TimerRow({ row, now }: { row: Row; now: number }) {
           <span className="block truncate text-sm text-white">{row.system.name}</span>
           <span className="block text-xs text-slate-400">Outlaw restock</span>
         </span>
-        <span className="font-mono text-sm text-slate-300 tabular-nums">{formatCountdown(row.endsAt - now)}</span>
+        <span className="min-w-[5ch] text-right font-mono text-lg font-semibold text-cyan-300 tabular-nums">
+          {formatCountdown(row.endsAt - now)}
+        </span>
       </li>
     );
   const { timer, status } = row;
@@ -48,7 +50,9 @@ export function TimerRow({ row, now }: { row: Row; now: number }) {
           Dismiss<span className="sr-only"> {timer.label}</span>
         </button>
       ) : (
-        <span className="font-mono text-sm text-cyan-300 tabular-nums">{formatCountdown(status.remaining)}</span>
+        <span className="min-w-[5ch] text-right font-mono text-lg font-semibold text-cyan-300 tabular-nums">
+          {formatCountdown(status.remaining)}
+        </span>
       )}
     </li>
   );

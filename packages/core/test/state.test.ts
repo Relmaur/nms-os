@@ -76,3 +76,18 @@ test('timers and sessions default to empty, and an older save without them still
   assert.equal(later.timers[0]?.label, 'Frostwort');
   assert.deepEqual(later.session, { startedAt: '2026-10-27T10:00:00Z', timersDone: 0 });
 });
+
+test('a damaged timer is dropped on load, the rest of the log kept', () => {
+  const state = buildState({
+    systems: [{ name: 'Kept' }],
+    timers: [
+      { label: 5, endsAt: null },
+      { label: 'Fine', startedAt: '2026-10-27T10:00:00Z', endsAt: '2026-10-27T11:00:00Z' }
+    ]
+  });
+  assert.deepEqual(
+    state.timers.map(timer => timer.label),
+    ['Fine']
+  );
+  assert.equal(state.systems[0]?.name, 'Kept');
+});

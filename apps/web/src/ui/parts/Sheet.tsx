@@ -79,7 +79,15 @@ export function SheetGrab({ onClose, label = 'Close' }: { onClose: SheetClose; l
 export function useSheetOpen(
   open: boolean,
   close: () => void,
-  { layout, focus }: { layout: string; focus?: RefObject<HTMLElement | null> }
+  {
+    layout,
+    focus,
+    fallback
+  }: {
+    layout: string;
+    focus?: RefObject<HTMLElement | null>;
+    fallback?: () => HTMLElement | null; // where focus goes on close when what opened the sheet has gone
+  }
 ) {
   useEffect(() => {
     if (!open) return;
@@ -99,7 +107,8 @@ export function useSheetOpen(
       media.removeEventListener('change', lock);
       document.removeEventListener('keydown', onKey);
       document.body.classList.remove('overflow-hidden');
-      if (media.matches && opener?.isConnected) opener.focus({ preventScroll: true });
+      if (!media.matches) return;
+      (opener?.isConnected ? opener : fallback?.())?.focus({ preventScroll: true });
     };
-  }, [open, close, layout, focus]);
+  }, [open, close, layout, focus, fallback]);
 }

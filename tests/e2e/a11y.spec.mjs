@@ -24,6 +24,7 @@ const openIndex = async page => {
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 const openSession = async page => {
   await page.locator('#startSession').click();
+  await page.locator('#sessionBar').click();
   await page
     .locator('#sessionSheet')
     .getByRole('button', { name: /Custom/ })
@@ -31,6 +32,7 @@ const openSession = async page => {
 };
 const showRecap = async page => {
   await page.locator('#startSession').click();
+  await page.locator('#sessionBar').click();
   await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
 };
 

@@ -20,7 +20,7 @@ export interface Timer {
 // Keeps the timers that can be shown; a damaged entry is dropped, not the whole list.
 export function normalizeTimers(value: unknown): Timer[] {
   if (!Array.isArray(value)) return [];
-  return value.flatMap(item => {
+  return value.flatMap((item, index) => {
     if (!isPlainObject(item)) return [];
     const { id, kind, label, startedAt, endsAt, alerted } = item;
     if (typeof label !== 'string' || !label.trim()) return [];
@@ -28,7 +28,7 @@ export function normalizeTimers(value: unknown): Timer[] {
     if (Number.isNaN(Date.parse(startedAt)) || Number.isNaN(Date.parse(endsAt))) return [];
     return [
       {
-        id: typeof id === 'string' && id ? id : `timer-${Date.parse(startedAt).toString(36)}`,
+        id: typeof id === 'string' && id ? id : `timer-${Date.parse(startedAt).toString(36)}-${String(index)}`,
         kind: TIMER_KINDS.includes(kind as TimerKind) ? (kind as TimerKind) : 'custom', // checked just above
         label: label.trim(),
         startedAt,
@@ -39,13 +39,17 @@ export function normalizeTimers(value: unknown): Timer[] {
   });
 }
 
-// A refiner works through one batch at a time, so a run takes whole batches × the wiki's seconds per batch.
+// The wiki gives a refining time per unit made (the Codex shows it as "s per unit"), and a refiner makes whole
+// batches of the recipe's output, so a run takes the units of its whole batches × that time.
 export function refineDuration(recipe: Pick<Recipe, 'outputs' | 'seconds'>, amount: number): number | null {
   const qty = Number(recipe.outputs[0]?.qty); // the wiki writes some amounts as text
   const perBatch = Number.isFinite(qty) && qty > 0 ? qty : 1;
   if (!recipe.seconds || amount <= 0) return null;
-  return Math.ceil(amount / perBatch) * recipe.seconds * 1000;
+  return Math.ceil(amount / perBatch) * perBatch * recipe.seconds * 1000;
 }
+
+// Longer than this is a typo, and far enough out to overflow a date.
+export const MAX_TIMER_MS = 30 * 24 * 3_600_000;
 
 export interface TimerStatus {
   remaining: number; // ms, 0 once done

@@ -69,7 +69,10 @@ self.addEventListener('notificationclick', event => {
   const home = new URL('./#home', self.registration.scope).href;
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windows => {
-      const open = windows.find(client => client.url.startsWith(self.registration.scope));
+      // The app's own tab, not a Codex one (wiki/ is in scope too).
+      const open = windows.find(
+        client => client.url.startsWith(self.registration.scope) && !client.url.includes('/wiki/')
+      );
       return open ? open.focus() : self.clients.openWindow(home);
     })
   );

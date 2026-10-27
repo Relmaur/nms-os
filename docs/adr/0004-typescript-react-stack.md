@@ -32,7 +32,7 @@ Steps 1 and 2 shipped together in 3.1.0: the browser can't load `.ts` files, so 
 1. **Core to TypeScript:** `assets/lib/*` → `packages/core` with Zod schemas; unit tests → Vitest; wiki scripts → `packages/wiki` as `.ts`. No user-visible change. *(Done, 3.1.0.)*
 2. **Vite shell:** Vite builds the current app unchanged; build-time Tailwind; vite-plugin-pwa. Pages deploys the build output. This step retires ADR-0001's "no build step". *(Done, 3.1.0: Tailwind v3's preflight, line heights and `space-y` are kept as shims so screens render as before; nothing loads from a CDN.)*
 3. **React, screen by screen:** each section mounts as a React root until no inline handlers remain (Home, Systems, Outlaw, Calculators, Codex, Guides). *(Done, 3.8.0: Home in 3.2.0; Systems, the system panel and Outlaw Run in 3.3.0; Calculators in 3.4.0; the Codex in 3.6.0; Guides and More in 3.7.0; the main page's frame in 3.8.0, which also retired the Tailwind v3 shims from step 2.)*
-4. **Session mode + timers:** the first feature built natively in React.
+4. **Session mode + timers:** the first feature built natively in React. *(Done, 3.9.0: a session bar with a recap, and refiner, crop, custom and outlaw-restock timers with in-app and system alerts.)*
 5. **`apps/api`:** when sync is picked up.
 
 ## Trade-offs

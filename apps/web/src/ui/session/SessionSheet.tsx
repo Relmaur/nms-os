@@ -1,12 +1,12 @@
 // The Session sheet: start or end a play session, every countdown (your timers and outlaw restocks), the form to
 // add a timer, and the recap once a session ends. A bottom sheet on phones (the grab bar closes it), a side panel
 // from md up.
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { formatDuration } from '@atlas/core/format';
 import { recapText, sessionRecap, type PastSession } from '@atlas/core/session';
 import { timerRows } from '@atlas/core/timers';
 import { showToast } from '../../app/ui.ts';
-import { endSession, startSession } from '../actions.ts';
+import { endSession, resumeSession, startSession } from '../actions.ts';
 import { loadGameData } from '../calculators/game-data.ts';
 import { SheetGrab, useSheetDrag, useSheetOpen } from '../parts/Sheet.tsx';
 import { useAppState } from '../useAppState.ts';
@@ -16,13 +16,17 @@ import { TimerRow } from './TimerRow.tsx';
 import { useClock } from './useClock.ts';
 
 const HOUR = 3_600_000;
+const ALWAYS = '(min-width: 0px)';
+// The Start chip and the bar can be gone by the time the sheet closes; the header's button always stays.
+const sessionButton = () => document.getElementById('sessionButton');
 
 export function SessionSheet() {
   const view = useSheetView();
   const sheet = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
   useSheetDrag(sheet, closeSessionSheet);
-  useSheetOpen(view.open, closeSessionSheet, { layout: '(max-width: 767px)', focus: title });
+  // Modal at every width (a side panel from md up), so focus moves in and the page holds still everywhere.
+  useSheetOpen(view.open, closeSessionSheet, { layout: ALWAYS, focus: title, fallback: sessionButton });
 
   // The refiner picker needs the wiki's recipes; fetch them as soon as the sheet opens.
   useEffect(() => {
@@ -144,8 +148,7 @@ function SessionControl({ session, now }: { session: { startedAt: string } | nul
 
 // Where the system alert stands; a web app can only alert while the browser runs it.
 function Alerts() {
-  const supported = 'Notification' in window;
-  const permission = supported ? Notification.permission : 'denied';
+  const permission = usePermission();
   return (
     <p className="text-xs text-slate-400 leading-relaxed">
       {permission === 'granted'
@@ -165,7 +168,7 @@ function Recap({ ended }: { ended: PastSession }) {
     ['Played', formatDuration(recap.elapsed)],
     [
       'Visits',
-      `${String(recap.visits)} to ${String(recap.systemsVisited)} system${recap.systemsVisited === 1 ? '' : 's'}`
+      `${String(recap.visits)} · ${String(recap.systemsVisited)} system${recap.systemsVisited === 1 ? '' : 's'}`
     ],
     ['New systems', String(recap.newSystems)],
     ['Packet runs', recap.packetRuns ? `${String(recap.packetRuns)} · ${String(recap.packets)} packets` : '0'],
@@ -205,7 +208,17 @@ function Recap({ ended }: { ended: PastSession }) {
           </div>
         )}
       </dl>
-      <div className="flex justify-end gap-2">
+      <div className="flex flex-wrap justify-end gap-2">
+        <button
+          type="button"
+          onClick={() => {
+            resumeSession(ended);
+            closeSessionSheet();
+          }}
+          className="mr-auto h-10 px-3 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-slate-900 flex items-center gap-2"
+        >
+          <i className="ph-bold ph-arrow-counter-clockwise" aria-hidden="true" /> Resume session
+        </button>
         <button
           type="button"
           onClick={copy}
@@ -223,4 +236,26 @@ function Recap({ ended }: { ended: PastSession }) {
       </div>
     </div>
   );
+}
+
+// The notification permission, kept current when it's answered or changed in the browser's settings.
+function usePermission(): NotificationPermission {
+  const supported = 'Notification' in window;
+  const [permission, setPermission] = useState<NotificationPermission>(supported ? Notification.permission : 'denied');
+  useEffect(() => {
+    if (!supported || !('permissions' in navigator)) return;
+    let status: PermissionStatus | null = null;
+    const update = () => {
+      setPermission(Notification.permission);
+    };
+    navigator.permissions
+      .query({ name: 'notifications' })
+      .then(result => {
+        status = result;
+        result.addEventListener('change', update);
+      })
+      .catch(() => undefined);
+    return () => status?.removeEventListener('change', update);
+  }, [supported]);
+  return permission;
 }
