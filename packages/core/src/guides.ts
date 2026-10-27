@@ -31,7 +31,7 @@ export const BOOKS: Book[] = [
     numeral: 'III',
     color: 'text-purple-300',
     title: 'Ship & Multi-Tool Meta',
-    blurb: 'Supercharged slots, Ythgall, Defiance of Thought, Light Capacitor'
+    blurb: 'Supercharged slots, choosing a flagship, Multi-Tool archetypes'
   },
   {
     key: 'book4',
@@ -87,8 +87,16 @@ export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
       desc: 'Summoned the Anomaly and opened the Iteration vendors.'
     },
     { id: 'harmonicCampUnlocked', title: 'Harmonic Camp Unlocked', desc: 'Solved a Dissonant System register puzzle.' },
-    { id: 'sClassInterceptorSecured', title: 'S-Class Interceptor Secured', desc: 'Ythgall claimed as flagship.' },
-    { id: 'sentinelRifleSecured', title: 'Sentinel Rifle Secured', desc: 'Defiance of Thought claimed.' },
+    {
+      id: 'sClassInterceptorSecured',
+      title: 'S-Class Interceptor Secured',
+      desc: 'An S-Class Interceptor claimed as your flagship.'
+    },
+    {
+      id: 'sentinelRifleSecured',
+      title: 'Sentinel Rifle Secured',
+      desc: 'A Sentinel Multi-Tool claimed from a Harmonic Camp cabinet.'
+    },
     {
       id: 'nutrientIngestorInstalled',
       title: 'Nutrient Ingestor Installed',
@@ -167,13 +175,13 @@ export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
     },
     {
       id: 'rm7',
-      title: 'Recovery: Strip & Scrap Aeron-ημ',
-      desc: 'Store tech (X) on Aeron-ημ and scrap hull for ~50M Units + Storage Augmentations.'
+      title: 'Recovery: Strip & Scrap Your Spare S-Class Ship',
+      desc: 'Store its tech (X), then scrap the hull for Units + Storage Augmentations.'
     },
     {
       id: 'rm8',
-      title: 'Meta Gear: Wire Ythgall & Light Capacitor',
-      desc: 'Place Infra-Knife in Ythgall R2C2–R2C4; put Optical Drill in Light Capacitor R2C4.'
+      title: 'Meta Gear: Wire Your Flagship & Multi-Tool',
+      desc: 'Infra-Knife in the middle of three SC slots in a row; Optical Drill on a SC slot among Mining mods.'
     }
   ],
   expedition: [
@@ -184,7 +192,7 @@ export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
     },
     {
       id: 'ex2',
-      title: 'Pack Nanite Seed (For Cloning Ythgall)',
+      title: 'Pack Nanite Seed (For Cloning Your Flagship)',
       desc: '2–3 stacks of 9,999 Runaway Mould OR 30 Unopened Suspicious Tech Packets (~6,000 Nanites).'
     },
     {
@@ -194,7 +202,7 @@ export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
     },
     {
       id: 'ex4',
-      title: 'Equip Ythgall & Defiance of Thought Before Starting',
+      title: 'Equip Your Flagship & Main Multi-Tool Before Starting',
       desc: 'Ensure both are active so you can clone them inside the Expedition for ~5,000 Nanites.'
     },
     {

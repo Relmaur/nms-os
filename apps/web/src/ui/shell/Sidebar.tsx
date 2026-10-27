@@ -60,6 +60,8 @@ export function Sidebar() {
             outlaw.total ? `${String(outlaw.ready)}/${String(outlaw.total)}` : '0',
             'sidebarOutlawCount'
           )}
+          {item('gear', 'ph-rocket', 'text-cyan-300', 'Ships & Multi-Tools', loaded ? state.gear.length : 0)}
+          {item('notes', 'ph-note-pencil', 'text-sky-300', 'Notes', loaded ? state.notes.length : 0)}
           {item('calculators', 'ph-calculator', 'text-amber-300', 'Calculators')}
           <li>
             <a href="wiki/" className="nav-btn">

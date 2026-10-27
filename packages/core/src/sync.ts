@@ -3,6 +3,7 @@
 // without tombstones or per-record timestamps in the state.
 import { isPlainObject } from './util.ts';
 import { stateTimestamp } from './state.ts';
+import { gearFromFleet } from './gear.ts';
 
 // Lists of records are matched by the first of these each item carries, unique within every copy: systems, planets
 // and timers by id, visits by when they happened, past sessions by when they started.
@@ -21,8 +22,15 @@ export function deepEqual(a: unknown, b: unknown): boolean {
 // combined). A value both sides changed differently goes to the copy saved last.
 export function mergeStates(base: unknown, local: unknown, remote: unknown): Record<string, unknown> {
   const localWins = stateTimestamp(local) >= stateTimestamp(remote);
-  const merged = merge3(base, local, remote, localWins);
+  const merged = merge3(upgradeBase(base), local, remote, localWins);
   return isPlainObject(merged) ? merged : {};
+}
+
+// A base saved by an older build lacks keys that both sides now derive on load. Giving it the same migration keeps a
+// record deleted on one side from reading as "new on the other" (3.14.0: gear from the old fleet notes).
+function upgradeBase(base: unknown): unknown {
+  if (!isPlainObject(base) || (base.gear !== undefined && base.gear !== null)) return base;
+  return { ...base, gear: gearFromFleet(base.fleet) };
 }
 
 function merge3(base: unknown, local: unknown, remote: unknown, localWins: boolean): unknown {

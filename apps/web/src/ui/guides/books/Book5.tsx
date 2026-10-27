@@ -1,4 +1,4 @@
-// Book 5: ported as written from the vanilla page (the owner's playbook, hand-written; see docs/STATE.md).
+// Book 5: expeditions and bringing items home (hand-written playbook; see docs/STATE.md).
 import { Checklist } from '../Checklist.tsx';
 
 export function Book5() {
@@ -26,8 +26,8 @@ export function Book5() {
             </div>
             <div className="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 text-emerald-200">
               <strong className="text-emerald-400 block">✅ CORRECT WAY: Space Anomaly "Expedition Terminus"</strong>{' '}
-              Load your main save (with <strong>Ythgall</strong> and <strong>Defiance of Thought</strong> equipped), fly
-              into the Space Anomaly, and use the <strong>Expedition Terminus</strong> console behind the Nexus cube!
+              Load your main save (with your flagship and main Multi-Tool equipped), fly into the Space Anomaly, and use
+              the <strong>Expedition Terminus</strong> console behind the Nexus cube!
             </div>
           </div>
 
@@ -39,13 +39,11 @@ export function Book5() {
 
         <div className="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4 border border-purple-500/30">
           <h2 className="font-display font-bold text-base text-purple-300 border-b border-slate-800 pb-2.5">
-            3. Cloning Ythgall & Zero-Loss Extraction Protocol
+            3. Cloning Your Flagship & Zero-Loss Extraction Protocol
           </h2>
           <ul className="space-y-3 text-xs text-slate-300">
             <li className="p-3 rounded-xl bg-slate-900 border border-slate-800">
-              <strong className="text-cyan-300 block mb-1">
-                Cloning Ythgall & Defiance of Thought INTO the Event:
-              </strong>{' '}
+              <strong className="text-cyan-300 block mb-1">Cloning Your Flagship & Multi-Tool INTO the Event:</strong>{' '}
               Once you make 1 warp jump inside the Expedition and summon the Space Anomaly, visit the Terminus,
               refine/sell your packed Runaway Mould or Suspicious Packets for ~5,000 Nanites, and click{' '}
               <strong>"Copy Starship" (~2,800 Nanites)</strong> and <strong>"Copy Multi-Tool" (~2,200 Nanites)</strong>!

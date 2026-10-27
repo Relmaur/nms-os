@@ -33,17 +33,22 @@ export function NewArticle(props: { category: string; index: CodexIndex; onClose
   );
   useSheetDrag(sheet, dismiss);
 
-  // Mounted while open: it starts empty in the category being browsed. Esc asks like the bar does.
+  // Mounted while open: it starts empty in the category being browsed. Esc asks like the bar does. Once per open:
+  // `dismiss` changes as the draft does, and rerunning would pull focus back to the title mid-typing.
+  const latest = useRef(dismiss);
+  useEffect(() => {
+    latest.current = dismiss;
+  }, [dismiss]);
   useEffect(() => {
     first.current?.focus();
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') dismiss();
+      if (event.key === 'Escape') latest.current();
     };
     document.addEventListener('keydown', onKey);
     return () => {
       document.removeEventListener('keydown', onKey);
     };
-  }, [dismiss]);
+  }, []);
 
   const preview = useMemo(() => renderMarkdown(body, props.index).html, [body, props.index]);
 

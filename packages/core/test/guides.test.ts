@@ -1,14 +1,12 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import { BOOKS, CHECKLISTS, CHECKLIST_BOOK, guideProgress } from '../src/guides.ts';
-import { DEFAULT_STATE } from '../src/state.ts';
 
-test('checklist ids are unique, and the milestones are the named keys of nms_state.json', () => {
+test('checklist ids are unique', () => {
   const ids = Object.values(CHECKLISTS)
     .flat()
     .map(item => item.id);
   assert.equal(new Set(ids).size, ids.length);
-  assert.deepEqual(CHECKLISTS.milestones.map(item => item.id).sort(), Object.keys(DEFAULT_STATE.checklists).sort());
 });
 
 test('every checklist sits in a known book', () => {

@@ -62,7 +62,7 @@ The log is small (well under 1 MB of JSON) and personal.
 - **Accepted limits:**
   - There's no recovery without the code.
   - A clash on one field goes to the copy saved last, not the one edited last.
-  - Lists without unique keys (fleet multi-tools) are taken whole from the newer copy.
+  - Lists without unique keys (the legacy fleet's multi-tools) are taken whole from the newer copy. Gear and notes (3.14.0, ADR-0007) carry ids, so they merge record by record.
 
 ## Consequences
 - The same Worker can later send Web Push for finished timers, which a static site can't.

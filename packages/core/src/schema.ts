@@ -51,7 +51,9 @@ export const StateDocumentSchema = object({
   // Entries are checked by buildState(), which drops a damaged one: a bad timer must not set the whole log aside.
   timers: list(object({})).nullish(),
   session: object({}).nullish(),
-  sessions: list(object({})).nullish()
+  sessions: list(object({})).nullish(),
+  gear: list(object({})).nullish(),
+  notes: list(object({})).nullish()
 });
 
 export type StateDocument = z.infer<typeof StateDocumentSchema>;

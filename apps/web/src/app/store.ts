@@ -137,12 +137,8 @@ export function getStartingState(): AppState {
 export async function loadAppState(): Promise<void> {
   const repoState = await fetchRepoState();
   startingState = buildState(repoState);
-  const localState = readLocalState();
-  // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
-  appState =
-    localState && stateTimestamp(repoState) > stateTimestamp(localState)
-      ? buildState(localState, repoState)
-      : buildState(repoState, localState);
+  // The repo file is only a new device's starting point: it holds no one's save, so the device's own log always wins.
+  appState = buildState(repoState, readLocalState());
   changed();
 }
 

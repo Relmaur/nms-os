@@ -1,10 +1,10 @@
 // Home: what you need mid-session. The current system with one-tap logging, the warp-back list, the next outlaw
-// stations and the fleet. The layout and classes match the vanilla screen this replaced, so tests and looks hold.
+// stations, your fleet and the notes you pinned here. The layout and classes match the vanilla screen this replaced, so tests and looks hold.
 import { formatAgo, formatDuration } from '@atlas/core/format';
 import { homeSummary, type HomeSummary } from '@atlas/core/home';
 import { lastVisit, type System } from '@atlas/core/systems-model';
-import { asString, isPlainObject } from '@atlas/core/util';
-import type { AppState } from '@atlas/core/state';
+import { gearOrder, type GearItem } from '@atlas/core/gear';
+import { notesPinnedTo } from '@atlas/core/notes';
 import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
 import { logPacketRun, logVisit } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
@@ -12,6 +12,8 @@ import { useNow } from '../useNow.ts';
 import { GlyphChip, StarDot, TagChip } from '../parts/SystemBits.tsx';
 import { toggleKeepAwake, useDevice } from '../more/device-store.ts';
 import { startSession } from '../actions.ts';
+import { openGearEditor } from '../parts/editor-store.ts';
+import { PinnedNotes } from '../notes/PinnedNotes.tsx';
 
 const ROW = 'flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70';
 
@@ -25,9 +27,11 @@ export function Home() {
       <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
         <div className="min-w-0">
           <h1 className="font-display text-2xl font-bold text-white">Home</h1>
-          <p id="homePhase" className="text-sm text-slate-400 mt-1">
-            {state.meta.currentPhase}
-          </p>
+          {state.meta.currentPhase && (
+            <p id="homePhase" className="text-sm text-slate-400 mt-1">
+              {state.meta.currentPhase}
+            </p>
+          )}
         </div>
         {/* Its own line on phones, so Keep screen on stays put when Start session goes. */}
         <div className="basis-full sm:basis-auto flex flex-wrap items-center gap-2">
@@ -74,14 +78,12 @@ export function Home() {
         </div>
       </div>
       <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-3">
-        <h2 className="font-display font-bold text-base text-white flex items-center gap-2">
-          <i className="ph-bold ph-rocket text-cyan-300" />
-          Active fleet
-        </h2>
+        <CardHeader icon="ph-rocket text-cyan-300" title="Active fleet" href="#gear" link="All gear →" />
         <div id="fleetCardBody" className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-3 text-xs">
-          <Fleet fleet={state.fleet} />
+          <Fleet gear={state.gear} />
         </div>
       </div>
+      {notesPinnedTo(state.notes, 'home').length > 0 && <PinnedNotes place="home" label="Home" hint="" />}
     </>
   );
 }
@@ -302,34 +304,48 @@ function OutlawCard({ card, now }: { card: HomeSummary['outlaw']; now: number })
   );
 }
 
-const FLEET_COLORS = ['text-purple-300', 'text-cyan-300'];
-
-function Fleet({ fleet }: { fleet: AppState['fleet'] }) {
-  // Fleet entries come from the user's file as-is: each one is checked with isPlainObject() below.
-  const tools: unknown[] = Array.isArray(fleet.multiTools) ? fleet.multiTools : [];
-  const rows: [string, unknown, string][] = [
-    ['Flagship', fleet.primaryStarship, 'text-white font-semibold'],
-    ['Scrap Spare', fleet.salvageStarship, 'text-amber-300'],
-    ...tools.map((tool, i): [string, unknown, string] => [
-      'Multi-Tool',
-      tool,
-      FLEET_COLORS[i % FLEET_COLORS.length] ?? ''
-    ])
-  ];
-  return rows.map(([label, item, color], i) =>
-    isPlainObject(item) ? (
-      <div key={i} title={asString(item.role || item.type)}>
-        <span className="block text-[11px] text-slate-400">{label}</span>
-        <span className={`block font-mono ${color} leading-snug`}>
-          {asString(item.name)}
-          {item.class ? (
-            <>
-              {' '}
-              <span className="text-slate-400">{asString(item.class)}</span>
-            </>
-          ) : null}
-        </span>
+// Flagships first; each shows its class and role, and opens in the editor.
+function Fleet({ gear }: { gear: GearItem[] }) {
+  if (!gear.length)
+    return (
+      <div className="sm:col-span-2 xl:col-span-4 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-slate-400">Add your ship and Multi-Tools: their slots and layouts stay at hand.</p>
+        <button
+          type="button"
+          onClick={() => {
+            openGearEditor();
+          }}
+          className="h-9 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold flex items-center gap-1.5"
+        >
+          <i className="ph-bold ph-plus" aria-hidden="true" />
+          Add your ship
+        </button>
       </div>
-    ) : null
-  );
+    );
+  return gearOrder(gear).map(item => (
+    <button
+      key={item.id}
+      type="button"
+      onClick={() => {
+        openGearEditor(item.id);
+      }}
+      title={item.type || undefined}
+      className="text-left -mx-2 px-2 py-1 rounded-lg hover:bg-slate-900/70"
+    >
+      <span className="block text-[11px] text-slate-400">
+        {item.role || (item.kind === 'multitool' ? 'Multi-Tool' : 'Starship')}
+      </span>
+      <span
+        className={`block font-mono leading-snug ${/flagship/i.test(item.role) ? 'text-white font-semibold' : item.kind === 'multitool' ? 'text-cyan-300' : 'text-purple-300'}`}
+      >
+        {item.name}
+        {item.class ? (
+          <>
+            {' '}
+            <span className="text-slate-400">{item.class}</span>
+          </>
+        ) : null}
+      </span>
+    </button>
+  ));
 }

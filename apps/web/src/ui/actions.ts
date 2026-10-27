@@ -5,6 +5,8 @@ import { clampOutlawSetting } from '@atlas/core/outlaw';
 import { MAX_SESSIONS, type PastSession } from '@atlas/core/session';
 import { MAX_TIMER_MS, type Timer, type TimerKind } from '@atlas/core/timers';
 import type { ParsedOutlawSystem } from '@atlas/core/systems-list';
+import { normalizeGear, type GearItem } from '@atlas/core/gear';
+import { MAX_NOTE_CHARS, noteFromMarkdown, normalizeNotes, type Note } from '@atlas/core/notes';
 import { appState, saveAppState } from '../app/store.ts';
 import { showToast, haptic } from '../app/ui.ts';
 
@@ -211,4 +213,70 @@ export function markAlerted(ids: string[]): Timer[] {
     session.timersDone += marked.filter(timer => Date.parse(timer.endsAt) >= Date.parse(session.startedAt)).length;
   saveAppState();
   return marked;
+}
+
+// The player's ships and Multi-Tools: added or replaced from the editor.
+export function saveGear(item: GearItem): void {
+  const [clean] = normalizeGear([item]);
+  if (!clean) return;
+  const index = appState.gear.findIndex(existing => existing.id === clean.id);
+  if (index === -1) appState.gear.push(clean);
+  else appState.gear[index] = clean;
+  saveAppState();
+  showToast(index === -1 ? `Added ${clean.name}.` : `Saved ${clean.name}.`);
+}
+
+export function deleteGear(id: string): void {
+  const item = appState.gear.find(existing => existing.id === id);
+  appState.gear = appState.gear.filter(existing => existing.id !== id);
+  saveAppState();
+  showToast(`Deleted ${item?.name ?? 'it'}.`);
+}
+
+export function saveNote(note: Note): void {
+  const [clean] = normalizeNotes([{ ...note, updatedAt: new Date().toISOString() }]);
+  if (!clean) return;
+  const index = appState.notes.findIndex(existing => existing.id === clean.id);
+  if (index === -1) appState.notes.push(clean);
+  else appState.notes[index] = clean;
+  saveAppState();
+  showToast(index === -1 ? `Added “${clean.title}”.` : `Saved “${clean.title}”.`);
+}
+
+export function deleteNote(id: string): void {
+  const note = appState.notes.find(existing => existing.id === id);
+  appState.notes = appState.notes.filter(existing => existing.id !== id);
+  saveAppState();
+  showToast(`Deleted “${note?.title ?? 'note'}”.`);
+}
+
+const MAX_IMPORT_BYTES = 1_000_000;
+
+// Markdown files → notes (the first # heading is each title). A file too big or unreadable is skipped and named.
+export async function importNoteFiles(files: File[]): Promise<void> {
+  const now = new Date().toISOString();
+  const added: Note[] = [];
+  const skipped: string[] = [];
+  for (const file of files) {
+    try {
+      if (file.size > MAX_IMPORT_BYTES) throw new Error('too big');
+      const { title, body } = noteFromMarkdown(await file.text(), file.name);
+      if (body.length >= MAX_NOTE_CHARS) throw new Error('too long');
+      added.push({ id: newId('note'), title, body, pins: [], createdAt: now, updatedAt: now });
+    } catch {
+      skipped.push(file.name);
+    }
+  }
+  if (added.length) {
+    appState.notes.push(...normalizeNotes(added));
+    saveAppState();
+  }
+  showToast(
+    [
+      added.length ? `Imported ${String(added.length)} note${added.length === 1 ? '' : 's'}.` : '',
+      skipped.length ? `Skipped ${skipped.join(', ')} (over 1 MB or unreadable).` : ''
+    ]
+      .filter(Boolean)
+      .join(' ')
+  );
 }

@@ -9,7 +9,7 @@ export function Guides() {
       <div className="max-w-2xl">
         <h1 className="font-display text-2xl font-bold text-white">Guides</h1>
         <p className="text-sm text-slate-300 mt-1.5">
-          The six-book playbook for this save. Your checklists live inside each book.
+          The six-book playbook. Your checklists live inside each book, and your own notes can sit under any of them.
         </p>
       </div>
       <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-3">

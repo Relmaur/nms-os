@@ -7,6 +7,13 @@ _Last updated: 2026-10-27_
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
+**3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007):
+- The app holds nobody's save: the starter data and Books II, III and V are general.
+- Players keep their own ships & Multi-Tools (`gear`) and Markdown notes (`notes`, pinnable to Home or a book).
+- The owner's fleet migrates into `gear` on their devices. Their book findings are Markdown files kept outside the repo, to import once with Notes → Import .md.
+
+The audit fixes from the plan (mass-deletion guard, pairing safety, crypto format 2, CSP, CI hardening) move to **3.15.0**. The shareable audit report is published after that.
+
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.atlas-companion.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).
 
 More's Support row links to the owner's Ko-fi page (3.11.0).
@@ -33,7 +40,6 @@ Next: the recommendations engine on `wiki/game-data.json`.
 None.
 
 ## Open decisions
-- **Ythgall's 4th supercharged slot:** `nms_state.json` says R3C7, Book III says R3C8. Needs an in-game check.
 - **Refining time unit:** the wiki's refining `seconds` is read as per unit made (as the Codex shows it, and the data fits: higher-yield recipes have lower times), so 300 Chromatic Metal by Stellar Fusion (30 per batch, 4.8 s) times 24 minutes. Worth timing one multi-output run in-game to confirm.
 - **Outlaw restock timer default (24 h)** is a guess; the in-game restock time is unknown.
 - **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is CC BY-SA 3.0, which allows this with attribution.
@@ -42,10 +48,12 @@ None.
 1. **Owner check done (2026-10-27):** an iPhone and the PC synced on the live site (a system renamed on the phone showed on the PC).
 2. **Owner check:** with the app installed on the iPhone, turn on "Alerts when the app is asleep", start a 2-minute timer, lock the phone, and confirm one notification with the timer's name arrives.
 3. The recommendations engine on `wiki/game-data.json`.
-4. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
+4. **Owner check (3.14.0):** on the PC, open Ships & Multi-Tools (your fleet should be there), then Notes → Import .md with the five files from this session, pin them to Books II, III and V, and confirm they reach the iPhone.
+5. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
 
 ## Known residuals
-- **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The fleet's multi-tool list has no ids, so it's taken whole from the newer copy. The relay refuses copies over 256 KB (after gzip and encryption); today's log is about 1 KB.
+- **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The legacy `fleet` object has no ids, so it's taken whole from the newer copy (gear and notes merge by id).
+- **Players from before 3.14.0** still have the owner's old starter fleet (now migrated to gear) and the "Dissonant System #1" system in their log. They can delete them; no cleanup runs, since they can't be told apart from the owner's own (ADR-0007). The relay refuses copies over 256 KB (after gzip and encryption); today's log is about 1 KB.
 - **Sync on iPhone:** an installed iPhone app doesn't share storage with Safari, so a scanned QR opens the wrong one. The code field covers it, and the UI says so.
 - **Timer alerts while asleep need the switch:** without "Alerts when the app is asleep", a finished timer alerts only while the browser runs the app. With it on, pushes arrive within about a minute; on iPhone and iPad only for the Home Screen app (iOS 16.4+).
 - **Crop harvest times are player input:** the wiki states them only in article prose ("approximately 60 minutes"), not as data; a later wiki-sync parser could extract them.

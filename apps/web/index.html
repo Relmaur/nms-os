@@ -80,6 +80,16 @@
             </section>
 
             <!-- ===================================================================== -->
+            <!-- YOUR GEAR AND NOTES (src/ui/gear, src/ui/notes · nms_state.json → gear, notes) -->
+            <!-- ===================================================================== -->
+            <section id="sec-gear" class="book-section hidden">
+                <div id="gearRoot" class="space-y-6"></div>
+            </section>
+            <section id="sec-notes" class="book-section hidden max-w-3xl">
+                <div id="notesRoot" class="space-y-6"></div>
+            </section>
+
+            <!-- ===================================================================== -->
             <!-- OUTLAW RUN (systems tagged "outlaw" · Suspicious Packet Nanite flip)  -->
             <!-- ===================================================================== -->
             <section id="sec-outlaw" class="book-section hidden">
@@ -96,6 +106,8 @@
     <div id="systemPanelRoot"></div>
     <!-- Session sheet: timers, add a timer, the recap (React: src/ui/session/SessionSheet.tsx) -->
     <div id="sessionSheetRoot"></div>
+    <!-- Editors for your ships, Multi-Tools and notes (React: src/ui/PlayerEditors.tsx) -->
+    <div id="playerEditorRoot"></div>
 
     <script type="module" src="src/app/main.ts"></script>
 </body>

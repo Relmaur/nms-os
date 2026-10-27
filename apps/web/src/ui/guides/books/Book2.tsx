@@ -1,4 +1,5 @@
-// Book 2: ported as written from the vanilla page (the owner's playbook, hand-written; see docs/STATE.md).
+// Book 2: the money and Nanite playbook (hand-written; see docs/STATE.md). General on purpose: a player's own
+// plan belongs in a note pinned to this book.
 
 export function Book2() {
   return (
@@ -15,12 +16,12 @@ export function Book2() {
         </p>
       </div>
 
-      {/* Immediate 15-Minute Recovery Plan for Your Exact Hardware */}
+      {/* Immediate 15-Minute Recovery Plan */}
       <div className="hud-card rounded-2xl p-5 border border-amber-500/40 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <h2 className="font-display font-bold text-base text-amber-300 flex items-center gap-2">
             <i className="ph-fill ph-lightning text-amber-400 text-xl" aria-hidden="true" />
-            Immediate 15-Minute Recovery Gameplan (Your Custom Hardware)
+            Immediate 15-Minute Recovery Gameplan
           </h2>
           <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300">
             +50M to 300M Units Fast
@@ -28,16 +29,16 @@ export function Book2() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-            <div className="font-mono text-amber-400 font-bold">STEP 1: SCRAP AERON-ημ (+50M U)</div>
+            <div className="font-mono text-amber-400 font-bold">STEP 1: SCRAP YOUR SPARE S-CLASS SHIP</div>
             <p className="text-slate-300">
-              Fly into any Space Station in <strong>Ythgall</strong>. Use Quick Menu (<code>X</code>) &rarr;{' '}
-              <em>Summon Vehicles</em> &rarr; <em>Switch Docked Starship</em> to select <strong>Aeron-ημ</strong>. Hover
-              over all tech modules and press{' '}
+              Fly into any Space Station in your flagship. Use Quick Menu (<code>X</code>) &rarr;{' '}
+              <em>Summon Vehicles</em> &rarr; <em>Switch Docked Starship</em> to select the spare. Hover over all tech
+              modules and press{' '}
               <strong>
                 <code>X</code> (Store Technology)
               </strong>{' '}
-              to keep them as grey boxes. Melt the empty hull at the Starship Outfitting Terminal for{' '}
-              <strong>~45M–55M Units</strong> + <strong>1–3 Storage Augmentations</strong> for Ythgall!
+              to keep them as grey boxes. Melt the empty hull at the Starship Outfitting Terminal for Units +{' '}
+              <strong>Storage Augmentations</strong> for your flagship!
             </p>
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
@@ -50,12 +51,12 @@ export function Book2() {
             </p>
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-            <div className="font-mono text-emerald-400 font-bold">STEP 3: WHY SCANS PAID 180K VS. 30M</div>
+            <div className="font-mono text-emerald-400 font-bold">STEP 3: WHY SCANS PAY SO LITTLE</div>
             <p className="text-slate-300">
-              Even with S-Class Scanner mods, <strong>Light Capacitor</strong> caps around{' '}
-              <strong>180k–450k Units</strong> per creature on its own. To hit <strong>10M–33M Units per scan</strong>,
-              you MUST put <strong>Anomalous Doughnuts</strong> inside your Exosuit's <strong>Nutrient Ingestor</strong>{' '}
-              and click <em>"Begin Ingestion"</em> (+6,443% compounding Fauna multiplier)!
+              Even with S-Class Scanner mods, a scanner Multi-Tool caps around <strong>180k–450k Units</strong> per
+              creature on its own. To hit <strong>10M–33M Units per scan</strong>, you MUST put{' '}
+              <strong>Anomalous Doughnuts</strong> inside your Exosuit's <strong>Nutrient Ingestor</strong> and click{' '}
+              <em>"Begin Ingestion"</em> (+6,443% compounding Fauna multiplier)!
             </p>
           </div>
         </div>

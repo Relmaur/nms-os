@@ -16,6 +16,7 @@ export function findBookHits(tokens: string[], limit: number): BookHit[] {
     const title = section.querySelector('h1')?.textContent.trim() ?? section.id;
     section.querySelectorAll(BLOCKS).forEach(el => {
       if (el.querySelector(BLOCKS)) return; // prefer the innermost block
+      if (el.closest('[data-player]')) return; // the player's notes pinned under a book aren't the manual
       const text = el.textContent.replace(/\s+/g, ' ').trim();
       const lower = text.toLowerCase();
       if (!text || seen.has(lower) || !tokens.every(token => lower.includes(token))) return;

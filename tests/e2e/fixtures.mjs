@@ -5,7 +5,7 @@ import { test as base, expect } from '@playwright/test';
 export const STORAGE_KEY = 'nms_master_os_state';
 const minutesAgo = minutes => new Date(Date.now() - minutes * 60000).toISOString();
 
-// lastUpdated is far in the future so this copy wins over the repo's nms_state.json.
+// A player's save: a few systems, a ship, a Multi-Tool and a note pinned to Home and Book III.
 export function seedState() {
   return {
     meta: { version: '2.0.0', lastUpdated: '2099-01-01T00:00:00.000Z', currentPhase: 'Phase 3: Test run' },
@@ -43,6 +43,40 @@ export function seedState() {
         planets: [],
         visits: [],
         createdAt: '2026-10-22T00:00:00.000Z'
+      }
+    ],
+    gear: [
+      {
+        id: 'gear-kestrel',
+        kind: 'starship',
+        name: 'Kestrel IV',
+        class: 'S',
+        type: 'Interceptor',
+        role: 'Flagship',
+        superchargedSlots: ['R2C2', 'R2C3', 'R2C4'],
+        notes: 'Infra-Knife in the **middle** slot.',
+        createdAt: '2026-10-20T00:00:00.000Z'
+      },
+      {
+        id: 'gear-rifle',
+        kind: 'multitool',
+        name: 'Quiet Rifle',
+        class: 'B',
+        type: 'Sentinel Rifle',
+        role: 'Combat',
+        superchargedSlots: [],
+        notes: '',
+        createdAt: '2026-10-20T00:00:00.000Z'
+      }
+    ],
+    notes: [
+      {
+        id: 'note-grid',
+        title: 'My scanner layout',
+        body: '| Slot | Module |\n|---|---|\n| R1C8 | Best scanner |\n\nSee [[Oxygen]].',
+        pins: ['home', 'book3'],
+        createdAt: '2026-10-20T00:00:00.000Z',
+        updatedAt: '2026-10-20T00:00:00.000Z'
       }
     ]
   };

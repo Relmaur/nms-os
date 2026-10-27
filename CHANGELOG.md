@@ -6,6 +6,19 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.14.0] - 2026-10-27
+### Added
+- **Ships & Multi-Tools:** keep your own ships and Multi-Tools, with their class, role, supercharged slots (drawn on a grid) and layout notes. Home's fleet card shows them, flagships first. If your log had the old fleet notes, they become your first entries automatically.
+- **Notes:** write your own findings in Markdown, search them, import `.md` files, and pin any note to Home or to a Guide book; it then shows under that book as "Your notes". `[[Name]]` links open the Codex. Notes sync like the rest of your log.
+- The header search finds your gear and your notes too.
+### Changed
+- ATLAS no longer ships anyone's own playthrough. A new player starts with an empty log: no ships, systems, checklist ticks or phase. Books II, III and V give general guidance instead of one player's ships and layouts. Your own log keeps everything it had.
+- Your device's own log always wins over the app's starter file.
+### Security
+- Markdown in notes and the Codex renders through a strict allowlist: no images, styles or script links, since notes can arrive from a paired device.
+### Fixed
+- In the Codex's "New article" sheet, starting to type in an empty summary or body no longer moves the cursor to the title.
+
 ## [3.13.0] - 2026-10-27
 ### Added
 - If ATLAS's free sync server fills up for the day, the app now says so plainly instead of "couldn't reach the server":

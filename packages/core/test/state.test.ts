@@ -17,7 +17,7 @@ test('buildState layers defaults ← file ← local and normalises systems', () 
   const state = buildState(file, local);
   assert.equal(state.meta.currentPhase, 'From file');
   assert.deepEqual({ cs1: state.checklists.cs1, cs2: state.checklists.cs2 }, { cs1: true, cs2: true });
-  assert.equal((state.fleet.primaryStarship as { name: string }).name, DEFAULT_STATE.fleet.primaryStarship.name);
+  assert.deepEqual([state.fleet, state.gear, state.notes], [{}, [], []]);
   assert.deepEqual(
     state.systems.map(system => [system.id, system.galaxy, system.tags]),
     [['a', 'Euclid', ['trade-hub']]]

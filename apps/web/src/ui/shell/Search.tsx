@@ -1,9 +1,11 @@
-// The header search: your systems, Codex articles and the books, in one list driven from the keyboard (arrows,
+// The header search: your systems, gear and notes, Codex articles and the books, in one list driven from the keyboard (arrows,
 // Enter, Esc; / or ⌘K to start). From md it drops down under the field; on a phone it is a full-screen overlay
 // opened from the header's search button.
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { search } from '@atlas/core/search';
 import { searchSystems, type System } from '@atlas/core/systems-model';
+import { gearOrder, type GearItem } from '@atlas/core/gear';
+import { noteExcerpt, searchNotes, type Note } from '@atlas/core/notes';
 import type { PreparedEntry } from '@atlas/core/search';
 import { appState } from '../../app/store.ts';
 import { Highlight, SourceBadge, categoryIcon } from '../codex/bits.tsx';
@@ -16,18 +18,25 @@ import { onWikiEntries, wikiEntries } from './wiki-index.ts';
 const WIKI_LIMIT = 6;
 const BOOK_LIMIT = 6;
 const SYSTEM_LIMIT = 5;
+const OWN_LIMIT = 3; // gear, and notes, each
 const PHONE = '(max-width: 767px)';
 
 type Hit =
-  { type: 'system'; system: System } | { type: 'wiki'; entry: PreparedEntry } | { type: 'book'; book: BookHit };
+  | { type: 'system'; system: System }
+  | { type: 'gear'; item: GearItem }
+  | { type: 'note'; note: Note }
+  | { type: 'wiki'; entry: PreparedEntry }
+  | { type: 'book'; book: BookHit };
 interface Results {
   query: string;
   tokens: string[];
   hits: Hit[];
   systemCount: number;
+  gearCount: number;
+  noteCount: number;
   wikiCount: number;
 }
-const EMPTY: Results = { query: '', tokens: [], hits: [], systemCount: 0, wikiCount: 0 };
+const EMPTY: Results = { query: '', tokens: [], hits: [], systemCount: 0, gearCount: 0, noteCount: 0, wikiCount: 0 };
 
 // The phone's full-screen search, opened from the header's button. Its look lives in theme.css on body.search-open
 // (the header's backdrop-filter must go there, or it would become the fixed overlay's containing block). The class
@@ -55,13 +64,28 @@ function find(query: string): Results {
   const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
   if (!tokens.length) return { ...EMPTY, query };
   const systems = searchSystems(appState.systems, query);
+  const gear = gearOrder(appState.gear).filter(item => {
+    const hay = [item.name, item.type, item.role, item.class, item.notes].join(' ').toLowerCase();
+    return tokens.every(token => hay.includes(token));
+  });
+  const notes = searchNotes(appState.notes, query);
   const wiki = search(wikiEntries(), query).map(result => result.entry);
   const hits: Hit[] = [
     ...systems.slice(0, SYSTEM_LIMIT).map(system => ({ type: 'system' as const, system })),
+    ...gear.slice(0, OWN_LIMIT).map(item => ({ type: 'gear' as const, item })),
+    ...notes.slice(0, OWN_LIMIT).map(note => ({ type: 'note' as const, note })),
     ...wiki.slice(0, WIKI_LIMIT).map(entry => ({ type: 'wiki' as const, entry })),
     ...findBookHits(tokens, BOOK_LIMIT).map(book => ({ type: 'book' as const, book }))
   ];
-  return { query, tokens, hits, systemCount: systems.length, wikiCount: wiki.length };
+  return {
+    query,
+    tokens,
+    hits,
+    systemCount: systems.length,
+    gearCount: gear.length,
+    noteCount: notes.length,
+    wikiCount: wiki.length
+  };
 }
 
 export function Search() {
@@ -137,6 +161,13 @@ export function Search() {
     if (hit.type === 'system') {
       void showSection('systems');
       openSystem(hit.system.id);
+    } else if (hit.type === 'gear' || hit.type === 'note') {
+      const [section, selector] =
+        hit.type === 'gear' ? ['gear', `[data-gear="${hit.item.id}"]`] : ['notes', `[data-note="${hit.note.id}"]`];
+      void showSection(section).then(() => {
+        const card = document.querySelector(`#sec-${section} ${selector}`); // ids are SAFE_ID: no quotes
+        if (card) flash(card);
+      });
     } else if (hit.type === 'wiki') {
       location.assign(`wiki/#/a/${encodeURIComponent(hit.entry.path ?? '')}?q=${encodeURIComponent(query)}`);
     } else {
@@ -202,6 +233,45 @@ export function Search() {
             </strong>
             <span className="block text-xs text-slate-400 truncate">
               {[system.region, ...system.tags].filter(Boolean).join(' · ') || system.galaxy}
+            </span>
+          </>
+        )
+      );
+    } else if (hit.type === 'gear') {
+      if (first) groups.push(<Label key="gear" label="Your gear" detail={String(results.gearCount)} />);
+      const { item } = hit;
+      groups.push(
+        option(
+          i,
+          <span className="nav-tile text-cyan-300 mt-0.5">
+            <i className={`ph-bold ${item.kind === 'multitool' ? 'ph-crosshair' : 'ph-rocket'}`} aria-hidden="true" />
+          </span>,
+          <>
+            <strong className="block text-sm text-white truncate">
+              <Highlight text={item.name} tokens={tokens} />
+            </strong>
+            <span className="block text-xs text-slate-400 truncate">
+              {[item.class, item.type, item.role].filter(Boolean).join(' · ') ||
+                (item.kind === 'multitool' ? 'Multi-Tool' : 'Starship')}
+            </span>
+          </>
+        )
+      );
+    } else if (hit.type === 'note') {
+      if (first) groups.push(<Label key="notes" label="Your notes" detail={String(results.noteCount)} />);
+      const { note } = hit;
+      groups.push(
+        option(
+          i,
+          <span className="nav-tile text-sky-300 mt-0.5">
+            <i className="ph-bold ph-note-pencil" aria-hidden="true" />
+          </span>,
+          <>
+            <strong className="block text-sm text-white truncate">
+              <Highlight text={note.title} tokens={tokens} />
+            </strong>
+            <span className="search-snippet block text-xs text-slate-400 leading-relaxed">
+              <Highlight text={snippetAround(noteExcerpt(note, 2000), tokens[0] ?? '')} tokens={tokens} />
             </span>
           </>
         )
@@ -294,7 +364,7 @@ export function Search() {
             aria-controls="globalSearchResults"
             aria-autocomplete="list"
             aria-activedescendant={active >= 0 ? `search-hit-${String(active)}` : undefined}
-            aria-label="Search your systems, the wiki and the guides"
+            aria-label="Search your systems, gear, notes, the wiki and the guides"
             placeholder="Search systems, the wiki and the guides…"
             onChange={event => {
               run(event.target.value);

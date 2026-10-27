@@ -1,4 +1,4 @@
-// Book 1: ported as written from the vanilla page (the owner's playbook, hand-written; see docs/STATE.md).
+// Book 1: ported as written from the vanilla page (the hand-written playbook; see docs/STATE.md).
 import { Checklist } from '../Checklist.tsx';
 import { useAppState } from '../../useAppState.ts';
 

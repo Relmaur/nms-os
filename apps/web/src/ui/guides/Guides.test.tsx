@@ -8,7 +8,7 @@ import { Book } from './Book.tsx';
 
 beforeEach(() => {
   localStorage.clear();
-  // Only the ticks given here (the built-in state ticks some milestones).
+  // Only the ticks given here.
   const state = buildState();
   state.checklists = { crossSaveLinked: true };
   setAppState(state);

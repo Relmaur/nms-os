@@ -4,21 +4,25 @@ The application state MUST be serializable to and from `nms_state.json` (the sha
 - Provide an **"Export nms_state.json"** button and **"Import nms_state.json"** file dropzone in the top header.
 
 ## Default `nms_state.json` Schema:
-See [`nms_state.json`](./nms_state.json) at the repository root — it is the canonical default and the shape every export/import must follow:
+See [`nms_state.json`](../apps/web/public/nms_state.json): the canonical default (identical to `DEFAULT_STATE`, a test checks), and a new player's starting point. Since 3.14.0 it holds nobody's save: no ships, notes, systems, checklist ticks or phase.
 
-- `meta` — `version`, `lastUpdated`, `platforms`, `currentPhase`
-- `fleet` — `primaryStarship`, `salvageStarship`, `multiTools[]`
+The shape every export and import follows:
+
+- `meta` — `version`, `lastUpdated`, `platforms`, `currentPhase` (optional; Home and Book I show it only when set)
+- `fleet` — legacy (before 3.14.0): free-form notes `{ primaryStarship, salvageStarship, multiTools[] }`. Kept and carried along untouched; read once by the `gear` migration.
+- `gear[]` (3.14.0, ADR-0007) — the player's ships and Multi-Tools: `{ id, kind (starship|multitool), name, class, type, role, superchargedSlots: ["R2C3", …], notes (Markdown), createdAt }`. A log without `gear` (missing or null) gets its `fleet` converted by `gearFromFleet()` (`packages/core/src/gear.ts`) with fixed ids (`fleet-flagship`, `fleet-spare`, `fleet-tool-<n>`) and a fixed `createdAt`, so two devices that migrate separately produce identical records; an emptied list (`[]`) stays empty. A damaged entry is dropped, not the log.
 - `checklists` — flat map of `id -> boolean` (named milestones such as `crossSaveLinked`, plus guide checklist item ids such as `cs1`, `rm3`)
 - `systems[]` — `{ id, name, galaxy, region, glyphs (12 hex or ''), star (yellow|red|green|blue|purple|''), race (gek|korvax|vykeen|none|abandoned|''), economy, wealth (0–3), conflict (low|medium|high|pirate|''), tags: string[], favorite, rating (0–5), notes, planets: [{ id, name, biome, tags, notes }], visits: [{ at: ISO, note?, packets? }], createdAt }`. Tags are lowercase slugs (`trade-hub`).
 - `outlaw` — `{ restockHours, packetsPerVisit, runSize, unitsPerPacket, nanitesPerPacket }`. The last two are the player's own in-game averages (packet prices and contents aren't fixed game data). Outlaw stations are systems tagged `outlaw`; one counts as ready once `restockHours` have passed since its last visit with `packets`.
 - `timers[]` (3.9.0) — `{ id, kind (refine|crop|custom), label, startedAt: ISO, endsAt: ISO, alerted }`. A refiner timer's length is the wiki's refining time (`seconds` per unit made, over the units of whole batches); a crop's or a custom timer's is the player's own. `alerted` marks a finish already announced, so a reload or another tab never announces it twice. Finished timers stay until dismissed.
 - `session` (3.9.0) — `{ startedAt: ISO, timersDone } | null`: the play session in progress. `sessions[]` — `{ startedAt, endedAt, timersDone }`, the last 50 ended. A recap is computed from the log inside the window (visits, new systems, packet runs at the outlaw averages); only `timersDone` is counted as it happens, since a dismissed timer leaves the list.
+- `notes[]` (3.14.0, ADR-0007) — the player's own notes: `{ id, title, body (Markdown, up to 100,000 characters), pins: ('home'|'book1'…'book6')[], createdAt, updatedAt }`. Pins merge as a set in sync. Rendered through a strict allowlist (`apps/web/src/ui/parts/safe-html.ts`): no images, styles, ids or non-http(s) links.
 - Legacy keys `logbook[]` and `outlaw.stations[]` are migrated into `systems[]` by `migrateToSystems()` (`packages/core/src/systems-model.ts`) on load and import; ids are kept so re-merging never duplicates.
 
 ## Merge rules
 - **Sync (ADR-0005, opt-in):** a three-way merge (`mergeStates()` in `packages/core/src/sync.ts`) of this device's copy, the cloud copy, and the copy both last agreed on (`localStorage` key `nms_master_os_state.synced`). Records merge by key (`id`; visits by `at`; past sessions by `startedAt`), tags as sets; a removal wins over an untouched copy, an edit over a removal, and a value changed on both sides goes to the copy with the later `meta.lastUpdated`. Lists without unique keys are taken whole from that copy. The result is validated and built like any other copy. Sync settings (`nms_master_os_sync`: the sync code, the cloud version, the last sync time) belong to the device and are never part of `nms_state.json`; so do the push alert settings (`nms_master_os_push`: a random device id and token, ADR-0006).
-- Precedence: built-in defaults ← `nms_state.json` ← `localStorage`. If `nms_state.json`'s `meta.lastUpdated` is newer than the browser copy (e.g. after a `git pull` from another machine), the file wins instead.
-- Objects merge key-by-key; arrays (`systems`, `multiTools`, slot lists) are replaced wholesale.
+- Precedence: built-in defaults ← `nms_state.json` ← `localStorage`. The device's own log always wins: since 3.14.0 the repo file is only a new device's starting point (before, a newer repo file outranked the browser copy).
+- Objects merge key-by-key; arrays (`systems`, `gear`, `notes`, slot lists) are replaced wholesale.
 - Data from the pre-2.0 key `ATLAS_MASTER_OS_STATE_V2` (`checkedItems` / `logEntries`) is migrated automatically on load and on import.
 
 ## Validation and failure handling (`packages/core/src/schema.ts`, `apps/web/src/app/store.js`)

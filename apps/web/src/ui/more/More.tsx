@@ -25,6 +25,23 @@ export function More() {
     <>
       <h1 className="font-display text-2xl font-bold text-white">More</h1>
 
+      <Group title="Your gear & notes">
+        <li>
+          <Row href="#gear" icon="ph-rocket text-cyan-300" title="Ships & Multi-Tools">
+            {state.gear.length
+              ? `${String(state.gear.length)} saved, with supercharged slots and layouts`
+              : 'Your ships and Multi-Tools, their slots and layouts'}
+          </Row>
+        </li>
+        <li>
+          <Row href="#notes" icon="ph-note-pencil text-sky-300" title="Notes">
+            {state.notes.length
+              ? `${String(state.notes.length)} note${state.notes.length === 1 ? '' : 's'} · pin them to Home or a book`
+              : 'Your own findings, pinned to Home or a Guide book'}
+          </Row>
+        </li>
+      </Group>
+
       <Group title="Tools & reading">
         <li>
           <Row href="#calculators" icon="ph-calculator text-amber-300" title="Calculators">

@@ -10,6 +10,9 @@ import { Calculators } from './calculators/Calculators.tsx';
 import { Guides } from './guides/Guides.tsx';
 import { Book } from './guides/Book.tsx';
 import { More } from './more/More.tsx';
+import { Gear } from './gear/Gear.tsx';
+import { Notes } from './notes/Notes.tsx';
+import { PlayerEditors } from './PlayerEditors.tsx';
 import { BOOKS } from '@atlas/core/guides';
 import { Header } from './shell/Header.tsx';
 import { Sidebar } from './shell/Sidebar.tsx';
@@ -42,7 +45,10 @@ const SCREENS: [string, ReactNode][] = [
   ['systemPanelRoot', <SystemPanel />],
   ['guidesRoot', <Guides />],
   ...BOOKS.map(({ key }): [string, ReactNode] => [`${key}Root`, <Book book={key} />]),
-  ['moreRoot', <More />]
+  ['moreRoot', <More />],
+  ['gearRoot', <Gear />],
+  ['notesRoot', <Notes />],
+  ['playerEditorRoot', <PlayerEditors />]
 ];
 
 function mount(roots: [string, ReactNode][]): void {

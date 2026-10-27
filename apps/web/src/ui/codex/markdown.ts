@@ -1,16 +1,7 @@
 // Article Markdown to safe HTML: [[wiki links]] become Codex links (or plain text when the page isn't in the
-// archive), the result is sanitised with DOMPurify, and h2/h3 get stable ids for the table of contents.
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+// archive), the result goes through the shared strict sanitiser, and h2/h3 get stable ids for the table of contents.
 import { WIKI_LINK, articleHref, headingIds, splitLink, type CodexIndex } from '@atlas/core/codex';
-
-// External links open in a new tab, without handing the opener over.
-DOMPurify.addHook('afterSanitizeAttributes', node => {
-  if (node.tagName === 'A' && /^https?:/i.test(node.getAttribute('href') ?? '')) {
-    node.setAttribute('target', '_blank');
-    node.setAttribute('rel', 'noopener noreferrer');
-  }
-});
+import { markdownToFragment } from '../parts/safe-html.ts';
 
 export interface Heading {
   id: string;
@@ -29,10 +20,8 @@ export function renderMarkdown(markdown: string, index: CodexIndex, q = ''): Ren
     const entry = index.find(target);
     return entry?.path ? `[${label}](${articleHref(entry.path, q)})` : label;
   });
-  // Without async extensions marked parses synchronously; its type still allows a promise.
-  const parsed = marked.parse(linked, { async: false });
   const holder = document.createElement('div');
-  holder.append(DOMPurify.sanitize(typeof parsed === 'string' ? parsed : '', { RETURN_DOM_FRAGMENT: true }));
+  holder.append(markdownToFragment(linked));
   const nodes = [...holder.querySelectorAll('h2, h3')];
   const ids = headingIds(nodes.map(node => node.textContent));
   const headings = nodes.map((node, i) => {

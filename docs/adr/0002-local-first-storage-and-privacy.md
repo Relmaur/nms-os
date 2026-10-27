@@ -3,7 +3,7 @@
 - **Status:** Accepted (2026-10-27), recording the design in place since 2.0.0 plus the 3.0.0 hardening. Amended by ADR-0005 (opt-in, end-to-end encrypted sync between a player's devices) and ADR-0006 (opt-in push alerts for timers).
 
 ## Context
-Everything the player logs (systems, planets, visits, notes, checklists, fleet, outlaw settings) is personal, small (well under 1 MB), and used on one device at a time, often offline mid-session. There is no server.
+Everything the player logs (systems, planets, visits, notes, checklists, ships and Multi-Tools, outlaw settings) is personal, small (well under 1 MB), and used on one device at a time, often offline mid-session. There is no server.
 
 ## Decision
 - **Storage:** one JSON document in `localStorage` (`nms_master_os_state`), written whole on every change by `saveAppState()`. On load it is merged with the repo's `nms_state.json` (defaults ← file ← local; a newer file wins). Export/Import moves it between devices.

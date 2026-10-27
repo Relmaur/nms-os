@@ -21,6 +21,8 @@ const openIndex = async page => {
   const bar = page.locator('#articleIndexBar button').first();
   if (await bar.isVisible()) await bar.click();
 };
+const openGearEditor = page => page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
+const openNoteEditor = page => page.locator('#sec-notes').getByRole('button', { name: 'New note' }).click();
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 const openSession = async page => {
   await page.locator('#startSession').click();
@@ -53,6 +55,10 @@ for (const [name, path, ready, region, setup] of [
   ['Book I (checklists)', './#book1', '#checklist-milestones input >> nth=0', '#sec-book1'],
   ['Book III (tables)', './#book3', '#sec-book3 table >> nth=0', '#sec-book3'],
   ['More', './#more', '#installRow', '#sec-more'],
+  ['Ships & Multi-Tools', './#gear', '#sec-gear [data-gear] >> nth=0', '#sec-gear'],
+  ['Gear editor', './#gear', '#gearEditor', '#gearEditor', openGearEditor],
+  ['Notes', './#notes', '#notesList [data-note] >> nth=0', '#sec-notes'],
+  ['Note editor', './#notes', '#noteEditor', '#noteEditor', openNoteEditor],
   ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
   ['Codex', './wiki/', '#browseBody', '#codexRoot'],

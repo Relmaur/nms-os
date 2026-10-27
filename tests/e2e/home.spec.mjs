@@ -38,6 +38,8 @@ test('no section scrolls sideways', async ({ page }) => {
     'calculators',
     'guides',
     'more',
+    'gear',
+    'notes',
     'book1',
     'book2',
     'book3',
