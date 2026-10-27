@@ -94,12 +94,11 @@
 .result:hover {
   background: rgba(15, 23, 42, 0.7);
 }
-.result[aria-selected='true'] {
+.result[data-selected='true'] {
   background: rgba(15, 23, 42, 0.95);
   border-color: rgba(52, 211, 153, 0.35);
 }
-.result mark,
-.peek-meta mark {
+.result mark {
   background: rgba(52, 211, 153, 0.2);
   color: #a7f3d0;
   border-radius: 0.2rem;
@@ -133,11 +132,21 @@
   line-height: 1.75;
   max-width: 72ch;
 }
-.md-body h2 {
-  scroll-margin-top: 5.5rem;
-}
+.md-body h2,
 .md-body h3 {
-  scroll-margin-top: 5.5rem;
+  /* clear the header and, below lg, the reading strip under it */
+  scroll-margin-top: calc(7.5rem + env(safe-area-inset-top));
+}
+@media (min-width: 1024px) {
+  .md-body h2,
+  .md-body h3 {
+    scroll-margin-top: 5.5rem;
+  }
+}
+/* the quick look's header already draws a rule above its body */
+#peekBody > :first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 #peekPanel .md-body {
   font-size: 0.875rem;

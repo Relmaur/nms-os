@@ -22,148 +22,18 @@
         <span id="toastMessage"></span>
     </div>
 
-    <header class="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-[1400px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
-            <a href="../" title="Back to ATLAS // MASTER OS" class="flex items-center gap-2.5 shrink-0 rounded-lg">
-                <span class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center"><i class="ph-fill ph-planet text-xl text-red-500"></i></span>
-                <span class="hidden md:inline font-display font-bold tracking-wider text-white">ATLAS<span class="text-cyan-400">//</span></span>
-            </a>
-            <a href="#/" onclick="clearAll(); return false;" class="font-display font-bold text-sm sm:text-base tracking-wider text-emerald-300 shrink-0 rounded-lg">CODEX</a>
-
-            <div class="relative flex-1 max-w-2xl mx-auto">
-                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                <input type="search" id="codexSearch" autocomplete="off" spellcheck="false" aria-label="Search the Codex" placeholder="Search titles and full text…" oninput="onSearchInput(this.value)" onkeydown="onSearchKey(event)" class="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-emerald-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-500 focus:outline-hidden transition">
-                <kbd class="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">/</kbd>
-            </div>
-
-            <button onclick="openCreateModal()" aria-label="New article" class="shrink-0 h-10 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold flex items-center gap-2 transition">
-                <i class="ph-bold ph-note-pencil text-base"></i><span class="hidden sm:inline">New article</span>
-            </button>
-        </div>
-    </header>
-
-    <main class="app-main max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:py-8">
-
-        <!-- Browse / search -->
-        <div id="browseView" class="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10">
-            <aside class="hidden lg:block">
-                <div class="sticky top-24 space-y-8">
-                    <div>
-                        <p class="nav-group-label">Category</p>
-                        <div id="categoryFacets" class="space-y-0.5"></div>
-                    </div>
-                    <div>
-                        <p class="nav-group-label">Source</p>
-                        <div id="sourceFacets" class="space-y-0.5"></div>
-                    </div>
-                    <div>
-                        <p class="nav-group-label">Sort</p>
-                        <div id="sortFacets" class="space-y-0.5"></div>
-                    </div>
-                    <div>
-                        <p class="nav-group-label">Older items</p>
-                        <div id="oldFacet" class="space-y-0.5"></div>
-                    </div>
-                </div>
-            </aside>
-
-            <section class="min-w-0 space-y-5">
-                <!-- Mobile filters -->
-                <div class="lg:hidden space-y-3">
-                    <div id="categoryChips" class="-mx-4 px-4 flex gap-2 overflow-x-auto no-scrollbar"></div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <label class="relative">
-                            <span class="sr-only">Source</span>
-                            <select id="sourceSelect" onchange="setParams({ src: this.value, page: 1 })" class="w-full h-10 appearance-none bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-8 text-sm text-white"></select>
-                            <i class="ph-bold ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                        </label>
-                        <label class="relative">
-                            <span class="sr-only">Sort</span>
-                            <select id="sortSelect" onchange="setParams({ sort: this.value, page: 1 })" class="w-full h-10 appearance-none bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-8 text-sm text-white">
-                                <option value="relevance">Best match</option>
-                                <option value="az">A–Z</option>
-                            </select>
-                            <i class="ph-bold ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                        </label>
-                    </div>
-                    <div id="oldToggleMobile"></div>
-                </div>
-
-                <div id="resultsHeader" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2"></div>
-                <nav id="letterBar" aria-label="Browse by letter" class="-mx-4 px-4 sm:mx-0 sm:px-0 flex gap-1 overflow-x-auto no-scrollbar"></nav>
-                <div id="browseBody"></div>
-                <nav id="pagination" aria-label="Pagination" class="flex items-center justify-between gap-3"></nav>
-            </section>
-        </div>
-
-        <!-- Article -->
-        <div id="articleView" class="is-hidden lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-12">
-            <article class="min-w-0">
-                <nav id="articleCrumbs" aria-label="Breadcrumb" class="flex flex-wrap items-center gap-1.5 text-xs text-slate-400 mb-6"></nav>
-                <header id="articleHeader" class="mb-8 space-y-4 max-w-[72ch]"></header>
-                <div id="articleBody" class="md-body"></div>
-            </article>
-            <aside class="mt-12 lg:mt-0">
-                <div id="articleRail" class="lg:sticky lg:top-24 space-y-8 lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto overscroll-contain pb-4"></div>
-            </aside>
-        </div>
-    </main>
+    <!-- Rendered by React (src/ui/codex/Codex.tsx): header search, browse, article, quick look, New article -->
+    <div id="codexRoot"></div>
 
     <!-- Same bottom tab bar as the main app (below lg) -->
     <nav aria-label="Primary" class="tab-bar lg:hidden">
         <a href="../#home" class="tab-item"><i class="ph-bold ph-house"></i><span>Home</span></a>
         <a href="../#systems" class="tab-item"><i class="ph-bold ph-planet"></i><span>Systems</span></a>
         <a href="../#outlaw" class="tab-item"><i class="ph-bold ph-skull"></i><span>Outlaw</span></a>
-        <a href="#/" onclick="clearAll(); return false;" aria-current="page" class="tab-item"><i class="ph-fill ph-books"></i><span>Codex</span></a>
+        <a href="#/" aria-current="page" class="tab-item"><i class="ph-fill ph-books"></i><span>Codex</span></a>
         <a href="../#more" class="tab-item"><i class="ph-bold ph-dots-three-circle"></i><span>More</span></a>
     </nav>
 
-    <!-- Quick look: side panel on desktop, bottom sheet on mobile -->
-    <div id="peekBackdrop" onclick="closePeek()" class="fixed inset-0 z-50 bg-slate-950/50 opacity-0 pointer-events-none transition-opacity duration-200 md:bg-slate-950/30"></div>
-    <aside id="peekPanel" role="dialog" aria-modal="false" aria-labelledby="peekTitle" class="fixed z-50 flex flex-col bg-slate-950 border-slate-700 shadow-[0_24px_64px_-12px_rgba(0,0,0,0.85)] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-        inset-x-0 bottom-0 h-[85dvh] rounded-t-3xl border-t translate-y-full
-        md:inset-x-auto md:right-0 md:top-0 md:h-full md:w-[min(36rem,48vw)] md:rounded-none md:border-t-0 md:border-l md:translate-y-0 md:translate-x-full">
-        <div class="md:hidden flex justify-center pt-2.5"><span class="w-10 h-1 rounded-full bg-slate-700"></span></div>
-        <div class="px-5 pt-4 pb-4 border-b border-slate-800 space-y-3">
-            <div class="flex items-start justify-between gap-3">
-                <div class="min-w-0">
-                    <p id="peekMeta" class="peek-meta flex flex-wrap items-center gap-2 text-xs text-slate-400"></p>
-                    <h2 id="peekTitle" class="font-display font-bold text-lg text-white mt-1.5 leading-snug"></h2>
-                </div>
-                <button onclick="closePeek()" aria-label="Close quick look" class="shrink-0 w-9 h-9 -mr-1.5 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"><i class="ph-bold ph-x text-lg"></i></button>
-            </div>
-            <div class="flex items-center gap-2">
-                <a id="peekOpen" href="#/" class="h-9 px-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold flex items-center gap-2 transition">Open article <i class="ph-bold ph-arrow-right"></i></a>
-                <span class="hidden md:inline text-xs text-slate-400 ml-auto"><kbd class="font-mono border border-slate-700 rounded px-1">↑</kbd> <kbd class="font-mono border border-slate-700 rounded px-1">↓</kbd> browse · <kbd class="font-mono border border-slate-700 rounded px-1">Enter</kbd> open</span>
-            </div>
-        </div>
-        <div id="peekBody" class="md-body flex-1 overflow-y-auto overscroll-contain px-5 py-5"></div>
-    </aside>
-
-    <!-- New article -->
-    <div id="createModal" class="fixed inset-0 z-[60] hidden items-end sm:items-center justify-center bg-slate-950/80 backdrop-blur-sm sm:p-4" onclick="if (event.target === this) closeCreateModal()">
-        <div role="dialog" aria-modal="true" aria-labelledby="createTitle" class="w-full max-w-4xl max-h-[92dvh] overflow-y-auto rounded-t-3xl sm:rounded-2xl bg-slate-950 border border-slate-700 p-5 space-y-3">
-            <div class="flex items-center justify-between">
-                <h2 id="createTitle" class="font-display font-bold text-base text-white">New article</h2>
-                <button onclick="closeCreateModal()" aria-label="Close" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"><i class="ph-bold ph-x text-lg"></i></button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <input type="text" id="newTitle" placeholder="Article title" class="md:col-span-2 h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base md:text-sm text-white">
-                <select id="newCategory" class="h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base md:text-sm text-white"></select>
-            </div>
-            <input type="text" id="newSummary" placeholder="One-line summary (shown in search results)" class="w-full h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base md:text-sm text-white">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <textarea id="newBody" rows="14" oninput="renderCreatePreview()" placeholder="## Overview&#10;Write Markdown here. Link other articles with [[Article Title]]." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-base md:text-sm font-mono text-white"></textarea>
-                <div id="newPreview" class="md-body text-sm bg-slate-900/50 border border-slate-800 rounded-xl p-4 overflow-y-auto max-h-[22rem]"></div>
-            </div>
-            <p class="text-xs text-slate-400">Downloads as <code class="text-emerald-300">&lt;Title&gt;.md</code>. Move it into <code class="text-emerald-300">wiki/custom/&lt;category&gt;/</code> and run <code class="text-emerald-300">pnpm index:wiki</code>; until then it stays in this browser as a draft.</p>
-            <div class="flex justify-end gap-2">
-                <button onclick="closeCreateModal()" class="h-10 px-4 rounded-xl bg-slate-900 border border-slate-700 text-sm text-slate-300 hover:bg-slate-800">Cancel</button>
-                <button onclick="saveDraft()" class="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm flex items-center gap-2"><i class="ph-bold ph-download-simple"></i> Save draft & download</button>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="../src/codex.js"></script>
+    <script type="module" src="../src/ui/codex/main.tsx"></script>
 </body>
 </html>

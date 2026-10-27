@@ -6,6 +6,17 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.6.0] - 2026-10-27
+### Changed
+- Codex articles put their index first on phones: right under the title, a row shows Contents, Used in, Links to, Mentioned in and Nearby with their counts, each opening a drawer at that list. Once you scroll past it, a strip under the header shows the section you're in and keeps the index one tap away. On wide screens the index stays the right-hand column.
+- Every drawer on a phone closes the same way: tap its bar, or swipe it down (or tap outside, or Esc). The ✕ buttons are gone on phones; wider screens keep them. The system editor can be swiped closed too, but not while it has unsaved changes, and neither can a new Codex article with text in it.
+- The Codex is a React page (ADR-0004 step 3). It looks and works as before: the same addresses, search, filters, quick look, keyboard shortcuts and drafts.
+### Fixed
+- Accessibility: the Codex is axe-gated in `pnpm check` (landing, results, quick look, article and its index), fixing its earlier findings (invalid list roles and attributes, an unnamed dialog, an empty heading).
+### Internal
+- The Codex's routes, filters and article relations are pure functions in `@atlas/core/codex` with unit tests. `wiki/index.json`, `offline-bundle.js`, `verification.json` and drafts are parsed with Zod schemas (`@atlas/core/wiki-files`) before use.
+- `codex.js` and its `window` functions are gone; one shared Sheet component drives every phone drawer.
+
 ## [3.5.0] - 2026-10-27
 ### Changed
 - Calculators opens on the recipe planner, with a dock at the top to switch between the planner, Base value, Extractors and Registers in one tap, without scrolling past the plan. The planner leads the dock and shows the plan in progress ("×1 Stasis Device · 3/14 gathered"). Switching keeps what you typed in each tool, and the chosen tool stays while the app is open.

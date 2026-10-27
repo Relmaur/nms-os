@@ -14,6 +14,13 @@ const tickHalf = async page => {
   for (const tile of tiles.slice(0, 7)) await tile.click();
 };
 
+const OXYGEN = encodeURIComponent('wiki/resources/Oxygen.md');
+const openPeek = page => page.locator('#browseBody .result button').first().click();
+// The index bar is the phone and tablet layout; from lg the same index is the rail, already on screen.
+const openIndex = async page => {
+  const bar = page.locator('#articleIndexBar button').first();
+  if (await bar.isVisible()) await bar.click();
+};
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 
 // [name, path, ready selector, gated region (or null to report only), setup]
@@ -26,7 +33,11 @@ for (const [name, path, ready, region, setup] of [
   ['Calculators', './#calculators', '#planHold', '#sec-calculators'],
   ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
-  ['Codex', './wiki/', '#browseBody', null]
+  ['Codex', './wiki/', '#browseBody', '#codexRoot'],
+  ['Codex results', './wiki/#/?q=oxygen', '#browseBody .result >> nth=0', '#codexRoot'],
+  ['Codex quick look', './wiki/#/?q=oxygen', '#peekBody h2 >> nth=0', '#codexRoot', openPeek],
+  ['Codex article', `./wiki/#/a/${OXYGEN}`, '#articleBody h2 >> nth=0', '#codexRoot'],
+  ['Codex article index', `./wiki/#/a/${OXYGEN}`, '#articleBody h2 >> nth=0', '#codexRoot', openIndex]
 ]) {
   test(`axe: ${name}`, async ({ page }, testInfo) => {
     await page.goto(path);

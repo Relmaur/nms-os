@@ -25,8 +25,7 @@ const BUILTINS = new Set([
 ]);
 
 const PAGES = {
-  'index.html': ['src/app/main.js', 'src/app/nav.js', 'src/app/companion.js'],
-  'wiki/index.html': ['src/codex.js']
+  'index.html': ['src/app/main.js', 'src/app/nav.js', 'src/app/companion.js']
 };
 
 // Names a handler calls (`name(`) or reads a property of (`NAME.x`) without a receiver.
@@ -67,3 +66,8 @@ for (const [page, modules] of Object.entries(PAGES)) {
     assert.deepEqual([...called].filter(name => !exposed.has(name)).sort(), []);
   });
 }
+
+// The Codex is React now: its page has no inline handlers left, and must not grow new ones.
+test('wiki/index.html has no inline handlers', () => {
+  assert.deepEqual([...handlerNames(read('wiki/index.html'))], []);
+});

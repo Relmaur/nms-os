@@ -72,3 +72,34 @@ export function SheetGrab({ onClose, label = 'Close' }: { onClose: SheetClose; l
     </button>
   );
 }
+
+// While a sheet is open: the page behind it doesn't scroll (only while `layout` matches, so rotating to a wider
+// layout releases it), Esc closes it, focus moves to `focus` on the sheet layout, and on close focus goes back to
+// what opened it. `close` must be stable (useCallback), or the effect reruns on every render.
+export function useSheetOpen(
+  open: boolean,
+  close: () => void,
+  { layout, focus }: { layout: string; focus?: RefObject<HTMLElement | null> }
+) {
+  useEffect(() => {
+    if (!open) return;
+    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const media = matchMedia(layout);
+    const lock = () => {
+      document.body.classList.toggle('overflow-hidden', media.matches);
+    };
+    lock();
+    media.addEventListener('change', lock);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') close();
+    };
+    document.addEventListener('keydown', onKey);
+    if (media.matches) focus?.current?.focus({ preventScroll: true });
+    return () => {
+      media.removeEventListener('change', lock);
+      document.removeEventListener('keydown', onKey);
+      document.body.classList.remove('overflow-hidden');
+      if (media.matches && opener?.isConnected) opener.focus({ preventScroll: true });
+    };
+  }, [open, close, layout, focus]);
+}

@@ -28,15 +28,15 @@ nms-os/                          pnpm workspace
 │   ├── src/ui/                  React screens (ADR-0004 step 3), mounted by mount.tsx
 │   │   ├── home/ systems/ outlaw/ calculators/   One folder per screen; systems/ also holds the system panel and editor
 │   │   ├── systems/panel-store.ts   Which system the panel shows + the Systems filter (shared by several screens)
-│   │   └── parts/, actions.ts, useAppState.ts, useNow.ts   Shared pieces, store actions, state and clock hooks
+│   │   ├── codex/               The Codex page (wiki/index.html): main.tsx entry, hash route store, browse, article + index, sheets
+│   │   └── parts/, actions.ts, useAppState.ts, useNow.ts   Shared pieces (incl. Sheet.tsx, every phone bottom sheet), store actions, state and clock hooks
 │   ├── src/app/                 Vanilla UI modules, moving to src/ui/ screen by screen
 │   │   ├── main.js              Main page entry: renderAll, header search, checklists, Export/Import; mounts React screens
 │   │   ├── store.ts             appState: load, validate, save, tab sync, failure banner; subscribe() for React
 │   │   ├── nav.js / ui.ts       Section routing + Guides; toast and haptics
 │   │   ├── companion.js         Device integration (keep-awake, outlaw badges, install, storage protection)
-│   │   ├── wiki-data.js         Wiki index/bundle loading + drafts; exports WikiSearch
+│   │   ├── wiki-data.js         Wiki index/bundle loading (parsed with @atlas/core/wiki-files) + drafts; exports WikiSearch
 │   │   └── pwa.js               Registers the service worker (production builds only)
-│   ├── src/codex.js             The Codex page entry
 │   ├── src/sw/sw.ts             Service worker (Workbox), built to dist/sw.js
 │   ├── src/styles.css / codex.css   Each page's stylesheet: fonts.css, theme.css (+ codex-page.css), tailwind.css
 │   ├── public/                  Copied into the build as-is: icons, manifest, nms_state.json, wiki → ../../../wiki
@@ -49,22 +49,23 @@ nms-os/                          pnpm workspace
 
 ## Runtime data flow
 1. **State:** the app builds its state from built-in defaults ← `nms_state.json` (fetched) ← `localStorage` (`nms_master_os_state`), after validating each document (`validateState`), then renders every section from that single object. Every change goes through `saveAppState()`, which stamps `meta.lastUpdated`, writes `localStorage`, and re-renders.
-2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open and parse it with `GameDataSchema`. All three are derived from the committed `.md` archive by `pnpm index:wiki`.
+2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open and parse it with `GameDataSchema`. The index, the bundle, `verification.json` and drafts are parsed with the schemas in `packages/core/src/wiki-files.ts`. All three are derived from the committed `.md` archive by `pnpm index:wiki`.
 3. **Offline:** the service worker precaches the build (pages, modules, styles, icons, Latin and Greek fonts) and the wiki indexes under content-hash revisions. `nms_state.json` and `wiki/verification.json` are network-first; wiki articles are cached as they are read (docs/deploy.md).
 
 ## Module model
 - `@atlas/core` is the only home for logic that doesn't touch the DOM. Its types come from its Zod schemas where data crosses a boundary (state documents, game data) and from interfaces for the normalised in-memory shapes (`AppState`, `System`).
 - **Parse, don't cast:** anything read from outside the code is parsed before use: imports, `localStorage`, `nms_state.json`, `game-data.json`, wiki API responses and article frontmatter. Remaining unparsed inputs are listed in `docs/STATE.md`.
 - The remaining vanilla UI modules render string templates. Only `store.ts` reassigns `appState`; other modules read the live binding, mutate it, and call `saveAppState()`, which re-renders through the hook `main.js` registers (`onSave`). `nav.js` lets features react to a section opening through `onSection()`, which avoids import cycles.
-- Inline `on…=""` handlers (the vanilla screens only: Guides, More, the header and the Codex) run in the global scope, so each module exposes exactly the functions its markup and templates call with `Object.assign(window, {…})`. `tests/unit/inline-handlers.test.mjs` fails if a handler calls anything not exposed.
+- Inline `on…=""` handlers (the vanilla screens only: Guides, More and the main page's header) run in the global scope, so each module exposes exactly the functions its markup and templates call with `Object.assign(window, {…})`. `tests/unit/inline-handlers.test.mjs` fails if a handler calls anything not exposed, and if the Codex page grows one.
 
 ## React screens (ADR-0004 step 3)
-- Each moved screen lives in `apps/web/src/ui/<screen>/` and is mounted once into its container in `index.html` (`#homeRoot`, `#systemsRoot`, `#outlawRoot`, `#calculatorsRoot`, `#systemPanelRoot`) by `src/ui/mount.tsx`, called from `main.js` after the state loads. The vanilla page around them is unchanged.
+- Each moved screen lives in `apps/web/src/ui/<screen>/` and is mounted once into its container in `index.html` (`#homeRoot`, `#systemsRoot`, `#outlawRoot`, `#calculatorsRoot`, `#systemPanelRoot`) by `src/ui/mount.tsx`, called from `main.js` after the state loads. The vanilla page around them is unchanged. The Codex is its own page: `wiki/index.html` mounts `#codexRoot` from `src/ui/codex/main.tsx`, and its place lives in the URL hash (`src/ui/codex/route.ts`).
+- **Phone sheets** (bottom drawers below 768px) share `src/ui/parts/Sheet.tsx`: the grab bar is the only close control on a phone (a button: tap or drag down; plus backdrop and Esc), the ✕ shows from md up, and a sheet holding unsaved typing refuses a swipe and says why.
 - **State:** `useAppState()` returns the live `appState` and re-renders on every change. The store mutates one object in place, so React subscribes to `getVersion()` through `useSyncExternalStore`; the version moves after every load, save and adopted tab copy. Components change state only through actions (`src/ui/actions.ts`) that mutate, `saveAppState()` and confirm.
 - **What a screen shows** is computed by a pure function in `@atlas/core` (e.g. `homeSummary()`), unit-tested; components only render it. `useNow()` supplies the clock (every minute and on returning to the app).
 - **Screen state shared across screens** that isn't saved (which system the panel shows, the Systems filter) lives in a small store next to its screen (`src/ui/systems/panel-store.ts`), read with `useSyncExternalStore`. Vanilla code calls it through direct imports (`openSystem` from the header search), never `window`; vanilla modules React calls are typed by a `.d.ts` beside them (`src/app/nav.d.ts`).
 - **Notes and other typing** keep their draft in the component and save through the store; the two-tab rules (unsaved typing is carried into another tab's copy; stored text shows whenever nothing is being typed) live with the notes in `SystemDetails.tsx`.
-- Tests: component tests next to the screen (`*.test.tsx`, Vitest + Testing Library in happy-dom); axe gates every moved screen (`tests/e2e/a11y.spec.mjs`).
+- Tests: component tests next to the screen (`*.test.tsx`, Vitest + Testing Library in happy-dom); axe gates every moved screen (`tests/e2e/a11y.spec.mjs`). Under happy-dom, DOMPurify drops the tags of a document's first element (browsers don't), so Markdown fixtures start with a paragraph.
 
 ## Styling
 - Tailwind v4 is compiled at build time. The markup was written for Tailwind v3's CDN, so `tailwind.css` keeps v3's preflight (`tailwind-v3-preflight.css`), its text line heights and its `space-y-*` behaviour (`tailwind-v3-spacing.css`), and imports Tailwind after the app's CSS without cascade layers, as the CDN did. These shims go when the screens move to React.
