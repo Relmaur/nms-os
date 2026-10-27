@@ -96,6 +96,10 @@
                         <p class="nav-group-label">Sort</p>
                         <div id="sortFacets" class="space-y-0.5"></div>
                     </div>
+                    <div>
+                        <p class="nav-group-label">Older items</p>
+                        <div id="oldFacet" class="space-y-0.5"></div>
+                    </div>
                 </div>
             </aside>
 
@@ -118,6 +122,7 @@
                             <i class="ph-bold ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
                         </label>
                     </div>
+                    <div id="oldToggleMobile"></div>
                 </div>
 
                 <div id="resultsHeader" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2"></div>
@@ -199,10 +204,15 @@
         const { CATEGORIES, SOURCES, escapeHtml } = WikiSearch;
         const PAGE_SIZE = 20;
         const LETTERS = ['#', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
-        const DEFAULTS = { q: '', cat: 'all', src: 'all', letter: '', sort: 'relevance', page: 1 };
+        const DEFAULTS = { q: '', cat: 'all', src: 'all', letter: '', sort: 'relevance', old: '0', page: 1 };
+        const PERMALINK = (entry, revId) => `${entry.url}?oldid=${revId}`;
 
         let entries = [];
         let byPath = new Map();
+        let byTitle = new Map();   // lower-case title -> entry (current pages win)
+        let aliases = {};          // old item names the wiki redirects, e.g. "Rigogen" -> "Kelp Sac"
+        let usedIn = new Map();    // lower-case ingredient -> entries whose recipes use it
+        let verification = null;   // wiki/verification.json from the last sync or verify
         let state = { ...DEFAULTS };
         let results = [];        // current page's results, for keyboard + quick look
         let selected = -1;
@@ -220,6 +230,7 @@
             next.page = Math.max(1, parseInt(next.page, 10) || 1);
             if (!(next.cat in CATEGORIES)) next.cat = 'all';
             if (!(next.src in SOURCES) || next.src === 'draft') next.src = 'all';
+            if (next.old !== '1') next.old = '0';
             return route.startsWith('/a/') ? { view: 'article', path: decodeURIComponent(route.slice(3)), state: next } : { view: 'browse', state: next };
         }
 
@@ -266,7 +277,8 @@
         }
 
         function renderBrowse() {
-            const base = WikiSearch.search(entries, state.q);
+            const includeOld = state.old === '1';
+            const base = WikiSearch.search(entries, state.q, { includeOld });
             const srcMatch = r => state.src === 'all' || r.entry.source === state.src || (state.src === 'custom' && r.entry.source === 'draft');
             const catMatch = r => state.cat === 'all' || r.entry.category === state.cat;
             const letterMatch = r => !state.letter || r.entry._letter === state.letter;
@@ -278,10 +290,12 @@
             let filtered = base.filter(r => srcMatch(r) && catMatch(r) && letterMatch(r));
             if (state.sort === 'az' && state.q) filtered = [...filtered].sort((a, b) => a.entry._title.localeCompare(b.entry._title));
 
-            renderFacets(catCounts, srcCounts, base.filter(r => srcMatch(r) && letterMatch(r)).length);
+            const oldCount = (includeOld ? base : WikiSearch.search(entries, state.q, { includeOld: true }))
+                .filter(r => WikiSearch.isOld(r.entry) && srcMatch(r) && catMatch(r) && letterMatch(r)).length;
+            renderFacets(catCounts, srcCounts, base.filter(r => srcMatch(r) && letterMatch(r)).length, oldCount);
             renderLetters(letterSet);
 
-            const isLanding = !state.q && state.cat === 'all' && state.src === 'all' && !state.letter;
+            const isLanding = !state.q && state.cat === 'all' && state.src === 'all' && !state.letter && !includeOld;
             if (!entries.length) {
                 results = [];
                 document.getElementById('resultsHeader').innerHTML = '';
@@ -290,7 +304,7 @@
                     <div class="rounded-2xl border border-dashed border-slate-700 p-8 text-center space-y-3">
                         <i class="ph-duotone ph-books text-4xl text-emerald-300"></i>
                         <h2 class="font-display font-bold text-lg text-white">The Codex is empty</h2>
-                        <p class="text-sm text-slate-300 max-w-md mx-auto">Run <code class="text-emerald-300">npm run sync:wiki</code> to download the wiki (or <code class="text-emerald-300">npm run seed:wiki</code> offline), then reload this page.</p>
+                        <p class="text-sm text-slate-300 max-w-md mx-auto">Run <code class="text-emerald-300">npm run index:wiki</code> to index the committed archive (or <code class="text-emerald-300">npm run sync:wiki</code> to refresh it from the wiki), then reload this page.</p>
                     </div>`;
                 return;
             }
@@ -305,7 +319,7 @@
             renderPagination(page, pages, filtered.length);
         }
 
-        function renderFacets(catCounts, srcCounts, total) {
+        function renderFacets(catCounts, srcCounts, total, oldCount) {
             const facet = (label, icon, n, pressed, onclick) => `
                 <button class="facet" aria-pressed="${pressed}" ${n ? '' : 'disabled'} onclick="${onclick}">
                     <i class="ph-bold ${icon} text-base"></i><span class="truncate">${label}</span><span class="count">${n}</span>
@@ -314,7 +328,7 @@
                 facet('All categories', 'ph-squares-four', total, state.cat === 'all', "setParams({ cat: 'all', page: 1 })") +
                 Object.entries(CATEGORIES).map(([key, meta]) => facet(meta.label, meta.icon, catCounts[key] || 0, state.cat === key, `setParams({ cat: '${key}', page: 1 })`)).join('');
 
-            const sourceOptions = [['all', 'All sources', 'ph-stack'], ['seed', 'Codex notes', 'ph-star'], ['custom', 'Custom', 'ph-pencil-simple'], ['wiki', 'Wiki pages', 'ph-globe']];
+            const sourceOptions = [['all', 'All sources', 'ph-stack'], ['wiki', 'Wiki pages', 'ph-globe'], ['custom', 'Your articles', 'ph-pencil-simple']];
             const srcTotal = Object.entries(srcCounts).filter(([key]) => key !== 'draft').reduce((sum, [, n]) => sum + n, 0);
             document.getElementById('sourceFacets').innerHTML = sourceOptions
                 .map(([key, label, icon]) => facet(label, icon, key === 'all' ? srcTotal : srcCounts[key] || 0, state.src === key, `setParams({ src: '${key}', page: 1 })`)).join('');
@@ -326,6 +340,14 @@
             document.getElementById('categoryChips').innerHTML =
                 `<button class="chip" aria-pressed="${state.cat === 'all'}" onclick="setParams({ cat: 'all', page: 1 })">All <span class="text-slate-400 font-mono text-xs">${total}</span></button>` +
                 Object.entries(CATEGORIES).map(([key, meta]) => `<button class="chip" aria-pressed="${state.cat === key}" onclick="setParams({ cat: '${key}', page: 1 })"><i class="ph-bold ${meta.icon}"></i>${meta.label} <span class="text-slate-400 font-mono text-xs">${catCounts[key] || 0}</span></button>`).join('');
+            const oldOn = state.old === '1';
+            const oldToggle = `setParams({ old: '${oldOn ? '0' : '1'}', page: 1 })`;
+            document.getElementById('oldFacet').innerHTML = `
+                <button class="facet" aria-pressed="${oldOn}" onclick="${oldToggle}" title="Items the wiki marks obsolete, and pages since removed from the wiki">
+                    <i class="ph-bold ph-clock-counter-clockwise text-base"></i><span class="truncate">Include no longer in game</span><span class="count">${oldCount}</span>
+                </button>`;
+            document.getElementById('oldToggleMobile').innerHTML = `
+                <button class="chip" aria-pressed="${oldOn}" onclick="${oldToggle}"><i class="ph-bold ph-clock-counter-clockwise"></i>Include no longer in game <span class="text-slate-400 font-mono text-xs">${oldCount}</span></button>`;
             document.getElementById('sourceSelect').innerHTML = sourceOptions
                 .map(([key, label]) => `<option value="${key}" ${state.src === key ? 'selected' : ''}>${label} (${key === 'all' ? srcTotal : srcCounts[key] || 0})</option>`).join('');
             document.getElementById('sortSelect').value = state.sort;
@@ -339,29 +361,73 @@
 
         function exampleTitles(category) {
             return entries
-                .filter(entry => entry.category === category)
-                .sort((a, b) => (a.source === 'wiki') - (b.source === 'wiki') || a._title.localeCompare(b._title))
+                .filter(entry => entry.category === category && !WikiSearch.isOld(entry))
+                .sort((a, b) => a._title.localeCompare(b._title))
                 .slice(0, 3);
         }
 
+        function formatDate(iso) {
+            return new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        // What the last sync or verify established about the archive.
+        function verificationPanel() {
+            const v = verification;
+            const tone = !v ? 'border-slate-700' : v.status === 'match' ? 'border-emerald-500/40' : 'border-amber-500/40';
+            let icon = 'ph-question text-slate-400';
+            let headline = 'Not verified on this copy';
+            let detail = 'Run <code class="text-emerald-300">npm run verify:wiki</code> to compare the archive with the live wiki.';
+            if (v?.status === 'match') {
+                icon = 'ph-seal-check text-emerald-300';
+                headline = `Matches the wiki: ${v.matched.toLocaleString()} of ${v.pages.toLocaleString()} pages at their latest revision`;
+                detail = `Checked ${formatDate(v.checkedAt)}, ${new Date(v.checkedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}. Wiki revisions never change once saved, so a matching revision id means an identical page.`;
+            } else if (v?.status === 'differs') {
+                icon = 'ph-warning text-amber-300';
+                headline = `${(v.pages - v.matched).toLocaleString()} pages behind the wiki`;
+                detail = `Checked ${formatDate(v.checkedAt)}. Run <code class="text-emerald-300">npm run sync:wiki</code> to catch up.`;
+            } else if (v?.status === 'unreachable') {
+                icon = 'ph-cloud-slash text-amber-300';
+                headline = 'The wiki couldn’t be reached at the last check';
+                detail = `Tried ${formatDate(v.checkedAt)}. Showing the archived copy.`;
+            }
+            const scope = v?.pages ? `
+                <ul class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-1 text-xs text-slate-400">
+                    <li><strong class="text-slate-200 tabular-nums">${(v.obsolete || 0).toLocaleString()}</strong> obsolete items, hidden by default</li>
+                    <li><strong class="text-slate-200 tabular-nums">${(v.excluded || 0).toLocaleString()}</strong> player-found tools left out</li>
+                    <li><strong class="text-slate-200 tabular-nums">${(v.removed?.length || 0).toLocaleString()}</strong> pages since removed from the wiki</li>
+                </ul>` : '';
+            return `
+                <div class="rounded-2xl bg-slate-900/60 border ${tone} p-4 sm:p-5">
+                    <div class="flex items-start gap-3">
+                        <i class="ph-fill ${icon} text-2xl shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-sm font-semibold text-white">${headline}</p>
+                            <p class="text-xs text-slate-400 mt-1 max-w-[70ch]">${detail}</p>
+                        </div>
+                    </div>
+                    ${scope}
+                </div>`;
+        }
+
         function renderLanding() {
-            results = entries.filter(entry => entry.source !== 'wiki').sort((a, b) => a._title.localeCompare(b._title)).map(entry => ({ entry, field: 'title' }));
+            const current = entries.filter(entry => entry.source === 'wiki' && !WikiSearch.isOld(entry));
+            results = [...current].sort((a, b) => String(b.revTimestamp).localeCompare(String(a.revTimestamp))).slice(0, 10).map(entry => ({ entry, field: 'title' }));
             selected = -1;
             document.getElementById('pagination').innerHTML = '';
             document.getElementById('resultsHeader').innerHTML = `
                 <div>
                     <h1 class="font-display font-bold text-2xl sm:text-3xl text-white">Wiki Codex</h1>
-                    <p class="text-sm text-slate-300 mt-1">${entries.length.toLocaleString()} articles. Search the full text, pick a category, or jump by letter.</p>
+                    <p class="text-sm text-slate-300 mt-1">${current.length.toLocaleString()} game-data pages from the No Man’s Sky Wiki: items, technology, places, missions, galaxies and patch notes.</p>
                 </div>`;
             const tiles = Object.entries(CATEGORIES).map(([key, meta]) => {
-                const n = entries.filter(entry => entry.category === key).length;
+                const n = current.filter(entry => entry.category === key).length;
                 return `
                 <a href="${browseHref({ ...DEFAULTS, cat: key })}" class="group block rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:bg-slate-900 p-4 transition">
                     <div class="flex items-center gap-3">
                         <span class="nav-tile text-emerald-300"><i class="ph-bold ${meta.icon}"></i></span>
                         <div class="min-w-0">
                             <p class="text-sm font-semibold text-white">${meta.label}</p>
-                            <p class="text-xs text-slate-400">${n} articles</p>
+                            <p class="text-xs text-slate-400">${n.toLocaleString()} pages</p>
                         </div>
                         <i class="ph-bold ph-arrow-right ml-auto text-slate-500 group-hover:text-emerald-300 transition"></i>
                     </div>
@@ -369,25 +435,23 @@
                     <p class="text-xs text-slate-300 mt-2 truncate">${exampleTitles(key).map(entry => escapeHtml(entry.title)).join(' · ')}</p>
                 </a>`;
             }).join('');
-            const notes = results.map((result, i) => `
+            const recent = results.map((result, i) => `
                 <li>
                     <button data-i="${i}" onclick="peek(${i})" class="result w-full text-left" aria-selected="false">
-                        <span class="nav-tile text-amber-300 mt-0.5"><i class="ph-bold ${CATEGORIES[result.entry.category]?.icon || 'ph-file-text'}"></i></span>
+                        <span class="nav-tile text-cyan-300 mt-0.5"><i class="ph-bold ${CATEGORIES[result.entry.category]?.icon || 'ph-file-text'}"></i></span>
                         <span class="min-w-0 flex-1">
-                            <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${escapeHtml(result.entry.title)}</strong>${WikiSearch.badge(result.entry.source)}</span>
+                            <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${escapeHtml(result.entry.title)}</strong><span class="text-xs text-slate-400 shrink-0">${formatDate(result.entry.revTimestamp)}</span></span>
                             <span class="block text-xs text-slate-400 mt-0.5 line-clamp-2">${escapeHtml(result.entry.summary)}</span>
                         </span>
                     </button>
                 </li>`).join('');
             document.getElementById('browseBody').innerHTML = `
                 <div class="space-y-10">
+                    ${verificationPanel()}
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">${tiles}</div>
                     <div class="space-y-3">
-                        <div class="flex items-baseline justify-between gap-4">
-                            <h2 class="font-display font-bold text-base text-white">Your Codex notes</h2>
-                            <a href="${browseHref({ ...DEFAULTS, src: 'seed' })}" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">Browse notes →</a>
-                        </div>
-                        <ul class="grid grid-cols-1 xl:grid-cols-2 gap-1">${notes}</ul>
+                        <h2 class="font-display font-bold text-base text-white">Recently edited on the wiki</h2>
+                        <ul class="grid grid-cols-1 xl:grid-cols-2 gap-1">${recent}</ul>
                     </div>
                 </div>`;
         }
@@ -398,6 +462,7 @@
             if (state.cat !== 'all') chips.push(['cat', CATEGORIES[state.cat].label]);
             if (state.src !== 'all') chips.push(['src', SOURCES[state.src].label]);
             if (state.letter) chips.push(['letter', `Starts with ${state.letter}`]);
+            if (state.old === '1') chips.push(['old', 'Incl. no longer in game']);
             document.getElementById('resultsHeader').innerHTML = `
                 <p class="text-sm text-slate-300"><strong class="text-white font-semibold tabular-nums">${total.toLocaleString()}</strong> ${total === 1 ? 'article' : 'articles'}</p>
                 <div class="flex flex-wrap items-center gap-1.5">
@@ -427,7 +492,7 @@
                         <span class="min-w-0 flex-1">
                             <span class="flex flex-wrap items-center gap-x-2 gap-y-1">
                                 <strong class="text-[0.9375rem] text-white">${WikiSearch.highlight(entry.title, tokens)}</strong>
-                                ${WikiSearch.badge(entry.source)}
+                                ${WikiSearch.badge(entry.source)}${WikiSearch.statusBadge(entry)}
                                 <span class="text-xs text-slate-400">${CATEGORIES[entry.category]?.label || entry.category}${tokens.length && fieldLabel[result.field] ? ` · ${fieldLabel[result.field]}` : ''}</span>
                             </span>
                             <span class="block text-[0.8125rem] leading-relaxed text-slate-300 mt-1 line-clamp-2">${WikiSearch.highlight(snippet || '', tokens)}</span>
@@ -521,14 +586,23 @@
 
         function findByTitle(title) {
             const lower = title.trim().toLowerCase();
-            return entries.find(entry => entry._title === lower && entry.source !== 'wiki') || entries.find(entry => entry._title === lower);
+            const alias = Object.keys(aliases).find(key => key.toLowerCase() === lower);
+            return byTitle.get(lower) || (alias ? byTitle.get(aliases[alias].toLowerCase()) : undefined);
+        }
+
+        // [[Target]], [[Target|label]], and [[Target\|label]] inside Markdown table cells.
+        const WIKI_LINK = /\[\[([^\]]+?)\]\]/g;
+        function splitLink(inner) {
+            const [target, ...label] = inner.split(/\\?\|/);
+            return { target: target.trim(), label: (label.join('|') || target).trim() };
         }
 
         function renderMarkdown(markdown) {
             const body = markdown.replace(/^\s*#\s+[^\n]*\n*/, ''); // the page header already shows the title
-            const linked = body.replace(/\[\[([^\]]+)\]\]/g, (_, title) => {
-                const target = findByTitle(title);
-                return target ? `[${title}](${articleHref(target.path)})` : `*${title}*`;
+            const linked = body.replace(WIKI_LINK, (_, inner) => {
+                const { target, label } = splitLink(inner);
+                const entry = findByTitle(target);
+                return entry ? `[${label}](${articleHref(entry.path)})` : label;
             });
             if (!window.marked || !window.DOMPurify) return `<pre class="whitespace-pre-wrap">${escapeHtml(body)}</pre>`;
             return DOMPurify.sanitize(marked.parse(linked));
@@ -544,7 +618,7 @@
             peekIndex = i;
             selected = i;
             document.querySelectorAll('#browseBody [data-i]').forEach(el => el.setAttribute('aria-selected', String(Number(el.dataset.i) === i)));
-            document.getElementById('peekMeta').innerHTML = `${WikiSearch.badge(entry.source)}<span>${CATEGORIES[entry.category]?.label || entry.category}</span>`;
+            document.getElementById('peekMeta').innerHTML = `${WikiSearch.badge(entry.source)}${WikiSearch.statusBadge(entry)}<span>${CATEGORIES[entry.category]?.label || entry.category}</span>`;
             document.getElementById('peekTitle').textContent = entry.title;
             document.getElementById('peekOpen').href = articleHref(entry.path);
             const body = document.getElementById('peekBody');
@@ -601,16 +675,19 @@
             const category = CATEGORIES[entry.category];
             crumbs.innerHTML = `${back}<a href="#/" class="hover:text-white">Codex</a><i class="ph-bold ph-caret-right text-[10px]"></i><a href="${browseHref({ ...DEFAULTS, cat: entry.category })}" class="hover:text-white">${category?.label || entry.category}</a><i class="ph-bold ph-caret-right text-[10px]"></i><span class="text-slate-300 truncate max-w-[50vw]">${escapeHtml(entry.title)}</span>`;
             header.innerHTML = `
-                <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">${WikiSearch.badge(entry.source)}<span>${category?.label || entry.category}</span><span class="hidden sm:inline" aria-hidden="true">·</span><code class="hidden sm:inline font-mono text-slate-400">${escapeHtml(entry.path)}</code></div>
+                <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">${WikiSearch.badge(entry.source)}${WikiSearch.statusBadge(entry)}<span>${category?.label || entry.category}</span></div>
                 <h1 class="font-display font-bold text-3xl sm:text-4xl text-white leading-tight text-balance">${escapeHtml(entry.title)}</h1>
                 ${entry.summary ? `<p class="text-base text-slate-300 leading-relaxed">${escapeHtml(entry.summary)}</p>` : ''}
+                ${entry.removed ? '<p class="rounded-xl border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-100">This page has been removed from the wiki. You’re reading the last archived copy.</p>' : ''}
+                ${entry.obsolete && !entry.removed ? '<p class="rounded-xl border border-slate-600 bg-slate-800/60 px-3 py-2 text-sm text-slate-200">No longer in the game: the wiki keeps this page for an older version.</p>' : ''}
+                ${entry.revId ? `<p class="text-xs text-slate-400 leading-relaxed">Wiki revision <a href="${escapeHtml(PERMALINK(entry, entry.revId))}" target="_blank" rel="noopener noreferrer" class="font-mono text-cyan-300 hover:text-cyan-200 underline underline-offset-2">${entry.revId}</a>, edited ${formatDate(entry.revTimestamp)}${entry.version ? ` · the wiki marks it up to date as of the <strong class="text-slate-200 font-medium">${escapeHtml(entry.version)}</strong> update` : ''}.</p>` : ''}
                 <div class="flex flex-wrap items-center gap-2">
                     <button onclick="copyLink()" class="h-9 px-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs text-slate-200 flex items-center gap-2"><i class="ph-bold ph-link"></i>Copy link</button>
-                    ${entry.url ? `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" class="h-9 px-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs text-slate-200 flex items-center gap-2"><i class="ph-bold ph-arrow-square-out"></i>Original page</a>` : ''}
+                    ${entry.url ? `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" class="h-9 px-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs text-slate-200 flex items-center gap-2"><i class="ph-bold ph-arrow-square-out"></i>Live wiki page</a>` : ''}
                     ${entry.source === 'draft' ? `<button data-path="${escapeHtml(entry.path)}" onclick="removeDraft(this.dataset.path)" class="h-9 px-3 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-500/10 text-xs flex items-center gap-2"><i class="ph-bold ph-trash"></i>Remove draft</button>` : ''}
                 </div>`;
             bodyEl.innerHTML = renderMarkdown(entry.body || '');
-            if (entry.url) bodyEl.insertAdjacentHTML('beforeend', `<p class="text-xs text-slate-500 pt-6 border-t border-slate-800 mt-10">Source: <a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer">No Man's Sky Wiki</a> · CC BY-SA 3.0</p>`);
+            if (entry.url) bodyEl.insertAdjacentHTML('beforeend', `<p class="text-xs text-slate-400 pt-6 border-t border-slate-800 mt-10">Source: <a href="${escapeHtml(PERMALINK(entry, entry.revId))}" target="_blank" rel="noopener noreferrer">No Man's Sky Wiki, revision ${entry.revId}</a> · CC BY-SA 3.0 · rendered from the page source</p>`);
 
             // Table of contents
             const headings = [...bodyEl.querySelectorAll('h2, h3')];
@@ -628,16 +705,17 @@
                 </div>` : '';
 
             // Outgoing [[links]], backlinks ("Mentioned in") and neighbours in the same category
-            const outgoing = [...new Set((entry.body || '').match(/\[\[([^\]]+)\]\]/g) || [])]
-                .map(link => findByTitle(link.slice(2, -2))).filter(Boolean);
+            const outgoing = [...new Set([...(entry.body || '').matchAll(WIKI_LINK)].map(match => splitLink(match[1]).target.toLowerCase()))]
+                .map(findByTitle).filter(entry => entry && !WikiSearch.isOld(entry)).filter((other, i, list) => other !== entry && list.indexOf(other) === i);
+            const usedBy = (usedIn.get(entry._title) || []).filter(other => other !== entry && !WikiSearch.isOld(other)).sort((a, b) => a._title.localeCompare(b._title));
             const mentionedIn = entry._title.length >= 4
-                ? entries.filter(other => other !== entry && other._title !== entry._title && (other._body.includes(entry._title))).sort((a, b) => (a.source === 'wiki') - (b.source === 'wiki') || a._title.localeCompare(b._title)).slice(0, 8)
+                ? entries.filter(other => other !== entry && other._title !== entry._title && !WikiSearch.isOld(other) && other._body.includes(entry._title)).sort((a, b) => a._title.localeCompare(b._title)).slice(0, 8)
                 : [];
-            const siblings = entries.filter(other => other.category === entry.category).sort((a, b) => a._title.localeCompare(b._title));
+            const siblings = entries.filter(other => other.category === entry.category && (other === entry || !WikiSearch.isOld(other))).sort((a, b) => a._title.localeCompare(b._title));
             const at = siblings.indexOf(entry);
             const nearby = siblings.slice(Math.max(0, at - 2), at + 4).filter(other => other !== entry).slice(0, 5);
 
-            rail.innerHTML = toc + railList('Links to', outgoing) + railList('Mentioned in', mentionedIn) + railList(`More in ${category?.label || entry.category}`, nearby);
+            rail.innerHTML = toc + railList('Used in', usedBy.slice(0, 12)) + railList('Links to', outgoing.slice(0, 12)) + railList('Mentioned in', mentionedIn) + railList(`More in ${category?.label || entry.category}`, nearby);
 
             if (tocObserver) tocObserver.disconnect();
             if (headings.length > 1) {
@@ -743,7 +821,31 @@
         // ---------------------------------------------------------------------
         async function loadEntries() {
             entries = await WikiSearch.load('./', { withBodies: true });
+            aliases = window.WIKI_OFFLINE_BUNDLE?.aliases || {};
             byPath = new Map(entries.map(entry => [entry.path, entry]));
+            byTitle = new Map();
+            [...entries].sort((a, b) => WikiSearch.isOld(a) - WikiSearch.isOld(b)).forEach(entry => { if (!byTitle.has(entry._title)) byTitle.set(entry._title, entry); });
+            // Recipe inputs -> the items they go into (crafting, refining, cooking).
+            usedIn = new Map();
+            entries.forEach(entry => (entry.recipes || []).forEach(recipe => {
+                if (!['craft', 'refine', 'cook'].includes(recipe.type) || recipe.obsolete) return;
+                recipe.inputs.forEach(input => {
+                    const target = findByTitle(String(input.name));
+                    const key = target ? target._title : String(input.name).toLowerCase();
+                    const list = usedIn.get(key) || [];
+                    if (!list.includes(entry)) list.push(entry);
+                    usedIn.set(key, list);
+                });
+            }));
+        }
+
+        async function loadVerification() {
+            try {
+                const res = await fetch('verification.json', { cache: 'no-store' });
+                verification = res.ok ? await res.json() : null;
+            } catch {
+                verification = null;
+            }
         }
 
         window.addEventListener('hashchange', route);
@@ -751,7 +853,7 @@
 
         (async () => {
             document.getElementById('browseBody').innerHTML = '<p class="text-sm text-slate-400 py-8">Loading the Codex…</p>';
-            await loadEntries();
+            await Promise.all([loadEntries(), loadVerification()]);
             route();
         })();
     </script>

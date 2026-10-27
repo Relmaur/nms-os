@@ -1,28 +1,36 @@
 ---
 title: "Wormhole Brain"
 category: "technology"
+kind: "technology"
+summary: "The wormhole brain permits the ship vision of systems far beyond its own experience. It consists of strands of neural matter, wrapped around a micro-singularity and tethered directly to the ship's visual cortex."
 pageId: 469430
-summary: "Wormhole Brain is a Living starship technology."
+revId: 1207845
+revTimestamp: "2024-09-08T14:54:40Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wormhole_Brain"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.STEM4.png","category":"Starship","subcategory":"Scanner","type":"Sentient Vessel Node","release":"Aquarius","desc":"Grants the remote ability to check a system's economy and conflict"},"recipes":[{"type":"repair","inputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Wormhole Brain","qty":1}],"outputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}]}]}
 ---
 
 # Wormhole Brain
 
 ## Quick Facts
 
-- **Category:** Starship - Scanner
+- **Category:** Starship
+- **Subcategory:** Scanner
 - **Type:** Sentient Vessel Node
-- **Updated:** Aquarius
+- **Added in:** Aquarius
+- **Description:** Grants the remote ability to check a system's economy and conflict
 
 **Wormhole Brain** is a Living starship technology.
 
 ## Summary
 
-**Wormhole Brain** is a Living Ship technology and allows the player to check a star system's economy and conflict status in the Galactic Map without having to warp to that system.
+**Wormhole Brain** is a [[Living Ship (Starship)|Living Ship]] [[technology]] and allows the player to check a [[star system]]'s economy and conflict status in the [[Galactic Map]] without having to warp to that system.
 
-Essentially, the Wormhole Brain serves as the equivalent of a regular Starship's Conflict Scanner and Economy Scanner, fused into one item and adjusted for Living Ships.
+Essentially, the Wormhole Brain serves as the equivalent of a regular [[Starship]]'s [[Conflict Scanner]] and [[Economy Scanner]], fused into one item and adjusted for Living Ships.
 
 ## Game Description
 
@@ -32,22 +40,18 @@ Detailed economic and conflict data will become available on the Galaxy Map, sho
 
 ## Sources
 
-Grown from a Wormhole Brain Implant.
+Grown from a [[Wormhole Brain Implant]].
 
 ## Crafting
 
-Wormhole Brain can be repaired using the following ingredients:
+- **Repair**: 8 × [[Processed Meat]] + 20 × [[Runaway Mould]]
 
-- Processed Meat ×8 + Runaway Mould ×20
-
-Wormhole Brain can be dismantled after construction, returning the following ingredients:
-
-- Wormhole Brain → Processed Meat ×8 + Runaway Mould ×20
+- **Dismantle** returns: 8 × [[Processed Meat]] + 20 × [[Runaway Mould]]
 
 ## Additional Information
 
-The Wormhole Brain shares an icon with the Growing Singularity.
+The Wormhole Brain shares an icon with the [[Growing Singularity]].
 
 ## Release History
 
-- Endurance - Added as a technology.
+- [[Endurance]] - Added as a technology.

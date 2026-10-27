@@ -1,11 +1,17 @@
 ---
 title: "Ambrosial Wonder"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 573150
-summary: "Ambrosial Wonder is a consumable and one of the Edible Products."
+revId: 1320976
+revTimestamp: "2026-06-17T23:48:56Z"
+version: "Swarm"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ambrosial_Wonder"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"62,200","release":"Swarm"},"value":62200,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Synthetic Honey","qty":1}],"outputs":[{"name":"Ambrosial Wonder","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Ambrosial Wonder
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 62,200
-- **Updated:** Swarm
+- **Value:** 62,200
+- **Added in:** Swarm
 
 **Ambrosial Wonder** is a consumable.
 
 ## Summary
 
-**Ambrosial Wonder** is a consumable and one of the Edible Products.
+**Ambrosial Wonder** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -29,26 +35,9 @@ A highly refined food product, created in the Nutrient Processor.
 
 These cake-like nutrients are processed from a base of Thick, Sweet Batter.
 
-Flavour profile: polyphonic, synesthetic, vibrant.
-
-Recipe Complexity: 90%
-
 ## Source
 
-Ambrosial Wonder can be cooked using a Nutrient Processor with the following ingredients:
-
-- Syrupy Batter x1 + Synthetic Honey x1 → Ambrosial Wonder x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Ambrosial Wonder** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Ambrosial Wonder gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 9%
-- Catch Size Improvement: 33%
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Synthetic Honey]] → 1 × Ambrosial Wonder
 
 ## Additional Information
 
@@ -56,6 +45,6 @@ Restores 50% health once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
-- Worlds Part II - Added new descriptive section.
+- [[Worlds Part I]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.
+- [[Worlds Part II]] - Added new descriptive section.

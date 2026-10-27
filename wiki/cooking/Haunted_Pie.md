@@ -1,11 +1,17 @@
 ---
 title: "Haunted Pie"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142780
-summary: "Haunted Pie is a consumable and one of the Edible Products."
+revId: 1202102
+revTimestamp: "2024-07-28T16:51:48Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Haunted_Pie"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.TARTEVIL.png","category":"Consumable","type":"Edible Product","value":"52,000","release":"WorldsOne"},"value":52000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Fiendish Roe","qty":1}],"outputs":[{"name":"Haunted Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Haunted Pie
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 52,000
-- **Updated:** WorldsOne
+- **Value:** 52,000
+- **Added in:** WorldsOne
 
 **Haunted Pie** is a consumable.
 
 ## Summary
 
-**Haunted Pie** is a consumable and one of the Edible Products.
+**Haunted Pie** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,13 +37,7 @@ Food such as this can be highly valuable.
 
 ## Source
 
-Haunted Pie can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Fiendish Roe x1 → Haunted Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Haunted Pie** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Fiendish Roe]] → 1 × Haunted Pie
 
 ## Additional Information
 
@@ -45,5 +45,5 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- Prisms - Can now be cooked as Fiendish Roe is actually available in-game.
+- [[Beyond]] - Added as a consumable.
+- [[Prisms]] - Can now be cooked as Fiendish Roe is actually available in-game.

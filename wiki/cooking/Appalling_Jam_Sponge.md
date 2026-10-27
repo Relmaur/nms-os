@@ -1,11 +1,17 @@
 ---
 title: "Appalling Jam Sponge"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142694
-summary: "Appalling Jam Sponge is a consumable."
+revId: 949060
+revTimestamp: "2022-02-06T08:29:09Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Appalling_Jam_Sponge"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"180,700.0","release":"Prisms"},"value":180700,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Appalling Jam Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Appalling Jam Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Appalling Jam Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Appalling Jam Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Appalling Jam Sponge
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 180,700.0
-- **Updated:** Prisms
+- **Value:** 180,700.0
+- **Added in:** Prisms
 
 **Appalling Jam Sponge** is a consumable.
 
 ## Summary
 
-**Appalling Jam Sponge** is a consumable and one of the Edible Products.
+**Appalling Jam Sponge** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,19 +37,11 @@ These cake-like nutrients are processed from a base of Wailing Batter.
 
 ## Source
 
-Appalling Jam Sponge can be cooked using a Nutrient Processor with the following ingredients:
-
-- Wailing Batter x1 + Grahj'am x1 + Cream x1 → Appalling Jam Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Grahj'am x1 + Bone Cream x1 → Appalling Jam Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Furball Jelly x1 + Cream x1 → Appalling Jam Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Furball Jelly x1 + Bone Cream x1 → Appalling Jam Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Appalling Jam Sponge** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Grahj'am]] + 1 × [[Cream]] → 1 × Appalling Jam Sponge
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Grahj'am]] + 1 × [[Bone Cream]] → 1 × Appalling Jam Sponge
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Furball Jelly]] + 1 × [[Cream]] → 1 × Appalling Jam Sponge
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Furball Jelly]] + 1 × [[Bone Cream]] → 1 × Appalling Jam Sponge
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

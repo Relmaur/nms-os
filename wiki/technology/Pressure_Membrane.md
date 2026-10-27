@@ -1,11 +1,17 @@
 ---
 title: "Pressure Membrane"
 category: "technology"
+kind: "technology"
+summary: "Extreme pressure environments - such as deep water - cause elevated stress on the Exosuit's oxygen circulation and general life support systems."
 pageId: 581671
-summary: "Pressure Membrane is an Exosuit technology that gives the player improved efficiency and protection in deep water."
+revId: 1221356
+revTimestamp: "2025-02-17T23:58:34Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pressure_Membrane"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"20250208224645_2.jpg","color":"blue","category":"Exosuit","type":"Aquatic Technology","release":"Worlds Part II"},"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":150},{"name":"Hermetic Seal","qty":3},{"name":"Hydrothermal Fuel Cell","qty":2}],"outputs":[{"name":"Pressure Membrane","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Pressure Membrane","qty":1}],"outputs":[{"name":"Oxygen","qty":75},{"name":"Hermetic Seal","qty":2},{"name":"Hydrothermal Fuel Cell","qty":1}]}]}
 ---
 
 # Pressure Membrane
@@ -14,13 +20,13 @@ updated: "2026-10-27"
 
 - **Category:** Exosuit
 - **Type:** Aquatic Technology
-- **Updated:** Worlds Part II
+- **Added in:** Worlds Part II
 
 **Pressure Membrane** is a technology.
 
 ## Summary
 
-**Pressure Membrane** is an Exosuit technology that gives the player improved efficiency and protection in deep water.
+**Pressure Membrane** is an [[Exosuit]] [[technology]] that gives the player improved efficiency and protection in deep water.
 
 ## Game Description
 
@@ -30,20 +36,14 @@ Installation of this reinforced pressurisation shell increases efficiency and pr
 
 ## Source
 
-This blueprint can be bought from the Exosuit upgrade merchant on the Space Anomaly.
+This blueprint can be bought from the [[Exosuit]] upgrade merchant on the [[Space Anomaly]].
 
 ## Crafting
 
-Pressure Membrane can be built using a blueprint and the following ingredients:
+- **Crafting** · needs the blueprint: 150 × [[Oxygen]] + 3 × [[Hermetic Seal]] + 2 × [[Hydrothermal Fuel Cell]] → 1 × Pressure Membrane
 
-- Oxygen ×150 + Hermetic Seal ×3 + Hydrothermal Fuel Cell ×2 → Pressure Membrane
-
-Pressure Membrane can be dismantled after construction, returning the following ingredients:
-
-- Pressure Membrane → Oxygen ×75 + Hermetic Seal ×2 + Hydrothermal Fuel Cell ×1
-
-## Additional Information
+- **Dismantle** returns: 75 × [[Oxygen]] + 2 × [[Hermetic Seal]] + 1 × [[Hydrothermal Fuel Cell]]
 
 ## Release History
 
-- Worlds Part II - Added as a technology.
+- [[Worlds Part II]] - Added as a technology.

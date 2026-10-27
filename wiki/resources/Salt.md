@@ -1,11 +1,17 @@
 ---
 title: "Salt"
 category: "resources"
+kind: "resource"
+summary: "A naturally occuring salt, found in abundance in underwater minerals."
 pageId: 89426
-summary: "Salt (NaCl) is a resource and one of the earth elements."
+revId: 1335149
+revTimestamp: "2026-09-30T20:01:37Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salt"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SUBSTANCE.WATER.1.png","color":"Green","category":"Earth","type":"Aquatic Mineral Extract","rarity":"Common","used":"Building, Crafting, Charging","symbol":"NaCl","value":"101","release":"WorldsTwo"},"value":101,"recipes":[{"type":"refine","inputs":[{"name":"Chlorine","qty":1}],"outputs":[{"name":"Salt","qty":2}],"seconds":0.24,"label":"Salt Production"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Salt","qty":1}],"seconds":0.08,"label":"Rapid Formation / Evaporation"}]}
 ---
 
 # Salt
@@ -15,93 +21,40 @@ updated: "2026-10-27"
 - **Category:** Earth
 - **Type:** Aquatic Mineral Extract
 - **Rarity:** Common
-- **Blueprint Value:** 101
 - **Used for:** Building, Crafting, Charging
-- **Symbol:** **NaCl**
-- **Updated:** WorldsTwo
+- **Symbol:** NaCl
+- **Value:** 101
+- **Added in:** WorldsTwo
 
 **Salt** is a resource.
 
 ## Summary
 
-**Salt** (**NaCl**) is a resource and one of the earth elements.
+**Salt** (**NaCl**) is a [[resource]] and one of the [[earth elements]].
 
 ## Game Description
 
 A naturally occuring salt, found in abundance in underwater minerals.
 
-Can be processed in a Refiner to create Chlorine. This refined form is used in the manufacture of advanced products and technologies.
+Can be processed in a [[Refiner]] to create [[Chlorine]]. This refined form is used in the manufacture of advanced products and technologies.
 
 ## Source
 
-- As a secondary element in some minerals.
+- As a secondary element in some [[mineral|minerals]].
 - Primary element in most underwater minerals.
-- In Resource Deposits.
-- Also available from some Galactic Trade Terminals.
+- In [[Resource Deposit|Resource Deposits]].
+- Also available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
-Salt can be refined using a Refiner with the following ingredients:
-
-- Chlorine ×1 → Salt ×2 (*"Salt Production"*, 0.24 sec./unit output)
-- Di-hydrogen ×1 + Oxygen ×1 → Salt ×1 (*"Rapid Formation / Evaporation"*, 0.08 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Salt** is used as an ingredient for crafting the following products:
-
-- Automated Trap -- Salt x50 + Metal Plating x3 + Ion Battery x1 → Automated Trap
-- Exo-Skiff -- Magnetised Ferrite x120 + Salt x30 + Crystal Sulphide x2 → Exo-Skiff
-- Hydraulic Wiring -- Carbon Nanotubes x2 + Salt x20 + Di-hydrogen x40 → Hydraulic Wiring
-- Hydrothermal Fuel Cell -- Salt x40 + Cyto-Phosphate x40 + Carbon x40 → Hydrothermal Fuel Cell
-- Lost Angler's Rig -- Hydraulic Wiring x2 + Salt x60 + Silver x90 → Lost Angler's Rig
-- Nautilon Chamber -- Metal Plating x5 + Crystal Sulphide x4 + Salt x100 → Nautilon Chamber
-
-### Refining
-
-**Salt** is used as an ingredient for refining the following products using a Refiner:
-
-- Ammonia -- Fungal Mould x2 + Salt x1 → Ammonia x1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Chlorine -- Kelp Sac x1 + Salt x1 → Chlorine x2 (*"Dissolve Natural Salts"*, 0.36 sec./unit output)
-- Chlorine -- Salt x2 → Chlorine x1 (*"Concentrate Salt"*, 0.36 sec./unit output)
-- Chlorine -- Salt x2 + Oxygen x2 → Chlorine x5 (*"Efficient Salt Evaporation"*, 0.36 sec./unit output)
-- Dioxite -- Frost Crystal x2 + Salt x1 → Dioxite x1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Enriched Carbon -- Radon x100 + Carbon x20 + Salt x10 → Enriched Carbon x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Enriched Carbon -- Radon x100 + Condensed Carbon x10 + Salt x10 → Enriched Carbon x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Glass -- Cyto-Phosphate x50 + Salt x50 → Glass x1 (*"Salt Crystal Polishing"*, 10 sec./unit output)
-- Kelp Sac -- Salt x1 + Nitrogen x1 → Kelp Sac x1 (*"Encourage Growth"*, 0.24 sec./unit output)
-- Nitrogen Salt -- Nitrogen x100 + Carbon x20 + Salt x10 → Nitrogen Salt x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Nitrogen Salt -- Nitrogen x100 + Condensed Carbon x10 + Salt x10 → Nitrogen Salt x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Paraffinium -- Star Bulb x2 + Salt x1 → Paraffinium x1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Phosphorus -- Solanium x2 + Salt x1 → Phosphorus x1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Pyrite -- Cactus Flesh x2 + Salt x1 → Pyrite x1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Thermic Condensate -- Sulphurine x100 + Carbon x20 + Salt x10 → Thermic Condensate x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Thermic Condensate -- Sulphurine x100 + Condensed Carbon x10 + Salt x10 → Thermic Condensate x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Uranium -- Gamma Root x2 + Salt x1 → Uranium x1 (*"Floral Titration"*, 0.36 sec./unit output)
-
-### Cooking
-
-**Salt** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Crunchy Caramel -- Processed Sugar x1 + Salt x1 → Crunchy Caramel x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Salty Cruncher -- Sugar Dough x1 + Salt x1 → Salty Cruncher x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Salty Custard -- Salt x1 + Cream x1 + Processed Sugar x1 → Salty Custard x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Salty Juice -- Cactus Flesh x1 + Salt x1 + Fire Water x1 → Salty Juice x1 (*"Liquidise"*, 2.5 sec./unit output)
-
-## Fishing Bait
-
-When applied as bait, Salt gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 2%
+- **Refiner** · *Salt Production* · 0.24 s per unit: 1 × [[Chlorine]] → 2 × Salt
+- **Refiner** · *Rapid Formation / Evaporation* · 0.08 s per unit: 1 × [[Di-hydrogen]] + 1 × [[Oxygen]] → 1 × Salt
 
 ## Additional Information
 
-Salt is a very valuable mineral and mining from Deep-Level Mineral Deposits can result in a highly lucrative farm.
+Salt is a very valuable mineral and mining from [[Survey Device|Deep-Level Mineral Deposits]] can result in a highly lucrative farm.
 
 ## Release History
 
-- NEXT - Added as a resource.
-- Visions - *Hidden changes:* The information panel has an additional icon indicating its purpose.
-- Waypoint - Value changed, previously was 299.0.
-- Aquarius - Added fishing bait bonuses.
+- [[NEXT]] - Added as a resource.
+- [[Visions]] - *Hidden changes:* The information panel has an additional icon indicating its purpose.
+- [[Waypoint]] - Value changed, previously was 299.0.
+- [[Aquarius]] - Added fishing bait bonuses.

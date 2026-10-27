@@ -1,11 +1,17 @@
 ---
 title: "Flavoursome Organs"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets."
 pageId: 142758
-summary: "Flavoursome Organs is a consumable and one of the Edible Products."
+revId: 1338188
+revTimestamp: "2026-10-14T14:57:28Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flavoursome_Organs"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"18,800.0","release":"Omega"},"value":18800,"recipes":[{"type":"cook","inputs":[{"name":"Stewed Organs","qty":1},{"name":"Flavoursome Sauce","qty":1}],"outputs":[{"name":"Flavoursome Organs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crystalline Soup","qty":1},{"name":"Flavoursome Sauce","qty":1}],"outputs":[{"name":"Flavoursome Organs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Chewy 'Dumpling' Stew","qty":1},{"name":"Flavoursome Sauce","qty":1}],"outputs":[{"name":"Flavoursome Organs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Gelatinous Goop","qty":1},{"name":"Flavoursome Sauce","qty":1}],"outputs":[{"name":"Flavoursome Organs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 
 # Flavoursome Organs
@@ -14,33 +20,27 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 18,800.0
-- **Updated:** Omega
+- **Value:** 18,800.0
+- **Added in:** Omega
 
 **Flavoursome Organs** is a consumable.
 
 ## Summary
 
-**Flavoursome Organs** is a consumable and one of the Edible Products.
+**Flavoursome Organs** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets.
+A highly refined food product, created in the [[Nutrient Processor]]. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets.
 
 Food such as this can be **highly valuable**.
 
 ## Source
 
-Flavoursome Organs can be cooked using a Nutrient Processor with the following ingredients:
-
-- Stewed Organs x1 + Flavoursome Sauce x1 → Flavoursome Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crystalline Soup x1 + Flavoursome Sauce x1 → Flavoursome Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Chewy 'Dumpling' Stew x1 + Flavoursome Sauce x1 → Flavoursome Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Gelatinous Goop x1 + Flavoursome Sauce x1 → Flavoursome Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Flavoursome Organs** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Stewed Organs]] + 1 × [[Flavoursome Sauce]] → 1 × Flavoursome Organs
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crystalline Soup]] + 1 × [[Flavoursome Sauce]] → 1 × Flavoursome Organs
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Chewy 'Dumpling' Stew]] + 1 × [[Flavoursome Sauce]] → 1 × Flavoursome Organs
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Gelatinous Goop]] + 1 × [[Flavoursome Sauce]] → 1 × Flavoursome Organs
 
 ## Use
 
@@ -48,20 +48,9 @@ Exosuit nutrient system will restore 20% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +43% Shield Strength *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Flavoursome Organs gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 26%
-- Catch Size Improvement: 5%
-- Other notes: N/A
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

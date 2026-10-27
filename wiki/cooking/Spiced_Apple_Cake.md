@@ -1,11 +1,17 @@
 ---
 title: "Spiced 'Apple' Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142850
-summary: "Spiced 'Apple' Cake is a consumable and one of the Edible Products."
+revId: 1227532
+revTimestamp: "2025-04-10T13:31:23Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spiced_'Apple'_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"64,300.0","release":"Prisms"},"value":64300,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Spiced 'Apple' Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 64,300.0
-- **Updated:** Prisms
+- **Value:** 64,300.0
+- **Added in:** Prisms
 
 **Spiced 'Apple' Cake** is a consumable.
 
 ## Summary
 
-**Spiced 'Apple' Cake** is a consumable and one of the Edible Products.
+**Spiced 'Apple' Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,15 +37,9 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Spiced 'Apple' Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Crab 'Apple' x1 → Spiced 'Apple' Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Wriggling Jam x1 + Cream x1 → Spiced 'Apple' Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Wriggling Jam x1 + Bone Cream x1 → Spiced 'Apple' Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Spiced 'Apple' Cake** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Crab 'Apple']] → 1 × Spiced 'Apple' Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Wriggling Jam]] + 1 × [[Cream]] → 1 × Spiced 'Apple' Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Wriggling Jam]] + 1 × [[Bone Cream]] → 1 × Spiced 'Apple' Cake
 
 ## Additional information
 
@@ -49,4 +49,4 @@ Will restore 50% Hazard protection when consumed through Exosuit.
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

@@ -1,11 +1,17 @@
 ---
 title: "Cream Buns"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142733
-summary: "Cream Buns is a consumable and one of the Edible Products."
+revId: 1336950
+revTimestamp: "2026-10-07T20:30:54Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cream_Buns"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"52,800.0","release":"Prisms"},"value":52800,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Cream Buns","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Cream Buns","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Cream Buns
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 52,800.0
-- **Updated:** Prisms
+- **Value:** 52,800.0
+- **Added in:** Prisms
 
 **Cream Buns** is a consumable.
 
 ## Summary
 
-**Cream Buns** is a consumable and one of the Edible Products.
+**Cream Buns** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,14 +37,8 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Cream Buns can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Cream x1 → Cream Buns x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Bone Cream x1 → Cream Buns x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cream Buns** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Cream]] → 1 × Cream Buns
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Bone Cream]] → 1 × Cream Buns
 
 ## Use
 
@@ -46,20 +46,9 @@ Exosuit nutrient system will restore 50% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +57% Resources Mined *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Cream Buns gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 50%
-- Catch Size Improvement: 16%
-- Other notes: N/A
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

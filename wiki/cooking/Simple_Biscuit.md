@@ -1,11 +1,17 @@
 ---
 title: "Simple Biscuit"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor."
 pageId: 565458
-summary: "Simple Biscuit is a consumable and one of the Edible Products."
+revId: 1337015
+revTimestamp: "2026-10-07T22:42:10Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Simple_Biscuit"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"28,000.0","release":"WorldsOne"},"value":28000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1}],"outputs":[{"name":"Simple Biscuit","qty":1}],"seconds":2.5,"label":"Convection Heating"}]}
 ---
 
 # Simple Biscuit
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 28,000.0
-- **Updated:** WorldsOne
+- **Value:** 28,000.0
+- **Added in:** WorldsOne
 
 **Simple Biscuit** is a consumable.
 
 ## Summary
 
-**Simple Biscuit** is a consumable and one of the Edible Products.
+**Simple Biscuit** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,13 +37,7 @@ This thin sheet of nutrient paste has been slightly sweetened before being baked
 
 ## Source
 
-Simple Biscuit can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 → Simple Biscuit x1 (*"Convection Heating"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Simple Biscuit** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Convection Heating* · 2.5 s per unit: 1 × [[Sugar Dough]] → 1 × Simple Biscuit
 
 ## Use
 
@@ -45,20 +45,9 @@ Exosuit nutrient system will restore 5% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +16% Hazard Protection Battery *(4:00)*
-
-## Fishing Bait
-
-When applied as bait, Simple Biscuit gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 0%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

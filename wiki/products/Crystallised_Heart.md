@@ -1,28 +1,34 @@
 ---
 title: "Crystallised Heart"
 category: "products"
+kind: "product"
+summary: "The functional core of a Sentinel quadruped unit, but warped beyond all recognition. The entire machine is infested with a crystalline material that pulses wildy upon inspection."
 pageId: 538019
-summary: "Crystallised Heart is a component that is used for crafting."
+revId: 1338453
+revTimestamp: "2026-10-15T20:07:50Z"
+version: "Singularity"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crystallised_Heart"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.SPIDERCRYSTAL.PNG","color":"purple","type":"Corrupted Aeronic Core","category":"Component","used":"Crafting, Upgrading","value":"37,000.0","release":"Singularity"},"value":37000,"recipes":[]}
 ---
 
 # Crystallised Heart
 
 ## Quick Facts
 
-- **Category:** Component
 - **Type:** Corrupted Aeronic Core
-- **Total Value:** 37,000.0
+- **Category:** Component
 - **Used for:** Crafting, Upgrading
-- **Updated:** Singularity
+- **Value:** 37,000.0
+- **Added in:** Singularity
 
 **Crystallised Heart** is a component.
 
 ## Summary
 
-**Crystallised Heart** is a component that is used for crafting.
+**Crystallised Heart** is a [[component]] that is used for crafting.
 
 ## Game Description
 
@@ -32,26 +38,12 @@ A close analysis reveals the machinery itself appears to have been reconfigured,
 
 ## Sources
 
-Blue Combat Supplies loot from a Corrupted Sentinel Quadruped spider on planets with corrupted Sentinels.
+Blue [[Combat Supplies]] loot from a [[Corrupted Sentinel Quadruped]] spider on planets with corrupted Sentinels.
 
 ## Use
 
-**Crystallised Heart** is used in the repair of Sentinel multi-tools (alternatively a Repair Kit may be applied).
-
-### Crafting
-
-**Crystallised Heart** is used as an ingredient for crafting the following products:
-
-- Resonance Matrix -- Crystallised Heart x1 + Atlantideum x160 + Quartzite x250 → Resonance Matrix
-
-### Refining
-
-**Crystallised Heart** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Crystallised Heart** is not used as an ingredient for cooking using a Nutrient Processor.
+**Crystallised Heart** is used in the repair of [[Multi-Tool Catalogue - Sentinel|Sentinel multi-tools]] (alternatively a [[Repair Kit]] may be applied).
 
 ## Release History
 
-- Interceptor - Added as a product.
+- [[Interceptor]] - Added as a product.

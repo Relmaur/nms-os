@@ -1,11 +1,17 @@
 ---
 title: "Cocoa Creams"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565903
-summary: "Cocoa Creams is a consumable and one of the Edible Products."
+revId: 1338242
+revTimestamp: "2026-10-14T19:15:03Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cocoa_Creams"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"36,000.0","release":"Omega"},"value":36000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Bittersweet Cocoa","qty":1}],"outputs":[{"name":"Cocoa Creams","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Cocoa Creams
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 36,000.0
-- **Updated:** Omega
+- **Value:** 36,000.0
+- **Added in:** Omega
 
 **Cocoa Creams** is a consumable.
 
 ## Summary
 
-**Cocoa Creams** is a consumable and one of the Edible Products.
+**Cocoa Creams** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,13 +37,7 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Cocoa Creams can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Bittersweet Cocoa x1 → Cocoa Creams x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cocoa Creams** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Bittersweet Cocoa]] → 1 × Cocoa Creams
 
 ## Use
 
@@ -45,20 +45,9 @@ Exosuit nutrient system will restore 20% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +71% Life Support Tanks *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Cocoa Creams gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 0%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

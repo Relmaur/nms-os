@@ -1,11 +1,17 @@
 ---
 title: "Proteinous Doughnut"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142832
-summary: "Proteinous Doughnut is a consumable and one of the Edible Products."
+revId: 1271407
+revTimestamp: "2025-12-19T08:36:40Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Proteinous_Doughnut"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Red","category":"Consumable","type":"Edible Product","value":"65,000","release":"WorldsTwo"},"value":65000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Proteinous Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 
 # Proteinous Doughnut
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 65,000
-- **Updated:** WorldsTwo
+- **Value:** 65,000
+- **Added in:** WorldsTwo
 
 **Proteinous Doughnut** is a consumable.
 
 ## Summary
 
-**Proteinous Doughnut** is a consumable and one of the Edible Products.
+**Proteinous Doughnut** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,30 +36,15 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: tropical, synsesthetic, aromatic.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Proteinous Doughnut can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lumpen Doughnut x1 + Meaty Chunks x1 → Proteinous Doughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Proteinous Doughnut** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Proteinous Doughnut gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 43%
-- Catch Size Improvement: 3%
+- **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Meaty Chunks]] → 1 × Proteinous Doughnut
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +51% Resources Mined *(10:00)*
 
 ## Additional Information
@@ -62,4 +53,4 @@ Grants an 8 second jetpack overload once consumed.
 
 ## Release History
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

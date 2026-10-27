@@ -1,11 +1,17 @@
 ---
 title: "Glowing Pie"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142767
-summary: "Glowing Pie is a consumable and one of the Edible Products."
+revId: 1337393
+revTimestamp: "2026-10-10T14:31:47Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glowing_Pie"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.VEGPIE.png","color":"Green","category":"Consumable","type":"Edible Product","value":"40,000","release":"WorldsTwo"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Fireberry","qty":1}],"outputs":[{"name":"Glowing Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Solartillo","qty":1}],"outputs":[{"name":"Glowing Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Glowing Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Ever-burning Jam","qty":1}],"outputs":[{"name":"Glowing Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Glowing Pie
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 40,000
-- **Updated:** WorldsTwo
+- **Value:** 40,000
+- **Added in:** WorldsTwo
 
 **Glowing Pie** is a consumable.
 
 ## Summary
 
-**Glowing Pie** is a consumable and one of the Edible Products.
+**Glowing Pie** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,21 +36,14 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: tropical, prismatic, intense.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Glowing Pie can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Fireberry x1 → Glowing Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Solartillo x1 → Glowing Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Sievert Beans x1 → Glowing Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Ever-burning Jam x1 → Glowing Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Glowing Pie** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Fireberry]] → 1 × Glowing Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Solartillo]] → 1 × Glowing Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Sievert Beans]] → 1 × Glowing Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Ever-burning Jam]] → 1 × Glowing Pie
 
 ## Use
 
@@ -52,21 +51,10 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +55% Radiation Resistance *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Glowing Pie gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 9%
-- Catch Size Improvement: 0%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

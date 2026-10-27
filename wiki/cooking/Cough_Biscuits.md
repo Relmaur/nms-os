@@ -1,11 +1,17 @@
 ---
 title: "Cough Biscuits"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565882
-summary: "Cough Biscuits is a consumable and one of the Edible Products."
+revId: 1337019
+revTimestamp: "2026-10-07T22:49:53Z"
+version: "Xeno Arena"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cough_Biscuits"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"40,000","release":"Xeno Arena"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Glass Grains","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Leopard-Fruit","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Furball Jelly","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Cough Biscuits
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 40,000
-- **Updated:** Xeno Arena
+- **Value:** 40,000
+- **Added in:** Xeno Arena
 
 **Cough Biscuits** is a consumable.
 
 ## Summary
 
-**Cough Biscuits** is a consumable and one of the Edible Products.
+**Cough Biscuits** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,16 +37,10 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Cough Biscuits can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Frost Crystal x1 → Cough Biscuits x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Glass Grains x1 → Cough Biscuits x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Leopard-Fruit x1 → Cough Biscuits x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Furball Jelly x1 → Cough Biscuits x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cough Biscuits** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Frost Crystal]] → 1 × Cough Biscuits
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Glass Grains]] → 1 × Cough Biscuits
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Leopard-Fruit]] → 1 × Cough Biscuits
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Furball Jelly]] → 1 × Cough Biscuits
 
 ## Use
 
@@ -48,21 +48,10 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +44% Cold Resistance *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Cough Biscuits gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 0%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Omega]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

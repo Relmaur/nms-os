@@ -1,11 +1,17 @@
 ---
 title: "Traditional Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142872
-summary: "Traditional Cake is a consumable and one of the Edible Products."
+revId: 1214563
+revTimestamp: "2024-11-10T16:30:14Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Traditional_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"68,100.0","release":"Prisms"},"value":68100,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Traditional Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 68,100.0
-- **Updated:** Prisms
+- **Value:** 68,100.0
+- **Added in:** Prisms
 
 **Traditional Cake** is a consumable.
 
 ## Summary
 
-**Traditional Cake** is a consumable and one of the Edible Products.
+**Traditional Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,19 +37,11 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Traditional Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Grahj'am x1 + Cream x1 → Traditional Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Grahj'am x1 + Bone Cream x1 → Traditional Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Furball Jelly x1 + Cream x1 → Traditional Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Furball Jelly x1 + Bone Cream x1 → Traditional Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Traditional Cake** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Grahj'am]] + 1 × [[Cream]] → 1 × Traditional Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Grahj'am]] + 1 × [[Bone Cream]] → 1 × Traditional Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Furball Jelly]] + 1 × [[Cream]] → 1 × Traditional Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Furball Jelly]] + 1 × [[Bone Cream]] → 1 × Traditional Cake
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

@@ -1,11 +1,17 @@
 ---
 title: "Shell Puree"
 category: "cooking"
+kind: "product"
+summary: "A small morsel of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 579567
-summary: "Shell Puree is a consumable and one of the Edible Products."
+revId: 1329153
+revTimestamp: "2026-08-13T23:39:18Z"
+version: "Voyagers"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shell_Puree"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.PRAWN.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Voyagers"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Colossal Shrimp","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Geno-Prawn","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Boiled Snapper","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frozen Isopod","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Jelly Prawn","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Metallic Shrimp","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Shell Puree
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Voyagers
+- **Value:** 33,100
+- **Added in:** Voyagers
 
 **Shell Puree** is a consumable.
 
 ## Summary
 
-**Shell Puree** is a consumable and one of the Edible Products.
+**Shell Puree** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,38 +37,18 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **25% hazard protection**.
-
-- When consumed through a Nutrient Ingestor, **Shell Puree** provides **+43% Breathing Efficiency** for 5:30 minutes.
-
-## Fishing Bait
-
-When applied as bait, Shell Puree gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 36%
-- Catch Size Improvement: 2%
+Exosuit nutrient system will restore **25% [[hazard protection]]**.
+- When consumed through a [[Nutrient Ingestor]], **Shell Puree** provides **+43% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 
-Shell Puree can be cooked using a Nutrient Processor with the following ingredients:
-
-- Colossal Shrimp x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Geno-Prawn x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Boiled Snapper x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Frozen Isopod x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Jelly Prawn x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Metallic Shrimp x1 → Shell Puree x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Shell Puree** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Shell Puree x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Shell Puree x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Shell Puree x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Shell Puree x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Shell Puree x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Colossal Shrimp]] → 1 × Shell Puree
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Geno-Prawn]] → 1 × Shell Puree
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Boiled Snapper]] → 1 × Shell Puree
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Frozen Isopod]] → 1 × Shell Puree
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Jelly Prawn]] → 1 × Shell Puree
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Metallic Shrimp]] → 1 × Shell Puree
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

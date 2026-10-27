@@ -1,11 +1,17 @@
 ---
 title: "Most Curious Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142820
-summary: "Most Curious Cake is a consumable and one of the Edible Products."
+revId: 1214585
+revTimestamp: "2024-11-10T16:35:57Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Most_Curious_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEGEK.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"79,700.0","release":"NextGen"},"value":79700,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Most Curious Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Most Curious Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Most Curious Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 79,700.0
-- **Updated:** NextGen
+- **Value:** 79,700.0
+- **Added in:** NextGen
 
 **Most Curious Cake** is a consumable.
 
 ## Summary
 
-**Most Curious Cake** is a consumable and one of the Edible Products.
+**Most Curious Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,17 +37,9 @@ These cake-like nutrients are processed from a base of Proto-Batter.
 
 ## Source
 
-Most Curious Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Proto-Batter x1 + Sticky 'Honey' x1 → Most Curious Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Proto-Batter x1 + Gooey Butter x1 → Most Curious Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Most Curious Cake** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Sticky 'Honey']] → 1 × Most Curious Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Gooey Butter]] → 1 × Most Curious Cake
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

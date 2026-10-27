@@ -1,11 +1,17 @@
 ---
 title: "Earthy Pie"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 242406
-summary: "Earthy Pie is a consumable and one of the Edible Products."
+revId: 1309879
+revTimestamp: "2026-05-09T03:54:57Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Earthy_Pie"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.EMPTYPIE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"62,000.0","release":"NextGen"},"value":62000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Foraged Mushrooms","qty":1}],"outputs":[{"name":"Earthy Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Earthy Pie
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 62,000.0
-- **Updated:** NextGen
+- **Value:** 62,000.0
+- **Added in:** NextGen
 
 **Earthy Pie** is a consumable.
 
 ## Summary
 
-**Earthy Pie** is a consumable and one of the Edible Products.
+**Earthy Pie** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 It can be cooked using Pie Case and Foraged Mushrooms.
 
@@ -33,17 +39,11 @@ Food such as this can be **highly valuable**.
 
 ## Source
 
-Earthy Pie can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Foraged Mushrooms x1 → Earthy Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Earthy Pie** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Foraged Mushrooms]] → 1 × Earthy Pie
 
 ## Fishing Bait
 
-When applied as bait, Earthy Pie gives the following bonus towards your next catch:
+When [[Fishing|applied]] as bait, Earthy Pie gives the following bonus towards your next catch:
 
 - Catch Rarity Improvement: 17%
 - Catch Size Improvement: 34%
@@ -53,12 +53,10 @@ When applied as bait, Earthy Pie gives the following bonus towards your next cat
 
 Consume directly for 15 seconds sprint overload.
 
-Process with Nutrient Ingestor for 10 minutes +57% resources mined.
+Process with [[Nutrient Ingestor]] for 10 minutes +57% resources mined.
 
 (NOTE: This effect compounds with mining beam upgrades. Yields approaching 9X are possible.)
 
-## Additional Information
-
 ## Release History
 
-- Origins - Added as a consumable.
+- [[Origins]] - Added as a consumable.

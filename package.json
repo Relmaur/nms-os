@@ -2,7 +2,7 @@
   "name": "nms-os",
   "version": "2.0.0",
   "private": true,
-  "description": "ATLAS // MASTER OS — local-first No Man's Sky companion with an offline Markdown wiki",
+  "description": "ATLAS // MASTER OS — local-first No Man's Sky companion with an offline mirror of the wiki's game data",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -10,7 +10,7 @@
   "scripts": {
     "start": "npx serve .",
     "sync:wiki": "node scripts/sync-wiki.mjs",
-    "seed:wiki": "node scripts/sync-wiki.mjs --seed-only",
+    "verify:wiki": "node scripts/sync-wiki.mjs --verify",
     "index:wiki": "node scripts/sync-wiki.mjs --index-only"
   }
 }

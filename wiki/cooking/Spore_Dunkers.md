@@ -1,11 +1,17 @@
 ---
 title: "Spore Dunkers"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565907
-summary: "Spore Dunkers is a consumable and one of the Edible Products."
+revId: 1337013
+revTimestamp: "2026-10-07T22:37:33Z"
+version: "Xeno Arena"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spore_Dunkers"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000","release":"Xeno Arena"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Fungal Mould","qty":1}],"outputs":[{"name":"Spore Dunkers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Non-Toxic Mushroom","qty":1}],"outputs":[{"name":"Spore Dunkers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Foraged Mushrooms","qty":1}],"outputs":[{"name":"Spore Dunkers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Spore Dunkers
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,000
-- **Updated:** Xeno Arena
+- **Value:** 35,000
+- **Added in:** Xeno Arena
 
 **Spore Dunkers** is a consumable.
 
 ## Summary
 
-**Spore Dunkers** is a consumable and one of the Edible Products.
+**Spore Dunkers** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,15 +37,9 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Spore Dunkers can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Fungal Mould x1 → Spore Dunkers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Non-Toxic Mushroom x1 → Spore Dunkers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Foraged Mushrooms x1 → Spore Dunkers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Spore Dunkers** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Fungal Mould]] → 1 × Spore Dunkers
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Non-Toxic Mushroom]] → 1 × Spore Dunkers
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Foraged Mushrooms]] → 1 × Spore Dunkers
 
 ## Use
 
@@ -47,21 +47,10 @@ Exosuit nutrient system will restore 20% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +4,233% Flora Analysis Reward *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Spore Dunkers gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 2%
-- Other notes: Attracts diurnal fish
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Omega]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

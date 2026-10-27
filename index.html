@@ -167,7 +167,7 @@
                     <ul class="list-group">
                         <li><button onclick="showSection('calculators')" class="list-row"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Calculators</span><span class="block text-xs text-slate-400">Harmonic Camp, salvage, scanning, Stasis, outlaw yield</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
                         <li><button onclick="showSection('guides')" class="list-row"><span class="nav-tile text-sky-300"><i class="ph-bold ph-book-open-text"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Guides</span><span class="block text-xs text-slate-400">Six books · <span data-guides-progress>0%</span> of checklists done</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
-                        <li><a href="wiki/" class="list-row"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Wiki Codex</span><span class="block text-xs text-slate-400"><span data-wiki-count>0</span> offline articles</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></a></li>
+                        <li><a href="wiki/" class="list-row"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Wiki Codex</span><span class="block text-xs text-slate-400"><span data-wiki-count>0</span> game-data pages, matched to the wiki</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></a></li>
                     </ul>
                 </div>
 
@@ -1731,7 +1731,8 @@
             runCalculators();
             WikiSearch.load('wiki/').then(entries => {
                 wikiEntries = entries;
-                document.querySelectorAll('#sidebarWikiCount, [data-wiki-count]').forEach(el => { el.textContent = entries.length; });
+                const current = entries.filter(entry => !WikiSearch.isOld(entry)).length;
+                document.querySelectorAll('#sidebarWikiCount, [data-wiki-count]').forEach(el => { el.textContent = current.toLocaleString(); });
             });
             await loadAppState();
             renderAll();

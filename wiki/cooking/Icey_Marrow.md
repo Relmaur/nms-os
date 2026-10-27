@@ -1,11 +1,17 @@
 ---
 title: "Icey Marrow"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 222081
-summary: "Icey Marrow is a consumable and one of the Edible Products."
+revId: 1224804
+revTimestamp: "2025-03-13T22:27:52Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Icey_Marrow"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.ICECREAM.png","category":"Consumable","type":"Edible Product","value":"56,000.0","release":"WorldsOne"},"value":56000,"recipes":[{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Icey Marrow","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Icey Marrow","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Icey Marrow
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 56,000.0
-- **Updated:** WorldsOne
+- **Value:** 56,000.0
+- **Added in:** WorldsOne
 
 **Icey Marrow** is a consumable.
 
 ## Summary
 
-**Icey Marrow** is a consumable and one of the Edible Products.
+**Icey Marrow** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,14 +37,8 @@ Food such as this can be highly valuable.
 
 ## Source
 
-Icey Marrow can be cooked using a Nutrient Processor with the following ingredients:
-
-- Very Thick Custard x1 + Frozen Tubers x1 → Icey Marrow x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Very Thick Custard x1 + Frost Crystal x1 → Icey Marrow x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Icey Marrow** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Very Thick Custard]] + 1 × [[Frozen Tubers]] → 1 × Icey Marrow
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Very Thick Custard]] + 1 × [[Frost Crystal]] → 1 × Icey Marrow
 
 ## Additional Information
 
@@ -46,4 +46,4 @@ Provides 52% resources mined when consumed.
 
 ## Release History
 
-- Origins - Added as a consumable.
+- [[Origins]] - Added as a consumable.

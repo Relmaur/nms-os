@@ -1,11 +1,17 @@
 ---
 title: "Hybrid Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 573154
-summary: "Hybrid Cake is a consumable and one of the Edible Products."
+revId: 1219449
+revTimestamp: "2025-02-02T13:46:16Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hybrid_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"71,500","release":"WorldsTwo"},"value":71500,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Hybrid Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Hybrid Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Hybrid Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Hybrid Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 71,500
-- **Updated:** WorldsTwo
+- **Value:** 71,500
+- **Added in:** WorldsTwo
 
 **Hybrid Cake** is a consumable.
 
 ## Summary
 
-**Hybrid Cake** is a consumable and one of the Edible Products.
+**Hybrid Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,28 +36,13 @@ A highly refined food product, created in the Nutrient Processor.
 These cake-like nutrients are processed from a base of Thick, Sweet Batter.
 
 Flavour profile: colourful, ephemeral, intense.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Hybrid Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Syrupy Batter x1 + Cactus Nectar x1 → Hybrid Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrupy Batter x1 + Cactus Jelly x1 + Cream x1 → Hybrid Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrupy Batter x1 + Cactus Jelly x1 + Bone Cream x1 → Hybrid Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Hybrid Cake** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Hybrid Cake gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 26%
-- Catch Size Improvement: 4%
-- Other notes: Attracts storm-loving fish
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Cactus Nectar]] → 1 × Hybrid Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Cream]] → 1 × Hybrid Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Bone Cream]] → 1 × Hybrid Cake
 
 ## Additional Information
 
@@ -59,5 +50,5 @@ Restores 50% health once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Worlds Part I]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

@@ -1,29 +1,37 @@
 ---
 title: "Airburst Engine"
 category: "technology"
+kind: "technology"
+summary: "A powerful upgrade for the Exosuit Jetpack, allowing limited jetpack recharging while airborne."
 pageId: 153414
-summary: "Airburst Engine is an exosuit technology."
+revId: 1125468
+revTimestamp: "2023-05-19T21:21:40Z"
+version: "Desolation"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Airburst_Engine"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"S","type":"Exosuit Upgrade","stats":"Airborne Recharging: Enabled","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":150},{"name":"Phosphorus","qty":150},{"name":"Oxygen","qty":150}],"outputs":[{"name":"Airburst Engine","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":75},{"name":"Phosphorus","qty":75},{"name":"Oxygen","qty":75}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Airburst Engine","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":75},{"name":"Phosphorus","qty":75},{"name":"Oxygen","qty":75}]}]}
 ---
 
 # Airburst Engine
 
 ## Quick Facts
 
-- **Category:** Exosuit - Movement
+- **Category:** Exosuit
+- **Subcategory:** Movement
+- **Level:** S
 - **Type:** Exosuit Upgrade
 - **Stats:** Airborne Recharging: Enabled
-- **Updated:** Desolation
+- **Added in:** Desolation
 
 **Airburst Engine** is an exosuit technology.
 
 ## Summary
 
-**Airburst Engine** is a technology that allows a player to recharge exosuit jetpack while airborne.
+**Airburst Engine** is a [[technology]] that allows a player to recharge exosuit jetpack while airborne.
 
-It needs to be installed in an exosuit inventory slot for it to take effect.
+It needs to be installed in an [[exosuit]] [[inventory]] slot for it to take effect.
 
 ## Game Description
 
@@ -33,26 +41,21 @@ Highly efficient compressors fitted around the jetpack exhaust take advantage of
 
 ## Source
 
-The blueprint can be acquired from Iteration: Selene on the Space Anomaly for 460.
+The [[blueprint]] can be acquired from [[Iteration: Selene]] on the [[Space Anomaly]] for 460  Nanites.
 
 ## Crafting
 
-Airburst Engine can be built using a blueprint and the following ingredients:
+- **Crafting** · needs the blueprint: 150 × [[Chromatic Metal]] + 150 × [[Phosphorus]] + 150 × [[Oxygen]] → 1 × Airburst Engine
 
-- Chromatic Metal ×150 + Phosphorus ×150 + Oxygen ×150 → Airburst Engine
+- **Repair**: 75 × [[Chromatic Metal]] + 75 × [[Phosphorus]] + 75 × [[Oxygen]]
 
-Airburst Engine can be repaired using the following ingredients:
-
-- Chromatic Metal ×75 + Phosphorus ×75 + Oxygen ×75
-
-Airburst Engine can be dismantled after construction, returning the following ingredients:
-
-- Airburst Engine → Chromatic Metal ×75 + Phosphorus ×75 + Oxygen ×75
+- **Dismantle** returns: 75 × [[Chromatic Metal]] + 75 × [[Phosphorus]] + 75 × [[Oxygen]]
 
 ## Additional information
 
-- Upgrade bonuses trigger if Airburst Engine are adjacent to Neural Stimulator or Movement System Upgrades, but the technology is not actually affected by these bonuses. Airburst Engine does not count toward the three-upgrade limit; however, only one Airburst Engine technology can be installed at a time.
+- [[Upgrade bonus|Upgrade bonuses]] trigger if Airburst Engine are adjacent to [[Neural Stimulator]] or [[Movement System Upgrade|Movement System Upgrades]], but the technology is not actually affected by these bonuses.
+  - Airburst Engine does not count toward the three-upgrade limit; however, only one Airburst Engine technology can be installed at a time.
 
 ## Release history
 
-- Synthesis - Added as a technology.
+- [[Synthesis]] - Added as a technology.

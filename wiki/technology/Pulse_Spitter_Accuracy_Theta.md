@@ -1,0 +1,56 @@
+---
+title: "Pulse Spitter Accuracy Theta"
+category: "technology"
+kind: "technology"
+summary: "Increases accuracy of the Multi-tool's Pulse Spitter weapon mode by reducing the spread of the projectile by a large amount."
+pageId: 29954
+revId: 1144898
+revTimestamp: "2023-08-21T18:45:48Z"
+version: "Atlas Rises"
+obsolete: true
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Accuracy_Theta"
+license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"3","upgradeicon":"accuracy","type":"Pulse Spitter Companion Unit","desc":"Increases accuracy of the Multi-tool's Pulse Spitter weapon","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Aluminium","qty":100},{"name":"Platinum","qty":200}],"outputs":[{"name":"Pulse Spitter Accuracy Theta","qty":1}]}]}
+---
+
+# Pulse Spitter Accuracy Theta
+
+## Quick Facts
+
+- **Category:** Multi-tool
+- **Subcategory:** Pulse Spitter
+- **Level:** 3
+- **Type:** Pulse Spitter Companion Unit
+- **Description:** Increases accuracy of the Multi-tool's Pulse Spitter weapon
+- **Added in:** Atlas Rises
+
+**Pulse Spitter Accuracy Theta** is a multi-tool upgrade.
+
+## Summary
+
+The **Pulse Spitter Accuracy Theta** is a third-level upgrade for the [[multi-tool]]'s [[Pulse Spitter]].
+
+## Game description
+
+Increases accuracy of the Multi-tool's Pulse Spitter weapon mode by reducing the spread of the projectile by a large amount.
+
+## Crafting
+
+- **Crafting (obsolete)**: 100 × [[Aluminium]] + 200 × [[Platinum]] → 1 × Pulse Spitter Accuracy Theta
+
+## Additional information
+
+- Operates automatically once constructed within user's multi-tool inventory
+- Needs no fuel or recharging
+
+## Upgrade progression
+
+- [[Pulse Spitter Accuracy Sigma]]
+- [[Pulse Spitter Accuracy Tau]]
+- Pulse Spitter Accuracy Theta
+
+## Release history
+
+- [[Pathfinder]] - Added as a technology.
+- [[NEXT]] - Removed from the game. If it was installed, it has turned into [[Obsolete Technology]].

@@ -1,11 +1,17 @@
 ---
 title: "Fish Biscuit"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565916
-summary: "Fish Biscuit is a consumable and one of the Edible Products."
+revId: 1334049
+revTimestamp: "2026-09-24T23:28:51Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fish_Biscuit"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"60,000","release":"WorldsTwo"},"value":60000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Edible Chum","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Hadal Core","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Salty Chunks","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Fish Biscuit
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 60,000
-- **Updated:** WorldsTwo
+- **Value:** 60,000
+- **Added in:** WorldsTwo
 
 **Fish Biscuit** is a consumable.
 
 ## Summary
 
-**Fish Biscuit** is a consumable and one of the Edible Products.
+**Fish Biscuit** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,47 +36,20 @@ A well-baked biscuit, created in the Nutrient Processor.
 What was once a thin sheet of vaguely-sweetened nutrient paste has been elevated with the addition of carefully chosen ingredients.
 
 Flavour profile: fermented, bracing, tangy.
-
-Recipe Complexity: 65%
+<br>Recipe Complexity: 65%
 
 ## Consume
 
-- Will restore **20% life support power** when consumed without a Nutrient Processor.
-- Fueling a Nutrient Ingestor with **Fish Biscuit** will grant +47% Breathing Efficiency for 6:36 per unit consumed.
+- Will restore **20% [[life support]] power** when consumed without a [[Nutrient Processor]].
+-
 
 ## Source
 
-Fish Biscuit can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Edible Chum x1 → Fish Biscuit x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Hadal Core x1 → Fish Biscuit x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Salty Chunks x1 → Fish Biscuit x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Usage
-
-### Crafting
-
-**Fish Biscuit** is not used as an ingredient for crafting.
-
-### Refining
-
-**Fish Biscuit** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Fish Biscuit** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Fish Biscuit gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 26%
-- Catch Size Improvement: 2%
-- Other notes: N/A
-
-## Additional Information
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Edible Chum]] → 1 × Fish Biscuit
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Hadal Core]] → 1 × Fish Biscuit
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Salty Chunks]] → 1 × Fish Biscuit
 
 ## Release History
 
-- Omega - Added as a consumable.
-- Aquarius - Added a new source and added fishing bait bonuses.
+- [[Omega]] - Added as a consumable.
+- [[Aquarius]] - Added a new source and added fishing bait bonuses.

@@ -1,11 +1,17 @@
 ---
 title: "Butter Syrup"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 573056
-summary: "Butter Syrup is a consumable and one of the Edible Products."
+revId: 1219520
+revTimestamp: "2025-02-02T16:56:09Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Butter_Syrup"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BUTTER.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"32,000","release":"WorldsTwo"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Bone Butter","qty":1},{"name":"Syrupy Nectar","qty":1}],"outputs":[{"name":"Butter Syrup","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Syrupy Nectar","qty":1}],"outputs":[{"name":"Butter Syrup","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 
 # Butter Syrup
@@ -14,62 +20,34 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 32,000
-- **Updated:** WorldsTwo
+- **Value:** 32,000
+- **Added in:** WorldsTwo
 
 **Butter Syrup** is a consumable.
 
 ## Summary
 
-**Butter Syrup** is a consumable and one of the Edible Products.
+**Butter Syrup** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]]. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subjected to further processing.
 
 Flavour profile: sublime, vivid, otherwordly.
-
-Recipe Complexity: 92%
+<br>Recipe Complexity: 92%
 
 ## Source
 
-Butter Syrup can be cooked using a Nutrient Processor with the following ingredients:
-
-- Bone Butter x1 + Syrupy Nectar x1 → Butter Syrup x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Churned Butter x1 + Syrupy Nectar x1 → Butter Syrup x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Butter Syrup** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Ambrosial Curse -- Writhing, Roiling Batter x1 + Butter Syrup x1 → Ambrosial Curse x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Of Eternal Sleep -- Wailing Batter x1 + Butter Syrup x1 → Cake Of Eternal Sleep x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Nectar Islands -- Extra-Fluffy Batter x1 + Butter Syrup x1 → Nectar Islands x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Nectar Sponge Cake -- Proto-Batter x1 + Butter Syrup x1 → Nectar Sponge Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Pollen Puffball -- Lumpen Doughnut x1 + Butter Syrup x1 → Pollen Puffball x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-- Syrup-Drenched Delight -- Cake Batter x1 + Butter Syrup x1 → Syrup-Drenched Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrup-Drenched Delight -- Syrupy Batter x1 + Butter Syrup x1 → Syrup-Drenched Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrup-Drenched Delight -- Thick, Sweet Batter x1 + Butter Syrup x1 → Syrup-Drenched Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrupy Batter -- Butter Syrup x1 + Refined Flour x1 + Creature Egg x1 → Syrupy Batter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Syrupy Batter -- Butter Syrup x1 + Refined Flour x1 + Giant Egg x1 → Syrupy Batter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Syrupy Batter -- Butter Syrup x1 + Refined Flour x1 + Tall Eggs x1 → Syrupy Batter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Wailing Batter -- Butter Syrup x1 + Refined Flour x1 + Larval Core x1 → Wailing Batter x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Fishing Bait
-
-When applied as bait, Butter Syrup gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 13%
-- Catch Size Improvement: 5%
-- Other notes: Attracts nocturnal fish
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Bone Butter]] + 1 × [[Syrupy Nectar]] → 1 × Butter Syrup
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Churned Butter]] + 1 × [[Syrupy Nectar]] → 1 × Butter Syrup
 
 ## Additional Information
 
-Restores 40% life support power once consumed.
+Restores 40% [[life support]] power once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Worlds Part I]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

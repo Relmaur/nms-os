@@ -1,11 +1,17 @@
 ---
 title: "Root Juice"
 category: "cooking"
+kind: "product"
+summary: "A consumable liquid, created in the Nutrient Processor. Prized across the galaxy for its pleasing mouth-feel and authentically natural flavours."
 pageId: 142517
-summary: "Root Juice is a consumable and one of the Edible Products."
+revId: 1243709
+revTimestamp: "2025-09-26T01:39:18Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Root_Juice"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"1,800.0","release":"WorldsOne"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Pulpy Roots","qty":1}],"outputs":[{"name":"Root Juice","qty":1}],"seconds":2.5,"label":"Liquidise"}]}
 ---
 
 # Root Juice
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 1,800.0
-- **Updated:** WorldsOne
+- **Value:** 1,800.0
+- **Added in:** WorldsOne
 
 **Root Juice** is a consumable.
 
 ## Summary
 
-**Root Juice** is a consumable and one of the Edible Products.
+**Root Juice** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,24 +37,11 @@ Can be ingested as it stands or subjected to further processing.
 
 ## Source
 
-Root Juice can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pulpy Roots x1 → Root Juice x1 (*"Liquidise"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Liquidise* · 2.5 s per unit: 1 × [[Pulpy Roots]] → 1 × Root Juice
 
 ## Use
 
 Exosuit nutrient system will restore 25% hazard protection when consumed.
-
-## Recipes
-
-**Root Juice** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Crunchy Caramel -- Root Juice x1 → Crunchy Caramel x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Flavoursome Sauce -- Root Juice x1 + Steamed Vegetables x1 → Flavoursome Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Root Juice x1 + Fireberry x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Root Juice x1 + Grahberry x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Root Juice x1 + Sievert Beans x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Root Juice x1 + Solartillo x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
 
 ## Additional Information
 
@@ -56,5 +49,5 @@ Nutrient Ingestor Effect +50% Solar Panel Power, Duration 6 minutes
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- SentinelUp - Effect on consuming added to an info panel.
+- [[Beyond]] - Added as a consumable.
+- [[SentinelUp]] - Effect on consuming added to an info panel.

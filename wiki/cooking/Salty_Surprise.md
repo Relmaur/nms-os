@@ -1,11 +1,17 @@
 ---
 title: "Salty Surprise"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142843
-summary: "Salty Surprise is a consumable and one of the Edible Products."
+revId: 1202162
+revTimestamp: "2024-07-28T21:21:02Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salty_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"92,300.0","release":"WorldsOne"},"value":92300,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Salty Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Salty Surprise
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 92,300.0
-- **Updated:** WorldsOne
+- **Value:** 92,300.0
+- **Added in:** WorldsOne
 
 **Salty Surprise** is a consumable.
 
 ## Summary
 
-**Salty Surprise** is a consumable and one of the Edible Products.
+**Salty Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,13 +37,7 @@ These cake-like nutrients are processed from a base of Proto-Batter.
 
 ## Source
 
-Salty Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Proto-Batter x1 + Salty Custard x1 → Salty Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Salty Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Salty Custard]] → 1 × Salty Surprise
 
 ## Additional Information
 
@@ -45,5 +45,5 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- SentinelUp - Effect on consuming added to an info panel.
+- [[Beyond]] - Added as a consumable.
+- [[SentinelUp]] - Effect on consuming added to an info panel.

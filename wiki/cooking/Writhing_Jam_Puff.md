@@ -1,11 +1,17 @@
 ---
 title: "Writhing Jam Puff"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142885
-summary: "Writhing Jam Puff is a consumable and one of the Edible Products."
+revId: 1214599
+revTimestamp: "2024-11-10T16:40:56Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Writhing_Jam_Puff"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"153,300.0","release":"Prisms"},"value":153300,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Writhing Jam Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Writhing Jam Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Writhing Jam Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Writhing Jam Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Writhing Jam Puff
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 153,300.0
-- **Updated:** Prisms
+- **Value:** 153,300.0
+- **Added in:** Prisms
 
 **Writhing Jam Puff** is a consumable.
 
 ## Summary
 
-**Writhing Jam Puff** is a consumable and one of the Edible Products.
+**Writhing Jam Puff** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,19 +37,11 @@ These cake-like nutrients are processed from a base of Writhing, Roiling Batter.
 
 ## Source
 
-Writhing Jam Puff can be cooked using a Nutrient Processor with the following ingredients:
-
-- Writhing, Roiling Batter x1 + Grahj'am x1 + Cream x1 → Writhing Jam Puff x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Writhing, Roiling Batter x1 + Grahj'am x1 + Bone Cream x1 → Writhing Jam Puff x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Writhing, Roiling Batter x1 + Furball Jelly x1 + Cream x1 → Writhing Jam Puff x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Writhing, Roiling Batter x1 + Furball Jelly x1 + Bone Cream x1 → Writhing Jam Puff x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Writhing Jam Puff** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Grahj'am]] + 1 × [[Cream]] → 1 × Writhing Jam Puff
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Grahj'am]] + 1 × [[Bone Cream]] → 1 × Writhing Jam Puff
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Furball Jelly]] + 1 × [[Cream]] → 1 × Writhing Jam Puff
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Furball Jelly]] + 1 × [[Bone Cream]] → 1 × Writhing Jam Puff
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

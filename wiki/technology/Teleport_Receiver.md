@@ -1,11 +1,17 @@
 ---
 title: "Teleport Receiver"
 category: "technology"
+kind: "technology"
+summary: "A device that modulates standard starship communication signals to enable the transport of matter as well as data."
 pageId: 92175
-summary: "Teleport Receiver is a starship technology."
+revId: 1234777
+revTimestamp: "2025-07-30T09:30:16Z"
+version: "Beyond"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Teleport_Receiver"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"RENDER.SHIPTELEPORT.png","color":"Blue","category":"Ship","type":"Ship-Mounted Teleportation Device","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":1},{"name":"Wiring Loom","qty":3}],"outputs":[{"name":"Teleport Receiver","qty":1}]},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Teleport Receiver","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1}]}]}
 ---
 
 # Teleport Receiver
@@ -14,13 +20,13 @@ updated: "2026-10-27"
 
 - **Category:** Ship
 - **Type:** Ship-Mounted Teleportation Device
-- **Updated:** Beyond
+- **Added in:** Beyond
 
 **Teleport Receiver** is a starship technology.
 
 ## Summary
 
-**Teleport Receiver** is a starship technology, which increases ship material teleport range from **50u** to **150u**.
+**Teleport Receiver** is a [[starship]] [[technology]], which increases ship material teleport range from **50u** to **150u**.
 
 ## Game description
 
@@ -30,17 +36,11 @@ Starships fitted with such a device can send and receive products and substances
 
 ## Crafting
 
-Teleport Receiver can be built using the following ingredients:
+- **Crafting**: 1 × [[Antimatter]] + 3 × [[Wiring Loom]] → 1 × Teleport Receiver
 
-- Antimatter ×1 + Wiring Loom ×3 → Teleport Receiver
+- **Repair**: 1 × [[Wiring Loom]]
 
-Teleport Receiver can be repaired using the following ingredients:
-
-- Wiring Loom ×1
-
-Teleport Receiver can be dismantled after construction, returning the following ingredients:
-
-- Teleport Receiver → Wiring Loom ×1
+- **Dismantle** returns: 1 × [[Wiring Loom]]
 
 ## Additional information
 

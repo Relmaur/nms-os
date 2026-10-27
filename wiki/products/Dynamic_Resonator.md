@@ -1,11 +1,17 @@
 ---
 title: "Dynamic Resonator"
 category: "products"
+kind: "product"
+summary: "Electromagnetic frequency oscillator. A device necessary in the construction of many of the technologies that aid in the exploration of the galaxy."
 pageId: 2749
-summary: "Dynamic Resonator is a product used in crafting."
+revId: 1096084
+revTimestamp: "2023-02-11T14:28:05Z"
+version: "Atlas Rises"
+obsolete: true
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dynamic_Resonator"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"Product.dynamicres.png","category":"Component","value":"27500","desc":"Electromagnetic frequency oscillator.","release":"Atlas Rises"},"value":27500,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Antimatter","qty":2},{"name":"Chrysonite","qty":100},{"name":"Microdensity Fabric","qty":4}],"outputs":[{"name":"Dynamic Resonator","qty":1}]}]}
 ---
 
 # Dynamic Resonator
@@ -13,10 +19,11 @@ updated: "2026-10-27"
 ## Quick Facts
 
 - **Category:** Component
-- **Total Value:** 27500
-- **Updated:** Atlas Rises
+- **Value:** 27500
+- **Description:** Electromagnetic frequency oscillator.
+- **Added in:** Atlas Rises
 
-**Dynamic Resonator** is a product used in crafting.
+**Dynamic Resonator** is a [[product]] used in [[crafting]].
 
 ## Summary
 
@@ -28,27 +35,9 @@ Electromagnetic frequency oscillator. A device necessary in the construction of 
 
 ## Source
 
-Dynamic Resonator cannot be crafted.
+- **Crafting (obsolete)**: 2 × [[Antimatter]] + 100 × [[Chrysonite]] + 4 × [[Microdensity Fabric]] → 1 × Dynamic Resonator
 
-Original formula:
-
-Antimatter x2 + Chrysonite x100 + Microdensity Fabric x4 → Dynamic Resonator
-
-Dynamic Resonators could also be purchased at a Galactic Trade Terminal.
-
-## Use
-
-### Crafting
-
-**Dynamic Resonator** is not used as an ingredient for crafting.
-
-### Refining
-
-**Dynamic Resonator** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Dynamic Resonator** is not used as an ingredient for cooking using a Nutrient Processor.
+Dynamic Resonators could also be purchased at a [[Galactic Trade Terminal]].
 
 ## Additional Information
 
@@ -56,5 +45,5 @@ The resource type is Oxide, and is shown when a formula containing it is pinned.
 
 ## Release history
 
-- Release - original game component
-- NEXT - removed from game
+- [[Release]] - original game component
+- [[NEXT]] - removed from game

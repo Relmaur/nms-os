@@ -1,11 +1,17 @@
 ---
 title: "Scrambled Marrow"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 242787
-summary: "Scrambled Marrow is a consumable and one of the Edible Products."
+revId: 1202164
+revTimestamp: "2024-07-28T21:24:02Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scrambled_Marrow"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.OMLETTE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"24,000","release":"WorldsOne"},"value":24000,"recipes":[{"type":"cook","inputs":[{"name":"Creature Egg","qty":1},{"name":"Bone Cream (Cheese)","qty":1}],"outputs":[{"name":"Scrambled Marrow","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Tall Eggs","qty":1},{"name":"Bone Cream (Cheese)","qty":1}],"outputs":[{"name":"Scrambled Marrow","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Giant Egg","qty":1},{"name":"Bone Cream (Cheese)","qty":1}],"outputs":[{"name":"Scrambled Marrow","qty":1}],"seconds":2.5,"label":"Bind Proteins"}]}
 ---
 
 # Scrambled Marrow
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 24,000
-- **Updated:** WorldsOne
+- **Value:** 24,000
+- **Added in:** WorldsOne
 
 **Scrambled Marrow** is a consumable.
 
 ## Summary
 
-**Scrambled Marrow** is a consumable and one of the Edible Products.
+**Scrambled Marrow** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,18 +37,9 @@ Food such as this can be highly valuable.
 
 ## Source
 
-Scrambled Marrow can be cooked using a Nutrient Processor with the following ingredients:
-
-- Creature Egg x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Tall Eggs x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Giant Egg x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Scrambled Marrow** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Bugs-in-a-Blanket -- Scrambled Marrow x1 + Juicy Thorax x1 → Bugs-in-a-Blanket x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Fungal Omelette -- Scrambled Marrow x1 + Foraged Mushrooms x1 → Fungal Omelette x1 (*"Bind Proteins"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Bind Proteins* · 2.5 s per unit: 1 × [[Creature Egg]] + 1 × [[Bone Cream (Cheese)]] → 1 × Scrambled Marrow
+- **Nutrient Processor** · *Bind Proteins* · 2.5 s per unit: 1 × [[Tall Eggs]] + 1 × [[Bone Cream (Cheese)]] → 1 × Scrambled Marrow
+- **Nutrient Processor** · *Bind Proteins* · 2.5 s per unit: 1 × [[Giant Egg]] + 1 × [[Bone Cream (Cheese)]] → 1 × Scrambled Marrow
 
 ## Additional Information
 
@@ -50,6 +47,6 @@ Exosuit nutrient system will activate 8 seconds jetpack overload if consumed.
 
 ## Release History
 
-- Origins - Added as a consumable.
-- SentinelUp - Effect on consuming added to an info panel.
-- Worlds Part I - Added new recipe.
+- [[Origins]] - Added as a consumable.
+- [[SentinelUp]] - Effect on consuming added to an info panel.
+- [[Worlds Part I]] - Added new recipe.

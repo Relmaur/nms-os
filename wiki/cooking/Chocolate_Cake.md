@@ -1,11 +1,17 @@
 ---
 title: "Chocolate Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142726
-summary: "Chocolate Cake is a consumable and one of the Edible Products."
+revId: 1338231
+revTimestamp: "2026-10-14T18:44:27Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chocolate_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"48,400.0","release":"NextGen"},"value":48400,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Bittersweet Cocoa","qty":1}],"outputs":[{"name":"Chocolate Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Chocolate Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 48,400.0
-- **Updated:** NextGen
+- **Value:** 48,400.0
+- **Added in:** NextGen
 
 **Chocolate Cake** is a consumable.
 
 ## Summary
 
-**Chocolate Cake** is a consumable and one of the Edible Products.
+**Chocolate Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,13 +37,7 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Chocolate Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Bittersweet Cocoa x1 → Chocolate Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Chocolate Cake** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Bittersweet Cocoa]] → 1 × Chocolate Cake
 
 ## Use
 
@@ -45,20 +45,9 @@ Exosuit nutrient system will restore 50% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +54% Resources Mined *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Chocolate Cake gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 8%
-- Catch Size Improvement: 7%
-- Other notes: Attracts storm-loving fish
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

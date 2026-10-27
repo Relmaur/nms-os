@@ -1,15 +1,20 @@
 // Shared Wiki Codex data + search engine (no DOM rendering). Used by index.html (header search)
 // and wiki/index.html (the Codex page). Exposes window.WikiSearch.
 (function () {
+    // Folders under wiki/ (scripts/sync-wiki.mjs decides which page goes where from its infobox).
     const CATEGORIES = {
-        resources: { label: 'Resources', icon: 'ph-atom', blurb: 'Raw elements, gases and minerals' },
-        products: { label: 'Products', icon: 'ph-package', blurb: 'Components and trade commodities' },
-        cooking: { label: 'Cooking', icon: 'ph-cooking-pot', blurb: 'Nutrient Processor recipes and buffs' },
-        technology: { label: 'Technology', icon: 'ph-cpu', blurb: 'Exosuit, starship and Multi-Tool tech' },
-        guides: { label: 'Guides', icon: 'ph-book-open-text', blurb: 'Game mechanics and playbooks' }
+        resources: { label: 'Resources', icon: 'ph-atom', blurb: 'Elements, gases and minerals' },
+        products: { label: 'Products', icon: 'ph-package', blurb: 'Components, tradeables, curiosities' },
+        cooking: { label: 'Cooking', icon: 'ph-cooking-pot', blurb: 'Edible products and raw ingredients' },
+        fish: { label: 'Fish', icon: 'ph-fish', blurb: 'Every catch, by rarity' },
+        building: { label: 'Building', icon: 'ph-house-line', blurb: 'Base, freighter and corvette parts' },
+        technology: { label: 'Technology', icon: 'ph-cpu', blurb: 'Exosuit, starship, Multi-Tool, exocraft tech' },
+        places: { label: 'Places', icon: 'ph-map-pin', blurb: 'Points of interest and space encounters' },
+        missions: { label: 'Missions', icon: 'ph-flag-banner', blurb: 'Missions and journey milestones' },
+        galaxies: { label: 'Galaxies', icon: 'ph-shooting-star', blurb: 'All 256 galaxies' },
+        updates: { label: 'Updates', icon: 'ph-newspaper', blurb: 'Every patch, with its notes' }
     };
     const SOURCES = {
-        seed: { label: 'Codex note', badge: 'codex', classes: 'text-amber-300 bg-amber-500/10 border-amber-500/30' },
         custom: { label: 'Custom', badge: 'custom', classes: 'text-purple-300 bg-purple-500/10 border-purple-500/30' },
         draft: { label: 'Draft', badge: 'draft', classes: 'text-rose-300 bg-rose-500/10 border-rose-500/30' },
         wiki: { label: 'Wiki page', badge: 'wiki', classes: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/30' }
@@ -59,7 +64,7 @@
         return markdown
             .replace(/^#{1,6}\s+/gm, '')
             .replace(/^\|?\s*:?-{3,}.*$/gm, '')
-            .replace(/\[\[([^\]]+)\]\]/g, '$1')
+            .replace(/\[\[(?:[^\]|]*?\\?\|)?([^\]]+)\]\]/g, '$1')
             .replace(/[*_`>|]/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
@@ -151,14 +156,17 @@
             if (bestField !== 'title') field = bestField;
         }
         if (phrase && tokens.length > 1 && entry._title.includes(phrase)) total += 6;
-        if (entry.source !== 'wiki') total += 0.5; // curated notes first on ties
         return { score: total, field };
     }
 
-    function search(entries, query, { category = 'all', source = 'all', letter = '' } = {}) {
+    // Pages for items no longer in the game, or removed from the wiki, only appear when asked for.
+    const isOld = entry => Boolean(entry.obsolete || entry.removed);
+
+    function search(entries, query, { category = 'all', source = 'all', letter = '', includeOld = false } = {}) {
         const tokens = tokenize(query);
         const phrase = tokens.join(' ');
         const pool = entries.filter(entry =>
+            (includeOld || !isOld(entry)) &&
             (category === 'all' || entry.category === category) &&
             (source === 'all' || entry.source === source || (source === 'custom' && entry.source === 'draft')) &&
             (!letter || entry._letter === letter));
@@ -202,5 +210,11 @@
         return `<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono leading-none ${meta.classes}">${meta.badge}</span>`;
     }
 
-    window.WikiSearch = { CATEGORIES, SOURCES, escapeHtml, slugify, readDrafts, writeDrafts, loadBundle, load, tokenize, search, highlight, snippet, badge };
+    function statusBadge(entry) {
+        if (entry.removed) return '<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono leading-none text-rose-300 bg-rose-500/10 border-rose-500/30">removed</span>';
+        if (entry.obsolete) return '<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono leading-none text-slate-300 bg-slate-500/10 border-slate-500/40">obsolete</span>';
+        return '';
+    }
+
+    window.WikiSearch = { CATEGORIES, SOURCES, escapeHtml, slugify, readDrafts, writeDrafts, loadBundle, load, tokenize, search, highlight, snippet, badge, statusBadge, isOld };
 })();

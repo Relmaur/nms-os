@@ -1,11 +1,17 @@
 ---
 title: "Proto-Cream"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 142472
-summary: "There are multiple references to the consumable Cream."
+revId: 1102818
+revTimestamp: "2023-03-06T09:44:01Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Proto-Cream"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CREAM.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"7,200.0","release":"Prisms"},"value":7200,"recipes":[{"type":"cook","inputs":[{"name":"Warm Proto-Milk","qty":1}],"outputs":[{"name":"Proto-Cream","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Craw Milk","qty":1}],"outputs":[{"name":"Proto-Cream","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 
 # Proto-Cream
@@ -14,50 +20,26 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 7,200.0
-- **Updated:** Prisms
-
-There are multiple references to the consumable Cream.
-
-- For regular Cream, visit the Cream page.
-- For Proto-cream, visit the Proto-Cream page.
-- For Bone Cream, visit the Bone Cream page.
+- **Value:** 7,200.0
+- **Added in:** Prisms
 
 **Proto-Cream** is a consumable.
 
 ## Summary
 
-**Proto-Cream** is a consumable and one of the Edible Products.
+**Proto-Cream** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be **highly valuable**. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]]. Food such as this can be **highly valuable**. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subjected to further processing.
 
 ## Source
 
-Proto-Cream can be cooked using a Nutrient Processor with the following ingredients:
-
-- Warm Proto-Milk x1 → Proto-Cream x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Craw Milk x1 → Proto-Cream x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Proto-Cream** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Cream Fingers -- Sugar Dough x1 + Proto-Cream x1 → Cream Fingers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Creamy Sauce -- Cream x1 + Proto-Cream x1 → Creamy Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Creamy Sauce -- Proto-Cream x1 + Bone Cream x1 → Creamy Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Creamy Sauce -- Proto-Cream x1 + Proto-Cream x1 → Creamy Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Partially-Liquid Cheese -- Proto-Cream x1 + Bone Cream (Cheese) x1 → Partially-Liquid Cheese x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Partially-Liquid Cheese -- Proto-Cream x1 + ProtoCheese x1 → Partially-Liquid Cheese x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Partially-Liquid Cheese -- Proto-Cream x1 + Tangy Cheese x1 → Partially-Liquid Cheese x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Proto-Butter -- Proto-Cream x1 → Proto-Butter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- ProtoCheese -- Proto-Cream x1 + Wild Yeast x1 → ProtoCheese x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Additional information
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Warm Proto-Milk]] → 1 × Proto-Cream
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Craw Milk]] → 1 × Proto-Cream
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

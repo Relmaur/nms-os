@@ -1,11 +1,17 @@
 ---
 title: "Starpollen Surprise"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 573160
-summary: "Starpollen Surprise is a consumable and one of the Edible Products."
+revId: 1295709
+revTimestamp: "2026-03-12T02:15:16Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Starpollen_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"92,300","release":"WorldsOne"},"value":92300,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Stellar Custard","qty":1}],"outputs":[{"name":"Starpollen Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Starpollen Surprise
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 92,300
-- **Updated:** WorldsOne
+- **Value:** 92,300
+- **Added in:** WorldsOne
 
 **Starpollen Surprise** is a consumable.
 
 ## Summary
 
-**Starpollen Surprise** is a consumable and one of the Edible Products.
+**Starpollen Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,20 +37,7 @@ These cake-like nutrients are processed from a base of Thick, Sweet Batter.
 
 ## Source
 
-Starpollen Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Syrupy Batter x1 + Stellar Custard x1 → Starpollen Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Starpollen Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Starpollen Surprise gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 24%
-- Catch Size Improvement: 48%
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Stellar Custard]] → 1 × Starpollen Surprise
 
 ## Additional Information
 
@@ -52,4 +45,4 @@ Restores 50% health once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
+- [[Worlds Part I]] - Added as a consumable.

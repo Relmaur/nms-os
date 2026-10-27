@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # the sync commits changed wiki pages back to main
   pages: write
   id-token: write
 
@@ -29,10 +29,28 @@ jobs:
         with:
           node-version: 22
 
-      # The committed articles are the baseline: this only refreshes pages whose content changed upstream.
-      # If the Fandom API is unreachable, the harvest is skipped and the committed copies ship as-is.
-      - name: Build the wiki (seed + harvest + index)
+      # Mirrors the wiki's game-data pages over the committed archive (only pages with a new revision change)
+      # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, the committed
+      # archive ships as-is and the Codex says it couldn't be checked.
+      - name: Sync and verify the wiki mirror
         run: node scripts/sync-wiki.mjs
+
+      # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
+      # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.
+      - name: Commit wiki changes back to main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git add wiki
+          if git diff --cached --quiet; then echo "The wiki mirror is unchanged."; exit 0; fi
+          pages=$(git diff --cached --name-only -- '*.md' | wc -l | tr -d ' ')
+          list=$(git diff --cached --name-only -- '*.md' | sed 's#^wiki/##; s#\.md$##' | head -100)
+          git -c user.name="github-actions[bot]" -c user.email="41898099+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Sync wiki mirror: ${pages} page(s) changed on the wiki" -m "${list}"
+          for attempt in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          echo "::error::Could not push the wiki sync commit." && exit 1
 
       - name: Stamp the service worker so this deploy gets a fresh offline cache
         run: sed -i "s/^const BUILD = 'dev';/const BUILD = '${GITHUB_SHA::12}-${GITHUB_RUN_NUMBER}';/" sw.js

@@ -1,27 +1,35 @@
 ---
 title: "Oxygen Recycler"
 category: "technology"
+kind: "technology"
+summary: "Increases the base capacity of the Life Support system, allowing the user to go longer between charges."
 pageId: 89473
-summary: "Oxygen Recycler is a technology used to augment Life Support's base capacity."
+revId: 1105798
+revTimestamp: "2023-03-17T09:40:38Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Recycler"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"RENDER.CELLMOD.png","color":"blue","category":"Exosuit","subcategory":"Life Support","level":"C","type":"Life Support Upgrade","stats":"+10% Life Support Tanks","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":60}],"outputs":[{"name":"Oxygen Recycler","qty":1}]},{"type":"repair","inputs":[{"name":"Oxygen","qty":30}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Oxygen Recycler","qty":1}],"outputs":[{"name":"Oxygen","qty":30}]}]}
 ---
 
 # Oxygen Recycler
 
 ## Quick Facts
 
-- **Category:** Exosuit - Life Support
+- **Category:** Exosuit
+- **Subcategory:** Life Support
+- **Level:** C
 - **Type:** Life Support Upgrade
 - **Stats:** +10% Life Support Tanks
-- **Updated:** Origins
+- **Added in:** Origins
 
 **Oxygen Recycler** is a technology.
 
 ## Summary
 
-**Oxygen Recycler** is a technology used to augment Life Support's base capacity.
+**Oxygen Recycler** is a [[technology]] used to augment [[Life Support]]'s base capacity.
 
 ## Game description
 
@@ -29,26 +37,21 @@ Increases the base capacity of the Life Support system, allowing the user to go 
 
 ## Source
 
-The blueprint is known from the start of the game.
+The [[blueprint]] is known from the start of the game.
 
 ## Crafting
 
-Oxygen Recycler can be built using the following ingredients:
+- **Crafting**: 60 × [[Oxygen]] → 1 × Oxygen Recycler
 
-- Oxygen ×60 → Oxygen Recycler
+- **Repair**: 30 × [[Oxygen]]
 
-Oxygen Recycler can be repaired using the following ingredients:
-
-- Oxygen ×30
-
-Oxygen Recycler can be dismantled after construction, returning the following ingredients:
-
-- Oxygen Recycler → Oxygen ×30
+- **Dismantle** returns: 30 × [[Oxygen]]
 
 ## Additional information
 
-- Upgrade bonuses trigger if Oxygen Recycler is adjacent to Life Support or Life Support Upgrades, increasing its bonus above the listed value. Oxygen Recycler does not count toward the three-upgrade limit; however, only one Oxygen Recycler can be installed at a time.
+- [[Upgrade bonus|Upgrade bonuses]] trigger if Oxygen Recycler is adjacent to Life Support or [[Life Support Upgrade|Life Support Upgrades]], increasing its bonus above the listed value.
+  - Oxygen Recycler does not count toward the three-upgrade limit; however, only one Oxygen Recycler can be installed at a time.
 
 ## Release history
 
-- NEXT - Added as a technology.
+- [[NEXT]] - Added as a technology.

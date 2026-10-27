@@ -1,11 +1,17 @@
 ---
 title: "Night Crystals"
 category: "products"
+kind: "product"
+summary: "Naturally glowing crystalline clusters"
 pageId: 3188
-summary: "Night Crystals are a Product used in trading."
+revId: 1114002
+revTimestamp: "2023-04-15T17:46:51Z"
+version: "Atlas Rises"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Night_Crystals"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.ELEMENT.CRYSTAL1.png","category":"Component","type":"Technology component","value":"35,000","desc":"Naturally glowing crystalline clusters","release":"Atlas Rises"},"value":35000,"recipes":[]}
 ---
 
 # Night Crystals
@@ -14,22 +20,23 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Technology component
-- **Total Value:** 35,000
-- **Updated:** Atlas Rises
+- **Value:** 35,000
+- **Description:** Naturally glowing crystalline clusters
+- **Added in:** Atlas Rises
 
-**Night Crystals** are a Product used in trading.
+**Night Crystals** are a [[Product]] used in trading.
 
 ## Summary
 
 Naturally glowing crystalline clusters.
 
-Used in the creation of technological devices and starship manufacture.
+Used in the creation of technological devices and [[starship]] manufacture.
 
 ## Sources
 
 Purchasable on the galactic trade network for roughly 35,000 units.
 
-It is possible to obtain these from Damaged Containers (Very rare!)
+It is possible to obtain these from [[Cargo Drop|Damaged Containers]] (Very rare!)
 
 ## Crafting
 

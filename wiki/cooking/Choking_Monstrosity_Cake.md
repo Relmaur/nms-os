@@ -1,11 +1,17 @@
 ---
 title: "Choking Monstrosity Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142730
-summary: "Choking Monstrosity Cake is a consumable."
+revId: 1337394
+revTimestamp: "2026-10-10T14:36:57Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Choking_Monstrosity_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"170,300","release":"WorldsTwo"},"value":170300,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Choking Monstrosity Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Choking Monstrosity Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Choking Monstrosity Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Choking Monstrosity Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 170,300
-- **Updated:** WorldsTwo
+- **Value:** 170,300
+- **Added in:** WorldsTwo
 
 **Choking Monstrosity Cake** is a consumable.
 
 ## Summary
 
-**Choking Monstrosity Cake** is a consumable and one of the Edible Products.
+**Choking Monstrosity Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -30,20 +36,13 @@ A highly refined food product, created in the Nutrient Processor.
 These cake-like nutrients are processed from a base of Wailing Batter.
 
 Flavour profile: astonishing, tropical, manifold.
-
-Recipe Complexity: 94%
+<br>Recipe Complexity: 94%
 
 ## Source
 
-Choking Monstrosity Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Wailing Batter x1 + Cactus Nectar x1 → Choking Monstrosity Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Cactus Jelly x1 + Cream x1 → Choking Monstrosity Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Cactus Jelly x1 + Bone Cream x1 → Choking Monstrosity Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Choking Monstrosity Cake** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Cactus Nectar]] → 1 × Choking Monstrosity Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Cream]] → 1 × Choking Monstrosity Cake
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Bone Cream]] → 1 × Choking Monstrosity Cake
 
 ## Use
 
@@ -51,21 +50,10 @@ Exosuit nutrient system will activate 8 seconds jetpack overload when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +6,342% Flora Analysis *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Choking Monstrosity Cake gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 21%
-- Catch Size Improvement: 4%
-- Other notes: Attracts storm-loving fish
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

@@ -1,11 +1,17 @@
 ---
 title: "Slime Pop"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 572824
-summary: "Slime Pop is a consumable and one of the Edible Products."
+revId: 1332659
+revTimestamp: "2026-09-14T23:43:29Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Slime_Pop"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.ICECREAM.png","color":"Red","category":"Consumable","type":"Edible Product","value":"44,000","release":"WorldsTwo"},"value":44000,"recipes":[{"type":"cook","inputs":[{"name":"Viscous Custard","qty":1},{"name":"Frozen Tubers","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Viscous Custard","qty":1},{"name":"Frost Crystal","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frozen Tubers","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frost Crystal","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"}]}
 ---
 
 # Slime Pop
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 44,000
-- **Updated:** WorldsTwo
+- **Value:** 44,000
+- **Added in:** WorldsTwo
 
 **Slime Pop** is a consumable.
 
 ## Summary
 
-**Slime Pop** is a consumable and one of the Edible Products.
+**Slime Pop** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,38 +36,21 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: otherwordly, piquant, complex.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Use
 
-- Replenishes 25% Hazard Protection when consumed.
-- Fueling a Nutrient Ingestor with **Slime Pop** will grant +65% Toxic Resistance for 10:00 per unit consumed.
+- Replenishes 25% [[Hazard Protection]] when consumed.
+-
 
 ## Source
 
-Slime Pop can be cooked using a Nutrient Processor with the following ingredients:
-
-- Viscous Custard x1 + Frozen Tubers x1 + Sweetened Mucous x1 → Slime Pop x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Viscous Custard x1 + Frost Crystal x1 + Sweetened Mucous x1 → Slime Pop x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Very Thick Custard x1 + Frozen Tubers x1 + Sweetened Mucous x1 → Slime Pop x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Very Thick Custard x1 + Frost Crystal x1 + Sweetened Mucous x1 → Slime Pop x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Slime Pop** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Slime Pop gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 16%
-- Catch Size Improvement: 14%
-- Other notes: Attracts storm-loving fish
-
-## Additional Information
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Viscous Custard]] + 1 × [[Frozen Tubers]] + 1 × [[Sweetened Mucous]] → 1 × Slime Pop
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Viscous Custard]] + 1 × [[Frost Crystal]] + 1 × [[Sweetened Mucous]] → 1 × Slime Pop
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Very Thick Custard]] + 1 × [[Frozen Tubers]] + 1 × [[Sweetened Mucous]] → 1 × Slime Pop
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Very Thick Custard]] + 1 × [[Frost Crystal]] + 1 × [[Sweetened Mucous]] → 1 × Slime Pop
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Worlds Part I]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

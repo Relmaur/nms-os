@@ -1,0 +1,45 @@
+---
+title: "Salvage Crate"
+category: "building"
+kind: "product"
+summary: "A versatile storage unit, recovered from the wreckage of a derelict freighter."
+pageId: 210790
+revId: 589458
+revTimestamp: "2020-09-15T23:37:39Z"
+version: "Desolation"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Salvage_Crate"
+license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{"image":"BUILDABLE.ABAND.CRATEM.png","category":"Base Building","type":"Salvaged Base Part","color":"Blue","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5}],"outputs":[{"name":"Salvage Crate","qty":1}],"blueprint":true}]}
+---
+
+# Salvage Crate
+
+## Quick Facts
+
+- **Category:** Base Building
+- **Type:** Salvaged Base Part
+- **Added in:** Desolation
+
+**Salvage Crate** is a base building product.
+
+## Summary
+
+**Salvage Crate** is a [[base building]] [[product]] that can be found on [[Derelict Freighter|Derelict Freighters]].
+
+## Game description
+
+A versatile storage unit, recovered from the wreckage of a derelict freighter.
+
+## Source
+
+The [[blueprint]] can be acquired by searching salvage crates found inside derelict freighters.
+
+## Build
+
+- **Crafting** · needs the blueprint: 5 × [[Pure Ferrite]] → 1 × Salvage Crate
+
+## Release history
+
+- [[Desolation]] - Added as a base building product.

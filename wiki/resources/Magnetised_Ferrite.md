@@ -1,11 +1,17 @@
 ---
 title: "Magnetised Ferrite"
 category: "resources"
+kind: "resource"
+summary: "Highly processed metal, requiring several stages of processing in a Refiner."
 pageId: 89321
-summary: "Magnetised Ferrite (Fe++) is a resource and one of the metal elements."
+revId: 1335869
+revTimestamp: "2026-10-03T18:46:42Z"
+version: "Cosmos"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Magnetised_Ferrite"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SUBSTANCE.LAND.3.png","category":"Metal","type":"Charged Metallic Element","rarity":"Uncommon","color":"Grey","used":"Building, Crafting, Charging, Upgrading","symbol":"Fe++","value":"82","release":"Cosmos"},"value":82,"recipes":[{"type":"refine","inputs":[{"name":"Pure Ferrite","qty":2}],"outputs":[{"name":"Magnetised Ferrite","qty":1}],"seconds":0.24,"label":"Magnetise Metal"},{"type":"refine","inputs":[{"name":"Contaminated Metal","qty":5}],"outputs":[{"name":"Magnetised Ferrite","qty":1}],"seconds":0.36,"label":"Metal Decontamination"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Copper","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":1}],"seconds":0.36,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Cadmium","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":2}],"seconds":0.18,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Emeril","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":3}],"seconds":0.12,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Indium","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":4}],"seconds":0.09,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Quartzite","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":4}],"seconds":0.09,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Activated Copper","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":2}],"seconds":0.18,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Activated Cadmium","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":4}],"seconds":0.09,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Activated Emeril","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":6}],"seconds":0.06,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Activated Indium","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":8}],"seconds":0.045,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Activated Quartzite","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":8}],"seconds":0.045,"label":"Stellar / Metal Fusion"},{"type":"refine","inputs":[{"name":"Magnetised Ferrite","qty":3},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":4}],"seconds":0.09,"label":"Matter Expansion"},{"type":"refine","inputs":[{"name":"Pure Ferrite","qty":2},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":3}],"seconds":0.12,"label":"Matter Expansion"},{"type":"refine","inputs":[{"name":"Platinum","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":10}],"seconds":0.036,"label":"Mineral Alchemy"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":1}],"seconds":0.24,"label":"Carbonise Metal"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":2}],"seconds":0.12,"label":"Carbonise Metal"},{"type":"refine","inputs":[{"name":"Pure Ferrite","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":2}],"seconds":0.12,"label":"Carbonise Metal"},{"type":"refine","inputs":[{"name":"Pure Ferrite","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":3}],"seconds":0.08,"label":"Carbonise Metal"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Pure Ferrite","qty":1},{"name":"Silver","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":5}],"seconds":0.096,"label":"Deep Metal Compression"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Pure Ferrite","qty":1},{"name":"Gold","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":8}],"seconds":0.06,"label":"Deep Metal Compression"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Pure Ferrite","qty":1},{"name":"Platinum","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":12}],"seconds":0.04,"label":"Deep Metal Compression"}]}
 ---
 
 # Magnetised Ferrite
@@ -15,18 +21,18 @@ updated: "2026-10-27"
 - **Category:** Metal
 - **Type:** Charged Metallic Element
 - **Rarity:** Uncommon
-- **Blueprint Value:** 82
 - **Used for:** Building, Crafting, Charging, Upgrading
-- **Symbol:** **Fe++**
-- **Updated:** Cosmos
+- **Symbol:** Fe++
+- **Value:** 82
+- **Added in:** Cosmos
 
 **Magnetised Ferrite** is a resource.
 
 ## Summary
 
-**Magnetised Ferrite** (**Fe++**) is a resource and one of the metal elements.
+**Magnetised Ferrite** (**Fe++**) is a [[resource]] and one of the [[metal elements]].
 
-The British spelling of this word is used in the wiki.
+The [[British spelling]] of this word is used in the wiki.
 
 ## Game Description
 
@@ -36,124 +42,58 @@ Used in the creation of advanced structures and technologies. Avoid ingestion.
 
 ## Source
 
-- From resource cans dropped by defeated pirates.
-- In Resource Deposits.
-- Collectable by boarding any player-owned industrial Frigate that is not on an expedition.
-- Obtained from Geodes after cracking them open. Geodes have two rewards for magnetised ferrite: 60-80 Fe++, 5.2%
-- 80-120 Fe++, 2.6%
-- Also available from some Galactic Trade Terminals.
+- From resource cans dropped by defeated [[pirate|pirates]].
+- In [[Resource Deposit|Resource Deposits]].
+- Collectable by boarding any player-owned industrial [[Frigate]] that is not on an expedition.
+- Obtained from [[Geode (land)|Geodes]] after cracking them open. Geodes have two rewards for magnetised ferrite:
+  - 60-80 Fe++, 5.2%
+  - 80-120 Fe++, 2.6%
+- Also available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
 ### Single Input
 
-Magnetised Ferrite can be refined using a Refiner with the following ingredients:
-
-- Pure Ferrite ×2 → Magnetised Ferrite ×1 (*"Magnetise Metal"*, 0.24 sec./unit output)
-- Contaminated Metal ×5 → Magnetised Ferrite ×1 (*"Metal Decontamination"*, 0.36 sec./unit output)
+- **Refiner** · *Magnetise Metal* · 0.24 s per unit: 2 × [[Pure Ferrite]] → 1 × Magnetised Ferrite
+- **Refiner** · *Metal Decontamination* · 0.36 s per unit: 5 × [[Contaminated Metal]] → 1 × Magnetised Ferrite
 
 ### Double Input
 
-Magnetised Ferrite can be refined using a Refiner with the following ingredients:
-
-- Ferrite Dust ×1 + Copper ×1 → Magnetised Ferrite ×1 (*"Stellar / Metal Fusion"*, 0.36 sec./unit output)
-- Ferrite Dust ×1 + Cadmium ×1 → Magnetised Ferrite ×2 (*"Stellar / Metal Fusion"*, 0.18 sec./unit output)
-- Ferrite Dust ×1 + Emeril ×1 → Magnetised Ferrite ×3 (*"Stellar / Metal Fusion"*, 0.12 sec./unit output)
-- Ferrite Dust ×1 + Indium ×1 → Magnetised Ferrite ×4 (*"Stellar / Metal Fusion"*, 0.09 sec./unit output)
-- Ferrite Dust ×1 + Quartzite ×1 → Magnetised Ferrite ×4 (*"Stellar / Metal Fusion"*, 0.09 sec./unit output)
-- Ferrite Dust ×1 + Activated Copper ×1 → Magnetised Ferrite ×2 (*"Stellar / Metal Fusion"*, 0.18 sec./unit output)
-- Ferrite Dust ×1 + Activated Cadmium ×1 → Magnetised Ferrite ×4 (*"Stellar / Metal Fusion"*, 0.09 sec./unit output)
-- Ferrite Dust ×1 + Activated Emeril ×1 → Magnetised Ferrite ×6 (*"Stellar / Metal Fusion"*, 0.06 sec./unit output)
-- Ferrite Dust ×1 + Activated Indium ×1 → Magnetised Ferrite ×8 (*"Stellar / Metal Fusion"*, 0.045 sec./unit output)
-- Ferrite Dust ×1 + Activated Quartzite ×1 → Magnetised Ferrite ×8 (*"Stellar / Metal Fusion"*, 0.045 sec./unit output)
-- Magnetised Ferrite ×3 + Pugneum ×1 → Magnetised Ferrite ×4 (*"Matter Expansion"*, 0.09 sec./unit output)
-- Pure Ferrite ×2 + Pugneum ×1 → Magnetised Ferrite ×3 (*"Matter Expansion"*, 0.12 sec./unit output)
-- Platinum ×1 + Oxygen ×1 → Magnetised Ferrite ×10 (*"Mineral Alchemy"*, 0.036 sec./unit output)
-- Ferrite Dust ×1 + Carbon ×1 → Magnetised Ferrite ×1 (*"Carbonise Metal"*, 0.24 sec./unit output)
-- Ferrite Dust ×1 + Condensed Carbon ×1 → Magnetised Ferrite ×2 (*"Carbonise Metal"*, 0.12 sec./unit output)
-- Pure Ferrite ×1 + Carbon ×1 → Magnetised Ferrite ×2 (*"Carbonise Metal"*, 0.12 sec./unit output)
-- Pure Ferrite ×1 + Condensed Carbon ×1 → Magnetised Ferrite ×3 (*"Carbonise Metal"*, 0.08 sec./unit output)
+- **Refiner** · *Stellar / Metal Fusion* · 0.36 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Copper]] → 1 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.18 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Cadmium]] → 2 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.12 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Emeril]] → 3 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.09 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Indium]] → 4 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.09 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Quartzite]] → 4 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.18 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Activated Copper]] → 2 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.09 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Activated Cadmium]] → 4 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.06 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Activated Emeril]] → 6 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.045 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Activated Indium]] → 8 × Magnetised Ferrite
+- **Refiner** · *Stellar / Metal Fusion* · 0.045 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Activated Quartzite]] → 8 × Magnetised Ferrite
+- **Refiner** · *Matter Expansion* · 0.09 s per unit: 3 × [[Magnetised Ferrite]] + 1 × [[Pugneum]] → 4 × Magnetised Ferrite
+- **Refiner** · *Matter Expansion* · 0.12 s per unit: 2 × [[Pure Ferrite]] + 1 × [[Pugneum]] → 3 × Magnetised Ferrite
+- **Refiner** · *Mineral Alchemy* · 0.036 s per unit: 1 × [[Platinum]] + 1 × [[Oxygen]] → 10 × Magnetised Ferrite
+- **Refiner** · *Carbonise Metal* · 0.24 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Carbon]] → 1 × Magnetised Ferrite
+- **Refiner** · *Carbonise Metal* · 0.12 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Condensed Carbon]] → 2 × Magnetised Ferrite
+- **Refiner** · *Carbonise Metal* · 0.12 s per unit: 1 × [[Pure Ferrite]] + 1 × [[Carbon]] → 2 × Magnetised Ferrite
+- **Refiner** · *Carbonise Metal* · 0.08 s per unit: 1 × [[Pure Ferrite]] + 1 × [[Condensed Carbon]] → 3 × Magnetised Ferrite
 
 ### Triple Input
 
-Magnetised Ferrite can be refined using a Refiner with the following ingredients:
-
-- Ferrite Dust ×1 + Pure Ferrite ×1 + Silver ×1 → Magnetised Ferrite ×5 (*"Deep Metal Compression"*, 0.096 sec./unit output)
-- Ferrite Dust ×1 + Pure Ferrite ×1 + Gold ×1 → Magnetised Ferrite ×8 (*"Deep Metal Compression"*, 0.06 sec./unit output)
-- Ferrite Dust ×1 + Pure Ferrite ×1 + Platinum ×1 → Magnetised Ferrite ×12 (*"Deep Metal Compression"*, 0.04 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Magnetised Ferrite** is used as an ingredient for crafting the following products:
-
-- Battery -- Magnetised Ferrite x60 + Condensed Carbon x100 → Battery
-- Bio-Dome -- Magnetised Ferrite x25 + Glass x5 → Bio-Dome
-- Blueprint Analyser -- Magnetised Ferrite x20 + Carbon Nanotubes x1 → Blueprint Analyser
-- Construction Research Unit -- Magnetised Ferrite x20 + Carbon Nanotubes x1 → Construction Research Unit
-- Dark Matter -- Noospheric Orb x1 + Magnetised Ferrite x5 → Dark Matter
-- Dredging Laser -- Magnetised Ferrite x80 + Lithium x90 + Crystal Sulphide x4 → Dredging Laser
-- Drift Suspension -- Magnetised Ferrite x50 + Paraffinium x50 + Wiring Loom x1 → Drift Suspension
-- Electromagnetic Generator -- Metal Plating x2 + Magnetised Ferrite x60 + Chromatic Metal x75 → Electromagnetic Generator
-- Exo-Skiff -- Magnetised Ferrite x120 + Salt x30 + Crystal Sulphide x2 → Exo-Skiff
-- Exocraft Boosters -- Magnetised Ferrite x15 + Chromatic Metal x50 + Carbon Nanotubes x2 → Exocraft Boosters
-- Exocraft Mining Laser -- Magnetised Ferrite x25 + Chromatic Metal x100 + Life Support Gel x2 → Exocraft Mining Laser
-- Galactic Trade Terminal -- Magnetised Ferrite x25 + Microprocessor x3 → Galactic Trade Terminal
-- Gravitino Host -- Chromatic Metal x25 + Silver x120 + Magnetised Ferrite x25 → Gravitino Host
-- Grip Boost Suspension -- Magnetised Ferrite x50 + Tritium x50 + Wiring Loom x1 → Grip Boost Suspension
-- Hi-Slide Suspension -- Magnetised Ferrite x50 + Dioxite x50 + Wiring Loom x1 → Hi-Slide Suspension
-- Homeworld Repeater -- Hydraulic Wiring x1 + Gold x20 + Magnetised Ferrite x60 → Homeworld Repeater
-- Humboldt Drive -- Magnetised Ferrite x25 + Life Support Gel x2 → Humboldt Drive
-- Interstellar Scanner -- Chromatic Metal x160 + Magnetised Ferrite x70 + Wiring Loom x2 → Interstellar Scanner
-- Magnetic Resonator -- Magnetised Ferrite x40 + Ionised Cobalt x40 → Magnetic Resonator
-- Medium Refiner -- Magnetised Ferrite x100 + Di-hydrogen Jelly x5 → Medium Refiner
-- Mineral Processing Rig -- Magnetised Ferrite x100 + Hydraulic Wiring x2 + Microprocessor x4 → Mineral Processing Rig
-- Neutron Cannon -- Magnetised Ferrite x95 + Magnetic Resonator x1 + Wiring Loom x1 → Neutron Cannon
-- Science Specialist's Room -- Silver x50 + Magnetised Ferrite x25 + Chromatic Metal x20 → Science Specialist's Room
-- Science Terminal -- Chromatic Metal x40 + Magnetised Ferrite x25 → Science Terminal
-- Seeds of Glass -- Magnetised Ferrite x100 + Fragmented Qualia x100 → Seeds of Glass
-- Self-Greasing Servos -- Magnetised Ferrite x40 + Acid x1 + Wiring Loom x1 → Self-Greasing Servos
-- Solar Ray -- Magnetised Ferrite x50 + Cobalt x50 → Solar Ray
-- Stellar Extractor Room -- Silver x60 + Gold x45 + Magnetised Ferrite x40 → Stellar Extractor Room
-- Storage Container -- Magnetised Ferrite x35 + Sodium x20 → Storage Container
-- Tethys Beam -- Magnetised Ferrite x50 + Chlorine x100 + Living Pearl x10 → Tethys Beam
-- Viewing Sphere -- Magnetised Ferrite x10 + Glass x3 → Viewing Sphere
-- Waveform Recycler -- Magnetised Ferrite x100 + Ion Battery x1 → Waveform Recycler
-- Wonder Projector -- Chromatic Metal x40 + Magnetised Ferrite x25 + Antimatter x1 → Wonder Projector
-
-### Refining
-
-**Magnetised Ferrite** is used as an ingredient for refining the following products using a Refiner:
-
-- Basalt -- Phosphorus x1 + Magnetised Ferrite x1 → Basalt x2 (*"Volcanic Transmutation"*, 0.36 sec./unit output)
-- Basalt -- Pyrite x1 + Magnetised Ferrite x1 → Basalt x1 (*"Volcanic Transmutation"*, 0.36 sec./unit output)
-- Magnetised Ferrite -- Magnetised Ferrite x3 + Pugneum x1 → Magnetised Ferrite x4 (*"Matter Expansion"*, 0.09 sec./unit output)
-- Paraffinium -- Sulphurine x1 + Magnetised Ferrite x1 → Paraffinium x3 (*"Loosen Bonds"*, 0.36 sec./unit output)
-- Pure Ferrite -- Magnetised Ferrite x1 → Pure Ferrite x2 (*"Demagnetise Metal"*, 0.16 sec./unit output)
-- Pyrite -- Lithium x1 + Magnetised Ferrite x1 → Pyrite x3 (*"Loosen Bonds"*, 0.12 sec./unit output)
-- Sodium Nitrate -- Magnetised Ferrite x1 + Methane x1 → Sodium Nitrate x3 (*"Gas Catalysation"*, 0.16 sec./unit output)
-- Sodium Nitrate -- Magnetised Ferrite x1 + Nitrogen x1 → Sodium Nitrate x3 (*"Gas Catalysation"*, 0.16 sec./unit output)
-- Starship Launch Fuel -- Di-hydrogen x10 + Magnetised Ferrite x10 + Sodium Nitrate x5 → Starship Launch Fuel x1 (*"Di-hydrogen Capture"*, 45 sec./unit output)
-- Uranium -- Crystallised Helium x1 + Magnetised Ferrite x1 → Uranium x3 (*"Loosen Bonds"*, 0.12 sec./unit output)
-- Uranium -- Radon x1 + Magnetised Ferrite x1 → Uranium x3 (*"Metal Enrichment"*, 0.36 sec./unit output)
-
-### Cooking
-
-**Magnetised Ferrite** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Refiner** · *Deep Metal Compression* · 0.096 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Pure Ferrite]] + 1 × [[Silver]] → 5 × Magnetised Ferrite
+- **Refiner** · *Deep Metal Compression* · 0.06 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Pure Ferrite]] + 1 × [[Gold]] → 8 × Magnetised Ferrite
+- **Refiner** · *Deep Metal Compression* · 0.04 s per unit: 1 × [[Ferrite Dust]] + 1 × [[Pure Ferrite]] + 1 × [[Platinum]] → 12 × Magnetised Ferrite
 
 ## Progression
 
 The following progression is used for Ferrite refinement via a Portable Refiner:
-
-- Rusted Metal
-- Ferrite Dust
-- Pure Ferrite
+- [[Rusted Metal]]
+- [[Ferrite Dust]]
+- [[Pure Ferrite]]
 - Magnetised Ferrite
 
 ## Additional Information
 
-- Magnetised Ferrite is used to open some quest related Hidden underground Pods by Crashed Freighters.
+- Magnetised Ferrite is used to open some quest related Hidden underground Pods by [[Crashed Freighter|Crashed Freighters]].
 
 ## Release History
 
-- NEXT - Added as a resource.
-- Visions - *Hidden changes:* The information panel has an additional icon indicating its purpose.
+- [[NEXT]] - Added as a resource.
+- [[Visions]] - *Hidden changes:* The information panel has an additional icon indicating its purpose.

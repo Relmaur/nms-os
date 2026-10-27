@@ -1,11 +1,17 @@
 ---
 title: "Fleshy Cylinder"
 category: "cooking"
+kind: "product"
+summary: "A slab of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 579372
-summary: "Fleshy Cylinder is a consumable and one of the Edible Products."
+revId: 1329115
+revTimestamp: "2026-08-13T21:39:44Z"
+version: "Voyagers"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fleshy_Cylinder"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.SQUID.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Voyagers"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Reef Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Blistering Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Viper Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Cyclopic Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Flashfire Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Midnight Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Warden Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Mist Serpent","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Electric Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Sunspot Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Cyclonic Eel","qty":1}],"outputs":[{"name":"Fleshy Cylinder","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Fleshy Cylinder
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Voyagers
+- **Value:** 33,100
+- **Added in:** Voyagers
 
 **Fleshy Cylinder** is a consumable.
 
 ## Summary
 
-**Fleshy Cylinder** is a consumable and one of the Edible Products.
+**Fleshy Cylinder** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,52 +36,27 @@ A slab of seafood, created in the Nutrient Processor. Food such as this can be h
 Can be consumed as it stands or subjected to further processing.
 
 Flavour profile: bitter, harsh, bland.
-
-Recipe Complexity: 53%
+<br>Recipe Complexity: 53%
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **20% life support power**.
-
-- When consumed through a Nutrient Ingestor, **Fleshy Cylinder** provides **+43% Breathing Efficiency** for 5:30 minutes.
-
-## Fishing Bait
-
-When applied as bait, Fleshy Cylinder gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: -%
+Exosuit nutrient system will restore **20% [[life support]] power**.
+- When consumed through a [[Nutrient Ingestor]], **Fleshy Cylinder** provides **+43% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 
-Fleshy Cylinder can be cooked using a Nutrient Processor with the following ingredients:
-
-- Reef Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Blistering Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Viper Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Cyclopic Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Flashfire Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Midnight Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Warden Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Mist Serpent x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Electric Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Sunspot Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Cyclonic Eel x1 → Fleshy Cylinder x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Fleshy Cylinder** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Fleshy Cylinder x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Jellied Eel -- Jellymeat x1 + Fleshy Cylinder x1 → Jellied Eel x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Fleshy Cylinder x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Sea's Bounty -- Jellymeat x1 + Fleshy Cylinder x1 + Assorted Roe x1 → Sea's Bounty x1 (*"Sea's Bounty"*, 2.5 sec./unit output)
-- Seafood Stew -- Fleshy Cylinder x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Fleshy Cylinder x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Fleshy Cylinder x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Additional Information
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Reef Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Blistering Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Viper Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Cyclopic Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Flashfire Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Midnight Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Warden Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Mist Serpent]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Electric Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Sunspot Eel]] → 1 × Fleshy Cylinder
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Cyclonic Eel]] → 1 × Fleshy Cylinder
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

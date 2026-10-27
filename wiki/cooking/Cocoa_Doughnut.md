@@ -1,11 +1,17 @@
 ---
 title: "Cocoa Doughnut"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142732
-summary: "Cocoa Doughnut is a consumable and one of the Edible Products."
+revId: 1338244
+revTimestamp: "2026-10-14T19:17:37Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cocoa_Doughnut"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"65,000.0","release":"NextGen"},"value":65000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Bittersweet Cocoa","qty":1}],"outputs":[{"name":"Cocoa Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 
 # Cocoa Doughnut
@@ -14,30 +20,24 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 65,000.0
-- **Updated:** NextGen
+- **Value:** 65,000.0
+- **Added in:** NextGen
 
 **Cocoa Doughnut** is a consumable.
 
 ## Summary
 
-**Cocoa Doughnut** is a consumable and one of the Edible Products.
+**Cocoa Doughnut** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]].  It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Food such as this can be **highly valuable**.
 
 ## Source
 
-Cocoa Doughnut can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lumpen Doughnut x1 + Bittersweet Cocoa x1 → Cocoa Doughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cocoa Doughnut** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Bittersweet Cocoa]] → 1 × Cocoa Doughnut
 
 ## Use
 
@@ -45,20 +45,9 @@ Exosuit nutrient system will activate 8 seconds jetpack overload when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - -38% Recharge Time *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Cocoa Doughnut gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 24%
-- Catch Size Improvement: 41%
-- Other notes: Attracts diurnal fish
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

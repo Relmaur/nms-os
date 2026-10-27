@@ -1,11 +1,17 @@
 ---
 title: "Well-Smoked Biscuit"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565967
-summary: "Well-Smoked Biscuit is a consumable and one of the Edible Products."
+revId: 1337016
+revTimestamp: "2026-10-07T22:44:30Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Well-Smoked_Biscuit"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000.0","release":"Omega"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Well-Smoked Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Well-Smoked Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Well-Smoked Biscuit
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,000.0
-- **Updated:** Omega
+- **Value:** 35,000.0
+- **Added in:** Omega
 
 **Well-Smoked Biscuit** is a consumable.
 
 ## Summary
 
-**Well-Smoked Biscuit** is a consumable and one of the Edible Products.
+**Well-Smoked Biscuit** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,14 +37,8 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Well-Smoked Biscuit can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Carbon x1 → Well-Smoked Biscuit x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Condensed Carbon x1 → Well-Smoked Biscuit x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Well-Smoked Biscuit** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Carbon]] → 1 × Well-Smoked Biscuit
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Condensed Carbon]] → 1 × Well-Smoked Biscuit
 
 ## Use
 
@@ -46,20 +46,9 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +25% Heat Resistance *(2:00)*
-
-## Fishing Bait
-
-When applied as bait, Well-Smoked Biscuit gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 7%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

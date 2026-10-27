@@ -1,11 +1,17 @@
 ---
 title: "Soft and Spiky Surprise"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142848
-summary: "Soft and Spiky Surprise is a consumable."
+revId: 1227605
+revTimestamp: "2025-04-11T14:43:43Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Soft_and_Spiky_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKEFLUFFY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"24,800.0","release":"Prisms"},"value":24800,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Soft and Spiky Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Soft and Spiky Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Soft and Spiky Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Soft and Spiky Surprise
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 24,800.0
-- **Updated:** Prisms
+- **Value:** 24,800.0
+- **Added in:** Prisms
 
 **Soft and Spiky Surprise** is a consumable.
 
 ## Summary
 
-**Soft and Spiky Surprise** is a consumable and one of the Edible Products.
+**Soft and Spiky Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,22 +37,16 @@ These cake-like nutrients are processed from a base of Extra-Fluffy Batter.
 
 ## Source
 
-Soft and Spiky Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Extra-Fluffy Batter x1 + Cactus Nectar x1 → Soft and Spiky Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Extra-Fluffy Batter x1 + Cactus Jelly x1 + Cream x1 → Soft and Spiky Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Extra-Fluffy Batter x1 + Cactus Jelly x1 + Bone Cream x1 → Soft and Spiky Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Soft and Spiky Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Cactus Nectar]] → 1 × Soft and Spiky Surprise
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Cream]] → 1 × Soft and Spiky Surprise
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Bone Cream]] → 1 × Soft and Spiky Surprise
 
 ## Additional information
 
 Consume directly for 8 seconds jetpack overload.
 
-Process with Nutrient Ingestor for 10 minutes +6,270% flora analysis rewards.
+Process with [[Nutrient Ingestor]] for 10 minutes +6,270% flora analysis rewards.
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

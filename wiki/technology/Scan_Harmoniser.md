@@ -1,31 +1,40 @@
 ---
 title: "Scan Harmoniser"
 category: "technology"
+kind: "technology"
+summary: "An attachment for the Multi-Tool Scanner that allows the device to detect and decode the cloaking signal of nearby Autophage units."
 pageId: 556058
-summary: "Scan Harmoniser is a Multi-Tool technology upgrade for the Scanner that gives +11% to scan radius and reveals nearby sentience echo sites and cloaked Autophage NPCs."
+revId: 1206296
+revTimestamp: "2024-08-24T13:19:40Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scan_Harmoniser"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"RENDER.BUILDERSSCANMOD.png","color":"blue","category":"Multi-Tool","subcategory":"Scanner","level":"A","type":"Multi-Tool Upgrade","desc":"Reveals Autophage entities.","stats":"Echo Resonator: Enabled, +11% Scan Radius","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":100}],"outputs":[{"name":"Scan Harmoniser","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Scan Harmoniser","qty":1}],"outputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":50}]}]}
 ---
 
 # Scan Harmoniser
 
 ## Quick Facts
 
-- **Category:** Multi-Tool - Scanner
+- **Category:** Multi-Tool
+- **Subcategory:** Scanner
+- **Level:** A
 - **Type:** Multi-Tool Upgrade
-- **Stats:** Echo Resonator: Enabled / +11% Scan Radius
-- **Updated:** WorldsOne
+- **Description:** Reveals Autophage entities.
+- **Stats:** Echo Resonator: Enabled, +11% Scan Radius
+- **Added in:** WorldsOne
 
 **Scan Harmoniser** is a technology.
 
 ## Summary
 
-**Scan Harmoniser** is a Multi-Tool technology upgrade for the Scanner that gives +11% to scan radius and reveals nearby sentience echo sites and cloaked Autophage NPCs.
+**Scan Harmoniser** is a [[Multi-Tool]] [[technology]] upgrade for the [[Scanner]] that gives +11% to scan radius and reveals nearby sentience echo sites and cloaked [[Autophage]] NPCs.
 
-Use the Analysis Visor (//) (PS4/PC/Xbox) on dissonant planets to see sentience echoes within scanner range. Once the site is reached, a local scan pulse will reveal the sentience echo, which can then be mined to obtain an Echo Seed.
+Use the [[Analysis Visor]] (//) (PS4/PC/Xbox) on dissonant planets to see sentience echoes within scanner range. Once the site is reached, a local scan pulse will reveal the sentience echo, which can then be mined to obtain an [[Echo Seed]].
 
-A scan pulse at Autophage Camps and Harmonic Camps will also reveal cloaked Autophage NPCs.
+A scan pulse at [[Autophage Camp|Autophage Camps]] and [[Harmonic Camp|Harmonic Camps]] will also reveal cloaked Autophage NPCs.
 
 ## Game Description
 
@@ -35,28 +44,22 @@ Use // (PS/PC/XB) to activate the Scanner. As its detector waveform passes over 
 
 ## Source
 
-The blueprint is given in the Autophage questline for free.
+The blueprint is given in the [[They Who Returned|Autophage questline]] for free.
 
 ## Crafting
 
-Scan Harmoniser can be built using a blueprint and the following ingredients:
+- **Crafting** · needs the blueprint: 1 × [[Radiant Shard]] + 1 × [[Microprocessor]] + 100 × [[Runaway Mould]] → 1 × Scan Harmoniser
 
-- Radiant Shard ×1 + Microprocessor ×1 + Runaway Mould ×100 → Scan Harmoniser
+- **Repair**: 1 × [[Radiant Shard]] + 1 × [[Microprocessor]] + 50 × [[Runaway Mould]]
 
-Scan Harmoniser can be repaired using the following ingredients:
-
-- Radiant Shard ×1 + Microprocessor ×1 + Runaway Mould ×50
-
-Scan Harmoniser can be dismantled after construction, returning the following ingredients:
-
-- Scan Harmoniser → Radiant Shard ×1 + Microprocessor ×1 + Runaway Mould ×50
+- **Dismantle** returns: 1 × [[Radiant Shard]] + 1 × [[Microprocessor]] + 50 × [[Runaway Mould]]
 
 ## Additional Information
 
-- The Polyphonic Core provides the same stats and abilities, as well as the ability to locate Autophage Camps.
-- This technology is a replacement of the Resonance Amplifier.
+- The [[Polyphonic Core]] provides the same stats and abilities, as well as the ability to locate [[Autophage Camp|Autophage Camps]].
+- This technology is a replacement of the [[Resonance Amplifier]].
 - This technology does not count toward the 3-upgrade limit.
 
 ## Release History
 
-- Echoes - Added as a technology blueprint.
+- [[Echoes]] - Added as a technology blueprint.

@@ -1,11 +1,17 @@
 ---
 title: "Cheesy Vegetable Pie"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142725
-summary: "Cheesy Vegetable Pie is a consumable."
+revId: 1227527
+revTimestamp: "2025-04-10T12:25:04Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cheesy_Vegetable_Pie"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.VEGPIE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"62,000.0","release":"Prisms"},"value":62000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Tangy Cheese","qty":1},{"name":"Solartillo","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Tangy Cheese","qty":1},{"name":"Jade Peas","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Tangy Cheese","qty":1},{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Tangy Cheese","qty":1},{"name":"Pulpy Roots","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Tangy Cheese","qty":1},{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoCheese","qty":1},{"name":"Solartillo","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoCheese","qty":1},{"name":"Jade Peas","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoCheese","qty":1},{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoCheese","qty":1},{"name":"Pulpy Roots","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoCheese","qty":1},{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream (Cheese)","qty":1},{"name":"Solartillo","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream (Cheese)","qty":1},{"name":"Jade Peas","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream (Cheese)","qty":1},{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream (Cheese)","qty":1},{"name":"Pulpy Roots","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream (Cheese)","qty":1},{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Cheesy Vegetable Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Cheesy Vegetable Pie
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 62,000.0
-- **Updated:** Prisms
+- **Value:** 62,000.0
+- **Added in:** Prisms
 
 **Cheesy Vegetable Pie** is a consumable.
 
 ## Summary
 
-**Cheesy Vegetable Pie** is a consumable and one of the Edible Products.
+**Cheesy Vegetable Pie** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,27 +37,21 @@ Food such as this can be **highly valuable**.
 
 ## Source
 
-Cheesy Vegetable Pie can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Tangy Cheese x1 + Solartillo x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Tangy Cheese x1 + Jade Peas x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Tangy Cheese x1 + Sievert Beans x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Tangy Cheese x1 + Pulpy Roots x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Tangy Cheese x1 + Aloe Flesh x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + ProtoCheese x1 + Solartillo x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + ProtoCheese x1 + Jade Peas x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + ProtoCheese x1 + Sievert Beans x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + ProtoCheese x1 + Pulpy Roots x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + ProtoCheese x1 + Aloe Flesh x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Bone Cream (Cheese) x1 + Solartillo x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Bone Cream (Cheese) x1 + Jade Peas x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Bone Cream (Cheese) x1 + Sievert Beans x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Bone Cream (Cheese) x1 + Pulpy Roots x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Bone Cream (Cheese) x1 + Aloe Flesh x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cheesy Vegetable Pie** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Tangy Cheese]] + 1 × [[Solartillo]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Tangy Cheese]] + 1 × [[Jade Peas]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Tangy Cheese]] + 1 × [[Sievert Beans]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Tangy Cheese]] + 1 × [[Pulpy Roots]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Tangy Cheese]] + 1 × [[Aloe Flesh]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoCheese]] + 1 × [[Solartillo]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoCheese]] + 1 × [[Jade Peas]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoCheese]] + 1 × [[Sievert Beans]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoCheese]] + 1 × [[Pulpy Roots]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoCheese]] + 1 × [[Aloe Flesh]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Bone Cream (Cheese)]] + 1 × [[Solartillo]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Bone Cream (Cheese)]] + 1 × [[Jade Peas]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Bone Cream (Cheese)]] + 1 × [[Sievert Beans]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Bone Cream (Cheese)]] + 1 × [[Pulpy Roots]] → 1 × Cheesy Vegetable Pie
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Bone Cream (Cheese)]] + 1 × [[Aloe Flesh]] → 1 × Cheesy Vegetable Pie
 
 ## Additional information
 
@@ -61,4 +61,4 @@ Cheesy Vegetable Pie can be cooked using a Nutrient Processor with the following
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

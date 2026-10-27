@@ -1,11 +1,17 @@
 ---
 title: "Crunchy Caramel"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 142599
-summary: "Crunchy Caramel is a consumable and one of the Edible Products."
+revId: 1336960
+revTimestamp: "2026-10-07T20:51:58Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crunchy_Caramel"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.HONEY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"5,400","release":"WorldsTwo"},"value":5400,"recipes":[{"type":"cook","inputs":[{"name":"Processed Sugar","qty":1},{"name":"Salt","qty":1}],"outputs":[{"name":"Crunchy Caramel","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Root Juice","qty":1}],"outputs":[{"name":"Crunchy Caramel","qty":1}],"seconds":2.5,"label":"Nutrient Refining"}]}
 ---
 
 # Crunchy Caramel
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 5,400
-- **Updated:** WorldsTwo
+- **Value:** 5,400
+- **Added in:** WorldsTwo
 
 **Crunchy Caramel** is a consumable.
 
 ## Summary
 
-**Crunchy Caramel** is a consumable and one of the Edible Products.
+**Crunchy Caramel** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -30,34 +36,12 @@ A refined food product, created in the Nutrient Processor. Food such as this can
 Can be consumed as it stands or subjected to further processing.
 
 Flavour profile: juicy, lingering, crisp.
-
-Recipe Complexity: 66%
+<br>Recipe Complexity: 66%
 
 ## Source
 
-Crunchy Caramel can be cooked using a Nutrient Processor with the following ingredients:
-
-- Processed Sugar x1 + Salt x1 → Crunchy Caramel x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Root Juice x1 → Crunchy Caramel x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Crunchy Caramel** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Caramel Curiosity -- Proto-Batter x1 + Crunchy Caramel x1 → Caramel Curiosity x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Caramel Doughnut -- Lumpen Doughnut x1 + Crunchy Caramel x1 → Caramel Doughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-- Caramel Ice Cream -- Very Thick Custard x1 + Frost Crystal x1 + Crunchy Caramel x1 → Caramel Ice Cream x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Caramel Ice Cream -- Very Thick Custard x1 + Frozen Tubers x1 + Crunchy Caramel x1 → Caramel Ice Cream x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Caramel Ice Cream -- Viscous Custard x1 + Frost Crystal x1 + Crunchy Caramel x1 → Caramel Ice Cream x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Caramel Ice Cream -- Viscous Custard x1 + Frozen Tubers x1 + Crunchy Caramel x1 → Caramel Ice Cream x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Caramel Tart -- Pie Case x1 + Crunchy Caramel x1 → Caramel Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Caramel-Encrusted Cake -- Cake Batter x1 + Crunchy Caramel x1 → Caramel-Encrusted Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Caramelised Nightmare -- Writhing, Roiling Batter x1 + Crunchy Caramel x1 → Caramelised Nightmare x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Fluffy Caramel Delight -- Extra-Fluffy Batter x1 + Crunchy Caramel x1 → Fluffy Caramel Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Gooey Caramel Cake -- Thick, Sweet Batter x1 + Crunchy Caramel x1 → Gooey Caramel Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Sticky Finger -- Sugar Dough x1 + Crunchy Caramel x1 → Sticky Finger x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Syrupy Caramel Slice -- Syrupy Batter x1 + Crunchy Caramel x1 → Syrupy Caramel Slice x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Caramel Cake -- Wailing Batter x1 + Crunchy Caramel x1 → Wailing Caramel Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Processed Sugar]] + 1 × [[Salt]] → 1 × Crunchy Caramel
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Root Juice]] → 1 × Crunchy Caramel
 
 ## Use
 
@@ -65,21 +49,10 @@ Exosuit nutrient system will restore 20% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +67% Life Support Tanks *(6:00)*
-
-## Fishing Bait
-
-When applied as bait, Crunchy Caramel gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 2%
-- Other notes: Attracts storm-loving fish
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

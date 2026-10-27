@@ -1,11 +1,17 @@
 ---
 title: "Healthy Wheatblock"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565905
-summary: "Healthy Wheatblock is a consumable and one of the Edible Products."
+revId: 1337012
+revTimestamp: "2026-10-07T22:35:28Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Healthy_Wheatblock"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000","release":"WorldsOne"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Gamma Root","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Heptaploid Wheat","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Impulse Beans","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Jade Peas","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Kelp Rice","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Marrow Bulb","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Pulpy Roots","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Solartillo","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Steamed Vegetables","qty":1}],"outputs":[{"name":"Healthy Wheatblock","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Healthy Wheatblock
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,000
-- **Updated:** WorldsOne
+- **Value:** 35,000
+- **Added in:** WorldsOne
 
 **Healthy Wheatblock** is a consumable.
 
 ## Summary
 
-**Healthy Wheatblock** is a consumable and one of the Edible Products.
+**Healthy Wheatblock** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,23 +37,17 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Healthy Wheatblock can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Frozen Tubers x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Gamma Root x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Heptaploid Wheat x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Impulse Beans x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Jade Peas x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Kelp Rice x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Marrow Bulb x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Pulpy Roots x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Sievert Beans x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Solartillo x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Steamed Vegetables x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Healthy Wheatblock** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Frozen Tubers]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Gamma Root]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Heptaploid Wheat]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Impulse Beans]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Jade Peas]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Kelp Rice]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Marrow Bulb]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Pulpy Roots]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Sievert Beans]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Solartillo]] → 1 × Healthy Wheatblock
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Steamed Vegetables]] → 1 × Healthy Wheatblock
 
 ## Use
 
@@ -55,20 +55,9 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +4,191% Flora Analysis Rewards *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Healthy Wheatblock gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 16%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

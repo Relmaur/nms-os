@@ -1,11 +1,17 @@
 ---
 title: "Sodium Diode"
 category: "products"
+kind: "product"
+summary: "An advanced circuit component."
 pageId: 92506
-summary: "Sodium Diode is a component that is used for crafting."
+revId: 673951
+revTimestamp: "2021-01-06T19:20:04Z"
+version: "Origins"
+obsolete: true
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sodium_Diode"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CATACRAFT.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"3,500.0","release":"Origins"},"value":3500,"recipes":[]}
 ---
 
 # Sodium Diode
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Crafted Technology Component
-- **Total Value:** 3,500.0
-- **Updated:** Origins
+- **Value:** 3,500.0
+- **Added in:** Origins
 
 **Sodium Diode** is a component.
 
 ## Summary
 
-**Sodium Diode** is a component that is used for crafting.
+**Sodium Diode** is a [[component]] that is used for crafting.
 
 ## Game description
 
@@ -31,14 +37,10 @@ The refined sodium electrode within its vacuum tube gives this diode specialist 
 
 ## Source
 
-Available from some Galactic Trade Terminals.
-
-## Use
-
-**Sodium Diode** is not used as an ingredient for crafting.
+Available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
 ## Release history
 
-- NEXT - Added as a product.
-- Origins - Made obsolete, cannot be crafted anymore.
-- Origins 3.05 - No longer can be acquired from Frigate expeditions.
+- [[NEXT]] - Added as a product.
+- [[Origins]] - Made obsolete, cannot be crafted anymore.
+- [[Update 3.05|Origins 3.05]] - No longer can be acquired from [[Frigate]] expeditions.

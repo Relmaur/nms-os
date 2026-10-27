@@ -1,11 +1,17 @@
 ---
 title: "Burning Surprise"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565884
-summary: "Burning Surprise is a consumable and one of the Edible Products."
+revId: 1334031
+revTimestamp: "2026-09-24T20:54:38Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Burning_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"41,000.0","release":"Omega"},"value":41000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Fireberry","qty":1}],"outputs":[{"name":"Burning Surprise","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Ever-burning Jam","qty":1}],"outputs":[{"name":"Burning Surprise","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Fire Water","qty":1}],"outputs":[{"name":"Burning Surprise","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Burning Surprise
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 41,000.0
-- **Updated:** Omega
+- **Value:** 41,000.0
+- **Added in:** Omega
 
 **Burning Surprise** is a consumable.
 
 ## Summary
 
-**Burning Surprise** is a consumable and one of the Edible Products.
+**Burning Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,41 +37,15 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Consume
 
-- Replenishes 20% Life Support when consumed.
-- Fueling a Nutrient Ingestor with **Burning Surprise** will grant +45% Heat Resistance for 6:36 per unit consumed.
+- Replenishes 20% [[Life Support]] when consumed.
+-
 
 ## Source
 
-Burning Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Fireberry x1 → Burning Surprise x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Ever-burning Jam x1 → Burning Surprise x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Fire Water x1 → Burning Surprise x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Usage
-
-### Crafting
-
-**Burning Surprise** is not used as an ingredient for crafting.
-
-### Refining
-
-**Burning Surprise** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Burning Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Burning Surprise gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 3%
-- Other notes: Attracts diurnal fish
-
-## Additional Information
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Fireberry]] → 1 × Burning Surprise
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Ever-burning Jam]] → 1 × Burning Surprise
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Fire Water]] → 1 × Burning Surprise
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

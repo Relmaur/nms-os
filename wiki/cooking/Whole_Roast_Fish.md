@@ -1,11 +1,17 @@
 ---
 title: "Whole Roast Fish"
 category: "cooking"
+kind: "product"
+summary: "A huge slab of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 599875
-summary: "Whole Roast Fish is a consumable and one of the Edible Products."
+revId: 1329166
+revTimestamp: "2026-08-13T23:51:38Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Whole_Roast_Fish"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.TROUT.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"39,000","release":"Aquarius"},"value":39000,"recipes":[{"type":"cook","inputs":[{"name":"Basalt-Tooth Bloater","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Polyscale Bloater","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Whiskerfin","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Greater Rocktooth","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Ray","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Sunray","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Colossal Jawfish","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ancient Irontail","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Megalodon","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Whole Roast Fish
@@ -14,58 +20,38 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 39,000
-- **Updated:** Aquarius
+- **Value:** 39,000
+- **Added in:** Aquarius
 
 **Whole Roast Fish** is a consumable.
 
 ## Summary
 
-**Whole Roast Fish** is a consumable and one of the Edible Products.
+**Whole Roast Fish** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
-A huge slab of seafood, created in the Nutrient Processor. Food such as this can be highly valuable.
+A huge slab of seafood, created in the [[Nutrient Processor]]. Food such as this can be highly valuable.
 
 Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **25% hazard protection**.
-
-- When consumed through a Nutrient Ingestor, **Whole Roast Fish** provides **+44% Breathing Efficiency** for 6 minutes.
-
-## Fishing Bait
-
-When applied as bait, Whole Roast Fish gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 24%
-- Catch Size Improvement: 2%
+Exosuit nutrient system will restore **25% [[hazard protection]]**.
+- When consumed through a [[Nutrient Ingestor]], **Whole Roast Fish** provides **+44% Breathing Efficiency** for 6 minutes.
 
 ## Source
 
-Whole Roast Fish can be cooked using a Nutrient Processor with the following ingredients:
-
-- Basalt-Tooth Bloater x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Polyscale Bloater x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Giant Whiskerfin x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Greater Rocktooth x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Giant Ray x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Giant Sunray x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Colossal Jawfish x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Ancient Irontail x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Megalodon x1 → Whole Roast Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Whole Roast Fish** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Whole Roast Fish x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Whole Roast Fish x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Whole Roast Fish x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Whole Roast Fish x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Whole Roast Fish x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Basalt-Tooth Bloater]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Polyscale Bloater]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Giant Whiskerfin]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Greater Rocktooth]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Giant Ray]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Giant Sunray]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Colossal Jawfish]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ancient Irontail]] → 1 × Whole Roast Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Megalodon]] → 1 × Whole Roast Fish
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

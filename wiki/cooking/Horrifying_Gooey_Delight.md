@@ -1,11 +1,17 @@
 ---
 title: "Horrifying, Gooey Delight"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142793
-summary: "Horrifying, Gooey Delight is a consumable."
+revId: 1219380
+revTimestamp: "2025-02-02T01:39:30Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Horrifying%2C_Gooey_Delight"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"200,000","release":"WorldsTwo"},"value":200000,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Stellar Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Horrifying, Gooey Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Horrifying, Gooey Delight
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 200,000
-- **Updated:** WorldsTwo
+- **Value:** 200,000
+- **Added in:** WorldsTwo
 
 **Horrifying, Gooey Delight** is a consumable.
 
 ## Summary
 
-**Horrifying, Gooey Delight** is a consumable and one of the Edible Products.
+**Horrifying, Gooey Delight** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,32 +36,17 @@ A highly refined food product, created in the Nutrient Processor.
 These cake-like nutrients are processed from a base of Cake Batter.
 
 Flavour profile: astonishing, otherwordly, intense.
-
-Recipe Complexity: 96%
+<br>Recipe Complexity: 96%
 
 ## Source
 
-Horrifying, Gooey Delight can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Monstrous Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Proto-Batter x1 + Monstrous Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Viscous Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Salty Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Monstrous Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Stellar Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Very Thick Custard x1 → Horrifying, Gooey Delight x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Horrifying, Gooey Delight** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Horrifying, Gooey Delight gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 11%
-- Other notes: Attracts storm-loving fish
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Monstrous Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Monstrous Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Viscous Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Salty Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Monstrous Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Stellar Custard]] → 1 × Horrifying, Gooey Delight
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Very Thick Custard]] → 1 × Horrifying, Gooey Delight
 
 ## Additional Information
 
@@ -64,5 +55,5 @@ When applied as bait, Horrifying, Gooey Delight gives the following bonus toward
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

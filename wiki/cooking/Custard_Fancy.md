@@ -1,11 +1,17 @@
 ---
 title: "Custard Fancy"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142742
-summary: "Custard Fancy is a consumable and one of the Edible Products."
+revId: 1313562
+revTimestamp: "2026-05-19T23:05:56Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Custard_Fancy"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"85,100.0","release":"Prisms"},"value":85100,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Custard Fancy","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Custard Fancy","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Custard Fancy
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 85,100.0
-- **Updated:** Prisms
+- **Value:** 85,100.0
+- **Added in:** Prisms
 
 **Custard Fancy** is a consumable.
 
 ## Summary
 
-**Custard Fancy** is a consumable and one of the Edible Products.
+**Custard Fancy** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,14 +37,8 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Custard Fancy can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Viscous Custard x1 → Custard Fancy x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Cake Batter x1 + Very Thick Custard x1 → Custard Fancy x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Custard Fancy** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Viscous Custard]] → 1 × Custard Fancy
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Very Thick Custard]] → 1 × Custard Fancy
 
 ## Additional information
 
@@ -46,4 +46,4 @@ Custard Fancy can be cooked using a Nutrient Processor with the following ingred
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

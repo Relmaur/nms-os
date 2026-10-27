@@ -1,11 +1,17 @@
 ---
 title: "Cobalt Mirror"
 category: "products"
+kind: "product"
+summary: "A specialist optical component."
 pageId: 92510
-summary: "Cobalt Mirror is a component that is used for crafting."
+revId: 597464
+revTimestamp: "2020-09-28T05:31:24Z"
+version: "Origins"
+obsolete: true
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cobalt_Mirror"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.COBALTMIRROR.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"20,500.0","release":"Origins"},"value":20500,"recipes":[]}
 ---
 
 # Cobalt Mirror
@@ -14,31 +20,27 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Crafted Technology Component
-- **Total Value:** 20,500.0
-- **Updated:** Origins
+- **Value:** 20,500.0
+- **Added in:** Origins
 
 **Cobalt Mirror** is a component.
 
 ## Summary
 
-**Cobalt Mirror** is a component that is used for crafting.
+**Cobalt Mirror** is a [[component]] that is used for crafting.
 
 ## Game description
 
 A specialist optical component.
 
-Employing a polished cobalt surface, this mirror is able to selectively filter different wavelengths of light, changing its reflective pattern based on nearby magnetic fields.
+Employing a polished [[cobalt]] surface, this mirror is able to selectively filter different wavelengths of light, changing its reflective pattern based on nearby magnetic fields.
 
 ## Source
 
-Available from some Galactic Trade Terminals.
-
-## Use
-
-**Cobalt Mirror** is not used as an ingredient for crafting.
+Available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
 ## Release history
 
-- NEXT - Added as a product.
-- NEXT 1.58 - Icon changed.
-- Origins - Made obsolete, cannot be crafted anymore
+- [[NEXT]] - Added as a product.
+- [[Update 1.58|NEXT 1.58]] - Icon changed.
+- [[Origins]] - Made obsolete, cannot be crafted anymore

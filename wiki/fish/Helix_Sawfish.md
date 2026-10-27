@@ -1,0 +1,42 @@
+---
+title: "Helix Sawfish"
+category: "fish"
+kind: "product"
+summary: "Helix Sawfish is a legendary fish."
+pageId: 577170
+revId: 1210831
+revTimestamp: "2024-09-26T11:47:17Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Helix_Sawfish"
+license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{"image":"PRODUCT.FISH.BIG.2.png","color":"yellow","category":"Fish","type":"Legendary Fish","value":"200,000.0","release":"Aquarius"},"value":200000,"recipes":[]}
+---
+
+# Helix Sawfish
+
+## Quick Facts
+
+- **Category:** Fish
+- **Type:** Legendary Fish
+- **Value:** 200,000.0
+- **Added in:** Aquarius
+
+**Helix Sawfish** is a legendary fish.
+
+## Summary
+
+**Helix Sawfish** is a [[fish]] that can be caught as an item by the player.
+
+## Use
+
+Can be used as [[bait]], used for [[cooking]], sold, or released into [[Biome Subtype - Underwater|water]].
+
+## Source
+
+Obtained via [[fishing]].
+
+## Release History
+
+- [[Aquarius]] - Added as a fish.

@@ -1,11 +1,17 @@
 ---
 title: "Anomalous Tart"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142693
-summary: "Anomalous Tart is a consumable and one of the Edible Products."
+revId: 1320979
+revTimestamp: "2026-06-18T00:18:40Z"
+version: "Swarm"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomalous_Tart"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"44,000","release":"Swarm"},"value":44000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Hexaberry","qty":1}],"outputs":[{"name":"Anomalous Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Anomalous Jam","qty":1}],"outputs":[{"name":"Anomalous Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Anomalous Tart
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 44,000
-- **Updated:** Swarm
+- **Value:** 44,000
+- **Added in:** Swarm
 
 **Anomalous Tart** is a consumable.
 
 ## Summary
 
-**Anomalous Tart** is a consumable and one of the Edible Products.
+**Anomalous Tart** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -29,33 +35,14 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 
 Food such as this can be highly valuable.
 
-Flavour profile: prismatic, astonishing, colourful.
-
-Recipe Complexity: 100%
-
 ## Source
 
-Anomalous Tart can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Hexaberry x1 → Anomalous Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Anomalous Jam x1 → Anomalous Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Anomalous Tart** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Anomalous Tart gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 15%
-- Catch Size Improvement: 40%
-
-## Additional information
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Hexaberry]] → 1 × Anomalous Tart
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Anomalous Jam]] → 1 × Anomalous Tart
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- Living Ship - value changed, was 800.00
-- Aquarius - Added fishing bait bonuses.
-- Worlds Part II - Added new descriptive section.
+- [[Beyond]] - Added as a consumable.
+- [[Living Ship]] - value changed, was 800.00
+- [[Aquarius]] - Added fishing bait bonuses.
+- [[Worlds Part II]] - Added new descriptive section.

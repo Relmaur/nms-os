@@ -1,11 +1,17 @@
 ---
 title: "Jam Tart"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142803
-summary: "Jam Tart is a consumable and one of the Edible Products."
+revId: 1219492
+revTimestamp: "2025-02-02T15:28:54Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jam_Tart"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"44,000","release":"WorldsTwo"},"value":44000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Grahj'am","qty":1}],"outputs":[{"name":"Jam Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Cactus Jelly","qty":1}],"outputs":[{"name":"Jam Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Jam Tart
@@ -14,43 +20,28 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 44,000
-- **Updated:** WorldsTwo
+- **Value:** 44,000
+- **Added in:** WorldsTwo
 
 **Jam Tart** is a consumable.
 
 ## Summary
 
-**Jam Tart** is a consumable and one of the Edible Products.
+**Jam Tart** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A highly refined food product, created in the Nutrient Processor.  It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Food such as this can be highly valuable.
 
 Flavour profile: complex, vivid, prismatic.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Jam Tart can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + Grahj'am x1 → Jam Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Pie Case x1 + Cactus Jelly x1 → Jam Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Jam Tart** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Jam Tart gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 45%
-- Other notes: Attracts nocturnal fish
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Grahj'am]] → 1 × Jam Tart
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[Cactus Jelly]] → 1 × Jam Tart
 
 ## Additional information
 
@@ -58,5 +49,5 @@ Grants a 15 second sprint overload once consumed.
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

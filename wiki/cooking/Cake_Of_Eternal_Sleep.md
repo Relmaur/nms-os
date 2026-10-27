@@ -1,11 +1,17 @@
 ---
 title: "Cake Of Eternal Sleep"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 573130
-summary: "Cake Of Eternal Sleep is a consumable."
+revId: 1214633
+revTimestamp: "2024-11-10T17:01:16Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cake_Of_Eternal_Sleep"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"167,200","release":"WorldsOne"},"value":167200,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Syrupy Nectar","qty":1}],"outputs":[{"name":"Cake Of Eternal Sleep","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Butter Syrup","qty":1}],"outputs":[{"name":"Cake Of Eternal Sleep","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Cake Of Eternal Sleep","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Cake Of Eternal Sleep
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 167,200
-- **Updated:** WorldsOne
+- **Value:** 167,200
+- **Added in:** WorldsOne
 
 **Cake Of Eternal Sleep** is a consumable.
 
 ## Summary
 
-**Cake of Eternal Sleep** is a consumable and one of the Edible Products.
+**Cake of Eternal Sleep** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,22 +37,9 @@ These cake-like nutrients are processed from a base of Wailing Batter.
 
 ## Source
 
-Cake Of Eternal Sleep can be cooked using a Nutrient Processor with the following ingredients:
-
-- Wailing Batter x1 + Syrupy Nectar x1 → Cake Of Eternal Sleep x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Butter Syrup x1 → Cake Of Eternal Sleep x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrupy Batter x1 + Monstrous Custard x1 → Cake Of Eternal Sleep x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Cake Of Eternal Sleep** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Cake Of Eternal Sleep gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 39%
-- Catch Size Improvement: 7%
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Syrupy Nectar]] → 1 × Cake Of Eternal Sleep
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Butter Syrup]] → 1 × Cake Of Eternal Sleep
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Monstrous Custard]] → 1 × Cake Of Eternal Sleep
 
 ## Additional Information
 
@@ -54,4 +47,4 @@ Restores 2% health once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
+- [[Worlds Part I]] - Added as a consumable.

@@ -1,11 +1,17 @@
 ---
 title: "Paraffinium"
 category: "resources"
+kind: "resource"
+summary: "Local mineral extract, typically found in large deposits or extracted from common materials after inspection with an Analysis Visor."
 pageId: 89423
-summary: "Paraffinium (Pf) is a resource and one of the localised earth elements."
+revId: 1335141
+revTimestamp: "2026-09-30T19:58:05Z"
+version: "Endurance"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Paraffinium"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SUBSTANCE.BIOME.LUSH.png","color":"Grey","category":"Earth","type":"Localised Earth Element","rarity":"Uncommon","used":"Building, Crafting, Charging, Upgrading","symbol":"Pf","value":"62.0","release":"Endurance"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Silver","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Paraffinium","qty":2}],"seconds":0.36,"label":"Mineral Alchemy"},{"type":"refine","inputs":[{"name":"Star Bulb","qty":2},{"name":"Salt","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Floral Titration"},{"type":"refine","inputs":[{"name":"Pyrite","qty":2},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Pyrite","qty":2},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Loosen Bonds"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":2}],"seconds":0.36,"label":"Loosen Bonds"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Magnetised Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":3}],"seconds":0.36,"label":"Loosen Bonds"}]}
 ---
 
 # Paraffinium
@@ -15,80 +21,38 @@ updated: "2026-10-27"
 - **Category:** Earth
 - **Type:** Localised Earth Element
 - **Rarity:** Uncommon
-- **Blueprint Value:** 62.0
 - **Used for:** Building, Crafting, Charging, Upgrading
-- **Symbol:** **Pf**
-- **Updated:** Endurance
+- **Symbol:** Pf
+- **Value:** 62.0
+- **Added in:** Endurance
 
 **Paraffinium** is a resource.
 
 ## Summary
 
-**Paraffinium** (**Pf**) is a resource and one of the localised earth elements.
+**Paraffinium** (**Pf**) is a [[resource]] and one of the [[Localised Earth Element|localised]] [[earth elements]].
 
 ## Game description
 
-Local mineral extract, typically found in large deposits or extracted from common materials after inspection with an Analysis Visor.
+Local mineral extract, typically found in large deposits or extracted from common materials after inspection with an [[Analysis Visor]].
 
-Typically found on planets with a tropical environment.
+Typically found on planets with a [[Biome - Lush|tropical]] environment.
 
 ## Source
 
-- As a secondary element in some minerals or in Resource Deposits on planets with Lush biomes.
-- From Hotspot on planets with Lush biomes.
-- Also available from some Galactic Trade Terminals.
+- As a secondary element in some [[mineral|minerals]] or in [[Resource Deposit|Resource Deposits]] on planets with Lush [[biome|biomes]].
+- From [[Hotspot]] on planets with Lush biomes.
+- Also available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
-Paraffinium can be refined using a Refiner with the following ingredients:
-
-- Silver ×1 + Oxygen ×1 → Paraffinium ×2 (*"Mineral Alchemy"*, 0.36 sec./unit output)
-- Star Bulb ×2 + Salt ×1 → Paraffinium ×1 (*"Floral Titration"*, 0.36 sec./unit output)
-- Pyrite ×2 + Ferrite Dust ×1 → Paraffinium ×1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Pyrite ×2 + Pure Ferrite ×1 → Paraffinium ×1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Sulphurine ×1 + Ferrite Dust ×1 → Paraffinium ×1 (*"Loosen Bonds"*, 0.36 sec./unit output)
-- Sulphurine ×1 + Pure Ferrite ×1 → Paraffinium ×2 (*"Loosen Bonds"*, 0.36 sec./unit output)
-- Sulphurine ×1 + Magnetised Ferrite ×1 → Paraffinium ×3 (*"Loosen Bonds"*, 0.36 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Paraffinium** is used as an ingredient for crafting the following products:
-
-- Albumen Pearl Orb -- Indium x60 + Paraffinium x20 → Albumen Pearl Orb
-- Aronium -- Paraffinium x50 + Ionised Cobalt x50 → Aronium
-- Colossus Geobay -- Metal Plating x5 + Ion Battery x4 + Paraffinium x100 → Colossus Geobay
-- Drift Suspension -- Magnetised Ferrite x50 + Paraffinium x50 + Wiring Loom x1 → Drift Suspension
-- Roamer Geobay -- Metal Plating x5 + Ion Battery x2 + Paraffinium x100 → Roamer Geobay
-- Sphere Creator -- Metal Plating x5 + Ion Battery x4 + Paraffinium x100 → Sphere Creator
-- Star Bramble -- Star Bulb x50 + Paraffinium x25 → Star Bramble
-
-### Refining
-
-**Paraffinium** is used as an ingredient for refining the following products using a Refiner:
-
-- Ammonia -- Ferrite Dust x1 + Paraffinium x2 → Ammonia x1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Ammonia -- Pure Ferrite x1 + Paraffinium x2 → Ammonia x1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Aronium -- Paraffinium x30 + Gold x10 + Cobalt x60 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Gold x10 + Ionised Cobalt x30 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Platinum x5 + Cobalt x60 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Platinum x5 + Ionised Cobalt x30 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Silver x20 + Cobalt x60 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Silver x20 + Ionised Cobalt x30 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Tritium x20 + Cobalt x60 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Aronium -- Paraffinium x30 + Tritium x20 + Ionised Cobalt x30 → Aronium x1 (*"Alloy Latticing"*, 45 sec./unit output)
-- Ferrite Dust -- Paraffinium x1 → Ferrite Dust x1 (*"Ferrite Dust Extraction"*, 0.36 sec./unit output)
-- Star Bulb -- Paraffinium x1 + Methane x1 → Star Bulb x1 (*"Organic Expansion"*, 0.36 sec./unit output)
-- Star Bulb -- Paraffinium x1 + Nitrogen x1 → Star Bulb x1 (*"Encourage Growth"*, 0.24 sec./unit output)
-- Star Bulb -- Paraffinium x2 + Oxygen x1 → Star Bulb x1 (*"Encourage Growth"*, 0.36 sec./unit output)
-- Star Bulb -- Star Bulb x1 + Paraffinium x1 → Star Bulb x2 (*"Organic Expansion"*, 0.36 sec./unit output)
-
-### Cooking
-
-**Paraffinium** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Refiner** · *Mineral Alchemy* · 0.36 s per unit: 1 × [[Silver]] + 1 × [[Oxygen]] → 2 × Paraffinium
+- **Refiner** · *Floral Titration* · 0.36 s per unit: 2 × [[Star Bulb]] + 1 × [[Salt]] → 1 × Paraffinium
+- **Refiner** · *Environmental Element Transfer* · 0.36 s per unit: 2 × [[Pyrite]] + 1 × [[Ferrite Dust]] → 1 × Paraffinium
+- **Refiner** · *Environmental Element Transfer* · 0.36 s per unit: 2 × [[Pyrite]] + 1 × [[Pure Ferrite]] → 1 × Paraffinium
+- **Refiner** · *Loosen Bonds* · 0.36 s per unit: 1 × [[Sulphurine]] + 1 × [[Ferrite Dust]] → 1 × Paraffinium
+- **Refiner** · *Loosen Bonds* · 0.36 s per unit: 1 × [[Sulphurine]] + 1 × [[Pure Ferrite]] → 2 × Paraffinium
+- **Refiner** · *Loosen Bonds* · 0.36 s per unit: 1 × [[Sulphurine]] + 1 × [[Magnetised Ferrite]] → 3 × Paraffinium
 
 ## Release history
 
-- NEXT - Added as a resource.
-- Visions - *Hidden changes:* The information panel has an additional icon indicating its purpose.
+- [[NEXT]] - Added as a resource.
+- [[Visions]] - *Hidden changes:* The information panel has an additional icon indicating its purpose.

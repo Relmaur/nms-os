@@ -1,11 +1,17 @@
 ---
 title: "Fire Water"
 category: "cooking"
+kind: "product"
+summary: "A consumable liquid, created in the Nutrient Processor. Prized across the galaxy for its pleasing mouth-feel and authentically natural flavours."
 pageId: 142535
-summary: "Fire Water is a consumable and one of the Edible Products."
+revId: 1202053
+revTimestamp: "2024-07-28T15:57:36Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fire_Water"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Red","category":"Consumable","type":"Edible Product","value":"1800.0","release":"Origins"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Fireberry","qty":1}],"outputs":[{"name":"Fire Water","qty":1}],"seconds":2.5,"label":"Liquidise"}]}
 ---
 
 # Fire Water
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 1800.0
-- **Updated:** Origins
+- **Value:** 1800.0
+- **Added in:** Origins
 
 **Fire Water** is a consumable.
 
 ## Summary
 
-**Fire Water** is a consumable and one of the Edible Products.
+**Fire Water** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,24 +37,8 @@ Can be ingested as it stands or subjected to further processing.
 
 ## Source
 
-Fire Water can be cooked using a Nutrient Processor with the following ingredients:
-
-- Fireberry x1 → Fire Water x1 (*"Liquidise"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Fire Water** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Burning Surprise -- Sugar Dough x1 + Fire Water x1 → Burning Surprise x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Salty Juice -- Cactus Flesh x1 + Salt x1 + Fire Water x1 → Salty Juice x1 (*"Liquidise"*, 2.5 sec./unit output)
-- Scorching Sauce -- Fire Water x1 + Fire Water x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Fire Water x1 + Fireberry x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Fire Water x1 + Grahberry x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Fire Water x1 + Sievert Beans x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scorching Sauce -- Fire Water x1 + Solartillo x1 → Scorching Sauce x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Additional Information
+- **Nutrient Processor** · *Liquidise* · 2.5 s per unit: 1 × [[Fireberry]] → 1 × Fire Water
 
 ## Release History
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

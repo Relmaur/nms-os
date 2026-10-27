@@ -1,11 +1,17 @@
 ---
 title: "Smoked Fish"
 category: "cooking"
+kind: "product"
+summary: "A piece of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 599775
-summary: "Smoked Fish is a consumable and one of the Edible Products."
+revId: 1329159
+revTimestamp: "2026-08-13T23:42:17Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Smoked_Fish"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.SALMON.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Lavascale Trout","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Thawed Diamondfin","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Forktailed Splicer","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Chalkscale Nibbler","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Blue Ribbontail","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Depleted Razorjaw","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Acidic Pufferfish","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Stargazer","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ghostfin","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Titanworm Larva","qty":1}],"outputs":[{"name":"Smoked Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Smoked Fish
@@ -14,59 +20,39 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Aquarius
+- **Value:** 33,100
+- **Added in:** Aquarius
 
 **Smoked Fish** is a consumable.
 
 ## Summary
 
-**Smoked Fish** is a consumable and one of the Edible Products.
+**Smoked Fish** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
-A piece of seafood, created in the Nutrient Processor. Food such as this can be highly valuable.
+A piece of seafood, created in the [[Nutrient Processor]]. Food such as this can be highly valuable.
 
 Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
 Exosuit nutrient system will restore **2% health**.
-
-- When consumed through a Nutrient Ingestor, **Smoked Fish** provides **+44% Breathing Efficiency** for 5 minutes.
-
-## Fishing Bait
-
-When applied as bait, Smoked Fish gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 9%
+- When consumed through a [[Nutrient Ingestor]], **Smoked Fish** provides **+44% Breathing Efficiency** for 5 minutes.
 
 ## Source
 
-Smoked Fish can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lavascale Trout x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Thawed Diamondfin x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Forktailed Splicer x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Chalkscale Nibbler x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Blue Ribbontail x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Depleted Razorjaw x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Acidic Pufferfish x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Stargazer x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Ghostfin x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Titanworm Larva x1 → Smoked Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Smoked Fish** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Smoked Fish x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Smoked Fish x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Smoked Fish x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Smoked Fish x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Smoked Fish x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Lavascale Trout]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Thawed Diamondfin]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Forktailed Splicer]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Chalkscale Nibbler]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Blue Ribbontail]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Depleted Razorjaw]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Acidic Pufferfish]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Stargazer]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ghostfin]] → 1 × Smoked Fish
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Titanworm Larva]] → 1 × Smoked Fish
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

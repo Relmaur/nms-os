@@ -1,11 +1,17 @@
 ---
 title: "Spicy Fleshballs"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142852
-summary: "Spicy Fleshballs is a consumable and one of the Edible Products."
+revId: 1280899
+revTimestamp: "2026-01-16T22:24:10Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spicy_Fleshballs"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"18,800","release":"WorldsTwo"},"value":18800,"recipes":[{"type":"cook","inputs":[{"name":"Mystery Meat Stew","qty":1},{"name":"Scorching Sauce","qty":1}],"outputs":[{"name":"Spicy Fleshballs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Well-Stirred Stew","qty":1},{"name":"Scorching Sauce","qty":1}],"outputs":[{"name":"Spicy Fleshballs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Soiled Soup","qty":1},{"name":"Scorching Sauce","qty":1}],"outputs":[{"name":"Spicy Fleshballs","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 
 # Spicy Fleshballs
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 18,800
-- **Updated:** WorldsTwo
+- **Value:** 18,800
+- **Added in:** WorldsTwo
 
 **Spicy Fleshballs** is a consumable.
 
 ## Summary
 
-**Spicy Fleshballs** is a consumable and one of the Edible Products.
+**Spicy Fleshballs** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,37 +36,22 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: manifold, delicate, smooth.
-
-Recipe Complexity: 94%
+<br>Recipe Complexity: 94%
 
 ## Source
 
-Spicy Fleshballs can be cooked using a Nutrient Processor with the following ingredients:
-
-- Mystery Meat Stew x1 + Scorching Sauce x1 → Spicy Fleshballs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Well-Stirred Stew x1 + Scorching Sauce x1 → Spicy Fleshballs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Soiled Soup x1 + Scorching Sauce x1 → Spicy Fleshballs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Spicy Fleshballs** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Spicy Fleshballs gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 14%
-- Catch Size Improvement: 4%
-- Other notes: Attracts diurnal fish
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Mystery Meat Stew]] + 1 × [[Scorching Sauce]] → 1 × Spicy Fleshballs
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Well-Stirred Stew]] + 1 × [[Scorching Sauce]] → 1 × Spicy Fleshballs
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Soiled Soup]] + 1 × [[Scorching Sauce]] → 1 × Spicy Fleshballs
 
 ## Additional Information
 
-Restores 20% life support power once consumed.
+Restores 20% [[life support]] power once consumed.
 
-Grants +64% Heat Resistance for 10 minutes when consumed via Nutrient Ingestor.
+Grants +64% Heat Resistance for 10 minutes when consumed via [[Nutrient Ingestor]].
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- SentinelUp - Effect on consuming added to an info panel.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[SentinelUp]] - Effect on consuming added to an info panel.
+- [[Aquarius]] - Added fishing bait bonuses.

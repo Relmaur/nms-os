@@ -1,11 +1,17 @@
 ---
 title: "Proto-Sausage Pie"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142836
-summary: "Proto-Sausage Pie is a consumable and one of the Edible Products."
+revId: 1219367
+revTimestamp: "2025-02-02T01:17:03Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Proto-Sausage_Pie"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.MEATPIE.png","color":"Red","category":"Consumable","type":"Edible Product","value":"40,000","release":"WorldsTwo"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"ProtoSausage","qty":1}],"outputs":[{"name":"Proto-Sausage Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 
 # Proto-Sausage Pie
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 40,000
-- **Updated:** WorldsTwo
+- **Value:** 40,000
+- **Added in:** WorldsTwo
 
 **Proto-Sausage Pie** is a consumable.
 
 ## Summary
 
-**Proto-Sausage Pie** is a consumable and one of the Edible Products.
+**Proto-Sausage Pie** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,26 +36,11 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: prismatic, ephemeral, manifold.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Proto-Sausage Pie can be cooked using a Nutrient Processor with the following ingredients:
-
-- Pie Case x1 + ProtoSausage x1 → Proto-Sausage Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Proto-Sausage Pie** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Proto-Sausage Pie gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 12%
-- Catch Size Improvement: 4%
-- Other notes: Attracts storm-loving fish
+- **Nutrient Processor** · *Assemble Pie* · 2.5 s per unit: 1 × [[Pie Case]] + 1 × [[ProtoSausage]] → 1 × Proto-Sausage Pie
 
 ## Additional Information
 
@@ -57,5 +48,5 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Beyond]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

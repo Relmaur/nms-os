@@ -1,11 +1,17 @@
 ---
 title: "Prickly Curiosity"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142831
-summary: "Prickly Curiosity is a consumable and one of the Edible Products."
+revId: 1214594
+revTimestamp: "2024-11-10T16:39:20Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Prickly_Curiosity"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"71,500.0","release":"Prisms"},"value":71500,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Prickly Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Prickly Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Prickly Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Prickly Curiosity
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 71,500.0
-- **Updated:** Prisms
+- **Value:** 71,500.0
+- **Added in:** Prisms
 
 **Prickly Curiosity** is a consumable.
 
 ## Summary
 
-**Prickly Curiosity** is a consumable and one of the Edible Products.
+**Prickly Curiosity** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,18 +37,10 @@ These cake-like nutrients are processed from a base of Proto-Batter.
 
 ## Source
 
-Prickly Curiosity can be cooked using a Nutrient Processor with the following ingredients:
-
-- Proto-Batter x1 + Cactus Nectar x1 → Prickly Curiosity x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Proto-Batter x1 + Cactus Jelly x1 + Cream x1 → Prickly Curiosity x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Proto-Batter x1 + Cactus Jelly x1 + Bone Cream x1 → Prickly Curiosity x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Prickly Curiosity** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional information
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Cactus Nectar]] → 1 × Prickly Curiosity
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Cream]] → 1 × Prickly Curiosity
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Proto-Batter]] + 1 × [[Cactus Jelly]] + 1 × [[Bone Cream]] → 1 × Prickly Curiosity
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

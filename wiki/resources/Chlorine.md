@@ -1,11 +1,17 @@
 ---
 title: "Chlorine"
 category: "resources"
+kind: "resource"
+summary: "A reactive element most easily harvested by processing the salt-infused minerals found in oceans."
 pageId: 89396
-summary: "Chlorine (Cl) is a resource and one of the earth elements."
+revId: 1336004
+revTimestamp: "2026-10-04T12:53:53Z"
+version: "Waypoint"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chlorine"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SUBSTANCE.WATER.2.png","color":"Green","category":"Earth","type":"Processed Aquatic Mineral","rarity":"Rare","used":"Crafting, Charging, Upgrading","symbol":"Cl","value":"205.0","release":"Waypoint"},"value":205,"recipes":[{"type":"refine","inputs":[{"name":"Salt","qty":2}],"outputs":[{"name":"Chlorine","qty":1}],"seconds":0.36,"label":"Concentrate Salt"},{"type":"refine","inputs":[{"name":"Salt","qty":2},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Chlorine","qty":5}],"seconds":0.36,"label":"Efficient Salt Evaporation"},{"type":"refine","inputs":[{"name":"Chlorine","qty":1},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Chlorine","qty":6}],"seconds":0.36,"label":"Chlorine Expansion"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Bonded Chlorine Extraction"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Pugneum Washing"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Salt","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Dissolve Natural Salts"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Chlorine","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Dissolve Natural Salts"}]}
 ---
 
 # Chlorine
@@ -15,16 +21,16 @@ updated: "2026-10-27"
 - **Category:** Earth
 - **Type:** Processed Aquatic Mineral
 - **Rarity:** Rare
-- **Blueprint Value:** 205.0
 - **Used for:** Crafting, Charging, Upgrading
-- **Symbol:** **Cl**
-- **Updated:** Waypoint
+- **Symbol:** Cl
+- **Value:** 205.0
+- **Added in:** Waypoint
 
 **Chlorine** is a resource.
 
 ## Summary
 
-**Chlorine** (**Cl**) is a resource and one of the earth elements.
+**Chlorine** (**Cl**) is a [[resource]] and one of the [[earth elements]].
 
 ## Game description
 
@@ -34,57 +40,25 @@ Used in the manufacture of advanced technologies.
 
 ## Source
 
-Chlorine found in the wild as "Organic Rock"
-
 - Created via further refining (detailed below)
-- Labeled as 'Organic' Rock when using your Analysis Visor
-- Found in large underwater Mineral formations that require an Advanced Mining Laser to harvest.
-- From some Galactic Trade Terminals.
+- Labeled as [['Organic' Rock]] when using your [[Analysis Visor]]
+- Found in large underwater [[Mineral]] formations that require an [[Advanced Mining Laser]] to harvest.
+- From some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
-Chlorine can be refined using a Refiner with the following ingredients:
-
-- Salt ×2 → Chlorine ×1 (*"Concentrate Salt"*, 0.36 sec./unit output)
-- Salt ×2 + Oxygen ×2 → Chlorine ×5 (*"Efficient Salt Evaporation"*, 0.36 sec./unit output)
-- Chlorine ×1 + Oxygen ×2 → Chlorine ×6 (*"Chlorine Expansion"*, 0.36 sec./unit output)
-- Kelp Sac ×1 + Oxygen ×1 → Chlorine ×2 (*"Bonded Chlorine Extraction"*, 0.36 sec./unit output)
-- Kelp Sac ×1 + Pugneum ×1 → Chlorine ×2 (*"Pugneum Washing"*, 0.36 sec./unit output)
-- Kelp Sac ×1 + Salt ×1 → Chlorine ×2 (*"Dissolve Natural Salts"*, 0.36 sec./unit output)
-- Kelp Sac ×1 + Chlorine ×1 → Chlorine ×2 (*"Dissolve Natural Salts"*, 0.36 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Chlorine** is used as an ingredient for crafting the following products:
-
-- Amino Chamber -- Metal Plating x1 + Chlorine x20 + Condensed Carbon x25 → Amino Chamber
-- Nautilon Cannon -- Chlorine x100 + Crystal Sulphide x6 + Living Pearl x2 → Nautilon Cannon
-- Tethys Beam -- Magnetised Ferrite x50 + Chlorine x100 + Living Pearl x10 → Tethys Beam
-
-### Refining
-
-**Chlorine** is used as an ingredient for refining the following products using a Refiner:
-
-- Chlorine -- Chlorine x1 + Oxygen x2 → Chlorine x6 (*"Chlorine Expansion"*, 0.36 sec./unit output)
-- Chlorine -- Kelp Sac x1 + Chlorine x1 → Chlorine x2 (*"Dissolve Natural Salts"*, 0.36 sec./unit output)
-- Enriched Carbon -- Radon x100 + Carbon x20 + Chlorine x5 → Enriched Carbon x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Enriched Carbon -- Radon x100 + Condensed Carbon x10 + Chlorine x5 → Enriched Carbon x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Nitrogen Salt -- Nitrogen x100 + Carbon x20 + Chlorine x5 → Nitrogen Salt x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Nitrogen Salt -- Nitrogen x100 + Condensed Carbon x10 + Chlorine x5 → Nitrogen Salt x1 (*"High-Speed Sublimation"*, 10 sec./unit output)
-- Salt -- Chlorine x1 → Salt x2 (*"Salt Production"*, 0.24 sec./unit output)
-- Thermic Condensate -- Sulphurine x100 + Carbon x20 + Chlorine x5 → Thermic Condensate x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-- Thermic Condensate -- Sulphurine x100 + Condensed Carbon x10 + Chlorine x5 → Thermic Condensate x1 (*"High-Speed Sublimation"*, 45 sec./unit output)
-
-### Cooking
-
-**Chlorine** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Refiner** · *Concentrate Salt* · 0.36 s per unit: 2 × [[Salt]] → 1 × Chlorine
+- **Refiner** · *Efficient Salt Evaporation* · 0.36 s per unit: 2 × [[Salt]] + 2 × [[Oxygen]] → 5 × Chlorine
+- **Refiner** · *Chlorine Expansion* · 0.36 s per unit: 1 × [[Chlorine]] + 2 × [[Oxygen]] → 6 × Chlorine
+- **Refiner** · *Bonded Chlorine Extraction* · 0.36 s per unit: 1 × [[Kelp Sac]] + 1 × [[Oxygen]] → 2 × Chlorine
+- **Refiner** · *Pugneum Washing* · 0.36 s per unit: 1 × [[Kelp Sac]] + 1 × [[Pugneum]] → 2 × Chlorine
+- **Refiner** · *Dissolve Natural Salts* · 0.36 s per unit: 1 × [[Kelp Sac]] + 1 × [[Salt]] → 2 × Chlorine
+- **Refiner** · *Dissolve Natural Salts* · 0.36 s per unit: 1 × [[Kelp Sac]] + 1 × [[Chlorine]] → 2 × Chlorine
 
 ## Additional information
 
-- This resource is used to repair Rusted Circuits on ships you find on planets.
+- This resource is used to repair [[Rusted Circuits]] on ships you find on planets.
 
 ## Release history
 
-- NEXT - Added as a resource.
-- Visions - *Hidden changes:* The information panel has an additional icon indicating its purpose.
-- Waypoint - Value changed, previously was 602.0
+- [[NEXT]] - Added as a resource.
+- [[Visions]] - *Hidden changes:* The information panel has an additional icon indicating its purpose.
+- [[Waypoint]] - Value changed, previously was 602.0

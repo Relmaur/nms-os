@@ -1,11 +1,17 @@
 ---
 title: "Tooth Pickers"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565913
-summary: "Tooth Pickers is a consumable and one of the Edible Products."
+revId: 1337018
+revTimestamp: "2026-10-07T22:48:12Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tooth_Pickers"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000.0","release":"Omega"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Flesh","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Jelly","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Tooth Pickers
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,000.0
-- **Updated:** Omega
+- **Value:** 35,000.0
+- **Added in:** Omega
 
 **Tooth Pickers** is a consumable.
 
 ## Summary
 
-**Tooth Pickers** is a consumable and one of the Edible Products.
+**Tooth Pickers** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,15 +37,9 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Tooth Pickers can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Cactus Flesh x1 → Tooth Pickers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Cactus Nectar x1 → Tooth Pickers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Cactus Jelly x1 → Tooth Pickers x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Tooth Pickers** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Cactus Flesh]] → 1 × Tooth Pickers
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Cactus Nectar]] → 1 × Tooth Pickers
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Cactus Jelly]] → 1 × Tooth Pickers
 
 ## Use
 
@@ -47,20 +47,9 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +43% Heat Resistance *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Tooth Pickers gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 41%
-- Catch Size Improvement: 2%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

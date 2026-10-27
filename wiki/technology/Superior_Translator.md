@@ -1,11 +1,17 @@
 ---
 title: "Superior Translator"
 category: "technology"
+kind: "technology"
+summary: "An Automatic translation device. It records and parses nearby conversations before running the data through a contextual learning system to determine intended meaning."
 pageId: 150579
-summary: "Superior Translator is a type of technology."
+revId: 1125470
+revTimestamp: "2023-05-19T21:21:45Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Superior_Translator"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"AUTOTRANSLATOR.png","color":"blue","category":"Exosuit","type":"Automatic Language Parser","stats":"Words Translated 2.0","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Quantum Computer","qty":1},{"name":"Chromatic Metal","qty":50}],"outputs":[{"name":"Superior Translator","qty":1}],"blueprint":true}]}
 ---
 
 # Superior Translator
@@ -15,30 +21,28 @@ updated: "2026-10-27"
 - **Category:** Exosuit
 - **Type:** Automatic Language Parser
 - **Stats:** Words Translated 2.0
-- **Updated:** Origins
+- **Added in:** Origins
 
 **Superior Translator** is a type of technology.
 
 ## Summary
 
-**Superior Translator** technology allows a player to understand alien words more quickly. The additional words are not permanently learned, only understood.
+**Superior Translator** [[technology]] allows a player to understand alien words more quickly. The additional words are not permanently learned, only understood.
 
 ## Game Description
 
-An Automatic translation device. It records and parses nearby conversations before running the data through a contextual learning system to determine intended meaning.
+An [[Automatic translation device]]. It records and parses nearby conversations before running the data through a contextual learning system to determine intended meaning.
 
 Parallel language processors enable a greater proportion of recorded speech to be translated.
 
 ## Source
 
-The blueprint can be acquired from Technology Merchants selling Exosuit technologies.
-The blueprint can be acquired from Iteration: Selene on the Space Anomaly.
+The blueprint can be acquired from [[Technology Merchant|Technology Merchants]] selling [[Exosuit]] technologies.
+The [[blueprint]] can be acquired from [[Iteration: Selene]] on the [[Space Anomaly]].
 
 ## Crafting
 
-Superior Translator can be built using a blueprint and the following ingredients:
-
-- Wiring Loom ×2 + Quantum Computer ×1 + Chromatic Metal ×50 → Superior Translator
+- **Crafting** · needs the blueprint: 2 × [[Wiring Loom]] + 1 × [[Quantum Computer]] + 50 × [[Chromatic Metal]] → 1 × Superior Translator
 
 ## Additional information
 
@@ -48,12 +52,12 @@ The "Words Translated" stat operates as follows:
 
 There are several variations of this technology:
 
-- Tier C - Artemis' Translator
-- Tier B - Simple Translator
-- Tier A - Superior Translator
-- Tier S - Advanced Translator
+- Tier C - [[Artemis' Translator]]
+- Tier B - [[Simple Translator]]
+- Tier A - [[Superior Translator]]
+- Tier S - [[Advanced Translator]]
 
 ## Release history
 
-- Beyond - Added as a technology.
-- Origins - Blueprint changed, previously used Sodium Diode.
+- [[Beyond]] - Added as a technology.
+- [[Origins]] - Blueprint changed, previously used [[Sodium Diode]].

@@ -1,11 +1,17 @@
 ---
 title: "Oxygen Filter"
 category: "products"
+kind: "product"
+summary: "A specialist technology component."
 pageId: 90700
-summary: "Oxygen Filter is a component that is used for crafting."
+revId: 597504
+revTimestamp: "2020-09-28T06:25:15Z"
+version: "Origins"
+obsolete: true
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Filter"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.OXYCRAFT.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"615.0","release":"Origins"},"value":615,"recipes":[]}
 ---
 
 # Oxygen Filter
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Crafted Technology Component
-- **Total Value:** 615.0
-- **Updated:** Origins
+- **Value:** 615.0
+- **Added in:** Origins
 
 **Oxygen Filter** is a component.
 
 ## Summary
 
-**Oxygen Filter** is a component that is used for crafting.
+**Oxygen Filter** is a [[component]] that is used for crafting.
 
 ## Game description
 
@@ -31,13 +37,9 @@ This small device can rapidly change the gaseous environment within a device, ha
 
 ## Source
 
-Available from some Galactic Trade Terminals.
-
-## Use
-
-**Oxygen Filter** is not used as an ingredient for crafting.
+Available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
 ## Release history
 
-- NEXT - Added as a product. It has a different colored icon as Boiler Unit, Mineral Compressor and Organic Piping.
-- Origins - made obsolete, cannot be crafted anymore.
+- [[NEXT]] - Added as a product. It has a different colored icon as [[Boiler Unit]], [[Mineral Compressor]] and [[Organic Piping]].
+- [[Origins]] - made obsolete, cannot be crafted anymore.

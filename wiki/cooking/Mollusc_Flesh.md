@@ -1,11 +1,17 @@
 ---
 title: "Mollusc Flesh"
 category: "cooking"
+kind: "product"
+summary: "A small morsel of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 579888
-summary: "Mollusc Flesh is a consumable and one of the Edible Products."
+revId: 1329118
+revTimestamp: "2026-08-13T21:42:11Z"
+version: "Voyagers"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mollusc_Flesh"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Voyagers"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Shrieking Oyster","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Weltscale Clam","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ionised Clam","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Cadmium Pearlcase","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frozen Whelk","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frostshell Clam","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Erased Clam","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Pressurised Clam","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Inert Whelk","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ionised Oyster","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Mother-of-Quicksilver","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Hyper-Cockle","qty":1}],"outputs":[{"name":"Mollusc Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Mollusc Flesh
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Voyagers
+- **Value:** 33,100
+- **Added in:** Voyagers
 
 **Mollusc Flesh** is a consumable.
 
 ## Summary
 
-**Mollusc Flesh** is a consumable and one of the Edible Products.
+**Mollusc Flesh** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,44 +37,24 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **25% hazard protection**.
-
-- When consumed through a Nutrient Ingestor, **Mollusc Flesh** provides **+44% Breathing Efficiency** for 5:30 minutes.
-
-## Fishing Bait
-
-When applied as bait, Mollusc Flesh gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 6%
-- Catch Size Improvement: 10%
+Exosuit nutrient system will restore **25% [[hazard protection]]**.
+- When consumed through a [[Nutrient Ingestor]], **Mollusc Flesh** provides **+44% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 
-Mollusc Flesh can be cooked using a Nutrient Processor with the following ingredients:
-
-- Shrieking Oyster x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Weltscale Clam x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Ionised Clam x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Cadmium Pearlcase x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Frozen Whelk x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Frostshell Clam x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Erased Clam x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Pressurised Clam x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Inert Whelk x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Ionised Oyster x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Mother-of-Quicksilver x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Hyper-Cockle x1 → Mollusc Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Mollusc Flesh** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Mollusc Flesh x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Mollusc Flesh x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Mollusc Flesh x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Mollusc Flesh x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Mollusc Flesh x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Shrieking Oyster]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Weltscale Clam]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ionised Clam]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Cadmium Pearlcase]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Frozen Whelk]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Frostshell Clam]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Erased Clam]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Pressurised Clam]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Inert Whelk]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ionised Oyster]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Mother-of-Quicksilver]] → 1 × Mollusc Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Hyper-Cockle]] → 1 × Mollusc Flesh
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

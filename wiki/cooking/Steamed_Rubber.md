@@ -1,11 +1,17 @@
 ---
 title: "Steamed Rubber"
 category: "cooking"
+kind: "product"
+summary: "A slab of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 593844
-summary: "Steamed Rubber is a consumable and one of the Edible Products."
+revId: 1329155
+revTimestamp: "2026-08-13T23:40:26Z"
+version: "Voyagers"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Steamed_Rubber"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.SQUID.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Voyagers"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Plasmatic Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Colossal Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Gamma Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Vampire Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Alpha Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Void Squid","qty":1}],"outputs":[{"name":"Steamed Rubber","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Steamed Rubber
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Voyagers
+- **Value:** 33,100
+- **Added in:** Voyagers
 
 **Steamed Rubber** is a consumable.
 
 ## Summary
 
-**Steamed Rubber** is a consumable and one of the Edible Products.
+**Steamed Rubber** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -32,38 +38,17 @@ Can be consumed as it stands or subjected to further processing.
 ## Nutrient Ingestor
 
 Exosuit nutrient system will restore **2% health**.
-
-- When consumed through a Nutrient Ingestor, **Steamed Rubber** provides **+42% Breathing Efficiency** for 5:30 minutes.
-
-## Fishing Bait
-
-When applied as bait, Steamed Rubber gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 2%
-- Other notes: Attracts storm-loving fish
+- When consumed through a [[Nutrient Ingestor]], **Steamed Rubber** provides **+42% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 
-Steamed Rubber can be cooked using a Nutrient Processor with the following ingredients:
-
-- Plasmatic Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Colossal Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Gamma Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Vampire Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Alpha Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Void Squid x1 → Steamed Rubber x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Steamed Rubber** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Steamed Rubber x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Steamed Rubber x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Steamed Rubber x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Steamed Rubber x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Steamed Rubber x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Plasmatic Squid]] → 1 × Steamed Rubber
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Colossal Squid]] → 1 × Steamed Rubber
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Gamma Squid]] → 1 × Steamed Rubber
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Vampire Squid]] → 1 × Steamed Rubber
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Alpha Squid]] → 1 × Steamed Rubber
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Void Squid]] → 1 × Steamed Rubber
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

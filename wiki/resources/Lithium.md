@@ -1,11 +1,17 @@
 ---
 title: "Lithium"
 category: "resources"
-pageId: 581177
+kind: "resource"
 summary: "Local metallic extract, typically found in large deposits or harvested from common mineral formations after inspection with an Analysis Visor."
+pageId: 581177
+revId: 1335135
+revTimestamp: "2026-09-30T19:55:17Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lithium"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"Substance.biome.waterworld.png","color":"Blue","type":"Localised Earth Element","rarity":"Uncommon","symbol":"Li","value":"72","release":"WorldsTwo"},"value":72,"recipes":[{"type":"refine","inputs":[{"name":"Crystallised Helium","qty":1},{"name":"Quartzite","qty":1}],"outputs":[{"name":"Lithium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Crystallised Helium","qty":1},{"name":"Activated Quartzite","qty":1}],"outputs":[{"name":"Lithium","qty":2}],"seconds":0.18,"label":"Environmental Element Transfer"}]}
 ---
 
 # Lithium
@@ -14,15 +20,15 @@ updated: "2026-10-27"
 
 - **Type:** Localised Earth Element
 - **Rarity:** Uncommon
-- **Blueprint Value:** 72
-- **Symbol:** **Li**
-- **Updated:** WorldsTwo
+- **Symbol:** Li
+- **Value:** 72
+- **Added in:** WorldsTwo
 
 **Lithium** is a resource.
 
 ## Summary
 
-**Lithium** (**Li**) is a resource.
+**Lithium** (**Li**) is a [[resource]].
 
 ## Game description
 
@@ -34,36 +40,8 @@ Typically found on ocean planets.
 
 It can be found in planetary deposits on ocean planets.
 
-Lithium can be refined using a Refiner with the following ingredients:
-
-- Crystallised Helium ×1 + Quartzite ×1 → Lithium ×1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Crystallised Helium ×1 + Activated Quartzite ×1 → Lithium ×2 (*"Environmental Element Transfer"*, 0.18 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Lithium** is used as an ingredient for crafting the following products:
-
-- Dredging Laser -- Magnetised Ferrite x80 + Lithium x90 + Crystal Sulphide x4 → Dredging Laser
-
-### Refining
-
-**Lithium** is used as an ingredient for refining the following products using a Refiner:
-
-- Activated Quartzite -- Methane x1 + Lithium x1 + Quartzite x1 → Activated Quartzite x1 (*"Loosen Bonds"*, 0.36 sec./unit output)
-- Crystallised Helium -- Lithium x1 + Activated Quartzite x1 → Crystallised Helium x2 (*"Environmental Element Transfer"*, 0.18 sec./unit output)
-- Crystallised Helium -- Lithium x1 + Quartzite x1 → Crystallised Helium x1 (*"Environmental Element Transfer"*, 0.36 sec./unit output)
-- Ferrite Dust -- Lithium x1 → Ferrite Dust x1 (*"Ferrite Dust Extraction"*, 0.36 sec./unit output)
-- Kelp Sac -- Lithium x1 + Methane x1 → Kelp Sac x1 (*"Organic Expansion"*, 0.36 sec./unit output)
-- Pyrite -- Lithium x1 + Ferrite Dust x1 → Pyrite x1 (*"Loosen Bonds"*, 0.36 sec./unit output)
-- Pyrite -- Lithium x1 + Magnetised Ferrite x1 → Pyrite x3 (*"Loosen Bonds"*, 0.12 sec./unit output)
-- Pyrite -- Lithium x1 + Pure Ferrite x1 → Pyrite x2 (*"Loosen Bonds"*, 0.18 sec./unit output)
-- Sodium Nitrate -- Methane x1 + Lithium x1 + Activated Quartzite x1 → Sodium Nitrate x2 (*"Loosen Bonds"*, 0.18 sec./unit output)
-
-### Cooking
-
-**Lithium** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Refiner** · *Environmental Element Transfer* · 0.36 s per unit: 1 × [[Crystallised Helium]] + 1 × [[Quartzite]] → 1 × Lithium
+- **Refiner** · *Environmental Element Transfer* · 0.18 s per unit: 1 × [[Crystallised Helium]] + 1 × [[Activated Quartzite]] → 2 × Lithium
 
 ## Additional Information
 
@@ -71,4 +49,4 @@ Is used for upgrading certain settlement buildings.
 
 ## Release History
 
-- Worlds Part II - added as a resource.
+- [[Worlds Part II]] - added as a resource.

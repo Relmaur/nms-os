@@ -1,11 +1,17 @@
 ---
 title: "Wriggling Tack"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 566048
-summary: "Wriggling Tack is a consumable and one of the Edible Products."
+revId: 1337017
+revTimestamp: "2026-10-07T22:46:42Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wriggling_Tack"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"55,000.0","release":"Omega"},"value":55000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Flesh Rope","qty":1}],"outputs":[{"name":"Wriggling Tack","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Nightmare Sausage","qty":1}],"outputs":[{"name":"Wriggling Tack","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Wriggling Tack
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 55,000.0
-- **Updated:** Omega
+- **Value:** 55,000.0
+- **Added in:** Omega
 
 **Wriggling Tack** is a consumable.
 
 ## Summary
 
-**Wriggling Tack** is a consumable and one of the Edible Products.
+**Wriggling Tack** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,24 +37,8 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Wriggling Tack can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Flesh Rope x1 → Wriggling Tack x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Nightmare Sausage x1 → Wriggling Tack x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Usage
-
-### Crafting
-
-**Wriggling Tack** is not used as an ingredient for crafting.
-
-### Refining
-
-**Wriggling Tack** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Wriggling Tack** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Flesh Rope]] → 1 × Wriggling Tack
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Nightmare Sausage]] → 1 × Wriggling Tack
 
 ## Use
 
@@ -56,20 +46,9 @@ Exosuit nutrient system will restore 40% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +39% Radiation Resistance *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Wriggling Tack gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 9%
-- Catch Size Improvement: 24%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

@@ -1,11 +1,17 @@
 ---
 title: "Jam Fluffer"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142801
-summary: "Jam Fluffer is a consumable and one of the Edible Products."
+revId: 1243697
+revTimestamp: "2025-09-26T01:28:29Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jam_Fluffer"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.CUPCAKEFLUFFY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,200.0","release":"Prisms"},"value":35200,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Jam Fluffer
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,200.0
-- **Updated:** Prisms
+- **Value:** 35,200.0
+- **Added in:** Prisms
 
 **Jam Fluffer** is a consumable.
 
 ## Summary
 
-**Jam Fluffer** is a consumable and one of the Edible Products.
+**Jam Fluffer** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,16 +37,10 @@ These cake-like nutrients are processed from a base of Extra-Fluffy Batter.
 
 ## Source
 
-Jam Fluffer can be cooked using a Nutrient Processor with the following ingredients:
-
-- Extra-Fluffy Batter x1 + Grahj'am x1 + Cream x1 → Jam Fluffer x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Extra-Fluffy Batter x1 + Grahj'am x1 + Bone Cream x1 → Jam Fluffer x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Extra-Fluffy Batter x1 + Furball Jelly x1 + Cream x1 → Jam Fluffer x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Extra-Fluffy Batter x1 + Furball Jelly x1 + Bone Cream x1 → Jam Fluffer x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Jam Fluffer** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Grahj'am]] + 1 × [[Cream]] → 1 × Jam Fluffer
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Grahj'am]] + 1 × [[Bone Cream]] → 1 × Jam Fluffer
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Furball Jelly]] + 1 × [[Cream]] → 1 × Jam Fluffer
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Extra-Fluffy Batter]] + 1 × [[Furball Jelly]] + 1 × [[Bone Cream]] → 1 × Jam Fluffer
 
 ## Additional information
 
@@ -48,4 +48,4 @@ Nutrient Ingestor Effect +6,141% Fauna Analysis Rewards, Duration 10 minutes
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

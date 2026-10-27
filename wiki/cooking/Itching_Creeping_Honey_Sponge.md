@@ -1,11 +1,17 @@
 ---
 title: "Itching, Creeping Honey Sponge"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142797
-summary: "Itching, Creeping Honey Sponge is a consumable."
+revId: 1214582
+revTimestamp: "2024-11-10T16:35:11Z"
+version: "Fractal"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Itching%2C_Creeping_Honey_Sponge"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"142,900.0","release":"Fractal"},"value":142900,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Itching, Creeping Honey Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Itching, Creeping Honey Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Itching, Creeping Honey Sponge
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 142,900.0
-- **Updated:** Fractal
+- **Value:** 142,900.0
+- **Added in:** Fractal
 
 **Itching, Creeping Honey Sponge** is a consumable.
 
 ## Summary
 
-**Itching, Creeping Honey Sponge** is a consumable and one of the Edible Products.
+**Itching, Creeping Honey Sponge** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,19 +37,13 @@ These cake-like nutrients are processed from a base of Writhing, Roiling Batter.
 
 ## Source
 
-Itching, Creeping Honey Sponge can be cooked using a Nutrient Processor with the following ingredients:
-
-- Writhing, Roiling Batter x1 + Sticky 'Honey' x1 → Itching, Creeping Honey Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Writhing, Roiling Batter x1 + Gooey Butter x1 → Itching, Creeping Honey Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Itching, Creeping Honey Sponge** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Sticky 'Honey']] → 1 × Itching, Creeping Honey Sponge
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Gooey Butter]] → 1 × Itching, Creeping Honey Sponge
 
 ## Additional information
 
-Provides a Jetpack Supercharge similar to the Deuterium plant boost when it is consumed.
+Provides a [[Jetpack]] Supercharge similar to the [[Jetpack|Deuterium plant boost]] when it is consumed.
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

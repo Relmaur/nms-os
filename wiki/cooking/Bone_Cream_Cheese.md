@@ -1,11 +1,17 @@
 ---
 title: "Bone Cream (Cheese)"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 332108
-summary: "Bone Cream is a consumable and one of the Edible Products."
+revId: 1332484
+revTimestamp: "2026-09-13T15:51:02Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bone_Cream_(Cheese)"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"name":"Bone Cream","image":"PRODUCT.REFINED.BUTTER.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"32,000.0","release":"Origins"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Bone Cream","qty":1},{"name":"Wild Yeast","qty":1}],"outputs":[{"name":"Bone Cream (Cheese)","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 
 # Bone Cream (Cheese)
@@ -14,53 +20,25 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 32,000.0
-- **Updated:** Origins
+- **Value:** 32,000.0
+- **Added in:** Origins
 
 **Bone Cream** is a consumable.
 
 ## Summary
 
-**Bone Cream** is a consumable and one of the Edible Products.
+**Bone Cream** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be **highly valuable**. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]]. Food such as this can be **highly valuable**. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subject to further processing.
 
 ## Source
 
-Bone Cream (Cheese) can be cooked using a Nutrient Processor with the following ingredients:
-
-- Bone Cream x1 + Wild Yeast x1 → Bone Cream (Cheese) x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Bone Cream (Cheese)** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Baked Cheese Tart -- Pie Case x1 + Bone Cream (Cheese) x1 → Baked Cheese Tart x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Bugs-in-a-Blanket -- Creature Egg x1 + Bone Cream (Cheese) x1 + Juicy Thorax x1 → Bugs-in-a-Blanket x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Bugs-in-a-Blanket -- Giant Egg x1 + Bone Cream (Cheese) x1 + Juicy Thorax x1 → Bugs-in-a-Blanket x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Bugs-in-a-Blanket -- Tall Eggs x1 + Bone Cream (Cheese) x1 + Juicy Thorax x1 → Bugs-in-a-Blanket x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Cheesy Vegetable Pie -- Pie Case x1 + Bone Cream (Cheese) x1 + Aloe Flesh x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Cheesy Vegetable Pie -- Pie Case x1 + Bone Cream (Cheese) x1 + Jade Peas x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Cheesy Vegetable Pie -- Pie Case x1 + Bone Cream (Cheese) x1 + Pulpy Roots x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Cheesy Vegetable Pie -- Pie Case x1 + Bone Cream (Cheese) x1 + Sievert Beans x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Cheesy Vegetable Pie -- Pie Case x1 + Bone Cream (Cheese) x1 + Solartillo x1 → Cheesy Vegetable Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-- Curdy Cracker -- Sugar Dough x1 + Bone Cream (Cheese) x1 → Curdy Cracker x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Fungal Omelette -- Creature Egg x1 + Bone Cream (Cheese) x1 + Foraged Mushrooms x1 → Fungal Omelette x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Fungal Omelette -- Giant Egg x1 + Bone Cream (Cheese) x1 + Foraged Mushrooms x1 → Fungal Omelette x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Fungal Omelette -- Tall Eggs x1 + Bone Cream (Cheese) x1 + Foraged Mushrooms x1 → Fungal Omelette x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Partially-Liquid Cheese -- Cream x1 + Bone Cream (Cheese) x1 → Partially-Liquid Cheese x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Partially-Liquid Cheese -- Proto-Cream x1 + Bone Cream (Cheese) x1 → Partially-Liquid Cheese x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scrambled Marrow -- Creature Egg x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Scrambled Marrow -- Giant Egg x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Scrambled Marrow -- Tall Eggs x1 + Bone Cream (Cheese) x1 → Scrambled Marrow x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-- Whispering Omelette -- Larval Core x1 + Bone Cream (Cheese) x1 → Whispering Omelette x1 (*"Bind Proteins"*, 2.5 sec./unit output)
-
-## Additional information
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Bone Cream]] + 1 × [[Wild Yeast]] → 1 × Bone Cream (Cheese)
 
 ## Release history
 
-- Origins - Added as a consumable.
+- [[Origins]] - Added as a consumable.

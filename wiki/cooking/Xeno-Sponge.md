@@ -1,11 +1,17 @@
 ---
 title: "Xeno-Sponge"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 573162
-summary: "Xeno-Sponge is a consumable and one of the Edible Products."
+revId: 1214550
+revTimestamp: "2024-11-10T16:24:00Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Xeno-Sponge"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"80,800","release":"WorldsOne"},"value":80800,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Xeno-Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Xeno-Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Xeno-Sponge
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 80,800
-- **Updated:** WorldsOne
+- **Value:** 80,800
+- **Added in:** WorldsOne
 
 **Xeno-Sponge** is a consumable.
 
 ## Summary
 
-**Xeno-Sponge** is a consumable and one of the Edible Products.
+**Xeno-Sponge** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,14 +37,8 @@ These cake-like nutrients are processed from a base of Thick, Sweet Batter.
 
 ## Source
 
-Xeno-Sponge can be cooked using a Nutrient Processor with the following ingredients:
-
-- Syrupy Batter x1 + Anomalous Jam x1 + Cream x1 → Xeno-Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Syrupy Batter x1 + Anomalous Jam x1 + Bone Cream x1 → Xeno-Sponge x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Xeno-Sponge** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Anomalous Jam]] + 1 × [[Cream]] → 1 × Xeno-Sponge
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Syrupy Batter]] + 1 × [[Anomalous Jam]] + 1 × [[Bone Cream]] → 1 × Xeno-Sponge
 
 ## Additional Information
 
@@ -46,4 +46,4 @@ Restores 50% health once consumed.
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
+- [[Worlds Part I]] - Added as a consumable.

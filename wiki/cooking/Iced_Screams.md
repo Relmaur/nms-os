@@ -1,11 +1,17 @@
 ---
 title: "Iced Screams"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142794
-summary: "Iced Screams is a consumable and one of the Edible Products."
+revId: 1336953
+revTimestamp: "2026-10-07T20:38:22Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iced_Screams"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.ICECREAM.png","category":"Consumable","type":"Edible Product","value":"90,000.0","release":"Aquarius"},"value":90000,"recipes":[{"type":"cook","inputs":[{"name":"Hypnotic Eye","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Horrifying Mush","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Hypnotic Eye","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Horrifying Mush","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"}]}
 ---
 
 # Iced Screams
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 90,000.0
-- **Updated:** Aquarius
+- **Value:** 90,000.0
+- **Added in:** Aquarius
 
 **Iced Screams** is a consumable.
 
 ## Summary
 
-**Iced Screams** is a consumable and one of the Edible Products.
+**Iced Screams** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,16 +37,10 @@ Food such as this can be highly valuable.
 
 ## Source
 
-Iced Screams can be cooked using a Nutrient Processor with the following ingredients:
-
-- Hypnotic Eye x1 + Frozen Tubers x1 → Iced Screams x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Horrifying Mush x1 + Frozen Tubers x1 → Iced Screams x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Hypnotic Eye x1 + Frost Crystal x1 → Iced Screams x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-- Horrifying Mush x1 + Frost Crystal x1 → Iced Screams x1 (*"Rapid Chilling"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Iced Screams** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Hypnotic Eye]] + 1 × [[Frozen Tubers]] → 1 × Iced Screams
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Horrifying Mush]] + 1 × [[Frozen Tubers]] → 1 × Iced Screams
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Hypnotic Eye]] + 1 × [[Frost Crystal]] → 1 × Iced Screams
+- **Nutrient Processor** · *Rapid Chilling* · 2.5 s per unit: 1 × [[Horrifying Mush]] + 1 × [[Frost Crystal]] → 1 × Iced Screams
 
 ## Use
 
@@ -48,21 +48,10 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +54% Cold Resistance *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Iced Screams gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 40%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Beyond - Added as a consumable.
-- Aquarius - Can be used as bait for fishing.
+- [[Beyond]] - Added as a consumable.
+- [[Update 5.10|Aquarius]] - Can be used as bait for fishing.

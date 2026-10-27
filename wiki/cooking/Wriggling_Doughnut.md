@@ -1,11 +1,17 @@
 ---
 title: "Wriggling Doughnut"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142882
-summary: "Wriggling Doughnut is a consumable and one of the Edible Products."
+revId: 1295608
+revTimestamp: "2026-03-10T01:07:12Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wriggling_Doughnut"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"70,000","release":"WorldsOne"},"value":70000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Wriggling Jam","qty":1}],"outputs":[{"name":"Wriggling Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 
 # Wriggling Doughnut
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 70,000
-- **Updated:** WorldsOne
+- **Value:** 70,000
+- **Added in:** WorldsOne
 
 **Wriggling Doughnut** is a consumable.
 
 ## Summary
 
-**Wriggling Doughnut** is a consumable and one of the Edible Products.
+**Wriggling Doughnut** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,13 +37,7 @@ Food such as this can be highly valuable.
 
 ## Source
 
-Wriggling Doughnut can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lumpen Doughnut x1 + Wriggling Jam x1 → Wriggling Doughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Wriggling Doughnut** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Wriggling Jam]] → 1 × Wriggling Doughnut
 
 ## Additional Information
 
@@ -47,4 +47,4 @@ Exosuit nutrient system will activate 8 seconds jetpack overload when consumed.
 
 ## Release History
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

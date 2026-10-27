@@ -1,11 +1,17 @@
 ---
 title: "Hydraulic Wiring"
 category: "products"
+kind: "product"
+summary: "Specialist wiring and control threads, this flexible material allows the transmission of power and signals, as well as offering direct manipulation of remote components."
 pageId: 218516
-summary: "Hydraulic Wiring is a component that is used for crafting."
+revId: 1252627
+revTimestamp: "2025-11-04T00:02:15Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hydraulic_Wiring"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.HYDRALIC.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"3,600.0","release":"Prisms"},"value":3600,"recipes":[{"type":"craft","inputs":[{"name":"Carbon Nanotubes","qty":2},{"name":"Salt","qty":20},{"name":"Di-hydrogen","qty":40}],"outputs":[{"name":"Hydraulic Wiring","qty":1}],"blueprint":true}]}
 ---
 
 # Hydraulic Wiring
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Crafted Technology Component
-- **Total Value:** 3,600.0
-- **Updated:** Prisms
+- **Value:** 3,600.0
+- **Added in:** Prisms
 
 **Hydraulic Wiring** is a component.
 
 ## Summary
 
-**Hydraulic Wiring** is a component that is used for crafting.
+**Hydraulic Wiring** is a [[component]] that is used for crafting.
 
 ## Game description
 
@@ -31,30 +37,13 @@ Used in the creation of a wide range of advanced technologies.
 
 ## Source
 
-- Blueprint can be found in Manufacturing Facilities and Operations Centres, or purchased from Synthesis Laboratory for 250.
-- Available from some Galactic Trade Terminals.
-- Available from some Technology Merchants for 5000+ units
+- Blueprint can be found in [[Manufacturing Facility|Manufacturing Facilities]] and [[Operations Centre|Operations Centres]], or purchased from [[Synthesis Laboratory]] for 250  Nanites.
+- Available from some [[Galactic Trade Terminal|Galactic Trade Terminals]].
+- Available from some [[Technology Merchant|Technology Merchants]] for 5000+ units
 
-Hydraulic Wiring can be built using a blueprint and the following ingredients:
-
-- Carbon Nanotubes ×2 + Salt ×20 + Di-hydrogen ×40 → Hydraulic Wiring
-
-## Use
-
-**Hydraulic Wiring** is used as an ingredient for crafting the following products:
-
-- Hardframe Left Arm -- Chromatic Metal x50 + Pugneum x40 + Hydraulic Wiring x1 → Hardframe Left Arm
-- Hardframe Right Arm -- Ionised Cobalt x30 + Pugneum x40 + Hydraulic Wiring x1 → Hardframe Right Arm
-- Homeworld Repeater -- Hydraulic Wiring x1 + Gold x20 + Magnetised Ferrite x60 → Homeworld Repeater
-- Liquidator Legs -- Quad Servo x1 + Hydraulic Wiring x2 → Liquidator Legs
-- Lost Angler's Rig -- Hydraulic Wiring x2 + Salt x60 + Silver x90 → Lost Angler's Rig
-- Mineral Compressor -- Hydraulic Wiring x1 + Gold x50 → Mineral Compressor
-- Mineral Processing Rig -- Magnetised Ferrite x100 + Hydraulic Wiring x2 + Microprocessor x4 → Mineral Processing Rig
-- Q-Resonator -- Hydraulic Wiring x3 + Quantum Computer x1 + Wiring Loom x2 → Q-Resonator
-- Refiner Unit -- Platinum x20 + Hydraulic Wiring x1 → Refiner Unit
-- Rocket Boots -- Tritium x100 + Hydraulic Wiring x1 → Rocket Boots
+- **Crafting** · needs the blueprint: 2 × [[Carbon Nanotubes]] + 20 × [[Salt]] + 40 × [[Di-hydrogen]] → 1 × Hydraulic Wiring
 
 ## Release history
 
-- Origins - Added as a product.
-- Prisms - Added Synthesis Laboratory as a blueprint source.
+- [[Origins]] - Added as a product.
+- [[Prisms]] - Added Synthesis Laboratory as a blueprint source.

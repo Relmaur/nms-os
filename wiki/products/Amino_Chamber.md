@@ -1,11 +1,17 @@
 ---
 title: "Amino Chamber"
 category: "products"
+kind: "product"
+summary: "A specialist biological catalyzation device."
 pageId: 218519
-summary: "Amino Chamber is a component that is used for crafting."
+revId: 1029500
+revTimestamp: "2022-08-03T14:06:34Z"
+version: "Endurance"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Amino_Chamber"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.BIO.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"12,300.0","release":"Endurance"},"value":12300,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Chlorine","qty":20},{"name":"Condensed Carbon","qty":25}],"outputs":[{"name":"Amino Chamber","qty":1}],"blueprint":true}]}
 ---
 
 # Amino Chamber
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Component
 - **Type:** Crafted Technology Component
-- **Total Value:** 12,300.0
-- **Updated:** Endurance
+- **Value:** 12,300.0
+- **Added in:** Endurance
 
 **Amino Chamber** is a component.
 
 ## Summary
 
-**Amino Chamber** is a component that is used for crafting.
+**Amino Chamber** is a [[component]] that is used for crafting.
 
 ## Game description
 
@@ -31,27 +37,13 @@ This unit takes advantage of naturally occurring enzymes in order to facilitate 
 
 ## Source
 
-- Blueprint can be found in Manufacturing Facilities and Operations Centres, or purchased from Synthesis Laboratory for 250.
-- Available from some Technology Merchants for 5000+ units
-- From some Galactic Trade Terminals.
+- Blueprint can be found in [[Manufacturing Facility|Manufacturing Facilities]] and [[Operations Centre|Operations Centres]], or purchased from [[Synthesis Laboratory]] for 250  Nanites.
+- Available from some [[Technology Merchant|Technology Merchants]] for 5000+ units
+- From some [[Galactic Trade Terminal|Galactic Trade Terminals]].
 
-Amino Chamber can be built using a blueprint and the following ingredients:
-
-- Metal Plating ×1 + Chlorine ×20 + Condensed Carbon ×25 → Amino Chamber
-
-## Use
-
-**Amino Chamber** is used as an ingredient for crafting the following products:
-
-- Ariadne's Flame -- Amino Chamber x1 + Metal Plating x4 + Carbon Nanotubes x10 → Ariadne's Flame
-- Automated Feeder -- Metal Plating x4 + Amino Chamber x1 + Creature Pellets x10 → Automated Feeder
-- Bionic Lure -- Amino Chamber x2 + Ion Battery x3 + Lubricant x3 → Bionic Lure x20
-- Dyson Pump -- Amino Chamber x3 + Wiring Loom x2 → Dyson Pump
-- Medi-Pod -- Gold x50 + Hermetic Seal x3 + Amino Chamber x1 → Medi-Pod
-- Plasma Launcher -- Amino Chamber x1 + Hermetic Seal x1 + Wiring Loom x1 → Plasma Launcher
-- Teleport Chamber -- Silver x60 + Antimatter x3 + Amino Chamber x1 → Teleport Chamber
+- **Crafting** · needs the blueprint: 1 × [[Metal Plating]] + 20 × [[Chlorine]] + 25 × [[Condensed Carbon]] → 1 × Amino Chamber
 
 ## Release history
 
-- Origins - Added as a product.
-- Prisms - Added Synthesis Laboratory as a blueprint source.
+- [[Origins]] - Added as a product.
+- [[Prisms]] - Added Synthesis Laboratory as a blueprint source.

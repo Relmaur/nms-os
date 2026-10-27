@@ -1,11 +1,17 @@
 ---
 title: "Snail Fillet"
 category: "cooking"
+kind: "product"
+summary: "A small morsel of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 629998
-summary: "Snail Fillet is a consumable and one of the Edible Products."
+revId: 1329157
+revTimestamp: "2026-08-13T23:41:06Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Snail_Fillet"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Ash Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Breach Crawler","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Evaporating Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Singing Sea-Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Nautilia","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Snail Fillet
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 33,100
-- **Updated:** Aquarius
+- **Value:** 33,100
+- **Added in:** Aquarius
 
 **Snail Fillet** is a consumable.
 
 ## Summary
 
-**Snail Fillet** is a consumable and one of the Edible Products.
+**Snail Fillet** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,37 +37,17 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **20% life support power**.
-
-- When consumed through a Nutrient Ingestor, **Snail Fillet** provides **+51% Breathing Efficiency** for 6 minutes.
-
-## Fishing Bait
-
-When applied as bait, Snail Fillet gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 14%
+Exosuit nutrient system will restore **20% [[life support]] power**.
+- When consumed through a [[Nutrient Ingestor]], **Snail Fillet** provides **+51% Breathing Efficiency** for 6 minutes.
 
 ## Source
 
-Snail Fillet can be cooked using a Nutrient Processor with the following ingredients:
-
-- Ash Snail x1 → Snail Fillet x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Breach Crawler x1 → Snail Fillet x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Evaporating Snail x1 → Snail Fillet x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Singing Sea-Snail x1 → Snail Fillet x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Nautilia x1 → Snail Fillet x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Snail Fillet** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Snail Fillet x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Snail Fillet x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Snail Fillet x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Snail Fillet x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Snail Fillet x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ash Snail]] → 1 × Snail Fillet
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Breach Crawler]] → 1 × Snail Fillet
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Evaporating Snail]] → 1 × Snail Fillet
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Singing Sea-Snail]] → 1 × Snail Fillet
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Nautilia]] → 1 × Snail Fillet
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

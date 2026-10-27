@@ -1,11 +1,17 @@
 ---
 title: "'Apple' Cake of Lost Souls"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142678
-summary: "'Apple' Cake of Lost Souls is a consumable."
+revId: 1320847
+revTimestamp: "2026-06-17T21:01:04Z"
+version: "Swarm"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/'Apple'_Cake_of_Lost_Souls"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"176,900","release":"Swarm"},"value":176900,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"'Apple' Cake of Lost Souls","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"'Apple' Cake of Lost Souls","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"'Apple' Cake of Lost Souls","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # 'Apple' Cake of Lost Souls
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 176,900
-- **Updated:** Swarm
+- **Value:** 176,900
+- **Added in:** Swarm
 
-'**Apple' Cake of Lost Souls** is a consumable.
+**'Apple' Cake of Lost Souls** is a consumable.
 
 ## Summary
 
-'**Apple' Cake of Lost Souls** is a consumable and one of the Edible Products.
+**'Apple' Cake of Lost Souls** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -29,29 +35,11 @@ A highly refined food product, created in the Nutrient Processor.
 
 These cake-like nutrients are processed from a base of Wailing Batter.
 
-Flavour profile: delicate, piquant, complex.
-
-Recipe Complexity: 91%
-
 ## Source
 
-'Apple' Cake of Lost Souls can be cooked using a Nutrient Processor with the following ingredients:
-
-- Wailing Batter x1 + Crab 'Apple' x1 → 'Apple' Cake of Lost Souls x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Wriggling Jam x1 + Cream x1 → 'Apple' Cake of Lost Souls x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Wailing Batter x1 + Wriggling Jam x1 + Bone Cream x1 → 'Apple' Cake of Lost Souls x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-'**Apple' Cake of Lost Souls** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, 'Apple' Cake of Lost Souls gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 24%
-- Catch Size Improvement: 6%
-- Other notes: Attracts diurnal fish
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Crab 'Apple']] → 1 × 'Apple' Cake of Lost Souls
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Wriggling Jam]] + 1 × [[Cream]] → 1 × 'Apple' Cake of Lost Souls
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Wailing Batter]] + 1 × [[Wriggling Jam]] + 1 × [[Bone Cream]] → 1 × 'Apple' Cake of Lost Souls
 
 ## Additional information
 
@@ -59,6 +47,6 @@ Nutrient Ingestor Effect +6,226% Flora Analysis Rewards, Duration 10 minutes
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- Aquarius - Can be used as bait for fishing.
-- Worlds Part II - Added new descriptive section.
+- [[Beyond]] - Added as a consumable.
+- [[Update 5.10|Aquarius]] - Can be used as bait for fishing.
+- [[Worlds Part II]] - Added new descriptive section.

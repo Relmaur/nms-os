@@ -1,11 +1,17 @@
 ---
 title: "Brined Flesh"
 category: "cooking"
+kind: "product"
+summary: "A slab of seafood, created in the Nutrient Processor. Food such as this can be highly valuable."
 pageId: 579565
-summary: "Brined Flesh is a consumable and one of the Edible Products."
+revId: 1329162
+revTimestamp: "2026-08-13T23:44:34Z"
+version: "Aquarius"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Brined_Flesh"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.FISH.TROUT.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"35,400","release":"Aquarius"},"value":35400,"recipes":[{"type":"cook","inputs":[{"name":"Whispering Bonefish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Shrieking Venttail","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Radiant Sunfish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Magma Shark","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frostbite Ray","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Marrow Shark","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Twilight Cavefish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ossified Deinosuchus","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Witchfin","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 
 # Brined Flesh
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,400
-- **Updated:** Aquarius
+- **Value:** 35,400
+- **Added in:** Aquarius
 
 **Brined Flesh** is a consumable.
 
 ## Summary
 
-**Brined Flesh** is a consumable and one of the Edible Products.
+**Brined Flesh** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,41 +37,21 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **25% hazard protection**.
-
-- When consumed through a Nutrient Ingestor, **Brined Flesh** provides **+48% Breathing Efficiency** for 5:30 minutes.
-
-## Fishing Bait
-
-When applied as bait, Brined Flesh gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 29%
-- Catch Size Improvement: 2%
+Exosuit nutrient system will restore **25% [[hazard protection]]**.
+- When consumed through a [[Nutrient Ingestor]], **Brined Flesh** provides **+48% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 
-Brined Flesh can be cooked using a Nutrient Processor with the following ingredients:
-
-- Whispering Bonefish x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Shrieking Venttail x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Radiant Sunfish x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Magma Shark x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Frostbite Ray x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marrow Shark x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Twilight Cavefish x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Ossified Deinosuchus x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Giant Witchfin x1 → Brined Flesh x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Brined Flesh** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Fish and Rice -- Brined Flesh x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Marine Pie -- Brined Flesh x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Seafood Stew -- Brined Flesh x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Brined Flesh x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
-- Starched Fish -- Brined Flesh x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Whispering Bonefish]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Shrieking Venttail]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Radiant Sunfish]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Magma Shark]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Frostbite Ray]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Marrow Shark]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Twilight Cavefish]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Ossified Deinosuchus]] → 1 × Brined Flesh
+- **Nutrient Processor** · *Seafood Assembly* · 2.5 s per unit: 1 × [[Giant Witchfin]] → 1 × Brined Flesh
 
 ## Release History
 
-- Aquarius - Added as a consumable.
+- [[Aquarius]] - Added as a consumable.

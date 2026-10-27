@@ -1,11 +1,17 @@
 ---
 title: "Clarified Oil"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 142731
-summary: "Clarified Oil is a consumable and one of the Edible Products."
+revId: 1201094
+revTimestamp: "2024-07-22T20:40:18Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Clarified_Oil"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.COOKINGGREASE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"30,000.0","release":"NextGen"},"value":30000,"recipes":[{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Churned Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Proto-Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Bone Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Bone Butter","qty":1},{"name":"Bone Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Bone Butter","qty":1},{"name":"Proto-Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"}]}
 ---
 
 # Clarified Oil
@@ -14,40 +20,29 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 30,000.0
-- **Updated:** NextGen
+- **Value:** 30,000.0
+- **Added in:** NextGen
 
 **Clarified Oil** is a consumable.
 
 ## Summary
 
-**Clarified Oil** is a consumable and one of the Edible Products.
+**Clarified Oil** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be **highly valuable.** It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]]. Food such as this can be **highly valuable.** It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subject to further processing.
 
 ## Source
 
-Clarified Oil can be cooked using a Nutrient Processor with the following ingredients:
-
-- Churned Butter x1 + Churned Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Churned Butter x1 + Proto-Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Churned Butter x1 + Bone Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Bone Butter x1 + Bone Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Bone Butter x1 + Proto-Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Clarified Oil** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Lumpen Doughnut -- Clarified Oil x1 + Dough x1 + Processed Sugar x1 → Lumpen Doughnut x1 (*"Accelerated Fry"*, 2.5 sec./unit output)
-- Solidified Grease Pie -- Pie Case x1 + Clarified Oil x1 → Solidified Grease Pie x1 (*"Assemble Pie"*, 2.5 sec./unit output)
-
-## Additional information
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Churned Butter]] + 1 × [[Churned Butter]] → 1 × Clarified Oil
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Churned Butter]] + 1 × [[Proto-Butter]] → 1 × Clarified Oil
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Churned Butter]] + 1 × [[Bone Butter]] → 1 × Clarified Oil
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Bone Butter]] + 1 × [[Bone Butter]] → 1 × Clarified Oil
+- **Nutrient Processor** · *Nutrient Refining* · 2.5 s per unit: 1 × [[Bone Butter]] + 1 × [[Proto-Butter]] → 1 × Clarified Oil
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

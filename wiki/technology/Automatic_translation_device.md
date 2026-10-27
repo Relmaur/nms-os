@@ -1,11 +1,17 @@
 ---
 title: "Automatic translation device"
 category: "technology"
-pageId: 150581
+kind: "technology"
 summary: "Automatic translation device is an exosuit upgrade."
+pageId: 150581
+revId: 1162484
+revTimestamp: "2023-10-31T06:31:30Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Automatic_translation_device"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"color":"blue","category":"Exosuit","type":"Automatic Language Parser","release":"Origins"},"recipes":[]}
 ---
 
 # Automatic translation device
@@ -14,13 +20,13 @@ updated: "2026-10-27"
 
 - **Category:** Exosuit
 - **Type:** Automatic Language Parser
-- **Updated:** Origins
+- **Added in:** Origins
 
 **Automatic translation device** is an exosuit upgrade.
 
 ## Summary
 
-**Automatic translation device** technology allows a player to understand alien words more quickly, even though you haven't learned them yet.
+**Automatic translation device** [[technology]] allows a player to understand alien words more quickly, even though you haven't learned them yet.
 
 It records and parses nearby conversations before running the data through a contextual learning system to determine intended meaning.
 
@@ -28,16 +34,15 @@ During a conversation, you will see more words of the conversation than you have
 
 ## Source
 
-The blueprint can be acquired from Technology Merchants selling Exosuit technologies.
+The blueprint can be acquired from [[Technology Merchant|Technology Merchants]] selling [[Exosuit]] technologies.
 
 ## Additional information
 
 There are several variations of this technology:
-
-- Tier C - Artemis' Translator - Translates 1 word
-- Tier B - Simple Translator - Translates 1 word
-- Tier A - Superior Translator - Translates 2 words
-- Tier S - Advanced Translator - Translates 3 words
+- Tier C - [[Artemis' Translator]] - Translates 1 word
+- Tier B - [[Simple Translator]] - Translates 1 word
+- Tier A - [[Superior Translator]] - Translates 2 words
+- Tier S - [[Advanced Translator]] - Translates 3 words
 
 Having more than one will allow more words to be translated, up to a total of 7 words. Once you have learned all in-game words the normal way, there are still words that need translating, that you can never learn. These translators take care of that problem.
 
@@ -45,4 +50,4 @@ Even though a synergy bonus is normally provided by connections in other technol
 
 ## Release history
 
-- Beyond - Added as a technology.
+- [[Beyond]] - Added as a technology.

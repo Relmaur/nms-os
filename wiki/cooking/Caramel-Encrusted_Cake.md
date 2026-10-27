@@ -1,11 +1,17 @@
 ---
 title: "Caramel-Encrusted Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142722
-summary: "Caramel-Encrusted Cake is a consumable."
+revId: 1227531
+revTimestamp: "2025-04-10T13:30:14Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Caramel-Encrusted_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"52,800.0","release":"NextGen"},"value":52800,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Crunchy Caramel","qty":1}],"outputs":[{"name":"Caramel-Encrusted Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Caramel-Encrusted Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 52,800.0
-- **Updated:** NextGen
+- **Value:** 52,800.0
+- **Added in:** NextGen
 
 **Caramel-Encrusted Cake** is a consumable.
 
 ## Summary
 
-**Caramel-Encrusted Cake** is a consumable and one of the Edible Products.
+**Caramel-Encrusted Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,13 +37,7 @@ These cake-like nutrients are processed from a base of Cake Batter.
 
 ## Source
 
-Caramel-Encrusted Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Cake Batter x1 + Crunchy Caramel x1 → Caramel-Encrusted Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Caramel-Encrusted Cake** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Cake Batter]] + 1 × [[Crunchy Caramel]] → 1 × Caramel-Encrusted Cake
 
 ## Additional information
 
@@ -47,4 +47,4 @@ Will restore 50% Hazard protection when consumed through Exosuit.
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

@@ -1,11 +1,17 @@
 ---
 title: "Tangy Organ Surprise"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets."
 pageId: 142865
-summary: "Tangy Organ Surprise is a consumable."
+revId: 1338192
+revTimestamp: "2026-10-14T15:04:30Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tangy_Organ_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"36,000.0","release":"Omega"},"value":36000,"recipes":[{"type":"cook","inputs":[{"name":"Stewed Organs","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crystalline Soup","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Chewy 'Dumpling' Stew","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Gelatinous Goop","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 
 # Tangy Organ Surprise
@@ -14,33 +20,27 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 36,000.0
-- **Updated:** Omega
+- **Value:** 36,000.0
+- **Added in:** Omega
 
 **Tangy Organ Surprise** is a consumable.
 
 ## Summary
 
-**Tangy Organ Surprise** is a consumable and one of the Edible Products.
+**Tangy Organ Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets.
+A highly refined food product, created in the [[Nutrient Processor]]. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition past or pellets.
 
 Food such as this can be **highly valuable**.
 
 ## Source
 
-Tangy Organ Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Stewed Organs x1 + Partially-Liquid Cheese x1 → Tangy Organ Surprise x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crystalline Soup x1 + Partially-Liquid Cheese x1 → Tangy Organ Surprise x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Chewy 'Dumpling' Stew x1 + Partially-Liquid Cheese x1 → Tangy Organ Surprise x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Gelatinous Goop x1 + Partially-Liquid Cheese x1 → Tangy Organ Surprise x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Tangy Organ Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Stewed Organs]] + 1 × [[Partially-Liquid Cheese]] → 1 × Tangy Organ Surprise
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crystalline Soup]] + 1 × [[Partially-Liquid Cheese]] → 1 × Tangy Organ Surprise
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Chewy 'Dumpling' Stew]] + 1 × [[Partially-Liquid Cheese]] → 1 × Tangy Organ Surprise
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Gelatinous Goop]] + 1 × [[Partially-Liquid Cheese]] → 1 × Tangy Organ Surprise
 
 ## Use
 
@@ -48,20 +48,9 @@ Exosuit nutrient system will restore 20% life support power when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +63% Sprint Distance *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Tangy Organ Surprise gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 30%
-- Catch Size Improvement: 5%
-- Other notes: N/A
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

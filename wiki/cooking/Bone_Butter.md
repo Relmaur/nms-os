@@ -1,11 +1,17 @@
 ---
 title: "Bone Butter"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 219297
-summary: "Bone Butter is a consumable and one of the Edible Products."
+revId: 1200707
+revTimestamp: "2024-07-21T20:29:17Z"
+version: "Origins"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bone_Butter"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BUTTER.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"32,000.0","release":"Origins"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Bone Butter","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 
 # Bone Butter
@@ -14,42 +20,25 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 32,000.0
-- **Updated:** Origins
+- **Value:** 32,000.0
+- **Added in:** Origins
 
 **Bone Butter** is a consumable.
 
 ## Summary
 
-**Bone Butter** is a consumable and one of the Edible Products.
+**Bone Butter** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the [[Nutrient Processor]]. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subjected to further processing.
 
 ## Source
 
-Bone Butter can be cooked using a Nutrient Processor with the following ingredients:
-
-- Bone Cream x1 → Bone Butter x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Bone Butter** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Butter Syrup -- Bone Butter x1 + Syrupy Nectar x1 → Butter Syrup x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Clarified Oil -- Bone Butter x1 + Bone Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Clarified Oil -- Bone Butter x1 + Proto-Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Clarified Oil -- Churned Butter x1 + Bone Butter x1 → Clarified Oil x1 (*"Nutrient Refining"*, 2.5 sec./unit output)
-- Gooey Butter -- Bone Butter x1 + Sticky 'Honey' x1 → Gooey Butter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Honey Butter -- Bone Butter x1 + Synthetic Honey x1 → Honey Butter x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Pastry -- Refined Flour x1 + Bone Butter x1 → Pastry x1 (*"Component Churn"*, 2.5 sec./unit output)
-- Sweetened Butter -- Bone Butter x1 + Processed Sugar x1 → Sweetened Butter x1 (*"Component Churn"*, 2.5 sec./unit output)
-
-## Additional Information
+- **Nutrient Processor** · *Component Churn* · 2.5 s per unit: 1 × [[Bone Cream]] → 1 × Bone Butter
 
 ## Release History
 
-- Origins - Added as a consumable.
+- [[Origins]] - Added as a consumable.

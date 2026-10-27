@@ -1,11 +1,17 @@
 ---
 title: "Gooey ProtoDoughnut"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142776
-summary: "Gooey ProtoDoughnut is a consumable and one of the Edible Products."
+revId: 1202074
+revTimestamp: "2024-07-28T16:15:26Z"
+version: "NextGen"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gooey_ProtoDoughnut"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"120,000","release":"NextGen"},"value":120000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Gooey ProtoButter","qty":1}],"outputs":[{"name":"Gooey ProtoDoughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 
 # Gooey ProtoDoughnut
@@ -14,33 +20,25 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 120,000
-- **Updated:** NextGen
+- **Value:** 120,000
+- **Added in:** NextGen
 
 **Gooey ProtoDoughnut** is a consumable.
 
 ## Summary
 
-**Gooey ProtoDoughnut** is a consumable and one of the Edible Products.
+**Gooey ProtoDoughnut** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
-A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A highly refined food product, created in the [[Nutrient Processor]]. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Food such as this can be **highly valuable.**
 
 ## Source
 
-Gooey ProtoDoughnut can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lumpen Doughnut x1 + Gooey ProtoButter x1 → Gooey ProtoDoughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Gooey ProtoDoughnut** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional Information
+- **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Gooey ProtoButter]] → 1 × Gooey ProtoDoughnut
 
 ## Release History
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

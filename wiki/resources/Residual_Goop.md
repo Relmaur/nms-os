@@ -1,11 +1,17 @@
 ---
 title: "Residual Goop"
 category: "resources"
+kind: "resource"
+summary: "A pulsating, foul smelling goop that builds up in poorly-maintained machinery."
 pageId: 53040
-summary: "Residual Goop (Jn) is a resource and one of the junk special elements."
+revId: 1335205
+revTimestamp: "2026-10-01T08:38:37Z"
+version: "Outlaws"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Residual_Goop"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SPACEGUNK.1.png","color":"Olive","category":"Special","type":"Junk","rarity":"Common","value":"20.0","used":"Refining","symbol":"Jn","release":"Outlaws"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Cursed Dust","qty":2}],"outputs":[{"name":"Residual Goop","qty":1}],"seconds":0.04,"label":"Doom Cycling"}]}
 ---
 
 # Residual Goop
@@ -15,16 +21,16 @@ updated: "2026-10-27"
 - **Category:** Special
 - **Type:** Junk
 - **Rarity:** Common
-- **Blueprint Value:** 20.0
+- **Value:** 20.0
 - **Used for:** Refining
-- **Symbol:** **Jn**
-- **Updated:** Outlaws
+- **Symbol:** Jn
+- **Added in:** Outlaws
 
 **Residual Goop** is a resource.
 
 ## Summary
 
-**Residual Goop** (**Jn**) is a resource and one of the junk special elements.
+**Residual Goop** (**Jn**) is a [[resource]] and one of the [[junk]] [[special elements]].
 
 ## Game description
 
@@ -34,34 +40,15 @@ Skin contact is not advised.
 
 ## Source
 
-Obtaining Residual Goop from a Forsaken Terminal
+Every [[Abandoned Building]] has a terminal and interacting with it allows the player to either discard the Residual Goop or move it to the [[exosuit]] inventory. After that the terminal  can be used. Each terminal can contain up to 200 Residual Goop.
 
-Every Abandoned Building has a terminal and interacting with it allows the player to either discard the Residual Goop or move it to the exosuit inventory. After that the terminal can be used. Each terminal can contain up to 200 Residual Goop.
+Residual Goop can be purchased from some [[Galactic Trade Terminal|Galactic Trade Terminals]] and pilot NPCs.
 
-Residual Goop can be purchased from some Galactic Trade Terminals and pilot NPCs.
-
-Residual Goop can be refined using a Refiner with the following ingredients:
-
-- Cursed Dust ×2 → Residual Goop ×1 (*"Doom Cycling"*, 0.04 sec./unit output)
+- **Refiner** · *Doom Cycling* · 0.04 s per unit: 2 × [[Cursed Dust]] → 1 × Residual Goop
 
 ## Use
 
-### Crafting
-
-**Residual Goop** is not used as an ingredient for crafting.
-
-### Refining
-
-**Residual Goop** is used as an ingredient for refining the following products using a Refiner:
-
-- Gold -- Faecium x1 + Residual Goop x1 → Gold x1 (*"Alchemical Construction"*, 0.24 sec./unit output)
-- Viscous Fluids -- Residual Goop x1 → Viscous Fluids x1 (*"Recycle Waste Materials"*, 0.6 sec./unit output)
-
-### Cooking
-
-**Residual Goop** is not used as an ingredient for cooking using a Nutrient Processor.
-
-Through multiple steps of refining, Residual Goop can be converted to Viscous Fluids, to Living Slime, to Runaway Mould and then to Nanite Cluster.
+Through multiple steps of refining, [[Residual Goop]] can be converted to [[Viscous Fluids]], to [[Living Slime]], to [[Runaway Mould]] and then to [[Nanite Cluster]].
 
 ## Additional information
 
@@ -69,6 +56,6 @@ Through multiple steps of refining, Residual Goop can be converted to Viscous Fl
 
 ## Release history
 
-- Atlas Rises - Added as a resource. It has the same, but a different colored icon as Living Slime and Viscous Fluids.
-- NEXT - Game description changed.
-- Frontiers - Can now be refined from Cursed Dust.
+- [[Atlas Rises]] - Added as a resource. It has the same, but a different colored icon as [[Living Slime]] and [[Viscous Fluids]].
+- [[NEXT]] - Game description changed.
+- [[Frontiers]] - Can now be refined from Cursed Dust.

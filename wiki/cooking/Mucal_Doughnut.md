@@ -1,11 +1,17 @@
 ---
 title: "Mucal Doughnut"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 572810
-summary: "Mucal Doughnut is a consumable and one of the Edible Products."
+revId: 1227349
+revTimestamp: "2025-04-08T09:40:49Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mucal_Doughnut"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"70,000","release":"WorldsTwo"},"value":70000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Mucal Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 
 # Mucal Doughnut
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 70,000
-- **Updated:** WorldsTwo
+- **Value:** 70,000
+- **Added in:** WorldsTwo
 
 **Mucal Doughnut** is a consumable.
 
 ## Summary
 
-**Mucal Doughnut** is a consumable and one of the Edible Products.
+**Mucal Doughnut** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -30,34 +36,19 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: smooth, chromatic, sublime.
-
-Recipe Complexity: 100%
+<br>Recipe Complexity: 100%
 
 ## Source
 
-Mucal Doughnut can be cooked using a Nutrient Processor with the following ingredients:
-
-- Lumpen Doughnut x1 + Sweetened Mucous x1 → Mucal Doughnut x1 (*"Nutrient Injection"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Mucal Doughnut** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Fishing Bait
-
-When applied as bait, Mucal Doughnut gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 70%
-- Catch Size Improvement: 9%
-- Other notes: Attracts diurnal fish
+- **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Sweetened Mucous]] → 1 × Mucal Doughnut
 
 ## Additional Information
 
-Grants an 8 second jetpack overload once consumed.
+Grants an 8 second [[jetpack]] overload once consumed.
 
 +56% Toxic Resistance, for 10min, when consumed through a Nutrient Ingestor,
 
 ## Release History
 
-- Worlds Part I - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Worlds Part I]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

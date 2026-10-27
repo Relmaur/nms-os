@@ -1,11 +1,17 @@
 ---
 title: "Floral Wafer"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565888
-summary: "Floral Wafer is a consumable and one of the Edible Products."
+revId: 1337011
+revTimestamp: "2026-10-07T22:33:32Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Floral_Wafer"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000.0","release":"Omega"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Star Bulb","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Solanium","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Grahberry","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Marrow Flesh","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Sweetroot","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Pilgrimberry","qty":1}],"outputs":[{"name":"Floral Wafer","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Floral Wafer
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 35,000.0
-- **Updated:** Omega
+- **Value:** 35,000.0
+- **Added in:** Omega
 
 **Floral Wafer** is a consumable.
 
 ## Summary
 
-**Floral Wafer** is a consumable and one of the Edible Products.
+**Floral Wafer** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,19 +37,13 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Floral Wafer can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Star Bulb x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Solanium x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Grahberry x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Marrow Flesh x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Sweetroot x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Aloe Flesh x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Pilgrimberry x1 → Floral Wafer x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Floral Wafer** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Star Bulb]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Solanium]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Grahberry]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Marrow Flesh]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Sweetroot]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Aloe Flesh]] → 1 × Floral Wafer
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Pilgrimberry]] → 1 × Floral Wafer
 
 ## Use
 
@@ -51,20 +51,9 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +4,136% Floral Analysis Rewards *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Floral Wafer gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 35%
-- Catch Size Improvement: 2%
-- Other notes: N/A
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

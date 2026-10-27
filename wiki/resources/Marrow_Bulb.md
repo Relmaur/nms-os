@@ -1,11 +1,17 @@
 ---
 title: "Marrow Bulb"
 category: "resources"
+kind: "resource"
+summary: "A glowing organic bulb, harvested from the Cave Marrow plant found growing underground."
 pageId: 9709
-summary: "Marrow Bulb (BU) is a resource and one of the Harvested Agricultural Substance flora elements."
+revId: 1335200
+revTimestamp: "2026-10-01T08:30:04Z"
+version: "Endurance"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Marrow_Bulb"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"SUBSTANCE.PLANT.CAVE.png","color":"Olive","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Uncommon","symbol":"Bu","value":"41.0","release":"Endurance"},"value":41,"recipes":[{"type":"refine","inputs":[{"name":"Cobalt","qty":1},{"name":"Nitrogen","qty":1}],"outputs":[{"name":"Marrow Bulb","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Crystallised Helium","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Marrow Bulb","qty":1}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Mordite","qty":1},{"name":"Sodium Nitrate","qty":1}],"outputs":[{"name":"Marrow Bulb","qty":4}],"seconds":0.36,"label":"Fertiliser Synthesis"},{"type":"refine","inputs":[{"name":"Mordite","qty":1},{"name":"Sodium","qty":2}],"outputs":[{"name":"Marrow Bulb","qty":3}],"seconds":0.36,"label":"Fertiliser Synthesis"}]}
 ---
 
 # Marrow Bulb
@@ -15,69 +21,35 @@ updated: "2026-10-27"
 - **Category:** Flora
 - **Type:** Harvested Agricultural Substance
 - **Rarity:** Uncommon
-- **Blueprint Value:** 41.0
-- **Symbol:** **Bu**
-- **Updated:** Endurance
+- **Symbol:** Bu
+- **Value:** 41.0
+- **Added in:** Endurance
 
 **Marrow Bulb** is a resource.
 
 ## Summary
 
-**Marrow Bulb** (**BU**) is a resource and one of the Harvested Agricultural Substance flora elements.
+**Marrow Bulb** (**BU**) is a [[resource]] and one of the [[Harvested Agricultural Substance]] [[flora elements]].
 
 ## Game description
 
-A glowing organic bulb, harvested from the Cave Marrow plant found growing underground.
+A glowing organic bulb, harvested from the [[Cave Marrow]] plant found growing underground.
 
 The Cave Marrow has proved resistant to domestication, and no farmable cultivars are known to exist. As such, marrow bulbs must be harvested by hand in the wild.
 
 ## Source
 
-It can be harvested from Cave Marrows that can be found in caves.
+It can be harvested from Cave Marrows that can be found in [[cave|caves]].
 
-Marrow Bulb can be refined using a Refiner with the following ingredients:
-
-- Cobalt ×1 + Nitrogen ×1 → Marrow Bulb ×1 (*"Encourage Growth"*, 0.24 sec./unit output)
-- Crystallised Helium ×1 + Methane ×1 → Marrow Bulb ×1 (*"Organic Expansion"*, 0.36 sec./unit output)
-- Mordite ×1 + Sodium Nitrate ×1 → Marrow Bulb ×4 (*"Fertiliser Synthesis"*, 0.36 sec./unit output)
-- Mordite ×1 + Sodium ×2 → Marrow Bulb ×3 (*"Fertiliser Synthesis"*, 0.36 sec./unit output)
-
-## Use
-
-### Crafting
-
-**Marrow Bulb** is not used as an ingredient for crafting.
-
-### Refining
-
-**Marrow Bulb** is used as an ingredient for refining the following products using a Refiner:
-
-- Ionised Cobalt -- Cobalt x1 + Marrow Bulb x1 → Ionised Cobalt x2 (*"Ionise Bulbs"*, 0.36 sec./unit output)
-- Ionised Cobalt -- Ionised Cobalt x1 + Marrow Bulb x1 → Ionised Cobalt x2 (*"Ionise Bulbs"*, 0.36 sec./unit output)
-- Ionised Cobalt -- Marrow Bulb x1 + Oxygen x1 → Ionised Cobalt x2 (*"Bonded Cobalt Extraction"*, 0.36 sec./unit output)
-- Ionised Cobalt -- Marrow Bulb x1 + Pugneum x1 → Ionised Cobalt x2 (*"Pugneum Washing"*, 0.36 sec./unit output)
-- Sodium -- Marrow Bulb x1 → Sodium x1 (*"Extract Organic Sodium"*, 0.24 sec./unit output)
-- Sodium -- Marrow Bulb x1 + Carbon x1 → Sodium x2 (*"Extract Organic Sodium"*, 0.36 sec./unit output)
-- Sodium -- Marrow Bulb x1 + Condensed Carbon x1 → Sodium x2 (*"Extract Organic Sodium"*, 0.36 sec./unit output)
-- Sodium Nitrate -- Sodium Nitrate x1 + Marrow Bulb x1 → Sodium Nitrate x2 (*"Harness Organic Nitrogren"*, 0.36 sec./unit output)
-- Sodium Nitrate -- Sodium x1 + Marrow Bulb x1 → Sodium Nitrate x2 (*"Harness Organic Nitrogren"*, 0.36 sec./unit output)
-
-### Cooking
-
-**Marrow Bulb** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Creature Pellets -- Faecium x1 + Marrow Bulb x1 → Creature Pellets x1 (*"Prepare Bait"*, 2.5 sec./unit output)
-- Healthy Wheatblock -- Sugar Dough x1 + Marrow Bulb x1 → Healthy Wheatblock x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Marrow Flesh -- Marrow Bulb x1 → Marrow Flesh x1 (*"Extract Nutrients"*, 2.5 sec./unit output)
-
-## Additional information
+- **Refiner** · *Encourage Growth* · 0.24 s per unit: 1 × [[Cobalt]] + 1 × [[Nitrogen]] → 1 × Marrow Bulb
+- **Refiner** · *Organic Expansion* · 0.36 s per unit: 1 × [[Crystallised Helium]] + 1 × [[Methane]] → 1 × Marrow Bulb
+- **Refiner** · *Fertiliser Synthesis* · 0.36 s per unit: 1 × [[Mordite]] + 1 × [[Sodium Nitrate]] → 4 × Marrow Bulb
+- **Refiner** · *Fertiliser Synthesis* · 0.36 s per unit: 1 × [[Mordite]] + 2 × [[Sodium]] → 3 × Marrow Bulb
 
 ## Release history
 
-- Foundation - Added as a resource.
-- Atlas Rises - Renamed from Antrium (An) to Marrow Bulb.
-- NEXT - Can be refined as well as harvested.
-- NEXT 1.65 - *Hidden changes:* Mordite (x1) + Marrow Bulb (x1) cannot be used to further refine Marrow Bulb (x4).
-- Visions - *Hidden changes:* The information panel has an additional icon indicating its purpose.
-
-## Gallery
+- [[Foundation]] - Added as a resource.
+- [[Atlas Rises]] - Renamed from Antrium (An) to Marrow Bulb.
+- [[NEXT]] - Can be refined as well as harvested.
+- [[Update 1.65|NEXT 1.65]] - *Hidden changes:* Mordite (x1) + Marrow Bulb (x1) cannot be used to further refine Marrow Bulb (x4).
+- [[Visions]] - *Hidden changes:* The information panel has an additional icon indicating its purpose.

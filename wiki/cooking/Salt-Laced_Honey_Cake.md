@@ -1,11 +1,17 @@
 ---
 title: "Salt-Laced Honey Cake"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142840
-summary: "Salt-Laced Honey Cake is a consumable."
+revId: 1295777
+revTimestamp: "2026-03-12T08:50:18Z"
+version: "WorldsOne"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salt-Laced_Honey_Cake"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"92,300.0","release":"WorldsOne"},"value":92300,"recipes":[{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Salt-Laced Honey Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Salt-Laced Honey Cake
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 92,300.0
-- **Updated:** WorldsOne
+- **Value:** 92,300.0
+- **Added in:** WorldsOne
 
 **Salt-Laced Honey Cake** is a consumable.
 
 ## Summary
 
-**Salt-Laced Honey Cake** is a consumable and one of the Edible Products.
+**Salt-Laced Honey Cake** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -37,17 +43,9 @@ Exosuit nutrient system will power 15 seconds sprint overload when consumed.
 
 ## Source
 
-Salt-Laced Honey Cake can be cooked using a Nutrient Processor with the following ingredients:
-
-- Thick, Sweet Batter x1 + Salty Custard x1 → Salt-Laced Honey Cake x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Salt-Laced Honey Cake** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Thick, Sweet Batter]] + 1 × [[Salty Custard]] → 1 × Salt-Laced Honey Cake
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- SentinelUp - Effect on consuming added to an info panel.
-
-## Additional Information
+- [[Beyond]] - Added as a consumable.
+- [[SentinelUp]] - Effect on consuming added to an info panel.

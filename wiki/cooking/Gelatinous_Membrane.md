@@ -1,11 +1,17 @@
 ---
 title: "Gelatinous Membrane"
 category: "cooking"
+kind: "product"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 560334
-summary: "Gelatinous Membrane is a Consumable and it is an Edible Product."
+revId: 1334070
+revTimestamp: "2026-09-25T00:17:30Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gelatinous_Membrane"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"name":"Gelatinous Membrane","image":"PRODUCT.MEAT.SAUSAGE.png","color":"Red","category":"Consumable","type":"Edible Product","used":"Cooking","value":"8,000","release":"WorldsTwo"},"value":8000,"recipes":[{"type":"cook","inputs":[{"name":"Flesh Rope","qty":1}],"outputs":[{"name":"Gelatinous Membrane","qty":1}],"seconds":2.5,"label":"Incinerate Flesh"}]}
 ---
 
 # Gelatinous Membrane
@@ -14,15 +20,15 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 8,000
 - **Used for:** Cooking
-- **Updated:** WorldsTwo
+- **Value:** 8,000
+- **Added in:** WorldsTwo
 
 **Gelatinous Membrane** is a consumable.
 
 ## Summary
 
-**Gelatinous Membrane** is a Consumable and it is an Edible Product.
+**Gelatinous Membrane** is a [[Consumable]] and it is an [[Edible Product]].
 
 ## Game Description
 
@@ -32,44 +38,14 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Source
 
-Gelatinous Membrane can be cooked using a Nutrient Processor with the following ingredients:
-
-- Flesh Rope x1 → Gelatinous Membrane x1 (*"Incinerate Flesh"*, 2.5 sec./unit output)
-
-## Usage
-
-### Crafting
-
-**Gelatinous Membrane** is not used as an ingredient for crafting.
-
-### Refining
-
-**Gelatinous Membrane** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Gelatinous Membrane** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Nightmare Sausage -- Gelatinous Membrane x1 + Hadal Core x1 → Nightmare Sausage x1 (*"Preserve Flesh"*, 2.5 sec./unit output)
-- Nightmare Sausage -- Gelatinous Membrane x1 + Hypnotic Eye x1 → Nightmare Sausage x1 (*"Preserve Flesh"*, 2.5 sec./unit output)
-- Nightmare Sausage -- Gelatinous Membrane x1 + Larval Core x1 → Nightmare Sausage x1 (*"Preserve Flesh"*, 2.5 sec./unit output)
+- **Nutrient Processor** · *Incinerate Flesh* · 2.5 s per unit: 1 × [[Flesh Rope]] → 1 × Gelatinous Membrane
 
 ## Consume
 
-- Can not be consumed without a Nutrient Processor.
-- Fueling a Nutrient Ingestor with **Gelatinous Membrane** will grant +1679% Mineral Analysis Rewards for 2:00 per unit consumed.
-
-## Fishing Bait
-
-When applied as bait, Gelatinous Membrane gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 12%
-- Catch Size Improvement: 2%
-- Other notes: N/A
-
-## Additional Information
+- Can not be consumed without a [[Nutrient Processor]].
+-
 
 ## Release History
 
-- Fractal - Introduced as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Fractal]] - Introduced as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

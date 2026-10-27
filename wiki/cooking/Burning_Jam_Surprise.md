@@ -1,11 +1,17 @@
 ---
 title: "Burning Jam Surprise"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor."
 pageId: 142712
-summary: "Burning Jam Surprise is a consumable."
+revId: 1338256
+revTimestamp: "2026-10-14T19:43:09Z"
+version: "Prisms"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Burning_Jam_Surprise"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Green","category":"Consumable","type":"Edible Product","value":"149,400.0","release":"Prisms"},"value":149400,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Ever-burning Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Burning Jam Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Ever-burning Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Burning Jam Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 
 # Burning Jam Surprise
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 149,400.0
-- **Updated:** Prisms
+- **Value:** 149,400.0
+- **Added in:** Prisms
 
 **Burning Jam Surprise** is a consumable.
 
 ## Summary
 
-**Burning Jam Surprise** is a consumable and one of the Edible Products.
+**Burning Jam Surprise** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -31,14 +37,8 @@ These cake-like nutrients are processed from a base of Writhing, Roiling Batter.
 
 ## Source
 
-Burning Jam Surprise can be cooked using a Nutrient Processor with the following ingredients:
-
-- Writhing, Roiling Batter x1 + Ever-burning Jam x1 + Cream x1 → Burning Jam Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-- Writhing, Roiling Batter x1 + Ever-burning Jam x1 + Bone Cream x1 → Burning Jam Surprise x1 (*"Assemble Baked Product"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Burning Jam Surprise** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Ever-burning Jam]] + 1 × [[Cream]] → 1 × Burning Jam Surprise
+- **Nutrient Processor** · *Assemble Baked Product* · 2.5 s per unit: 1 × [[Writhing, Roiling Batter]] + 1 × [[Ever-burning Jam]] + 1 × [[Bone Cream]] → 1 × Burning Jam Surprise
 
 ## Use
 
@@ -46,20 +46,9 @@ Exosuit nutrient system will activate 8 seconds jetpack overload when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +65% Heat Resistance *(10:00)*
-
-## Fishing Bait
-
-When applied as bait, Burning Jam Surprise gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 15%
-- Catch Size Improvement: 0%
-- Other notes: N/A
-
-## Additional information
 
 ## Release history
 
-- Beyond - Added as a consumable.
+- [[Beyond]] - Added as a consumable.

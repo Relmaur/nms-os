@@ -1,29 +1,37 @@
 ---
 title: "Efficient Water Jets"
 category: "technology"
+kind: "technology"
+summary: "Improves the fuel efficiency of the jetpack's marine jets, reducing the drain on Exosuit life support system."
 pageId: 102099
-summary: "Efficient Water Jets is a technology."
+revId: 1105813
+revTimestamp: "2023-03-17T10:01:59Z"
+version: "Desolation"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Efficient_Water_Jets"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"A","type":"Jetpack Upgrade Unit","stats":"Efficient Waterjets: Enabled","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Oxygen","qty":100},{"name":"Living Pearl","qty":6}],"outputs":[{"name":"Efficient Water Jets","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":50},{"name":"Living Pearl","qty":3}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Efficient Water Jets","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":50},{"name":"Living Pearl","qty":3}]}]}
 ---
 
 # Efficient Water Jets
 
 ## Quick Facts
 
-- **Category:** Exosuit - Movement
+- **Category:** Exosuit
+- **Subcategory:** Movement
+- **Level:** A
 - **Type:** Jetpack Upgrade Unit
 - **Stats:** Efficient Waterjets: Enabled
-- **Updated:** Desolation
+- **Added in:** Desolation
 
 **Efficient Water Jets** is a technology.
 
 ## Summary
 
-**Efficient Water Jets** is a technology that allows the player to use their jetpack for faster underwater travel than swimming.
+**Efficient Water Jets** is a [[technology]] that allows the player to use their [[jetpack]] for faster underwater travel than swimming.
 
-It needs to be installed in an exosuit inventory slot for it to take effect.
+It needs to be installed in an [[exosuit]] [[inventory]] slot for it to take effect.
 
 ## Game Description
 
@@ -33,26 +41,20 @@ Aqueous compressor units are installed into the jetpack's turbines, bypassing th
 
 ## Source
 
-The blueprint can be acquired from a Technology Merchant for 350.
+The [[blueprint]] can be acquired from a [[Technology Merchant]] for 350  Nanites.
 
 ## Crafting
 
-Efficient Water Jets can be built using a blueprint and the following ingredients:
+- **Crafting** · needs the blueprint: 100 × [[Chromatic Metal]] + 100 × [[Oxygen]] + 6 × [[Living Pearl]] → 1 × Efficient Water Jets
 
-- Chromatic Metal ×100 + Oxygen ×100 + Living Pearl ×6 → Efficient Water Jets
+- **Repair**: 50 × [[Chromatic Metal]] + 50 × [[Oxygen]] + 3 × [[Living Pearl]]
 
-Efficient Water Jets can be repaired using the following ingredients:
-
-- Chromatic Metal ×50 + Oxygen ×50 + Living Pearl ×3
-
-Efficient Water Jets can be dismantled after construction, returning the following ingredients:
-
-- Efficient Water Jets → Chromatic Metal ×50 + Oxygen ×50 + Living Pearl ×3
+- **Dismantle** returns: 50 × [[Chromatic Metal]] + 50 × [[Oxygen]] + 3 × [[Living Pearl]]
 
 ## Additional information
 
-It decreases Life Support drain while using the Jetpack underwater threefold.
+It decreases [[Life Support]] drain while using the Jetpack underwater threefold.
 
 ## Release history
 
-- Abyss - Added as a technology.
+- [[Abyss]] - Added as a technology.

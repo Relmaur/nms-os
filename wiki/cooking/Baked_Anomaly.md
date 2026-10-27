@@ -1,11 +1,17 @@
 ---
 title: "Baked Anomaly"
 category: "cooking"
+kind: "product"
+summary: "A well-baked biscuit, created in the Nutrient Processor."
 pageId: 565953
-summary: "Baked Anomaly is a consumable and one of the Edible Products."
+revId: 1337021
+revTimestamp: "2026-10-07T22:54:34Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Baked_Anomaly"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"40,000.0","release":"Omega"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Silicon Egg","qty":1}],"outputs":[{"name":"Baked Anomaly","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Hexaberry","qty":1}],"outputs":[{"name":"Baked Anomaly","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Anomalous Jam","qty":1}],"outputs":[{"name":"Baked Anomaly","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 
 # Baked Anomaly
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 40,000.0
-- **Updated:** Omega
+- **Value:** 40,000.0
+- **Added in:** Omega
 
 **Baked Anomaly** is a consumable.
 
 ## Summary
 
-**Baked Anomaly** is a consumable and one of the Edible Products.
+**Baked Anomaly** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -31,15 +37,9 @@ What was once a thin sheet of vaguely-sweetend nutrient paste has been elevated 
 
 ## Source
 
-Baked Anomaly can be cooked using a Nutrient Processor with the following ingredients:
-
-- Sugar Dough x1 + Silicon Egg x1 → Baked Anomaly x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Hexaberry x1 → Baked Anomaly x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-- Sugar Dough x1 + Anomalous Jam x1 → Baked Anomaly x1 (*"Dough Augmentation"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Baked Anomaly** is not used as an ingredient for cooking using a Nutrient Processor.
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Silicon Egg]] → 1 × Baked Anomaly
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Hexaberry]] → 1 × Baked Anomaly
+- **Nutrient Processor** · *Dough Augmentation* · 2.5 s per unit: 1 × [[Sugar Dough]] + 1 × [[Anomalous Jam]] → 1 × Baked Anomaly
 
 ## Use
 
@@ -47,20 +47,9 @@ Exosuit nutrient system will restore 25% hazard protection when consumed.
 
 ## Nutrient Ingestor
 
-Provides the following effects when automatically consumed using a Nutrient Ingestor
-
+Provides the following effects when automatically consumed using a [[Nutrient Ingestor]]
 - +2 Words Translated *(6:36)*
-
-## Fishing Bait
-
-When applied as bait, Baked Anomaly gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 9%
-- Catch Size Improvement: 2%
-- Other notes: Attracts nocturnal fish
-
-## Additional information
 
 ## Release History
 
-- Omega - Added as a consumable.
+- [[Omega]] - Added as a consumable.

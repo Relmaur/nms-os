@@ -1,6 +1,9 @@
-# Derived from the committed wiki/**/*.md files: rebuild with `npm run index:wiki` (no network needed).
+# Derived from the committed wiki/**/*.md files + wiki/aliases.json: rebuild with `npm run index:wiki` (no network needed).
 wiki/index.json
 wiki/offline-bundle.js
+wiki/game-data.json
+# Written by every sync or verify (`npm run verify:wiki`); CI publishes a fresh one with each deploy.
+wiki/verification.json
 
 node_modules/
 .DS_Store

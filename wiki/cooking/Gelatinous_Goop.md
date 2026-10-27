@@ -1,11 +1,17 @@
 ---
 title: "Gelatinous Goop"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 242423
-summary: "Gelatinous Goop is a consumable and one of the Edible Products."
+revId: 1227945
+revTimestamp: "2025-04-20T14:17:02Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gelatinous_Goop"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.STEW.png","color":"red","category":"Consumable","type":"Edible Product","value":"6,400","release":"WorldsTwo"},"value":6400,"recipes":[{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Crunchy Wings","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Salty Chunks","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Meaty Wings","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Fiendish Roe","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Offal Sac","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"ProtoSausage","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Diplo Chunks","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Scaly Meat","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Feline Liver","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Leg Meat","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crunchy Wings","qty":1},{"name":"Juicy Thorax","qty":1}],"outputs":[{"name":"Gelatinous Goop","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 
 # Gelatinous Goop
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 6,400
-- **Updated:** WorldsTwo
+- **Value:** 6,400
+- **Added in:** WorldsTwo
 
 **Gelatinous Goop** is a consumable.
 
 ## Summary
 
-**Gelatinous Goop** is a consumable and one of the Edible Products.
+**Gelatinous Goop** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game Description
 
@@ -30,52 +36,33 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: juicy, fresh, mellow.
-
-Recipe Complexity: 61%
+<br>Recipe Complexity: 61%
 
 ## Source
 
-Gelatinous Goop can be cooked using a Nutrient Processor with the following ingredients:
-
-- Crunchy Wings x1 + Crunchy Wings x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Processed Meat x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Meaty Chunks x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Smoked Meat x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Salty Chunks x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Meaty Wings x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Fiendish Roe x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Offal Sac x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + ProtoSausage x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Diplo Chunks x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Scaly Meat x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Feline Liver x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Strider Sausage x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Raw Steak x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Leg Meat x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Crunchy Wings x1 + Juicy Thorax x1 → Gelatinous Goop x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Gelatinous Goop** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Creamed Organ Soup -- Gelatinous Goop x1 + Creamy Sauce x1 → Creamed Organ Soup x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Devilled Organs -- Gelatinous Goop x1 + Scorching Sauce x1 → Devilled Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Flavoursome Organs -- Gelatinous Goop x1 + Flavoursome Sauce x1 → Flavoursome Organs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Tangy Organ Surprise -- Gelatinous Goop x1 + Partially-Liquid Cheese x1 → Tangy Organ Surprise x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Fishing Bait
-
-When applied as bait, Gelatinous Goop gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 7%
-- Catch Size Improvement: 25%
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Crunchy Wings]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Processed Meat]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Meaty Chunks]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Smoked Meat]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Salty Chunks]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Meaty Wings]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Fiendish Roe]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Offal Sac]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[ProtoSausage]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Diplo Chunks]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Scaly Meat]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Feline Liver]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Strider Sausage]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Raw Steak]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Leg Meat]] → 1 × Gelatinous Goop
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Crunchy Wings]] + 1 × [[Juicy Thorax]] → 1 × Gelatinous Goop
 
 ## Additional Information
 
-Restores 20% Life Support power once consumed.
+Restores 20% [[Life Support]] power once consumed.
 
 ## Release History
 
-- Origins - Added as a consumable.
-- Worlds Part I - Added new source.
-- Aquarius - Added fishing bait bonuses.
+- [[Origins]] - Added as a consumable.
+- [[Worlds Part I]] - Added new source.
+- [[Aquarius]] - Added fishing bait bonuses.

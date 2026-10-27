@@ -1,27 +1,33 @@
 ---
 title: "Harmonic Brain"
 category: "products"
+kind: "product"
+summary: "The central processing unit of a Sentinel interceptor ship. The circuitry appears stable, pulsing with a regular electrical heartbeat. It no longer reacts angrily to my presence."
 pageId: 539916
-summary: "Harmonic Brain is a component that is used for upgrading."
+revId: 1310962
+revTimestamp: "2026-05-12T21:57:16Z"
+version: "Singularity"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Harmonic_Brain"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.SENTINELSHIPBRAIN.CLEANED.png","color":"purple","type":"Harnessed Sentience","category":"Component","value":"480,016.0","release":"Singularity"},"value":480016,"recipes":[]}
 ---
 
 # Harmonic Brain
 
 ## Quick Facts
 
-- **Category:** Component
 - **Type:** Harnessed Sentience
-- **Total Value:** 480,016.0
-- **Updated:** Singularity
+- **Category:** Component
+- **Value:** 480,016.0
+- **Added in:** Singularity
 
 **Harmonic Brain** is a component.
 
 ## Summary
 
-**Harmonic Brain** is a component that is used for upgrading.
+**Harmonic Brain** is a [[component]] that is used for upgrading.
 
 ## Game Description
 
@@ -33,26 +39,12 @@ Install this unit in a disabled Sentinel ship to unlock its vestigial cockpit an
 
 ## Sources
 
-- Received by presenting a Hyaline Brain (obtained from a crashed Sentinel Interceptor) to a Monolith
+- Received by presenting a [[Hyaline Brain]] (obtained from a crashed [[Sentinel Interceptor]]) to a [[Monolith]]
 
 ## Use
 
-**Harmonic Brain** is used in the repair of Sentinel Interceptors.
-
-### Crafting
-
-**Harmonic Brain** is not used as an ingredient for crafting.
-
-### Refining
-
-**Harmonic Brain** is not used as an ingredient for refining using a Refiner.
-
-### Cooking
-
-**Harmonic Brain** is not used as an ingredient for cooking using a Nutrient Processor.
-
-## Additional Information
+**Harmonic Brain** is used in the repair of [[Interceptor (Starship)|Sentinel Interceptors]].
 
 ## Release History
 
-- Interceptor - Added as a component.
+- [[Interceptor]] - Added as a component.

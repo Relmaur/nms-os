@@ -1,11 +1,17 @@
 ---
 title: "Softened Marrow"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 587818
-summary: "Softened Marrow is a consumable and one of the Edible Products."
+revId: 1329190
+revTimestamp: "2026-08-14T02:36:02Z"
+version: "WorldsTwo"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Softened_Marrow"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.BONES.png","color":"Red","category":"Consumable","type":"Edible Product","value":"79,000","release":"WorldsTwo"},"value":79000,"recipes":[{"type":"cook","inputs":[{"name":"Swift Leg Bones","qty":1}],"outputs":[{"name":"Softened Marrow","qty":1}],"seconds":2,"label":"Stew Bones"},{"type":"cook","inputs":[{"name":"Fossilised Biped Legs","qty":1}],"outputs":[{"name":"Softened Marrow","qty":1}],"seconds":2,"label":"Stew Bones"}]}
 ---
 
 # Softened Marrow
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 79,000
-- **Updated:** WorldsTwo
+- **Value:** 79,000
+- **Added in:** WorldsTwo
 
 **Softened Marrow** is a consumable.
 
 ## Summary
 
-**Softened Marrow** is a consumable and one of the Edible Products.
+**Softened Marrow** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Game description
 
@@ -30,40 +36,18 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 Food such as this can be highly valuable.
 
 Flavour profile: rich, smooth, velvety.
-
-Recipe Complexity: 68%
+<br>Recipe Complexity: 68%
 
 ## Source
 
-Softened Marrow can be cooked using a Nutrient Processor with the following ingredients:
-
-- Swift Leg Bones x1 → Softened Marrow x1 (*"Stew Bones"*, 2 sec./unit output)
-- Fossilised Biped Legs x1 → Softened Marrow x1 (*"Stew Bones"*, 2 sec./unit output)
-
-## Recipes
-
-**Softened Marrow** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Bone Broth -- Softened Marrow x1 + Diplo Chunks x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Feline Liver x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Leg Meat x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Meaty Chunks x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Meaty Wings x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Offal Sac x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Processed Meat x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + ProtoSausage x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Pulpy Roots x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Raw Steak x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Scaly Meat x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Softened Marrow x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Strider Sausage x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
-- Bone Broth -- Softened Marrow x1 + Sweetroot x1 → Bone Broth x1 (*"Combine and Reduce"*, 2 sec./unit output)
+- **Nutrient Processor** · *Stew Bones* · 2 s per unit: 1 × [[Swift Leg Bones]] → 1 × Softened Marrow
+- **Nutrient Processor** · *Stew Bones* · 2 s per unit: 1 × [[Fossilised Biped Legs]] → 1 × Softened Marrow
 
 ## Additional Information
 
-Restores 5% Health once consumed.
+Restores 5% [[Health]] once consumed.
 
 ## Release History
 
-- Worlds Part II - Added as a consumable.
-- Aquarius - Added fishing bait bonuses.
+- [[Worlds Part II]] - Added as a consumable.
+- [[Aquarius]] - Added fishing bait bonuses.

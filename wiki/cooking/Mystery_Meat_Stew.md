@@ -1,11 +1,17 @@
 ---
 title: "Mystery Meat Stew"
 category: "cooking"
+kind: "product"
+summary: "A highly refined food product, created in the Nutrient Processor. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets."
 pageId: 142823
-summary: "Mystery Meat Stew is a consumable and one of the Edible Products."
+revId: 1336220
+revTimestamp: "2026-10-04T17:39:55Z"
+version: "Omega"
+obsolete: false
+status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mystery_Meat_Stew"
 license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
-updated: "2026-10-27"
+data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"6,400.0","release":"Omega"},"value":6400,"recipes":[{"type":"cook","inputs":[{"name":"Processed Meat","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Smoked Meat","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Smoked Meat","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Chunks","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Chunks","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Chunks","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Meaty Wings","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"ProtoSausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Diplo Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Scaly Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Meaty Wings","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Diplo Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Scaly Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"ProtoSausage","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Diplo Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Scaly Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Diplo Chunks","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Scaly Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Scaly Meat","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Strider Sausage","qty":1},{"name":"Strider Sausage","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Strider Sausage","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Strider Sausage","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Strider Sausage","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Strider Sausage","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Raw Steak","qty":1},{"name":"Raw Steak","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Raw Steak","qty":1},{"name":"Processed Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Raw Steak","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Raw Steak","qty":1},{"name":"Smoked Meat","qty":1}],"outputs":[{"name":"Mystery Meat Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 
 # Mystery Meat Stew
@@ -14,14 +20,14 @@ updated: "2026-10-27"
 
 - **Category:** Consumable
 - **Type:** Edible Product
-- **Total Value:** 6,400.0
-- **Updated:** Omega
+- **Value:** 6,400.0
+- **Added in:** Omega
 
 **Mystery Meat Stew** is a consumable.
 
 ## Summary
 
-**Mystery Meat Stew** is a consumable and one of the Edible Products.
+**Mystery Meat Stew** is a [[consumable]] and one of the [[Edible Product|Edible Products]].
 
 ## Use
 
@@ -33,74 +39,54 @@ A highly refined food product, created in the Nutrient Processor. It has both th
 
 Food such as this can be highly valuable.
 
-## Fishing Bait
-
-When applied as bait, Mystery Meat Stew gives the following bonus towards your next catch:
-
-- Catch Rarity Improvement: 12%
-- Catch Size Improvement: 0%
-
 ## Source
 
-Mystery Meat Stew can be cooked using a Nutrient Processor with the following ingredients:
-
-- Processed Meat x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Smoked Meat x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Smoked Meat x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Chunks x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Chunks x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Chunks x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Meaty Wings x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + ProtoSausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Diplo Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Scaly Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Strider Sausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Meaty Wings x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Diplo Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Scaly Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Strider Sausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- ProtoSausage x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Diplo Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Scaly Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Strider Sausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Diplo Chunks x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Scaly Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Strider Sausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Scaly Meat x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Strider Sausage x1 + Strider Sausage x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Strider Sausage x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Strider Sausage x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Strider Sausage x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Strider Sausage x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Raw Steak x1 + Raw Steak x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Raw Steak x1 + Processed Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Raw Steak x1 + Meaty Chunks x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Raw Steak x1 + Smoked Meat x1 → Mystery Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Recipes
-
-**Mystery Meat Stew** is used as an ingredient for cooking the following products using a Nutrient Processor:
-
-- Cheese-and-Flesh Stew -- Mystery Meat Stew x1 + Partially-Liquid Cheese x1 → Cheese-and-Flesh Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Herb-Encrusted Flesh -- Mystery Meat Stew x1 + Flavoursome Sauce x1 → Herb-Encrusted Flesh x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Spicy Fleshballs -- Mystery Meat Stew x1 + Scorching Sauce x1 → Spicy Fleshballs x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-- Thick Meat Stew -- Mystery Meat Stew x1 + Creamy Sauce x1 → Thick Meat Stew x1 (*"Combine and Reduce"*, 2.5 sec./unit output)
-
-## Additional information
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Processed Meat]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Smoked Meat]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Smoked Meat]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Chunks]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Chunks]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Chunks]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Meaty Wings]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[ProtoSausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Diplo Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Scaly Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Strider Sausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Meaty Wings]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Diplo Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Scaly Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Strider Sausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[ProtoSausage]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Diplo Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Scaly Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Strider Sausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Diplo Chunks]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Scaly Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Strider Sausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Scaly Meat]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Strider Sausage]] + 1 × [[Strider Sausage]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Strider Sausage]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Strider Sausage]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Strider Sausage]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Strider Sausage]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Raw Steak]] + 1 × [[Raw Steak]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Raw Steak]] + 1 × [[Processed Meat]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Raw Steak]] + 1 × [[Meaty Chunks]] → 1 × Mystery Meat Stew
+- **Nutrient Processor** · *Combine and Reduce* · 2.5 s per unit: 1 × [[Raw Steak]] + 1 × [[Smoked Meat]] → 1 × Mystery Meat Stew
 
 ## Release history
 
-- Beyond - Added as a consumable.
-- SentinelUp - Added benefits info.
+- [[Beyond]] - Added as a consumable.
+- [[SentinelUp]] - Added benefits info.
