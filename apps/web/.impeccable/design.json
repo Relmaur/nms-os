@@ -1,0 +1,706 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: ATLAS // MASTER OS",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "#050811",
+        "tonalRamp": [
+          "#050811",
+          "#0b1325",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#64748b",
+          "#94a3b8",
+          "#e2e8f0"
+        ]
+      },
+      "hud-panel": {
+        "role": "neutral",
+        "displayName": "HUD Panel",
+        "canonical": "#0b1325",
+        "tonalRamp": [
+          "#050811",
+          "#0b1325",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#64748b",
+          "#94a3b8",
+          "#e2e8f0"
+        ]
+      },
+      "hud-panel-glass": {
+        "role": "neutral",
+        "displayName": "HUD Panel Glass",
+        "canonical": "rgba(11, 19, 37, 0.85)",
+        "tonalRamp": [
+          "#050811",
+          "#0b1325",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#64748b",
+          "#94a3b8",
+          "#e2e8f0"
+        ]
+      },
+      "hud-edge": {
+        "role": "neutral",
+        "displayName": "HUD Edge",
+        "canonical": "rgba(56, 189, 248, 0.16)",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc"
+        ]
+      },
+      "slate-ground": {
+        "role": "neutral",
+        "displayName": "Slate Ground",
+        "canonical": "#0f172a",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "slate-deep": {
+        "role": "neutral",
+        "displayName": "Slate Deep",
+        "canonical": "#020617",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#1e293b",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "control-edge": {
+        "role": "neutral",
+        "displayName": "Control Edge",
+        "canonical": "#334155",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "control-edge-hover": {
+        "role": "neutral",
+        "displayName": "Control Edge Hover",
+        "canonical": "#64748b",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ink-bright": {
+        "role": "neutral",
+        "displayName": "Ink Bright",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#e2e8f0",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#cbd5e1",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "#94a3b8",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ink-label": {
+        "role": "neutral",
+        "displayName": "Ink Label",
+        "canonical": "#8b9ab0",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "scanner-cyan": {
+        "role": "primary",
+        "displayName": "Scanner Cyan",
+        "canonical": "#06b6d4",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc"
+        ]
+      },
+      "scanner-cyan-glow": {
+        "role": "primary",
+        "displayName": "Scanner Cyan Glow",
+        "canonical": "#22d3ee",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc"
+        ]
+      },
+      "scanner-cyan-pale": {
+        "role": "primary",
+        "displayName": "Scanner Cyan Pale",
+        "canonical": "#67e8f9",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc"
+        ]
+      },
+      "quantity-cyan": {
+        "role": "primary",
+        "displayName": "Quantity Cyan",
+        "canonical": "#a5f3fc",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc"
+        ]
+      },
+      "ready-emerald": {
+        "role": "secondary",
+        "displayName": "Ready Emerald",
+        "canonical": "#10b981",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#34d399",
+          "#6ee7b7",
+          "#a7f3d0"
+        ]
+      },
+      "ready-emerald-lit": {
+        "role": "secondary",
+        "displayName": "Ready Emerald Lit",
+        "canonical": "#34d399",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#34d399",
+          "#6ee7b7",
+          "#a7f3d0"
+        ]
+      },
+      "ready-emerald-pale": {
+        "role": "secondary",
+        "displayName": "Ready Emerald Pale",
+        "canonical": "#6ee7b7",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#34d399",
+          "#6ee7b7",
+          "#a7f3d0"
+        ]
+      },
+      "ready-emerald-ink": {
+        "role": "secondary",
+        "displayName": "Ready Emerald Ink",
+        "canonical": "#022c22",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#34d399",
+          "#6ee7b7",
+          "#a7f3d0"
+        ]
+      },
+      "units-amber": {
+        "role": "tertiary",
+        "displayName": "Units Amber",
+        "canonical": "#f59e0b",
+        "tonalRamp": [
+          "#451a03",
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fde68a"
+        ]
+      },
+      "units-amber-pale": {
+        "role": "tertiary",
+        "displayName": "Units Amber Pale",
+        "canonical": "#fde68a",
+        "tonalRamp": [
+          "#451a03",
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fde68a"
+        ]
+      },
+      "units-amber-text": {
+        "role": "tertiary",
+        "displayName": "Units Amber Text",
+        "canonical": "#fcd34d",
+        "tonalRamp": [
+          "#451a03",
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fde68a"
+        ]
+      },
+      "exotic-purple": {
+        "role": "tertiary",
+        "displayName": "Exotic Purple",
+        "canonical": "#a855f7",
+        "tonalRamp": [
+          "#3b0764",
+          "#581c87",
+          "#6b21a8",
+          "#7e22ce",
+          "#a855f7",
+          "#c084fc",
+          "#d8b4fe",
+          "#e9d5ff"
+        ]
+      },
+      "exotic-purple-pale": {
+        "role": "tertiary",
+        "displayName": "Exotic Purple Pale",
+        "canonical": "#c084fc",
+        "tonalRamp": [
+          "#3b0764",
+          "#581c87",
+          "#6b21a8",
+          "#7e22ce",
+          "#a855f7",
+          "#c084fc",
+          "#d8b4fe",
+          "#e9d5ff"
+        ]
+      },
+      "outlaw-crimson": {
+        "role": "tertiary",
+        "displayName": "Outlaw Crimson",
+        "canonical": "#ef4444",
+        "tonalRamp": [
+          "#450a0a",
+          "#7f1d1d",
+          "#991b1b",
+          "#b91c1c",
+          "#ef4444",
+          "#f87171",
+          "#fca5a5",
+          "#fecaca"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Screen titles."
+      },
+      "capstone": {
+        "displayName": "Capstone",
+        "purpose": "The planner's product name; 1.5rem, 1.875rem from 640px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles with a hue-coded icon; the cargo hold title."
+      },
+      "round-label": {
+        "displayName": "Round Label",
+        "purpose": "Round N over each crafting band."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Sentences, results, recipe lines; inputs at 1rem below 640px."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Field labels, captions, provenance, status."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase group headings (sidebar groups, grouped lists, panel sections). Never a kicker."
+      },
+      "numeric": {
+        "displayName": "Numeric",
+        "purpose": "Every quantity, Units value, count and glyph string."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-lift",
+        "value": "0 10px 30px -5px rgba(0,0,0,0.5)",
+        "purpose": "Every HUD card."
+      },
+      {
+        "name": "floating",
+        "value": "0 24px 64px -12px rgba(0,0,0,0.85)",
+        "purpose": "Toast, search results, the system sheet (16px/40px to 24px/64px)."
+      },
+      {
+        "name": "ready-glow",
+        "value": "0 4px 14px -4px rgba(52,211,153,0.45)",
+        "purpose": "A tick target whose inputs are covered."
+      },
+      {
+        "name": "ready-node-glow",
+        "value": "0 2px 10px -2px rgba(52,211,153,0.6)",
+        "purpose": "A ready round's diamond node."
+      },
+      {
+        "name": "exotic-glow",
+        "value": "0 0 12px rgba(168,85,247,0.45)",
+        "purpose": "The supercharged slot."
+      },
+      {
+        "name": "capstone-settled",
+        "value": "0 12px 32px -8px rgba(52,211,153,0.35)",
+        "purpose": "The capstone after its completion bloom (and its reduced-motion state)."
+      },
+      {
+        "name": "switch-knob",
+        "value": "0 2px 4px rgba(0,0,0,0.4)",
+        "purpose": "The toggle switch knob."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Signature moments: capstone bloom, search flash, switch knob."
+      },
+      {
+        "name": "state-fast",
+        "value": "120ms ease",
+        "purpose": "Hover and pressed colour changes on chips, rows, segments."
+      },
+      {
+        "name": "state-nav",
+        "value": "150ms ease",
+        "purpose": "Nav and tab colour changes."
+      },
+      {
+        "name": "switch",
+        "value": "180ms",
+        "purpose": "Switch track and knob; view transitions."
+      },
+      {
+        "name": "band-fade",
+        "value": "500ms",
+        "purpose": "Capstone and ready-band colour change."
+      },
+      {
+        "name": "spine-fill",
+        "value": "700ms ease-out",
+        "purpose": "The emerald spine growing up to a ready round."
+      },
+      {
+        "name": "capstone-bloom",
+        "value": "1.1s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Once, when a plan completes."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0ms",
+        "purpose": "All transitions and animations under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "HUD Card",
+      "kind": "card",
+      "refersTo": "hud-card",
+      "description": "The container for every screen section: glass panel, blur, hairline sky edge.",
+      "html": "<div class=\"ds-hud-card\"><h2 class=\"ds-hud-title\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"#67e8f9\" stroke-width=\"24\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M32 176l96 56 96-56M32 128l96 56 96-56M32 80l96 56 96-56-96-56z\"/></svg>Recipe planner</h2><p class=\"ds-hud-help\">Recipes and values come from the wiki mirror.</p></div>",
+      "css": ".ds-hud-card{background:rgba(11,19,37,0.85);backdrop-filter:blur(12px);border:1px solid rgba(56,189,248,0.16);box-shadow:0 10px 30px -5px rgba(0,0,0,0.5);border-radius:16px;padding:20px;color:#e2e8f0;font-family:Inter,sans-serif}.ds-hud-title{display:flex;align-items:center;gap:8px;margin:0;font-family:Orbitron,sans-serif;font-weight:700;font-size:1rem;line-height:1.5rem;color:#fff}.ds-hud-help{margin:4px 0 0;font-size:.75rem;line-height:1rem;color:#94a3b8}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main creating action on a view.",
+      "html": "<button class=\"ds-btn-primary\">Log a system</button>",
+      "css": ".ds-btn-primary{height:48px;padding:0 20px;border:0;border-radius:12px;background:#10b981;color:#020617;font:600 .875rem Inter,sans-serif;cursor:pointer;transition:background-color 150ms ease}.ds-btn-primary:hover{background:#34d399}.ds-btn-primary:active{background:#059669}.ds-btn-primary:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Neutral actions and steppers.",
+      "html": "<button class=\"ds-btn-secondary\">Add</button>",
+      "css": ".ds-btn-secondary{height:40px;padding:0 16px;border-radius:12px;background:#0f172a;border:1px solid #334155;color:#f1f5f9;font:400 .875rem Inter,sans-serif;cursor:pointer;transition:border-color 120ms ease}.ds-btn-secondary:hover{border-color:#64748b}.ds-btn-secondary:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Jump Button",
+      "kind": "button",
+      "refersTo": "button-jump",
+      "description": "In-page jump, cyan tint and edge, trailing arrow.",
+      "html": "<a href=\"#\" class=\"ds-btn-jump\">Start at the cargo hold<svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"24\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M128 40v176M56 144l72 72 72-72\"/></svg></a>",
+      "css": ".ds-btn-jump{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);color:#cffafe;font:500 .875rem Inter,sans-serif;text-decoration:none;transition:background-color 120ms ease}.ds-btn-jump:hover{background:rgba(34,211,238,0.2)}.ds-btn-jump:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Label above, slate control, emerald border on focus.",
+      "html": "<label class=\"ds-field\">Item to make<input type=\"search\" value=\"Stasis Device\"></label>",
+      "css": ".ds-field{display:block;font:400 .75rem Inter,sans-serif;color:#cbd5e1}.ds-field input{display:block;width:100%;margin-top:6px;height:40px;box-sizing:border-box;background:#0f172a;border:1px solid #334155;border-radius:12px;padding:8px 12px;font:400 .875rem Inter,sans-serif;color:#fff;caret-color:#22d3ee}.ds-field input:focus{outline:none;border-color:#34d399}"
+    },
+    {
+      "name": "Tag Filter",
+      "kind": "chip",
+      "refersTo": "tag-filter",
+      "description": "Pill filters and planner presets; pressed is the emerald tint.",
+      "html": "<button class=\"ds-tag\" aria-pressed=\"true\">Stasis Device</button> <button class=\"ds-tag\" aria-pressed=\"false\">Fusion Ignitor</button>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:9999px;border:1px solid #334155;background:#0f172a;font:400 .75rem Inter,sans-serif;color:#cbd5e1;cursor:pointer;transition:border-color 120ms ease,color 120ms ease}.ds-tag:hover{border-color:#64748b;color:#fff}.ds-tag[aria-pressed=true]{border-color:rgba(52,211,153,0.6);background:rgba(16,185,129,0.15);color:#a7f3d0}.ds-tag:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Sidebar Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Desktop navigation row with a hue-coded icon tile; active is a cyan tint with an inset edge.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-btn\" aria-current=\"page\" href=\"#\"><span class=\"ds-nav-tile\" style=\"color:#fcd34d\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"24\" stroke-linecap=\"round\"><rect x=\"48\" y=\"32\" width=\"160\" height=\"192\" rx=\"16\"/><path d=\"M88 72h80M88 128h16M152 128h16M88 176h16M152 176h16\"/></svg></span>Calculators</a><a class=\"ds-nav-btn\" href=\"#\"><span class=\"ds-nav-tile\" style=\"color:#d8b4fe\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"24\"><circle cx=\"128\" cy=\"128\" r=\"64\"/><path d=\"M40 160c-40 40 136-8 176-64\"/></svg></span>Systems<span class=\"ds-nav-count\">42</span></a></nav>",
+      "css": ".ds-nav{width:260px;font-family:Inter,sans-serif}.ds-nav-btn{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 10px;border-radius:12px;font-size:.8125rem;font-weight:500;color:#94a3b8;text-decoration:none;transition:background-color 150ms ease,color 150ms ease}.ds-nav-btn:hover{color:#fff;background:rgba(30,41,59,0.55)}.ds-nav-btn[aria-current=page]{color:#fff;background:rgba(6,182,212,0.1);box-shadow:inset 0 0 0 1px rgba(34,211,238,0.3)}.ds-nav-tile{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:rgba(30,41,59,0.7);font:700 11px Orbitron,sans-serif}.ds-nav-btn[aria-current=page] .ds-nav-tile{background:rgba(6,182,212,0.16)}.ds-nav-count{margin-left:auto;font:400 11px 'JetBrains Mono',monospace;color:#8b9ab0;font-variant-numeric:tabular-nums}.ds-nav-btn:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Planner Capstone",
+      "kind": "card",
+      "refersTo": "capstone",
+      "description": "The product crowning the plan: cyan-lit card, mono amount, Orbitron name, worth readout; lit emerald with a one-time bloom when complete.",
+      "html": "<section class=\"ds-cap\"><p class=\"ds-cap-qty\">×100</p><h3 class=\"ds-cap-name\">Stasis Device</h3><p class=\"ds-cap-meta\">All crafted from blueprints</p><dl class=\"ds-cap-dl\"><div><dt>Product worth</dt><dd style=\"color:#fde68a\">1.56B Units</dd></div><div><dt>Raw inputs worth</dt><dd>10.55M Units</dd></div></dl></section>",
+      "css": ".ds-cap{border-radius:16px;border:1px solid rgba(34,211,238,0.3);padding:20px;background:radial-gradient(120% 90% at 50% 0%,rgba(34,211,238,0.14),rgba(11,19,37,0.9) 60%);font-family:Inter,sans-serif;color:#e2e8f0;transition:background-color 500ms,border-color 500ms}.ds-cap:hover{border-color:rgba(52,211,153,0.6);background:rgba(2,44,34,0.4);animation:ds-bloom 1.1s cubic-bezier(0.16,1,0.3,1) both}@keyframes ds-bloom{from{box-shadow:0 0 0 0 rgba(52,211,153,0.55),0 12px 32px -8px rgba(52,211,153,0)}to{box-shadow:0 0 0 14px rgba(52,211,153,0),0 12px 32px -8px rgba(52,211,153,0.35)}}.ds-cap-qty{margin:0;font:400 1.125rem/1 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:#a5f3fc}.ds-cap-name{margin:6px 0 0;font:700 1.5rem/1.25 Orbitron,sans-serif;color:#fff}.ds-cap-meta{margin:4px 0 0;font-size:.75rem;color:#94a3b8}.ds-cap-dl{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(51,65,85,0.6)}.ds-cap-dl dt{font-size:.75rem;color:#94a3b8}.ds-cap-dl dd{margin:4px 0 0;font:400 1rem 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:#fff}"
+    },
+    {
+      "name": "Round Spine with Step Row",
+      "kind": "custom",
+      "refersTo": "tick-target",
+      "description": "A crafting round on the spine: diamond node, Orbitron label, ready band with emerald tint pill, step row with a 44px tick target and a one-line recipe.",
+      "html": "<div class=\"ds-round\"><span class=\"ds-spine\"></span><span class=\"ds-node\"></span><div class=\"ds-round-head\"><h4>Round 1</h4><span class=\"ds-pill\">Ready to craft · 1 craft</span></div><ul class=\"ds-band\"><li class=\"ds-step\"><label class=\"ds-tick\"><input type=\"checkbox\"><span><svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"24\" stroke-linecap=\"round\"><path d=\"M40 216l96-96M120 56l80 80M152 40l64 64-40 40-64-64z\"/></svg></span></label><div><p class=\"ds-step-name\"><b>100×</b> Heat Capacitor</p><p class=\"ds-recipe\"><b class=\"r\">10,000</b> Frost Crystal <i>+</i> <b class=\"r\">20,000</b> Solanium</p></div></li></ul></div>",
+      "css": ".ds-round{position:relative;padding:24px 0 0 36px;font-family:Inter,sans-serif;color:#cbd5e1}.ds-spine{position:absolute;left:15px;top:0;bottom:0;width:1px;background:rgba(52,211,153,0.7)}.ds-node{position:absolute;left:9px;top:1.85rem;width:13px;height:13px;transform:rotate(45deg);border-radius:3px;border:1px solid #34d399;background:#020617;box-shadow:0 2px 10px -2px rgba(52,211,153,0.6)}.ds-round-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}.ds-round-head h4{margin:0;font:700 .875rem Orbitron,sans-serif;letter-spacing:.025em;color:#fff}.ds-pill{padding:2px 8px;border-radius:9999px;background:rgba(52,211,153,0.15);color:#a7f3d0;font-size:.75rem;font-weight:500}.ds-band{list-style:none;margin:8px -12px 0;padding:0 12px;border-radius:12px;background:rgba(52,211,153,0.06);box-shadow:inset 0 0 0 1px rgba(52,211,153,0.25)}.ds-step{display:flex;gap:12px;padding:12px 0}.ds-tick{position:relative;flex:none;width:44px;height:44px;cursor:pointer}.ds-tick input{position:absolute;opacity:0;width:1px;height:1px}.ds-tick span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:12px;border:1px solid rgba(52,211,153,0.7);background:rgba(52,211,153,0.1);color:#6ee7b7;box-shadow:0 4px 14px -4px rgba(52,211,153,0.45);transition:background-color 150ms,color 150ms}.ds-tick input:checked+span{background:#34d399;border-color:#6ee7b7;color:#022c22;box-shadow:none}.ds-tick input:focus-visible+span{outline:2px solid #67e8f9;outline-offset:2px}.ds-step-name{margin:0;font-size:.9375rem;color:#fff}.ds-step-name b{font:400 .875rem 'JetBrains Mono',monospace;color:#a5f3fc;font-variant-numeric:tabular-nums}.ds-recipe{margin:4px 0 0;font-size:.875rem;line-height:1.625}.ds-recipe b{font-weight:400;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}.ds-recipe b.r{color:#6ee7b7}.ds-recipe i{font-style:normal;color:#64748b}"
+    },
+    {
+      "name": "Recipe Switch Preview",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline button on a step with alternatives: what the next recipe uses in this plan's amounts and the signed change in raw value.",
+      "html": "<button class=\"ds-switch\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"#67e8f9\" stroke-width=\"24\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M184 104h48V56M72 152H24v48M232 104A104 104 0 0 0 48 72M24 152a104 104 0 0 0 184 32\"/></svg><span><span class=\"ds-switch-a\">Recipe 1 of 2 · switch to the next</span><span class=\"ds-switch-b\">50 Pure Ferrite + 25 Carbon<em> · −1,200 Units</em></span></span></button>",
+      "css": ".ds-switch{display:flex;align-items:flex-start;gap:8px;padding:6px 10px;border-radius:8px;border:1px solid #334155;background:transparent;text-align:left;font:400 .75rem Inter,sans-serif;color:#cbd5e1;cursor:pointer;transition:border-color 120ms,color 120ms}.ds-switch svg{margin-top:2px;flex:none}.ds-switch:hover{border-color:rgba(34,211,238,0.6);color:#cffafe}.ds-switch-a,.ds-switch-b{display:block}.ds-switch-b{color:#94a3b8}.ds-switch-b em{font-style:normal;color:#6ee7b7;white-space:nowrap}.ds-switch:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}"
+    },
+    {
+      "name": "Cargo Hold Slot",
+      "kind": "custom",
+      "refersTo": "hold-slot",
+      "description": "Square inventory-slot tile for raw stock: name top-left, check bottom-left, mono amount bottom-right; gathered turns emerald.",
+      "html": "<div class=\"ds-hold\"><label class=\"ds-slot\"><input type=\"checkbox\" checked><span class=\"ds-slot-name\">Nitrogen</span><span class=\"ds-slot-foot\"><span class=\"ds-slot-box\"></span><span class=\"ds-slot-qty\">50,000</span></span></label><label class=\"ds-slot\"><input type=\"checkbox\"><span class=\"ds-slot-name\">Condensed Carbon</span><span class=\"ds-slot-foot\"><span class=\"ds-slot-box\"></span><span class=\"ds-slot-qty\">30,000</span></span></label></div>",
+      "css": ".ds-hold{display:grid;grid-template-columns:repeat(2,108px);gap:8px;font-family:Inter,sans-serif}.ds-slot{position:relative;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid #334155;background:linear-gradient(160deg,rgba(30,41,59,0.55),rgba(2,6,23,0.9));cursor:pointer;transition:border-color 150ms,background-color 150ms}.ds-slot:hover{border-color:#64748b}.ds-slot input{position:absolute;opacity:0;width:1px;height:1px}.ds-slot:has(input:focus-visible){outline:2px solid #67e8f9;outline-offset:2px}.ds-slot-name{font-size:.75rem;line-height:1.25;color:#f1f5f9}.ds-slot-foot{display:flex;align-items:flex-end;justify-content:space-between}.ds-slot-box{width:20px;height:20px;border-radius:6px;border:1px solid #475569;box-sizing:border-box}.ds-slot-qty{font:400 1rem/1 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:#a5f3fc}.ds-slot:has(input:checked){border-color:rgba(52,211,153,0.7);background:rgba(16,185,129,0.1)}.ds-slot:has(input:checked) .ds-slot-name{color:#94a3b8}.ds-slot:has(input:checked) .ds-slot-box{background:#34d399;border-color:#6ee7b7}.ds-slot:has(input:checked) .ds-slot-qty{color:#6ee7b7}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Ship's Console",
+    "overview": "ATLAS is a starship's instrument panel brought to a phone propped beside the PC. A near-black void ground, washed with faint cyan and purple nebula light, carries translucent glass panels with a hairline cyan edge. Display type is Orbitron, used sparingly for screen titles, card titles, round labels and the planner's product; everything else is quiet Inter, and every quantity is JetBrains Mono with tabular figures, so numbers read like instrument readouts and line up column to column.\n\nDensity is moderate and glance-first: one answer per card, detail on demand, touch targets of at least 40px (44px for anything ticked mid-session). Colour is semantic rather than decorative. Cyan means an amount or the scanner's focus, emerald means done or ready, amber means Units (money), purple belongs to exotic and register content, crimson to the planet mark and outlaw status. The accent hues appear as tinted fills at 10-15% alpha with a 30-60% alpha border, almost never as solid blocks; the one solid fill is the emerald of a completed tick or the primary action.\n\nThe world's material is light on glass: depth comes from translucency, backdrop blur and soft coloured glow (a ready tick, a lit round node, the exotic slot, the capstone's bloom), never from hard or offset shadows.",
+    "keyCharacteristics": [
+      "Void ground (near-black blue) with three faint radial nebula washes, fixed to the page.",
+      "Glass HUD cards: 85% opaque panel, 12px backdrop blur, hairline sky-blue edge, 16px corners.",
+      "Orbitron for titles only; Inter for reading; JetBrains Mono tabular figures for every number.",
+      "Semantic accents as tinted fills plus a stronger tinted border.",
+      "Phosphor icons (bold weight by default) as the only icon set.",
+      "Light-based depth: glow and blur, no offset shadows."
+    ],
+    "rules": [
+      {
+        "name": "The One Meaning Rule",
+        "body": "Each accent hue carries one meaning: cyan is amount or focus, emerald is done or ready, amber is Units or caution. A new screen reuses the meaning, never the hue for decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tint-and-Edge Rule",
+        "body": "Accent states are a 10-15% alpha fill with a 30-70% alpha border of the same hue (an on segment, a ready band, a pill, the jump button). Solid accent fills are reserved for a completed tick and the primary action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readout Rule",
+        "body": "Every number a player compares is JetBrains Mono with `tabular-nums`. Inter never sets a quantity.",
+        "section": "typography"
+      },
+      {
+        "name": "The Short Burst Rule",
+        "body": "Orbitron is for names and titles of a few words; it never sets a sentence.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glow Means State Rule",
+        "body": "A coloured glow is never decoration: it marks something ready, lit, exotic or complete. Resting controls carry no glow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** set every quantity and value in JetBrains Mono with tabular figures, in quantity-cyan for amounts and units-amber-pale for Units.",
+      "**Do** build containers as HUD cards: hud-panel-glass, 12px blur, 1px hud-edge, 16px corners, card-lift shadow.",
+      "**Do** express states as tint-and-edge (10-15% fill, 30-70% border) in the hue that carries the meaning.",
+      "**Do** keep tick and tap targets at 44px (40px minimum for steppers and secondary buttons) and inputs at 1rem below 640px.",
+      "**Do** pair each card title (Orbitron 700, 1rem) with one bold Phosphor icon in the card's semantic hue.",
+      "**Do** honour reduced motion: the shared rule zeroes all transitions; signature moments (the bloom, the spine fill) must settle to their end state.",
+      "**Do** use the cyan focus outline (2px, offset 2px) on every focusable element, including visually hidden checkboxes via their drawn target."
+    ],
+    "donts": [
+      "**Don't** use an accent hue for decoration or outside its meaning (cyan for a Units value, amber for done).",
+      "**Don't** add hard or offset shadows; depth is blur, soft lift and state glow.",
+      "**Don't** set sentences or body copy in Orbitron.",
+      "**Don't** use text glyphs or emoji as icons; Phosphor is the icon set.",
+      "**Don't** put an uppercase mono label above a heading as a kicker; the uppercase label style only names the group it heads.",
+      "**Don't** load fonts, icons or styles from a CDN; everything is bundled."
+    ]
+  }
+}

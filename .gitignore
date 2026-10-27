@@ -14,4 +14,4 @@ apps/web/dist/
 apps/web/dev-dist/
 
 # Impeccable decision-page logs (the surface briefs in .impeccable/surfaces are kept)
-.impeccable/questions/
+**/.impeccable/questions/
