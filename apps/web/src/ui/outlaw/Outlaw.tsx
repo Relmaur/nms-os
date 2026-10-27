@@ -33,10 +33,12 @@ export function Outlaw() {
 
   return (
     <>
-      <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
+      {/* Explicit gaps, not space-y: the paste form stays mounted while closed (it keeps what was typed), and a
+          hidden last child would leave a gap under the summary. */}
+      <div className="hud-card rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl font-bold text-white">Outlaw Run</h2>
+            <h1 className="font-display text-2xl font-bold text-white">Outlaw Run</h1>
             <p className="text-sm text-slate-300 mt-1.5">
               Your outlaw systems, which Contraband Agents have restocked, and the next stations to hit. Method:{' '}
               <a href="#book2" className="text-emerald-300 hover:text-emerald-200 underline underline-offset-2">
@@ -66,7 +68,7 @@ export function Outlaw() {
             </button>
           </div>
         </div>
-        <p id="outlawSummary" className="text-sm text-slate-300">
+        <p id="outlawSummary" className="mt-4 text-sm text-slate-300">
           {rows.length ? (
             <>
               <strong className="text-white">{rows.length}</strong>
@@ -89,7 +91,7 @@ export function Outlaw() {
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
         <div className="xl:col-span-5 hud-card rounded-2xl p-5 space-y-4 self-start">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-display font-bold text-base text-white">Next run</h3>
+            <h2 className="font-display font-bold text-base text-white">Next run</h2>
             <label className="flex items-center gap-2 text-xs text-slate-300">
               Stations
               <select
@@ -167,7 +169,7 @@ export function Outlaw() {
 
         <div className="xl:col-span-7 hud-card rounded-2xl p-5 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-display font-bold text-base text-white">Outlaw systems</h3>
+            <h2 className="font-display font-bold text-base text-white">Outlaw systems</h2>
             <div id="outlawFilters" className="flex gap-1.5">
               {filters.map(([key, label, n]) => (
                 <button
@@ -392,7 +394,7 @@ function BulkForm({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <form
       id="outlawBulkForm"
-      className={`${open ? '' : 'hidden '}rounded-xl bg-slate-900/70 border border-slate-700 p-4 space-y-3`}
+      className={`${open ? '' : 'hidden '}mt-4 rounded-xl bg-slate-900/70 border border-slate-700 p-4 space-y-3`}
       onSubmit={submit}
     >
       <label className="block text-xs text-slate-300">

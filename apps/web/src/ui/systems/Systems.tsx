@@ -40,7 +40,7 @@ export function Systems() {
       <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl font-bold text-white">Systems</h2>
+            <h1 className="font-display text-2xl font-bold text-white">Systems</h1>
             <p className="text-sm text-slate-300 mt-1.5">
               Every system you warp to, with the details the game shows, your own tags, planets, notes and a visit
               journal. Filter it the way the in-game Discoveries page can’t.

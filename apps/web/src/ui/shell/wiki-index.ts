@@ -17,11 +17,11 @@ export function setWikiEntries(next: PreparedEntry[]): void {
 
 export const wikiEntries = (): PreparedEntry[] => entries;
 
-function subscribe(listener: () => void): () => void {
+export function onWikiEntries(listener: () => void): () => void {
   listeners.add(listener);
   return () => listeners.delete(listener);
 }
 
 export function useWikiCount(): number | null {
-  return useSyncExternalStore(subscribe, () => count);
+  return useSyncExternalStore(onWikiEntries, () => count);
 }

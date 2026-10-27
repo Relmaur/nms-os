@@ -27,6 +27,8 @@ const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
   ['Page frame (header, sidebar, tab bar)', './', '#homeNow', 'body'],
+  ['Page frame on Systems', './#systems', '#systemList', 'body'],
+  ['Page frame on Outlaw Run', './#outlaw', '#outlawStationList', 'body'],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System panel', './#systems', '#systemNotes', '#systemPanel', openPanel],

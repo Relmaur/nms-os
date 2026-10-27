@@ -9,6 +9,8 @@ import { Sidebar } from './Sidebar.tsx';
 import { TabBar } from './TabBar.tsx';
 import { StorageBanner, reportStorage } from './StorageBanner.tsx';
 import { showSection } from './section-store.ts';
+import { setWikiEntries } from './wiki-index.ts';
+import { prepare } from '@atlas/core/search';
 
 vi.mock('../systems/panel-store.ts', () => ({ openSystem: vi.fn() }));
 
@@ -49,6 +51,18 @@ test('the search lists matching systems, moves with the arrows and opens the cho
   await userEvent.keyboard('{Enter}');
   expect(openSystem).toHaveBeenCalledWith('sys-hesper');
   expect(input.getAttribute('aria-expanded')).toBe('false');
+});
+
+test('a search typed before the wiki index arrives fills in its wiki results when it does', async () => {
+  render(<Search />);
+  await userEvent.type(screen.getByRole('combobox'), 'oxygen');
+  expect(screen.queryByText('Wiki articles')).toBeNull();
+  act(() => {
+    setWikiEntries([
+      prepare({ title: 'Oxygen', category: 'resources', path: 'wiki/resources/Oxygen.md', summary: 'A gas.' })
+    ]);
+  });
+  expect(within(screen.getByRole('listbox')).getByText('Wiki articles')).toBeTruthy();
 });
 
 test('a search with no match says so', async () => {

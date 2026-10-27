@@ -40,34 +40,37 @@ export function Calculators() {
 
       <ToolDock summary={data.status === 'ready' ? summary : data.status === 'failed' ? '' : 'Loading recipes…'} />
 
-      <div {...panel('planner')} className="hud-card rounded-2xl px-4 sm:px-5 pb-4 sm:pb-5">
-        {/* The dock names the planner on screen; this heading keeps the outline (h1, h2, then the capstone's h3). */}
-        <h2 id="calcPlanHeading" className="sr-only">
-          Recipe planner
-        </h2>
-        {data.status === 'ready' ? (
-          <Planner catalog={data.catalog} onSummary={setSummary} />
-        ) : (
-          <p className="pt-4 sm:pt-5 text-sm text-slate-400">
-            {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
+      {/* One wrapper, so the hidden panels never sit last in the page's space-y list (which would add a gap). */}
+      <div>
+        <div {...panel('planner')} className="hud-card rounded-2xl px-4 sm:px-5 pb-4 sm:pb-5">
+          {/* The dock names the planner on screen; this heading keeps the outline (h1, h2, then the capstone's h3). */}
+          <h2 id="calcPlanHeading" className="sr-only">
+            Recipe planner
+          </h2>
+          {data.status === 'ready' ? (
+            <Planner catalog={data.catalog} onSummary={setSummary} />
+          ) : (
+            <p className="pt-4 sm:pt-5 text-sm text-slate-400">
+              {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
+            </p>
+          )}
+        </div>
+        <div {...panel('value')} className="max-w-3xl space-y-4">
+          <BaseValue catalog={catalog} />
+          <p className="text-xs text-slate-400 px-1">
+            Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in{' '}
+            <a href="#outlaw" className="text-emerald-300 hover:text-emerald-200">
+              Outlaw Run
+            </a>
+            , then Run settings.
           </p>
-        )}
-      </div>
-      <div {...panel('value')} className="max-w-3xl space-y-4">
-        <BaseValue catalog={catalog} />
-        <p className="text-xs text-slate-400 px-1">
-          Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in{' '}
-          <a href="#outlaw" className="text-emerald-300 hover:text-emerald-200">
-            Outlaw Run
-          </a>
-          , then Run settings.
-        </p>
-      </div>
-      <div {...panel('extractors')} className="max-w-3xl">
-        <Extractors catalog={catalog} />
-      </div>
-      <div {...panel('registers')} className="max-w-3xl">
-        <Registers />
+        </div>
+        <div {...panel('extractors')} className="max-w-3xl">
+          <Extractors catalog={catalog} />
+        </div>
+        <div {...panel('registers')} className="max-w-3xl">
+          <Registers />
+        </div>
       </div>
     </>
   );

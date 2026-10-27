@@ -1,11 +1,11 @@
-/* Tailwind, imported last by each page's stylesheet and without cascade layers: before the build step, Tailwind's
-   CDN injected its base and utility styles after the app's own CSS, so specificity ties resolve the same way now. */
+/* Tailwind v4's base styles sit in their layer, below everything. Its utilities stay unlayered and come last in each
+   page's stylesheet, after the app's own CSS (theme.css), so the two resolve by specificity as they always have:
+   `main.app-main` keeps its tab-bar padding over `py-5`, and a utility wins a tie with a component class. */
 @import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
 /* Class names also live in @atlas/core (Codex badges); Tailwind only scans this app by default. */
 @source '../../../packages/core/src';
-@import './tailwind-v3-preflight.css';
-@import 'tailwindcss/utilities.css';
-@import './tailwind-v3-spacing.css';
 
 @theme {
   --font-sans: 'Inter', sans-serif;
@@ -19,14 +19,4 @@
   --color-atlas-purple: #a855f7;
   --color-atlas-emerald: #10b981;
   --color-atlas-crimson: #ef4444;
-
-  /* v3's line heights: fixed lengths, which children with another font size inherit as-is (v4's are ratios). */
-  --text-xs--line-height: 1rem;
-  --text-sm--line-height: 1.25rem;
-  --text-base--line-height: 1.5rem;
-  --text-lg--line-height: 1.75rem;
-  --text-xl--line-height: 1.75rem;
-  --text-2xl--line-height: 2rem;
-  --text-3xl--line-height: 2.25rem;
-  --text-4xl--line-height: 2.5rem;
 }

@@ -11,7 +11,7 @@ import { StarDot } from '../parts/SystemBits.tsx';
 import { openSystem } from '../systems/panel-store.ts';
 import { findBookHits, flash, snippetAround, type BookHit } from './book-search.ts';
 import { showSection } from './section-store.ts';
-import { wikiEntries } from './wiki-index.ts';
+import { onWikiEntries, wikiEntries } from './wiki-index.ts';
 
 const WIKI_LIMIT = 6;
 const BOOK_LIMIT = 6;
@@ -83,6 +83,15 @@ export function Search() {
     setOpen(false);
     input.current?.blur();
   };
+
+  // The wiki index loads after the page does: a search typed before it arrives fills in its wiki results then.
+  useEffect(
+    () =>
+      onWikiEntries(() => {
+        setResults(current => (current.query.trim() ? find(current.query) : current));
+      }),
+    []
+  );
 
   // Widening the window past the phone layout leaves the overlay.
   useEffect(() => {
