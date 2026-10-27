@@ -27,6 +27,7 @@ export interface PushStatus {
   support: PushSupport;
   enabled: boolean;
   busy: boolean;
+  turningOn: boolean; // the switch shows on at once: subscribing can take seconds on desktop (the browser's push service)
   problem: PushProblem | null;
 }
 
@@ -39,7 +40,7 @@ function detectSupport(): PushSupport {
   return apple ? 'install' : 'no';
 }
 
-let status: PushStatus = { support: 'no', enabled: false, busy: false, problem: null };
+let status: PushStatus = { support: 'no', enabled: false, busy: false, turningOn: false, problem: null };
 const listeners = new Set<() => void>();
 function setStatus(patch: Partial<PushStatus>): void {
   status = { ...status, ...patch };
@@ -222,7 +223,7 @@ export function sendSchedule(): Promise<void> {
 // From the switch's tap (browsers only show the permission prompt from a user action).
 export async function enablePush(): Promise<void> {
   if (status.support !== 'yes') return;
-  setStatus({ busy: true });
+  setStatus({ busy: true, turningOn: true, problem: null });
   try {
     const permission =
       Notification.permission === 'default' ? await Notification.requestPermission() : Notification.permission;
@@ -248,7 +249,7 @@ export async function enablePush(): Promise<void> {
     logEvent('push-enable-failed', e);
     setStatus({ problem: 'server' });
   } finally {
-    setStatus({ busy: false });
+    setStatus({ busy: false, turningOn: false });
   }
 }
 

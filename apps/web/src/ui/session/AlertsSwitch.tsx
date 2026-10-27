@@ -39,17 +39,17 @@ export function AlertsSwitch({ id }: { id: string }) {
           type="button"
           id={id}
           role="switch"
-          aria-checked={push.enabled}
+          aria-checked={push.enabled || push.turningOn}
           aria-labelledby={label}
           aria-describedby={note}
           disabled={push.busy}
           onClick={() => void (push.enabled ? disablePush() : enablePush())}
-          className="switch disabled:opacity-60"
+          className={`switch ${push.turningOn ? '' : 'disabled:opacity-60'}`}
         />
       </div>
       {/* Always in the page, so screen readers announce a problem when its text appears. */}
-      <p role="status" className="mt-1.5 text-xs text-amber-300 empty:hidden">
-        {push.problem ? NOTE[push.problem](untilText(relay.until)) : ''}
+      <p role="status" className={`mt-1.5 text-xs empty:hidden ${push.problem ? 'text-amber-300' : 'text-slate-400'}`}>
+        {push.problem ? NOTE[push.problem](untilText(relay.until)) : push.turningOn ? 'Turning on…' : ''}
       </p>
     </div>
   );

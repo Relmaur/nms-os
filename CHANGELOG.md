@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.14.1] - 2026-10-27
+### Fixed
+- "Alerts when the app is asleep" flips on as soon as you tap it, showing "Turning on…" while the browser registers for push (a second or two on desktop), and flips back if that fails.
+
 ## [3.14.0] - 2026-10-27
 ### Added
 - **Ships & Multi-Tools:** keep your own ships and Multi-Tools, with their class, role, supercharged slots (drawn on a grid) and layout notes. Home's fleet card shows them, flagships first. If your log had the old fleet notes, they become your first entries automatically.

@@ -15,6 +15,7 @@ const subscription = {
 let requests: { method: string; url: string; body: unknown }[];
 let permission: NotificationPermission;
 let subscribed: boolean;
+let subscribeGate: Promise<void> = Promise.resolve(); // a slow push service (desktop Chrome) when held
 const unsubscribe = vi.fn(() => Promise.resolve(true));
 
 beforeEach(async () => {
@@ -22,11 +23,13 @@ beforeEach(async () => {
   requests = [];
   permission = 'default';
   subscribed = false;
+  subscribeGate = Promise.resolve();
   const pushManager = {
     getSubscription: () => Promise.resolve(subscribed ? { toJSON: () => subscription, unsubscribe } : null),
-    subscribe: () => {
+    subscribe: async () => {
+      await subscribeGate;
       subscribed = true;
-      return Promise.resolve({ toJSON: () => subscription, unsubscribe });
+      return { toJSON: () => subscription, unsubscribe };
     }
   };
   vi.stubGlobal('PushManager', function PushManager() {});
@@ -97,6 +100,24 @@ test('turning alerts on asks for notifications and sends only ids and end times'
     timers: [{ id: 'timer-soon', at: Date.parse(appState.timers[0]!.endsAt) }]
   });
   expect(JSON.stringify(put?.body)).not.toContain('Chromatic'); // names stay on the device
+});
+
+test('the switch shows on at once while a slow push service subscribes, and goes back off if that fails', async () => {
+  let fail = (_: Error) => {};
+  subscribeGate = new Promise((_, reject) => {
+    fail = reject;
+  });
+  render(<AlertsSwitch id="push" />);
+  await userEvent.click(toggle());
+  await expect.poll(() => toggle().getAttribute('aria-checked')).toBe('true');
+  expect(screen.getByRole('status').textContent).toBe('Turning on…');
+  await act(async () => {
+    fail(new Error('push service unavailable'));
+    await subscribeGate.catch(() => undefined);
+  });
+  await expect.poll(() => toggle().getAttribute('aria-checked')).toBe('false');
+  expect(screen.getByRole('status').textContent).toMatch(/Couldn’t reach the alert server/);
+  expect(requests).toEqual([]);
 });
 
 test('an unchanged schedule isn’t sent again; turning alerts off removes the device', async () => {
