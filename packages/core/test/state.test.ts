@@ -50,3 +50,14 @@ test('stateTimestamp tolerates missing or invalid dates', () => {
   assert.equal(stateTimestamp({ meta: { lastUpdated: 'nope' } }), 0);
   assert.equal(stateTimestamp({ meta: { lastUpdated: '2026-01-01T00:00:00Z' } }), Date.parse('2026-01-01T00:00:00Z'));
 });
+
+test('a "__proto__" key in a document never changes an object’s prototype', () => {
+  const merged = deepMerge(
+    { checklists: {} },
+    JSON.parse('{"checklists":{"__proto__":{"polluted":true},"cs1":true}}') as Record<string, unknown>
+  );
+  const checklists = merged.checklists as Record<string, unknown>;
+  assert.equal(Object.getPrototypeOf(checklists), Object.prototype);
+  assert.equal(checklists.polluted, undefined);
+  assert.equal(checklists.cs1, true);
+});

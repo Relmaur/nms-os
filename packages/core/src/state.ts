@@ -105,6 +105,7 @@ export function deepMerge(base: unknown, patch: unknown): unknown {
   if (!isPlainObject(base) || !isPlainObject(patch)) return structuredClone(patch);
   const merged: Record<string, unknown> = { ...base };
   Object.keys(patch).forEach(key => {
+    if (key === '__proto__') return; // JSON.parse makes it an own key; assigning it would swap the object's prototype
     merged[key] = deepMerge(base[key], patch[key]);
   });
   return merged;

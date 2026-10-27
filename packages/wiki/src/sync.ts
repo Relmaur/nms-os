@@ -66,6 +66,11 @@ const Redirects = z.looseObject({
   })
 });
 const Aliases = z.record(z.string(), z.string());
+const CustomMeta = z.looseObject({
+  title: z.coerce.string().optional().catch(undefined),
+  summary: z.coerce.string().optional().catch(undefined),
+  data: ArticleMetaSchema.shape.data.catch(undefined)
+});
 
 // ---------------------------------------------------------------------------
 // MediaWiki API
@@ -345,7 +350,10 @@ async function buildIndexes(): Promise<void> {
       for (const file of files) {
         const parsed = parseFrontmatter(await fs.readFile(path.join(dir, file), 'utf8'));
         const { body } = parsed;
-        const meta = readMeta(`${base}${folder}/${file}`, parsed.meta);
+        // Hand-written articles in custom/ only need a title and summary; unquoted numbers ("title: 1984") are text.
+        const meta = base
+          ? CustomMeta.parse(parsed.meta)
+          : readMeta(`${base}${folder}/${file}`, parsed.meta);
         const slug = file.slice(0, -3);
         const isWiki = !base && Boolean(meta.revId);
         const entry = {

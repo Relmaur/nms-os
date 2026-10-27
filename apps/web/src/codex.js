@@ -743,7 +743,7 @@ async function saveDraft() {
       .slice(0, 200);
   const path = `wiki/custom/${category}/${slug}.md`;
   const markdown = `# ${title}\n\n${body}\n`;
-  // Frontmatter format matches what scripts/sync-wiki.mjs writes and parses.
+  // Frontmatter format matches what the wiki sync (packages/wiki) writes and parses.
   const fileText = [
     '---',
     `title: ${JSON.stringify(title)}`,

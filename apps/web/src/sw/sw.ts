@@ -4,9 +4,9 @@
 // revisions, so each deploy is one consistent version that updates in place. Data that changes between deploys is
 // fetched network-first; individual wiki articles are cached as they are read.
 import { clientsClaim } from 'workbox-core';
-import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
-import { registerRoute } from 'workbox-routing';
-import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { cleanupOutdatedCaches, matchPrecache, precacheAndRoute } from 'workbox-precaching';
+import { NavigationRoute, registerRoute, setCatchHandler } from 'workbox-routing';
+import { CacheFirst, NetworkFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope & { __WB_MANIFEST: (string | { url: string; revision: string | null })[] };
 
@@ -30,10 +30,10 @@ self.addEventListener('activate', event => {
 const DATA_CACHE = 'atlas-data';
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches
-      .open(DATA_CACHE)
-      .then(cache => cache.addAll(['nms_state.json', 'wiki/verification.json']))
-      .catch(() => undefined) // a missing verification report must not block installing the app
+    caches.open(DATA_CACHE).then(cache =>
+      // One at a time: a missing verification report must neither block installing nor skip the state file.
+      Promise.allSettled(['nms_state.json', 'wiki/verification.json'].map(url => cache.add(url)))
+    )
   );
 });
 registerRoute(
@@ -53,3 +53,12 @@ registerRoute(
   ({ request, sameOrigin }) => sameOrigin && request.destination === 'font',
   new CacheFirst({ cacheName: 'atlas-fonts' })
 );
+
+// Any other page address (a query string, /wiki without the slash) goes to the network; offline it falls back to the
+// matching precached page, as the pre-3.1 worker did.
+registerRoute(new NavigationRoute(new NetworkOnly()));
+setCatchHandler(async ({ request, url }) => {
+  if (request.mode !== 'navigate') return Response.error();
+  const page = /\/wiki\/?$/.test(url.pathname) ? 'wiki/index.html' : 'index.html';
+  return (await matchPrecache(page)) ?? Response.error();
+});

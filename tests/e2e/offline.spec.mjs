@@ -12,7 +12,7 @@ test('after one online visit, the app and the Codex work offline', async ({ page
 
   await context.setOffline(true);
 
-  await page.goto('./');
+  await page.goto('./?source=homescreen'); // any other address in scope falls back to the app page
   await expect(page.locator('#homeNow')).toContainText('Ekwa Nexus');
   await page.goto('./#systems');
   await expect(page.locator('#systemList')).toContainText('Hesper Drift');

@@ -16,7 +16,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 - The app is built with Vite (`apps/web`) and served from the build. Shared logic is strict TypeScript in `packages/core`, the wiki sync in `packages/wiki`; Node runs the sync's `.ts` files directly. pnpm replaces npm.
 - Nothing loads from a CDN any more: Tailwind is compiled at build time, Phosphor icons, marked and DOMPurify are bundled, and Inter, Orbitron and JetBrains Mono are self-hosted (visitors' IP addresses are no longer sent to Google Fonts). Screens render as before.
 - New service worker (Workbox) at the same `sw.js` address, so installed apps update in place: each deploy is one consistent precached version; the shared state file and the verification report stay network-first; wiki articles are cached as they are read. The old worker's caches are deleted.
-- The state schema, game-data file, wiki API responses and article frontmatter are parsed with Zod; import errors read exactly as before.
+- The state schema, game-data file, wiki API responses and article frontmatter are parsed with Zod; import errors read exactly as before. Outlaw settings saved as text ("5") are now stored as numbers.
 - Unit tests run on Vitest; browser tests run against the built app.
 ### Fixed
 - A Codex article could show raw Markdown if the CDN libraries failed to load; they are now bundled.
