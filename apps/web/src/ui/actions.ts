@@ -140,3 +140,9 @@ export function addOutlawSystems(parsed: ParsedOutlawSystem[]): void {
   saveAppState();
   showToast(`Added ${parsed.length} outlaw system${parsed.length === 1 ? '' : 's'}.`);
 }
+
+// A guide checklist step: ticked or not, saved with the rest of the log.
+export function toggleChecklist(id: string): void {
+  appState.checklists[id] = !appState.checklists[id];
+  saveAppState();
+}

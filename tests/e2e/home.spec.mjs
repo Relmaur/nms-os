@@ -31,7 +31,20 @@ test('the #new-system shortcut opens the Add system editor', async ({ page }) =>
 });
 
 test('no section scrolls sideways', async ({ page }) => {
-  for (const section of ['home', 'systems', 'outlaw', 'calculators', 'guides', 'book3', 'more']) {
+  for (const section of [
+    'home',
+    'systems',
+    'outlaw',
+    'calculators',
+    'guides',
+    'more',
+    'book1',
+    'book2',
+    'book3',
+    'book4',
+    'book5',
+    'book6'
+  ]) {
     await page.goto(`./#${section}`);
     await expect(page.locator(`#sec-${section}`)).toBeVisible();
     await expectNoHorizontalOverflow(page);

@@ -6,6 +6,16 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.7.0] - 2026-10-27
+### Changed
+- Guides, the six books and More are React screens (ADR-0004 step 3). They read and work as before, at the same addresses (`#guides`, `#book1`–`#book6`, `#more`); the books' text is unchanged.
+- The header search's "In the manual" results come from the six books only; headings elsewhere on the page no longer show up there.
+### Fixed
+- Checklist steps in the books are real checkboxes: they can be ticked from the keyboard, and screen readers announce them as checked or not.
+- Accessibility: Guides, Book I, Book III and More are axe-gated in `pnpm check`. Book section headings follow the book's title in order, and a table wider than a phone scrolls in a box you can reach with the keyboard.
+### Internal
+- The books and their checklists, and checklist progress, live in `@atlas/core/guides` with unit tests. Export/Import is a typed module (`src/app/backup.ts`) shared by More and the header; keep-awake, install and storage protection are one store (`src/ui/more/device-store.ts`) shared by More and Home.
+
 ## [3.6.0] - 2026-10-27
 ### Changed
 - Codex articles put their index first on phones: right under the title, a row shows Contents, Used in, Links to, Mentioned in and Nearby with their counts, each opening a drawer at that list. Once you scroll past it, a strip under the header shows the section you're in and keeps the index one tap away. On wide screens the index stays the right-hand column.

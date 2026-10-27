@@ -10,6 +10,7 @@ import { logPacketRun, logVisit } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
 import { GlyphChip, StarDot, TagChip } from '../parts/SystemBits.tsx';
+import { toggleKeepAwake, useDevice } from '../more/device-store.ts';
 
 const ROW = 'flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70';
 
@@ -17,8 +18,29 @@ export function Home() {
   const state = useAppState();
   const now = useNow();
   const summary = homeSummary(state, now);
+  const device = useDevice();
   return (
     <>
+      <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+        <div className="min-w-0">
+          <h1 className="font-display text-2xl font-bold text-white">Home</h1>
+          <p id="homePhase" className="text-sm text-slate-400 mt-1">
+            {state.meta.currentPhase}
+          </p>
+        </div>
+        {device.wakeSupported && (
+          <button
+            type="button"
+            role="switch"
+            aria-checked={device.awake}
+            onClick={toggleKeepAwake}
+            className="wake-chip"
+          >
+            <i className="ph-bold ph-sun-dim" aria-hidden="true" />
+            <span>Keep screen on</span>
+          </button>
+        )}
+      </div>
       <div id="homeNow">
         <CurrentSystem system={summary.current} now={now} />
       </div>

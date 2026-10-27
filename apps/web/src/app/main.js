@@ -1,200 +1,30 @@
-// Main page: renders every section from the app state, plus header search, checklists, Harmonic Camp
-// registers and Export/Import. Feature UIs live in the sibling modules imported below.
-import { escapeHtml, isPlainObject } from '@atlas/core/util';
-import { buildState, migrateLegacyState } from '@atlas/core/state';
-import { validateState, describeErrors } from '@atlas/core/schema';
+// Main page: the header (search, Export/Import), the sidebar counts and the storage banner, which are still
+// vanilla; it loads the state and mounts the React screens (src/ui).
+import { escapeHtml } from '@atlas/core/util';
 import { systemHaystack } from '@atlas/core/systems-model';
+import { guideProgress } from '@atlas/core/guides';
 import { WikiSearch } from './wiki-data.js';
-import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.ts';
+import { appState, loadAppState, onSave, onStorageStatus } from './store.ts';
 import { showToast } from './ui.ts';
-import { showSection, renderGuides, decorateBooks, onSection } from './nav.js';
+import { exportState, importState } from './backup.ts';
+import { showSection, onSection } from './nav.js';
 import { STAR_CLASSES } from '@atlas/core/systems-model';
 import { openSystem, openSystemEditor } from '../ui/systems/panel-store.ts';
 import { updateOutlawBadges } from './companion.js';
 import { mountScreens } from '../ui/mount.tsx';
 import { registerServiceWorker } from './pwa.js';
+import { loadGameData } from '../ui/calculators/game-data.ts';
+import { startDevice } from '../ui/more/device-store.ts';
+import { setWikiCount } from '../ui/more/wiki-count.ts';
 
 registerServiceWorker();
-import { loadGameData } from '../ui/calculators/game-data.ts';
+startDevice();
 
-// =========================================================================
-// 1. MASTER CHECKLIST DATA DEFINITIONS
-// =========================================================================
-const CHECKLIST_DATA = {
-  // Ids match the named keys of nms_state.json → checklists
-  milestones: [
-    {
-      id: 'crossSaveLinked',
-      title: 'Cross-Save Linked',
-      desc: 'PC, Mac, Switch & iOS share one Hello Games Cloud save.'
-    },
-    {
-      id: 'anomalyUnlocked',
-      title: 'Space Anomaly Unlocked',
-      desc: 'Summoned the Anomaly and opened the Iteration vendors.'
-    },
-    { id: 'harmonicCampUnlocked', title: 'Harmonic Camp Unlocked', desc: 'Solved a Dissonant System register puzzle.' },
-    { id: 'sClassInterceptorSecured', title: 'S-Class Interceptor Secured', desc: 'Ythgall claimed as flagship.' },
-    { id: 'sentinelRifleSecured', title: 'Sentinel Rifle Secured', desc: 'Defiance of Thought claimed.' },
-    {
-      id: 'nutrientIngestorInstalled',
-      title: 'Nutrient Ingestor Installed',
-      desc: 'Required to eat Anomalous Doughnuts for the scanner buff.'
-    },
-    {
-      id: 'anomalousDoughnutBatchCooked',
-      title: 'Anomalous Doughnut Batch Cooked',
-      desc: 'First batch ready for the fauna-scan Unit run.'
-    },
-    {
-      id: 'capitalFreighterClaimed',
-      title: 'Capital Freighter Claimed',
-      desc: 'Won the second rescue battle for a free Capital Freighter.'
-    },
-    {
-      id: 'oxygenAlchemyBaseBuilt',
-      title: 'Oxygen Alchemy Base Built',
-      desc: 'Oxygen hotspot feeding the refiner chamber (Book IV).'
-    },
-    {
-      id: 'autophageUnlocked',
-      title: 'Autophage Unlocked',
-      desc: 'They Who Returned triggered after The Purge + Harmonic Camp.'
-    }
-  ],
-  crosssave: [
-    { id: 'cs1', title: 'Step 1: Log In to Hello Games Cloud', desc: 'Visit cloud.nomanssky.com and sign in.' },
-    {
-      id: 'cs2',
-      title: 'Step 2: Link All Platform Accounts',
-      desc: 'Connect Steam/Mac, Nintendo Switch, and Apple/iOS accounts.'
-    },
-    { id: 'cs3', title: 'Step 3: Enable Cross-Save Toggle', desc: 'Verify every connected platform is switched ON.' },
-    {
-      id: 'cs4',
-      title: 'Step 4: Upload Primary Save Slot',
-      desc: 'Click the Cloud Icon next to your main save slot in-game (max 5 slots).'
-    },
-    {
-      id: 'cs5',
-      title: 'Step 5: Verify Patch Parity Before Syncing',
-      desc: 'Confirm version numbers match at the bottom-left of the title screen.'
-    }
-  ],
-  roadmap: [
-    {
-      id: 'rm1',
-      title: 'Hr 0–1: Planet Escape & Melee-Boost',
-      desc: 'Gather Sodium/Oxygen; Sprint + Melee (Q/R) + Jetpack to fly 3x faster.'
-    },
-    {
-      id: 'rm2',
-      title: 'Hr 1–3: Rush the Space Anomaly',
-      desc: 'Follow Awakenings until first warp jump and summon the Space Anomaly.'
-    },
-    {
-      id: 'rm3',
-      title: 'Hr 1–3: Unlock Nutrient Ingestor & Survey Device',
-      desc: 'Purchase blueprints from Iteration: Selene & Eos on the Anomaly.'
-    },
-    {
-      id: 'rm4',
-      title: 'Ongoing: Double Exosuit Slots Per System',
-      desc: 'Buy Slot #1 at the Space Station + Slot #2 inside the Space Anomaly.'
-    },
-    {
-      id: 'rm5',
-      title: 'Jump #5: Skip First System Freighter',
-      desc: 'Avoid hitting friendly Freighter; answer radio (X); choose "Request Payment Instead".'
-    },
-    {
-      id: 'rm6',
-      title: 'Jump #10: Claim Free Capital Freighter',
-      desc: 'Win second rescue battle (3 hrs + 5 warps) to claim a giant Capital Freighter 100% free.'
-    },
-    {
-      id: 'rm7',
-      title: 'Recovery: Strip & Scrap Aeron-ημ',
-      desc: 'Store tech (X) on Aeron-ημ and scrap hull for ~50M Units + Storage Augmentations.'
-    },
-    {
-      id: 'rm8',
-      title: 'Meta Gear: Wire Ythgall & Light Capacitor',
-      desc: 'Place Infra-Knife in Ythgall R2C2–R2C4; put Optical Drill in Light Capacitor R2C4.'
-    }
-  ],
-  expedition: [
-    {
-      id: 'ex1',
-      title: 'Pack 8 Tech Slots at Anomaly Terminus',
-      desc: '3x S-Class Scanner Mods, 1x Optical Drill, 3x Movement Mods, 1x Personal Refiner Mk 2.'
-    },
-    {
-      id: 'ex2',
-      title: 'Pack Nanite Seed (For Cloning Ythgall)',
-      desc: '2–3 stacks of 9,999 Runaway Mould OR 30 Unopened Suspicious Tech Packets (~6,000 Nanites).'
-    },
-    {
-      id: 'ex3',
-      title: 'Pack Unit Seed & Survival Stacks',
-      desc: '10x Anomalous Doughnuts, 5x AI Valves, 9,999 Oxygen, Cond. Carbon, Ferrite, Batteries.'
-    },
-    {
-      id: 'ex4',
-      title: 'Equip Ythgall & Defiance of Thought Before Starting',
-      desc: 'Ensure both are active so you can clone them inside the Expedition for ~5,000 Nanites.'
-    },
-    {
-      id: 'ex5',
-      title: 'Zero-Loss Extraction Before Clicking End',
-      desc: 'Use "Return to Primary Save" to mule multiple batches; equip Reward Ship before ending!'
-    }
-  ],
-  endgame: [
-    {
-      id: 'eg1',
-      title: 'Pillar 1: Portal Mastery & Eissentam Reset',
-      desc: 'Finish The Purge (16 Glyphs) and choose the Green Orb (equip junk ship/tool first).'
-    },
-    {
-      id: 'eg2',
-      title: 'Pillar 2: The Autophage Faction',
-      desc: 'Complete The Purge + Unlock 1 Harmonic Camp + Warp to trigger They Who Returned.'
-    },
-    {
-      id: 'eg3',
-      title: 'Pillar 3: Purple Stars & Gas Giants',
-      desc: 'Finish Atlas Path + Autophage to unlock the Atlantid Drive in In Stellar Multitudes.'
-    },
-    {
-      id: 'eg4',
-      title: 'Pillar 4: S-Class Pirate Dreadnought',
-      desc: 'Blast 4 rear warp engines + 6 top deck laser cannons in Outlaw battle to force surrender.'
-    },
-    {
-      id: 'eg5',
-      title: 'Pillar 5: AI Minotaur & Laylaps Companion',
-      desc: 'Claim a Planetary Settlement and complete A Trace of Metal.'
-    },
-    {
-      id: 'eg6',
-      title: 'Pillar 6: Custom S-Class Ship Foundry',
-      desc: 'Salvage Cockpit, Wings & Thrusters and assemble with an S-Class Reactor Core.'
-    },
-    {
-      id: 'eg7',
-      title: 'Pillar 7: Starbirth (Void Egg Living Ship)',
-      desc: 'Pulse in space with your Void Egg to complete the 5-day organic ship questline.'
-    }
-  ]
-};
-
+// The vanilla counts around the React screens, which re-render on their own.
 function renderAll() {
-  renderAllChecklists();
   document.getElementById('sidebarSystemsCount').textContent = appState.systems.length;
-  updateOutlawBadges(); // the React screens (src/ui) re-render on their own
-  document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
-  document.getElementById('homePhase').textContent = appState.meta.currentPhase || '';
+  document.querySelector('[data-guides-progress]').textContent = `${guideProgress(appState.checklists).pct}%`;
+  updateOutlawBadges();
 }
 
 // =========================================================================
@@ -203,7 +33,7 @@ function renderAll() {
 const SEARCH_WIKI_LIMIT = 6;
 const SEARCH_BOOK_LIMIT = 6;
 const SEARCH_SYSTEM_LIMIT = 5;
-const SEARCH_BLOCKS = 'h3, h4, p, li, tr, [onclick^="toggleCheckItem"]';
+const SEARCH_BLOCKS = 'h2, h3, p, li, tr, [data-check]';
 let wikiEntries = [];
 let searchHits = [];
 let searchActiveIndex = -1;
@@ -221,19 +51,20 @@ function snippetAround(text, token, radius = 70) {
   return `${start > 0 ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
 }
 
-// Book text lives in the DOM, so search the smallest text blocks of every section (hidden ones included).
+// Book text lives in the DOM (all six books stay mounted), so search the smallest text blocks of each book, hidden
+// ones included.
 function findBookHits(tokens) {
   const hits = [];
   const seen = new Set();
-  document.querySelectorAll('.book-section:not(#sec-systems):not(#sec-outlaw)').forEach(section => {
-    const sectionTitle = section.querySelector('h2')?.textContent.trim() || section.id;
+  document.querySelectorAll('.book-section[id^="sec-book"]').forEach(section => {
+    const sectionTitle = section.querySelector('h1')?.textContent.trim() || section.id;
     section.querySelectorAll(SEARCH_BLOCKS).forEach(el => {
       if (el.querySelector(SEARCH_BLOCKS)) return; // prefer the innermost block
       const text = el.textContent.replace(/\s+/g, ' ').trim();
       const lower = text.toLowerCase();
       if (!text || seen.has(lower) || !tokens.every(token => lower.includes(token))) return;
       seen.add(lower);
-      const isHeading = /^H[34]$/.test(el.tagName);
+      const isHeading = /^H[23]$/.test(el.tagName);
       hits.push({ type: 'book', el, sectionKey: section.id.slice(4), sectionTitle, text, score: isHeading ? 2 : 1 });
     });
   });
@@ -422,97 +253,10 @@ window.addEventListener('resize', () => {
 });
 
 // =========================================================================
-// 4. CHECKLIST RENDERING ENGINE
-// =========================================================================
-function toggleCheckItem(id) {
-  appState.checklists[id] = !appState.checklists[id];
-  saveAppState();
-}
-
-function renderChecklistGroup(groupKey, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return 0;
-  const list = CHECKLIST_DATA[groupKey] || [];
-  let completed = 0;
-
-  container.innerHTML = list
-    .map(item => {
-      const isDone = !!appState.checklists[item.id];
-      if (isDone) completed++;
-      return `
-            <div onclick="toggleCheckItem('${item.id}')" class="cursor-pointer p-3 rounded-xl border text-xs flex items-start gap-3 transition ${isDone ? 'bg-cyan-950/30 border-cyan-500/40 text-slate-400 line-through' : 'bg-slate-900/90 border-slate-800 hover:border-slate-700 text-slate-200'}">
-                <input type="checkbox" ${isDone ? 'checked' : ''} class="mt-0.5 pointer-events-none accent-cyan-400">
-                <div>
-                    <strong class="${isDone ? 'text-slate-400' : 'text-white'} block">${item.title}</strong>
-                    <span class="text-slate-400">${item.desc}</span>
-                </div>
-            </div>
-        `;
-    })
-    .join('');
-
-  return completed;
-}
-
-function renderAllChecklists() {
-  let done = 0;
-  let total = 0;
-  const perBook = {};
-  Object.keys(CHECKLIST_DATA).forEach(key => {
-    const groupDone = renderChecklistGroup(key, `checklist-${key}`);
-    const groupTotal = CHECKLIST_DATA[key].length;
-    total += groupTotal;
-    done += groupDone;
-    const book = document.getElementById(`checklist-${key}`)?.closest('.book-section')?.id.replace('sec-', '');
-    if (!book) return;
-    perBook[book] = perBook[book] || { done: 0, total: 0 };
-    perBook[book].done += groupDone;
-    perBook[book].total += groupTotal;
-  });
-  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-  document.getElementById('guidesProgressText').textContent = `${done} of ${total} steps`;
-  document.getElementById('guidesProgressBar').style.width = `${pct}%`;
-  document.querySelectorAll('[data-guides-progress]').forEach(el => {
-    el.textContent = `${pct}%`;
-  });
-  renderGuides(perBook);
-}
-
-// =========================================================================
-// 6. JSON EXPORT / IMPORT FOR GIT REPO
+// 4. EXPORT / IMPORT from the header (logic in backup.ts, shared with More)
 // =========================================================================
 function exportStateJSON() {
-  const blob = new Blob([JSON.stringify(appState, null, 2) + '\n'], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const dlAnchor = document.createElement('a');
-  dlAnchor.href = url;
-  dlAnchor.download = 'nms_state.json';
-  document.body.appendChild(dlAnchor);
-  dlAnchor.click();
-  dlAnchor.remove();
-  URL.revokeObjectURL(url);
-  showToast('Exported nms_state.json for your Git repo!');
-}
-
-// Nothing is replaced unless the whole file is valid; the message names the first problems so they can be fixed.
-async function readStateFile(file) {
-  if (!file) return;
-  let imported;
-  try {
-    imported = JSON.parse(await file.text());
-  } catch {
-    showToast('That file isn’t valid JSON, so nothing was imported.');
-    return;
-  }
-  const candidate = isPlainObject(imported) ? migrateLegacyState(imported) : imported;
-  const { ok, errors } = validateState(candidate);
-  if (!ok) {
-    showToast(`Not imported: ${describeErrors(errors.slice(0, 2))}.`);
-    return;
-  }
-  setAppState(buildState(candidate));
-  saveAppState();
-  showToast('Imported nms_state.json successfully!');
+  exportState();
 }
 
 function setStorageBanner(message, { offerExport = false } = {}) {
@@ -547,7 +291,7 @@ onStorageStatus(status => {
 });
 
 function importStateJSON(event) {
-  readStateFile(event.target.files[0]);
+  importState(event.target.files[0]);
   event.target.value = ''; // allow re-importing the same file
 }
 
@@ -565,7 +309,7 @@ function handleStateDragOver(event) {
 function handleStateDrop(event) {
   event.preventDefault();
   setDropzoneActive(false);
-  readStateFile(event.dataTransfer.files[0]);
+  importState(event.dataTransfer.files[0]);
 }
 
 onSave(renderAll);
@@ -573,13 +317,11 @@ onSection('calculators', loadGameData);
 onSection('new-system', () => openSystemEditor());
 
 (async function init() {
-  decorateBooks();
   WikiSearch.load('wiki/').then(entries => {
     wikiEntries = entries;
     const current = entries.filter(entry => !WikiSearch.isOld(entry)).length;
-    document.querySelectorAll('#sidebarWikiCount, [data-wiki-count]').forEach(el => {
-      el.textContent = current.toLocaleString();
-    });
+    document.getElementById('sidebarWikiCount').textContent = current.toLocaleString();
+    setWikiCount(current);
   });
   await loadAppState();
   mountScreens(); // after loading, so no screen flashes the built-in defaults
@@ -600,6 +342,5 @@ Object.assign(window, {
   dismissStorageBanner,
   handleStateDragOver,
   handleStateDrop,
-  setDropzoneActive,
-  toggleCheckItem
+  setDropzoneActive
 });
