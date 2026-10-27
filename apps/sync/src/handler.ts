@@ -1,10 +1,12 @@
-// The sync relay's HTTP API (ADR-0005), over a small storage interface so it's tested without Cloudflare.
-// It stores one sealed copy per vault and a version for compare-and-swap; it can't open the copy, and it never logs
-// ids, tokens or bodies.
+// The relay's HTTP API, over small storage interfaces so it's tested without Cloudflare. Sync (ADR-0005): one sealed
+// copy per vault and a version for compare-and-swap; it can't open the copy. Push (ADR-0006, src/push.ts): a device's
+// push subscription and its timers' end times. It never logs ids, tokens or bodies.
 import { hashToken } from '@atlas/core/sync-crypto';
+import { handlePush, type PushStore } from './push.ts';
 
 export const MAX_BLOB_BYTES = 1024 * 1024;
 const VAULT_PATH = /^\/v1\/vaults\/([A-Za-z0-9_-]{22})$/;
+const PUSH_PATH = /^\/v1\/push\/([A-Za-z0-9_-]{22})$/;
 
 export interface Vault {
   tokenHash: string;
@@ -27,6 +29,7 @@ export interface Options {
   // Per-client request budget; true when the request may go ahead.
   allow?: (key: string) => Promise<boolean>;
   now?: () => number;
+  push?: PushStore;
 }
 
 export async function handle(request: Request, store: VaultStore, options: Options): Promise<Response> {
@@ -45,13 +48,16 @@ export async function handle(request: Request, store: VaultStore, options: Optio
       'Access-Control-Max-Age': '86400'
     });
 
-  const id = VAULT_PATH.exec(new URL(request.url).pathname)?.[1];
+  const path = new URL(request.url).pathname;
+  const pushId = options.push ? PUSH_PATH.exec(path)?.[1] : undefined;
+  const id = pushId ?? VAULT_PATH.exec(path)?.[1];
   if (!id) return reply(404);
   if (options.allow && !(await options.allow(request.headers.get('CF-Connecting-IP') ?? id))) return reply(429);
   const token = /^Bearer ([A-Za-z0-9_-]{43})$/.exec(request.headers.get('Authorization') ?? '')?.[1];
   if (!token) return reply(401);
   const tokenHash = await hashToken(token);
   const now = (options.now ?? Date.now)();
+  if (pushId && options.push) return handlePush(request, pushId, tokenHash, options.push, reply, now);
   const sealed = (vault: Vault, status = 200) =>
     reply(status, vault.blob, { 'Content-Type': 'application/octet-stream', ETag: `"${String(vault.version)}"` });
 

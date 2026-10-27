@@ -5,9 +5,11 @@ import {
   lastCropMinutes,
   nextDue,
   normalizeTimers,
+  pendingPushes,
   refineDuration,
   refineOptions,
   timerRows,
+  timerNotice,
   timerStatus,
   type Timer
 } from '../src/timers.ts';
@@ -128,5 +130,39 @@ test('the refiner picker lists current items with a timed refine recipe, by name
   assert.deepEqual(
     options.map(option => option.title),
     ['Activated Quartzite', 'Glass']
+  );
+});
+
+test('pendingPushes sends ids and end times of timers not yet announced, soonest first, capped', () => {
+  const make = (id: string, ends: number, alerted = false): Timer => ({
+    id,
+    kind: 'custom',
+    label: id,
+    startedAt: at(-120),
+    endsAt: at(ends),
+    alerted
+  });
+  const timers = [
+    make('later', 30),
+    make('soon', 5),
+    make('told', 1, true),
+    make('just-late', -10),
+    make('stale', -90)
+  ];
+  assert.deepEqual(pendingPushes(timers, now), [
+    { id: 'just-late', at: now - 600_000 },
+    { id: 'soon', at: now + 300_000 },
+    { id: 'later', at: now + 1_800_000 }
+  ]);
+  assert.equal(pendingPushes(timers, now, 1).length, 1);
+  // A hand-edited log: ids the relay won't take, a duplicate, and a date past the 30-day cap stay with the app.
+  const odd = [make('bad id!', 5), make('soon', 5), make('soon', 6), make('far', 60 * 24 * 40)];
+  assert.deepEqual(
+    pendingPushes(odd, now).map(item => item.id),
+    ['soon']
+  );
+  assert.deepEqual(
+    timerNotice({ kind: 'refine', label: '300 Chromatic Metal' }).title,
+    'Refiner done: 300 Chromatic Metal'
   );
 });

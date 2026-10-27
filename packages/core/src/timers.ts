@@ -99,6 +99,36 @@ export function nextDue(timers: Timer[]): number | null {
   return pending.length ? Math.min(...pending) : null;
 }
 
+// What a finished timer's alert says, in the app and in a push notification.
+const KIND_TITLE: Record<TimerKind, string> = {
+  refine: 'Refiner done',
+  crop: 'Ready to harvest',
+  custom: 'Timer done'
+};
+export function timerNotice(timer: Pick<Timer, 'kind' | 'label'>): { title: string; body: string } {
+  return { title: `${KIND_TITLE[timer.kind]}: ${timer.label}`, body: 'Tap to open ATLAS.' };
+}
+
+// The timers a sleeping device should still be pushed about (ADR-0006): not yet announced, and not over an hour late
+// (the relay gives up then), soonest first and at most `max`. Only ids and end times leave the device.
+export const MAX_PUSHES = 50;
+// Ids the relay accepts; an older or hand-edited log may hold others, which are left to the app's own alert.
+const PUSH_ID = /^[A-Za-z0-9_-]{1,80}$/;
+export function pendingPushes(timers: Timer[], now: number, max = MAX_PUSHES): { id: string; at: number }[] {
+  const seen = new Set<string>();
+  return timers
+    .filter(timer => {
+      const at = Date.parse(timer.endsAt);
+      if (timer.alerted || !PUSH_ID.test(timer.id) || seen.has(timer.id)) return false;
+      if (!(at > now - 3_600_000 && at <= now + MAX_TIMER_MS)) return false;
+      seen.add(timer.id);
+      return true;
+    })
+    .map(timer => ({ id: timer.id, at: Date.parse(timer.endsAt) }))
+    .sort((a, b) => a.at - b.at)
+    .slice(0, max);
+}
+
 // A new crop timer starts from the time last set for that crop (its name, any case), from the timers still listed.
 export function lastCropMinutes(timers: Timer[], name: string): number | null {
   const key = name.trim().toLowerCase();

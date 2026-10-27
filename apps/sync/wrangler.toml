@@ -11,6 +11,8 @@ enabled = false
 
 [vars]
 ALLOWED_ORIGINS = "https://relmaur.github.io,http://localhost:5173,http://localhost:4173"
+# The contact push services see with each push (VAPID). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
+VAPID_SUBJECT = "https://relmaur.github.io/nms-os/"
 
 [[d1_databases]]
 binding = "DB"
@@ -24,6 +26,7 @@ name = "LIMITER"
 namespace_id = "1001"
 simple = { limit = 60, period = 60 }
 
-# Daily, 04:23 UTC: delete vaults untouched for a year.
+# Daily, 04:23 UTC: delete vaults untouched for a year and push devices silent for 60 days.
+# Every minute: send the timer pushes that are due (ADR-0006).
 [triggers]
-crons = ["23 4 * * *"]
+crons = ["23 4 * * *", "* * * * *"]
