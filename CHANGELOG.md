@@ -6,6 +6,18 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-10-27
+### Changed
+- Systems, the system panel (view and editor) and Outlaw Run are React screens (ADR-0004 step 3). They look and work as before; relative times and restock countdowns refresh every minute and when you return to the app.
+- Notes saved in another tab now show in an open panel straight away, not only after you leave the notes field. Typing in progress is still kept when another tab saves.
+- Accessibility: the closed system panel can no longer be reached with the keyboard, focus returns to what opened it, and the editor's choice groups, the planet fields and the visit note have labels. Systems, Outlaw Run, the panel and the editor are now axe-gated in `pnpm check`.
+### Fixed
+- Sorting Systems by region put systems without a region first; they now come last, as intended.
+- Opening another system while notes were still being typed could save those notes onto the wrong system.
+### Internal
+- The list filters, the outlaw run and the "Paste a list" parser are pure functions in `@atlas/core` with unit tests; Home and Outlaw Run share one outlaw calculation.
+- `systems.js` and its 31 `window` functions are gone.
+
 ## [3.2.0] - 2026-10-27
 ### Changed
 - Home is the first React screen (ADR-0004 step 3): it looks and works as before, and refreshes its relative times every minute and when you return to the app. The rest of the app is unchanged.

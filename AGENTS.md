@@ -14,7 +14,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
   - `docs/adr/`: decisions and their trade-offs.
 
 ## Invariants
-- **Stack (ADR-0004):** strict TypeScript in `packages/`; Vite builds `apps/web` (UI still vanilla JS until React lands). Every dependency is bundled and pinned by `pnpm-lock.yaml`; nothing loads from a CDN at run time.
+- **Stack (ADR-0004):** strict TypeScript in `packages/`; Vite builds `apps/web`; its screens move to React one at a time (Home, Systems, Outlaw Run so far; the rest is still vanilla JS). Every dependency is bundled and pinned by `pnpm-lock.yaml`; nothing loads from a CDN at run time.
 - **`packages/core` stays pure:** no DOM, no Node APIs. The web app, the wiki scripts and a future API all import it.
 - **Parse, don't cast:** data from outside the code (files, storage, network) goes through a Zod schema before use.
 - **Relative paths everywhere**, since the site lives under `/nms-os/`.

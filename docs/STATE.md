@@ -10,8 +10,9 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 **ADR-0004 step 3, React screen by screen.** Done so far:
 - Steps 1–2 shipped in 3.1.0.
 - The React foundation and Home shipped in 3.2.0.
+- Systems, the system panel and Outlaw Run shipped in 3.3.0.
 
-Next slice: Systems + Outlaw (`apps/web/src/app/systems.js`).
+Next slice: Calculators (`apps/web/src/app/calculators.js`).
 
 ## Blockers
 None.
@@ -23,14 +24,14 @@ None.
 
 ## Next steps
 1. **ADR-0004 step 3: React, screen by screen.** Each section mounts as a React root; plan it as its own cycle.
-   - Order: ~~Home~~ (3.2.0), Systems + Outlaw, Calculators, Codex, Guides/More. Follow the React screens section of `docs/architecture.md`.
-   - With Systems: port the panel and editor, then drop `src/app/systems.d.ts` and the string helpers (`starDot`, `glyphChip`, `tagChip`); `src/ui/parts/SystemBits.tsx` already has the React versions.
+   - Order: ~~Home~~ (3.2.0), ~~Systems + Outlaw~~ (3.3.0), Calculators, Codex, Guides/More. Follow the React screens section of `docs/architecture.md`.
+   - The header search (`main.js`) keeps a string `starDot` until the header moves.
    - As screens move:
      - delete the Tailwind v3 shims (`apps/web/src/tailwind-v3-*.css`, the line-height overrides in `tailwind.css`);
      - delete the `Object.assign(window, …)` exports and `tests/unit/inline-handlers.test.mjs` once no inline handlers remain;
      - fix the axe findings and make `tests/e2e/a11y.spec.mjs` a gate (it reports only, today). Baseline at 3.1.0, phone size:
-       - Home: fixed and gated (3.2.0), with the populated fixture only; the empty states aren't axe-checked yet.
-       - Systems: `page-has-heading-one`.
+       - Home (3.2.0), Systems, Outlaw Run, the system panel and the editor (3.3.0): gated on their own content, with the populated fixture only; empty states aren't axe-checked yet.
+       - The page shell: `page-has-heading-one` (no `h1`; found on Systems at 3.1.0). Fix with the header's move.
        - Codex: `aria-allowed-attr` (10, critical), `aria-dialog-name`, `aria-allowed-role`, `empty-heading`.
        - Calculators: clean.
 2. **Session mode + timers**, built natively in React (ADR-0004 step 4).
