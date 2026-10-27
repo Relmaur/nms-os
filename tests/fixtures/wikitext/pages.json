@@ -1,0 +1,51 @@
+{
+  "oxygen": {
+    "title": "Oxygen",
+    "pageId": 89185,
+    "revId": 1335140,
+    "revTimestamp": "2026-09-30T19:57:58Z",
+    "kind": "resource"
+  },
+  "stasis-device": {
+    "title": "Stasis Device",
+    "pageId": 61441,
+    "revId": 1310724,
+    "revTimestamp": "2026-05-11T07:12:13Z",
+    "kind": "product"
+  },
+  "bionic-lure": {
+    "title": "Bionic Lure",
+    "pageId": 576085,
+    "revId": 1210954,
+    "revTimestamp": "2024-09-27T12:21:20Z",
+    "kind": "product"
+  },
+  "wild-yeast": {
+    "title": "Wild Yeast",
+    "pageId": 141827,
+    "revId": 1219629,
+    "revTimestamp": "2025-02-02T21:00:03Z",
+    "kind": "product"
+  },
+  "blaze-javelin-atlas": {
+    "title": "Blaze Javelin (Atlas)",
+    "pageId": 95267,
+    "revId": 1096568,
+    "revTimestamp": "2023-02-11T17:48:23Z",
+    "kind": "technology"
+  },
+  "analysis-visor-upgrade": {
+    "title": "Analysis Visor Upgrade",
+    "pageId": 92933,
+    "revId": 1233772,
+    "revTimestamp": "2025-07-09T18:18:15Z",
+    "kind": "technology"
+  },
+  "player-found-multitool": {
+    "title": "Ashidaka-Uyll Mark XVI",
+    "pageId": 12187,
+    "revId": 349807,
+    "revTimestamp": "2019-02-11T22:06:23Z",
+    "kind": "technology"
+  }
+}

@@ -1,0 +1,58 @@
+{{Version|Atlas Rises}}
+{{Obsolete}}
+{{Technology infobox
+| image = blaze_javelin.png
+| category = Multi-tool
+| subcategory = Energy Beam
+| type = Weapon
+| desc = The Blaze Javelin delivers instantaneous damage on targets
+| stats = Damage = 5.0
+Mining Power = 13.0
+| recharge = Isotope
+| release = Atlas Rises
+}}
+{{DisambigMsg|the [[Atlas Rises]] version of the Blaze Javelin|the current version|Blaze Javelin}}
+The '''Blaze Javelin''' is a multi-tool component.
+
+==Summary==
+The '''Blaze Javelin''' is a component of the [[multi-tool]].
+
+==Game description==
+The Blaze Javelin delivers instantaneous damage on targets. 
+
+Plasma charge process creates an ionised gas arc to propel projectiles at great speed. User will perceive destructive results simultaneous to the pull of the trigger.
+
+==How to acquire==
+* The [[blueprint]] for this technology is given to the player by [[Polo]].
+
+==Crafting==
+{{CraftObsolete|Aluminium|100|Copper|50|Iron|200}}
+
+==Upgrades==
+{| class="wikitable"
+|-
+! class='red' | Blaze Javelin Coolant !! class='red' |  Blaze Javelin Damage !! class='red' |  Blaze Javelin Drill Array 
+|-
+| [[Blaze Javelin Coolant Sigma|Sigma]] || [[Blaze Javelin Damage Sigma|Sigma]] || [[Blaze Javelin Drill Array Sigma|Sigma]] 
+|-
+| [[Blaze Javelin Coolant Tau|Tau]] || [[Blaze Javelin Damage Tau|Tau]] || [[Blaze Javelin Drill Array Tau|Tau]] 
+|-
+|  || [[Blaze Javelin Damage Theta|Theta]] || [[Blaze Javelin Drill Array Theta|Theta]] 
+|}
+
+==Additional notes==
+* This is a long-range weapon; the game equivalent of a sniper rifle. It has almost infinite charge and no reload. However, it is a poor choice for close range combat due to a long delay between shots.
+* The Blaze Javelin may be a reference to Fallout 3's [https://fallout.gamepedia.com/Firelance Fire Lance] alien blaster
+
+==Release history==
+*[[Pathfinder]] - added as a game component.
+
+==Gallery==
+<gallery>
+craft_tool_blaze_javelin.png|Blueprint<br>(Pathfinder)
+repair_tool_blaze_javelin.png|Repair info<br>(Pathfinder)
+dismantle_tool_blaze_javelin.png|Dismantle info<br>(Pathfinder)
+</gallery>
+
+[[Category:Multi-Tool]]
+[[Category:Blueprints]]

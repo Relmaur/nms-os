@@ -1,0 +1,79 @@
+{{Version|Waypoint}}
+{{Resource infobox
+| image = SUBSTANCE.AIR.1.png
+| category = Fuel
+| type = Concentrated Liquid Fuel
+| rarity = Common
+| color = Red
+| used = Building, Crafting, Charging, Upgrading
+| symbol = O<sub>2</sub>
+| value = 34.0
+| release = Waypoint
+}}
+'''Oxygen''' is a resource.
+
+==Summary==
+'''Oxygen''' ('''O<sub>2</sub>''') is a [[resource]] and one of the [[fuel elements]].
+
+==Game description==
+Integral to the atmospheric filtering technology at the heart of the [[exosuit]] [[Life Support|life support]] system.
+
+Exosuit material processing allows oxygen to be harvested directly from appropriate planetary flora.
+
+Other plantlife may be scanned with the [[Analysis Visor]] to reveal alternative oxygen supplies.
+
+== Source ==
+* Can be harvested from red plants in the wild. (These red plants are what used to be [[Thamium9]])
+* Can be found as a secondary element in some [[flora]].
+* Can be found as a primary element in [[Underground Toxic Hazard]].
+* Can always be bought from any {{link|Galactic Trade Terminal}} or from pilot NPCs on [[Space Station]]s (only on "Goods Availability->Abundant" setting).
+* Obtained from an [[Oxygen Harvester]].
+* Obtained from an [[Atmosphere Harvester]] on exotic planets.
+* Using [[Gas Extractor]] at an Oxygen [[Concentrated Gas Cloud]].
+
+{{PoC-Refine
+|Kelp Sac,1;1;0.24%Extract Micro-Bubbles
+|Kelp Sac,1;Carbon,1;2;0.36%Release Captured Oxygen
+|Kelp Sac,1;Condensed Carbon,1;2;0.36%Release Captured Oxygen
+|Fungal Mould,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+|Frost Crystal,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+|Cactus Flesh,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+|Solanium,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+|Gamma Root,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+|Star Bulb,1;Kelp Sac,1;Condensed Carbon,1;10;3.6%Artificial Photosynthesis
+}}
+
+== Use ==
+{{UseQueries}}
+
+==Additional information==
+* Other than not being a power source, Oxygen has largely replaced [[Thamium9]] in game requirements.
+* Oxygen rich plants can be found in at least two kind of types. In larger groups or separate. Same as with [[Sodium]] rich plants.
+
+==Release history==
+* [[NEXT]] - Added as a resource.
+* [[Visions]] - ''Hidden changes:'' The information panel has an additional icon indicating its purpose.
+* [[Beyond]] - Added Concentrated Gas Cloud as a source.
+* [[Waypoint]] - Icon changed, only available for purchase on "Goods Availability->Abundant" setting.
+
+==Gallery==
+<gallery>
+Oxygen Origins Info Panel.jpg|Info panel<br>(Origins)
+nmsResource_Oxygen_LS.jpg|Info panel<br>(Living Ship)
+nmsResource_Oxygen_S.jpg|Info panel<br>(Synthesis)
+NmsConcentratedLiq_Oxygen.png|Info panel<br>(Beyond)
+NmsResource Oxygen Panel 1.77.jpg|Info<br>(Visions 1.77)
+Oxygen tooltip 1.5.jpg|Info panel<br>(NEXT)
+</gallery>
+
+{{Resource nav}}
+
+[[Category:Fuel elements]]
+[[Category:Raw Materials]]
+
+[[de:Sauerstoff]]
+[[es:Oxígeno]]
+[[fr:Oxygène]]
+[[ru:Кислород]]
+
+[[it:Ossigeno]]

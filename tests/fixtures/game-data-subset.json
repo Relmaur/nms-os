@@ -1,0 +1,4407 @@
+{
+ "note": "Subset of wiki/game-data.json for planner tests (No Man's Sky Wiki, CC BY-SA 3.0).",
+ "aliases": {
+  "Coprite": "Faecium",
+  "Rigogen": "Kelp Sac"
+ },
+ "items": [
+  {
+   "title": "Stasis Device",
+   "path": "wiki/products/Stasis_Device.md",
+   "category": "products",
+   "revId": 1310724,
+   "value": 15600000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Quantum Processor",
+       "qty": 1
+      },
+      {
+       "name": "Cryogenic Chamber",
+       "qty": 1
+      },
+      {
+       "name": "Iridesite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Stasis Device",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Quantum Processor",
+   "path": "wiki/products/Quantum_Processor.md",
+   "category": "products",
+   "revId": 1295778,
+   "value": 4400000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Circuit Board",
+       "qty": 1
+      },
+      {
+       "name": "Superconductor",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Quantum Processor",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Circuit Board",
+   "path": "wiki/products/Circuit_Board.md",
+   "category": "products",
+   "revId": 1157220,
+   "value": 916250,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Heat Capacitor",
+       "qty": 1
+      },
+      {
+       "name": "Poly Fibre",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Circuit Board",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Heat Capacitor",
+   "path": "wiki/products/Heat_Capacitor.md",
+   "category": "products",
+   "revId": 1185745,
+   "value": 180000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 100
+      },
+      {
+       "name": "Solanium",
+       "qty": 200
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Heat Capacitor",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Frost Crystal",
+   "path": "wiki/resources/Frost_Crystal.md",
+   "category": "resources",
+   "revId": 1335204,
+   "value": 12,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      },
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      },
+      {
+       "name": "Radon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Solanium",
+   "path": "wiki/resources/Solanium.md",
+   "category": "resources",
+   "revId": 1335152,
+   "value": 70,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      },
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Solanium",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      },
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Di-hydrogen",
+       "qty": 1
+      },
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.16,
+     "label": "Sulphur Injection"
+    }
+   ]
+  },
+  {
+   "title": "Poly Fibre",
+   "path": "wiki/products/Poly_Fibre.md",
+   "category": "products",
+   "revId": 1218335,
+   "value": 130000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 100
+      },
+      {
+       "name": "Star Bulb",
+       "qty": 200
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Poly Fibre",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Cactus Flesh",
+   "path": "wiki/resources/Cactus_Flesh.md",
+   "category": "resources",
+   "revId": 1335119,
+   "value": 28,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      },
+      {
+       "name": "Pyrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 1
+      },
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Star Bulb",
+   "path": "wiki/resources/Star_Bulb.md",
+   "category": "resources",
+   "revId": 1335154,
+   "value": 32,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 1
+      },
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      },
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Superconductor",
+   "path": "wiki/products/Superconductor.md",
+   "category": "products",
+   "revId": 1199673,
+   "value": 1500000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      },
+      {
+       "name": "Semiconductor",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Superconductor",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Enriched Carbon",
+   "path": "wiki/products/Enriched_Carbon.md",
+   "category": "products",
+   "revId": 1231823,
+   "value": 50000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 250
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    }
+   ]
+  },
+  {
+   "title": "Radon",
+   "path": "wiki/resources/Radon.md",
+   "category": "resources",
+   "revId": 1335148,
+   "value": 20,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 3
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Radon",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Radon",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      },
+      {
+       "name": "Chromatic Metal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Radon",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Catalysation"
+    }
+   ]
+  },
+  {
+   "title": "Condensed Carbon",
+   "path": "wiki/resources/Condensed_Carbon.md",
+   "category": "resources",
+   "revId": 1335213,
+   "value": 24,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Carbon",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.18,
+     "label": "Condense Carbon"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Carbon",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 5
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Oxygenate Carbon"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 6
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Oxygenate Carbon"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      },
+      {
+       "name": "Mordite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Feed Microbes"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      },
+      {
+       "name": "Carbon",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Feed Microbes"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 3
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Feed Microbes"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cyto-Phosphate",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Algal Processing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Uranium",
+       "qty": 1
+      },
+      {
+       "name": "Di-hydrogen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.04,
+     "label": "Harness Energy"
+    }
+   ]
+  },
+  {
+   "title": "Semiconductor",
+   "path": "wiki/products/Semiconductor.md",
+   "category": "products",
+   "revId": 1199671,
+   "value": 320000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      },
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Semiconductor",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Thermic Condensate",
+   "path": "wiki/products/Thermic_Condensate.md",
+   "category": "products",
+   "revId": 1199676,
+   "value": 50000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 250
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    }
+   ]
+  },
+  {
+   "title": "Sulphurine",
+   "path": "wiki/resources/Sulphurine.md",
+   "category": "resources",
+   "revId": 1335155,
+   "value": 20,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 3
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      },
+      {
+       "name": "Chromatic Metal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Catalysation"
+    }
+   ]
+  },
+  {
+   "title": "Nitrogen Salt",
+   "path": "wiki/products/Nitrogen_Salt.md",
+   "category": "products",
+   "revId": 1199663,
+   "value": 50000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 250
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 100
+      },
+      {
+       "name": "Carbon",
+       "qty": 20
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Chlorine",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "seconds": 10,
+     "label": "High-Speed Sublimation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 100
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 10
+      },
+      {
+       "name": "Salt",
+       "qty": 10
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "High-Speed Sublimation"
+    }
+   ]
+  },
+  {
+   "title": "Nitrogen",
+   "path": "wiki/resources/Nitrogen.md",
+   "category": "resources",
+   "revId": 1335139,
+   "value": 20,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 3
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Radon",
+       "qty": 1
+      },
+      {
+       "name": "Chromatic Metal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Catalysation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Methane",
+       "qty": 3
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Methane",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Methane",
+       "qty": 1
+      },
+      {
+       "name": "Chromatic Metal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Gas Catalysation"
+    }
+   ]
+  },
+  {
+   "title": "Cryogenic Chamber",
+   "path": "wiki/products/Cryogenic_Chamber.md",
+   "category": "products",
+   "revId": 1199643,
+   "value": 3800000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Living Glass",
+       "qty": 1
+      },
+      {
+       "name": "Cryo-Pump",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cryogenic Chamber",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Living Glass",
+   "path": "wiki/products/Living_Glass.md",
+   "category": "products",
+   "revId": 1199660,
+   "value": 566000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Lubricant",
+       "qty": 1
+      },
+      {
+       "name": "Glass",
+       "qty": 5
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Living Glass",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Lubricant",
+   "path": "wiki/products/Lubricant.md",
+   "category": "products",
+   "revId": 1199658,
+   "value": 110000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 50
+      },
+      {
+       "name": "Gamma Root",
+       "qty": 400
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Lubricant",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Faecium",
+   "path": "wiki/resources/Faecium.md",
+   "category": "resources",
+   "revId": 1335129,
+   "value": 30,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Mordite",
+       "qty": 3
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Assisted Decomposition"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Di-hydrogen",
+       "qty": 1
+      },
+      {
+       "name": "Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.08,
+     "label": "Assisted Decomposition"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 3
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Oxygenate Microbes"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      },
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Mordite",
+       "qty": 1
+      },
+      {
+       "name": "Carbon",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 3
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Runaway Decomposition"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Mordite",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 4
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Runaway Decomposition"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Mordite",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Gamma Root",
+   "path": "wiki/resources/Gamma_Root.md",
+   "category": "resources",
+   "revId": 1335132,
+   "value": 16,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 1
+      },
+      {
+       "name": "Uranium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Uranium",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Uranium",
+       "qty": 1
+      },
+      {
+       "name": "Radon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Uranium",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Glass",
+   "path": "wiki/products/Glass.md",
+   "category": "products",
+   "revId": 1199651,
+   "value": 200,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 40
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Glass",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cyto-Phosphate",
+       "qty": 50
+      },
+      {
+       "name": "Salt",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Glass",
+       "qty": 1
+      }
+     ],
+     "seconds": 10,
+     "label": "Salt Crystal Polishing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Silicate Powder",
+       "qty": 40
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Glass",
+       "qty": 1
+      }
+     ],
+     "seconds": 5,
+     "label": "Silicate Forging"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 40
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Glass",
+       "qty": 1
+      }
+     ],
+     "seconds": 30,
+     "label": "Polish Crystals"
+    }
+   ]
+  },
+  {
+   "title": "Cryo-Pump",
+   "path": "wiki/products/Cryo-Pump.md",
+   "category": "products",
+   "revId": 1199642,
+   "value": 1500000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Hot Ice",
+       "qty": 1
+      },
+      {
+       "name": "Thermic Condensate",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cryo-Pump",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Hot Ice",
+   "path": "wiki/products/Hot_Ice.md",
+   "category": "products",
+   "revId": 1199654,
+   "value": 320000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Enriched Carbon",
+       "qty": 1
+      },
+      {
+       "name": "Nitrogen Salt",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Hot Ice",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Iridesite",
+   "path": "wiki/products/Iridesite.md",
+   "category": "products",
+   "revId": 1199657,
+   "value": 150000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      },
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      },
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Iridesite",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    }
+   ]
+  },
+  {
+   "title": "Aronium",
+   "path": "wiki/products/Aronium.md",
+   "category": "products",
+   "revId": 1233314,
+   "value": 25000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 50
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Aronium",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    }
+   ]
+  },
+  {
+   "title": "Paraffinium",
+   "path": "wiki/resources/Paraffinium.md",
+   "category": "resources",
+   "revId": 1335141,
+   "value": 62,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Silver",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Mineral Alchemy"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 2
+      },
+      {
+       "name": "Salt",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Floral Titration"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 2
+      },
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 2
+      },
+      {
+       "name": "Pure Ferrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      },
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Loosen Bonds"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      },
+      {
+       "name": "Pure Ferrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Loosen Bonds"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Sulphurine",
+       "qty": 1
+      },
+      {
+       "name": "Magnetised Ferrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 3
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Loosen Bonds"
+    }
+   ]
+  },
+  {
+   "title": "Ionised Cobalt",
+   "path": "wiki/resources/Ionised_Cobalt.md",
+   "category": "resources",
+   "revId": 1335134,
+   "value": 162,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cobalt",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ionise Mineral"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 6
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Efficient Cobalt Ionisation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cobalt",
+       "qty": 2
+      },
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 5
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Efficient Cobalt Ionisation"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Marrow Bulb",
+       "qty": 1
+      },
+      {
+       "name": "Pugneum",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Pugneum Washing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Marrow Bulb",
+       "qty": 1
+      },
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Bonded Cobalt Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cobalt",
+       "qty": 1
+      },
+      {
+       "name": "Marrow Bulb",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ionise Bulbs"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 1
+      },
+      {
+       "name": "Marrow Bulb",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ionise Bulbs"
+    }
+   ]
+  },
+  {
+   "title": "Magno-Gold",
+   "path": "wiki/products/Magno-Gold.md",
+   "category": "products",
+   "revId": 1199662,
+   "value": 25000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 50
+      },
+      {
+       "name": "Phosphorus",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Magno-Gold",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    }
+   ]
+  },
+  {
+   "title": "Phosphorus",
+   "path": "wiki/resources/Phosphorus.md",
+   "category": "resources",
+   "revId": 1335142,
+   "value": 62,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Solanium",
+       "qty": 2
+      },
+      {
+       "name": "Salt",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Floral Titration"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 2
+      },
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 2
+      },
+      {
+       "name": "Pure Ferrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Methane",
+       "qty": 1
+      },
+      {
+       "name": "Di-hydrogen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.16,
+     "label": "Organic Fusion"
+    }
+   ]
+  },
+  {
+   "title": "Grantine",
+   "path": "wiki/products/Grantine.md",
+   "category": "products",
+   "revId": 1199650,
+   "value": 25000,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Ionised Cobalt",
+       "qty": 50
+      },
+      {
+       "name": "Dioxite",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "blueprint": true
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Tritium",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Silver",
+       "qty": 20
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Gold",
+       "qty": 10
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Cobalt",
+       "qty": 60
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 30
+      },
+      {
+       "name": "Platinum",
+       "qty": 5
+      },
+      {
+       "name": "Ionised Cobalt",
+       "qty": 30
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grantine",
+       "qty": 1
+      }
+     ],
+     "seconds": 45,
+     "label": "Alloy Latticing"
+    }
+   ]
+  },
+  {
+   "title": "Dioxite",
+   "path": "wiki/resources/Dioxite.md",
+   "category": "resources",
+   "revId": 1335128,
+   "value": 62,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      },
+      {
+       "name": "Sodium Nitrate",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dioxite",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Advanced Carbon Processing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Carbon",
+       "qty": 1
+      },
+      {
+       "name": "Sodium Nitrate",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Advanced Carbon Processing"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 2
+      },
+      {
+       "name": "Salt",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Floral Titration"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Ammonia",
+       "qty": 2
+      },
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Ammonia",
+       "qty": 2
+      },
+      {
+       "name": "Pure Ferrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Environmental Element Transfer"
+    }
+   ]
+  },
+  {
+   "title": "Anomalous Doughnut",
+   "path": "wiki/cooking/Anomalous_Doughnut.md",
+   "category": "cooking",
+   "revId": 1320981,
+   "value": 70000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Lumpen Doughnut",
+       "qty": 1
+      },
+      {
+       "name": "Anomalous Jam",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Anomalous Doughnut",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Injection"
+    }
+   ]
+  },
+  {
+   "title": "Lumpen Doughnut",
+   "path": "wiki/cooking/Lumpen_Doughnut.md",
+   "category": "cooking",
+   "revId": 1336958,
+   "value": 48000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      },
+      {
+       "name": "Dough",
+       "qty": 1
+      },
+      {
+       "name": "Processed Sugar",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Lumpen Doughnut",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Accelerated Fry"
+    }
+   ]
+  },
+  {
+   "title": "Clarified Oil",
+   "path": "wiki/cooking/Clarified_Oil.md",
+   "category": "cooking",
+   "revId": 1201094,
+   "value": 30000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Churned Butter",
+       "qty": 1
+      },
+      {
+       "name": "Churned Butter",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Churned Butter",
+       "qty": 1
+      },
+      {
+       "name": "Proto-Butter",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Churned Butter",
+       "qty": 1
+      },
+      {
+       "name": "Bone Butter",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Bone Butter",
+       "qty": 1
+      },
+      {
+       "name": "Bone Butter",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Bone Butter",
+       "qty": 1
+      },
+      {
+       "name": "Proto-Butter",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Clarified Oil",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    }
+   ]
+  },
+  {
+   "title": "Churned Butter",
+   "path": "wiki/cooking/Churned_Butter.md",
+   "category": "cooking",
+   "revId": 1272437,
+   "value": 7200,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Cream",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Churned Butter",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Cream",
+   "path": "wiki/cooking/Cream.md",
+   "category": "cooking",
+   "revId": 1336164,
+   "value": 5400,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Fresh Milk",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cream",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Wild Milk",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cream",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Fresh Milk",
+   "path": "wiki/cooking/Fresh_Milk.md",
+   "category": "cooking",
+   "revId": 1208164,
+   "value": 3200,
+   "recipes": []
+  },
+  {
+   "title": "Wild Milk",
+   "path": "wiki/cooking/Wild_Milk.md",
+   "category": "cooking",
+   "revId": 1219621,
+   "value": 1600,
+   "recipes": []
+  },
+  {
+   "title": "Proto-Butter",
+   "path": "wiki/cooking/Proto-Butter.md",
+   "category": "cooking",
+   "revId": 1219512,
+   "value": 9400,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Proto-Cream",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Proto-Butter",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Proto-Cream",
+   "path": "wiki/cooking/Proto-Cream.md",
+   "category": "cooking",
+   "revId": 1102818,
+   "value": 7200,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Warm Proto-Milk",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Proto-Cream",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Craw Milk",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Proto-Cream",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Warm Proto-Milk",
+   "path": "wiki/cooking/Warm_Proto-Milk.md",
+   "category": "cooking",
+   "revId": 1219841,
+   "value": 3200,
+   "recipes": []
+  },
+  {
+   "title": "Craw Milk",
+   "path": "wiki/cooking/Craw_Milk.md",
+   "category": "cooking",
+   "revId": 1219917,
+   "value": 3200,
+   "recipes": []
+  },
+  {
+   "title": "Bone Butter",
+   "path": "wiki/cooking/Bone_Butter.md",
+   "category": "cooking",
+   "revId": 1200707,
+   "value": 32000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Bone Cream",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Bone Butter",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Bone Cream",
+   "path": "wiki/cooking/Bone_Cream.md",
+   "category": "cooking",
+   "revId": 1336159,
+   "value": 32000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Bone Milk",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Bone Cream",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Bone Milk",
+   "path": "wiki/cooking/Bone_Milk.md",
+   "category": "cooking",
+   "revId": 1269979,
+   "value": 32000,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Bone Nuggets",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Bone Milk",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Ancient Bones",
+       "qty": 1
+      },
+      {
+       "name": "Ancient Bones",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Bone Milk",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Stew Bones"
+    }
+   ]
+  },
+  {
+   "title": "Bone Nuggets",
+   "path": "wiki/cooking/Bone_Nuggets.md",
+   "category": "cooking",
+   "revId": 1219623,
+   "value": 3200,
+   "recipes": []
+  },
+  {
+   "title": "Ancient Bones",
+   "path": "wiki/building/Ancient_Bones.md",
+   "category": "building",
+   "revId": 1276662,
+   "recipes": []
+  },
+  {
+   "title": "Dough",
+   "path": "wiki/cooking/Dough.md",
+   "category": "cooking",
+   "revId": 1219527,
+   "value": 3200,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Refined Flour",
+       "qty": 1
+      },
+      {
+       "name": "Wild Yeast",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Dough",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Component Churn"
+    }
+   ]
+  },
+  {
+   "title": "Refined Flour",
+   "path": "wiki/cooking/Refined_Flour.md",
+   "category": "cooking",
+   "revId": 1336060,
+   "value": 1800,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Heptaploid Wheat",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Refined Flour",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Glass Grains",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Refined Flour",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Kelp Rice",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Refined Flour",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Extract Nutrients"
+    }
+   ]
+  },
+  {
+   "title": "Heptaploid Wheat",
+   "path": "wiki/cooking/Heptaploid_Wheat.md",
+   "category": "cooking",
+   "revId": 1220421,
+   "value": 800,
+   "recipes": []
+  },
+  {
+   "title": "Glass Grains",
+   "path": "wiki/cooking/Glass_Grains.md",
+   "category": "cooking",
+   "revId": 1202066,
+   "value": 300,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Glass Grains",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Extract Nutrients"
+    }
+   ]
+  },
+  {
+   "title": "Kelp Rice",
+   "path": "wiki/cooking/Kelp_Rice.md",
+   "category": "cooking",
+   "revId": 1297938,
+   "value": 1200,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Kelp Rice",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Extract Nutrients"
+    }
+   ]
+  },
+  {
+   "title": "Kelp Sac",
+   "path": "wiki/resources/Kelp_Sac.md",
+   "category": "resources",
+   "revId": 1335196,
+   "value": 41,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Salt",
+       "qty": 1
+      },
+      {
+       "name": "Nitrogen",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Encourage Growth"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Lithium",
+       "qty": 1
+      },
+      {
+       "name": "Methane",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Organic Expansion"
+    }
+   ]
+  },
+  {
+   "title": "Wild Yeast",
+   "path": "wiki/cooking/Wild_Yeast.md",
+   "category": "cooking",
+   "revId": 1219629,
+   "value": 600,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Wild Yeast",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Wild Yeast",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Fermentation"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Faecium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Wild Yeast",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Fermentation"
+    }
+   ]
+  },
+  {
+   "title": "Processed Sugar",
+   "path": "wiki/cooking/Processed_Sugar.md",
+   "category": "cooking",
+   "revId": 1336228,
+   "value": 1600,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Grahberry",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Processed Sugar",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Sweetroot",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Processed Sugar",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    },
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Cactus Nectar",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Processed Sugar",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Nutrient Refining"
+    }
+   ]
+  },
+  {
+   "title": "Grahberry",
+   "path": "wiki/cooking/Grahberry.md",
+   "category": "cooking",
+   "revId": 1219590,
+   "value": 800,
+   "recipes": []
+  },
+  {
+   "title": "Sweetroot",
+   "path": "wiki/cooking/Sweetroot.md",
+   "category": "cooking",
+   "revId": 1219835,
+   "value": 800,
+   "recipes": []
+  },
+  {
+   "title": "Cactus Nectar",
+   "path": "wiki/cooking/Cactus_Nectar.md",
+   "category": "cooking",
+   "revId": 1243700,
+   "value": 300,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cactus Nectar",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Extract Nutrients"
+    }
+   ]
+  },
+  {
+   "title": "Anomalous Jam",
+   "path": "wiki/cooking/Anomalous_Jam.md",
+   "category": "cooking",
+   "revId": 1320983,
+   "value": 5400,
+   "recipes": [
+    {
+     "type": "cook",
+     "inputs": [
+      {
+       "name": "Hexaberry",
+       "qty": 1
+      },
+      {
+       "name": "Processed Sugar",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Anomalous Jam",
+       "qty": 1
+      }
+     ],
+     "seconds": 2.5,
+     "label": "Preserve Fruit"
+    }
+   ]
+  },
+  {
+   "title": "Hexaberry",
+   "path": "wiki/cooking/Hexaberry.md",
+   "category": "cooking",
+   "revId": 1271750,
+   "value": 1600,
+   "recipes": []
+  },
+  {
+   "title": "Projectile Ammunition",
+   "path": "wiki/products/Projectile_Ammunition.md",
+   "category": "products",
+   "revId": 1315275,
+   "value": 1,
+   "recipes": [
+    {
+     "type": "craft",
+     "inputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 50
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Projectile Ammunition",
+       "qty": 1250
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Ferrite Dust",
+   "path": "wiki/resources/Ferrite_Dust.md",
+   "category": "resources",
+   "revId": 1335130,
+   "value": 14,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Ammonia",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Dioxite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Paraffinium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Phosphorus",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Pyrite",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Rusted Metal",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.64,
+     "label": "Recycle Waste Materials"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Uranium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Lithium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Crystallised Helium",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Ferrite Dust",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Ferrite Dust Extraction"
+    }
+   ]
+  },
+  {
+   "title": "Oxygen",
+   "path": "wiki/resources/Oxygen.md",
+   "category": "resources",
+   "revId": 1335140,
+   "value": 34,
+   "recipes": [
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 1
+      }
+     ],
+     "seconds": 0.24,
+     "label": "Extract Micro-Bubbles"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Release Captured Oxygen"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 2
+      }
+     ],
+     "seconds": 0.36,
+     "label": "Release Captured Oxygen"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Fungal Mould",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Frost Crystal",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Cactus Flesh",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Solanium",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Gamma Root",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    },
+    {
+     "type": "refine",
+     "inputs": [
+      {
+       "name": "Star Bulb",
+       "qty": 1
+      },
+      {
+       "name": "Kelp Sac",
+       "qty": 1
+      },
+      {
+       "name": "Condensed Carbon",
+       "qty": 1
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Oxygen",
+       "qty": 10
+      }
+     ],
+     "seconds": 3.6,
+     "label": "Artificial Photosynthesis"
+    }
+   ]
+  },
+  {
+   "title": "Radiant Shard",
+   "path": "wiki/products/Radiant_Shard.md",
+   "category": "products",
+   "revId": 1336232,
+   "value": 1900,
+   "recipes": []
+  },
+  {
+   "title": "Inverted Mirror",
+   "path": "wiki/products/Inverted_Mirror.md",
+   "category": "products",
+   "revId": 1336198,
+   "value": 17000,
+   "recipes": []
+  },
+  {
+   "title": "Hyaline Brain",
+   "path": "wiki/products/Hyaline_Brain.md",
+   "category": "products",
+   "revId": 1336000,
+   "value": 35000,
+   "recipes": []
+  }
+ ]
+}

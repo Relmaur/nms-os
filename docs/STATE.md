@@ -4,12 +4,14 @@ Read this before starting work; update it before ending any non-trivial task. Ke
 
 _Last updated: 2026-10-27_
 
+CI runs lint + unit tests only (owner's decision: browser tests run locally via `npm run check` before pushing).
+
 ## In progress
 **Release 3.0.0: put the app on the prompt-graph harness** (plan: ADR-0001, ADR-0002).
 - [x] Phase 0: calculators shipped (2.6.0).
 - [x] Phase 1: docs harness (this file, ADRs, CHANGELOG, lean AGENTS.md).
 - [x] Phase 2: ESLint + Playwright characterization tests (41 checks) + CI gate before commit-back/deploy.
-- [ ] Phase 3: ES-module refactor: `assets/lib/` (pure, unit-tested) + `assets/app/` (UI); `scripts/lib/wikitext.mjs`.
+- [x] Phase 3: ES-module refactor: `assets/lib/` (pure, 37 unit tests) + `assets/app/` (UI) + `wiki/codex.js`; `scripts/lib/wikitext.mjs` (derived wiki files byte-identical); handler and SW-shell guards.
 - [ ] Phase 4: hardening: state schema guard, save-failure banner, multi-tab reload, fetch timeouts, wiki-sync payload validation.
 - [ ] Phase 5: independent review, CHANGELOG 3.0.0, version bump, deploy, live checks.
 

@@ -1,5 +1,10 @@
-// Home screen + device integration: keep-awake, app badge, haptics, share sheet, install, swipe-to-close.
-// Classic script: shares the global scope with index.html and systems.js (loaded right after systems.js).
+// Home screen + device integration: keep-awake, app badge, share sheet, install, swipe-to-close.
+import { escapeHtml } from '../lib/util.js';
+import { formatAgo, formatDuration } from '../lib/format.js';
+import { lastVisit } from '../lib/systems-model.js';
+import { appState, saveAppState } from './store.js';
+import { showToast, haptic } from './ui.js';
+import { findSystem, sortedOutlaw, starDot, glyphChip, tagChip, renderOutlaw, renderSystems, panelMode, closeSystemPanel } from './systems.js';
 
 const KEEP_AWAKE_KEY = 'atlas_keep_awake'; // per-device preference, so not part of nms_state.json
 const HOME_RECENT_LIMIT = 5;
@@ -12,7 +17,7 @@ function lastActivity(system) {
     return Date.parse(lastVisit(system)?.at || system.createdAt) || 0;
 }
 
-function renderHome() {
+export function renderHome() {
     const [current, ...rest] = [...appState.systems].sort((a, b) => lastActivity(b) - lastActivity(a));
     renderHomeNow(current);
     renderHomeRecent(rest.slice(0, HOME_RECENT_LIMIT));
@@ -106,10 +111,6 @@ function quickLogVisit(id) {
 // ---------------------------------------------------------------------------
 // Device integration
 // ---------------------------------------------------------------------------
-function haptic(pattern = 12) {
-    navigator.vibrate?.(pattern); // Android; iOS ignores it
-}
-
 // Ready outlaw stations on the home-screen icon and the Outlaw tab.
 function updateBadges(readyCount) {
     const badge = document.getElementById('tabOutlawBadge');
@@ -258,3 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderStorage();
     enableSheetDrag();
 });
+
+// Called from inline on…="" handlers in the markup and in rendered templates.
+Object.assign(window, { quickLogVisit, shareSystem, toggleKeepAwake, promptInstall });

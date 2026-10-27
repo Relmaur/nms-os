@@ -1,4 +1,4 @@
-# Syncs the wiki mirror, runs lint + unit + browser tests, then deploys ATLAS // MASTER OS to GitHub Pages.
+# Syncs the wiki mirror, runs lint + unit tests, then deploys ATLAS // MASTER OS to GitHub Pages.
 # One-time setup: repo Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
@@ -30,10 +30,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dev tools (ESLint, Playwright)
-        run: |
-          npm ci
-          npx playwright install --with-deps chromium
+      - name: Install dev tools (ESLint)
+        run: npm ci
 
       # Mirrors the wiki's game-data pages over the committed archive (only pages with a new revision change)
       # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, the committed
@@ -41,13 +39,12 @@ jobs:
       - name: Sync and verify the wiki mirror
         run: node scripts/sync-wiki.mjs
 
-      # Gate: nothing is committed back or deployed unless lint, unit and browser tests pass on the synced data.
+      # Gate: nothing is committed back or deployed unless lint and unit tests pass on the synced data.
+      # Browser tests (npm run test:e2e) run locally as part of npm run check, not in CI, to keep runs short.
       - name: Lint
         run: npm run lint
       - name: Unit tests
         run: npm test
-      - name: Browser tests (desktop + phone)
-        run: npm run test:e2e
 
       # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
       # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.

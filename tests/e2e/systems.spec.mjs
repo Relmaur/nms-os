@@ -34,6 +34,17 @@ test('notes autosave and planets persist across a reload', async ({ page }) => {
   expect(system.planets.map(planet => planet.name)).toEqual(['Verdant IV']);
 });
 
+test('the Favourites filter shows only favourite systems', async ({ page }) => {
+  await page.goto('./#systems');
+  await page.locator('#systemList').getByText('Hesper Drift').click();
+  await page.getByRole('button', { name: 'Add to favourites' }).click();
+  await page.keyboard.press('Escape');
+  await page.locator('#systemFavFilter').click();
+  await expect(page.locator('#systemFavFilter')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#systemList')).toContainText('Hesper Drift');
+  await expect(page.locator('#systemList')).not.toContainText('Ekwa Nexus');
+});
+
 test('filters by tag and deletes only on the second click', async ({ page }) => {
   await page.goto('./#systems');
   await page.locator('#systemTagFilters').getByRole('button', { name: /trade-hub/ }).click();

@@ -1,0 +1,38 @@
+{{Version|Aquarius}}
+{{Product infobox
+| image = PRODUCT.FISHBAIT.3.png
+| color = Darkblue
+| category = Consumable
+| type = Fishing Bait
+| value = 450.0
+| release = Aquarius
+}}
+'''Bionic Lure''' is a consumable.
+
+==Summary==
+'''Bionic Lure''' is a [[Fishing Bait]] that can be crafted by the player and used with [[Fishing Rig]] or [[Lost Angler's Rig]].
+
+==Game Description==
+A piece of specialist bait, designed to improve the size and rarity of your catch.
+
+Locate your Fishing Rig and begin bait application with {{ButtonPerformInteraction}}.
+
+==Source==
+{{Craft|Amino Chamber,2;Ion Battery,3;Lubricant,3;20|blueprint=no}}
+
+==Usage==
+Select your fishing/angler's rig from your [[Multi-tool]] inventory, press {{ButtonPerformInteraction}} to access your [[Fishing#Bait_Box|Bait Box]] and then select the fishing bait to apply it to your rig.
+
+This will apply a bonus when catching your next fish. When a fish is caught, or the line is reeled in, you will lose one piece of [[bait]] from your rig.
+
+==Fishing Bait==
+{{FishingBait|rarity = 94|size = 2|condition =}}
+
+==Additional Information==
+
+==Release History==
+* [[Aquarius]] - Added as a consumable.
+
+==Gallery==
+<gallery>
+</gallery>

@@ -25,14 +25,18 @@ export default [
     languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { ...globals.serviceworker } }
   },
   {
-    // Classic browser scripts share one global scope with the pages' inline scripts and call each
-    // other's functions, so cross-file names look undefined and top-level functions look unused.
-    // The ES-module refactor (ADR-0001) makes those dependencies explicit and removes this block.
-    files: ['assets/**/*.js'],
-    languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { ...globals.browser, tailwind: 'writable' } },
-    rules: {
-      'no-undef': 'off',
-      'no-unused-vars': ['error', { vars: 'local', args: 'none', caughtErrors: 'none' }]
-    }
+    // ES modules: dependencies are explicit imports, so undefined names are real bugs.
+    files: ['assets/lib/**/*.js', 'assets/app/**/*.js', 'wiki/codex.js'],
+    languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.browser } }
+  },
+  {
+    // The Codex page loads these from the CDN (see CDN_PRECACHE in sw.js).
+    files: ['wiki/codex.js'],
+    languageOptions: { globals: { marked: 'readonly', DOMPurify: 'readonly' } }
+  },
+  {
+    // The two remaining classic scripts: the Tailwind CDN config and the service-worker registration.
+    files: ['assets/theme.js', 'assets/pwa.js'],
+    languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { ...globals.browser, tailwind: 'writable' } }
   }
 ];

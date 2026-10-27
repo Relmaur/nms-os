@@ -11,14 +11,25 @@ nms-os/
 ├── sw.js                   # Service worker: offline app shell + wiki + CDN libraries
 ├── nms_state.json          # Canonical default state (docs/state-schema.md)
 ├── assets/
-│   ├── theme.js / theme.css # Shared Tailwind CDN config + styles for both pages
-│   ├── pwa.js              # Registers sw.js; no-op on file:// and plain-http LAN
-│   ├── wiki-search.js      # Codex data loading + full-text search (window.WikiSearch)
-│   ├── systems.js          # Systems log + Outlaw Run: model, migration, list/filters, detail panel
-│   ├── companion.js        # Home screen + device integration (wake lock, badge, haptics, share, install)
-│   ├── calculators.js      # Calculators on wiki/game-data.json (docs/calculators.md)
+│   ├── lib/                # Pure ES modules (no DOM), unit-tested in Node
+│   │   ├── util.js / format.js   # escapeHtml, isPlainObject; durations and dates
+│   │   ├── state.js        # DEFAULT_STATE, layered merge, legacy migration
+│   │   ├── systems-model.js # System normalisation, logbook migration, outlaw status
+│   │   ├── planner.js      # Recipe planner over wiki/game-data.json
+│   │   └── search.js       # Codex search engine and labels
+│   ├── app/                # UI modules (DOM)
+│   │   ├── main.js         # Main page entry: renderAll, header search, checklists, Export/Import
+│   │   ├── store.js        # appState: load, save, render hook
+│   │   ├── nav.js / ui.js  # Section routing + Guides; toast and haptics
+│   │   ├── systems.js      # Systems log + Outlaw Run UI
+│   │   ├── companion.js    # Home screen + device integration
+│   │   ├── calculators.js  # Calculators UI (docs/calculators.md)
+│   │   └── wiki-data.js    # Wiki index/bundle loading + drafts; exports WikiSearch
+│   ├── theme.js / theme.css # Shared Tailwind CDN config + styles (classic script)
+│   ├── pwa.js              # Registers sw.js (classic script)
 │   └── icons/
-├── scripts/sync-wiki.mjs   # Wiki mirror: sync, verify, index (docs/wiki-mirror.md)
+├── wiki/codex.js           # The Codex page module
+├── scripts/sync-wiki.mjs   # Wiki mirror orchestration: sync, verify, index; parsing in scripts/lib/wikitext.mjs
 ├── wiki/<category>/*.md    # Mirrored wiki pages (committed) + aliases.json
 ├── docs/                   # This documentation, ADRs, STATE.md, process
 └── .github/workflows/pages.yml  # Verify → build → deploy; weekly wiki sync (docs/deploy.md)
@@ -29,8 +40,12 @@ nms-os/
 2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open. All three are derived from the committed `.md` archive by `npm run index:wiki`.
 3. **Offline:** `sw.js` precaches the shell, the wiki indexes and the CDN libraries. Pages and `nms_state.json` are network-first; everything else is stale-while-revalidate.
 
-## Script model
-Today the main page runs classic scripts (`systems.js`, `companion.js`, `calculators.js`) plus one large inline script, all sharing the global scope; inline `onclick` handlers call globals. Release 3.0.0 moves pure logic into ES modules under `assets/lib/` (unit-tested in Node) and UI code into `assets/app/` (ADR-0001).
+## Script model (ADR-0001)
+- Both pages load one ES module entry (`assets/app/main.js`, `wiki/codex.js`); dependencies are explicit imports. ES modules need an HTTP origin, so the app runs from `npm start`, the live site, or the installed PWA, not from `file://`.
+- `assets/lib/` is pure and imported by Node tests as-is. `assets/app/` touches the DOM.
+- Only `store.js` reassigns `appState`; other modules read the live binding, mutate it, and call `saveAppState()`, which re-renders through the hook `main.js` registers (`onSave`). `nav.js` lets features react to a section opening through `onSection()`, which avoids import cycles.
+- Inline `on…=""` handlers run in the global scope, so each module exposes exactly the functions its markup and templates call with `Object.assign(window, {…})`. `tests/unit/inline-handlers.test.mjs` fails if a handler calls anything not exposed.
+- Every module must be listed in `SHELL` in `sw.js`; `tests/unit/sw-shell.test.mjs` walks the import graph and checks this.
 
 ## External boundaries
 - **Wiki API** (`nomanssky.fandom.com/api.php`): read-only, called only by `scripts/sync-wiki.mjs` in CI or locally. Never from the browser.

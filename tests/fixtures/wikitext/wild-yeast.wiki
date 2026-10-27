@@ -1,0 +1,48 @@
+{{Version|WorldsTwo}}
+{{Product infobox
+| image = PRODUCT.PLANT.POOPWILD.png
+| color = Green
+| category = Consumable
+| type = Raw Ingredient
+| value = 600
+| release = WorldsTwo
+}}
+'''Wild Yeast''' is a consumable.
+
+==Summary==
+'''Wild Yeast''' is a [[consumable]] and one of the [[Raw Ingredient]]s.
+
+==Game description==
+An edible plant, harvested from planetary flora.
+
+Process in a Nutrient Processor to generate edible products. 
+
+==Source==
+{{Cook
+|Wild Yeast,1;1;2.5%Fermentation
+|Faecium,1;1;2.5%Fermentation
+}}
+
+==Recipes==
+{{Query Cooking}}
+
+==Fishing Bait==
+{{FishingBait|rarity = 6|size = 7|condition =}}
+
+==Additional information==
+*Restores 5% [[life support]] power once consumed.
+*Wild Yeast is the only cooking product in No Man's Sky that has a redundant recipe with the same output as the input: Wild Yeast makes Wild Yeast. Hence, fermentation can mean you are bluffing the cooking action.
+
+==Release history==
+*[[Beyond]] - Added as a consumable.
+*[[SentinelUp]] - Effect on consuming added to an info panel
+*[[Aquarius]] - Added fishing bait bonuses.
+
+==Gallery==
+<gallery>
+275850 20250202192803 1.png|Information panel<br>(Worlds Part II)
+20220306221316_1.jpg|Information panel<br>(SentinelUp)
+Wild Yeast Origins Info Panel.jpg|Information panel<br>(Origins)
+</gallery>
+
+[[ja:野生酵母]]

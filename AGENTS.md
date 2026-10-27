@@ -32,7 +32,7 @@ Local-first, build-free No Man's Sky companion: Systems log, Outlaw Run, calcula
 | `npm run lint` | ESLint |
 | `npm test` | Unit tests (`node --test tests/unit`) |
 | `npm run test:e2e` | Playwright on desktop and phone sizes |
-| `npm run check` | lint + unit + e2e: must pass before any commit that changes code |
+| `npm run check` | lint + unit + e2e: must pass locally before pushing code changes (CI runs lint + unit only) |
 
 ## Coding standards
 - Match the surrounding code: naming, comment density, Tailwind utility style, `escapeHtml` for every interpolated string in HTML templates.

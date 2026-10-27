@@ -7,9 +7,14 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 ## [Unreleased]
 ### Added
 - Development harness: lean `AGENTS.md`, `CLAUDE.md`, `docs/` (architecture, state schema, wiki mirror, deploy, calculators), ADRs 0001–0003, `docs/STATE.md`, and the prompt-graph protocol in `docs/process/`.
-- Test tooling: ESLint, `node:test` unit tests, and a Playwright suite (41 checks on desktop and phone sizes) that pins current behaviour. `npm run check` runs all three, and CI runs them on the synced wiki data before any commit-back or deploy.
+- Test tooling: ESLint, `node:test` unit tests, and a Playwright suite (41 checks on desktop and phone sizes) that pins current behaviour. `npm run check` runs all three locally; CI runs lint and unit tests on the synced wiki data before any commit-back or deploy.
 - `scripts/serve.mjs`, a dependency-free local server (`npm start`).
+- Unit tests for state merging and migration, the systems model and outlaw timer, the recipe planner, search, and the wiki parser (real page fixtures), plus guards that every inline handler is exposed and every module is precached offline.
+### Changed
+- **Breaking:** the app is now native ES modules (`assets/lib/` pure logic, `assets/app/` UI, `wiki/codex.js`). Opening `index.html` directly from disk (`file://`) no longer works; use `npm start`, the live site or the installed app.
+- The wiki parser moved to `scripts/lib/wikitext.mjs`; mirror output is byte-identical.
 ### Fixed
+- The Favourites filter on Systems (its button read a variable that is no longer global).
 - Switching sections quickly no longer raises an uncaught "Transition was skipped" error.
 
 ## [2.6.0] - 2026-10-26

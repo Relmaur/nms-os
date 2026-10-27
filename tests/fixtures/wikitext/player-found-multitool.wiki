@@ -1,0 +1,28 @@
+{{Version|Foundation}}
+{{Technology infobox
+| name = Ashidaka-Uyll Mark XVI 
+| image = 
+| color = blue
+| category = Multi-tool
+| subcategory = Weapon
+| type = provides 23 slots
+| desc =
+| release = Foundation
+}}
+[[File:Ashidaka-Uyll Mark XVI Detail.jpg|right|280px|Ashidaka-Uyll Mark XVI]]
+==Summary==
+'''Ashidaka-Uyll Mark XVI ''' is one of the [[Multi-tool|Multi-Tools]] in [[No Man's Sky]].
+
+It is grey in color with white and purple stripes on the barrel, and light blue inside the trigger guard.
+
+==Acquirement==
+The Ashidaka-Uyll Mark XVI  is a 23-slot multi-tool offered for sale to player ''zerovalence '' for 167,400 [[units]].
+
+Location is the [[HUB-G-E0 Gatsby]] [[star system]].
+
+==Gallery==
+<gallery>
+File:Ashidaka-Uyll Mark XVI.jpg|Ashidaka-Uyll Mark XVI
+</gallery>
+
+[[Category:Weapons - Circle Blaze]]

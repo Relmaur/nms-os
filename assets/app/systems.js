@@ -1,117 +1,18 @@
-// Systems log: every star system you visit, with the in-game details, your own tags, planets,
-// notes and a visit journal. Outlaw stations are systems tagged "outlaw" (Outlaw Run view).
-// State lives in nms_state.json → systems[] + outlaw{}. Uses globals from index.html:
-// appState, saveAppState, isPlainObject, escapeHtml, showToast, showSection.
+// Systems log + Outlaw Run UI: the list with filters, the detail panel and editor, and the outlaw planner.
+// The model (normalisation, migration, outlaw status) is assets/lib/systems-model.js.
+import { escapeHtml } from '../lib/util.js';
+import { formatDuration, formatAgo, formatDate } from '../lib/format.js';
+import {
+    OUTLAW_TAG, STAR_CLASSES, RACES, CONFLICT_LEVELS, ECONOMIES, BIOMES, SUGGESTED_TAGS, SORTS,
+    newId, tagSlug, normalizeGlyphs, normalizeSystem, lastVisit, systemHaystack, systemTags, packetsLogged,
+    outlawStatus as computeOutlawStatus, rankOutlaw
+} from '../lib/systems-model.js';
+import { appState, saveAppState, STORAGE_KEY } from './store.js';
+import { showToast, haptic } from './ui.js';
+import { showSection } from './nav.js';
 
-const OUTLAW_TAG = 'outlaw';
-const HOUR_MS = 3600 * 1000;
-
-const STAR_CLASSES = {
-    yellow: { label: 'Yellow', color: '#facc15' },
-    red: { label: 'Red', color: '#f87171' },
-    green: { label: 'Green', color: '#4ade80' },
-    blue: { label: 'Blue', color: '#60a5fa' },
-    purple: { label: 'Purple', color: '#c084fc' }
-};
-const RACES = { gek: 'Gek', korvax: 'Korvax', vykeen: "Vy'keen", none: 'Uncharted', abandoned: 'Abandoned' };
-const CONFLICT_LEVELS = { low: 'Low', medium: 'Medium', high: 'High', pirate: 'Pirate (outlaw)' };
-const ECONOMIES = ['Trading', 'Mining', 'Manufacturing', 'Technology', 'Scientific', 'Power Generation', 'Advanced Materials'];
-const BIOMES = ['Lush', 'Paradise', 'Barren', 'Frozen', 'Scorched', 'Toxic', 'Irradiated', 'Exotic', 'Dead', 'Marsh', 'Volcanic', 'Waterworld', 'Gas Giant', 'Infested'];
-const SUGGESTED_TAGS = [OUTLAW_TAG, 'trade-hub', 'base', 'harmonic-camp', 's-class-ship', 'crash-site', 'portal', 'settlement', 'farming', 'mining', 'paradise', 'exotic', 'to-revisit', 'home'];
-const SORTS = { recent: 'Last visited', discovered: 'Newest added', name: 'Name', rating: 'Rating', region: 'Region' };
-const LOGBOOK_TYPE_TAGS = { 'S-Class Crash Site': 's-class-ship', 'Harmonic Camp': 'harmonic-camp', 'Outlaw Station': OUTLAW_TAG, 'Hotspot / Base': 'base', 'Custom Guide Note': 'note' };
-
-// ---------------------------------------------------------------------------
-// Model
-// ---------------------------------------------------------------------------
-function newId(prefix) {
-    return `${prefix}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
-}
-
-function tagSlug(value) {
-    return String(value ?? '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-}
-
-function normalizeGlyphs(value) {
-    return String(value || '').replace(/[^0-9a-f]/gi, '').toUpperCase();
-}
-
-function clampInt(value, min, max) {
-    return Math.min(max, Math.max(min, Math.round(Number(value)) || 0));
-}
-
-function normalizeSystem(raw) {
-    const system = {
-        id: String(raw.id || newId('sys')),
-        name: String(raw.name || 'Unnamed system').trim() || 'Unnamed system',
-        galaxy: String(raw.galaxy || 'Euclid'),
-        region: String(raw.region || ''),
-        glyphs: normalizeGlyphs(raw.glyphs),
-        star: raw.star in STAR_CLASSES ? raw.star : '',
-        race: raw.race in RACES ? raw.race : '',
-        economy: String(raw.economy || ''),
-        wealth: clampInt(raw.wealth, 0, 3),
-        conflict: raw.conflict in CONFLICT_LEVELS ? raw.conflict : '',
-        tags: [...new Set((Array.isArray(raw.tags) ? raw.tags : []).map(tagSlug).filter(Boolean))],
-        favorite: !!raw.favorite,
-        rating: clampInt(raw.rating, 0, 5),
-        notes: String(raw.notes || ''),
-        planets: (Array.isArray(raw.planets) ? raw.planets : []).filter(isPlainObject).map(planet => ({
-            id: String(planet.id || newId('pl')),
-            name: String(planet.name || 'Unnamed planet'),
-            biome: String(planet.biome || ''),
-            tags: [...new Set((Array.isArray(planet.tags) ? planet.tags : []).map(tagSlug).filter(Boolean))],
-            notes: String(planet.notes || '')
-        })),
-        visits: (Array.isArray(raw.visits) ? raw.visits : [])
-            .filter(visit => isPlainObject(visit) && !Number.isNaN(Date.parse(visit.at)))
-            .map(visit => ({ at: visit.at, ...(visit.note ? { note: String(visit.note) } : {}), ...(Number(visit.packets) > 0 ? { packets: Number(visit.packets) } : {}) }))
-            .sort((a, b) => Date.parse(a.at) - Date.parse(b.at)),
-        createdAt: raw.createdAt && !Number.isNaN(Date.parse(raw.createdAt)) ? raw.createdAt : (raw.visits?.[0]?.at || new Date().toISOString())
-    };
-    return system;
-}
-
-// Folds the pre-Systems `logbook[]` and `outlaw.stations[]` into `systems[]`. Ids are kept, so running it
-// on an already-migrated state (or merging an old export into a new one) never duplicates entries.
-function migrateToSystems(state) {
-    const systems = Array.isArray(state.systems) ? state.systems.filter(isPlainObject) : [];
-    const ids = new Set(systems.map(system => String(system.id)));
-    const add = system => { if (!ids.has(system.id)) { ids.add(system.id); systems.push(system); } };
-
-    (Array.isArray(state.logbook) ? state.logbook : []).filter(isPlainObject).forEach(entry => {
-        const solution = Array.isArray(entry.glyphSolution) && entry.glyphSolution.length ? `Harmonic Camp solution: ${entry.glyphSolution.join(', ')}` : '';
-        add({
-            id: String(entry.id),
-            name: entry.system || entry.title,
-            tags: [LOGBOOK_TYPE_TAGS[entry.type] || tagSlug(entry.type || 'note')],
-            notes: [entry.notes || entry.details, solution].filter(Boolean).join('\n')
-        });
-    });
-    (Array.isArray(state.outlaw?.stations) ? state.outlaw.stations : []).filter(isPlainObject).forEach(station => {
-        add({
-            id: String(station.id),
-            name: station.system || station.name,
-            galaxy: station.galaxy,
-            glyphs: station.glyphs,
-            conflict: 'pirate',
-            tags: [OUTLAW_TAG],
-            notes: [station.system && station.name !== station.system ? `Station: ${station.name}` : '', station.notes].filter(Boolean).join('\n'),
-            visits: station.visits
-        });
-    });
-
-    delete state.logbook;
-    if (isPlainObject(state.outlaw)) delete state.outlaw.stations;
-    state.systems = systems.map(normalizeSystem);
-}
-
-function findSystem(id) {
+export function findSystem(id) {
     return appState.systems.find(system => system.id === id);
-}
-
-function lastVisit(system) {
-    return system.visits[system.visits.length - 1];
 }
 
 function allTags() {
@@ -124,24 +25,7 @@ function allTags() {
 // ---------------------------------------------------------------------------
 // Formatting helpers
 // ---------------------------------------------------------------------------
-function formatDuration(ms) {
-    const minutes = Math.max(1, Math.round(ms / 60000));
-    if (minutes < 60) return `${minutes}m`;
-    const hours = Math.floor(minutes / 60);
-    if (hours < 48) return `${hours}h${minutes % 60 ? ` ${minutes % 60}m` : ''}`;
-    return `${Math.round(hours / 24)}d`;
-}
-
-function formatAgo(iso) {
-    const ms = Date.now() - Date.parse(iso);
-    return ms < 60000 ? 'just now' : `${formatDuration(ms)} ago`;
-}
-
-function formatDate(iso) {
-    return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
-}
-
-function tagChip(tag, { active = false, onclick = '' } = {}) {
+export function tagChip(tag, { active = false, onclick = '' } = {}) {
     const classes = active
         ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200'
         : tag === OUTLAW_TAG ? 'bg-red-500/10 border-red-500/30 text-red-200' : 'bg-slate-900 border-slate-700 text-slate-300';
@@ -149,7 +33,7 @@ function tagChip(tag, { active = false, onclick = '' } = {}) {
     return `<${tagName} ${onclick ? `onclick="${onclick}" aria-pressed="${active}"` : ''} class="inline-flex items-center h-6 px-2 rounded-md border text-[11px] font-medium ${classes} ${onclick ? 'hover:border-slate-500' : ''}">${escapeHtml(tag)}</${tagName}>`;
 }
 
-function starDot(system, size = 'w-3 h-3') {
+export function starDot(system, size = 'w-3 h-3') {
     const color = STAR_CLASSES[system.star]?.color;
     return `<span class="${size} shrink-0 rounded-full ${color ? '' : 'border border-dashed border-slate-600'}" style="${color ? `background:${color}; box-shadow: 0 2px 8px -1px ${color}88` : ''}" title="${escapeHtml(STAR_CLASSES[system.star]?.label || 'Star colour unknown')}"></span>`;
 }
@@ -158,7 +42,7 @@ function wealthStars(wealth) {
     return wealth ? `<span class="text-amber-300" title="Wealth ${wealth}/3">${'★'.repeat(wealth)}<span class="text-slate-600">${'★'.repeat(3 - wealth)}</span></span>` : '';
 }
 
-function glyphChip(glyphs) {
+export function glyphChip(glyphs) {
     if (!glyphs) return '';
     return `<button data-glyphs="${escapeHtml(glyphs)}" onclick="event.stopPropagation(); copyGlyphs(this.dataset.glyphs)" title="Copy portal glyphs" class="inline-flex items-center gap-1.5 h-6 px-2 rounded-md bg-slate-950 border border-slate-700 hover:border-slate-500 font-mono text-[11px] tracking-wider text-slate-200">${escapeHtml(glyphs)}<i class="ph-bold ph-copy text-slate-400"></i></button>`;
 }
@@ -184,18 +68,6 @@ function systemMeta(system) {
 // Systems list (search, filters, sort)
 // ---------------------------------------------------------------------------
 const systemFilter = { q: '', tags: [], star: '', race: '', conflict: '', favorites: false, sort: 'recent' };
-
-function systemHaystack(system) {
-    return [
-        system.name, system.region, system.galaxy, system.economy, system.notes, system.glyphs, RACES[system.race], STAR_CLASSES[system.star]?.label,
-        ...system.tags, ...system.planets.flatMap(planet => [planet.name, planet.biome, planet.notes, ...planet.tags]),
-        ...system.visits.map(visit => visit.note)
-    ].filter(Boolean).join(' ').toLowerCase();
-}
-
-function systemTags(system) {
-    return new Set([...system.tags, ...system.planets.flatMap(planet => planet.tags)]);
-}
 
 function filteredSystems() {
     const tokens = systemFilter.q.toLowerCase().split(/\s+/).filter(Boolean);
@@ -228,6 +100,10 @@ function setSystemFilter(changes) {
     renderSystems();
 }
 
+function toggleFavoritesFilter() {
+    setSystemFilter({ favorites: !systemFilter.favorites });
+}
+
 function toggleSystemTagFilter(tag) {
     const tags = new Set(systemFilter.tags);
     tags.has(tag) ? tags.delete(tag) : tags.add(tag);
@@ -240,7 +116,7 @@ function clearSystemFilters() {
     renderSystems();
 }
 
-function renderSystems() {
+export function renderSystems() {
     const systems = appState.systems;
     const visible = filteredSystems();
     const visits = systems.reduce((sum, system) => sum + system.visits.length, 0);
@@ -295,8 +171,8 @@ function renderSystems() {
 // ---------------------------------------------------------------------------
 // System panel (view + edit) — side panel on desktop, bottom sheet on mobile
 // ---------------------------------------------------------------------------
-let panelSystemId = null;
-let panelMode = 'view';           // 'view' | 'edit'
+export let panelSystemId = null;
+export let panelMode = 'view';           // 'view' | 'edit'
 let panelDraft = null;            // working copy while editing
 let editorTags = [];
 let editingPlanetId = null;       // planet being edited inline, or 'new'
@@ -313,7 +189,7 @@ function setPanelOpen(open) {
     panel.setAttribute('aria-hidden', String(!open));
 }
 
-function openSystem(id) {
+export function openSystem(id) {
     if (!findSystem(id)) return;
     panelSystemId = id;
     panelMode = 'view';
@@ -324,7 +200,7 @@ function openSystem(id) {
     document.getElementById('systemPanelScroll').scrollTop = 0;
 }
 
-function openSystemEditor(id = null, preset = {}) {
+export function openSystemEditor(id = null, preset = {}) {
     const existing = id ? findSystem(id) : null;
     panelSystemId = existing ? existing.id : null;
     panelMode = 'edit';
@@ -336,7 +212,7 @@ function openSystemEditor(id = null, preset = {}) {
     document.getElementById('sysName')?.focus();
 }
 
-function closeSystemPanel() {
+export function closeSystemPanel() {
     if (document.getElementById('systemPanel').getAttribute('aria-hidden') === 'true') return;
     flushNotes();
     setPanelOpen(false);
@@ -344,7 +220,7 @@ function closeSystemPanel() {
     panelDraft = null;
 }
 
-function renderSystemPanel() {
+export function renderSystemPanel() {
     const body = document.getElementById('systemPanelBody');
     if (panelMode === 'edit') return renderSystemEditor(body);
     const system = findSystem(panelSystemId);
@@ -637,7 +513,7 @@ function setSystemRating(id, rating) {
     saveAppState();
 }
 
-function filterByTag(tag) {
+export function filterByTag(tag) {
     closeSystemPanel();
     Object.assign(systemFilter, { tags: [tag] });
     showSection('systems');
@@ -722,18 +598,8 @@ function deleteSystem(id) {
 // ---------------------------------------------------------------------------
 // Outlaw Run: systems tagged "outlaw", ready once restockHours passed since the last packet run
 // ---------------------------------------------------------------------------
-function outlawSystems() {
-    return appState.systems.filter(system => system.tags.includes(OUTLAW_TAG));
-}
-
 function outlawStatus(system) {
-    const last = [...system.visits].reverse().find(visit => visit.packets);
-    if (!last) return { ready: true, tone: 'new', label: 'Never run', readyAt: 0 };
-    const readyAt = Date.parse(last.at) + appState.outlaw.restockHours * HOUR_MS;
-    const wait = readyAt - Date.now();
-    return wait <= 0
-        ? { ready: true, tone: 'ready', label: 'Ready', readyAt }
-        : { ready: false, tone: 'wait', label: `Ready in ${formatDuration(wait)}`, readyAt };
+    return computeOutlawStatus(system, appState.outlaw.restockHours);
 }
 
 function outlawPill(status) {
@@ -746,20 +612,18 @@ function outlawPill(status) {
     return `<span class="inline-flex items-center gap-1 h-6 px-2 rounded-full border text-[11px] font-medium whitespace-nowrap shrink-0 ${tones[status.tone]}"><i class="ph-bold ${icons[status.tone]}"></i>${status.label}</span>`;
 }
 
-function packetsLogged(system) {
-    return system.visits.reduce((sum, visit) => sum + (Number(visit.packets) || 0), 0);
-}
-
-// Ready first (never run, then longest since the last run); restocking by soonest ready.
-function sortedOutlaw() {
-    return outlawSystems()
-        .map(system => ({ system, status: outlawStatus(system) }))
-        .sort((a, b) => (b.status.ready - a.status.ready) || (a.status.readyAt - b.status.readyAt) || a.system.name.localeCompare(b.system.name));
+export function sortedOutlaw() {
+    return rankOutlaw(appState.systems, appState.outlaw.restockHours);
 }
 
 let outlawFilter = 'all';
 
-function renderOutlaw() {
+function setOutlawFilter(key) {
+    outlawFilter = key;
+    renderOutlaw();
+}
+
+export function renderOutlaw() {
     const outlaw = appState.outlaw;
     const rows = sortedOutlaw();
     const ready = rows.filter(row => row.status.ready);
@@ -802,7 +666,7 @@ function renderOutlaw() {
 
     const filters = [['all', 'All', rows.length], ['ready', 'Ready', ready.length], ['wait', 'Restocking', rows.length - ready.length]];
     document.getElementById('outlawFilters').innerHTML = filters.map(([key, label, n]) => `
-        <button onclick="outlawFilter = '${key}'; renderOutlaw()" aria-pressed="${outlawFilter === key}" class="h-8 px-3 rounded-full border text-xs font-medium transition ${outlawFilter === key ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white'}">${label} <span class="font-mono opacity-70">${n}</span></button>`).join('');
+        <button onclick="setOutlawFilter('${key}')" aria-pressed="${outlawFilter === key}" class="h-8 px-3 rounded-full border text-xs font-medium transition ${outlawFilter === key ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white'}">${label} <span class="font-mono opacity-70">${n}</span></button>`).join('');
     const visible = rows.filter(row => outlawFilter === 'all' || (outlawFilter === 'ready') === row.status.ready);
     document.getElementById('outlawStationList').innerHTML = visible.length ? visible.map(({ system, status }) => {
         const last = [...system.visits].reverse().find(visit => visit.packets);
@@ -833,7 +697,7 @@ function setOutlawSetting(key, value) {
     saveAppState();
 }
 
-function logPacketRun(id) {
+export function logPacketRun(id) {
     const system = findSystem(id);
     if (!system) return;
     system.visits.push({ at: new Date().toISOString(), packets: appState.outlaw.packetsPerVisit });
@@ -907,3 +771,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('economyOptions').innerHTML = ECONOMIES.map(value => `<option value="${value}">`).join('');
     document.getElementById('biomeOptions').innerHTML = BIOMES.map(value => `<option value="${value}">`).join('');
 });
+
+// Called from inline on…="" handlers in the markup and in rendered templates.
+Object.assign(window, { addEditorTag, clearSystemFilters, closeSystemPanel, copyGlyphs, deletePlanet, deleteSystem, deleteVisit, editPlanet, filterByTag, flushNotes, logOutlawRun, logPacketRun, logVisitFromPanel, onTagKey, openSystem, openSystemEditor, queueNotesSave, removeEditorTag, renderOutlaw, renderTagSuggestions, saveOutlawBulk, savePlanet, saveSystemEditor, setDraftField, setOutlawFilter, setOutlawSetting, setSystemFilter, setSystemRating, toggleFavoritesFilter, toggleFavorite, toggleOutlawBulk, toggleSystemTagFilter, undoPacketRun });

@@ -1,30 +1,30 @@
-// Calculators built on the wiki mirror (wiki/game-data.json): recipe planner, base value, mineral extractors.
-// Every number shown is wiki data, arithmetic on it, or an input the player sets.
-// Classic script: shares the global scope with index.html (escapeHtml, showToast) and loads after systems.js.
+// Calculators on the wiki mirror (wiki/game-data.json): recipe planner, base value, mineral extractors.
+// Every number shown is wiki data, arithmetic on it, or an input the player sets (docs/calculators.md).
+import { escapeHtml } from '../lib/util.js';
+import * as planner from '../lib/planner.js';
+import { showToast } from './ui.js';
 
-const PLAN_TYPES = ['craft', 'cook']; // refining is a way to obtain raw materials, not a production step
-const PLAN_MAX_DEPTH = 14;
+const findItem = name => planner.findItem(gameData, name);
+const planRecipes = item => planner.planRecipes(gameData, item);
+const expandPlan = (name, qty) => planner.expandPlan(gameData, name, qty, planChoices);
+const { makeCatalog, collectRaw, countSteps } = planner;
+
 const PLAN_PRESETS = ['Stasis Device', 'Fusion Ignitor', 'Circuit Board', 'Living Glass', 'Anomalous Doughnut'];
 const VALUE_DEFAULTS = ['Radiant Shard', 'Inverted Mirror', 'Hyaline Brain']; // Sentinel salvage
 const RECIPE_MACHINE = { craft: 'Crafted', cook: 'Nutrient Processor' };
 
-let gameData = null; // { byTitle: Map(lower title -> item), aliases, verification }
+let gameData = null; // makeCatalog() + { verification }
 let gameDataPromise = null;
 let planItem = 'Stasis Device';
 const planChoices = {}; // item title -> index of the alternative recipe in use
 let valueRows = VALUE_DEFAULTS.map(title => ({ title, qty: 1 }));
 
-function loadGameData() {
+export function loadGameData() {
     gameDataPromise ??= Promise.all([
         fetch('wiki/game-data.json').then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))),
         fetch('wiki/verification.json', { cache: 'no-store' }).then(res => res.ok ? res.json() : null).catch(() => null)
     ]).then(([data, verification]) => {
-        const byTitle = new Map();
-        // Current pages win over obsolete ones with the same title; removed pages are left out.
-        data.items.filter(item => !item.removed)
-            .sort((a, b) => Boolean(a.obsolete) - Boolean(b.obsolete))
-            .forEach(item => { if (!byTitle.has(item.title.toLowerCase())) byTitle.set(item.title.toLowerCase(), item); });
-        gameData = { byTitle, aliases: data.aliases || {}, verification, pages: data.items.filter(item => !item.removed).length };
+        gameData = { ...makeCatalog(data), verification };
         fillCalculatorOptions();
         renderCalculators();
     }).catch(() => {
@@ -32,13 +32,6 @@ function loadGameData() {
         document.getElementById('calcSource').textContent = 'The wiki data couldn’t be loaded. Open the app from the live site or run npm start (it isn’t available when index.html is opened as a file).';
     });
     return gameDataPromise;
-}
-
-function findItem(name) {
-    if (!gameData || !name) return undefined;
-    const lower = String(name).trim().toLowerCase();
-    const alias = Object.keys(gameData.aliases).find(key => key.toLowerCase() === lower);
-    return gameData.byTitle.get(lower) || (alias ? gameData.byTitle.get(gameData.aliases[alias].toLowerCase()) : undefined);
 }
 
 const currentItems = () => [...gameData.byTitle.values()].filter(item => !item.obsolete);
@@ -76,42 +69,6 @@ function renderCalculators() {
 // ---------------------------------------------------------------------------
 // Recipe planner: expands crafting and cooking recipes down to raw materials
 // ---------------------------------------------------------------------------
-function planRecipes(item) {
-    return item.recipes.filter(recipe => PLAN_TYPES.includes(recipe.type) && !recipe.obsolete
-        && findItem(recipe.outputs[0]?.name) === item
-        && !recipe.inputs.some(input => findItem(input.name) === item)); // "X + Wild Yeast -> Wild Yeast" multipliers aren't steps
-}
-
-function expandPlan(name, qty, depth = 0, path = new Set()) {
-    const item = findItem(name);
-    const title = item?.title || String(name);
-    const recipes = item && depth < PLAN_MAX_DEPTH && !path.has(title) ? planRecipes(item) : [];
-    const node = { title, item, qty, recipes, children: [] };
-    if (!recipes.length) return node;
-    const index = Math.min(planChoices[title] || 0, recipes.length - 1);
-    const recipe = recipes[index];
-    const perBatch = recipe.outputs[0].qty || 1;
-    const batches = Math.ceil(qty / perBatch); // a craft that yields 20 still needs whole batches
-    const next = new Set(path).add(title);
-    return {
-        ...node, recipe, index, batches, makes: batches * perBatch,
-        children: recipe.inputs.map(input => expandPlan(input.name, (Number(input.qty) || 1) * batches, depth + 1, next))
-    };
-}
-
-function collectRaw(node, totals = new Map()) {
-    if (!node.recipe) {
-        const entry = totals.get(node.title) || { item: node.item, qty: 0 };
-        entry.qty += node.qty;
-        totals.set(node.title, entry);
-    } else {
-        node.children.forEach(child => collectRaw(child, totals));
-    }
-    return totals;
-}
-
-const countSteps = node => node.recipe ? 1 + node.children.reduce((sum, child) => sum + countSteps(child), 0) : 0;
-
 function setPlanItem(value) {
     const item = findItem(value);
     if (!item) return;
@@ -249,3 +206,6 @@ function renderExtractors() {
     const perHour = count * rate;
     out.innerHTML = `<strong class="font-mono text-white">${formatQty(perHour)}</strong> ${codexLink(mineral)} per hour, worth <strong class="font-mono text-emerald-300">${formatUnits(perHour * mineral.value)} Units</strong> (${formatUnits(perHour * mineral.value * 24)} a day) at the base value of ${formatUnits(mineral.value)} each.`;
 }
+
+// Called from inline on…="" handlers in the markup and in rendered templates.
+Object.assign(window, { setPlanItem, cycleRecipe, renderPlanner, addValueRow, setValueQty, removeValueRow, renderExtractors });
