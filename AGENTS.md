@@ -8,7 +8,7 @@
 ### Repository layout
 ```text
 nms-os/
-├── index.html              # Main app: 6 Books, 5 calculators, Systems log, Outlaw Run, state sync, global search
+├── index.html              # Main app: Home, Systems, Outlaw Run, calculators, Guides (6 books), More; state sync, global search
 ├── manifest.webmanifest    # PWA manifest (name, icons, standalone display, shortcuts)
 ├── sw.js                   # Service worker: offline app shell + wiki + CDN libraries
 ├── .github/workflows/pages.yml  # Builds the wiki and deploys to GitHub Pages
@@ -18,6 +18,7 @@ nms-os/
 │   ├── theme.js / theme.css # Shared Tailwind config + styles for every page
 │   ├── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
 │   ├── systems.js          # Systems log + Outlaw Run (model, migration, list/filters, detail panel)
+│   ├── companion.js        # Home screen + device integration (keep-awake, app badge, haptics, share, install, swipe-to-close)
 ├── nms_state.json          # Shared state (meta, fleet, checklists, systems, outlaw)
 ├── AGENTS.md               # This file
 ├── package.json            # npm start | sync:wiki | seed:wiki | index:wiki
@@ -67,6 +68,9 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - Search ranks title > summary > headings > body > fuzzy title subsequence, with simple plural folding. `[[Article Title]]` in Markdown links to that local article. Rendered Markdown is sanitized with DOMPurify. "Create Custom .MD Article" downloads the file and keeps a browser draft until the file is indexed.
 
 ## 4. Installable App & Deployment (GitHub Pages)
+- Navigation is companion-first. Sections are hash routes: `#home` (default), `#systems`, `#outlaw`, `#calculators`, `#guides`, `#book1`…`#book6`, `#more`; `#new-system` opens the Add-system editor (home-screen shortcut). Below `lg` a bottom tab bar (Home · Systems · Outlaw · Codex · More) replaces the sidebar; `wiki/index.html` carries the same bar.
+- Edge-to-edge: `viewport-fit=cover` + `black-translucent` status bar, so fixed/sticky chrome pads with `env(safe-area-inset-*)` (see the App shell block in `theme.css`).
+- Device features (`assets/companion.js`) are feature-detected and degrade silently: Screen Wake Lock ("Keep screen on", stored per device in `localStorage` key `atlas_keep_awake`, not in `nms_state.json`), app-icon badge = ready outlaw stations, `navigator.vibrate` haptics (Android), Web Share for a system, the install prompt, and `navigator.storage.persist()` when installed.
 - Live build: `.github/workflows/pages.yml` runs on every push to `main`, weekly (Mondays 06:17 UTC, to refresh the wiki) and on demand. It runs `node scripts/sync-wiki.mjs`, stamps `BUILD` in `sw.js`, and publishes only `index.html`, `nms_state.json`, `manifest.webmanifest`, `sw.js`, `assets/` and `wiki/`. One-time setup: Settings → Pages → Source: **GitHub Actions**.
 - Site URL: `https://relmaur.github.io/nms-os/`. Every path in the app is relative so it works under that subpath.
 - Service worker strategy: pages and `nms_state.json` are network-first (3.5s timeout for pages) with cache fallback; other same-origin files and CDN libraries are stale-while-revalidate. Each deploy gets a new shell cache (`atlas-os-shell-<BUILD>`); old ones are deleted on activate.

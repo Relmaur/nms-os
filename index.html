@@ -2,9 +2,9 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ATLAS // MASTER OS</title>
-    <meta name="description" content="Local-first No Man's Sky companion: the six-book manual, live calculators, logbook and an offline wiki Codex.">
+    <meta name="description" content="Local-first No Man's Sky companion: systems log, outlaw runs, calculators, an offline wiki Codex and the six-book guide.">
     <!-- Installable app (PWA) -->
     <meta name="theme-color" content="#050811">
     <link rel="manifest" href="manifest.webmanifest">
@@ -13,7 +13,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Atlas OS">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="assets/pwa.js" defer></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,22 +34,19 @@
     </div>
 
     <!-- Top Header -->
-    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-[1600px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
-            <button id="menuButton" onclick="setNavDrawer(true)" aria-label="Open navigation" aria-controls="sidebarNav" aria-expanded="false" class="lg:hidden w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
-                <i class="ph-bold ph-list text-xl"></i>
-            </button>
-            <a href="#book1" onclick="showSection('book1'); return false;" class="flex items-center gap-3 shrink-0 min-w-0 rounded-lg">
-                <span class="hidden sm:flex w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 items-center justify-center"><i class="ph-fill ph-planet text-xl text-red-500"></i></span>
+    <header class="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-[1600px] mx-auto h-14 lg:h-16 px-4 sm:px-6 flex items-center gap-3 sm:gap-4">
+            <a href="#home" onclick="showSection('home'); return false;" class="flex items-center gap-3 shrink-0 min-w-0 rounded-lg">
+                <span class="w-8 h-8 lg:w-9 lg:h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center"><i class="ph-fill ph-planet text-lg lg:text-xl text-red-500"></i></span>
                 <span class="font-display font-bold text-sm sm:text-base tracking-wider text-white whitespace-nowrap">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</span>
             </a>
 
-            <!-- Global search: wiki articles + every book section -->
+            <!-- Global search: your systems, wiki articles and the guides -->
             <div id="globalSearch" class="hidden md:block relative flex-1 max-w-xl mx-auto">
                 <div class="flex items-center gap-2">
                     <div class="relative flex-1">
                         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                        <input type="search" id="globalSearchInput" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="globalSearchResults" aria-autocomplete="list" aria-label="Search the wiki and the manual" placeholder="Search the wiki and all six books…" oninput="handleGlobalSearch(this.value)" onfocus="handleGlobalSearch(this.value)" onkeydown="handleGlobalSearchKey(event)" class="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-400 focus:outline-none transition">
+                        <input type="search" id="globalSearchInput" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="globalSearchResults" aria-autocomplete="list" aria-label="Search your systems, the wiki and the guides" placeholder="Search systems, the wiki and the guides…" oninput="handleGlobalSearch(this.value)" onfocus="handleGlobalSearch(this.value)" onkeydown="handleGlobalSearchKey(event)" class="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-400 focus:outline-none transition">
                         <kbd class="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">/</kbd>
                     </div>
                     <button onclick="closeGlobalSearch()" class="md:hidden h-10 px-2 text-sm font-medium text-cyan-300">Cancel</button>
@@ -58,20 +55,14 @@
             </div>
 
             <div class="ml-auto md:ml-0 flex items-center gap-1.5 sm:gap-2 shrink-0">
-                <button onclick="openGlobalSearch()" aria-label="Search" class="md:hidden w-10 h-10 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
-                    <i class="ph-bold ph-magnifying-glass text-lg"></i>
+                <button onclick="openGlobalSearch()" aria-label="Search" class="md:hidden w-10 h-10 -mr-2 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
+                    <i class="ph-bold ph-magnifying-glass text-xl"></i>
                 </button>
-                <div id="headerProgress" title="Checklist progress" class="h-10 px-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5">
-                    <div class="hidden sm:block w-16 h-1.5 rounded-full bg-slate-800 overflow-hidden">
-                        <div id="headerProgressBar" class="h-full rounded-full bg-cyan-400 transition-[width] duration-500" style="width: 0%"></div>
-                    </div>
-                    <span id="headerProgressText" class="font-mono text-xs font-semibold text-cyan-300 tabular-nums">0%</span>
-                </div>
-                <button onclick="exportStateJSON()" title="Export nms_state.json" aria-label="Export nms_state.json" class="hidden sm:flex h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-emerald-300 items-center gap-2 transition">
+                <button onclick="exportStateJSON()" title="Export nms_state.json" aria-label="Export nms_state.json" class="hidden md:flex h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-emerald-300 items-center gap-2 transition">
                     <i class="ph-bold ph-download-simple text-base"></i>
                     <span class="hidden xl:inline">Export</span>
                 </button>
-                <label id="importDropzone" title="Import nms_state.json (click or drop the file here)" ondragover="handleStateDragOver(event)" ondragleave="setDropzoneActive(false)" ondrop="handleStateDrop(event)" class="hidden sm:flex cursor-pointer h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-700 text-xs font-medium text-amber-300 items-center gap-2 transition focus-within:ring-2 focus-within:ring-cyan-400">
+                <label id="importDropzone" title="Import nms_state.json (click or drop the file here)" ondragover="handleStateDragOver(event)" ondragleave="setDropzoneActive(false)" ondrop="handleStateDrop(event)" class="hidden md:flex cursor-pointer h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-700 text-xs font-medium text-amber-300 items-center gap-2 transition focus-within:ring-2 focus-within:ring-cyan-400">
                     <i class="ph-bold ph-upload-simple text-base"></i>
                     <span class="hidden xl:inline">Import</span>
                     <input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only" aria-label="Import nms_state.json">
@@ -83,58 +74,132 @@
     <!-- Main Workspace Container -->
     <div class="flex-1 max-w-[1600px] w-full mx-auto flex relative">
 
-        <div id="navBackdrop" onclick="setNavDrawer(false)" class="lg:hidden fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
-
-        <!-- Navigation: drawer below lg, sticky column from lg -->
-        <aside id="sidebarNav" aria-label="Primary" class="fixed inset-y-0 left-0 z-50 w-[19rem] max-w-[86vw] -translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] bg-slate-950 border-r border-slate-800 flex flex-col lg:sticky lg:top-16 lg:z-auto lg:h-[calc(100dvh-4rem)] lg:w-72 lg:max-w-none lg:translate-x-0 lg:shrink-0 lg:bg-transparent">
-            <div class="lg:hidden h-16 px-4 flex items-center justify-between border-b border-slate-800 shrink-0">
-                <span class="font-display font-bold text-sm tracking-wider text-white">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</span>
-                <button onclick="setNavDrawer(false)" aria-label="Close navigation" class="w-10 h-10 -mr-2 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 transition">
-                    <i class="ph-bold ph-x text-lg"></i>
-                </button>
-            </div>
-
+        <!-- Desktop navigation (the bottom tab bar replaces it below lg) -->
+        <aside id="sidebarNav" aria-label="Primary" class="hidden lg:flex lg:sticky lg:top-16 lg:h-[calc(100dvh-4rem)] lg:w-72 lg:shrink-0 flex-col">
             <nav class="flex-1 overflow-y-auto overscroll-contain px-3 py-6 space-y-8">
                 <div>
-                    <p class="nav-group-label">Manual</p>
+                    <p class="nav-group-label">Companion</p>
                     <ul class="space-y-1">
-                        <li><button onclick="showSection('book1')" id="nav-book1" class="nav-btn" title="Book I: Cross-Save, Game Modes & First 5 Hours"><span class="nav-tile text-cyan-300">I</span><span class="truncate">Cross-Save & First Hours</span></button></li>
-                        <li><button onclick="showSection('book2')" id="nav-book2" class="nav-btn" title="Book II: The 4.29B Unit & Nanite Blueprint"><span class="nav-tile text-emerald-300">II</span><span class="truncate">Units & Nanites</span></button></li>
-                        <li><button onclick="showSection('book3')" id="nav-book3" class="nav-btn" title="Book III: Starship & Multi-Tool Meta"><span class="nav-tile text-purple-300">III</span><span class="truncate">Ship & Multi-Tool Meta</span></button></li>
-                        <li><button onclick="showSection('book4')" id="nav-book4" class="nav-btn" title="Book IV: Self-Sufficient & Cozy Base"><span class="nav-tile text-amber-300">IV</span><span class="truncate">Self-Sufficient Base</span></button></li>
-                        <li><button onclick="showSection('book5')" id="nav-book5" class="nav-btn" title="Book V: Expeditions & Item Porting"><span class="nav-tile text-sky-300">V</span><span class="truncate">Expeditions & Porting</span></button></li>
-                        <li><button onclick="showSection('book6')" id="nav-book6" class="nav-btn" title="Book VI: The 7 Pillars of Post-Wealth Endgame"><span class="nav-tile text-red-300">VI</span><span class="truncate">Endgame Pillars</span></button></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <p class="nav-group-label">Tools</p>
-                    <ul class="space-y-1">
-                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
+                        <li><button onclick="showSection('home')" id="nav-home" class="nav-btn"><span class="nav-tile text-cyan-300"><i class="ph-bold ph-house"></i></span><span class="truncate">Home</span></button></li>
                         <li><button onclick="showSection('systems')" id="nav-systems" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-planet"></i></span><span class="truncate">Systems</span><span id="sidebarSystemsCount" class="nav-count">0</span></button></li>
                         <li><button onclick="showSection('outlaw')" id="nav-outlaw" class="nav-btn"><span class="nav-tile text-red-300"><i class="ph-bold ph-skull"></i></span><span class="truncate">Outlaw Run</span><span id="sidebarOutlawCount" class="nav-count">0</span></button></li>
+                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
                         <li><a href="wiki/" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span><i class="ph-bold ph-arrow-up-right text-xs text-slate-400 ml-2"></i></a></li>
                     </ul>
                 </div>
 
-                <div class="rounded-2xl bg-slate-900/60 border border-slate-800 p-4 space-y-3">
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 flex items-center justify-between">
-                        <span>Active Fleet</span>
-                        <i class="ph-fill ph-shield-check text-emerald-400 text-sm"></i>
-                    </p>
-                    <div id="fleetCardBody" class="text-xs space-y-2.5"></div>
-                </div>
-
-                <div class="sm:hidden space-y-2">
-                    <p class="nav-group-label">Shared State</p>
-                    <button onclick="exportStateJSON()" class="nav-btn text-emerald-300"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-download-simple"></i></span>Export nms_state.json</button>
-                    <label class="nav-btn cursor-pointer text-amber-300"><span class="nav-tile text-amber-300"><i class="ph-bold ph-upload-simple"></i></span>Import nms_state.json<input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only"></label>
+                <div>
+                    <p class="nav-group-label">Library</p>
+                    <ul class="space-y-1">
+                        <li><button onclick="showSection('guides')" id="nav-guides" class="nav-btn"><span class="nav-tile text-sky-300"><i class="ph-bold ph-book-open-text"></i></span><span class="truncate">Guides</span><span class="nav-count" data-guides-progress>0%</span></button></li>
+                        <li><button onclick="showSection('more')" id="nav-more" class="nav-btn"><span class="nav-tile text-slate-300"><i class="ph-bold ph-gear-six"></i></span><span class="truncate">Device &amp; data</span></button></li>
+                    </ul>
                 </div>
             </nav>
         </aside>
 
         <!-- Main Content Area -->
-        <main class="flex-1 min-w-0 px-4 py-6 sm:p-6 lg:p-8 space-y-8">
+        <main class="app-main flex-1 min-w-0 px-4 py-5 sm:p-6 lg:p-8">
+
+            <!-- ===================================================================== -->
+            <!-- HOME: what you need mid-session (assets/companion.js renders it)       -->
+            <!-- ===================================================================== -->
+            <section id="sec-home" class="book-section space-y-6">
+                <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+                    <div class="min-w-0">
+                        <h1 class="font-display text-2xl font-bold text-white">Home</h1>
+                        <p id="homePhase" class="text-sm text-slate-400 mt-1"></p>
+                    </div>
+                    <button data-wake-toggle onclick="toggleKeepAwake()" role="switch" aria-checked="false" class="wake-chip hidden"><i class="ph-bold ph-sun-dim"></i><span>Keep screen on</span></button>
+                </div>
+
+                <div id="homeNow"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-skull text-red-300"></i>Outlaw run</h2>
+                            <a href="#outlaw" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">Full list →</a>
+                        </div>
+                        <div id="homeOutlaw"></div>
+                    </div>
+                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-clock-counter-clockwise text-purple-300"></i>Warp back</h2>
+                            <a href="#systems" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">All systems →</a>
+                        </div>
+                        <ul id="homeRecent" class="space-y-1"></ul>
+                    </div>
+                </div>
+
+                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-3">
+                    <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-rocket text-cyan-300"></i>Active fleet</h2>
+                    <div id="fleetCardBody" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-3 text-xs"></div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- GUIDES: the six books, kept out of the way while you play               -->
+            <!-- ===================================================================== -->
+            <section id="sec-guides" class="book-section hidden space-y-6">
+                <div class="max-w-2xl">
+                    <h1 class="font-display text-2xl font-bold text-white">Guides</h1>
+                    <p class="text-sm text-slate-300 mt-1.5">The six-book playbook for this save. Your checklists live inside each book.</p>
+                </div>
+                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-3">
+                    <div class="flex items-center justify-between gap-3 text-sm">
+                        <span class="text-slate-300">Checklist progress</span>
+                        <span id="guidesProgressText" class="font-mono text-xs font-semibold text-cyan-300 tabular-nums">0 of 0</span>
+                    </div>
+                    <div class="h-1.5 rounded-full bg-slate-800 overflow-hidden"><div id="guidesProgressBar" class="h-full rounded-full bg-cyan-400 transition-[width] duration-500" style="width: 0%"></div></div>
+                </div>
+                <ol id="guidesList" class="list-group"></ol>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- MORE: tools, library, this device and your data                         -->
+            <!-- ===================================================================== -->
+            <section id="sec-more" class="book-section hidden space-y-7 max-w-2xl">
+                <h1 class="font-display text-2xl font-bold text-white">More</h1>
+
+                <div class="space-y-2">
+                    <h2 class="list-heading">Tools &amp; reading</h2>
+                    <ul class="list-group">
+                        <li><button onclick="showSection('calculators')" class="list-row"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Calculators</span><span class="block text-xs text-slate-400">Harmonic Camp, salvage, scanning, Stasis, outlaw yield</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
+                        <li><button onclick="showSection('guides')" class="list-row"><span class="nav-tile text-sky-300"><i class="ph-bold ph-book-open-text"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Guides</span><span class="block text-xs text-slate-400">Six books · <span data-guides-progress>0%</span> of checklists done</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
+                        <li><a href="wiki/" class="list-row"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Wiki Codex</span><span class="block text-xs text-slate-400"><span data-wiki-count>0</span> offline articles</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="list-heading">This device</h2>
+                    <ul class="list-group">
+                        <li data-wake-row class="list-row hidden">
+                            <span class="nav-tile text-amber-300"><i class="ph-bold ph-sun-dim"></i></span>
+                            <span class="flex-1 min-w-0"><span class="block text-sm text-white">Keep screen on</span><span class="block text-xs text-slate-400">While the app is open, so it’s ready next to your screen</span></span>
+                            <button data-wake-toggle onclick="toggleKeepAwake()" role="switch" aria-checked="false" aria-label="Keep screen on" class="switch"></button>
+                        </li>
+                        <li id="installRow" class="list-row">
+                            <span class="nav-tile text-cyan-300"><i class="ph-bold ph-device-mobile"></i></span>
+                            <span class="flex-1 min-w-0"><span class="block text-sm text-white">App</span><span id="installText" class="block text-xs text-slate-400">Checking…</span></span>
+                            <button id="installButton" onclick="promptInstall()" class="hidden h-9 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-semibold">Install</button>
+                        </li>
+                        <li class="list-row">
+                            <span class="nav-tile text-emerald-300"><i class="ph-bold ph-hard-drives"></i></span>
+                            <span class="flex-1 min-w-0"><span class="block text-sm text-white">Storage</span><span id="storageText" class="block text-xs text-slate-400">Checking…</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="list-heading">Your data</h2>
+                    <ul class="list-group">
+                        <li><button onclick="exportStateJSON()" class="list-row"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-download-simple"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Export nms_state.json</span><span class="block text-xs text-slate-400">Back up, or move your log to another device</span></span></button></li>
+                        <li><label class="list-row cursor-pointer"><span class="nav-tile text-amber-300"><i class="ph-bold ph-upload-simple"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Import nms_state.json</span><span class="block text-xs text-slate-400">Replaces this device’s data with the file’s</span></span><input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only"></label></li>
+                    </ul>
+                    <p class="px-1 text-xs text-slate-400">Everything you log stays on this device until you export it.</p>
+                </div>
+            </section>
 
             <!-- ===================================================================== -->
             <!-- BOOK I: CROSS-SAVE SETUP, GAME MODES & FIRST 5 HOURS                  -->
@@ -937,6 +1002,15 @@
         </main>
     </div>
 
+    <!-- Bottom tab bar (below lg); the Codex page carries the same bar -->
+    <nav id="tabBar" aria-label="Primary" class="tab-bar lg:hidden">
+        <a href="#home" data-tab="home" class="tab-item"><i class="ph-bold ph-house" data-icon></i><span>Home</span></a>
+        <a href="#systems" data-tab="systems" class="tab-item"><i class="ph-bold ph-planet" data-icon></i><span>Systems</span></a>
+        <a href="#outlaw" data-tab="outlaw" class="tab-item"><span class="relative"><i class="ph-bold ph-skull" data-icon></i><span id="tabOutlawBadge" class="tab-badge hidden"></span></span><span>Outlaw</span></a>
+        <a href="wiki/" data-tab="codex" class="tab-item"><i class="ph-bold ph-books" data-icon></i><span>Codex</span></a>
+        <a href="#more" data-tab="more" class="tab-item"><i class="ph-bold ph-dots-three-circle" data-icon></i><span>More</span></a>
+    </nav>
+
     <!-- System detail / editor: side panel from md, bottom sheet below (assets/systems.js) -->
     <div id="systemBackdrop" onclick="closeSystemPanel()" class="fixed inset-0 z-[55] bg-slate-950/60 backdrop-blur-[2px] opacity-0 pointer-events-none transition-opacity duration-200"></div>
     <aside id="systemPanel" role="dialog" aria-modal="true" aria-labelledby="systemPanelTitle" aria-hidden="true" class="fixed z-[56] flex flex-col bg-slate-950 border-slate-700 shadow-[0_24px_64px_-12px_rgba(0,0,0,0.85)] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
@@ -950,6 +1024,7 @@
     <datalist id="biomeOptions"></datalist>
 
     <script src="assets/systems.js"></script>
+    <script src="assets/companion.js"></script>
     <script>
         // =========================================================================
         // 1. MASTER CHECKLIST DATA DEFINITIONS
@@ -1177,8 +1252,10 @@
             renderFleetCard();
             renderSystems();
             renderOutlaw();
+            renderHome();
             if (panelSystemId && panelMode === 'view') renderSystemPanel();
             document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
+            document.getElementById('homePhase').textContent = appState.meta.currentPhase || '';
         }
 
         function escapeHtml(value) {
@@ -1210,30 +1287,79 @@
         // =========================================================================
         // 3. NAVIGATION, MOBILE DRAWER & GLOBAL SEARCH
         // =========================================================================
+        // The six books live under Guides; everything else is a companion tool.
+        const BOOKS = [
+            { key: 'book1', numeral: 'I', color: 'text-cyan-300', title: 'Cross-Save & First Hours', blurb: 'Cross-save setup, game modes and your first five hours' },
+            { key: 'book2', numeral: 'II', color: 'text-emerald-300', title: 'Units & Nanites', blurb: 'The 4.29B Unit and Nanite wealth blueprint' },
+            { key: 'book3', numeral: 'III', color: 'text-purple-300', title: 'Ship & Multi-Tool Meta', blurb: 'Supercharged slots, Ythgall, Defiance of Thought, Light Capacitor' },
+            { key: 'book4', numeral: 'IV', color: 'text-amber-300', title: 'Self-Sufficient Base', blurb: 'Hotspots, farms and an automated, cozy base' },
+            { key: 'book5', numeral: 'V', color: 'text-sky-300', title: 'Expeditions & Porting', blurb: 'Community expeditions and carrying items home' },
+            { key: 'book6', numeral: 'VI', color: 'text-red-300', title: 'Endgame Pillars', blurb: 'Seven pillars of post-wealth progression' }
+        ];
+        const TAB_FOR_SECTION = { home: 'home', systems: 'systems', outlaw: 'outlaw' }; // the rest live under More
+        let currentSection = null;
+
         function showSection(sectionKey) {
-            if (sectionKey === 'wiki') { location.href = 'wiki/'; return; } // the Codex moved to its own page
+            if (sectionKey === 'wiki') { location.href = 'wiki/'; return; } // the Codex is its own page
             if (sectionKey === 'logbook') sectionKey = 'systems'; // the Logbook was folded into Systems
-            const target = document.getElementById(`sec-${sectionKey}`);
-            if (!target) sectionKey = 'book1';
-            document.querySelectorAll('.book-section').forEach(sec => {
-                sec.classList.toggle('hidden', sec.id !== `sec-${sectionKey}`);
-            });
+            const newSystem = sectionKey === 'new-system'; // home-screen shortcut: log a system right away
+            if (newSystem) sectionKey = 'home';
+            if (!document.getElementById(`sec-${sectionKey}`)) sectionKey = 'home';
+            const swap = () => {
+                document.querySelectorAll('.book-section').forEach(sec => {
+                    sec.classList.toggle('hidden', sec.id !== `sec-${sectionKey}`);
+                });
+                window.scrollTo({ top: 0 });
+            };
+            const animate = currentSection && currentSection !== sectionKey && document.startViewTransition
+                && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (animate) document.startViewTransition(swap); else swap();
+            currentSection = sectionKey;
+
+            const navKey = sectionKey.startsWith('book') ? 'guides' : sectionKey;
             document.querySelectorAll('.nav-btn[id^="nav-"]').forEach(btn => {
-                if (btn.id === `nav-${sectionKey}`) btn.setAttribute('aria-current', 'page');
+                if (btn.id === `nav-${navKey}`) btn.setAttribute('aria-current', 'page');
                 else btn.removeAttribute('aria-current');
             });
+            const tab = TAB_FOR_SECTION[sectionKey] || 'more';
+            document.querySelectorAll('#tabBar [data-tab]').forEach(item => {
+                const active = item.dataset.tab === tab;
+                if (active) item.setAttribute('aria-current', 'page'); else item.removeAttribute('aria-current');
+                const icon = item.querySelector('[data-icon]');
+                icon.classList.toggle('ph-fill', active);
+                icon.classList.toggle('ph-bold', !active);
+            });
             if (location.hash !== `#${sectionKey}`) history.replaceState(null, '', `#${sectionKey}`);
-            setNavDrawer(false);
-            window.scrollTo({ top: 0 });
+            if (newSystem) openSystemEditor();
         }
 
-        function setNavDrawer(open) {
-            document.getElementById('sidebarNav').classList.toggle('-translate-x-full', !open);
-            const backdrop = document.getElementById('navBackdrop');
-            backdrop.classList.toggle('opacity-0', !open);
-            backdrop.classList.toggle('pointer-events-none', !open);
-            document.getElementById('menuButton').setAttribute('aria-expanded', String(open));
-            document.body.classList.toggle('overflow-hidden', open && window.innerWidth < 1024);
+        function renderGuides(progress) {
+            document.getElementById('guidesList').innerHTML = BOOKS.map(book => {
+                const p = progress[book.key];
+                return `
+                <li><button onclick="showSection('${book.key}')" class="list-row">
+                    <span class="nav-tile ${book.color}">${book.numeral}</span>
+                    <span class="flex-1 min-w-0"><span class="block text-sm font-semibold text-white">${escapeHtml(book.title)}</span><span class="block text-xs text-slate-400">${escapeHtml(book.blurb)}</span></span>
+                    ${p ? `<span class="font-mono text-[11px] tabular-nums ${p.done === p.total ? 'text-emerald-300' : 'text-slate-400'}">${p.done}/${p.total}</span>` : ''}
+                    <i class="ph-bold ph-caret-right text-slate-500"></i>
+                </button></li>`;
+            }).join('');
+        }
+
+        // Each book gets a way back to Guides and to its neighbours.
+        function decorateBooks() {
+            BOOKS.forEach((book, i) => {
+                const section = document.getElementById(`sec-${book.key}`);
+                const prev = BOOKS[i - 1];
+                const next = BOOKS[i + 1];
+                section.insertAdjacentHTML('afterbegin', `
+                    <button onclick="showSection('guides')" class="inline-flex items-center gap-1.5 h-9 -ml-1 px-1 text-sm font-medium text-cyan-300 hover:text-cyan-200"><i class="ph-bold ph-caret-left"></i>Guides</button>`);
+                section.insertAdjacentHTML('beforeend', `
+                    <nav aria-label="More guides" class="grid grid-cols-2 gap-3 pt-2">
+                        ${prev ? `<button onclick="showSection('${prev.key}')" class="book-pager text-left"><span class="text-xs text-slate-400 flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>Book ${prev.numeral}</span><span class="block text-sm text-white truncate">${escapeHtml(prev.title)}</span></button>` : '<span></span>'}
+                        ${next ? `<button onclick="showSection('${next.key}')" class="book-pager text-right"><span class="text-xs text-slate-400 flex items-center justify-end gap-1">Book ${next.numeral}<i class="ph-bold ph-arrow-right"></i></span><span class="block text-sm text-white truncate">${escapeHtml(next.title)}</span></button>` : ''}
+                    </nav>`);
+            });
         }
 
         const SEARCH_WIKI_LIMIT = 6;
@@ -1402,9 +1528,7 @@
         }
 
         function closeGlobalSearch() {
-            document.body.classList.remove('search-open');
-            const drawerOpen = window.innerWidth < 1024 && !document.getElementById('sidebarNav').classList.contains('-translate-x-full');
-            if (!drawerOpen) document.body.classList.remove('overflow-hidden');
+            document.body.classList.remove('search-open', 'overflow-hidden');
             document.getElementById('globalSearchResults').classList.add('hidden');
             const input = document.getElementById('globalSearchInput');
             input.setAttribute('aria-expanded', 'false');
@@ -1425,14 +1549,12 @@
                 if (window.innerWidth < 768) openGlobalSearch();
                 else document.getElementById('globalSearchInput').focus();
             }
-            if (event.key === 'Escape') setNavDrawer(false);
         });
 
         // Back/forward and home-screen shortcuts (./#calculators) change only the hash.
-        window.addEventListener('hashchange', () => showSection(location.hash.slice(1) || 'book1'));
+        window.addEventListener('hashchange', () => showSection(location.hash.slice(1) || 'home'));
 
         window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024) setNavDrawer(false);
             if (window.innerWidth >= 768) document.body.classList.remove('search-open');
         });
 
@@ -1470,14 +1592,23 @@
         function renderAllChecklists() {
             let done = 0;
             let total = 0;
+            const perBook = {};
             Object.keys(CHECKLIST_DATA).forEach(key => {
-                total += CHECKLIST_DATA[key].length;
-                done += renderChecklistGroup(key, `checklist-${key}`);
+                const groupDone = renderChecklistGroup(key, `checklist-${key}`);
+                const groupTotal = CHECKLIST_DATA[key].length;
+                total += groupTotal;
+                done += groupDone;
+                const book = document.getElementById(`checklist-${key}`)?.closest('.book-section')?.id.replace('sec-', '');
+                if (!book) return;
+                perBook[book] = perBook[book] || { done: 0, total: 0 };
+                perBook[book].done += groupDone;
+                perBook[book].total += groupTotal;
             });
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-            document.getElementById('headerProgressText').textContent = `${pct}%`;
-            document.getElementById('headerProgressBar').style.width = `${pct}%`;
-            document.getElementById('headerProgress').title = `Checklist progress: ${done} of ${total} done`;
+            document.getElementById('guidesProgressText').textContent = `${done} of ${total} steps`;
+            document.getElementById('guidesProgressBar').style.width = `${pct}%`;
+            document.querySelectorAll('[data-guides-progress]').forEach(el => { el.textContent = `${pct}%`; });
+            renderGuides(perBook);
         }
 
         // =========================================================================
@@ -1596,14 +1727,15 @@
         }
 
         window.onload = async function() {
-            showSection(location.hash.slice(1) || 'book1');
+            decorateBooks();
             runCalculators();
             WikiSearch.load('wiki/').then(entries => {
                 wikiEntries = entries;
-                document.getElementById('sidebarWikiCount').textContent = entries.length;
+                document.querySelectorAll('#sidebarWikiCount, [data-wiki-count]').forEach(el => { el.textContent = entries.length; });
             });
             await loadAppState();
             renderAll();
+            showSection(location.hash.slice(1) || 'home'); // after state loads, so #new-system can open the editor
         };
     </script>
 </body>

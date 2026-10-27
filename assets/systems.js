@@ -367,7 +367,7 @@ function renderSystemPanel() {
     const deleteArmed = pendingDelete === `system:${system.id}`;
 
     body.innerHTML = `
-        <div class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4 space-y-3">
+        <div data-sheet-grab class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4 space-y-3">
             <div class="md:hidden flex justify-center"><span class="w-10 h-1 rounded-full bg-slate-700"></span></div>
             <div class="flex items-start gap-3">
                 <span class="mt-2">${starDot(system, 'w-3.5 h-3.5')}</span>
@@ -376,6 +376,7 @@ function renderSystemPanel() {
                     <p class="text-xs text-slate-400 mt-1">${systemMeta(system).join(' · ') || 'No details yet'}</p>
                 </div>
                 <button onclick="toggleFavorite('${system.id}')" aria-pressed="${system.favorite}" aria-label="${system.favorite ? 'Remove from favourites' : 'Add to favourites'}" class="w-9 h-9 rounded-xl flex items-center justify-center ${system.favorite ? 'text-amber-300' : 'text-slate-400 hover:text-white'} hover:bg-slate-900"><i class="${system.favorite ? 'ph-fill' : 'ph-bold'} ph-star text-lg"></i></button>
+                ${navigator.share ? `<button onclick="shareSystem('${system.id}')" aria-label="Share system" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"><i class="ph-bold ph-share-network text-lg"></i></button>` : ''}
                 <button onclick="openSystemEditor('${system.id}')" aria-label="Edit system" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"><i class="ph-bold ph-pencil-simple text-lg"></i></button>
                 <button onclick="closeSystemPanel()" aria-label="Close" class="w-9 h-9 -mr-1.5 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"><i class="ph-bold ph-x text-lg"></i></button>
             </div>
@@ -619,6 +620,7 @@ function logVisitFromPanel(event, id) {
     const note = document.getElementById('visitNote').value.trim();
     const packetRun = document.getElementById('visitPackets')?.checked;
     system.visits.push({ at: new Date().toISOString(), ...(note ? { note } : {}), ...(packetRun ? { packets: appState.outlaw.packetsPerVisit } : {}) });
+    haptic();
     saveAppState();
     showToast(`Logged a visit to ${system.name}.`);
 }
@@ -835,6 +837,7 @@ function logPacketRun(id) {
     const system = findSystem(id);
     if (!system) return;
     system.visits.push({ at: new Date().toISOString(), packets: appState.outlaw.packetsPerVisit });
+    haptic();
     saveAppState();
     showToast(`Logged ${system.name}. Ready again in ${appState.outlaw.restockHours}h.`);
 }
@@ -843,6 +846,7 @@ function logOutlawRun() {
     const run = sortedOutlaw().filter(row => row.status.ready).slice(0, appState.outlaw.runSize);
     const at = new Date().toISOString();
     run.forEach(({ system }) => system.visits.push({ at, packets: appState.outlaw.packetsPerVisit }));
+    haptic([12, 60, 12]);
     saveAppState();
     showToast(`Logged a run of ${run.length} stations.`);
 }

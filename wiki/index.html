@@ -2,7 +2,7 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Wiki Codex · ATLAS // MASTER OS</title>
     <!-- Installable app (PWA) — same manifest and service worker as the main page -->
     <meta name="theme-color" content="#050811">
@@ -12,7 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Atlas OS">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="../assets/pwa.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/theme.js"></script>
@@ -58,7 +58,7 @@
         <span id="toastMessage"></span>
     </div>
 
-    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+    <header class="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-[1400px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
             <a href="../" title="Back to ATLAS // MASTER OS" class="flex items-center gap-2.5 shrink-0 rounded-lg">
                 <span class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center"><i class="ph-fill ph-planet text-xl text-red-500"></i></span>
@@ -78,7 +78,7 @@
         </div>
     </header>
 
-    <main class="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:py-8">
+    <main class="app-main max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:py-8">
 
         <!-- Browse / search -->
         <div id="browseView" class="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10">
@@ -139,6 +139,15 @@
             </aside>
         </div>
     </main>
+
+    <!-- Same bottom tab bar as the main app (below lg) -->
+    <nav aria-label="Primary" class="tab-bar lg:hidden">
+        <a href="../#home" class="tab-item"><i class="ph-bold ph-house"></i><span>Home</span></a>
+        <a href="../#systems" class="tab-item"><i class="ph-bold ph-planet"></i><span>Systems</span></a>
+        <a href="../#outlaw" class="tab-item"><i class="ph-bold ph-skull"></i><span>Outlaw</span></a>
+        <a href="#/" onclick="clearAll(); return false;" aria-current="page" class="tab-item"><i class="ph-fill ph-books"></i><span>Codex</span></a>
+        <a href="../#more" class="tab-item"><i class="ph-bold ph-dots-three-circle"></i><span>More</span></a>
+    </nav>
 
     <!-- Quick look: side panel on desktop, bottom sheet on mobile -->
     <div id="peekBackdrop" onclick="closePeek()" class="fixed inset-0 z-50 bg-slate-950/50 opacity-0 pointer-events-none transition-opacity duration-200 md:bg-slate-950/30"></div>
