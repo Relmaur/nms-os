@@ -1,0 +1,81 @@
+/* Shared styles for every ATLAS // MASTER OS page. */
+body {
+    background-color: #050811;
+    background-image: 
+        radial-gradient(circle at 12% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 88% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 60%);
+    color: #e2e8f0;
+}
+.hud-card {
+    background: rgba(11, 19, 37, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.16);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+}
+.sc-slot {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(59, 130, 246, 0.25));
+    border: 1.5px solid #c084fc;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #050811; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+input[type="range"] { accent-color: #06b6d4; }
+
+/* Wiki Codex markdown reader */
+.md-body { font-size: 0.8125rem; line-height: 1.65; color: #cbd5e1; }
+.md-body > * + * { margin-top: 0.75rem; }
+.md-body h1 { font-family: 'Orbitron', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff; }
+.md-body h2 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #67e8f9; padding-top: 0.75rem; border-top: 1px solid #1e293b; }
+.md-body h3 { font-size: 0.9rem; font-weight: 700; color: #c4b5fd; }
+.md-body h4 { font-size: 0.85rem; font-weight: 600; color: #fcd34d; }
+.md-body strong { color: #fff; }
+.md-body a { color: #22d3ee; text-decoration: underline; text-underline-offset: 2px; }
+.md-body ul { list-style: disc; padding-left: 1.25rem; }
+.md-body ol { list-style: decimal; padding-left: 1.25rem; }
+.md-body li + li { margin-top: 0.25rem; }
+.md-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fcd34d; background: #0f172a; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.05rem 0.35rem; }
+.md-body pre { background: #020617; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 0.75rem; overflow-x: auto; }
+.md-body pre code { border: 0; padding: 0; color: #e2e8f0; }
+.md-body blockquote { border-left: 3px solid #06b6d4; padding-left: 0.75rem; color: #94a3b8; }
+.md-body table { width: 100%; border-collapse: collapse; font-size: 0.75rem; display: block; overflow-x: auto; }
+.md-body th { text-align: left; color: #94a3b8; font-family: 'JetBrains Mono', monospace; border-bottom: 1px solid #334155; padding: 0.4rem 0.5rem; }
+.md-body td { border-bottom: 1px solid #1e293b; padding: 0.4rem 0.5rem; vertical-align: top; }
+
+/* Shell: browser surfaces */
+html { scroll-padding-top: 5rem; -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(34, 211, 238, 0.35); color: #fff; }
+input, textarea { caret-color: #22d3ee; }
+:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+/* Shell: navigation */
+.nav-group-label { padding: 0 0.75rem; margin-bottom: 0.5rem; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8b9ab0; }
+.nav-btn { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 2.75rem; padding: 0.375rem 0.625rem; border-radius: 0.75rem; font-size: 0.8125rem; font-weight: 500; color: #94a3b8; text-align: left; transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease; }
+.nav-btn:hover { color: #fff; background: rgba(30, 41, 59, 0.55); }
+.nav-btn[aria-current="page"] { color: #fff; background: rgba(6, 182, 212, 0.1); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.3); }
+.nav-tile { flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 0.625rem; background: rgba(30, 41, 59, 0.7); font-family: 'Orbitron', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.02em; }
+.nav-tile i { font-size: 1rem; }
+.nav-btn[aria-current="page"] .nav-tile { background: rgba(6, 182, 212, 0.16); }
+.nav-count { margin-left: auto; padding-left: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b9ab0; font-variant-numeric: tabular-nums; }
+
+/* Shell: global search */
+.search-hit { display: flex; align-items: flex-start; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border-radius: 0.75rem; text-align: left; transition: background-color 120ms ease; }
+.search-hit:hover, .search-hit[aria-selected="true"] { background: rgba(30, 41, 59, 0.8); }
+.search-hit mark, .search-snippet mark { background: rgba(34, 211, 238, 0.2); color: #a5f3fc; border-radius: 0.2rem; padding: 0 0.1rem; }
+.search-flash { animation: search-flash 2.2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 0.5rem; }
+@keyframes search-flash {
+    0%, 35% { background-color: rgba(34, 211, 238, 0.18); box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.55); }
+    100% { background-color: transparent; box-shadow: 0 0 0 2px transparent; }
+}
+@media (max-width: 767px) {
+    /* backdrop-filter would make the header the containing block for the fixed sheet */
+    body.search-open header { backdrop-filter: none; -webkit-backdrop-filter: none; }
+    body.search-open #globalSearch { display: block; position: fixed; inset: 0; z-index: 60; max-width: none; margin: 0; padding: 0.75rem 1rem; background: #050811; }
+    body.search-open #globalSearchResults { display: block; position: static; margin-top: 0.75rem; max-height: calc(100dvh - 5.5rem); border: 0; box-shadow: none; background: transparent; padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; scroll-behavior: auto !important; }
+}

@@ -3,124 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLAS // MASTER OS — Unabridged NMS Manual, Calculators & Agent Spec</title>
+    <title>ATLAS // MASTER OS</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- Markdown rendering + sanitising for the Wiki Codex -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        atlas: {
-                            bg: '#050811',
-                            panel: '#0b1325',
-                            border: '#1e293b',
-                            cyan: '#06b6d4',
-                            amber: '#f59e0b',
-                            purple: '#a855f7',
-                            emerald: '#10b981',
-                            crimson: '#ef4444'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #050811;
-            background-image: 
-                radial-gradient(circle at 12% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 88% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 60%);
-            color: #e2e8f0;
-        }
-        .hud-card {
-            background: rgba(11, 19, 37, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(56, 189, 248, 0.16);
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-        }
-        .sc-slot {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(59, 130, 246, 0.25));
-            border: 1.5px solid #c084fc;
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
-        }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #050811; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
-        input[type="range"] { accent-color: #06b6d4; }
-
-        /* Wiki Codex markdown reader */
-        .md-body { font-size: 0.8125rem; line-height: 1.65; color: #cbd5e1; }
-        .md-body > * + * { margin-top: 0.75rem; }
-        .md-body h1 { font-family: 'Orbitron', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff; }
-        .md-body h2 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #67e8f9; padding-top: 0.75rem; border-top: 1px solid #1e293b; }
-        .md-body h3 { font-size: 0.9rem; font-weight: 700; color: #c4b5fd; }
-        .md-body h4 { font-size: 0.85rem; font-weight: 600; color: #fcd34d; }
-        .md-body strong { color: #fff; }
-        .md-body a { color: #22d3ee; text-decoration: underline; text-underline-offset: 2px; }
-        .md-body ul { list-style: disc; padding-left: 1.25rem; }
-        .md-body ol { list-style: decimal; padding-left: 1.25rem; }
-        .md-body li + li { margin-top: 0.25rem; }
-        .md-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fcd34d; background: #0f172a; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.05rem 0.35rem; }
-        .md-body pre { background: #020617; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 0.75rem; overflow-x: auto; }
-        .md-body pre code { border: 0; padding: 0; color: #e2e8f0; }
-        .md-body blockquote { border-left: 3px solid #06b6d4; padding-left: 0.75rem; color: #94a3b8; }
-        .md-body table { width: 100%; border-collapse: collapse; font-size: 0.75rem; display: block; overflow-x: auto; }
-        .md-body th { text-align: left; color: #94a3b8; font-family: 'JetBrains Mono', monospace; border-bottom: 1px solid #334155; padding: 0.4rem 0.5rem; }
-        .md-body td { border-bottom: 1px solid #1e293b; padding: 0.4rem 0.5rem; vertical-align: top; }
-
-        /* Shell: browser surfaces */
-        html { scroll-padding-top: 5rem; -webkit-tap-highlight-color: transparent; }
-        ::selection { background: rgba(34, 211, 238, 0.35); color: #fff; }
-        input, textarea { caret-color: #22d3ee; }
-        :focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
-        input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
-
-        /* Shell: navigation */
-        .nav-group-label { padding: 0 0.75rem; margin-bottom: 0.5rem; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8b9ab0; }
-        .nav-btn { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 2.75rem; padding: 0.375rem 0.625rem; border-radius: 0.75rem; font-size: 0.8125rem; font-weight: 500; color: #94a3b8; text-align: left; transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease; }
-        .nav-btn:hover { color: #fff; background: rgba(30, 41, 59, 0.55); }
-        .nav-btn[aria-current="page"] { color: #fff; background: rgba(6, 182, 212, 0.1); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.3); }
-        .nav-tile { flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 0.625rem; background: rgba(30, 41, 59, 0.7); font-family: 'Orbitron', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.02em; }
-        .nav-tile i { font-size: 1rem; }
-        .nav-btn[aria-current="page"] .nav-tile { background: rgba(6, 182, 212, 0.16); }
-        .nav-count { margin-left: auto; padding-left: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b9ab0; font-variant-numeric: tabular-nums; }
-
-        /* Shell: global search */
-        .search-hit { display: flex; align-items: flex-start; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border-radius: 0.75rem; text-align: left; transition: background-color 120ms ease; }
-        .search-hit:hover, .search-hit[aria-selected="true"] { background: rgba(30, 41, 59, 0.8); }
-        .search-hit mark, .search-snippet mark { background: rgba(34, 211, 238, 0.2); color: #a5f3fc; border-radius: 0.2rem; padding: 0 0.1rem; }
-        .search-flash { animation: search-flash 2.2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 0.5rem; }
-        @keyframes search-flash {
-            0%, 35% { background-color: rgba(34, 211, 238, 0.18); box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.55); }
-            100% { background-color: transparent; box-shadow: 0 0 0 2px transparent; }
-        }
-        @media (max-width: 767px) {
-            /* backdrop-filter would make the header the containing block for the fixed sheet */
-            body.search-open header { backdrop-filter: none; -webkit-backdrop-filter: none; }
-            body.search-open #globalSearch { display: block; position: fixed; inset: 0; z-index: 60; max-width: none; margin: 0; padding: 0.75rem 1rem; background: #050811; }
-            body.search-open #globalSearchResults { display: block; position: static; margin-top: 0.75rem; max-height: calc(100dvh - 5.5rem); border: 0; box-shadow: none; background: transparent; padding: 0; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; scroll-behavior: auto !important; }
-        }
-    </style>
+    <script src="assets/theme.js"></script>
+    <link rel="stylesheet" href="assets/theme.css">
+    <script src="assets/wiki-search.js"></script>
 </head>
 <body class="min-h-screen flex flex-col font-sans">
 
@@ -209,7 +101,7 @@
                     <ul class="space-y-1">
                         <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
                         <li><button onclick="showSection('logbook')" id="nav-logbook" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-map-pin-area"></i></span><span class="truncate">Logbook</span><span id="sidebarLogCount" class="nav-count">0</span></button></li>
-                        <li><button onclick="showSection('wiki')" id="nav-wiki" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span></button></li>
+                        <li><a href="wiki/" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span><i class="ph-bold ph-arrow-up-right text-xs text-slate-400 ml-2"></i></a></li>
                     </ul>
                 </div>
 
@@ -928,48 +820,6 @@
             </section>
 
             <!-- ===================================================================== -->
-            <!-- LOCAL WIKI CODEX (.MD) — fed by scripts/sync-wiki.mjs                 -->
-            <!-- ===================================================================== -->
-            <section id="sec-wiki" class="book-section hidden space-y-6">
-                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
-                    <div class="flex flex-wrap items-center justify-between gap-4">
-                        <div>
-                            <span class="text-xs font-mono uppercase text-emerald-400">Offline Knowledge Base • wiki/*.md</span>
-                            <h2 class="font-display text-2xl font-bold text-white mt-1">Local Wiki Codex</h2>
-                            <p class="text-xs text-slate-300 mt-1">Search the local Markdown wiki. Refresh it with <code class="text-cyan-300">npm run sync:wiki</code>; index hand-written articles with <code class="text-cyan-300">npm run index:wiki</code>.</p>
-                        </div>
-                        <button onclick="openWikiModal()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition">
-                            <i class="ph-bold ph-note-pencil"></i> Create Custom .MD Article
-                        </button>
-                    </div>
-                    <div class="mt-4 flex flex-col md:flex-row md:items-center gap-3">
-                        <div class="relative flex-1">
-                            <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <input type="search" id="wikiSearchInput" oninput="setWikiQuery(this.value)" placeholder="Search titles, categories, summaries (e.g. doughnut, infra knife, nanite)..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-emerald-400 rounded-xl pl-9 pr-3 py-2 text-xs text-white focus:outline-none">
-                        </div>
-                        <div id="wikiCategoryPills" class="flex flex-wrap gap-1.5"></div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-4 hud-card rounded-2xl p-4 space-y-3">
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                            <h3 class="font-display font-bold text-sm text-white">Articles</h3>
-                            <span id="wikiResultCount" class="text-[11px] font-mono text-emerald-300">Loading…</span>
-                        </div>
-                        <div id="wikiResultList" class="space-y-2 max-h-[70vh] overflow-y-auto pr-1"></div>
-                    </div>
-
-                    <article class="lg:col-span-8 hud-card rounded-2xl p-5 lg:p-6 min-h-[50vh]">
-                        <div id="wikiReaderMeta" class="hidden flex-wrap items-center gap-2 mb-4 text-[11px] font-mono"></div>
-                        <div id="wikiReader" class="md-body">
-                            <p class="text-slate-400">Select an article on the left to read it here.</p>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <!-- ===================================================================== -->
             <!-- COORDINATE & CUSTOM NOTEBOOK LOGBOOK                                  -->
             <!-- ===================================================================== -->
             <section id="sec-logbook" class="book-section hidden space-y-6">
@@ -1007,30 +857,6 @@
 
 
         </main>
-    </div>
-
-    <!-- Create Custom .MD Article Modal -->
-    <div id="wikiModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4" onclick="if (event.target === this) closeWikiModal()">
-        <div class="hud-card w-full max-w-4xl rounded-2xl p-5 space-y-3 max-h-[92vh] overflow-y-auto">
-            <div class="flex items-center justify-between">
-                <h3 class="font-display font-bold text-base text-white">Create Custom .MD Article</h3>
-                <button onclick="closeWikiModal()" class="text-slate-400 hover:text-white p-1" title="Close"><i class="ph-bold ph-x text-lg"></i></button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <input type="text" id="wikiNewTitle" placeholder="Article title" class="md:col-span-2 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
-                <select id="wikiNewCategory" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></select>
-            </div>
-            <input type="text" id="wikiNewSummary" placeholder="One-line summary (shown in search results)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <textarea id="wikiNewBody" rows="16" oninput="renderWikiDraftPreview()" placeholder="## Overview&#10;Write Markdown here. Link other articles with [[Article Title]]." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white"></textarea>
-                <div id="wikiNewPreview" class="md-body bg-slate-950/60 border border-slate-800 rounded-xl p-3 overflow-y-auto max-h-[22rem]"></div>
-            </div>
-            <p class="text-[11px] text-slate-400">The file downloads as <code class="text-cyan-300">&lt;Title&gt;.md</code>. Move it into <code class="text-cyan-300">wiki/custom/&lt;category&gt;/</code> and run <code class="text-cyan-300">npm run index:wiki</code>. Until then it stays in this browser as a draft.</p>
-            <div class="flex justify-end gap-2">
-                <button onclick="closeWikiModal()" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:bg-slate-800">Cancel</button>
-                <button onclick="saveWikiDraft()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2"><i class="ph-bold ph-download-simple"></i> Save Draft & Download .md</button>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -1280,6 +1106,7 @@
         // 3. NAVIGATION, MOBILE DRAWER & GLOBAL SEARCH
         // =========================================================================
         function showSection(sectionKey) {
+            if (sectionKey === 'wiki') { location.href = 'wiki/'; return; } // the Codex moved to its own page
             const target = document.getElementById(`sec-${sectionKey}`);
             if (!target) sectionKey = 'book1';
             document.querySelectorAll('.book-section').forEach(sec => {
@@ -1306,15 +1133,9 @@
         const SEARCH_WIKI_LIMIT = 6;
         const SEARCH_BOOK_LIMIT = 6;
         const SEARCH_BLOCKS = 'h3, h4, p, li, tr, [onclick^="toggleCheckItem"]';
-        const WIKI_CATEGORY_ICONS = { resources: 'ph-atom', products: 'ph-package', cooking: 'ph-cooking-pot', technology: 'ph-cpu', guides: 'ph-book-open-text' };
+        let wikiEntries = [];
         let searchHits = [];
         let searchActiveIndex = -1;
-
-        function highlightTokens(text, tokens) {
-            const escaped = escapeHtml(text);
-            const pattern = tokens.map(token => escapeHtml(token).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-            return pattern ? escaped.replace(new RegExp(`(${pattern})`, 'gi'), '<mark>$1</mark>') : escaped;
-        }
 
         function snippetAround(text, token, radius = 70) {
             const at = Math.max(0, text.toLowerCase().indexOf(token));
@@ -1327,7 +1148,7 @@
         function findBookHits(tokens) {
             const hits = [];
             const seen = new Set();
-            document.querySelectorAll('.book-section:not(#sec-wiki)').forEach(section => {
+            document.querySelectorAll('.book-section').forEach(section => {
                 const sectionTitle = section.querySelector('h2')?.textContent.trim() || section.id;
                 section.querySelectorAll(SEARCH_BLOCKS).forEach(el => {
                     if (el.querySelector(SEARCH_BLOCKS)) return; // prefer the innermost block
@@ -1354,11 +1175,7 @@
                 return;
             }
 
-            const wikiMatches = wikiArticles
-                .map(entry => [wikiScore(entry, tokens), entry])
-                .filter(([score]) => score > 0)
-                .sort((a, b) => b[0] - a[0] || a[1]._title.localeCompare(b[1]._title))
-                .map(([, entry]) => entry);
+            const wikiMatches = WikiSearch.search(wikiEntries, query).map(result => result.entry);
             const wikiHits = wikiMatches.slice(0, SEARCH_WIKI_LIMIT).map(entry => ({ type: 'wiki', entry }));
             const bookHits = findBookHits(tokens);
             searchHits = [...wikiHits, ...bookHits];
@@ -1369,9 +1186,9 @@
                 html += groupLabel('Wiki articles', `${wikiMatches.length} match${wikiMatches.length === 1 ? '' : 'es'}`);
                 html += wikiHits.map((hit, i) => `
                     <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
-                        <span class="nav-tile text-emerald-300 mt-0.5"><i class="ph-bold ${WIKI_CATEGORY_ICONS[hit.entry.category] || 'ph-file-text'}"></i></span>
+                        <span class="nav-tile text-emerald-300 mt-0.5"><i class="ph-bold ${WikiSearch.CATEGORIES[hit.entry.category]?.icon || 'ph-file-text'}"></i></span>
                         <span class="min-w-0 flex-1">
-                            <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${highlightTokens(hit.entry.title, tokens)}</strong>${sourceBadge(hit.entry.source)}</span>
+                            <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${WikiSearch.highlight(hit.entry.title, tokens)}</strong>${WikiSearch.badge(hit.entry.source)}</span>
                             <span class="block text-xs text-slate-400 truncate">${escapeHtml(hit.entry.category)} · ${escapeHtml(hit.entry.summary || '')}</span>
                         </span>
                     </button>`).join('');
@@ -1388,7 +1205,7 @@
                         <span class="nav-tile text-cyan-300 mt-0.5"><i class="ph-bold ph-book-open"></i></span>
                         <span class="min-w-0 flex-1">
                             <span class="block text-[11px] font-medium text-cyan-300/80 truncate">${escapeHtml(hit.sectionTitle)}</span>
-                            <span class="search-snippet block text-xs text-slate-300 leading-relaxed">${highlightTokens(snippetAround(hit.text, tokens[0]), tokens)}</span>
+                            <span class="search-snippet block text-xs text-slate-300 leading-relaxed">${WikiSearch.highlight(snippetAround(hit.text, tokens[0]), tokens)}</span>
                         </span>
                     </button>`;
                 }).join('');
@@ -1425,10 +1242,7 @@
             const query = document.getElementById('globalSearchInput').value;
             closeGlobalSearch();
             if (hit.type === 'wiki') {
-                showSection('wiki');
-                document.getElementById('wikiSearchInput').value = query;
-                setWikiQuery(query);
-                openWikiArticle(hit.entry.path);
+                location.href = `wiki/#/a/${encodeURIComponent(hit.entry.path)}?q=${encodeURIComponent(query)}`;
                 return;
             }
             showSection(hit.sectionKey);
@@ -1446,10 +1260,7 @@
         function showAllWikiResults() {
             const query = document.getElementById('globalSearchInput').value;
             closeGlobalSearch();
-            showSection('wiki');
-            document.getElementById('wikiSearchInput').value = query;
-            setWikiCategory('all');
-            setWikiQuery(query);
+            location.href = `wiki/#/?q=${encodeURIComponent(query)}`;
         }
 
         function openGlobalSearch() {
@@ -1702,317 +1513,13 @@
             readStateFile(event.dataTransfer.files[0]);
         }
 
-        // =========================================================================
-        // 7. LOCAL WIKI CODEX (.MD) — wiki/index.json + wiki/<category>/<slug>.md
-        // =========================================================================
-        const WIKI_CATEGORIES = ['resources', 'products', 'cooking', 'technology', 'guides'];
-        const WIKI_DRAFTS_KEY = 'nms_master_os_wiki_drafts';
-        const WIKI_RESULT_LIMIT = 200;
-        const WIKI_SOURCE_BADGES = {
-            seed: ['codex', 'text-amber-300 bg-amber-500/10 border-amber-500/30'],
-            wiki: ['wiki', 'text-cyan-300 bg-cyan-500/10 border-cyan-500/30'],
-            custom: ['custom', 'text-purple-300 bg-purple-500/10 border-purple-500/30'],
-            draft: ['draft', 'text-rose-300 bg-rose-500/10 border-rose-500/30']
-        };
-
-        let wikiArticles = [];
-        let wikiQuery = '';
-        let wikiCategory = 'all';
-        let wikiActivePath = null;
-        let wikiOfflineBundle; // undefined = not attempted yet, null = unavailable
-
-        // Must match slugify() in scripts/sync-wiki.mjs so drafts land at the path the indexer expects.
-        function wikiSlugify(title) {
-            return title.replace(/[^a-zA-Z0-9_\-\s]/g, '').trim().replace(/\s+/g, '_');
-        }
-
-        function stripFrontmatter(text) {
-            return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
-        }
-
-        function readWikiDrafts() {
-            try {
-                const drafts = JSON.parse(localStorage.getItem(WIKI_DRAFTS_KEY) || '[]');
-                return Array.isArray(drafts) ? drafts : [];
-            } catch {
-                return [];
-            }
-        }
-
-        function writeWikiDrafts(drafts) {
-            try {
-                localStorage.setItem(WIKI_DRAFTS_KEY, JSON.stringify(drafts));
-            } catch (e) {
-                console.warn('Could not save wiki drafts:', e);
-            }
-        }
-
-        // fetch() is blocked on file://, but a <script> tag is not — so the bundle keeps the Codex usable offline.
-        function loadWikiOfflineBundle() {
-            if (wikiOfflineBundle !== undefined) return Promise.resolve(wikiOfflineBundle);
-            return new Promise(resolve => {
-                const script = document.createElement('script');
-                script.src = './wiki/offline-bundle.js';
-                script.onload = () => resolve(wikiOfflineBundle = window.WIKI_OFFLINE_BUNDLE || null);
-                script.onerror = () => resolve(wikiOfflineBundle = null);
-                document.head.appendChild(script);
-            });
-        }
-
-        async function loadWikiIndex() {
-            let entries = [];
-            try {
-                const res = await fetch('./wiki/index.json', { cache: 'no-store' });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                entries = await res.json();
-            } catch (e) {
-                const bundle = await loadWikiOfflineBundle();
-                entries = bundle?.articles || [];
-            }
-
-            // Drafts that have since been dropped into wiki/ and indexed are no longer needed.
-            const indexedPaths = new Set(entries.map(entry => entry.path));
-            const drafts = readWikiDrafts().filter(draft => !indexedPaths.has(draft.path));
-            writeWikiDrafts(drafts);
-
-            wikiArticles = [...drafts.map(draft => ({ ...draft, source: 'draft' })), ...entries].map(entry => ({
-                ...entry,
-                _title: String(entry.title).toLowerCase(),
-                _haystack: `${entry.title} ${entry.category} ${entry.summary || ''}`.toLowerCase()
-            }));
-            document.getElementById('sidebarWikiCount').textContent = wikiArticles.length;
-            renderWikiPills();
-            renderWikiResults();
-        }
-
-        function isSubsequence(needle, haystack) {
-            let i = 0;
-            for (const ch of haystack) {
-                if (ch === needle[i]) i++;
-                if (i === needle.length) return true;
-            }
-            return false;
-        }
-
-        // Every token must match; title hits outrank summary hits, and loose
-        // subsequence matches ("infknf" → "infra-knife") rank last.
-        function wikiScore(entry, tokens) {
-            let score = 0;
-            for (const token of tokens) {
-                if (entry._title.startsWith(token)) score += 4;
-                else if (entry._title.includes(token)) score += 3;
-                else if (entry._haystack.includes(token)) score += 1;
-                else if (token.length >= 3 && isSubsequence(token, entry._title)) score += 0.5;
-                else return 0;
-            }
-            return score;
-        }
-
-        function getWikiMatches() {
-            const pool = wikiCategory === 'all' ? wikiArticles : wikiArticles.filter(entry => entry.category === wikiCategory);
-            const tokens = wikiQuery.toLowerCase().split(/\s+/).filter(Boolean);
-            if (!tokens.length) return pool;
-            return pool
-                .map(entry => [wikiScore(entry, tokens), entry])
-                .filter(([score]) => score > 0)
-                .sort((a, b) => b[0] - a[0] || a[1]._title.localeCompare(b[1]._title))
-                .map(([, entry]) => entry);
-        }
-
-        function setWikiQuery(value) {
-            wikiQuery = value;
-            renderWikiResults();
-        }
-
-        function setWikiCategory(category) {
-            wikiCategory = category;
-            renderWikiPills();
-            renderWikiResults();
-        }
-
-        function renderWikiPills() {
-            document.getElementById('wikiCategoryPills').innerHTML = ['all', ...WIKI_CATEGORIES].map(category => {
-                const count = category === 'all' ? wikiArticles.length : wikiArticles.filter(entry => entry.category === category).length;
-                const active = category === wikiCategory;
-                return `<button onclick="setWikiCategory('${category}')" class="px-2.5 py-1 rounded-full text-[11px] font-mono border transition ${active ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'}">${category} <span class="opacity-60">${count}</span></button>`;
-            }).join('');
-        }
-
-        function sourceBadge(source) {
-            const [label, classes] = WIKI_SOURCE_BADGES[source] || WIKI_SOURCE_BADGES.custom;
-            return `<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono ${classes}">${label}</span>`;
-        }
-
-        function renderWikiResults() {
-            const matches = getWikiMatches();
-            const shown = matches.slice(0, WIKI_RESULT_LIMIT);
-            document.getElementById('wikiResultCount').textContent = `${matches.length} / ${wikiArticles.length}`;
-            const list = document.getElementById('wikiResultList');
-            if (!wikiArticles.length) {
-                list.innerHTML = '<p class="text-xs text-slate-400">No wiki found. Run <code class="text-cyan-300">npm run seed:wiki</code> and serve the folder with <code class="text-cyan-300">npm start</code>.</p>';
-                return;
-            }
-            if (!shown.length) {
-                list.innerHTML = '<p class="text-xs text-slate-400">No articles match this search.</p>';
-                return;
-            }
-            list.innerHTML = shown.map(entry => `
-                <button data-path="${escapeHtml(entry.path)}" onclick="openWikiArticle(this.dataset.path)" class="w-full text-left p-3 rounded-xl border transition ${entry.path === wikiActivePath ? 'bg-emerald-950/40 border-emerald-500/50' : 'bg-slate-900/90 border-slate-800 hover:border-slate-600'}">
-                    <div class="flex items-center justify-between gap-2">
-                        <strong class="text-xs text-white truncate">${escapeHtml(entry.title)}</strong>
-                        ${sourceBadge(entry.source)}
-                    </div>
-                    <div class="text-[10px] font-mono text-emerald-300/80 mt-0.5">${escapeHtml(entry.category)}</div>
-                    <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${escapeHtml(entry.summary)}</p>
-                </button>
-            `).join('') + (matches.length > shown.length
-                ? `<p class="text-[11px] text-slate-500 text-center py-1">Showing first ${WIKI_RESULT_LIMIT} — refine your search.</p>`
-                : '');
-        }
-
-        function renderMarkdown(markdown) {
-            // [[Article Title]] becomes an in-app link when that article exists locally.
-            const linked = markdown.replace(/\[\[([^\]]+)\]\]/g, (_, title) => {
-                const target = wikiArticles.find(entry => entry._title === title.trim().toLowerCase());
-                return target ? `[${title}](#wiki:${encodeURIComponent(target.path)})` : `*${title}*`;
-            });
-            if (!window.marked || !window.DOMPurify) {
-                return `<pre class="whitespace-pre-wrap">${escapeHtml(markdown)}</pre>`;
-            }
-            return DOMPurify.sanitize(marked.parse(linked));
-        }
-
-        async function openWikiArticle(path) {
-            const entry = wikiArticles.find(item => item.path === path);
-            if (!entry) return;
-            wikiActivePath = path;
-            renderWikiResults();
-            const reader = document.getElementById('wikiReader');
-            reader.innerHTML = '<p class="text-slate-400">Loading…</p>';
-
-            let markdown = entry.body;
-            if (markdown === undefined) {
-                try {
-                    const res = await fetch(`./${entry.path}`);
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    markdown = stripFrontmatter(await res.text());
-                } catch (e) {
-                    const bundle = await loadWikiOfflineBundle();
-                    markdown = bundle?.articles.find(article => article.path === entry.path)?.body;
-                }
-            }
-            if (wikiActivePath !== path) return; // another article was opened meanwhile
-
-            const meta = document.getElementById('wikiReaderMeta');
-            meta.classList.remove('hidden');
-            meta.classList.add('flex');
-            meta.innerHTML = `
-                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300">${escapeHtml(entry.category)}</span>
-                ${sourceBadge(entry.source)}
-                <code class="text-slate-400">${escapeHtml(entry.path)}</code>
-                ${entry.url ? `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline">Original page ↗</a>` : ''}
-                ${entry.source === 'draft' ? `<button data-path="${escapeHtml(entry.path)}" onclick="removeWikiDraft(this.dataset.path)" class="ml-auto px-2 py-0.5 rounded border border-rose-500/40 text-rose-300 hover:bg-rose-500/10">Remove draft</button>` : ''}
-            `;
-            reader.innerHTML = markdown !== undefined
-                ? renderMarkdown(markdown)
-                : `<p class="text-red-300">Could not load <code>${escapeHtml(entry.path)}</code>. Serve the repo with <code>npm start</code>, or rebuild the offline bundle with <code>npm run index:wiki</code>.</p>`;
-            if (window.innerWidth < 1024) reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        function openWikiModal() {
-            const select = document.getElementById('wikiNewCategory');
-            if (!select.options.length) {
-                select.innerHTML = WIKI_CATEGORIES.map(category => `<option value="${category}">${category}</option>`).join('');
-            }
-            if (WIKI_CATEGORIES.includes(wikiCategory)) select.value = wikiCategory;
-            const modal = document.getElementById('wikiModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            renderWikiDraftPreview();
-            document.getElementById('wikiNewTitle').focus();
-        }
-
-        function closeWikiModal() {
-            const modal = document.getElementById('wikiModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function renderWikiDraftPreview() {
-            const title = document.getElementById('wikiNewTitle').value.trim() || 'Untitled Article';
-            const body = document.getElementById('wikiNewBody').value;
-            document.getElementById('wikiNewPreview').innerHTML = renderMarkdown(`# ${title}\n\n${body}`);
-        }
-
-        async function saveWikiDraft() {
-            const title = document.getElementById('wikiNewTitle').value.trim();
-            const category = document.getElementById('wikiNewCategory').value;
-            const body = document.getElementById('wikiNewBody').value.trim();
-            const slug = wikiSlugify(title);
-            if (!slug || !body) {
-                showToast('Add a title (letters or numbers) and some Markdown first.');
-                return;
-            }
-            const summary = document.getElementById('wikiNewSummary').value.trim()
-                || body.replace(/[#*_`>\[\]|-]/g, '').replace(/\s+/g, ' ').trim().slice(0, 200);
-            const path = `wiki/custom/${category}/${slug}.md`;
-            const markdown = `# ${title}\n\n${body}\n`;
-            // Frontmatter format matches what scripts/sync-wiki.mjs writes and parses.
-            const fileText = [
-                '---',
-                `title: ${JSON.stringify(title)}`,
-                `category: ${JSON.stringify(category)}`,
-                `summary: ${JSON.stringify(summary)}`,
-                'source: "custom"',
-                `updated: ${JSON.stringify(new Date().toISOString().slice(0, 10))}`,
-                '---',
-                '',
-                markdown
-            ].join('\n');
-
-            const url = URL.createObjectURL(new Blob([fileText], { type: 'text/markdown' }));
-            const anchor = document.createElement('a');
-            anchor.href = url;
-            anchor.download = `${slug}.md`;
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
-            URL.revokeObjectURL(url);
-
-            const drafts = readWikiDrafts().filter(draft => draft.path !== path);
-            drafts.unshift({ title, slug, category, path, summary, body: markdown });
-            writeWikiDrafts(drafts);
-
-            closeWikiModal();
-            ['wikiNewTitle', 'wikiNewSummary', 'wikiNewBody'].forEach(id => { document.getElementById(id).value = ''; });
-            await loadWikiIndex();
-            openWikiArticle(path);
-            showToast(`Downloaded ${slug}.md — move it into wiki/custom/${category}/ and run npm run index:wiki.`);
-        }
-
-        async function removeWikiDraft(path) {
-            writeWikiDrafts(readWikiDrafts().filter(draft => draft.path !== path));
-            wikiActivePath = null;
-            document.getElementById('wikiReaderMeta').classList.add('hidden');
-            document.getElementById('wikiReader').innerHTML = '<p class="text-slate-400">Draft removed.</p>';
-            await loadWikiIndex();
-        }
-
-        document.addEventListener('click', event => {
-            const link = event.target.closest('#wikiReader a[href^="#wiki:"]');
-            if (!link) return;
-            event.preventDefault();
-            openWikiArticle(decodeURIComponent(link.getAttribute('href').slice('#wiki:'.length)));
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') closeWikiModal();
-        });
-
         window.onload = async function() {
             showSection(location.hash.slice(1) || 'book1');
             runCalculators();
-            loadWikiIndex();
+            WikiSearch.load('wiki/').then(entries => {
+                wikiEntries = entries;
+                document.getElementById('sidebarWikiCount').textContent = entries.length;
+            });
             await loadAppState();
             renderAll();
         };

@@ -8,14 +8,18 @@
 ### Repository layout
 ```text
 nms-os/
-├── index.html              # App shell: 6 Books, 5 calculators, Wiki Codex, state sync
+├── index.html              # Main app: 6 Books, 5 calculators, logbook, state sync, global search
+├── assets/
+│   ├── theme.js / theme.css # Shared Tailwind config + styles for every page
+│   └── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
 ├── nms_state.json          # Shared state (meta, fleet, checklists, logbook)
 ├── AGENTS.md               # This file
 ├── package.json            # npm start | sync:wiki | seed:wiki | index:wiki
 ├── scripts/
 │   ├── sync-wiki.mjs       # Zero-dependency MediaWiki → .md harvester + indexer (Node 18+)
 │   └── seed-articles.mjs   # Curated offline starter articles
-└── wiki/                   # GIT-IGNORED except wiki/custom/ — rebuild with `npm run sync:wiki`
+└── wiki/                   # GIT-IGNORED except index.html + custom/ — rebuild with `npm run sync:wiki`
+    ├── index.html          # COMMITTED: the Codex page, served at /wiki/ (hash routes #/?q=… and #/a/<path>)
     ├── index.json          # Search manifest { title, slug, category, path, summary, source, url? }
     ├── offline-bundle.js   # Same articles with bodies, loaded only when fetch() fails (file://)
     ├── resources/ products/ cooking/ technology/ guides/   # generated <slug>.md (seeds + harvest)
@@ -50,5 +54,6 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - Frontmatter: `title`, `category`, `summary`, `source` (`"seed"`, `"custom"` or the original page URL), `updated`, and for harvested pages `pageId` + `license`. String values are JSON-quoted, which is valid YAML.
 - A harvested page whose slug collides with a seed article is saved as `<slug>_wiki.md`, so both are kept.
 - Harvested text is CC BY-SA 3.0 (No Man's Sky Wiki contributors). Keep the `source`/`license` frontmatter when editing.
-- Custom articles live in `wiki/custom/<category>/` (the only committed part of `wiki/`) and are tagged `custom` in the index.
-- In the app: search ranks title > summary > fuzzy subsequence. `[[Article Title]]` in Markdown links to that local article. Rendered Markdown is sanitized with DOMPurify. "Create Custom .MD Article" downloads the file and keeps a browser draft until the file is indexed.
+- Custom articles live in `wiki/custom/<category>/` (committed, alongside `wiki/index.html`) and are tagged `custom` in the index. Never `rm -rf wiki/` to reset — delete only the generated folders.
+- Codex page (`wiki/index.html`): loads `offline-bundle.js` for full-text search; faceted category/source/A–Z filters with live counts, 20 results per page, quick-look panel (↑/↓, Space, Enter), article view with TOC, outgoing links, "Mentioned in" backlinks and category neighbours. The main page's header search uses the light `index.json` and deep-links into `wiki/#/a/<path>`.
+- Search ranks title > summary > headings > body > fuzzy title subsequence, with simple plural folding. `[[Article Title]]` in Markdown links to that local article. Rendered Markdown is sanitized with DOMPurify. "Create Custom .MD Article" downloads the file and keeps a browser draft until the file is indexed.
