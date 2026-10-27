@@ -1,4 +1,10 @@
-# Calculators (`apps/web/src/app/calculators.js`, `packages/core/src/planner.ts`)
+# Calculators (`apps/web/src/ui/calculators/`, `packages/core/src/planner.ts`, `packages/core/src/calc.ts`)
 - Built only on the wiki mirror: `wiki/game-data.json` is fetched when the Calculators section first opens (precached by the service worker) and parsed with `GameDataSchema` (`packages/core/src/game-data.ts`) before use. Every number shown is wiki data, arithmetic on it, or an input the player sets; never a hand-typed game fact.
-- Recipe planner: expands crafting and cooking recipes (not refining, which is a way to obtain raw materials) down to items with no such recipe. Skips self-multiplying recipes, guards against cycles, rounds up to whole batches for multi-output crafts, and lets the player cycle alternative recipes per item. Values are the wiki's base values.
-- Harmonic Camp registers are plain arithmetic (`safeMathEval` in `index.html`).
+- **Recipe planner, as a build order** (`buildPlan`): expands crafting and cooking recipes (not refining, which is a way to obtain raw materials) down to items with no such recipe, and lays them out the way the craft is built, upward:
+  - the **cargo hold**: raw totals, one tile each, ticked off as they are gathered;
+  - **rounds** of crafts above it: round 1 needs only raw materials, round N needs something from round N−1;
+  - the **capstone**: the product, its worth at base value against the raw inputs at base value.
+  Each crafted item appears once, with its total demand batched once (`ceil(total / output per batch)`), as it is crafted in game; the old tree batched every branch separately. Self-multiplying recipes are skipped, cycles are cut where an item would need itself, and the player can cycle alternative recipes per item. Values are the wiki's base values.
+- **Ticks** (`planProgress`): a step is ready when all its inputs are ticked, a round when all its steps are. Each tick names an amount (`raw:Radon@500`), so after another quantity or recipe it holds wherever the plan still needs exactly that amount and lapses elsewhere; a different item starts fresh. Ticks are kept on this device only (`localStorage` key `atlas_plan_progress`, parsed with Zod), never in `nms_state.json` or exports.
+- **Compare and check value:** each alternative-recipe switch shows the next recipe's inputs and how it changes the raw inputs' base value before you switch; the capstone states the product's worth against its raw inputs ("Worth 148× its raw inputs"), arithmetic on wiki base values only.
+- **Base value** of a haul, **mineral extractors** (the hourly rate is the player's input) and **Harmonic Camp registers** (`evaluateRegister`: plain arithmetic parsed by hand, never evaluated as code).

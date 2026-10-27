@@ -77,7 +77,7 @@ test('presets and switching an alternative recipe recompute the plan and say wha
   expect(hold()).toMatchObject({ 'Fresh Milk': 2, Grahberry: 2 });
   fireEvent.click(document.querySelector('#planResult button[data-title="Clarified Oil"]')!);
   expect(hold()).toMatchObject({ 'Fresh Milk': 1, 'Warm Proto-Milk': 1 });
-  expect(within(document.getElementById('planResult')!).getByRole('status').textContent).toMatch(/with that recipe/);
+  expect(within(document.getElementById('planResult')!).getByRole('status').textContent).toMatch(/^Clarified Oil: /);
 });
 
 test('an item without a recipe is refused; the plan stays', async () => {
@@ -105,4 +105,52 @@ test('loading and failure say so', () => {
   });
   render(<Calculators />);
   expect(screen.getByRole('alert').textContent).toContain('couldn’t be loaded');
+});
+
+test('finishing a round keeps it open and keeps focus; it can then be folded', async () => {
+  render(<Calculators />);
+  for (const box of screen.getAllByRole('checkbox', { name: /^Gathered/ })) await userEvent.click(box);
+  const firstRound = () =>
+    within(rounds())
+      .getAllByRole('listitem')
+      .filter(li => li.querySelector('h4'))
+      .at(-1)!;
+  const boxes = within(firstRound()).getAllByRole('checkbox');
+  for (const box of boxes) await userEvent.click(box);
+  expect(document.activeElement).toBe(boxes.at(-1)); // still in the page, not on <body>
+  const fold = within(firstRound()).getByRole('button', { name: 'Fold this round away' });
+  expect(fold.getAttribute('aria-expanded')).toBe('true');
+  await userEvent.click(fold);
+  expect(within(firstRound()).queryAllByRole('checkbox')).toHaveLength(0);
+});
+
+test('a saved plan with out-of-range numbers is ignored', () => {
+  localStorage.setItem(
+    'atlas_plan_progress',
+    JSON.stringify({ item: 'Stasis Device', qty: -3, choices: {}, ticked: ['raw:Radon'] })
+  );
+  render(<Calculators />);
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 500 Radon' }).checked).toBe(false);
+});
+
+test('a typed amount applies on Enter, not on every keystroke', async () => {
+  render(<Calculators />);
+  await userEvent.click(screen.getByRole('checkbox', { name: 'Gathered 500 Radon' }));
+  const qty = screen.getByRole('spinbutton', { name: 'How many' });
+  await userEvent.clear(qty);
+  await userEvent.type(qty, '1');
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 500 Radon' }).checked).toBe(true);
+  await userEvent.type(qty, '0{Enter}');
+  expect(screen.getByRole('checkbox', { name: 'Gathered 5,000 Radon' })).toBeTruthy();
+});
+
+test('a recipe switch keeps the ticks the new plan still needs at the same amount', async () => {
+  render(<Calculators />);
+  await userEvent.click(screen.getByRole('button', { name: 'Anomalous Doughnut' }));
+  await userEvent.click(screen.getByRole('checkbox', { name: 'Gathered 2 Grahberry' }));
+  await userEvent.click(screen.getByRole('checkbox', { name: 'Gathered 2 Fresh Milk' }));
+  fireEvent.click(document.querySelector('#planResult button[data-title="Clarified Oil"]')!);
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 2 Grahberry' }).checked).toBe(true);
+  // Fresh Milk now needs 1, not 2: that tick no longer describes the plan.
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 1 Fresh Milk' }).checked).toBe(false);
 });

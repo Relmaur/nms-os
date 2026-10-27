@@ -24,7 +24,7 @@ Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/gam
 - Static PWA on GitHub Pages under `/nms-os/`; React + TypeScript + Vite; Tailwind compiled at build time; no CDNs at run time (docs/architecture.md, ADR-0004).
 - Calculators may only show wiki data, arithmetic on it, or player inputs (docs/calculators.md). The planner expands crafting and cooking recipes to items with no such recipe, rounds up multi-output crafts to whole batches, and lets the player switch alternative recipes per item.
 - Saved state shape is a compatibility contract (docs/state-schema.md); changes are additive.
-- Undecided: whether planner progress (ticked steps) should persist across sessions.
+- Planner ticks persist on this device only (owner's decision, 2026-10-27): not in `nms_state.json` or exports.
 
 ## Brand Commitments
 Name "ATLAS // MASTER OS" with the planet mark; the existing dark HUD look (Orbitron display, Inter body, JetBrains Mono numbers; emerald and cyan accents) is the incumbent visual authority.

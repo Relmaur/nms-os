@@ -6,6 +6,18 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-10-27
+### Changed
+- The recipe planner is a build order instead of an indented tree. The product sits at the top with its worth against the raw inputs; below it, crafts are grouped into rounds (round 1 needs only raw materials); at the bottom, the raw materials wait in a cargo hold. Each intermediate appears once with its total.
+- Tick off what you've gathered and crafted: a round lights up once its inputs are ticked. Ticks are kept on this device and are not part of your saved file. Changing the amount or a recipe keeps every tick whose amount is still needed; a new item starts fresh.
+- Each alternative-recipe switch shows what the next recipe uses and how it changes the raw inputs' value before you tap it. The product's worth is compared with its raw inputs ("Worth 148× its raw inputs"). Large values read in billions ("1.56B Units").
+- Calculators is a React screen (ADR-0004 step 3); its accessibility is checked (axe) in `pnpm check`.
+### Fixed
+- An intermediate used in several places was batched separately in each, which could overstate raw materials for multi-output crafts; it is now batched once on its total.
+- The Harmonic Camp registers no longer evaluate what you type as code; they parse arithmetic only.
+### Internal
+- `PRODUCT.md` (product truth for design work) and the planner's design brief in `apps/web/.impeccable/`.
+
 ## [3.3.0] - 2026-10-27
 ### Changed
 - Systems, the system panel (view and editor) and Outlaw Run are React screens (ADR-0004 step 3). They look and work as before; relative times and restock countdowns refresh every minute and when you return to the app.

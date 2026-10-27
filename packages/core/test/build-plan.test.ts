@@ -128,15 +128,27 @@ test('a recipe cycle stops at the item already being made', () => {
 test('progress: ticked inputs make a step ready; a round is ready when all its steps are', () => {
   const plan = buildPlan(made, 'Widget', 1);
   assert.ok(plan);
+  const ore = rawKey('Ore', 4);
+  const gear = craftKey('Gear', 3);
   let progress = planProgress(plan, new Set());
   assert.deepEqual(
     [progress.step('Gear'), progress.round(0), progress.gathered, progress.crafted],
     ['waiting', 'waiting', 0, 0]
   );
-  progress = planProgress(plan, new Set([rawKey('Ore')]));
+  progress = planProgress(plan, new Set([ore]));
   assert.deepEqual([progress.step('Gear'), progress.round(0), progress.step('Frame')], ['ready', 'ready', 'waiting']);
-  progress = planProgress(plan, new Set([rawKey('Ore'), craftKey('Gear')]));
+  progress = planProgress(plan, new Set([ore, gear]));
   assert.deepEqual([progress.round(0), progress.step('Frame'), progress.step('Widget')], ['done', 'ready', 'waiting']);
-  progress = planProgress(plan, new Set([rawKey('Ore'), craftKey('Gear'), craftKey('Frame'), craftKey('Widget')]));
+  progress = planProgress(plan, new Set([ore, gear, craftKey('Frame', 1), craftKey('Widget', 1)]));
   assert.deepEqual([progress.complete, progress.crafted, progress.gathered], [true, 3, 1]);
+});
+
+test('a tick holds while the plan still needs that amount, and lapses when it changes', () => {
+  const one = buildPlan(made, 'Widget', 1);
+  const two = buildPlan(made, 'Widget', 2);
+  assert.ok(one && two);
+  const ticked = new Set([rawKey('Ore', 4), craftKey('Gear', 3)]);
+  assert.equal(planProgress(one, ticked).gathered, 1);
+  // Two widgets need 6 Gear (two batches) and more Ore, so both ticks lapse.
+  assert.deepEqual([planProgress(two, ticked).gathered, planProgress(two, ticked).crafted], [0, 0]);
 });

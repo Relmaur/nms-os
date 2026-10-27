@@ -1,15 +1,15 @@
 // Recipe planner, built upward: raw stock in the cargo hold at the bottom, crafting rounds stacked above it, the
 // product as the capstone. The player ticks off what they've gathered and crafted; a round lights once its inputs
 // are ticked. Every number is the wiki's recipes and base values, or arithmetic on them (docs/calculators.md).
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
 import { formatQty, formatUnits } from '@atlas/core/calc';
 import {
   buildPlan,
-  craftKey,
   findItem,
   planProgress,
   planRecipes,
   rawKey,
+  stepKey,
   type BuildPlan,
   type Catalog,
   type PlanProgress,
@@ -23,7 +23,6 @@ import { readProgress, writeProgress, type PlanSettings } from './progress.ts';
 const PRESETS = ['Stasis Device', 'Fusion Ignitor', 'Circuit Board', 'Living Glass', 'Anomalous Doughnut'];
 const DEFAULT_PLAN: PlanSettings = { item: 'Stasis Device', qty: 1, choices: {} };
 const MAX_QTY = 9999;
-const DELTA_MS = 5000;
 
 const rawValue = (plan: BuildPlan) => plan.raw.reduce((sum, entry) => sum + (entry.item?.value ?? 0) * entry.qty, 0);
 const codexHref = (item: GameItem) => `wiki/#/a/${encodeURIComponent(item.path)}`;
@@ -42,34 +41,35 @@ function ItemName({ item, title, className = '' }: { item: GameItem | undefined;
 }
 
 export function Planner({ catalog }: { catalog: Catalog }) {
-  const [saved] = useState(readProgress);
+  // The saved plan comes back with its ticks; if its item has left the wiki data, the default starts fresh.
+  const [saved] = useState(() => {
+    const progress = readProgress();
+    return progress && findItem(catalog, progress.item) ? progress : null;
+  });
   const [settings, setSettings] = useState<PlanSettings>(() =>
-    saved && findItem(catalog, saved.item) ? { item: saved.item, qty: saved.qty, choices: saved.choices } : DEFAULT_PLAN
+    saved ? { item: saved.item, qty: saved.qty, choices: saved.choices } : DEFAULT_PLAN
   );
   const [ticked, setTicked] = useState<ReadonlySet<string>>(() => new Set(saved?.ticked ?? []));
   const [query, setQuery] = useState(settings.item);
-  const [delta, setDelta] = useState<{ amount: number; at: number } | null>(null);
+  // The last recipe switch and what it did to the raw inputs' value, shown at the switched row until the next change.
+  const [switched, setSwitched] = useState<{ title: string; delta: number } | null>(null);
 
   const plan = useMemo(() => buildPlan(catalog, settings.item, settings.qty, settings.choices), [catalog, settings]);
   const progress = plan ? planProgress(plan, ticked) : null;
 
-  useEffect(() => {
-    writeProgress(settings, ticked);
-  }, [settings, ticked]);
-  useEffect(() => {
-    if (!delta) return;
-    const timer = setTimeout(() => {
-      setDelta(null);
-    }, DELTA_MS);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [delta]);
+  const save = (next: PlanSettings, nextTicked: ReadonlySet<string>) => {
+    writeProgress(next, nextTicked);
+  };
 
-  // A different plan (item, amount or recipe) starts with nothing ticked: the old ticks described other amounts.
+  // Another amount or recipe keeps the ticks: each names an amount, so it holds wherever the new plan still needs
+  // exactly that and lapses where it doesn't (and comes back if the plan does). A different item starts fresh.
   const replan = (next: PlanSettings) => {
+    const fresh = next.item !== settings.item;
+    const nextTicked = fresh ? new Set<string>() : ticked;
     setSettings(next);
-    setTicked(new Set());
+    setTicked(nextTicked);
+    setSwitched(null);
+    save(next, nextTicked);
   };
   const pickItem = (value: string) => {
     const item = findItem(catalog, value);
@@ -89,20 +89,37 @@ export function Planner({ catalog }: { catalog: Catalog }) {
     const qty = Math.max(1, Math.min(MAX_QTY, Math.round(value) || 1));
     if (qty !== settings.qty) replan({ ...settings, qty });
   };
+  // What switching a step to its next recipe would use and change, so the compare job isn't blind.
+  const preview = (step: PlanStep): SwitchPreview | null => {
+    if (!plan || step.recipes.length < 2) return null;
+    const index = (step.index + 1) % step.recipes.length;
+    const next = buildPlan(catalog, settings.item, settings.qty, { ...settings.choices, [step.title]: index });
+    const recipe = step.recipes[index];
+    if (!next || !recipe) return null;
+    return {
+      choices: { ...settings.choices, [step.title]: index },
+      // In this plan's amounts (whole batches of the other recipe), not the recipe's per-batch ones.
+      inputs: recipe.inputs
+        .map(input => {
+          const batches = Math.ceil(step.qty / (Number(recipe.outputs[0]?.qty) || 1));
+          return `${formatQty((Number(input.qty) || 1) * batches)} ${input.name}`;
+        })
+        .join(' + '),
+      delta: rawValue(next) - rawValue(plan)
+    };
+  };
   const switchRecipe = (step: PlanStep) => {
-    if (!plan) return;
-    const choices = { ...settings.choices, [step.title]: (step.index + 1) % step.recipes.length };
-    const next = buildPlan(catalog, settings.item, settings.qty, choices);
-    if (next) setDelta({ amount: rawValue(next) - rawValue(plan), at: Date.now() });
-    replan({ ...settings, choices });
+    const next = preview(step);
+    if (!next) return;
+    replan({ ...settings, choices: next.choices });
+    setSwitched({ title: step.title, delta: next.delta });
   };
   const toggle = (key: string) => {
-    setTicked(current => {
-      const next = new Set(current);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
+    const next = new Set(ticked);
+    if (next.has(key)) next.delete(key);
+    else next.add(key);
+    setTicked(next);
+    save(settings, next);
   };
 
   const craftable = useMemo(
@@ -127,13 +144,17 @@ export function Planner({ catalog }: { catalog: Catalog }) {
               type="search"
               autoComplete="off"
               spellCheck={false}
+              autoCorrect="off"
               value={query}
               placeholder="Search craftable and cookable items"
               onChange={event => {
-                setQuery(event.target.value);
-                // A datalist pick replaces the whole value at once; plain typing waits for Enter or leaving the field.
+                const { value } = event.target;
+                setQuery(value);
+                // A datalist pick replaces the whole value with an item's exact name: plan it at once. Typing, the
+                // clear button and autocorrect wait for Enter or leaving the field.
                 const inputType = (event.nativeEvent as InputEvent).inputType as string | undefined;
-                if (!inputType || inputType === 'insertReplacementText') pickItem(event.target.value);
+                const exact = findItem(catalog, value)?.title === value;
+                if (exact && (!inputType || inputType === 'insertReplacementText')) pickItem(value);
               }}
               onKeyDown={event => {
                 if (event.key === 'Enter') pickItem(query);
@@ -152,7 +173,10 @@ export function Planner({ catalog }: { catalog: Catalog }) {
         </datalist>
       </div>
 
-      <div id="planPresets" className="flex flex-wrap gap-1.5">
+      <div
+        id="planPresets"
+        className="flex gap-1.5 overflow-x-auto sm:flex-wrap -mx-4 px-4 sm:mx-0 sm:px-0 pb-1 [scrollbar-width:none]"
+      >
         {PRESETS.filter(title => findItem(catalog, title)).map(title => (
           <button
             key={title}
@@ -161,7 +185,7 @@ export function Planner({ catalog }: { catalog: Catalog }) {
             onClick={() => {
               pickItem(title);
             }}
-            className="tag-filter"
+            className="tag-filter shrink-0 whitespace-nowrap"
           >
             {title}
           </button>
@@ -171,8 +195,19 @@ export function Planner({ catalog }: { catalog: Catalog }) {
       <div id="planResult">
         {plan && progress ? (
           <>
-            <Capstone plan={plan} progress={progress} ticked={ticked} onToggle={toggle} delta={delta?.amount ?? null} />
-            <Rounds plan={plan} progress={progress} ticked={ticked} onToggle={toggle} onSwitch={switchRecipe} />
+            <p role="status" className="sr-only">
+              {switched ? switchedText(switched.title, switched.delta) : ''}
+            </p>
+            <Capstone plan={plan} progress={progress} ticked={ticked} onToggle={toggle} />
+            <Rounds
+              key={JSON.stringify(settings)}
+              plan={plan}
+              progress={progress}
+              onToggle={toggle}
+              onSwitch={switchRecipe}
+              preview={preview}
+              switched={switched}
+            />
             <Hold
               plan={plan}
               progress={progress}
@@ -180,6 +215,7 @@ export function Planner({ catalog }: { catalog: Catalog }) {
               onToggle={toggle}
               onReset={() => {
                 setTicked(new Set());
+                save(settings, new Set());
               }}
             />
             <p className="text-xs text-slate-400 mt-6 max-w-prose">
@@ -230,11 +266,15 @@ function QtyStepper({ qty, onChange }: { qty: number; onChange: (qty: number) =>
           value={text}
           onChange={event => {
             setText(event.target.value);
-            const value = Number(event.target.value);
-            if (event.target.value !== '' && value >= 1) onChange(value);
+          }}
+          // Typed amounts apply on Enter or leaving the field, so a stray keystroke doesn't replan (and clear ticks).
+          onKeyDown={event => {
+            if (event.key === 'Enter') event.currentTarget.blur();
           }}
           onBlur={() => {
-            setText(String(qty));
+            const value = Number(text);
+            if (text !== '' && value >= 1) onChange(value);
+            setText(String(Math.max(1, Math.min(MAX_QTY, Math.round(value) || qty))));
           }}
           className="text-center font-mono tabular-nums"
         />
@@ -273,7 +313,7 @@ function Tick({
         aria-hidden="true"
         className={`absolute inset-0 rounded-xl border flex items-center justify-center transition-colors peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cyan-300 ${
           checked
-            ? 'bg-emerald-400 border-emerald-300 text-slate-950'
+            ? 'bg-emerald-400 border-emerald-300 text-emerald-950'
             : ready
               ? 'bg-emerald-400/10 border-emerald-400/70 text-emerald-300 shadow-[0_4px_14px_-4px_rgba(52,211,153,0.45)]'
               : 'bg-slate-950 border-slate-700 text-slate-600 hover:border-slate-500'
@@ -285,43 +325,87 @@ function Tick({
   );
 }
 
-function Inputs({ step, ticked }: { step: PlanStep; ticked: ReadonlySet<string> }) {
+// A step's ingredients as one line, the way a recipe reads: "10,000 Frost Crystal + 20,000 Solanium".
+function Inputs({ step, progress }: { step: PlanStep; progress: PlanProgress }) {
   return (
-    <ul className="flex flex-wrap gap-1.5 mt-2" aria-label={`Inputs for ${step.title}`}>
-      {step.inputs.map(input => {
-        const have = ticked.has(input.raw ? rawKey(input.title) : craftKey(input.title));
+    <p className="mt-1 text-sm leading-relaxed text-slate-300">
+      <span className="sr-only">From </span>
+      {step.inputs.map((input, i) => {
+        const have = progress.has(input);
         return (
-          <li
-            key={input.title}
-            className={`inline-flex items-center gap-1.5 h-7 px-2 rounded-lg border text-xs ${
-              have
-                ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-100'
-                : 'border-slate-700 bg-slate-900 text-slate-200'
-            }`}
-          >
-            <span className={`font-mono tabular-nums ${input.raw ? 'text-emerald-300' : 'text-cyan-200'}`}>
-              {formatQty(input.qty)}
+          <Fragment key={`${input.title}-${String(i)}`}>
+            {i ? <span className="text-slate-500"> + </span> : null}
+            <span className={`whitespace-nowrap ${have ? 'text-emerald-100' : ''}`}>
+              <span className={`font-mono tabular-nums ${input.raw ? 'text-emerald-300' : 'text-cyan-200'}`}>
+                {formatQty(input.qty)}
+              </span>{' '}
+              {input.title}
+              {have ? (
+                <>
+                  <i className="ph-bold ph-check text-emerald-300 ml-1" aria-hidden="true" />
+                  <span className="sr-only"> (ticked)</span>
+                </>
+              ) : null}
             </span>
-            {input.title}
-            {have ? <i className="ph-bold ph-check text-emerald-300" aria-label="ticked" /> : null}
-          </li>
+          </Fragment>
         );
       })}
-    </ul>
+    </p>
   );
 }
 
-function StepMeta({ step }: { step: PlanStep }) {
+// How a plan's steps are made, when they all share it; rows then only mention what differs.
+interface Norm {
+  type: 'craft' | 'cook' | null;
+  blueprint: boolean;
+}
+function planNorm(plan: BuildPlan): Norm {
+  const steps = [...plan.rounds.flat(), plan.product];
+  const type = steps.every(step => step.recipe.type === 'cook')
+    ? 'cook'
+    : steps.every(step => step.recipe.type === 'craft')
+      ? 'craft'
+      : null;
+  return { type, blueprint: steps.every(step => step.recipe.blueprint) };
+}
+const normText = (norm: Norm) =>
+  norm.type === 'cook'
+    ? 'All cooked in the Nutrient Processor'
+    : norm.type === 'craft'
+      ? norm.blueprint
+        ? 'All crafted from blueprints'
+        : 'All crafted'
+      : null;
+
+function StepMeta({ step, norm }: { step: PlanStep; norm: Norm }) {
   const parts = [
-    step.recipe.type === 'cook' ? 'Nutrient Processor' : 'Crafted',
-    step.recipe.blueprint ? 'blueprint' : '',
+    norm.type ? '' : step.recipe.type === 'cook' ? 'Nutrient Processor' : 'Crafted',
+    !norm.blueprint && step.recipe.blueprint ? 'blueprint' : '',
     step.makes > step.qty ? `makes ${formatQty(step.makes)}` : ''
   ].filter(Boolean);
-  return <span className="text-xs text-slate-400">{parts.join(' · ')}</span>;
+  return parts.length ? <span className="text-xs text-slate-400">{parts.join(' · ')}</span> : null;
 }
 
-function RecipeSwitch({ step, onSwitch }: { step: PlanStep; onSwitch: (step: PlanStep) => void }) {
-  if (step.recipes.length < 2) return null;
+interface SwitchPreview {
+  choices: Record<string, number>;
+  inputs: string;
+  delta: number;
+}
+const signedUnits = (delta: number) =>
+  delta ? `${delta < 0 ? '−' : '+'}${formatUnits(Math.abs(delta))} Units` : 'same value';
+const switchedText = (title: string, delta: number) =>
+  delta ? `${title}: raw inputs ${signedUnits(delta)} with this recipe` : `${title}: no change in raw inputs' value`;
+
+function RecipeSwitch({
+  step,
+  preview,
+  onSwitch
+}: {
+  step: PlanStep;
+  preview: SwitchPreview | null;
+  onSwitch: (step: PlanStep) => void;
+}) {
+  if (!preview) return null;
   return (
     <button
       type="button"
@@ -329,27 +413,43 @@ function RecipeSwitch({ step, onSwitch }: { step: PlanStep; onSwitch: (step: Pla
       onClick={() => {
         onSwitch(step);
       }}
-      title="Switch to another recipe"
-      className="mt-2 inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg border border-slate-700 hover:border-cyan-400/60 text-[11px] text-slate-300 hover:text-cyan-200"
+      className="mt-2 w-full sm:w-auto text-left flex items-start gap-2 px-2.5 py-1.5 rounded-lg border border-slate-700 hover:border-cyan-400/60 text-xs text-slate-300 hover:text-cyan-100"
     >
-      <i className="ph-bold ph-arrows-clockwise" />
-      Recipe {step.index + 1} of {step.recipes.length}
+      <i className="ph-bold ph-arrows-clockwise mt-0.5 text-cyan-300" aria-hidden="true" />
+      <span className="min-w-0">
+        <span className="block">
+          Recipe {step.index + 1} of {step.recipes.length} · switch to the next
+        </span>
+        <span className="block text-slate-400">
+          {preview.inputs}
+          <span
+            className={`whitespace-nowrap ${preview.delta < 0 ? 'text-emerald-300' : preview.delta > 0 ? 'text-amber-300' : ''}`}
+          >
+            {` · ${signedUnits(preview.delta)}`}
+          </span>
+        </span>
+      </span>
     </button>
   );
+}
+
+// "Worth 148× its raw inputs": arithmetic on the two wiki base values, for the "is it worth crafting?" glance.
+function ratioText(worth: number, inputs: number): string | null {
+  if (!worth || !inputs) return null;
+  const ratio = worth / inputs;
+  return `Worth ${ratio >= 10 ? Math.round(ratio).toLocaleString() : ratio.toFixed(1)}× its raw inputs`;
 }
 
 function Capstone({
   plan,
   progress,
   ticked,
-  onToggle,
-  delta
+  onToggle
 }: {
   plan: BuildPlan;
   progress: PlanProgress;
   ticked: ReadonlySet<string>;
   onToggle: (key: string) => void;
-  delta: number | null;
 }) {
   const { product } = plan;
   const worth = (product.item?.value ?? 0) * product.qty;
@@ -357,12 +457,14 @@ function Capstone({
   const unpriced = plan.raw.filter(entry => !entry.item?.value).length;
   const state = progress.step(product.title);
   const started = progress.gathered > 0 || progress.crafted > 0;
+  const norm = planNorm(plan);
+  const ratio = ratioText(worth, inputs);
   return (
     <section
       aria-labelledby="planProduct"
       className={`relative overflow-hidden rounded-2xl border p-5 sm:p-6 transition-colors duration-500 ${
         progress.complete
-          ? 'border-emerald-400/60 bg-emerald-950/40'
+          ? 'capstone-lit border-emerald-400/60 bg-emerald-950/40'
           : 'border-cyan-400/30 bg-[radial-gradient(120%_90%_at_50%_0%,rgba(34,211,238,0.14),rgba(11,19,37,0.9)_60%)]'
       }`}
     >
@@ -375,53 +477,22 @@ function Capstone({
           >
             <ItemName item={product.item} title={product.title} className="decoration-slate-700" />
           </h3>
-          <StepMeta step={product} />
+          <p className="text-xs text-slate-400 mt-1">
+            {normText(norm) ?? <StepMeta step={product} norm={{ type: null, blueprint: false }} />}
+          </p>
         </div>
         <Tick
-          checked={ticked.has(craftKey(product.title))}
+          checked={ticked.has(stepKey(product))}
           ready={state === 'ready'}
           label={`Crafted ${formatQty(product.qty)} ${product.title}`}
           onChange={() => {
-            onToggle(craftKey(product.title));
+            onToggle(stepKey(product));
           }}
         />
       </div>
-      <Inputs step={product} ticked={ticked} />
 
-      <dl className="grid grid-cols-2 gap-x-4 mt-5 pt-4 border-t border-slate-700/60">
-        <div>
-          <dt className="text-xs text-slate-400">Worth at base value</dt>
-          <dd className="font-mono tabular-nums text-lg text-amber-200 mt-1">
-            {product.item?.value ? `${formatUnits(worth)} Units` : 'not on the wiki'}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-xs text-slate-400">Raw inputs at base value</dt>
-          <dd className="font-mono tabular-nums text-lg text-white mt-1">
-            {formatUnits(inputs)} Units
-            {delta !== null ? (
-              <span
-                role="status"
-                className={`block text-xs font-sans ${delta < 0 ? 'text-emerald-300' : delta > 0 ? 'text-amber-300' : 'text-slate-300'}`}
-              >
-                {delta ? (
-                  <>
-                    <i className={`ph-bold ${delta < 0 ? 'ph-arrow-down' : 'ph-arrow-up'}`} />
-                    {` ${formatUnits(Math.abs(delta))} with that recipe`}
-                  </>
-                ) : (
-                  'No change with that recipe'
-                )}
-              </span>
-            ) : unpriced ? (
-              <span className="block text-[11px] font-sans text-slate-400">{unpriced} without a value</span>
-            ) : null}
-          </dd>
-        </div>
-      </dl>
-
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-slate-300">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
+        <p className="text-sm text-slate-200">
           {progress.complete
             ? 'Crafted. The plan is complete.'
             : started
@@ -438,10 +509,31 @@ function Capstone({
             className="h-10 px-4 rounded-xl bg-cyan-400/10 border border-cyan-400/40 hover:bg-cyan-400/20 text-sm font-medium text-cyan-100 inline-flex items-center gap-2"
           >
             {started ? 'Back to the cargo hold' : 'Start at the cargo hold'}
-            <i className="ph-bold ph-arrow-down" />
+            <i className="ph-bold ph-arrow-down" aria-hidden="true" />
           </a>
         )}
       </div>
+
+      <Inputs step={product} progress={progress} />
+
+      <dl className="grid grid-cols-2 gap-x-4 mt-5 pt-4 border-t border-slate-700/60">
+        <div>
+          <dt className="text-xs text-slate-400">Product worth</dt>
+          <dd className="font-mono tabular-nums text-base sm:text-lg text-amber-200 mt-1 whitespace-nowrap">
+            {product.item?.value ? `${formatUnits(worth)} Units` : 'not on the wiki'}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs text-slate-400">Raw inputs worth</dt>
+          <dd className="font-mono tabular-nums text-base sm:text-lg text-white mt-1 whitespace-nowrap">
+            {formatUnits(inputs)} Units
+          </dd>
+        </div>
+      </dl>
+      <p className="text-xs text-slate-400 mt-2">
+        {ratio ? <span className="text-slate-200">{ratio}</span> : null}
+        {ratio ? ', at ' : 'At '}the wiki’s base values{unpriced ? ` (${String(unpriced)} raw without a value)` : ''}.
+      </p>
     </section>
   );
 }
@@ -457,17 +549,24 @@ const ROUND_TEXT: Record<StepState, string> = {
 function Rounds({
   plan,
   progress,
-  ticked,
   onToggle,
-  onSwitch
+  onSwitch,
+  preview,
+  switched
 }: {
   plan: BuildPlan;
   progress: PlanProgress;
-  ticked: ReadonlySet<string>;
   onToggle: (key: string) => void;
   onSwitch: (step: PlanStep) => void;
+  preview: (step: PlanStep) => SwitchPreview | null;
+  switched: { title: string; delta: number } | null;
 }) {
-  const [opened, setOpened] = useState<ReadonlySet<number>>(new Set()); // done rounds the player reopened
+  const norm = planNorm(plan);
+  // Rounds already crafted when the plan opens start folded away; one finished now stays open (folding it would
+  // pull the focused checkbox out from under the player) until they fold it.
+  const [folded, setFolded] = useState<ReadonlySet<number>>(
+    () => new Set(plan.rounds.map((_, index) => index).filter(index => progress.round(index) === 'done'))
+  );
   if (!plan.rounds.length) return null;
   return (
     <section aria-label="Crafting rounds, last first" className="mt-2">
@@ -477,7 +576,7 @@ function Rounds({
           .reverse()
           .map(({ round, index }) => {
             const state = progress.round(index);
-            const collapsed = state === 'done' && !opened.has(index);
+            const collapsed = state === 'done' && folded.has(index);
             return (
               <li key={index} className="relative pl-9 pt-6">
                 {/* The spine: dim while waiting; it fills upward, emerald, once the round can be crafted. */}
@@ -501,24 +600,42 @@ function Rounds({
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                   <h4 className="font-display font-bold text-sm text-white tracking-wide">Round {index + 1}</h4>
                   <p
-                    className={`text-xs ${state === 'done' ? 'text-emerald-300' : state === 'ready' ? 'text-emerald-200' : 'text-slate-400'}`}
+                    className={`text-xs ${
+                      state === 'ready'
+                        ? 'px-2 py-0.5 rounded-full bg-emerald-400/15 text-emerald-200 font-medium'
+                        : state === 'done'
+                          ? 'text-emerald-300'
+                          : 'text-slate-400'
+                    }`}
                   >
                     {roundText(state, index)} · {round.length} {round.length === 1 ? 'craft' : 'crafts'}
                   </p>
                 </div>
-                {collapsed ? (
+                {state === 'done' ? (
                   <button
                     type="button"
+                    aria-expanded={!collapsed}
+                    aria-controls={`planRound${String(index + 1)}`}
                     onClick={() => {
-                      setOpened(new Set(opened).add(index));
+                      const next = new Set(folded);
+                      if (collapsed) next.delete(index);
+                      else next.add(index);
+                      setFolded(next);
                     }}
-                    className="mt-2 text-xs text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5"
+                    className="mt-2 text-xs text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5 text-left"
                   >
-                    <i className="ph-bold ph-caret-down" />
-                    Show {round.map(step => step.title).join(', ')}
+                    <i className={`ph-bold ${collapsed ? 'ph-caret-down' : 'ph-caret-up'}`} aria-hidden="true" />
+                    {collapsed ? `Show ${round.map(step => step.title).join(', ')}` : 'Fold this round away'}
                   </button>
-                ) : (
-                  <ul className="mt-1 divide-y divide-slate-800/70">
+                ) : null}
+                {collapsed ? null : (
+                  // A round you can craft now is lit as a band, so it's findable on a long column without reading.
+                  <ul
+                    id={`planRound${String(index + 1)}`}
+                    className={`mt-2 divide-y divide-slate-800/70 rounded-xl transition-colors duration-500 ${
+                      state === 'ready' ? '-mx-3 px-3 bg-emerald-400/[0.06] ring-1 ring-inset ring-emerald-400/25' : ''
+                    }`}
+                  >
                     {round.map(step => {
                       const stepState = progress.step(step.title);
                       return (
@@ -528,7 +645,7 @@ function Rounds({
                             ready={stepState === 'ready'}
                             label={`Crafted ${formatQty(step.qty)} ${step.title}`}
                             onChange={() => {
-                              onToggle(craftKey(step.title));
+                              onToggle(stepKey(step));
                             }}
                           />
                           <div className="min-w-0 flex-1">
@@ -537,10 +654,21 @@ function Rounds({
                                 {formatQty(step.qty)}×
                               </span>
                               <ItemName item={step.item} title={step.title} className="text-[0.9375rem] text-white" />
-                              <StepMeta step={step} />
+                              <StepMeta step={step} norm={norm} />
                             </p>
-                            <Inputs step={step} ticked={ticked} />
-                            <RecipeSwitch step={step} onSwitch={onSwitch} />
+                            <Inputs step={step} progress={progress} />
+                            {switched?.title === step.title ? (
+                              <p
+                                aria-hidden="true"
+                                className={`mt-2 text-xs ${switched.delta < 0 ? 'text-emerald-300' : switched.delta > 0 ? 'text-amber-300' : 'text-slate-300'}`}
+                              >
+                                <i className="ph-bold ph-check" />{' '}
+                                {switched.delta
+                                  ? `Switched: raw inputs ${signedUnits(switched.delta)}`
+                                  : 'Switched: same raw inputs value'}
+                              </p>
+                            ) : null}
+                            <RecipeSwitch step={step} preview={preview(step)} onSwitch={onSwitch} />
                           </div>
                         </li>
                       );
@@ -571,18 +699,19 @@ function Hold({
   const heading = useRef<HTMLHeadingElement>(null);
   const any = progress.gathered > 0 || progress.crafted > 0;
   return (
-    <section id="planHold" aria-labelledby="planHoldTitle" className="relative mt-4 sm:pl-9 scroll-mt-40">
+    <section id="planHold" aria-labelledby="planHoldTitle" className="relative mt-4 pt-3 sm:pt-0 sm:pl-9 scroll-mt-40">
+      {/* The spine lands on the hold: the column grows out of it (on phones, onto the card's top edge). */}
       <span
         aria-hidden="true"
-        className="hidden sm:block absolute left-[15px] -top-4 h-8 w-px bg-linear-to-b from-slate-800 to-cyan-400/60"
+        className="absolute left-[15px] -top-4 h-6 sm:h-8 w-px bg-linear-to-b from-slate-800 to-cyan-400/60"
       />
       <span
         aria-hidden="true"
-        className="hidden sm:flex absolute left-[7px] top-4 w-[17px] h-[17px] rounded-full border border-cyan-400/70 bg-slate-950 items-center justify-center"
+        className="absolute z-10 left-[7px] top-[3px] sm:top-4 w-[17px] h-[17px] rounded-full border border-cyan-400/70 bg-slate-950 flex items-center justify-center"
       >
         <i className="ph-bold ph-arrow-up text-[10px] text-cyan-300" />
       </span>
-      <div className="rounded-2xl border border-slate-700/80 bg-slate-950/70 p-3 sm:p-5">
+      <div className="rounded-2xl border border-slate-700/80 bg-slate-950/70 p-3 pt-4 sm:p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h4 ref={heading} id="planHoldTitle" className="font-display font-bold text-base text-white">
             Cargo hold
@@ -593,13 +722,14 @@ function Hold({
           </p>
         </div>
         <p className="text-xs text-slate-400 mt-1">Start here: gather these, then craft upward one round at a time.</p>
-        <ul className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-1.5 sm:gap-2 mt-4">
+        <ul className="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(6.75rem,1fr))] gap-1.5 sm:gap-2 mt-4">
           {plan.raw.map(entry => {
-            const checked = ticked.has(rawKey(entry.title));
+            const key = rawKey(entry.title, entry.qty);
+            const checked = ticked.has(key);
             return (
               <li key={entry.title} data-raw={entry.title} data-qty={entry.qty}>
                 <label
-                  className={`relative flex flex-col justify-between h-[5.75rem] sm:h-24 rounded-xl border p-2 cursor-pointer transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cyan-300 ${
+                  className={`relative flex flex-col justify-between aspect-square rounded-lg border p-2 cursor-pointer transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cyan-300 ${
                     checked
                       ? 'border-emerald-400/70 bg-emerald-500/10'
                       : 'border-slate-700 bg-[linear-gradient(160deg,rgba(30,41,59,0.55),rgba(2,6,23,0.9))] hover:border-slate-500'
@@ -609,7 +739,7 @@ function Hold({
                     type="checkbox"
                     checked={checked}
                     onChange={() => {
-                      onToggle(rawKey(entry.title));
+                      onToggle(key);
                     }}
                     aria-label={`Gathered ${formatQty(entry.qty)} ${entry.title}`}
                     className="sr-only"
@@ -623,7 +753,7 @@ function Hold({
                     <span
                       aria-hidden="true"
                       className={`w-5 h-5 shrink-0 rounded-md border flex items-center justify-center ${
-                        checked ? 'bg-emerald-400 border-emerald-300 text-slate-950' : 'border-slate-600'
+                        checked ? 'bg-emerald-400 border-emerald-300 text-emerald-950' : 'border-slate-600'
                       }`}
                     >
                       {checked ? <i className="ph-bold ph-check text-xs" /> : null}

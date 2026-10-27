@@ -16,7 +16,8 @@ export function Calculators() {
     <>
       <div className="max-w-3xl">
         <h1 className="font-display text-2xl font-bold text-white">Calculators</h1>
-        <p className="text-sm text-slate-300 mt-1.5">
+        {/* On a phone the planner's answer needs the first screen, so the intro shows from sm up. */}
+        <p className="hidden sm:block text-sm text-slate-300 mt-1.5">
           Recipes and values come from the wiki mirror, so they match the wiki exactly. Anything the wiki can’t know,
           like your extractor’s output, is an input you set.
         </p>
@@ -49,8 +50,8 @@ export function Calculators() {
         Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in{' '}
         <a href="#outlaw" className="text-emerald-300 hover:text-emerald-200">
           Outlaw Run
-        </a>{' '}
-        → Run settings.
+        </a>
+        , then Run settings.
       </p>
     </>
   );
@@ -77,8 +78,9 @@ function SourceLine({ data }: { data: GameDataState }) {
           ? `, verified against the wiki on ${new Date(v.checkedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`
           : ''
       }. `}
-      <a href="wiki/" className="text-emerald-300 hover:text-emerald-200">
-        Open the Codex →
+      <a href="wiki/" className="text-emerald-300 hover:text-emerald-200 inline-flex items-center gap-1">
+        Open the Codex
+        <i className="ph-bold ph-arrow-right" aria-hidden="true" />
       </a>
     </p>
   );
@@ -135,7 +137,7 @@ function BaseValue({ catalog }: { catalog: Catalog | null }) {
                   type="number"
                   inputMode="numeric"
                   min={0}
-                  value={row.qty}
+                  value={row.qty || ''} // a cleared field stays empty while the next digit is typed
                   onChange={event => {
                     const qty = Math.max(0, Math.round(Number(event.target.value)) || 0);
                     setRows(current => current.map((item, j) => (j === i ? { ...item, qty } : item)));
@@ -205,7 +207,7 @@ function Extractors({ catalog }: { catalog: Catalog | null }) {
   const [count, setCount] = useState('1');
   const [rate, setRate] = useState('');
   // Gold by default; if the wiki data ever lacks it, the first mineral it has.
-  const item = (catalog ? findItem(catalog, mineral) : undefined) ?? minerals[0];
+  const item = minerals.find(option => option.title === mineral) ?? minerals[0];
   const extractors = Math.max(1, Math.round(Number(count)) || 1);
   const perHourEach = Number(rate);
   const result = item?.value && perHourEach > 0 ? extractorYield(extractors, perHourEach, item.value) : null;

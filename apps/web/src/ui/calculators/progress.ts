@@ -5,8 +5,8 @@ import { z } from 'zod';
 const KEY = 'atlas_plan_progress';
 const StoredSchema = z.object({
   item: z.string(),
-  qty: z.number(),
-  choices: z.record(z.string(), z.number()),
+  qty: z.number().int().min(1).max(9999),
+  choices: z.record(z.string(), z.number().int().nonnegative()),
   ticked: z.array(z.string())
 });
 export type PlanSettings = Omit<z.infer<typeof StoredSchema>, 'ticked'>;

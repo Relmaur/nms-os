@@ -150,11 +150,13 @@ export function buildPlan(
   choices: Record<string, number> = {}
 ): BuildPlan | undefined {
   const crafts = new Map<string, Craft>(); // in discovery order: an item's inputs follow it
-  // An input already on the path back to the product is a cycle, and is treated as raw.
+  // An input already on the path back to the product is a cycle, and is treated as raw. Each item is discovered once,
+  // so where a cycle or the depth cap is cut depends on the first path that reaches it; among the wiki's chosen
+  // recipes neither happens (checked against all 1,265 craftable items), so the simple rule is kept.
   const discover = (title: string, item: GameItem, depth: number, path: Set<string>): void => {
     if (crafts.has(title)) return;
     const recipes = planRecipes(catalog, item);
-    const index = Math.min(choices[title] ?? 0, recipes.length - 1);
+    const index = Math.min(Math.max(0, Math.trunc(choices[title] ?? 0) || 0), recipes.length - 1);
     const recipe = recipes[index];
     if (!recipe) return;
     const next = new Set(path).add(title);
@@ -243,13 +245,17 @@ export function buildPlan(
   };
 }
 
-// What the player has ticked off: gathered raw materials (`raw:<title>`) and finished crafts (`craft:<title>`).
-export const rawKey = (title: string): string => `raw:${title}`;
-export const craftKey = (title: string): string => `craft:${title}`;
+// What the player has ticked off: gathered raw materials (`raw:<title>@<amount>`) and finished crafts
+// (`craft:<title>@<amount>`). The amount is part of the key, so a tick still holds when the plan changes around it
+// (another recipe elsewhere, a different quantity) as long as the same amount is needed, and lapses when it isn't.
+export const rawKey = (title: string, qty: number): string => `raw:${title}@${String(qty)}`;
+export const craftKey = (title: string, qty: number): string => `craft:${title}@${String(qty)}`;
+export const stepKey = (step: PlanStep): string => craftKey(step.title, step.qty);
 export type StepState = 'done' | 'ready' | 'waiting';
 export interface PlanProgress {
   step: (title: string) => StepState; // ready = every input is ticked
   round: (index: number) => StepState; // ready = every step in it is ready or done
+  has: (input: StepInput) => boolean; // that input is ticked (gathered, or crafted at the amount the plan needs)
   gathered: number;
   crafted: number;
   complete: boolean;
@@ -257,15 +263,15 @@ export interface PlanProgress {
 
 export function planProgress(plan: BuildPlan, ticked: ReadonlySet<string>): PlanProgress {
   const all = [...plan.rounds.flat(), plan.product];
+  const byTitle = new Map(all.map(step => [step.title, step]));
+  const rawTotal = new Map(plan.raw.map(entry => [entry.title, entry.qty]));
+  // A raw input counts as ticked when the hold's whole total for it is (that's what the player gathers).
+  const has = (input: StepInput) => {
+    const made = input.raw ? undefined : byTitle.get(input.title);
+    return ticked.has(made ? stepKey(made) : rawKey(input.title, rawTotal.get(input.title) ?? input.qty));
+  };
   const states = new Map<string, StepState>(
-    all.map(step => [
-      step.title,
-      ticked.has(craftKey(step.title))
-        ? 'done'
-        : step.inputs.every(input => ticked.has(input.raw ? rawKey(input.title) : craftKey(input.title)))
-          ? 'ready'
-          : 'waiting'
-    ])
+    all.map(step => [step.title, ticked.has(stepKey(step)) ? 'done' : step.inputs.every(has) ? 'ready' : 'waiting'])
   );
   const step = (title: string): StepState => states.get(title) ?? 'waiting';
   return {
@@ -278,8 +284,9 @@ export function planProgress(plan: BuildPlan, ticked: ReadonlySet<string>): Plan
           ? 'ready'
           : 'waiting';
     },
-    gathered: plan.raw.filter(entry => ticked.has(rawKey(entry.title))).length,
-    crafted: all.filter(item => ticked.has(craftKey(item.title))).length,
-    complete: ticked.has(craftKey(plan.product.title))
+    gathered: plan.raw.filter(entry => ticked.has(rawKey(entry.title, entry.qty))).length,
+    crafted: all.filter(item => ticked.has(stepKey(item))).length,
+    has,
+    complete: ticked.has(stepKey(plan.product))
   };
 }
