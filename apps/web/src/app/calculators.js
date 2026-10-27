@@ -3,7 +3,7 @@
 import { escapeHtml } from '@atlas/core/util';
 import * as planner from '@atlas/core/planner';
 import { GameDataSchema } from '@atlas/core/game-data';
-import { showToast } from './ui.js';
+import { showToast } from './ui.ts';
 
 const findItem = name => planner.findItem(gameData, name);
 const planRecipes = item => planner.planRecipes(gameData, item);

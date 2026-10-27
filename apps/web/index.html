@@ -104,7 +104,7 @@
             </div>
 
             <!-- ===================================================================== -->
-            <!-- HOME: what you need mid-session (assets/app/companion.js renders it)     -->
+            <!-- HOME: what you need mid-session (React: src/ui/home/Home.tsx)             -->
             <!-- ===================================================================== -->
             <section id="sec-home" class="book-section space-y-6">
                 <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
@@ -115,29 +115,8 @@
                     <button data-wake-toggle onclick="toggleKeepAwake()" role="switch" aria-checked="false" class="wake-chip hidden"><i class="ph-bold ph-sun-dim"></i><span>Keep screen on</span></button>
                 </div>
 
-                <div id="homeNow"></div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                        <div class="flex items-center justify-between gap-3">
-                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-skull text-red-300"></i>Outlaw run</h2>
-                            <a href="#outlaw" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">Full list →</a>
-                        </div>
-                        <div id="homeOutlaw"></div>
-                    </div>
-                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                        <div class="flex items-center justify-between gap-3">
-                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-clock-counter-clockwise text-purple-300"></i>Warp back</h2>
-                            <a href="#systems" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">All systems →</a>
-                        </div>
-                        <ul id="homeRecent" class="space-y-1"></ul>
-                    </div>
-                </div>
-
-                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-3">
-                    <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-rocket text-cyan-300"></i>Active fleet</h2>
-                    <div id="fleetCardBody" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-3 text-xs"></div>
-                </div>
+                <!-- Rendered by React (src/ui/home/Home.tsx) -->
+                <div id="homeRoot" class="space-y-6"></div>
             </section>
 
             <!-- ===================================================================== -->

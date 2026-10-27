@@ -19,7 +19,7 @@ test('Log visit records a visit on the current system', async ({ page }) => {
 
 test('"I’m here" makes a recent system the current one', async ({ page }) => {
   await page.goto('./');
-  await page.getByRole('button', { name: "I'm at Hesper Drift" }).click();
+  await page.getByRole('button', { name: 'I’m here: Hesper Drift' }).click();
   await expect(page.locator('#homeNow')).toContainText('Hesper Drift');
 });
 

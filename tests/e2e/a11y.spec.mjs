@@ -1,18 +1,20 @@
-// Accessibility (axe) on the main screens. Report-only until the screens move to React (ADR-0004 step 3), when
-// it becomes a gate: violations are attached to the test report and summarised as an annotation, not failed on.
+// Accessibility (axe) on the main screens. Screens already moved to React (ADR-0004 step 3) are gated: any violation
+// fails. The rest report only (violations attached and summarised as an annotation) until their move.
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from './fixtures.mjs';
 
-for (const [name, path, ready] of [
-  ['Home', './', '#homeNow'],
-  ['Systems', './#systems', '#systemList'],
-  ['Calculators', './#calculators', '#planResult'],
-  ['Codex', './wiki/', '#browseBody']
+for (const [name, path, ready, gated] of [
+  ['Home', './', '#homeNow', true],
+  ['Systems', './#systems', '#systemList', false],
+  ['Calculators', './#calculators', '#planResult', false],
+  ['Codex', './wiki/', '#browseBody', false]
 ]) {
   test(`axe: ${name}`, async ({ page }, testInfo) => {
     await page.goto(path);
     await expect(page.locator(ready)).toBeVisible();
-    const { violations } = await new AxeBuilder({ page }).analyze();
+    // Gated screens are checked on their own content: the vanilla header and navigation have their own findings.
+    const builder = new AxeBuilder({ page });
+    const { violations } = await (gated ? builder.include(`#sec-${name.toLowerCase()}`) : builder).analyze();
     await testInfo.attach('axe-violations.json', {
       body: JSON.stringify(violations, null, 2),
       contentType: 'application/json'
@@ -23,5 +25,6 @@ for (const [name, path, ready] of [
         ? violations.map(v => `${v.id} (${v.impact}, ${v.nodes.length})`).join('; ')
         : 'no violations'
     });
+    if (gated) expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
   });
 }

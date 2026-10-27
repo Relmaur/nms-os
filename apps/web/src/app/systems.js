@@ -23,7 +23,7 @@ import {
   rankOutlaw
 } from '@atlas/core/systems-model';
 import { appState, saveAppState, persistState, onAdopt } from './store.ts';
-import { showToast, haptic } from './ui.js';
+import { showToast, haptic } from './ui.ts';
 import { showSection } from './nav.js';
 
 export function findSystem(id) {
@@ -69,7 +69,7 @@ export function glyphChip(glyphs) {
   return `<button data-glyphs="${escapeHtml(glyphs)}" onclick="event.stopPropagation(); copyGlyphs(this.dataset.glyphs)" title="Copy portal glyphs" class="inline-flex items-center gap-1.5 h-6 px-2 rounded-md bg-slate-950 border border-slate-700 hover:border-slate-500 font-mono text-[11px] tracking-wider text-slate-200">${escapeHtml(glyphs)}<i class="ph-bold ph-copy text-slate-400"></i></button>`;
 }
 
-function copyGlyphs(glyphs) {
+export function copyGlyphs(glyphs) {
   (navigator.clipboard?.writeText(glyphs) || Promise.reject())
     .then(() => showToast(`Copied glyphs ${glyphs}.`))
     .catch(() => showToast(glyphs));

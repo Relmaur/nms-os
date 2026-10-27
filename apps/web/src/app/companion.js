@@ -1,155 +1,17 @@
-// Home screen + device integration: keep-awake, app badge, share sheet, install, swipe-to-close.
-import { escapeHtml } from '@atlas/core/util';
-import { formatAgo, formatDuration } from '@atlas/core/format';
-import { lastVisit } from '@atlas/core/systems-model';
-import { appState, saveAppState } from './store.ts';
-import { showToast, haptic } from './ui.js';
-import {
-  findSystem,
-  sortedOutlaw,
-  starDot,
-  glyphChip,
-  tagChip,
-  renderOutlaw,
-  renderSystems,
-  panelMode,
-  closeSystemPanel
-} from './systems.js';
+// Device integration: keep-awake, app badge, share sheet, install, swipe-to-close. (Home is React: src/ui/home.)
+import { appState } from './store.ts';
+import { showToast, haptic } from './ui.ts';
+import { findSystem, sortedOutlaw, renderOutlaw, renderSystems, panelMode, closeSystemPanel } from './systems.js';
 
 const KEEP_AWAKE_KEY = 'atlas_keep_awake'; // per-device preference, so not part of nms_state.json
-const HOME_RECENT_LIMIT = 5;
-const HOME_OUTLAW_LIMIT = 3;
-
-// ---------------------------------------------------------------------------
-// Home: the current system, warp-back list and the next outlaw stations
-// ---------------------------------------------------------------------------
-function lastActivity(system) {
-  return Date.parse(lastVisit(system)?.at || system.createdAt) || 0;
-}
-
-export function renderHome() {
-  const [current, ...rest] = [...appState.systems].sort((a, b) => lastActivity(b) - lastActivity(a));
-  renderHomeNow(current);
-  renderHomeRecent(rest.slice(0, HOME_RECENT_LIMIT));
-  renderHomeOutlaw();
-}
-
-function renderHomeNow(system) {
-  const newButton = `<button onclick="openSystemEditor()" class="h-12 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-semibold text-sm flex items-center justify-center gap-2 transition"><i class="ph-bold ph-plus"></i>Warped somewhere new</button>`;
-  const el = document.getElementById('homeNow');
-  if (!system) {
-    el.innerHTML = `
-            <div class="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
-                <div class="space-y-1.5">
-                    <h2 class="font-display text-lg font-bold text-white">Log your first system</h2>
-                    <p class="text-sm text-slate-300 max-w-prose">Warp somewhere, then add it here with its glyphs and what’s worth coming back for. It becomes your current system, one tap to log again.</p>
-                </div>
-                <div class="grid sm:flex">${newButton}</div>
-            </div>`;
-    return;
-  }
-  const last = lastVisit(system);
-  const where = [
-    last ? `Here ${formatAgo(last.at)}` : `Added ${formatAgo(system.createdAt)}`,
-    system.region,
-    system.galaxy
-  ]
-    .filter(Boolean)
-    .map(escapeHtml)
-    .join(' · ');
-  const note = system.notes.split('\n').find(line => line.trim());
-  el.innerHTML = `
-        <div class="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
-            <button onclick="openSystem('${system.id}')" class="group flex items-start gap-3 max-w-full text-left">
-                <span class="flex mt-2.5">${starDot(system, 'w-3.5 h-3.5')}</span>
-                <span class="min-w-0">
-                    <span class="block font-display text-xl sm:text-2xl font-bold text-white leading-snug break-words group-hover:underline underline-offset-4 decoration-slate-600">${escapeHtml(system.name)}</span>
-                    <span class="block text-sm text-slate-400 mt-1">${where}</span>
-                </span>
-            </button>
-            ${
-              system.tags.length || system.glyphs
-                ? `<div class="flex flex-wrap items-center gap-1.5">${glyphChip(system.glyphs)}${system.tags
-                    .slice(0, 5)
-                    .map(tag => tagChip(tag))
-                    .join('')}</div>`
-                : ''
-            }
-            ${note ? `<p class="text-sm text-slate-300 line-clamp-2 max-w-prose">${escapeHtml(note)}</p>` : ''}
-            <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 pt-1">
-                <div class="col-span-2 grid sm:contents">${newButton}</div>
-                <button onclick="quickLogVisit('${system.id}')" class="h-11 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-400/60 text-sm font-medium text-slate-100 flex items-center justify-center gap-2 transition"><i class="ph-bold ph-map-pin"></i>Log visit</button>
-                <button onclick="openSystem('${system.id}')" class="h-11 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm font-medium text-slate-100 flex items-center justify-center gap-2 transition"><i class="ph-bold ph-note-pencil"></i>Details</button>
-            </div>
-        </div>`;
-}
-
-function renderHomeRecent(systems) {
-  document.getElementById('homeRecent').innerHTML = systems.length
-    ? systems
-        .map(system => {
-          const last = lastVisit(system);
-          const meta = [last ? formatAgo(last.at) : 'Never visited', system.region]
-            .filter(Boolean)
-            .map(escapeHtml)
-            .join(' · ');
-          return `
-        <li class="flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70">
-            <button onclick="openSystem('${system.id}')" class="flex items-center gap-3 min-w-0 flex-1 text-left py-1">
-                ${starDot(system)}
-                <span class="min-w-0"><span class="block text-sm text-white truncate">${escapeHtml(system.name)}</span><span class="block text-xs text-slate-400 truncate">${meta}</span></span>
-            </button>
-            <button onclick="quickLogVisit('${system.id}')" aria-label="I'm at ${escapeHtml(system.name)}" class="shrink-0 h-9 px-3 rounded-lg border border-slate-700 hover:border-emerald-400/60 hover:text-emerald-200 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition"><i class="ph-bold ph-map-pin"></i>I’m here</button>
-        </li>`;
-        })
-        .join('')
-    : '<li class="text-sm text-slate-400">Systems you log land here, so warping back is one tap.</li>';
-}
-
-function renderHomeOutlaw() {
-  const rows = sortedOutlaw();
-  const ready = rows.filter(row => row.status.ready);
-  updateBadges(rows.length ? ready.length : 0);
-  const el = document.getElementById('homeOutlaw');
-  if (!rows.length) {
-    el.innerHTML = `
-            <p class="text-sm text-slate-300">Tag systems with outlaw stations to plan Suspicious Packet runs and see which have restocked.</p>
-            <button onclick="openSystemEditor(null, { tags: ['outlaw'], conflict: 'pirate' })" class="mt-3 h-10 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm text-slate-100 flex items-center gap-2"><i class="ph-bold ph-plus"></i>Add outlaw system</button>`;
-    return;
-  }
-  const next = ready.slice(0, HOME_OUTLAW_LIMIT);
-  const runPackets = Math.min(ready.length, appState.outlaw.runSize) * appState.outlaw.packetsPerVisit;
-  el.innerHTML = `
-        <p class="text-sm text-slate-300"><strong class="${ready.length ? 'text-emerald-300' : 'text-amber-300'}">${ready.length} of ${rows.length} ready</strong>${ready.length ? ` · next run ~${(runPackets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites` : ''}</p>
-        ${
-          next.length
-            ? `<ul class="mt-3 space-y-1">${next
-                .map(
-                  ({ system }) => `
-            <li class="flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70">
-                <button onclick="openSystem('${system.id}')" class="min-w-0 flex-1 text-left py-1"><span class="block text-sm text-white truncate">${escapeHtml(system.name)}</span><span class="block text-xs text-slate-400 truncate">${escapeHtml([system.region, system.galaxy].filter(Boolean).join(' · ') || 'No region logged')}</span></button>
-                <button onclick="logPacketRun('${system.id}')" class="shrink-0 h-9 px-3 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/25 text-xs font-semibold flex items-center gap-1.5"><i class="ph-bold ph-check"></i>Visited</button>
-            </li>`
-                )
-                .join('')}</ul>`
-            : `<p class="mt-2 text-sm text-slate-400">All restocking. ${escapeHtml(rows[0].system.name)} is ready in ${formatDuration(rows[0].status.readyAt - Date.now())}.</p>`
-        }`;
-}
-
-function quickLogVisit(id) {
-  const system = findSystem(id);
-  if (!system) return;
-  system.visits.push({ at: new Date().toISOString() });
-  haptic();
-  saveAppState();
-  showToast(`Logged a visit to ${system.name}.`);
-}
 
 // ---------------------------------------------------------------------------
 // Device integration
 // ---------------------------------------------------------------------------
 // Ready outlaw stations on the home-screen icon and the Outlaw tab.
-function updateBadges(readyCount) {
+export function updateOutlawBadges() {
+  const rows = sortedOutlaw();
+  const readyCount = rows.filter(row => row.status.ready).length;
   const badge = document.getElementById('tabOutlawBadge');
   badge.textContent = readyCount;
   badge.classList.toggle('hidden', !readyCount);
@@ -314,14 +176,10 @@ window.addEventListener('appinstalled', () => {
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState !== 'visible' || !appState.systems) return;
   applyKeepAwake();
-  renderHome();
   renderOutlaw();
   renderSystems();
+  updateOutlawBadges();
 });
-
-setInterval(() => {
-  if (appState.systems) renderHome();
-}, 60000);
 
 document.addEventListener('DOMContentLoaded', () => {
   if ('wakeLock' in navigator) applyKeepAwake();
@@ -331,4 +189,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Called from inline on…="" handlers in the markup and in rendered templates.
-Object.assign(window, { quickLogVisit, shareSystem, toggleKeepAwake, promptInstall });
+Object.assign(window, { shareSystem, toggleKeepAwake, promptInstall });

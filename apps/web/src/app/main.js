@@ -6,7 +6,7 @@ import { validateState, describeErrors } from '@atlas/core/schema';
 import { systemHaystack } from '@atlas/core/systems-model';
 import { WikiSearch } from './wiki-data.js';
 import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.ts';
-import { showToast } from './ui.js';
+import { showToast } from './ui.ts';
 import { showSection, renderGuides, decorateBooks, onSection } from './nav.js';
 import {
   renderSystems,
@@ -18,7 +18,8 @@ import {
   openSystemEditor,
   starDot
 } from './systems.js';
-import { renderHome } from './companion.js';
+import { updateOutlawBadges } from './companion.js';
+import { mountHome } from '../ui/home/mount.tsx';
 import { registerServiceWorker } from './pwa.js';
 
 registerServiceWorker();
@@ -198,28 +199,13 @@ const CHECKLIST_DATA = {
 
 function renderAll() {
   renderAllChecklists();
-  renderFleetCard();
   renderSystems();
   renderOutlaw();
-  renderHome();
+  updateOutlawBadges(); // Home itself is React (src/ui/home) and re-renders on its own
   // Re-rendering the panel replaces the notes textarea; never do that under someone's typing.
   if (panelSystemId && panelMode === 'view' && document.activeElement?.id !== 'systemNotes') renderSystemPanel();
   document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
   document.getElementById('homePhase').textContent = appState.meta.currentPhase || '';
-}
-
-function renderFleetCard() {
-  const { primaryStarship, salvageStarship, multiTools = [] } = appState.fleet;
-  const row = (label, item, color) =>
-    item
-      ? `
-        <div title="${escapeHtml(item.role || item.type)}"><span class="block text-[11px] text-slate-400">${label}</span><span class="block font-mono ${color} leading-snug">${escapeHtml(item.name)}${item.class ? ` <span class="text-slate-400">${escapeHtml(item.class)}</span>` : ''}</span></div>`
-      : '';
-  const toolColors = ['text-purple-300', 'text-cyan-300'];
-  document.getElementById('fleetCardBody').innerHTML =
-    row('Flagship', primaryStarship, 'text-white font-semibold') +
-    row('Scrap Spare', salvageStarship, 'text-amber-300') +
-    multiTools.map((tool, i) => row('Multi-Tool', tool, toolColors[i % toolColors.length])).join('');
 }
 
 // =========================================================================
@@ -623,6 +609,7 @@ onSection('new-system', () => openSystemEditor());
     });
   });
   await loadAppState();
+  mountHome(); // after loading, so Home never flashes the built-in defaults
   renderAll();
   showSection(location.hash.slice(1) || 'home'); // after state loads, so #new-system can open the editor
 })();
