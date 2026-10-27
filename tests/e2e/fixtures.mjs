@@ -51,11 +51,14 @@ export function seedState() {
 export const test = base.extend({
   // Seed once per test; reloads keep whatever the app saved since (sessionStorage marks it done).
   seed: [seedState(), { option: true }],
-  page: async ({ page, seed }, use) => {
+  // Console errors a test provokes on purpose (Chrome logs every failed response, e.g. a relay answering 503).
+  expectedErrors: [[], { option: true }],
+  page: async ({ page, seed, expectedErrors }, use) => {
     const errors = [];
     page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
     page.on('console', message => {
-      if (message.type() === 'error') errors.push(`console: ${message.text()}`);
+      if (message.type() === 'error' && !expectedErrors.some(pattern => pattern.test(message.text())))
+        errors.push(`console: ${message.text()}`);
     });
     await page.addInitScript(
       ([key, value]) => {

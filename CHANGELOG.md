@@ -6,6 +6,24 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.13.0] - 2026-10-27
+### Added
+- If ATLAS's free sync server fills up for the day, the app now says so plainly instead of "couldn't reach the server":
+  - your log is safe on this device and syncs again after midnight UTC (shown in your local time);
+  - a coffee on Ko-fi helps upgrade the server.
+
+  The notice shows at most once a day, and the app stops calling the server until it resets.
+### Security
+- The sync and alert server is protected against abuse that could have stopped it for everyone. Found in a security audit:
+  - per-client rate limits that also cover IPv6 networks, with stricter ones for registering new things;
+  - smaller size caps, enforced even when the request doesn't state its size;
+  - push schedules that only write what changed;
+  - a bounded, fair alert queue;
+  - updates and deletes that check ownership in the database itself.
+### Internal
+- The relay meters its own daily use, turns away new players at 80% of a free limit and answers "full until midnight UTC" at 95%. It reports aggregate usage at `/v1/status`; a daily workflow opens an issue when it's time to upgrade to Workers Paid (`docs/deploy.md`).
+- Browser tests can declare console errors they provoke on purpose.
+
 ## [3.12.0] - 2026-10-27
 ### Added
 - Alerts when the app is asleep: turn on the switch in the Session sheet (or More → This device), and a finished timer notifies you within about a minute even if your phone put the app to sleep. Tapping the notification opens the app.

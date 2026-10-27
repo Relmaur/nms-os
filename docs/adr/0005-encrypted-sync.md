@@ -67,3 +67,18 @@ The log is small (well under 1 MB of JSON) and personal.
 ## Consequences
 - The same Worker can later send Web Push for finished timers, which a static site can't.
 - The AGENTS.md privacy invariant now reads "except the opt-in, encrypted sync copy (ADR-0005)".
+
+## Guardrails on the free plan (3.13.0)
+A security audit found that on Cloudflare's free plan one client with a script could fill the 500 MB database, or spend the day's 100k requests or D1 writes, stopping sync and alerts for everyone. Cloudflare's free plan can't bill; it just stops. So the relay protects the allowance and says plainly when it runs out (`apps/sync/src/capacity.ts`, `docs/deploy.md`):
+- **Rate limits:**
+  - per client, keyed by IPv4 address or IPv6 /64: 60 requests a minute, 3 new vaults or push devices a minute, 4 push schedules a minute;
+  - bodies are read as a stream and capped (sealed copies at 256 KB).
+- **Self-metering and capacity:**
+  - The relay counts its requests and D1's own rows read and written per UTC day.
+  - At 80% of any daily limit it stops taking new vaults and devices (`busy`).
+  - At 95% it answers `503 { capacity: "full" }` with `Retry-After` until midnight UTC, so clients get a clear message before Cloudflare's hard stop.
+  - At 90% of the database it stops taking new vaults.
+  - A D1 failure is a `503` with CORS headers, not an error page.
+- **In the app:** a full relay pauses automatic syncs and push sends on that device until the reset, and survives reloads. A banner (once a day, dismissible) says the log is safe, when sync resumes, and that a Ko-fi coffee helps upgrade the server.
+- **Ownership in the SQL:** updates and deletes also match the token hash.
+- **Knowing when to upgrade:** `GET /v1/status` reports aggregate usage (no ids or IPs). A daily workflow opens an issue once any day reaches 60% of a free limit. Upgrading means switching to Workers Paid and setting `PLAN = "paid"`.

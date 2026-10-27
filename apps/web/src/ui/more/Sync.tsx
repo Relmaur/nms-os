@@ -17,13 +17,32 @@ import {
   type SyncStatus
 } from '../../app/sync.ts';
 import { useClock } from '../session/useClock.ts';
+import { untilText, useRelayStatus } from '../../app/relay-status.ts';
+import { KOFI_URL } from '../../app/support.ts';
 
-const PROBLEM: Record<NonNullable<SyncStatus['problem']>, string> = {
-  offline: 'Offline. Changes stay on this device and sync when you’re back online.',
-  server: 'Couldn’t reach the sync server. Your log is safe on this device; it tries again soon.',
-  gone: 'The cloud copy was deleted from another device. Start again to upload this log with a new code.',
-  damaged: 'The cloud copy couldn’t be opened with this code. Nothing here was changed.',
-  storage: 'This device’s storage is full, so sync is paused. Free some space, or export a backup.'
+// When the free server is the limit: one quiet invitation to help upgrade it.
+export function SupportLine() {
+  return (
+    <p className="text-xs text-slate-400">
+      ATLAS runs on donations.{' '}
+      <a href={KOFI_URL} target="_blank" rel="noopener" className="text-cyan-300 underline underline-offset-2">
+        A coffee on Ko-fi
+      </a>{' '}
+      helps upgrade the server.
+    </p>
+  );
+}
+
+const PROBLEM: Record<NonNullable<SyncStatus['problem']>, (until: string) => string> = {
+  offline: () => 'Offline. Changes stay on this device and sync when you’re back online.',
+  server: () => 'Couldn’t reach the sync server. Your log is safe on this device; it tries again soon.',
+  gone: () => 'The cloud copy was deleted from another device. Start again to upload this log with a new code.',
+  damaged: () => 'The cloud copy couldn’t be opened with this code. Nothing here was changed.',
+  storage: () => 'This device’s storage is full, so sync is paused. Free some space, or export a backup.',
+  capacity: until =>
+    `ATLAS’s free sync server is full for today. Your log is safe on this device and syncs again after ${until}.`,
+  busy: until =>
+    `The sync server isn’t taking new players today, so sync starts after ${until}. Your log is safe on this device.`
 };
 
 export function Sync() {
@@ -148,11 +167,12 @@ function On({ status }: { status: SyncStatus }) {
   const now = useClock(false);
   const [showing, setShowing] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  const relay = useRelayStatus();
   const healthy = !status.problem;
   const text = status.busy
     ? 'Syncing…'
     : status.problem
-      ? PROBLEM[status.problem]
+      ? PROBLEM[status.problem](untilText(relay.until))
       : status.at
         ? `Synced ${formatAgo(new Date(status.at).toISOString(), now)}.`
         : 'On. The first sync runs when you’re online.';
@@ -165,6 +185,7 @@ function On({ status }: { status: SyncStatus }) {
       >
         {text}
       </Line>
+      {(status.problem === 'capacity' || status.problem === 'busy') && <SupportLine />}
       {status.problem === 'gone' ? (
         <div className="flex flex-wrap gap-2">
           <button

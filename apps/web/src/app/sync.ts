@@ -15,6 +15,7 @@ import {
   type SyncKeys
 } from '@atlas/core/sync-crypto';
 import { isPlainObject } from '@atlas/core/util';
+import { readCapacity, relayPaused, relayStatus } from './relay-status.ts';
 import {
   adoptNewerStoredCopy,
   adoptState,
@@ -40,7 +41,8 @@ interface Settings {
   fresh?: boolean; // a code made here just now: there's no cloud copy to pull yet
 }
 
-export type SyncProblem = 'offline' | 'server' | 'gone' | 'damaged' | 'storage';
+// 'capacity': the free relay is full for today; 'busy': it isn't taking new players today (relay-status.ts).
+export type SyncProblem = 'offline' | 'server' | 'gone' | 'damaged' | 'storage' | 'capacity' | 'busy';
 export interface SyncStatus {
   enabled: boolean;
   busy: boolean;
@@ -143,6 +145,8 @@ async function call(
     throw new SyncError(online() ? 'server' : 'offline');
   }
   if (response.status === 401) throw new SyncError('gone');
+  const capacity = await readCapacity(response);
+  if (capacity) throw new SyncError(capacity === 'full' ? 'capacity' : 'busy');
   return response;
 }
 
@@ -388,20 +392,24 @@ export function startSync(): void {
   window.addEventListener('storage', event => {
     if (event.key === SETTINGS_KEY) refresh();
   });
+  // Automatic syncs wait while the relay is full for the day; "Sync now" still tries.
+  const autoSync = () => {
+    if (!status.enabled) return;
+    if (relayPaused()) setStatus({ problem: relayStatus().capacity === 'full' ? 'capacity' : 'busy' });
+    else void syncNow();
+  };
   let timer: ReturnType<typeof setTimeout> | undefined;
   subscribe(() => {
     if (applying || !status.enabled) return;
     clearTimeout(timer);
-    timer = setTimeout(() => void syncNow(), SAVE_DELAY_MS);
+    timer = setTimeout(autoSync, SAVE_DELAY_MS);
   });
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && status.enabled) void syncNow();
+    if (document.visibilityState === 'visible') autoSync();
   });
-  window.addEventListener('online', () => {
-    if (status.enabled) void syncNow();
-  });
+  window.addEventListener('online', autoSync);
   setInterval(() => {
-    if (document.visibilityState === 'visible' && status.enabled) void syncNow();
+    if (document.visibilityState === 'visible') autoSync();
   }, POLL_MS);
-  if (status.enabled) void syncNow();
+  autoSync();
 }

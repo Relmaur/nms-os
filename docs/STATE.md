@@ -45,7 +45,7 @@ None.
 4. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
 
 ## Known residuals
-- **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The fleet's multi-tool list has no ids, so it's taken whole from the newer copy. The relay refuses copies over 1 MB (after gzip and encryption).
+- **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The fleet's multi-tool list has no ids, so it's taken whole from the newer copy. The relay refuses copies over 256 KB (after gzip and encryption); today's log is about 1 KB.
 - **Sync on iPhone:** an installed iPhone app doesn't share storage with Safari, so a scanned QR opens the wrong one. The code field covers it, and the UI says so.
 - **Timer alerts while asleep need the switch:** without "Alerts when the app is asleep", a finished timer alerts only while the browser runs the app. With it on, pushes arrive within about a minute; on iPhone and iPad only for the Home Screen app (iOS 16.4+).
 - **Crop harvest times are player input:** the wiki states them only in article prose ("approximately 60 minutes"), not as data; a later wiki-sync parser could extract them.

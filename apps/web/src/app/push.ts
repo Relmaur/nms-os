@@ -8,6 +8,7 @@ import { fromBase64Url, newSyncCode, toBase64Url } from '@atlas/core/sync-crypto
 import { isPlainObject } from '@atlas/core/util';
 import { appState, subscribe } from './store.ts';
 import { SYNC_URL } from './sync.ts';
+import { readCapacity, relayPaused, relayStatus } from './relay-status.ts';
 
 const VAPID_KEY: string = import.meta.env.VITE_VAPID_PUBLIC_KEY ?? '';
 const SETTINGS_KEY = 'nms_master_os_push'; // { deviceId, token }: this device only, never exported
@@ -20,7 +21,8 @@ const RETRY_MS = [30_000, 120_000, 300_000];
 
 // 'install': an iPhone or iPad browser tab; Web Push there needs the app added to the Home Screen.
 export type PushSupport = 'yes' | 'install' | 'no';
-export type PushProblem = 'denied' | 'offline' | 'server';
+// 'capacity' / 'busy': the free relay is full for today, or isn't taking new devices today (relay-status.ts).
+export type PushProblem = 'denied' | 'offline' | 'server' | 'capacity' | 'busy';
 export interface PushStatus {
   support: PushSupport;
   enabled: boolean;
@@ -120,6 +122,11 @@ async function call(method: 'PUT' | 'DELETE', settings: Settings, body?: unknown
       ...(body !== undefined && { body: JSON.stringify(body) }),
       signal: AbortSignal.timeout(TIMEOUT_MS)
     });
+    const capacity = await readCapacity(response);
+    if (capacity) {
+      setStatus({ problem: capacity === 'full' ? 'capacity' : 'busy' });
+      return false;
+    }
     if (!response.ok) throw new Error(`HTTP ${String(response.status)}`);
     setStatus({ problem: null });
     return true;
@@ -169,6 +176,12 @@ export function sendSchedule(): Promise<void> {
   sending = (async () => {
     const settings = readSettings();
     if (!settings || status.support !== 'yes') return;
+    if (relayPaused()) {
+      // The relay is full for today (or not taking new devices): send once it resets, not before.
+      setStatus({ problem: relayStatus().capacity === 'full' ? 'capacity' : 'busy' });
+      retry = setTimeout(() => void sendSchedule(), Math.max(1000, (relayStatus().until ?? Date.now()) - Date.now()));
+      return;
+    }
     let ok = true;
     try {
       const subscription = await currentSubscription(Notification.permission === 'granted');
@@ -190,8 +203,12 @@ export function sendSchedule(): Promise<void> {
       ok = false;
     }
     failures = ok ? 0 : failures + 1;
+    const until = relayPaused() ? relayStatus().until : null;
     if (!ok && status.enabled)
-      retry = setTimeout(() => void sendSchedule(), RETRY_MS[Math.min(failures, RETRY_MS.length) - 1]);
+      retry = setTimeout(
+        () => void sendSchedule(),
+        until !== null ? Math.max(1000, until - Date.now()) : RETRY_MS[Math.min(failures, RETRY_MS.length) - 1]
+      );
   })().finally(() => {
     sending = null;
     if (again) {

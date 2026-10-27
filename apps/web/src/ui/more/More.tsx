@@ -10,11 +10,9 @@ import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device
 import { useWikiCount } from '../shell/wiki-index.ts';
 import { useSyncStatus } from '../../app/sync.ts';
 import { Sync } from './Sync.tsx';
+import { KOFI_URL } from '../../app/support.ts';
 import { usePushStatus } from '../../app/push.ts';
 import { AlertsSwitch } from '../session/AlertsSwitch.tsx';
-
-// The owner's Ko-fi page; the Support row stays hidden while this is empty.
-const KOFI_URL: string = 'https://ko-fi.com/mlizardo';
 
 export function More() {
   const state = useAppState();

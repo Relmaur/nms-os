@@ -1,0 +1,65 @@
+# Daily check of the sync relay's use of Cloudflare's free plan (apps/sync, docs/deploy.md "Upgrading the relay").
+# Reads the relay's public /v1/status (aggregate numbers only), writes them to the run summary, and when any day of
+# the last week reached 60% of a free daily limit (or the relay was busy or full), opens or updates one issue so the
+# owner hears it's time to upgrade. Needs no Cloudflare token.
+name: Relay usage
+
+on:
+  schedule:
+    - cron: '40 0 * * *' # 00:40 UTC, just after the free plan's daily limits reset
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RELAY: https://atlas-sync.atlas-companion.workers.dev
+      THRESHOLD: 60
+      TITLE: 'Sync relay: time to upgrade?'
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Read the relay's usage
+        run: |
+          curl -fsS --max-time 20 "$RELAY/v1/status" > status.json
+          jq . status.json
+          {
+            echo "### Sync relay usage ($(jq -r .plan status.json) plan, capacity today: $(jq -r .capacity status.json))"
+            echo
+            echo "Database: $(jq -r .databaseMB status.json) MB ($(jq -r .databasePercent status.json)% of the free 500 MB)."
+            echo "Vaults: $(jq -r '.vaults // "not counted yet"' status.json). Push devices: $(jq -r '.pushDevices // "not counted yet"' status.json)."
+            echo
+            echo "| Day (UTC) | Requests | Rows read | Rows written | Largest share of a free daily limit |"
+            echo "|---|---:|---:|---:|---:|"
+            jq -r '.days[] | "| \(.day) | \(.requests) | \(.rowsRead) | \(.rowsWritten) | \(.percent)% |"' status.json
+          } | tee -a "$GITHUB_STEP_SUMMARY" > report.md
+
+      - name: Open or update the upgrade issue when it's time
+        run: |
+          peak=$(jq '[.days[].percent, .databasePercent] | max // 0' status.json)
+          plan=$(jq -r .plan status.json)
+          capacity=$(jq -r .capacity status.json)
+          if [ "$plan" != "free" ]; then echo "Already on the paid plan."; exit 0; fi
+          if ! jq -e --argjson t "$THRESHOLD" '([.days[].percent, .databasePercent] | max // 0) >= $t' status.json > /dev/null \
+            && [ "$capacity" = ok ]; then
+            echo "Peak ${peak}% of a free limit: no need to upgrade yet."; exit 0
+          fi
+          {
+            echo "The relay used **${peak}%** of a free-plan daily limit in the last week (capacity today: **${capacity}**)."
+            echo "At 80% it stops taking new players for the day; at 95% everyone sees \"full for today\" until midnight UTC."
+            echo
+            cat report.md
+            echo
+            echo "To upgrade (Workers Paid, \$5/month): see docs/deploy.md, \"Upgrading the relay\"."
+          } > body.md
+          existing=$(gh issue list --state open --search "in:title \"$TITLE\"" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "$TITLE" --body-file body.md
+          fi

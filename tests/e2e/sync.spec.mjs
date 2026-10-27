@@ -125,3 +125,42 @@ test('axe: the Sync group with sync on and the code shown', async ({ page }) => 
   const { violations } = await new AxeBuilder({ page }).include('#syncPanel').analyze();
   expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
 });
+
+test.describe('a full relay', () => {
+  test.use({ expectedErrors: [/status of 503/] });
+  test('the app explains, invites a coffee, and stops calling until it resets', async ({ page }) => {
+    let calls = 0;
+    await page.route(RELAY, route => {
+      calls += 1;
+      return route.fulfill({
+        status: 503,
+        contentType: 'application/json',
+        body: JSON.stringify({ capacity: 'full' }),
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Expose-Headers': 'Retry-After',
+          'Retry-After': '3600'
+        }
+      });
+    });
+    await page.goto('./#more');
+    await page.getByRole('button', { name: 'Turn on sync' }).click();
+    const banner = page.locator('#capacityBanner');
+    await expect(banner).toContainText('free sync server is full for today');
+    await expect(banner.getByRole('link', { name: /Support on Ko-fi/ })).toHaveAttribute(
+      'href',
+      'https://ko-fi.com/mlizardo'
+    );
+    await expect(syncStatus(page)).toContainText('full for today');
+    const { violations } = await new AxeBuilder({ page }).include('#capacityBanner').include('#syncPanel').analyze();
+    expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
+
+    // Coming back to the app, or reloading, doesn't call the relay again before it resets.
+    const before = calls;
+    await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+    await page.reload();
+    await expect(banner).toBeVisible();
+    await page.waitForTimeout(1500);
+    expect(calls).toBe(before);
+  });
+});

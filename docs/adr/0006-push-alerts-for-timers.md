@@ -51,3 +51,15 @@ Timers (3.9.0) alert only while the browser runs the app. A phone that suspends 
 - **Accepted limits:**
   - On iPhone and iPad, Web Push needs the app on the Home Screen (iOS 16.4+); a Safari tab is told so.
   - With sync on, every device with the switch on alerts for the timers it holds, which is usually what a player wants.
+
+## Changes in 3.13.0 (security audit)
+- **Writes:** a schedule is diffed against what the relay holds, so an unchanged one writes nothing. At most 20 timers per device.
+- **No backdating:** timers already over (beyond a minute's grace) are never scheduled, since the open app announces them itself. A changed timer queues no earlier than now, so no one can jump ahead.
+- **Each cron run:**
+  - drops rows over an hour late;
+  - reads at most 100 due rows and lets devices take turns, at most 5 each;
+  - sends 12 pushes on the free plan (10 ms of CPU, about 0.5 ms a push), or 40 on paid;
+  - skips sending while the relay is full;
+  - checks the VAPID key first, leaving the queue alone if it's broken.
+- **Registering a new push device** is subject to the relay's capacity and the stricter rate limit for new things.
+- **Residual risk:** someone registering many devices whose timers all end in the same minute can delay other alerts by a few minutes. Rate limits cap how fast they can do it.

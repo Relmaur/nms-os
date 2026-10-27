@@ -18,14 +18,14 @@ const store: VaultStore = {
     vaults.set(id, { tokenHash, version: 1, blob });
     return Promise.resolve(true);
   },
-  update(id, version, blob) {
+  update(id, tokenHash, version, blob) {
     const vault = vaults.get(id);
-    if (vault?.version !== version) return Promise.resolve(false);
+    if (vault?.version !== version || vault.tokenHash !== tokenHash) return Promise.resolve(false);
     vaults.set(id, { ...vault, version: version + 1, blob });
     return Promise.resolve(true);
   },
-  remove(id) {
-    vaults.delete(id);
+  remove(id, tokenHash) {
+    if (vaults.get(id)?.tokenHash === tokenHash) vaults.delete(id);
     return Promise.resolve();
   },
   touch: () => Promise.resolve()

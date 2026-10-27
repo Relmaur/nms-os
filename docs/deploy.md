@@ -12,6 +12,15 @@
   5. Push alerts (ADR-0006): generate a P-256 VAPID key pair once. Store the private JWK with `pnpm exec wrangler secret put VAPID_PRIVATE_JWK` (never in the repo); put the public key (raw, base64url) in `apps/web/.env` as `VITE_VAPID_PUBLIC_KEY`. `VAPID_SUBJECT` and the minute cron are in `wrangler.toml`. After a new migration, run `wrangler d1 migrations apply atlas-sync --remote` before deploying.
 
   Put that address in `apps/web/.env` as `VITE_SYNC_URL`. The app shows the Sync group only when it's set; browser tests build with `--mode e2e` (`apps/web/.env.e2e`) and answer a test address themselves. Redeploy with `pnpm exec wrangler deploy` after changing `apps/sync`. Local runs: `wrangler d1 migrations apply atlas-sync --local`, then `pnpm --filter @atlas/sync dev` (port 8787; `http://localhost:4173` and `:5173` are allowed origins). The relay is cross-origin, so the service worker never caches it.
+- Relay guardrails and upgrading (`apps/sync/src/capacity.ts`):
+  - The relay meters its own use of the plan's daily limits (requests, D1 rows read and written) in its `usage` table, with `PLAN = "free"` in `wrangler.toml`.
+  - At 80% of any free daily limit it stops taking new vaults and push devices for the day. At 95% it answers everything but deletes with `503 { capacity: "full" }` and `Retry-After` (midnight UTC). The app then explains, links to Ko-fi, and stops calling until then. At 90% of the 500 MB database it stops taking new vaults.
+  - Rate limits per client (IPv4, or IPv6 /64): 60 requests a minute; 3 new vaults or devices a minute; 4 push schedules a minute.
+  - `GET /v1/status` gives the last 7 days' usage as aggregate numbers (no ids, no IPs). `.github/workflows/relay-usage.yml` reads it daily and opens the issue "Sync relay: time to upgrade?" once any day reaches 60% of a free limit.
+  - **Upgrading the relay:**
+    1. In Cloudflare, Workers & Pages → Plans → Workers Paid ($5/month).
+    2. Set `PLAN = "paid"` in `apps/sync/wrangler.toml` and run `pnpm exec wrangler deploy`. Daily caps no longer apply; only the 10 GB database size does, and a run sends up to 40 pushes.
+    3. In Cloudflare → Notifications, add a usage-based billing alert (for example at $10), since paid usage beyond the monthly allowance is billed.
 - Site URL: `https://relmaur.github.io/nms-os/`. Every path in the app is relative so it works under that subpath.
 - Service worker (`apps/web/src/sw/sw.ts`, Workbox via vite-plugin-pwa, served as `sw.js` so installed apps update in place):
   - **Precached** under content-hash revisions: the pages, bundled JS/CSS, icons, manifest, Latin and Greek font files, and `wiki/*.json` + `offline-bundle.js`. A deploy that changes any of them installs a new worker, which takes over at once (`skipWaiting` + `clientsClaim`); the next open shows the new version.

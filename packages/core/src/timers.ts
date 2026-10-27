@@ -111,7 +111,7 @@ export function timerNotice(timer: Pick<Timer, 'kind' | 'label'>): { title: stri
 
 // The timers a sleeping device should still be pushed about (ADR-0006): not yet announced, and not over an hour late
 // (the relay gives up then), soonest first and at most `max`. Only ids and end times leave the device.
-export const MAX_PUSHES = 50;
+export const MAX_PUSHES = 20; // what the relay keeps per device
 // Ids the relay accepts; an older or hand-edited log may hold others, which are left to the app's own alert.
 const PUSH_ID = /^[A-Za-z0-9_-]{1,80}$/;
 export function pendingPushes(timers: Timer[], now: number, max = MAX_PUSHES): { id: string; at: number }[] {
