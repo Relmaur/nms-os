@@ -29,8 +29,8 @@ jobs:
         with:
           node-version: 22
 
-      # Seeds always succeed; if the Fandom API is unreachable the harvest is skipped per category
-      # and the site still ships with the starter articles plus any wiki/custom/ articles.
+      # The committed articles are the baseline: this only refreshes pages whose content changed upstream.
+      # If the Fandom API is unreachable, the harvest is skipped and the committed copies ship as-is.
       - name: Build the wiki (seed + harvest + index)
         run: node scripts/sync-wiki.mjs
 

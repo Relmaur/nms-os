@@ -1,0 +1,68 @@
+---
+title: "Peeled Claws"
+category: "cooking"
+pageId: 577014
+summary: "Peeled Claws is a consumable and one of the Edible Products."
+source: "https://nomanssky.fandom.com/wiki/Peeled_Claws"
+license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+updated: "2026-10-27"
+---
+
+# Peeled Claws
+
+## Quick Facts
+
+- **Category:** Consumable
+- **Type:** Edible Product
+- **Total Value:** 33,100
+- **Updated:** Aquarius
+
+**Peeled Claws** is a consumable.
+
+## Summary
+
+**Peeled Claws** is a consumable and one of the Edible Products.
+
+## Game Description
+
+A small morsel of seafood, created in the Nutrient Processor. Food such as this can be highly valuable.
+
+Can be consumed as it stands or subjected to further processing.
+
+## Use
+
+Exosuit nutrient system will restore **25% hazard protection**.
+
+- When consumed through a Nutrient Ingestor, **Peeled Claws** provides **+44% Breathing Efficiency** for 6 minutes.
+
+## Fishing Bait
+
+When applied as bait, Peeled Claws gives the following bonus towards your next catch:
+
+- Catch Rarity Improvement: 6%
+- Catch Size Improvement: 23%
+
+## Source
+
+Peeled Claws can be cooked using a Nutrient Processor with the following ingredients:
+
+- Mud Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Starshell Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Giant Hairy Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Silicate Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Screaming Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Atlantidian Crab x1 → Peeled Claws x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+
+## Recipes
+
+**Peeled Claws** is used as an ingredient for cooking the following products using a Nutrient Processor:
+
+- Fish and Rice -- Peeled Claws x1 + Kelp Rice x1 → Fish and Rice x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Marine Pie -- Peeled Claws x1 + Pie Case x1 → Marine Pie x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Seafood Stew -- Peeled Claws x1 + Any other cooked seafood x1 → Seafood Stew x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Starched Fish -- Peeled Claws x1 + Pulpy Roots x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+- Starched Fish -- Peeled Claws x1 + Sweetroot x1 → Starched Fish x1 (*"Seafood Assembly"*, 2.5 sec./unit output)
+
+## Release History
+
+- Aquarius - Added as a consumable.

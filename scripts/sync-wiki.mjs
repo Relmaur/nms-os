@@ -267,11 +267,19 @@ async function harvest(limitPerCategory) {
 
   const today = new Date().toISOString().slice(0, 10);
   let done = 0;
+  let unchanged = 0;
   let failed = 0;
   const worker = async () => {
     for (let job = jobs.shift(); job; job = jobs.shift()) {
       try {
         const markdown = htmlToMarkdown(await fetchArticleHtml(job.pageid), job.title);
+        const file = path.join(WIKI_DIR, job.folder, `${job.slug}.md`);
+        // Articles are committed, so only rewrite a file (and bump its date) when the content changed.
+        const existing = await fs.readFile(file, 'utf8').catch(() => null);
+        if (existing !== null && parseFrontmatter(existing).body.replace(/^\n+/, '') === markdown) {
+          unchanged++;
+          continue;
+        }
         const frontmatter = toFrontmatter({
           title: job.title,
           category: job.folder,
@@ -281,24 +289,24 @@ async function harvest(limitPerCategory) {
           license: 'CC BY-SA 3.0 (No Man\'s Sky Wiki contributors)',
           updated: today
         });
-        const dir = path.join(WIKI_DIR, job.folder);
-        await fs.mkdir(dir, { recursive: true });
-        await fs.writeFile(path.join(dir, `${job.slug}.md`), frontmatter + markdown, 'utf8');
+        await fs.mkdir(path.dirname(file), { recursive: true });
+        await fs.writeFile(file, frontmatter + markdown, 'utf8');
         if (++done % 50 === 0) console.log(`   …${done} articles written`);
       } catch (err) {
         failed++;
         console.warn(`⚠️  ${job.title}: ${err.message}`);
+      } finally {
+        await sleep(REQUEST_DELAY_MS); // also after `continue`, to stay polite to the wiki API
       }
-      await sleep(REQUEST_DELAY_MS);
     }
   };
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
-  console.log(`🌐 Harvested ${done} articles${failed ? ` (${failed} failed)` : ''}.`);
+  console.log(`🌐 Harvest: ${done} new or updated, ${unchanged} unchanged${failed ? `, ${failed} failed (kept existing copies)` : ''}.`);
 }
 
 // Rebuilds wiki/index.json and wiki/offline-bundle.js from every .md file on disk,
 // so hand-written articles dropped into wiki/<folder>/ are picked up too.
-// Generated articles live in wiki/<folder>/ (git-ignored); hand-written ones in wiki/custom/<folder>/ (committed).
+// Seeded and harvested articles live in wiki/<folder>/, hand-written ones in wiki/custom/<folder>/ (all committed).
 async function buildIndexes() {
   const articles = [];
   for (const base of ['', 'custom/']) {
