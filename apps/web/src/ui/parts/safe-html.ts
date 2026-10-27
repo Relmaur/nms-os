@@ -2,8 +2,16 @@
 // device paired with it (ADR-0005), so the allowlist is strict: text formatting, lists, tables and links only; links
 // are http(s) or relative; no images (they would fetch from anywhere), no style, id or name (no restyling the page
 // or clobbering globals). [[Name]] links are resolved by the caller before this runs.
-import { marked } from 'marked';
+import { Marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { escapeHtml } from '@atlas/core/util';
+
+// Raw HTML in the Markdown becomes text, except a bare <br> or an attribute-free code, pre, blockquote, sub, sup or kbd
+// tag (the wiki mirror keeps the first four; notes may use the others). So the sanitiser below only ever parses markup this renderer made; it stays the
+// backstop. (Parsing hostile attributes at all makes the browser report Content Security Policy violations.)
+const KEPT = /^<\/?(?:br|code|pre|blockquote|sub|sup|kbd)\s*\/?>$/i;
+const keepOrEscape = (html: string) => html.replace(/<[^<>]*>?/g, tag => (KEPT.test(tag) ? tag : escapeHtml(tag)));
+const marked = new Marked({ renderer: { html: keepOrEscape } });
 
 const ALLOWED_TAGS = [
   ...['p', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'kbd', 'sub', 'sup'],

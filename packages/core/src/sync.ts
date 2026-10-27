@@ -20,10 +20,16 @@ export function deepEqual(a: unknown, b: unknown): boolean {
 
 // `base` is the last synced copy (undefined on a first pairing: then nothing counts as deleted and both logs are
 // combined). A value both sides changed differently goes to the copy saved last.
-export function mergeStates(base: unknown, local: unknown, remote: unknown): Record<string, unknown> {
-  const localWins = stateTimestamp(local) >= stateTimestamp(remote);
+// Save times are clamped to `now`, in the comparison and in the result: a copy stamped in the future (a wrong clock,
+// or a crafted copy) would otherwise win every clash from then on.
+export function mergeStates(base: unknown, local: unknown, remote: unknown, now = Date.now()): Record<string, unknown> {
+  const localWins = Math.min(stateTimestamp(local), now) >= Math.min(stateTimestamp(remote), now);
   const merged = merge3(upgradeBase(base), local, remote, localWins);
-  return isPlainObject(merged) ? merged : {};
+  if (!isPlainObject(merged)) return {};
+  // The result carries no future save time either, so after one merge clashes are judged fairly again.
+  if (stateTimestamp(merged) > now && isPlainObject(merged.meta))
+    merged.meta = { ...merged.meta, lastUpdated: new Date(now).toISOString() };
+  return merged;
 }
 
 // A base saved by an older build lacks keys that both sides now derive on load. Giving it the same migration keeps a
@@ -56,12 +62,14 @@ function mergeObjects(
 ): Record<string, unknown> {
   const baseObject = isPlainObject(base) ? base : {};
   const merged: Record<string, unknown> = {};
+  // Own keys only: `key in` and a plain read would find "constructor" or "toString" on every object's prototype.
+  const own = (object: Record<string, unknown>, key: string) => (Object.hasOwn(object, key) ? object[key] : undefined);
   for (const key of new Set([...Object.keys(local), ...Object.keys(remote)])) {
     if (key === '__proto__') continue; // JSON.parse makes it an own key; assigning it would swap the prototype
     const value =
-      key in local && key in remote
-        ? merge3(baseObject[key], local[key], remote[key], localWins)
-        : mergeOneSided(baseObject[key], key in local ? local[key] : remote[key]);
+      Object.hasOwn(local, key) && Object.hasOwn(remote, key)
+        ? merge3(own(baseObject, key), local[key], remote[key], localWins)
+        : mergeOneSided(own(baseObject, key), Object.hasOwn(local, key) ? local[key] : remote[key]);
     if (value !== undefined) merged[key] = value;
   }
   return merged;
@@ -119,4 +127,57 @@ function mergeRecords(
     if (value !== undefined) merged.push(value);
   }
   return merged;
+}
+
+// What a merge would take away from this device: the guard against a copy that empties the log (a damaged or crafted
+// copy) asks before adopting one that removes more than 10 records, or more than 20% of them (at least 3: deleting one
+// of two notes on the other device shouldn't need a confirmation). A removed system counts once; its planets and
+// visits count only when the system itself stays.
+export interface Removal {
+  systems: number;
+  planets: number;
+  visits: number;
+  gear: number;
+  notes: number;
+  total: number;
+  before: number;
+}
+
+function records(state: unknown): Map<string, string> {
+  const found = new Map<string, string>(); // record key → kind
+  if (!isPlainObject(state)) return found;
+  const add = (list: unknown, kind: string, key: string, prefix = '') => {
+    if (!Array.isArray(list)) return;
+    for (const item of list) {
+      if (!isPlainObject(item)) continue;
+      const id = item[key];
+      if (typeof id === 'string' || typeof id === 'number') found.set(`${prefix}${kind}:${String(id)}`, kind);
+      if (kind === 'systems') {
+        add(item.planets, 'planets', 'id', `systems:${String(id)}/`);
+        add(item.visits, 'visits', 'at', `systems:${String(id)}/`);
+      }
+    }
+  };
+  add(state.systems, 'systems', 'id');
+  add(state.gear, 'gear', 'id');
+  add(state.notes, 'notes', 'id');
+  return found;
+}
+
+export function removalReport(before: unknown, after: unknown): Removal {
+  const old = records(before);
+  const kept = records(after);
+  const report: Removal = { systems: 0, planets: 0, visits: 0, gear: 0, notes: 0, total: 0, before: old.size };
+  for (const [key, kind] of old) {
+    if (kept.has(key)) continue;
+    const parent = key.includes('/') ? key.slice(0, key.indexOf('/')) : null;
+    if (parent && !kept.has(parent)) continue; // inside a removed system, which already counts
+    report[kind as 'systems' | 'planets' | 'visits' | 'gear' | 'notes'] += 1;
+    report.total += 1;
+  }
+  return report;
+}
+
+export function needsConfirmation(removal: Removal): boolean {
+  return removal.total > 10 || (removal.total >= 3 && removal.total > removal.before * 0.2);
 }

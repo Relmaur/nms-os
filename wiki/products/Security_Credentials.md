@@ -34,15 +34,15 @@ They can be found by reading the logs scattered around the rooms of the freighte
 
 Note: The game's description will be customised based on the name of the crew member and that of the freighter. An example of possible text:
 
-<Crew name>'s security pass from the <ship name>. It is warped and pockmarked, its surface melted by some unknown substance.
+&lt;Crew name>'s security pass from the &lt;ship name>. It is warped and pockmarked, its surface melted by some unknown substance.
 
-Records indicate it was last used <number> days ago...
+Records indicate it was last used &lt;number> days ago...
 
 or
 
-<Crew name>'s security pass from the <ship name>. A strange mould festers where their face should be, slowly bubbling as it consumes the holographic material.
+&lt;Crew name>'s security pass from the &lt;ship name>. A strange mould festers where their face should be, slowly bubbling as it consumes the holographic material.
 
-Records indicate it was last used <number> days ago...
+Records indicate it was last used &lt;number> days ago...
 
 ## Source
 

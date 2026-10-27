@@ -31,7 +31,7 @@ The Neutron Cannon is a charged energy weapon that does not use projectile ammun
 
 A high-energy weapon attachment for the [[Multi-Tool]]. The Neutron Cannon energises atmospheric particles before propelling them towards hostile targets, delivering significant area damage.
 
-Access fire mode by pressing <weapon select key>. Charge the weapon with <fire key>, then release to unleash a volley of ionised particles.
+Access fire mode by pressing &lt;weapon select key>. Charge the weapon with &lt;fire key>, then release to unleash a volley of ionised particles.
 
 While the cannon can deliver instantaneous single shots, longer charges will result in significant increases to the speed and volume of released particles.
 

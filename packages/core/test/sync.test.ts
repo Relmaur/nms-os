@@ -1,7 +1,16 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { deepEqual, mergeStates } from '../src/sync.ts';
-import { deriveSyncKeys, hashToken, newSyncCode, openState, parseSyncCode, sealState } from '../src/sync-crypto.ts';
+import { deepEqual, mergeStates, needsConfirmation, removalReport } from '../src/sync.ts';
+import { withinDepth } from '../src/util.ts';
+import {
+  MAX_OPENED_BYTES,
+  deriveSyncKeys,
+  hashToken,
+  newSyncCode,
+  openState,
+  parseSyncCode,
+  sealState
+} from '../src/sync-crypto.ts';
 import { buildState } from '../src/state.ts';
 
 const at = (hour: number) => `2026-10-27T${String(hour).padStart(2, '0')}:00:00.000Z`;
@@ -134,16 +143,75 @@ test('a sync code derives the same keys every time, and a link or spaced code pa
   assert.equal(parseSyncCode('not a code'), null);
 });
 
-test('a sealed copy opens with its code only', async () => {
+test('a sealed copy opens with its code only, and only as the version it was sealed for', async () => {
   const keys = await deriveSyncKeys(newSyncCode());
-  const json = JSON.stringify(buildState());
-  const sealed = await sealState(keys, json);
-  assert.equal(sealed[0], 1);
+  const json = JSON.stringify(buildState({ systems: [{ id: 'a', name: 'Dissonant' }] }));
+  const sealed = await sealState(keys, json, 7);
+  assert.equal(sealed[0], 2);
   assert.ok(!new TextDecoder().decode(sealed).includes('Dissonant')); // not readable on the server
-  assert.equal(await openState(keys, sealed), json);
+  assert.deepEqual(await openState(keys, sealed), { json, version: 7 });
   const other = await deriveSyncKeys(newSyncCode());
   await assert.rejects(openState(other, sealed));
   const tampered = sealed.slice();
-  tampered[20] = (tampered[20] ?? 0) ^ 1;
+  tampered[30] = (tampered[30] ?? 0) ^ 1;
   await assert.rejects(openState(keys, tampered));
+  const relabelled = sealed.slice(); // the relay presenting an old copy as version 9
+  new DataView(relabelled.buffer).setUint32(1, 9);
+  await assert.rejects(openState(keys, relabelled));
+});
+
+test('a format-1 copy (3.10–3.14) still opens; an oversized one (a gzip bomb) is refused', async () => {
+  const keys = await deriveSyncKeys(newSyncCode());
+  const seal1 = async (text: string) => {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const gz = new Uint8Array(
+      await new Response(new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer()
+    );
+    const ad = new TextEncoder().encode(`atlas-sync/${keys.vaultId}`);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv, additionalData: ad }, keys.key, gz));
+    return new Uint8Array([1, ...iv, ...ct]);
+  };
+  assert.deepEqual(await openState(keys, await seal1('{"meta":{}}')), { json: '{"meta":{}}', version: null });
+  await assert.rejects(openState(keys, await sealState(keys, ' '.repeat(MAX_OPENED_BYTES + 1), 1)), /too large/);
+});
+
+test('merging reads own keys only, and a copy stamped in the future loses its stamp', () => {
+  const base = { meta: { lastUpdated: '2026-10-01T00:00:00Z' }, outlaw: { runSize: 5 } };
+  const local = { meta: { lastUpdated: '2026-10-02T00:00:00Z' }, outlaw: { runSize: 6 }, constructor: 'mine' };
+  const remote = { meta: { lastUpdated: '2099-01-01T00:00:00Z' }, outlaw: { runSize: 7 } };
+  const now = Date.parse('2026-10-03T00:00:00Z');
+  const merged = mergeStates(base, local, remote, now);
+  assert.equal(merged.constructor, 'mine'); // new on one side, not mistaken for Object.prototype.constructor
+  assert.equal((merged.meta as { lastUpdated: string }).lastUpdated, '2026-10-03T00:00:00.000Z');
+  // The next clash is fair: an edit made after that merge wins over the clamped copy.
+  const later = { ...merged, meta: { lastUpdated: '2026-10-04T00:00:00Z' }, outlaw: { runSize: 9 } };
+  const theirs = { ...merged, outlaw: { runSize: 8 } };
+  const next = mergeStates(merged, later, theirs, Date.parse('2026-10-05T00:00:00Z'));
+  assert.equal((next.outlaw as { runSize: number }).runSize, 9);
+});
+
+test('a merge that takes away many records is reported for confirmation', () => {
+  const systems = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      id: `s${String(i)}`,
+      name: `S${String(i)}`,
+      visits: [{ at: `2026-10-0${String((i % 9) + 1)}T00:00:00Z` }]
+    }));
+  const full = { systems: systems(20), notes: [{ id: 'n', title: 't' }] };
+  const report = removalReport(full, { systems: systems(5) });
+  assert.deepEqual([report.systems, report.visits, report.notes, report.before], [15, 0, 1, 41]);
+  assert.equal(needsConfirmation(report), true);
+  assert.equal(needsConfirmation(removalReport(full, { ...full, notes: [] })), false); // one note
+  assert.equal(needsConfirmation(removalReport({ systems: systems(4) }, { systems: systems(1) })), true); // 3 of 8
+  assert.equal(needsConfirmation(removalReport({ systems: systems(2) }, { systems: [] })), false); // 2 systems
+  const big = { systems: [{ id: 's', planets: Array.from({ length: 12 }, (_, i) => ({ id: `p${String(i)}` })) }] };
+  assert.equal(removalReport(big, { systems: [] }).total, 1); // one system, however many planets it had
+  assert.equal(needsConfirmation(removalReport({ notes: [{ id: 'a' }, { id: 'b' }] }, { notes: [] })), false);
+});
+
+test('deeply nested JSON is refused before anything walks it', () => {
+  let deep: unknown = 1;
+  for (let i = 0; i < 100; i++) deep = [deep];
+  assert.equal(withinDepth(deep, 64), false);
+  assert.equal(withinDepth(buildState(), 64), true);
 });

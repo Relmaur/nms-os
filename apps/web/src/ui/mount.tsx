@@ -13,6 +13,7 @@ import { More } from './more/More.tsx';
 import { Gear } from './gear/Gear.tsx';
 import { Notes } from './notes/Notes.tsx';
 import { PlayerEditors } from './PlayerEditors.tsx';
+import { ImportDialog } from './shell/ImportDialog.tsx';
 import { BOOKS } from '@atlas/core/guides';
 import { Header } from './shell/Header.tsx';
 import { Sidebar } from './shell/Sidebar.tsx';
@@ -48,7 +49,13 @@ const SCREENS: [string, ReactNode][] = [
   ['moreRoot', <More />],
   ['gearRoot', <Gear />],
   ['notesRoot', <Notes />],
-  ['playerEditorRoot', <PlayerEditors />]
+  [
+    'playerEditorRoot',
+    <>
+      <PlayerEditors />
+      <ImportDialog />
+    </>
+  ]
 ];
 
 function mount(roots: [string, ReactNode][]): void {

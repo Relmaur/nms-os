@@ -51,7 +51,7 @@ Blueprint can be researched on board of [[Space Anomaly]] for 480  Nanites.
 
 When active, it will auto-pilot the Minotaur and it will follow the player. If the player encounters any danger such as the [[Sentinel]] or [[Biological Horror]], the Minotaur will fight alongside the player, providing the AI is turned on and the Minotaur have at least one weapon installed. The AI can be turned off in the [[Quick Menu]] However, take note that if it took too much damage, its technology will be destroyed, which requires repair.
 
-Initially, the enemy will ignore the Minotaur even if it is fighting. However if the enemy was being attacked by the mech then it will strike back. If the autopilot AI was damaged, it will results in a message *AI Autopilot Critically Damaged*. Additionally, unless manual control were established, if the AI was damaged, it will stop fighting or following the player. If the engine were damaged, then feature is also disabled even if manual control were established, and will results in a message saying Exocraft fuel is below <20% (for unknown reasons).
+Initially, the enemy will ignore the Minotaur even if it is fighting. However if the enemy was being attacked by the mech then it will strike back. If the autopilot AI was damaged, it will results in a message *AI Autopilot Critically Damaged*. Additionally, unless manual control were established, if the AI was damaged, it will stop fighting or following the player. If the engine were damaged, then feature is also disabled even if manual control were established, and will results in a message saying Exocraft fuel is below &lt;20% (for unknown reasons).
 
 ## Additional Information
 

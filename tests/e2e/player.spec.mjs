@@ -37,8 +37,11 @@ test.describe('a note synced from a paired device', () => {
     await page.goto('./');
     const body = page.locator('#sec-home [data-note="note-x"] .md-body');
     await expect(body.locator('table')).toContainText('b');
-    const html = await body.innerHTML();
-    expect(html).not.toMatch(/<img|style=|id=|name=|onclick|<script|javascript:|data:|evil\.example/);
+    // Raw HTML shows as text; what is markup carries no images, scripts, styles, ids, names, handlers or odd links.
+    await expect(body.locator('img, script, iframe, [style], [id], [name], [onclick], [onerror]')).toHaveCount(0);
+    await expect(body).toContainText('<script>alert(1)</script>');
+    const hrefs = await body.locator('a[href]').evaluateAll(links => links.map(link => link.getAttribute('href')));
+    expect(hrefs).toEqual(['https://nomanssky.fandom.com']);
     await expect(body.getByRole('link', { name: 'wiki' })).toHaveAttribute('rel', 'noopener noreferrer');
   });
 });

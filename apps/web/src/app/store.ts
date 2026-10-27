@@ -61,10 +61,15 @@ function logEvent(event: string, detail: Record<string, unknown> = {}): void {
 // Set when the stored copy couldn't be read *and* couldn't be copied aside (storage full): from then on the app
 // never writes over it, so unread data is never destroyed. Saving resumes after a reload once there is room.
 let protectUnread = false;
+// Set when this load found the stored log unreadable and fell back to defaults: sync then mustn't read the empty log
+// as "everything was deleted here" (app/sync.ts drops its base, so the next sync restores from the cloud copy).
+let recovered = false;
+export const wasRecovered = (): boolean => recovered;
 
 // An unreadable browser copy is kept under its own key before the app falls back to defaults, so a bug or a bad
 // edit can never silently destroy someone's log. The same copy is reused on later reloads, not duplicated.
 function preserveUnreadable(raw: string, reason: string): void {
+  recovered = true;
   let key: string | null;
   try {
     key =

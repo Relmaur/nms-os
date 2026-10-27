@@ -35,8 +35,8 @@ data: {"fields":{"image":"Nms-release-book-cover-by-qjimbo.png","datepc":"26 Oct
 
 According to [this post](https://www.gog.com/forum/no_mans_sky/gog_109_missingbroken_functionality_again) and [this post](https://www.gog.com/forum/no_mans_sky/patch_1091/post13), the patch activated these threading options in **TKGRAPHICSSETTINGS.MXML**:
 
-<pre><Property name="NumHighThreads" value="1" /></pre>
-<pre><Property name="NumLowThreads" value="2" /></pre>
+<pre>&lt;Property name="NumHighThreads" value="1" /></pre>
+<pre>&lt;Property name="NumLowThreads" value="2" /></pre>
 
 ### Installation Issues and other fixes
 

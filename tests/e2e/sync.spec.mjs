@@ -56,6 +56,7 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
   const [vault] = vaults.values();
   expect(vault.blob.toString('latin1')).not.toContain('Ekwa'); // sealed before it left
   await page.getByRole('button', { name: 'Pair another device' }).click();
+  await page.getByRole('button', { name: 'Show the code' }).click(); // behind a streamer warning
   await expect(page.getByRole('img', { name: /QR code/ })).toBeVisible();
   const code = (await page.locator('#syncCodeCard .font-mono').textContent()).trim();
 
@@ -121,6 +122,7 @@ test('axe: the Sync group with sync on and the code shown', async ({ page }) => 
   await page.getByRole('button', { name: 'Turn on sync' }).click();
   await expect(syncStatus(page)).toContainText('Synced');
   await page.getByRole('button', { name: 'Pair another device' }).click();
+  await page.getByRole('button', { name: 'Show the code' }).click();
   await page.getByRole('button', { name: 'Delete cloud copy' }).click();
   const { violations } = await new AxeBuilder({ page }).include('#syncPanel').analyze();
   expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);

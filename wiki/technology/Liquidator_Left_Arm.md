@@ -37,7 +37,7 @@ An upgrade to the Minotaur Heavy Exocraft Hybrid, the Liquidator is a cutting-ed
 
 This limb override also functions as its own dedicated combat system. It deploys high-velocity stun projectiles, perfect for keeping hostiles in place while advancing to close range.
 
-Use <weapon select key> to cycle available weapon modes.
+Use &lt;weapon select key> to cycle available weapon modes.
 
 ## Build
 

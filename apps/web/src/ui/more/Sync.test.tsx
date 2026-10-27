@@ -31,6 +31,7 @@ const store: VaultStore = {
   touch: () => Promise.resolve()
 };
 
+const SYNC = import.meta.env.VITE_SYNC_URL;
 const withSystems = (...names: string[]) => buildState({ systems: names.map(name => normalizeSystem({ name })) });
 
 beforeEach(() => {
@@ -55,7 +56,11 @@ test('turning sync on uploads a sealed copy and shows when it last synced', asyn
   expect(vaults.size).toBe(1);
   const [vault] = [...vaults.values()];
   expect(new TextDecoder().decode(vault?.blob)).not.toContain('Ekwa'); // the relay can't read it
+  expect(status()).toMatch(/Copy ID [0-9A-F]{4}-[0-9A-F]{4}/);
   await userEvent.click(screen.getByRole('button', { name: 'Pair another device' }));
+  expect(screen.queryByRole('img', { name: /QR code/ })).toBeNull(); // not until asked, with a warning first
+  expect(document.getElementById('syncCodeCard')?.textContent).toMatch(/stream/);
+  await userEvent.click(screen.getByRole('button', { name: 'Show the code' }));
   expect(screen.getByRole('img', { name: /QR code/ })).toBeTruthy();
   expect(document.getElementById('syncCodeCard')?.textContent).toContain(syncCode() ?? 'missing');
 });
@@ -83,7 +88,7 @@ test('pairing with a code merges both logs; a later edit on either side reaches 
   const first = buildState(structuredClone(appState));
   first.systems.push(normalizeSystem({ name: 'Calypso' }));
   const vault = vaults.get(keys.vaultId)!;
-  vaults.set(keys.vaultId, { ...vault, version: 3, blob: await sealState(keys, JSON.stringify(first)) });
+  vaults.set(keys.vaultId, { ...vault, version: 3, blob: await sealState(keys, JSON.stringify(first), 3) });
   appState.systems[0]!.notes = 'edited here';
   await act(() => syncNow());
   expect(appState.systems.map(system => system.name).sort()).toEqual(['Calypso', 'Ekwa Nexus', 'Hilbert Dimension']);
@@ -188,6 +193,12 @@ test('pairing with another code while a sync is under way switches to the new va
   const gate = new Promise<void>(resolve => {
     release = resolve;
   });
+  const otherKeys = await deriveSyncKeys(other); // another of the player's vaults, already uploaded
+  await real(`${SYNC}/v1/vaults/${otherKeys.vaultId}`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${otherKeys.token}`, 'If-Match': '"0"' },
+    body: await sealState(otherKeys, JSON.stringify(withSystems('Elsewhere')), 1)
+  });
   vi.stubGlobal('fetch', async (url: string, init: RequestInit) => {
     await gate;
     return real(url, init);
@@ -200,5 +211,91 @@ test('pairing with another code while a sync is under way switches to the new va
     await pairing;
   });
   expect(syncCode()).toBe(other);
-  expect(vaults.has((await deriveSyncKeys(other)).vaultId)).toBe(true);
+  expect(appState.systems.map(system => system.name).sort()).toEqual(['Ekwa Nexus', 'Elsewhere']);
+});
+
+test('an old format-1 copy served again after format 2 is refused, not merged as deletions', async () => {
+  render(<Sync />);
+  await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
+  await expect.poll(status).toMatch(/Synced/);
+  const keys = await deriveSyncKeys(syncCode() ?? '');
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const gz = new Uint8Array(
+    await new Response(
+      new Blob([JSON.stringify(withSystems())]).stream().pipeThrough(new CompressionStream('gzip'))
+    ).arrayBuffer()
+  );
+  const ad = new TextEncoder().encode(`atlas-sync/${keys.vaultId}`);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv, additionalData: ad }, keys.key, gz));
+  const vault = vaults.get(keys.vaultId)!;
+  vaults.set(keys.vaultId, { ...vault, version: 5, blob: new Uint8Array([1, ...iv, ...ct]) }); // a 3.14-era copy
+  vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  await act(() => syncNow());
+  expect(status()).toMatch(/couldn’t be opened/);
+  expect(appState.systems.map(system => system.name)).toEqual(['Ekwa Nexus']);
+});
+
+test('pairing with an unknown code goes back to the sync it would have replaced', async () => {
+  render(<Sync />);
+  await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
+  await expect.poll(status).toMatch(/Synced/);
+  const code = syncCode();
+  await act(async () => {
+    await pairWith(newSyncCode());
+  });
+  expect(syncCode()).toBe(code);
+  await act(() => syncNow());
+  expect(status()).toMatch(/Synced/);
+});
+
+test('a code no device uploaded is refused: no vault is made for it, and sync stays off', async () => {
+  render(<Sync />);
+  await userEvent.click(screen.getByRole('button', { name: 'I have a code' }));
+  await userEvent.type(screen.getByLabelText(/sync code from your other device/), newSyncCode());
+  await userEvent.click(screen.getByRole('button', { name: 'Pair' }));
+  await expect.poll(status).toMatch(/No synced log uses that code/);
+  expect(vaults.size).toBe(0);
+  expect(syncCode()).toBeNull();
+});
+
+test('a copy that would empty this log waits for the person; applying keeps the log from before', async () => {
+  act(() => {
+    setAppState(withSystems('A', 'B', 'C', 'D', 'E'));
+  });
+  render(<Sync />);
+  await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
+  await expect.poll(status).toMatch(/Synced/);
+  const keys = await deriveSyncKeys(syncCode() ?? '');
+  const vault = vaults.get(keys.vaultId)!;
+  const emptied = buildState(structuredClone(appState)); // another device (or a crafted copy) that lost four systems
+  emptied.systems = emptied.systems.slice(0, 1);
+  emptied.meta.lastUpdated = new Date().toISOString();
+  vaults.set(keys.vaultId, { ...vault, version: 2, blob: await sealState(keys, JSON.stringify(emptied), 2) });
+  await act(() => syncNow());
+  expect(status()).toMatch(/waiting for you/);
+  expect(screen.getByRole('alert').textContent).toMatch(/4 systems/);
+  expect(appState.systems).toHaveLength(5); // nothing removed yet
+  await userEvent.click(screen.getByRole('button', { name: 'Apply the removal' }));
+  await expect.poll(() => appState.systems.length).toBe(1);
+  await userEvent.click(screen.getByRole('button', { name: 'Put it back' }));
+  expect(appState.systems.map(system => system.name)).toEqual(['A', 'B', 'C', 'D', 'E']);
+});
+
+test('the relay can’t pass an old copy off as new, or serve an older version than this device synced', async () => {
+  render(<Sync />);
+  await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
+  await expect.poll(status).toMatch(/Synced/);
+  appState.systems[0]!.notes = 'second';
+  await act(() => syncNow());
+  const keys = await deriveSyncKeys(syncCode() ?? '');
+  const now = vaults.get(keys.vaultId)!;
+  expect(now.version).toBe(2);
+  vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  vaults.set(keys.vaultId, { ...now, version: 5 }); // the same copy, relabelled
+  await act(() => syncNow());
+  expect(status()).toMatch(/couldn’t be opened/);
+  vaults.set(keys.vaultId, { ...now, version: 1, blob: await sealState(keys, JSON.stringify(withSystems('Old')), 1) });
+  await act(() => syncNow());
+  expect(status()).toMatch(/older than one this device already synced/);
+  expect(appState.systems[0]?.notes).toBe('second');
 });

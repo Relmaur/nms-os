@@ -55,7 +55,7 @@ Dismantling a module does not affect the module pool. It will not be rerolled. T
 
 ## Quality
 
-Each module exists in the standard class order, **C** < **B** < **A** < **S**. (Only [[Suspicious Module|Suspicious Modules]] inherit the black-market **X** class.)
+Each module exists in the standard class order, **C** &lt; **B** &lt; **A** &lt; **S**. (Only [[Suspicious Module|Suspicious Modules]] inherit the black-market **X** class.)
 - C-class modules, valued at ~65 nanites, often contain upgrades with bad stats. For module types with at least four possible stats, upgrades from these modules will usually have one stat.
 - B-class modules, valued at ~150 nanites, often contain upgrades with mediocre stats. For module types with at least four possible stats, upgrades from these modules will usually have two stats.
 - A-class modules, valued at ~300 nanites, often contain upgrades with good stats. For module types with at least four possible stats, upgrades from these modules will usually have three stats.

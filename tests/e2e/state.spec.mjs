@@ -22,8 +22,35 @@ test('Export then Import round-trips the save', async ({ page }) => {
   expect((await storedState(page))?.systems?.some(system => system.name === 'Ekwa Nexus') ?? false).toBe(false);
 
   await page.locator('#sec-more input[type="file"]').setInputFiles(file);
-  await expect(page.locator('#toastMessage')).toHaveText('Imported nms_state.json successfully!');
+  const dialog = page.getByRole('dialog', { name: 'Import this log?' });
+  await expect(dialog).toContainText('3 systems'); // what the file holds, before anything changes
+  expect((await storedState(page))?.systems?.some(system => system.name === 'Ekwa Nexus') ?? false).toBe(false);
+  await dialog.getByRole('button', { name: 'Replace this device’s log' }).click();
+  await expect(page.locator('#toastMessage')).toHaveText(/^Imported .+\. Undo it/);
   expect((await storedState(page)).systems.map(system => system.name)).toContain('Ekwa Nexus');
+
+  // Undo puts back the log from before the import.
+  await page
+    .locator('#sec-more')
+    .getByRole('button', { name: /Undo import/ })
+    .click();
+  await page
+    .locator('#sec-more')
+    .getByRole('button', { name: /Tap again to undo/ })
+    .click();
+  await expect(page.locator('#toastMessage')).toHaveText(/Import undone/);
+  expect((await storedState(page)).systems.some(system => system.name === 'Ekwa Nexus')).toBe(false);
+});
+
+test('a file over 5 MB is refused before it is read', async ({ page }) => {
+  await page.goto('./#more');
+  await page.locator('#sec-more input[type="file"]').setInputFiles({
+    name: 'huge.json',
+    mimeType: 'application/json',
+    buffer: Buffer.alloc(5 * 1024 * 1024 + 1, 32)
+  });
+  await expect(page.locator('#toastMessage')).toHaveText(/over 5 MB/);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
 test('an old Logbook save migrates into Systems', async ({ page }) => {

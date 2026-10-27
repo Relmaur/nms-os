@@ -35,7 +35,7 @@ A collection of salvaged components from a [[Sentinel Hardframe Battle Mech|Sent
 
 This limb override also functions as its own dedicated combat system. It deploys high-velocity stun projectiles and serves as an excellent support weapon to the Minotaur's primary cannon.
 
-Use <weapon select key> to cycle available weapon modes.
+Use &lt;weapon select key> to cycle available weapon modes.
 
 ## Build
 

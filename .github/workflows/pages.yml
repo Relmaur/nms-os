@@ -1,5 +1,7 @@
 # Syncs the wiki mirror, type-checks, lints and unit-tests, then builds ATLAS // MASTER OS with Vite and deploys it to
-# GitHub Pages.
+# GitHub Pages. Each job gets only the permissions it needs: the build (which runs pnpm and every dependency's code)
+# can read the repo and nothing more; a separate job that runs no project code commits the synced wiki pages back.
+# Actions are pinned by commit (Dependabot proposes updates, .github/dependabot.yml).
 # One-time setup: repo Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
@@ -10,10 +12,7 @@ on:
     - cron: '17 6 * * 1' # weekly wiki refresh, Mondays 06:17 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write # the sync commits changed wiki pages back to main
-  pages: write
-  id-token: write
+permissions: {}
 
 concurrency:
   group: pages
@@ -23,12 +22,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - uses: pnpm/action-setup@v6 # version from packageManager in package.json
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10 (version from packageManager)
 
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: pnpm
@@ -37,10 +40,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # Mirrors the wiki's game-data pages over the committed archive (only pages with a new revision change)
-      # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, the committed
-      # archive ships as-is and the Codex says it couldn't be checked.
+      # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, slow or answers
+      # something unexpected, the committed archive ships as-is and the Codex says it couldn't be checked.
       - name: Sync and verify the wiki mirror
         run: pnpm sync:wiki
+        timeout-minutes: 15
+        continue-on-error: true
 
       # Gate: nothing is committed back or deployed unless types, lint and unit tests pass on the synced data.
       # Browser tests (pnpm test:e2e) run locally as part of pnpm check, not in CI, to keep runs short.
@@ -51,10 +56,39 @@ jobs:
       - name: Unit tests
         run: pnpm test
 
-      # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
-      # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.
-      - name: Commit wiki changes back to main
+      # Handed to the commit job, which pushes it without running any of this job's code.
+      - name: Keep the synced wiki mirror
         if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: wiki
+          path: wiki
+          retention-days: 1
+
+      # The service worker's precache revisions come from file contents, so every deploy updates installed apps.
+      - name: Build the site
+        run: pnpm build
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: apps/web/dist
+
+  # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
+  # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.
+  commit-wiki:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          name: wiki
+          path: wiki
+      - name: Commit wiki changes back to main
         run: |
           git add wiki
           if git diff --cached --quiet; then echo "The wiki mirror is unchanged."; exit 0; fi
@@ -68,20 +102,15 @@ jobs:
           done
           echo "::error::Could not push the wiki sync commit." && exit 1
 
-      # The service worker's precache revisions come from file contents, so every deploy updates installed apps.
-      - name: Build the site
-        run: pnpm build
-
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: apps/web/dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

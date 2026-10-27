@@ -1,5 +1,6 @@
 // The main page's entry: the frame mounts at once, the state loads, then the screens mount and the section in the
 // address opens. Every part of the page is React (src/ui); this only wires them together.
+import './zod-config.ts'; // before anything that parses with Zod
 import { WikiSearch } from './wiki-data.js';
 import { loadAppState, onStorageStatus } from './store.ts';
 import { registerServiceWorker } from './pwa.js';
@@ -14,6 +15,10 @@ import { startTimerRunner } from '../ui/session/timer-runner.ts';
 import { startSync, takePairingLink } from './sync.ts';
 import { startPush } from './push.ts';
 
+// First of all: a #pair=<code> link (from the QR code) leaves the address before anything else runs, so nothing that
+// starts below (the service worker, a fetch, an error report) ever sees the code. More then asks before pairing.
+takePairingLink();
+window.addEventListener('hashchange', takePairingLink); // registered before the sections' own listener
 registerServiceWorker();
 startDevice();
 onStorageStatus(reportStorage);
@@ -27,8 +32,6 @@ void WikiSearch.load('wiki/').then(setWikiEntries);
 await loadAppState();
 startTimerRunner(); // a timer that finished while the app was closed is announced now
 mountScreens();
-takePairingLink(); // before the sections read the address: a #pair= link opens More and asks first
-window.addEventListener('hashchange', takePairingLink); // registered before the sections' own listener
 startSync(); // after the state loads, so the first sync merges with the saved log
 startPush(); // resends this device's timer schedule if its alerts are on
 startSections(); // after the state loads, so #new-system can open the editor

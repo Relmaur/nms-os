@@ -148,6 +148,8 @@ async function writeNotes(settings: Settings | null, timers: { id: string; at: n
     return;
   }
   const cache = await caches.open(NOTES_CACHE);
+  // Turned off while this was waiting: write nothing, since the device note carries the token.
+  if (readSettings()?.deviceId !== settings.deviceId) return;
   const ids = new Set(timers.map(timer => timer.id));
   for (const request of await cache.keys()) {
     const id = request.url.split('/').pop() ?? '';
@@ -258,8 +260,9 @@ async function sendDelete(settings: Settings): Promise<void> {
   else localStorage.setItem(UNSENT_DELETE_KEY, JSON.stringify(settings)); // retried on the next start or when online
 }
 
-// Removes this device and its schedule from the relay, then forgets the subscription and the notes here. A send
-// under way finishes first, so it can't re-register the device after the removal.
+// Removes this device and its schedule from the relay, then forgets the subscription and the notes here. The notes go
+// first (the device note holds the token the service worker could still use); a send under way finishes before the
+// removal, so it can't re-register the device afterwards.
 export async function disablePush(): Promise<void> {
   const settings = readSettings();
   setStatus({ busy: true, enabled: false, problem: null });
@@ -269,11 +272,12 @@ export async function disablePush(): Promise<void> {
   } catch {}
   lastSent = '';
   try {
+    await writeNotes(null, []);
     await sending;
     if (settings) await sendDelete(settings);
     setStatus({ problem: null });
     await (await currentSubscription(false))?.unsubscribe();
-    await writeNotes(null, []);
+    await writeNotes(null, []); // again: a send under way may have written them after the first clear
   } catch (e) {
     logEvent('push-disable-failed', e);
   } finally {

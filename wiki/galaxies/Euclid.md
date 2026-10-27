@@ -39,7 +39,7 @@ Based on studies done by the [[Forgotten Colonies]], the Euclid galaxy follows a
 The galaxy is circular with four non-rotating spirals in wedge-shape at 45°,135°,225° and 315° respectively. Euclid is definitely not a sphere, but is build after its real world counterpart like a plate. This also explains why a further multiplier of 16 for the glyph sequence is not needed, it lacks exactly that detail in height.
 
 Due to the glyph system a rough estimate of all regions can be calculated. The formula is the glyph region ID combinations minus the centre sphere combinations:
-- <math>16^8-7^8 = 4,289,202,495</math> regions.
+- &lt;math>16^8-7^8 = 4,289,202,495&lt;/math> regions.
 
 The closest documented stars include:
 - [[Bobertus I]] (2,922 ly) in [[The Arm of Gemaasg]]

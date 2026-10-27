@@ -1,10 +1,10 @@
 // More: the tools and reading kept out of the tab bar, this device (keep-awake, install, storage protection), sync
 // between devices (opt-in and encrypted: ADR-0005), your data (Export and Import), and a way to support the app.
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { guideProgress } from '@atlas/core/guides';
 import { formatDuration } from '@atlas/core/format';
 import { sessionRecap } from '@atlas/core/session';
-import { exportState, importState } from '../../app/backup.ts';
+import { exportState, importState, undoImport, useImportUndo } from '../../app/backup.ts';
 import { useAppState } from '../useAppState.ts';
 import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device-store.ts';
 import { useWikiCount } from '../shell/wiki-index.ts';
@@ -21,6 +21,8 @@ export function More() {
   const wikiCount = useWikiCount();
   const sync = useSyncStatus();
   const push = usePushStatus();
+  const canUndoImport = useImportUndo();
+  const [confirmUndo, setConfirmUndo] = useState(false);
   return (
     <>
       <h1 className="font-display text-2xl font-bold text-white">More</h1>
@@ -153,7 +155,7 @@ export function More() {
           <li>
             <label className="list-row cursor-pointer focus-within:ring-2 focus-within:ring-cyan-400">
               <Tile icon="ph-upload-simple text-amber-300" />
-              <Text title="Import nms_state.json">Replaces this device’s data with the file’s</Text>
+              <Text title="Import nms_state.json">Shows what the file holds, then replaces this device’s log</Text>
               <input
                 type="file"
                 accept=".json,application/json"
@@ -165,6 +167,25 @@ export function More() {
               />
             </label>
           </li>
+          {canUndoImport && (
+            <li>
+              <button
+                type="button"
+                onClick={() => {
+                  if (confirmUndo) undoImport();
+                  setConfirmUndo(!confirmUndo);
+                }}
+                className="list-row"
+              >
+                <Tile icon="ph-arrow-counter-clockwise text-cyan-300" />
+                <Text title={confirmUndo ? 'Tap again to undo the import' : 'Undo import'}>
+                  {confirmUndo
+                    ? 'Anything logged since the import is lost, on every synced device.'
+                    : 'Puts back the log this device had before the last import (for a day)'}
+                </Text>
+              </button>
+            </li>
+          )}
         </ul>
         <p className="px-1 text-xs text-slate-400">
           {sync.enabled

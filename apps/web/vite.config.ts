@@ -1,13 +1,40 @@
 // Builds the two pages (the app and the Codex) into dist/ with relative URLs, since GitHub Pages serves the site
 // under /nms-os/. public/wiki is a symlink to the repo's wiki mirror, copied into the build as-is.
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
+// A Content Security Policy for both built pages: everything comes from the site itself, except the sync relay it
+// talks to; no inline or injected scripts, styles, frames or plugins. Build only: the dev server injects inline styles.
+// (frame-ancestors can't be set from a meta tag, and GitHub Pages sets no headers.)
+function contentSecurityPolicy(relay: string): Plugin {
+  const policy = [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self'",
+    "img-src 'self' data:",
+    "font-src 'self' data:",
+    `connect-src 'self'${relay ? ` ${new URL(relay).origin}` : ''}`,
+    "manifest-src 'self'",
+    "worker-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'none'"
+  ].join('; ');
+  return {
+    name: 'atlas-csp',
+    apply: 'build',
+    transformIndexHtml: () => [
+      { tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: policy }, injectTo: 'head-prepend' }
+    ]
+  };
+}
+
+export default defineConfig(({ mode }) => ({
   base: './',
   plugins: [
+    contentSecurityPolicy(loadEnv(mode, import.meta.dirname, 'VITE_').VITE_SYNC_URL ?? ''),
     react(),
     tailwindcss(),
     VitePWA({
@@ -33,4 +60,4 @@ export default defineConfig({
   build: {
     rolldownOptions: { input: { main: 'index.html', codex: 'wiki/index.html' } }
   }
-});
+}));

@@ -103,6 +103,7 @@ interface DeviceNote {
   token: string;
   timers: unknown[];
 }
+const RELAY = import.meta.env.VITE_SYNC_URL ?? '';
 const toBytes = (text: string) =>
   Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), ch => ch.charCodeAt(0));
 self.addEventListener('pushsubscriptionchange', event => {
@@ -114,7 +115,8 @@ self.addEventListener('pushsubscriptionchange', event => {
         cacheName: 'atlas-timer-notes'
       });
       const device = (await saved?.json().catch(() => null)) as DeviceNote | null;
-      if (!device?.url || !device.deviceId) return;
+      // Only ever the relay this build was made for: a note written by anything else can't redirect the token.
+      if (!device?.url || !device.deviceId || device.url !== RELAY) return;
       const subscription =
         change.newSubscription ??
         (await self.registration.pushManager.subscribe({

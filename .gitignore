@@ -18,3 +18,6 @@ apps/web/dev-dist/
 
 # Wrangler's local state (dev builds, the local D1 database)
 .wrangler/
+
+# Wrangler secrets for local development (apps/sync); never committed
+.dev.vars*

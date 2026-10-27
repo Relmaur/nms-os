@@ -24,3 +24,15 @@ const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '
 export function escapeHtml(value: unknown): string {
   return asString(value).replace(/[&<>"']/g, ch => HTML_ESCAPES[ch] ?? ch);
 }
+
+// Parsed JSON from outside (a synced copy) nested deeper than this is refused before anything walks it recursively.
+export function withinDepth(value: unknown, max: number): boolean {
+  const stack: [unknown, number][] = [[value, 0]];
+  for (let next = stack.pop(); next; next = stack.pop()) {
+    const [item, depth] = next;
+    if (item === null || typeof item !== 'object') continue;
+    if (depth >= max) return false;
+    for (const child of Object.values(item)) stack.push([child, depth + 1]);
+  }
+  return true;
+}

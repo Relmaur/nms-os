@@ -12,7 +12,10 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - Players keep their own ships & Multi-Tools (`gear`) and Markdown notes (`notes`, pinnable to Home or a book).
 - The owner's fleet migrates into `gear` on their devices. Their book findings are Markdown files kept outside the repo, to import once with Notes → Import .md.
 
-The audit fixes from the plan (mass-deletion guard, pairing safety, crypto format 2, CSP, CI hardening) move to **3.15.0**. The shareable audit report is published after that.
+**Roadmap approved 2026-10-27** (plan `mighty-plotting-quasar`):
+- **3.15.0:** the security audit's client, web and CI fixes (ADR-0005/0006 sections). Then the shareable audit report, and branch protection for `main` once the owner says yes.
+- **3.16.0:** mechanics pages from the wiki (Inventory, Supercharged Slot, Starship, Multi-Tool…) as a Codex category, plus "cited facts": prose facts used as data only with their quote, checked by `verify:wiki`. The slot picker then follows the class limits, with an Exosuit preset.
+- **3.17.0:** a local, read-only MCP server (`apps/mcp`) that pairs with the sync code (ADR-0008). The owner cleared its Data Privacy gate with the roadmap.
 
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.atlas-companion.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).
 

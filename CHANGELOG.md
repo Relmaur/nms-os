@@ -6,6 +6,26 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.15.0] - 2026-10-27
+### Security
+Fixes from the security audit, before ATLAS is shared:
+- **Sync can't empty your log.**
+  - A sync that would remove many records (from a damaged or tampered copy, or a device that lost its log) now waits for you: apply it (your log from before is kept, and More → Sync → Put it back restores it), or keep this device's log.
+  - A device whose stored log was damaged now restores from the cloud instead of syncing its emptiness.
+- **Safer pairing.**
+  - You're told to pair only with your own codes, and replacing a sync takes a second tap.
+  - A code no device uploaded is refused instead of starting a new sync copy.
+  - Both devices show the same short copy ID.
+  - The code stays hidden behind a "not on stream" warning until you ask for it.
+- **Tamper-evident copies.** Each synced copy is sealed together with its version, so the server can't hand back an older copy as current without the app noticing. Oversized or deeply nested copies are refused, and a copy stamped in the future no longer wins every edit clash.
+- **Import** shows what the file holds and asks first, keeps your current log for Undo (More → Your data), and refuses files over 5 MB. With sync on, it combines the file with your synced log instead of erasing anything from other devices.
+- **Alerts off** removes the alert token from the service worker first, and the service worker only ever talks to ATLAS's own server.
+- **Pages and wiki text.**
+  - Both pages now have a Content Security Policy.
+  - Wiki pages and notes can't inject markup (text such as "<Crew name>" now shows as written instead of vanishing).
+  - Oversized or malformed wiki pages are skipped in linear time.
+- **Build pipeline.** The step that runs dependency code can no longer write to the repository; actions are pinned to exact commits, with Dependabot updates.
+
 ## [3.14.3] - 2026-10-27
 ### Added
 - Name what sits in each supercharged slot ("Infra-Knife Accelerator"); the ship or Multi-Tool's card lists each slot with its name.

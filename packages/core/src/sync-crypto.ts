@@ -4,7 +4,12 @@
 
 const SECRET_BYTES = 32;
 const IV_BYTES = 12;
-const FORMAT = 1; // first byte of every sealed copy, so a later format can still read this one
+// First byte of every sealed copy. 1: [1][iv][ciphertext], bound to the vault (3.10). 2 (3.15): [2][version, 4 bytes
+// big-endian][iv][ciphertext], bound to the vault, the format and the version the relay will give the copy, so the
+// relay can't relabel an old copy as a newer one (a rollback) without the copy failing to open. 1 still opens.
+const FORMAT = 2;
+const HEADER_BYTES = 5;
+export const MAX_OPENED_BYTES = 8 * 1024 * 1024; // a log is ~1 KB gzipped today; past this a copy is a gzip bomb
 const SALT = new TextEncoder().encode('atlas-sync-v1');
 const CODE = /^[A-Za-z0-9_-]{43}$/;
 
@@ -60,43 +65,88 @@ export async function deriveSyncKeys(code: string): Promise<SyncKeys> {
   };
 }
 
+// A short name for a vault, the same on every paired device ("4F2A-91C0"), so a player can see two devices share one
+// copy, and spot a pairing that went to someone else's. It's part of the vault id, which the relay knows anyway.
+export function fingerprint(vaultId: string): string {
+  const hex = [...fromBase64Url(vaultId).slice(0, 4)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 4)}-${hex.slice(4)}`.toUpperCase();
+}
+
 // The server stores this, never the token itself.
 export async function hashToken(token: string): Promise<string> {
   return toBase64Url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token))));
 }
 
-const bound = (keys: SyncKeys) => new TextEncoder().encode(`atlas-sync/${keys.vaultId}`);
-
-async function pipe(bytes: Uint8Array, transform: CompressionStream | DecompressionStream) {
-  // Copied into a plain ArrayBuffer: some runtimes type TextEncoder's output as possibly shared memory.
-  return new Uint8Array(
-    await new Response(new Blob([new Uint8Array(bytes)]).stream().pipeThrough(transform)).arrayBuffer()
+const bound = (keys: SyncKeys, version?: number) =>
+  new TextEncoder().encode(
+    version === undefined ? `atlas-sync/${keys.vaultId}` : `atlas-sync/${keys.vaultId}/2/${String(version)}`
   );
-}
 
-// gzip, then AES-GCM with a fresh IV: [format][iv][ciphertext + tag]. The vault id is bound in as associated data,
-// so a copy moved to another vault fails to open.
-export async function sealState(keys: SyncKeys, json: string): Promise<Uint8Array<ArrayBuffer>> {
-  const iv = crypto.getRandomValues(new Uint8Array(IV_BYTES));
-  const packed = await pipe(new TextEncoder().encode(json), new CompressionStream('gzip'));
-  const sealed = new Uint8Array(
-    await crypto.subtle.encrypt({ name: 'AES-GCM', iv, additionalData: bound(keys) }, keys.key, packed)
-  );
-  const out = new Uint8Array(1 + IV_BYTES + sealed.length);
-  out[0] = FORMAT;
-  out.set(iv, 1);
-  out.set(sealed, 1 + IV_BYTES);
+// Copied into a plain ArrayBuffer: some runtimes type TextEncoder's output as possibly shared memory. Reading stops
+// past `max` bytes.
+async function pipe(bytes: Uint8Array, transform: CompressionStream | DecompressionStream, max = Infinity) {
+  // (De)compression streams yield bytes; their types leave the chunks untyped.
+  const reader = new Blob([new Uint8Array(bytes)])
+    .stream()
+    .pipeThrough(transform)
+    .getReader() as ReadableStreamDefaultReader<Uint8Array>;
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.byteLength;
+    if (size > max) {
+      await reader.cancel();
+      throw new Error('sync copy too large');
+    }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) {
+    out.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
   return out;
 }
 
-// Throws on a wrong key, a damaged copy or an unknown format; the caller keeps the local log either way.
-export async function openState(keys: SyncKeys, blob: Uint8Array<ArrayBuffer>): Promise<string> {
-  if (blob[0] !== FORMAT) throw new Error(`unknown sync format ${String(blob[0])}`);
-  const iv = blob.slice(1, 1 + IV_BYTES);
-  const packed = await crypto.subtle.decrypt(
-    { name: 'AES-GCM', iv, additionalData: bound(keys) },
-    keys.key,
-    blob.slice(1 + IV_BYTES)
+// gzip, then AES-GCM with a fresh IV. `version` is the one the relay will store it as (the version it replaces + 1).
+export async function sealState(keys: SyncKeys, json: string, version: number): Promise<Uint8Array<ArrayBuffer>> {
+  const iv = crypto.getRandomValues(new Uint8Array(IV_BYTES));
+  const packed = await pipe(new TextEncoder().encode(json), new CompressionStream('gzip'));
+  const sealed = new Uint8Array(
+    await crypto.subtle.encrypt({ name: 'AES-GCM', iv, additionalData: bound(keys, version) }, keys.key, packed)
   );
-  return new TextDecoder().decode(await pipe(new Uint8Array(packed), new DecompressionStream('gzip')));
+  const out = new Uint8Array(HEADER_BYTES + IV_BYTES + sealed.length);
+  out[0] = FORMAT;
+  new DataView(out.buffer, out.byteOffset, out.byteLength).setUint32(1, version);
+  out.set(iv, HEADER_BYTES);
+  out.set(sealed, HEADER_BYTES + IV_BYTES);
+  return out;
+}
+
+export interface Opened {
+  json: string;
+  version: number | null; // the version it was sealed for (null: format 1, which didn't record it)
+}
+
+// Throws on a wrong key, a damaged or oversized copy, or an unknown format; the caller keeps the local log either way.
+export async function openState(keys: SyncKeys, blob: Uint8Array<ArrayBuffer>): Promise<Opened> {
+  const format = blob[0];
+  if (format !== 1 && format !== 2) throw new Error(`unknown sync format ${String(format)}`);
+  const version =
+    format === 2 && blob.length > HEADER_BYTES
+      ? new DataView(blob.buffer, blob.byteOffset, blob.byteLength).getUint32(1)
+      : undefined;
+  const start = format === 2 ? HEADER_BYTES : 1;
+  const packed = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv: blob.slice(start, start + IV_BYTES), additionalData: bound(keys, version) },
+    keys.key,
+    blob.slice(start + IV_BYTES)
+  );
+  const json = new TextDecoder().decode(
+    await pipe(new Uint8Array(packed), new DecompressionStream('gzip'), MAX_OPENED_BYTES)
+  );
+  return { json, version: version ?? null };
 }

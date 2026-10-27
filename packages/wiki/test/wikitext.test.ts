@@ -2,18 +2,7 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {
-  buildArticle,
-  parseTemplate,
-  renderWikitext,
-  plainText,
-  toFrontmatter,
-  parseFrontmatter,
-  categoryFor,
-  slugify,
-  type Article,
-  type Page
-} from '../src/wikitext.ts';
+import { buildArticle, categoryFor, cleanSource, escapeStrayHtml, parseFrontmatter, parseTemplate, plainText, renderWikitext, slugify, toFrontmatter, type Article, type Page } from '../src/wikitext.ts';
 
 const FIXTURES = new URL('../../../tests/fixtures/wikitext/', import.meta.url);
 const pages = JSON.parse(fs.readFileSync(new URL('pages.json', FIXTURES), 'utf8')) as Record<
@@ -134,4 +123,21 @@ test('category folders and slugs follow the infobox', () => {
   assert.equal(categoryFor('product', { category: 'Tradeable' }), 'products');
   assert.equal(categoryFor('encounter', {}), 'places');
   assert.equal(slugify("'Apple' Cake of Lost Souls"), 'Apple_Cake_of_Lost_Souls');
+});
+
+test('tag blocks are removed in one pass: unclosed ones on a hostile page cost no more than a closed one', () => {
+  assert.equal(cleanSource('a<!-- x -->b<ref name="r">c</ref>d<gallery>e</gallery>f'), 'abdf');
+  assert.equal(cleanSource('a<!-- never closed'), 'a'); // as MediaWiki: the rest is hidden
+  assert.equal(cleanSource('a<ref>open'), 'a<ref>open');
+  const hostile = '<ref>'.repeat(40_000) + 'x';
+  const started = performance.now();
+  cleanSource(hostile);
+  assert.ok(performance.now() - started < 500, 'linear');
+});
+
+test('markup left in a page reaches the article as text, except the few tags articles keep', () => {
+  assert.equal(
+    escapeStrayHtml('<script>x</script> <img src=x onerror=y> a<br>b <code>c</code> <weapon name>'),
+    '&lt;script>x&lt;/script> &lt;img src=x onerror=y> a<br>b <code>c</code> &lt;weapon name>'
+  );
 });

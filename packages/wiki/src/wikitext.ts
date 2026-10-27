@@ -370,18 +370,20 @@ export function removeBracketed(text: string, prefix: RegExp): string {
   return out;
 }
 
+// Link patterns exclude "[" (and tag patterns "<") from their insides: real links never contain one, and allowing it
+// makes every unclosed "[[" on a page rescan to its end (quadratic: seconds per page on a hostile one).
 export function convertLinks(text: string): string {
   return removeBracketed(text, /\[\[\s*:?(File|Image|Media|Category|[a-z]{2}(-[a-z]+)?):/i)
     .replace(
-      /\[\[([^\]|]+?)(?:#[^\]|]*)?(?:\|([^\]]*))?\]\]([a-z]*)/g,
+      /\[\[([^\][|]+?)(?:#[^\][|]*)?(?:\|([^\][]*))?\]\]([a-z]*)/g,
       (_, rawTarget: string, label: string | undefined, suffix: string) => {
       const target = rawTarget.trim().replace(/_/g, ' ');
       const shown = `${label ?? target}${suffix}`.trim();
       return shown === target ? `[[${target}]]` : `[[${target}|${shown}]]`;
       }
     )
-    .replace(/\[(https?:\/\/[^\s\]]+)\s+([^\]]+)\]/g, '[$2]($1)')
-    .replace(/\[(https?:\/\/[^\s\]]+)\]/g, '<$1>');
+    .replace(/\[(https?:\/\/[^\s\][]+)\s+([^\][]+)\]/g, '[$2]($1)')
+    .replace(/\[(https?:\/\/[^\s\][]+)\]/g, '[$1]($1)'); // not <url>: stray "<" is escaped later
 }
 
 export function convertInline(text: string): string {
@@ -442,7 +444,7 @@ export function tableToMarkdown(inner: string): string {
     lines
       .filter(Boolean)
       .join('<br>')
-      .replace(/\[\[([^\]]*)\]\]/g, m => m.replace(/\|/g, '\\|'))
+      .replace(/\[\[([^\][]*)\]\]/g, m => m.replace(/\|/g, '\\|'))
       .replace(/\n/g, ' ') || ' ';
   const md = rows.map(r => `| ${Array.from({ length: width }, (_, i) => cell(r[i] || [])).join(' | ')} |`);
   if (!headerRow) md.unshift(`| ${Array(width).fill(' ').join(' | ')} |`);
@@ -485,15 +487,44 @@ export function dropEmptyHeadings(markdown: string): string {
     .join('\n');
 }
 
+// Removes every `open … close` block in one pass (a lazy [\s\S]*? regex rescans to the end for each opening that
+// is never closed, which is quadratic on a hostile page). An unclosed comment hides the rest, as MediaWiki does; an
+// unclosed <ref> or <gallery> is left as it is.
+export function removeBlocks(text: string, open: RegExp, close: string, unclosedHidesRest = false): string {
+  const lower = text.toLowerCase();
+  const pattern = new RegExp(open.source, 'gi');
+  let out = '';
+  let from = 0;
+  for (let match = pattern.exec(text); match; match = pattern.exec(text)) {
+    if (match.index < from) continue;
+    const end = lower.indexOf(close, match.index + match[0].length);
+    if (end === -1) {
+      if (unclosedHidesRest) return out + text.slice(from, match.index);
+      break;
+    }
+    out += text.slice(from, match.index);
+    from = end + close.length;
+    pattern.lastIndex = from;
+  }
+  return out + text.slice(from);
+}
+
 export function cleanSource(text: string): string {
-  return text
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/<ref[^>/]*\/>/gi, '')
-    .replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, '')
+  return removeBlocks(
+    removeBlocks(removeBlocks(text, /<!--/, '-->', true).replace(/<ref\b[^<>/]*\/>/gi, ''), /<ref\b[^<>]*>/, '</ref>'),
+    /<gallery\b[^<>]*>/,
+    '</gallery>'
+  )
     .replace(/<references\s*\/?>/gi, '')
-    .replace(/<gallery[^>]*>[\s\S]*?<\/gallery>/gi, '')
-    .replace(/<\/?tabber[^>]*>/gi, '')
+    .replace(/<\/?tabber[^<>]*>/gi, '')
     .replace(/__[A-Z]+__/g, '');
+}
+
+// After entities are decoded, any "<" that doesn't open one of the few tags articles keep becomes a literal "<":
+// text like "<weapon name>" shows as written, and nothing in a wiki page can reach the page as markup.
+const KEPT_TAGS = /<(?!\/?(?:br|code|pre|blockquote)\b)/gi;
+export function escapeStrayHtml(markdown: string): string {
+  return markdown.replace(KEPT_TAGS, '&lt;');
 }
 
 export function renderWikitext(text: string, ctx: Context): string {
@@ -503,7 +534,7 @@ export function renderWikitext(text: string, ctx: Context): string {
   md = convertBlocks(md); // before bold/italic, whose "**" would read as a list marker
   md = convertInline(md);
   md = convertTables(md);
-  md = decodeEntities(md)
+  md = escapeStrayHtml(decodeEntities(md))
     .replace(/[ \t]+$/gm, '')
     .replace(/\n{3,}/g, '\n\n');
   return dropEmptyHeadings(md)
@@ -519,11 +550,11 @@ export function plainText(text: unknown): string {
     return inline ? plainText(inline(template, { title: '' })) : '';
   });
   out = convertLinks(out)
-    .replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, '$1')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    .replace(/\[\[(?:[^\][|]*\|)?([^\][]*)\]\]/g, '$1')
+    .replace(/\[([^\][]+)\]\([^()]+\)/g, '$1');
   out = out
     .replace(/<br\s*\/?>/gi, ', ')
-    .replace(/<[^>]+>/g, '')
+    .replace(/<[^<>]+>/g, '')
     .replace(/'{2,}/g, '');
   return decodeEntities(out).replace(/\s+/g, ' ').trim();
 }
@@ -616,7 +647,7 @@ export function summarize(markdown: string): string {
     .map(block => block.trim())
     .find(block => block && !/^(#|\||-|>|\*\*[^*]+:\*\*)/.test(block) && block.length > 20);
   const text = (paragraph || '')
-    .replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, '$1')
+    .replace(/\[\[(?:[^\][|]*\|)?([^\][]*)\]\]/g, '$1')
     .replace(/<br>/g, ' ')
     .replace(/[*_`]/g, '')
     .replace(/\s+/g, ' ')
@@ -675,7 +706,10 @@ export interface Article {
   body: string;
 }
 
+export const MAX_PAGE_CHARS = 256 * 1024; // the largest game-data page is ~60 KB; past this a page is broken or hostile
+
 export function buildArticle(page: Page): Article | { excluded: string } {
+  if (page.content.length > MAX_PAGE_CHARS) return { excluded: 'page too large' };
   const templates = topTemplates(cleanSource(page.content));
   const infobox = templates.find(template => SCOPE_KEYS.has(template.key));
   const fields: Record<string, string> = {};

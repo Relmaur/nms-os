@@ -63,3 +63,7 @@ Timers (3.9.0) alert only while the browser runs the app. A phone that suspends 
   - checks the VAPID key first, leaving the queue alone if it's broken.
 - **Registering a new push device** is subject to the relay's capacity and the stricter rate limit for new things.
 - **Residual risk:** someone registering many devices whose timers all end in the same minute can delay other alerts by a few minutes. Rate limits cap how fast they can do it.
+
+## Changes in 3.15.0 (security audit)
+- **Turning alerts off** deletes the service worker's notes first (the device note holds the token), before waiting for a send in flight and asking the relay to remove the device. A send that was under way writes no notes once settings are gone.
+- **The service worker** re-registers a changed subscription only with the relay URL the build was made for. A note naming any other URL is ignored, so it can't send the token elsewhere.

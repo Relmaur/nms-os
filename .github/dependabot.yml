@@ -1,0 +1,10 @@
+# Weekly pull requests for the pinned GitHub Actions (npm packages are pinned by pnpm-lock.yaml and updated by hand,
+# after pnpm's minimumReleaseAge). The cooldown waits a week after a release, as the npm policy does.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7

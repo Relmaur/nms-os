@@ -31,7 +31,7 @@ data: {"fields":{"image":"Render.protectgeneric.png","color":"blue","category":"
 
 Hazard protection provides basic environmental shielding. Protection from specific [[Biome|planetary conditions]] can be increased through installation of [[Upgrade Module|Hazard Protection Modules]].
 
-These units operate automatically once a hazard condition is met. Protection depletes at a certain rate, visually indicated by one, two or three left-pointing arrows and the potential addition of *extreme* at the end of the protection bar (shown as < to <<< for drain and "extreme"). Once the protection is depleted the shield will take damage once every 16 seconds on normal mode.
+These units operate automatically once a hazard condition is met. Protection depletes at a certain rate, visually indicated by one, two or three left-pointing arrows and the potential addition of *extreme* at the end of the protection bar (shown as &lt; to &lt;&lt;&lt; for drain and "extreme"). Once the protection is depleted the shield will take damage once every 16 seconds on normal mode.
 
 ## Game Description
 
@@ -97,7 +97,7 @@ Actual Hazards do not matter, only planet biome, time, weather.
   - Extreme Toxic Storm (Day/Night)
   - Extreme Scorched Storm (Day/Night)
 
-*Underwater* durations refer specifically to toxic/radiation protection drains while underwater on [[Biome - Toxic|Toxic]] and [[Biome - Irradiated|Irradiated]] planets. Not to be confused with Aeration Membrane oxygen drain while underwater.'' <-- Normally Hazard 2-3. It is not constant!
+*Underwater* durations refer specifically to toxic/radiation protection drains while underwater on [[Biome - Toxic|Toxic]] and [[Biome - Irradiated|Irradiated]] planets. Not to be confused with Aeration Membrane oxygen drain while underwater.'' &lt;-- Normally Hazard 2-3. It is not constant!
 
 The remaining protection time can be estimated using the information provided in the lower-left region of the [[Analysis Visor]]'s overlay. If time runs out while the environmental hazard is still present, the player will begin to take damage periodically until they reach shelter or recharge their protection.
 

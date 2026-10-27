@@ -64,7 +64,7 @@ A new save streaming system has been implemented, making more efficient use of m
 
 The number of possible save slots has been increased from 5 to 15, and the save select screen now supports scrolling.
 
-As this new save system changes the format of save data, all existing saves have been automatically backed up. On PC, these may be found under the new strbackup folder within your save directory, usually in C:\Users\<Username>\AppData\Roaming\HelloGames\NMS\
+As this new save system changes the format of save data, all existing saves have been automatically backed up. On PC, these may be found under the new strbackup folder within your save directory, usually in C:\Users\&lt;Username>\AppData\Roaming\HelloGames\NMS\
 
 ### Enhanced Destruction Effects
 

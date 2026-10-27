@@ -3,6 +3,15 @@
 - Edge-to-edge: `viewport-fit=cover` + `black-translucent` status bar, so fixed/sticky chrome pads with `env(safe-area-inset-*)` (see the App shell block in `apps/web/src/theme.css`).
 - Device features (`apps/web/src/app/companion.js`) are feature-detected and degrade silently: Screen Wake Lock ("Keep screen on", stored per device in `localStorage` key `atlas_keep_awake`, not in `nms_state.json`), app-icon badge = ready outlaw stations, `navigator.vibrate` haptics (Android), Web Share for a system, the install prompt, and `navigator.storage.persist()` when installed.
 - Live build: `.github/workflows/pages.yml` runs on every push to `main`, weekly (Mondays 06:17 UTC, to refresh the wiki) and on demand. It installs with pnpm on Node 24, runs `pnpm sync:wiki` (sync + verification; if the wiki is unreachable the committed archive ships and `verification.json` says so), then `pnpm typecheck`, `pnpm lint` and `pnpm test` on the synced data, commits any changed wiki pages back to `main` as `github-actions[bot]` ("Sync wiki mirror: N page(s) changed"), runs `pnpm build`, and publishes `apps/web/dist` (the two pages, bundled assets, `sw.js`, icons, manifest, `nms_state.json` and the wiki mirror). Browser tests aren't run in CI (owner's decision): `pnpm check` runs them locally before a push. One-time setup: Settings → Pages → Source: **GitHub Actions**.
+- CI hardening (3.15.0):
+  - **Permissions per job.** `build` (which runs pnpm and every dependency's code) has `contents: read` and checks out without keeping credentials. The synced wiki goes to `commit-wiki` as an artifact; that job runs no project code and is the only one that can push. `deploy` alone has `pages: write` and `id-token: write`.
+  - **The wiki sync step** has a 15-minute timeout and `continue-on-error`. A slow or odd wiki ships the committed archive rather than blocking a deploy.
+  - **Every action is pinned by commit.** `.github/dependabot.yml` proposes updates weekly, a week after each release.
+  - **npm packages** install only once a day old (`minimumReleaseAge` in `pnpm-workspace.yaml`). Direct dependencies are picked at least a week old by hand.
+- Content Security Policy (3.15.0): both built pages carry a meta CSP, added by `contentSecurityPolicy()` in `apps/web/vite.config.ts` at build time only (the dev server injects inline styles).
+  - Everything loads from the site itself; `connect-src` adds the sync relay's origin from `VITE_SYNC_URL`; fonts and images also allow `data:`.
+  - No inline scripts, styles, eval, frames, plugins or form posts. Zod runs jitless (`src/app/zod-config.ts`, imported first) so its eval probe isn't blocked and logged.
+  - A new runtime origin (another API, a CDN) needs a line in that policy. GitHub Pages can't send headers, so `frame-ancestors` can't be set.
 - Sync relay (`apps/sync`, ADR-0005): a Cloudflare Worker with a D1 database, deployed from a developer machine, not CI, so no Cloudflare token is stored in GitHub. One-time setup, from `apps/sync`:
   1. `pnpm exec wrangler login` (a free Cloudflare account).
   2. `pnpm exec wrangler d1 create atlas-sync`, then put the printed `database_id` in `wrangler.toml`.

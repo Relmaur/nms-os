@@ -5,3 +5,7 @@ packages:
 allowBuilds:
   esbuild: true
   workerd: true
+# New package versions are installed only once they're a day old (in minutes): most hijacked releases are caught and
+# pulled within hours. Explicit, so CI and every machine apply the same rule whatever pnpm's default becomes. Direct
+# dependencies are still chosen at least a week old by hand (docs/deploy.md).
+minimumReleaseAge: 1440

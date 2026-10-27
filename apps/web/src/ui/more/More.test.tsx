@@ -4,14 +4,20 @@ import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { appState, setAppState } from '../../app/store.ts';
 import { More } from './More.tsx';
+import { ImportDialog } from '../shell/ImportDialog.tsx';
 
 beforeEach(() => {
   localStorage.clear();
   setAppState(buildState({ systems: [] }));
 });
 
-test('Import replaces the log with a valid file, and leaves it alone for an invalid one', async () => {
-  render(<More />);
+test('Import shows a valid file before replacing the log, and leaves it alone for an invalid one', async () => {
+  render(
+    <>
+      <More />
+      <ImportDialog />
+    </>
+  );
   const input = screen.getByLabelText(/Import nms_state\.json/);
   await userEvent.upload(input, new File(['not json'], 'nms_state.json', { type: 'application/json' }));
   expect(appState.systems).toHaveLength(0);
@@ -19,12 +25,20 @@ test('Import replaces the log with a valid file, and leaves it alone for an inva
     type: 'application/json'
   });
   await userEvent.upload(input, file);
-  await expect.poll(() => appState.systems.map(system => system.name)).toEqual(['Ekwa Nexus']);
+  const dialog = await screen.findByRole('dialog', { name: 'Import this log?' });
+  expect(dialog.textContent).toContain('1 system');
+  expect(appState.systems).toHaveLength(0); // nothing replaced before the person confirms
+  await userEvent.click(screen.getByRole('button', { name: 'Replace this device’s log' }));
+  expect(appState.systems.map(system => system.name)).toEqual(['Ekwa Nexus']);
+  await userEvent.click(screen.getByRole('button', { name: /Undo import/ }));
+  expect(appState.systems).toHaveLength(1); // asks first: what was logged since would be lost
+  await userEvent.click(screen.getByRole('button', { name: /Tap again to undo/ }));
+  expect(appState.systems).toHaveLength(0);
 });
 
 test('the Guides row shows checklist progress', () => {
   const state = buildState();
-  state.checklists = { crossSaveLinked: true, anomalyUnlocked: true }; // only these (the built-in state ticks more)
+  state.checklists = { crossSaveLinked: true, anomalyUnlocked: true }; // only these
   setAppState(state);
   render(<More />);
   expect(screen.getByRole('link', { name: /Guides/ }).textContent).toContain('6% of checklists done');

@@ -82,3 +82,32 @@ A security audit found that on Cloudflare's free plan one client with a script c
 - **In the app:** a full relay pauses automatic syncs and push sends on that device until the reset, and survives reloads. A banner (once a day, dismissible) says the log is safe, when sync resumes, and that a Ko-fi coffee helps upgrade the server.
 - **Ownership in the SQL:** updates and deletes also match the token hash.
 - **Knowing when to upgrade:** `GET /v1/status` reports aggregate usage (no ids or IPs). A daily workflow opens an issue once any day reaches 60% of a free limit. Upgrading means switching to Workers Paid and setting `PLAN = "paid"`.
+
+## Hardening after the security audit (3.15.0)
+- **Format 2.** Each sealed copy is `[2][version, 4 bytes][iv][ciphertext]`. The AES-GCM associated data binds the vault id, the format and the version the relay will store the copy as (the version it replaces + 1). A relay that labels an old copy with a newer version produces a copy that fails to open, and a device refuses a cloud version lower than the one it last synced ("older"). Format 1 copies (3.10–3.14) still open; every write is format 2.
+- **Size and shape:**
+  - Copies over 512 KB are refused before decrypting.
+  - Decompression stops at 8 MB, so a gzip bomb can't fill memory.
+  - JSON nested more than 64 deep is refused before any recursive walk.
+- **The merge:**
+  - Only own keys are read: no `constructor` or `toString` from the prototype.
+  - Save times are clamped to "now", in the comparison and in the result, so a future-stamped copy can't win every clash.
+- **The mass-deletion guard.** A merge that would remove more than 10 records, or more than 20% of them (at least 3), waits for the person. It counts systems (once each, with their planets and visits), planets and visits of systems that stay, gear and notes, as removed from this device's log by the other side's changes. "Apply" keeps the log from before under `nms_master_os_state.before-sync` (More → Sync → Put it back); "Keep this device's log" replaces the cloud copy. This catches:
+  - a damaged copy;
+  - a crafted copy from someone holding the code.
+
+  A device whose own log was lost is handled by the recovered-log rule below.
+- **A recovered log.** When this device's stored log was unreadable and fell back to defaults, sync drops its base, so the next sync combines both copies. That restores the cloud copy instead of reading the empty log as deletions.
+- **Pairing:**
+  - The prompt says to pair only with a code from your own device. Replacing a sync already on takes a second tap.
+  - Pairing with a code no device uploaded (404) is refused; only "Turn on sync" creates a vault.
+  - Both devices show a short copy ID (from the vault id).
+  - The code card stays hidden behind a streamer warning until asked for.
+  - A `#pair=` link leaves the address before anything else on the page runs.
+- **Import (ADR-0002) with sync on.** Import resets the base, so the imported log is combined with the synced one rather than deleting what the file lacks from every device.
+- **What format 2 can't prevent:**
+  - Once a device has seen a format-2 copy, format 1 is refused, so the relay can't replay a 3.10–3.14 copy.
+  - A conflict answer must carry a newer version than the one written against.
+  - A losing concurrent write is still a validly sealed copy for its version, so the relay could later serve it instead of the winner (a fork). The merge keeps both sides' records, and the removal guard catches a fork that would remove many.
+  - Devices still on 3.14 or older can't open format 2 and say "couldn't be opened with this code" until they update, which happens on their next visit. Nothing needs re-pairing.
+- **The removal guard counts what the other side's changes would take from this device.** A removed system counts once. This device's own deletions never ask.
