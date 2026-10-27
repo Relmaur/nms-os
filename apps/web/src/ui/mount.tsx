@@ -15,12 +15,16 @@ import { Header } from './shell/Header.tsx';
 import { Sidebar } from './shell/Sidebar.tsx';
 import { TabBar } from './shell/TabBar.tsx';
 import { StorageBanner } from './shell/StorageBanner.tsx';
+import { SessionBar } from './session/SessionBar.tsx';
+import { SessionSheet } from './session/SessionSheet.tsx';
 
 const FRAME: [string, ReactNode][] = [
   ['headerRoot', <Header />],
   ['sidebarNav', <Sidebar />],
   ['tabBarRoot', <TabBar />],
-  ['storageBannerRoot', <StorageBanner />]
+  ['storageBannerRoot', <StorageBanner />],
+  ['sessionBarRoot', <SessionBar />],
+  ['sessionSheetRoot', <SessionSheet />]
 ];
 
 const SCREENS: [string, ReactNode][] = [

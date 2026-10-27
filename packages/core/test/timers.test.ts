@@ -6,11 +6,13 @@ import {
   nextDue,
   normalizeTimers,
   refineDuration,
+  refineOptions,
   timerRows,
   timerStatus,
   type Timer
 } from '../src/timers.ts';
 import { normalizeSystem, HOUR_MS } from '../src/systems-model.ts';
+import type { GameItem } from '../src/game-data.ts';
 
 const now = Date.parse('2026-10-27T12:00:00Z');
 const at = (minutes: number) => new Date(now + minutes * 60000).toISOString();
@@ -99,4 +101,30 @@ test('loading keeps good timers and drops damaged ones', () => {
     ]
   );
   assert.deepEqual(normalizeTimers(undefined), []);
+});
+
+test('the refiner picker lists current items with a timed refine recipe, by name', () => {
+  // Only the fields refineOptions reads; a full GameItem carries many more.
+  const item = (title: string, recipes: object[], obsolete = false) =>
+    ({ title, recipes, obsolete }) as unknown as GameItem;
+  const options = refineOptions([
+    item('Glass', [
+      {
+        type: 'refine',
+        inputs: [{ name: 'Frost Crystal', qty: 1 }],
+        outputs: [{ name: 'Glass', qty: 1 }],
+        seconds: 0.6
+      }
+    ]),
+    item('Activated Quartzite', [
+      { type: 'refine', inputs: [], outputs: [{ name: 'Activated Quartzite', qty: 1 }], seconds: 0.36 }
+    ]),
+    item('Untimed', [{ type: 'refine', inputs: [], outputs: [{ name: 'Untimed', qty: 1 }] }]),
+    item('Old', [{ type: 'refine', inputs: [], outputs: [], seconds: 1 }], true),
+    item('Crafted', [{ type: 'craft', inputs: [], outputs: [], seconds: 1 }])
+  ]);
+  assert.deepEqual(
+    options.map(option => option.title),
+    ['Activated Quartzite', 'Glass']
+  );
 });

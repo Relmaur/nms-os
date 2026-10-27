@@ -62,3 +62,15 @@ setCatchHandler(async ({ request, url }) => {
   const page = /\/wiki\/?$/.test(url.pathname) ? 'wiki/index.html' : 'index.html';
   return (await matchPrecache(page)) ?? Response.error();
 });
+
+// A finished-timer notification (src/ui/session/timer-runner.ts): tapping it brings the app back, or opens it.
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const home = new URL('./#home', self.registration.scope).href;
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windows => {
+      const open = windows.find(client => client.url.startsWith(self.registration.scope));
+      return open ? open.focus() : self.clients.openWindow(home);
+    })
+  );
+});

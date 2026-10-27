@@ -2,13 +2,16 @@
 // your data (Export and Import, the only way it leaves the device: ADR-0002).
 import type { ReactNode } from 'react';
 import { guideProgress } from '@atlas/core/guides';
+import { formatDuration } from '@atlas/core/format';
+import { sessionRecap } from '@atlas/core/session';
 import { exportState, importState } from '../../app/backup.ts';
 import { useAppState } from '../useAppState.ts';
 import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device-store.ts';
 import { useWikiCount } from '../shell/wiki-index.ts';
 
 export function More() {
-  const { checklists } = useAppState();
+  const state = useAppState();
+  const { checklists } = state;
   const device = useDevice();
   const wikiCount = useWikiCount();
   return (
@@ -75,6 +78,34 @@ export function More() {
           </Text>
         </li>
       </Group>
+
+      {state.sessions.length > 0 && (
+        <Group title="Play sessions">
+          {state.sessions
+            .slice(-5)
+            .reverse()
+            .map(session => {
+              const recap = sessionRecap(state, session, Date.parse(session.endedAt));
+              return (
+                <li key={session.startedAt} className="list-row">
+                  <Tile icon="ph-hourglass-medium text-emerald-300" />
+                  <Text
+                    title={new Date(session.startedAt).toLocaleString(undefined, {
+                      dateStyle: 'medium',
+                      timeStyle: 'short'
+                    })}
+                  >
+                    {formatDuration(recap.elapsed)} · {recap.visits} visit{recap.visits === 1 ? '' : 's'}
+                    {recap.packetRuns
+                      ? ` · ${String(recap.packetRuns)} packet run${recap.packetRuns === 1 ? '' : 's'}`
+                      : ''}
+                    {recap.timersDone ? ` · ${String(recap.timersDone)} timer${recap.timersDone === 1 ? '' : 's'}` : ''}
+                  </Text>
+                </li>
+              );
+            })}
+        </Group>
+      )}
 
       <div className="space-y-2">
         <h2 className="list-heading">Your data</h2>

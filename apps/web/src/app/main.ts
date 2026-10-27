@@ -10,6 +10,7 @@ import { openSystemEditor } from '../ui/systems/panel-store.ts';
 import { onSection, startSections } from '../ui/shell/section-store.ts';
 import { reportStorage } from '../ui/shell/StorageBanner.tsx';
 import { setWikiEntries } from '../ui/shell/wiki-index.ts';
+import { startTimerRunner } from '../ui/session/timer-runner.ts';
 
 registerServiceWorker();
 startDevice();
@@ -22,5 +23,6 @@ mountFrame();
 void WikiSearch.load('wiki/').then(setWikiEntries);
 
 await loadAppState();
+startTimerRunner(); // a timer that finished while the app was closed is announced now
 mountScreens();
 startSections(); // after the state loads, so #new-system can open the editor

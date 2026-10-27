@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { exportState, importState } from '../../app/backup.ts';
 import { Search, openSearch } from './Search.tsx';
 import { showSection } from './section-store.ts';
+import { openSessionSheet } from '../session/sheet-store.ts';
+import { useAppState } from '../useAppState.ts';
 
 export function Header() {
   const [dropping, setDropping] = useState(false);
+  const { session, timers } = useAppState();
+  const active = session !== null || timers.length > 0;
   return (
     <div className="max-w-[1600px] mx-auto h-14 lg:h-16 px-4 sm:px-6 flex items-center gap-3 sm:gap-4">
       <a
@@ -34,6 +38,21 @@ export function Header() {
           className="md:hidden w-10 h-10 -mr-2 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition"
         >
           <i className="ph-bold ph-magnifying-glass text-xl" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          onClick={openSessionSheet}
+          aria-label={active ? 'Session and timers (running)' : 'Session and timers'}
+          title="Session and timers"
+          className="relative w-10 h-10 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 md:bg-slate-900 md:border md:border-slate-800 md:hover:bg-slate-800 transition"
+        >
+          <i className="ph-bold ph-timer text-xl md:text-base" aria-hidden="true" />
+          {active && (
+            <span
+              className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950"
+              aria-hidden="true"
+            />
+          )}
         </button>
         <button
           type="button"

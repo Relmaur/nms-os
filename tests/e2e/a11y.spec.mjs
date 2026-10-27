@@ -22,6 +22,17 @@ const openIndex = async page => {
   if (await bar.isVisible()) await bar.click();
 };
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
+const openSession = async page => {
+  await page.locator('#startSession').click();
+  await page
+    .locator('#sessionSheet')
+    .getByRole('button', { name: /Custom/ })
+    .click();
+};
+const showRecap = async page => {
+  await page.locator('#startSession').click();
+  await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
+};
 
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
@@ -29,6 +40,8 @@ for (const [name, path, ready, region, setup] of [
   ['Page frame (header, sidebar, tab bar)', './', '#homeNow', 'body'],
   ['Page frame on Systems', './#systems', '#systemList', 'body'],
   ['Page frame on Outlaw Run', './#outlaw', '#outlawStationList', 'body'],
+  ['Session sheet', './', '#homeNow', '#sessionSheet', openSession],
+  ['Session recap', './', '#homeNow', '#sessionSheet', showRecap],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System panel', './#systems', '#systemNotes', '#systemPanel', openPanel],

@@ -3,7 +3,7 @@
 // crop's or a custom timer's is the player's own input (ADR-0003).
 import { isPlainObject } from './util.ts';
 import { rankOutlaw, type System } from './systems-model.ts';
-import type { Recipe } from './game-data.ts';
+import type { GameItem, Recipe } from './game-data.ts';
 
 export type TimerKind = 'refine' | 'crop' | 'custom';
 export const TIMER_KINDS: TimerKind[] = ['refine', 'crop', 'custom'];
@@ -103,3 +103,23 @@ export function lastCropMinutes(timers: Timer[], name: string): number | null {
     .sort((a, b) => Date.parse(b.startedAt) - Date.parse(a.startedAt))[0];
   return last ? Math.round((Date.parse(last.endsAt) - Date.parse(last.startedAt)) / 60000) : null;
 }
+
+export interface RefineOption {
+  title: string; // what the refiner makes
+  recipes: Recipe[]; // refine recipes with a wiki time
+}
+
+// Everything a refiner makes with a known time, by name, for the timer picker.
+export function refineOptions(items: Iterable<GameItem>): RefineOption[] {
+  const options: RefineOption[] = [];
+  for (const item of items) {
+    if (item.obsolete) continue;
+    const recipes = item.recipes.filter(recipe => recipe.type === 'refine' && recipe.seconds);
+    if (recipes.length) options.push({ title: item.title, recipes });
+  }
+  return options.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+// "Methane + Lithium + Quartzite", the inputs as a short line.
+export const recipeInputs = (recipe: Recipe): string =>
+  recipe.inputs.map(input => `${String(input.qty)} ${input.name}`).join(' + ');

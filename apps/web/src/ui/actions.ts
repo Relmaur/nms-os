@@ -2,6 +2,8 @@
 import type { OutlawSettings } from '@atlas/core/state';
 import { newId, normalizeSystem, tagSlug, type System } from '@atlas/core/systems-model';
 import { clampOutlawSetting } from '@atlas/core/outlaw';
+import { MAX_SESSIONS, type PastSession } from '@atlas/core/session';
+import type { Timer, TimerKind } from '@atlas/core/timers';
 import type { ParsedOutlawSystem } from '@atlas/core/systems-list';
 import { appState, saveAppState } from '../app/store.ts';
 import { showToast, haptic } from '../app/ui.ts';
@@ -145,4 +147,52 @@ export function addOutlawSystems(parsed: ParsedOutlawSystem[]): void {
 export function toggleChecklist(id: string): void {
   appState.checklists[id] = !appState.checklists[id];
   saveAppState();
+}
+
+// A play session: started when you sit down to play; ending it files it with the past ones and returns it.
+export function startSession(): void {
+  appState.session = { startedAt: new Date().toISOString(), timersDone: 0 };
+  haptic();
+  saveAppState();
+}
+
+export function endSession(): PastSession | null {
+  const { session } = appState;
+  if (!session) return null;
+  const ended = { ...session, endedAt: new Date().toISOString() };
+  appState.sessions = [...appState.sessions, ended].slice(-MAX_SESSIONS);
+  appState.session = null;
+  saveAppState();
+  return ended;
+}
+
+export function addTimer(kind: TimerKind, label: string, durationMs: number): void {
+  const now = Date.now();
+  appState.timers.push({
+    id: newId('timer'),
+    kind,
+    label,
+    startedAt: new Date(now).toISOString(),
+    endsAt: new Date(now + durationMs).toISOString(),
+    alerted: false
+  });
+  haptic();
+  saveAppState();
+  showToast(`Timer set: ${label}.`);
+}
+
+export function dismissTimer(id: string): void {
+  appState.timers = appState.timers.filter(timer => timer.id !== id);
+  saveAppState();
+}
+
+// Marks finished timers as announced (and counts them toward the session in progress). Returns those it marked, so
+// a timer finishing while two tabs are open is announced by one of them.
+export function markAlerted(ids: string[]): Timer[] {
+  const marked = appState.timers.filter(timer => ids.includes(timer.id) && !timer.alerted);
+  if (!marked.length) return [];
+  for (const timer of marked) timer.alerted = true;
+  if (appState.session) appState.session.timersDone += marked.length;
+  saveAppState();
+  return marked;
 }

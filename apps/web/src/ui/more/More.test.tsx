@@ -29,3 +29,15 @@ test('the Guides row shows checklist progress', () => {
   render(<More />);
   expect(screen.getByRole('link', { name: /Guides/ }).textContent).toContain('6% of checklists done');
 });
+
+test('past play sessions are listed, newest first', () => {
+  const state = buildState({ systems: [] });
+  state.sessions = [
+    { startedAt: '2026-10-25T18:00:00.000Z', endedAt: '2026-10-25T19:00:00.000Z', timersDone: 0 },
+    { startedAt: '2026-10-26T18:00:00.000Z', endedAt: '2026-10-26T20:30:00.000Z', timersDone: 3 }
+  ];
+  setAppState(state);
+  render(<More />);
+  const rows = screen.getByRole('heading', { name: 'Play sessions' }).nextElementSibling?.textContent ?? '';
+  expect(rows.indexOf('2h 30m · 0 visits · 3 timers')).toBeLessThan(rows.indexOf('1h · 0 visits'));
+});

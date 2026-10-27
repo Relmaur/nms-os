@@ -11,6 +11,8 @@ import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
 import { GlyphChip, StarDot, TagChip } from '../parts/SystemBits.tsx';
 import { toggleKeepAwake, useDevice } from '../more/device-store.ts';
+import { startSession } from '../actions.ts';
+import { openSessionSheet } from '../session/sheet-store.ts';
 
 const ROW = 'flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70';
 
@@ -28,18 +30,34 @@ export function Home() {
             {state.meta.currentPhase}
           </p>
         </div>
-        {device.wakeSupported && (
-          <button
-            type="button"
-            role="switch"
-            aria-checked={device.awake}
-            onClick={toggleKeepAwake}
-            className="wake-chip"
-          >
-            <i className="ph-bold ph-sun-dim" aria-hidden="true" />
-            <span>Keep screen on</span>
-          </button>
-        )}
+        <div className="flex flex-wrap items-center gap-2">
+          {state.session === null && (
+            <button
+              type="button"
+              id="startSession"
+              onClick={() => {
+                startSession();
+                openSessionSheet();
+              }}
+              className="wake-chip session-start"
+            >
+              <i className="ph-fill ph-play" aria-hidden="true" />
+              <span>Start session</span>
+            </button>
+          )}
+          {device.wakeSupported && (
+            <button
+              type="button"
+              role="switch"
+              aria-checked={device.awake}
+              onClick={toggleKeepAwake}
+              className="wake-chip"
+            >
+              <i className="ph-bold ph-sun-dim" aria-hidden="true" />
+              <span>Keep screen on</span>
+            </button>
+          )}
+        </div>
       </div>
       <div id="homeNow">
         <CurrentSystem system={summary.current} now={now} />

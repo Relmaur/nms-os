@@ -18,6 +18,15 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   await expect(page.locator('#systemList')).toContainText('Hesper Drift');
   await page.goto('./#calculators');
   await expect(page.locator('#planResult [data-raw="Radon"]')).toHaveAttribute('data-qty', '500');
+  // The refiner timer's recipes come from the cached wiki dataset too.
+  await page.goto('./#home');
+  await page.locator('#startSession').click();
+  await page.locator('#sessionSheet').getByLabel('What it makes').fill('Enriched Carbon');
+  await page
+    .locator('#sessionSheet')
+    .getByRole('button', { name: /Start refiner timer/ })
+    .click();
+  await expect(page.locator('#sessionBar')).toContainText('Enriched Carbon');
 
   await page.goto('./wiki/#/?q=oxygen');
   await expect(page.locator('#browseBody .result').first()).toContainText('Oxygen');
