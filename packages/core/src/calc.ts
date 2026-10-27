@@ -43,11 +43,11 @@ export function evaluateRegister(expr: string): number | '?' {
 
 export const formatQty = (n: number): string => n.toLocaleString();
 
-// Unit amounts as the game shows them: millions shortened ("15.6M"), smaller ones in full.
+// Unit amounts, shortened from a million up ("15.6M", "1.56B"); smaller ones in full.
 export function formatUnits(n: number): string {
-  return n >= 1e6
-    ? `${(n / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 })}M`
-    : Math.round(n).toLocaleString();
+  const short = (value: number, unit: string) =>
+    `${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}${unit}`;
+  return n >= 1e9 ? short(n / 1e9, 'B') : n >= 1e6 ? short(n / 1e6, 'M') : Math.round(n).toLocaleString();
 }
 
 // Extractor output depends on the deposit, so the hourly rate is the player's input; the value is the wiki's.

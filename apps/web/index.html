@@ -770,78 +770,10 @@
             </section>
 
             <!-- ===================================================================== -->
-            <!-- INTERACTIVE CALCULATORS SUITE (5 LIVE TOOLS)                          -->
+            <!-- CALCULATORS (src/ui/calculators · wiki/game-data.json)                -->
             <!-- ===================================================================== -->
-            <section id="sec-calculators" class="book-section hidden space-y-6">
-                <div class="max-w-3xl">
-                    <h1 class="font-display text-2xl font-bold text-white">Calculators</h1>
-                    <p class="text-sm text-slate-300 mt-1.5">Recipes and values come from the wiki mirror, so they match the wiki exactly. Anything the wiki can’t know, like your extractor’s output, is an input you set.</p>
-                    <p id="calcSource" class="text-xs text-slate-400 mt-2">Loading the wiki data…</p>
-                </div>
-
-                <!-- Recipe planner (assets/app/calculators.js) -->
-                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                    <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-tree-structure text-cyan-300"></i>Recipe planner</h2>
-                    <div class="flex flex-wrap items-end gap-3">
-                        <label class="field flex-1 min-w-[13rem]">Item to make
-                            <input id="planItem" list="planItemOptions" type="search" autocomplete="off" spellcheck="false" placeholder="Search craftable and cookable items" onchange="setPlanItem(this.value)" onkeydown="if (event.key === 'Enter') setPlanItem(this.value)">
-                        </label>
-                        <label class="field w-28">How many
-                            <input id="planQty" type="number" inputmode="numeric" min="1" max="9999" value="1" oninput="renderPlanner()">
-                        </label>
-                    </div>
-                    <div id="planPresets" class="flex flex-wrap gap-1.5"></div>
-                    <div id="planResult" class="pt-1"></div>
-                </div>
-
-                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
-                    <!-- Base value -->
-                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                        <div>
-                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-coins text-amber-300"></i>Base value</h2>
-                            <p class="text-xs text-slate-400 mt-1">What a haul is worth at the wiki’s base values, e.g. Sentinel salvage. Terminals pay more or less depending on the system’s economy.</p>
-                        </div>
-                        <ul id="valueRows" class="space-y-1.5"></ul>
-                        <form class="flex gap-2" onsubmit="event.preventDefault(); addValueRow()">
-                            <input id="valueAdd" list="valueItemOptions" type="search" autocomplete="off" spellcheck="false" placeholder="Add an item" aria-label="Add an item" class="flex-1 min-w-0 h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base sm:text-sm text-white placeholder:text-slate-400">
-                            <button class="h-10 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm text-slate-100">Add</button>
-                        </form>
-                        <p id="valueTotal" class="text-sm text-slate-300"></p>
-                    </div>
-
-                    <div class="space-y-6">
-                        <!-- Mineral extractors -->
-                        <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                            <div>
-                                <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-mountains text-emerald-300"></i>Mineral extractors</h2>
-                                <p class="text-xs text-slate-400 mt-1">Output depends on the deposit, so enter the rate your extractor shows in game. The mineral’s value comes from the wiki.</p>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                <label class="field">Mineral<select id="mineMineral" onchange="renderExtractors()" class="filter-select w-full mt-1.5"></select></label>
-                                <label class="field">Extractors<input id="mineCount" type="number" inputmode="numeric" min="1" max="99" value="1" oninput="renderExtractors()"></label>
-                                <label class="field">Units/hour each<input id="mineRate" type="number" inputmode="numeric" min="0" placeholder="e.g. 250" oninput="renderExtractors()"></label>
-                            </div>
-                            <p id="mineResult" class="text-sm text-slate-300"></p>
-                        </div>
-
-                        <!-- Harmonic Camp registers -->
-                        <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-                            <div>
-                                <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-terminal-window text-purple-300"></i>Harmonic Camp registers</h2>
-                                <p class="text-xs text-slate-400 mt-1">Type each register’s expression to get the override code.</p>
-                            </div>
-                            <div class="grid grid-cols-3 gap-3">
-                                <label class="field">Register 1<input type="text" id="calcReg1" value="6 - 2" oninput="runCalculators()" class="font-mono"><span id="calcAns1" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">4</span></label>
-                                <label class="field">Register 2<input type="text" id="calcReg2" value="2 + 8" oninput="runCalculators()" class="font-mono"><span id="calcAns2" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">10</span></label>
-                                <label class="field">Register 3<input type="text" id="calcReg3" value="11 + 5" oninput="runCalculators()" class="font-mono"><span id="calcAns3" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">16</span></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400">Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in <a href="#outlaw" class="text-emerald-300 hover:text-emerald-200">Outlaw Run</a> → Run settings.</p>
-                <datalist id="planItemOptions"></datalist>
-                <datalist id="valueItemOptions"></datalist>
+            <section id="sec-calculators" class="book-section hidden">
+                <!-- Rendered by React (src/ui/calculators/Calculators.tsx) --><div id="calculatorsRoot" class="space-y-6"></div>
             </section>
 
             <!-- ===================================================================== -->

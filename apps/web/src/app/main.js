@@ -15,7 +15,7 @@ import { mountScreens } from '../ui/mount.tsx';
 import { registerServiceWorker } from './pwa.js';
 
 registerServiceWorker();
-import { loadGameData } from './calculators.js';
+import { loadGameData } from '../ui/calculators/game-data.ts';
 
 // =========================================================================
 // 1. MASTER CHECKLIST DATA DEFINITIONS
@@ -479,27 +479,6 @@ function renderAllChecklists() {
 }
 
 // =========================================================================
-// 5. LIVE GAMEPLAY CALCULATORS
-// =========================================================================
-function safeMathEval(expr) {
-  try {
-    const sanitized = expr.replace(/[^0-9+\-*/().\s]/g, '');
-    return Function(`"use strict"; return (${sanitized})`)();
-  } catch {
-    return '?';
-  }
-}
-
-function runCalculators() {
-  // Harmonic Camp registers; the data-driven calculators live in assets/app/calculators.js
-  [1, 2, 3].forEach(n => {
-    document.getElementById(`calcAns${n}`).textContent = safeMathEval(
-      document.getElementById(`calcReg${n}`).value || '0'
-    );
-  });
-}
-
-// =========================================================================
 // 6. JSON EXPORT / IMPORT FOR GIT REPO
 // =========================================================================
 function exportStateJSON() {
@@ -595,7 +574,6 @@ onSection('new-system', () => openSystemEditor());
 
 (async function init() {
   decorateBooks();
-  runCalculators();
   WikiSearch.load('wiki/').then(entries => {
     wikiEntries = entries;
     const current = entries.filter(entry => !WikiSearch.isOld(entry)).length;
@@ -623,6 +601,5 @@ Object.assign(window, {
   handleStateDragOver,
   handleStateDrop,
   setDropzoneActive,
-  toggleCheckItem,
-  runCalculators
+  toggleCheckItem
 });

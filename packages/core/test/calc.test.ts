@@ -29,4 +29,5 @@ test('extractor yield and haul value', () => {
   );
   assert.equal(formatUnits(15_600_000), '15.6M');
   assert.equal(formatUnits(53_900), '53,900');
+  assert.equal(formatUnits(1_560_000_000), '1.56B');
 });

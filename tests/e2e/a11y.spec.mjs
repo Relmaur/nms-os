@@ -9,6 +9,11 @@ const openEditor = async page => {
   await page.getByRole('button', { name: 'Edit system' }).click();
 };
 
+const tickHalf = async page => {
+  const tiles = await page.locator('#planHold label').all();
+  for (const tile of tiles.slice(0, 7)) await tile.click();
+};
+
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
@@ -16,7 +21,8 @@ for (const [name, path, ready, region, setup] of [
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System panel', './#systems', '#systemNotes', '#systemPanel', openPanel],
   ['System editor', './#systems', '#systemEditor', '#systemPanel', openEditor],
-  ['Calculators', './#calculators', '#planResult', null],
+  ['Calculators', './#calculators', '#planHold', '#sec-calculators'],
+  ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
   ['Codex', './wiki/', '#browseBody', null]
 ]) {
   test(`axe: ${name}`, async ({ page }, testInfo) => {

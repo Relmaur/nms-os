@@ -5,11 +5,13 @@ import { Home } from './home/Home.tsx';
 import { Systems } from './systems/Systems.tsx';
 import { SystemPanel } from './systems/SystemPanel.tsx';
 import { Outlaw } from './outlaw/Outlaw.tsx';
+import { Calculators } from './calculators/Calculators.tsx';
 
 const SCREENS: [string, ReactNode][] = [
   ['homeRoot', <Home />],
   ['systemsRoot', <Systems />],
   ['outlawRoot', <Outlaw />],
+  ['calculatorsRoot', <Calculators />],
   ['systemPanelRoot', <SystemPanel />]
 ];
 

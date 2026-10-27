@@ -1,17 +1,14 @@
 import { test, expect } from './fixtures.mjs';
 
+// The planner's cargo hold: one tile per raw material, with its total.
 const rawMaterials = page =>
   page
-    .locator('#planResult tbody tr')
-    .evaluateAll(rows =>
-      Object.fromEntries(
-        rows.map(row => [row.cells[0].innerText.trim(), Number(row.cells[1].innerText.replace(/,/g, ''))])
-      )
-    );
+    .locator('#planResult [data-raw]')
+    .evaluateAll(tiles => Object.fromEntries(tiles.map(tile => [tile.dataset.raw, Number(tile.dataset.qty)])));
 
 test('the Stasis Device plan matches the wiki’s totals', async ({ page }) => {
   await page.goto('./#calculators');
-  await expect(page.locator('#planResult tbody tr').first()).toBeVisible();
+  await expect(page.locator('#planResult [data-raw]').first()).toBeVisible();
   expect(await rawMaterials(page)).toEqual({
     Radon: 500,
     Sulphurine: 500,
@@ -38,6 +35,19 @@ test('switching an alternative recipe changes the plan', async ({ page }) => {
   expect(await rawMaterials(page)).toMatchObject({ 'Fresh Milk': 2, Grahberry: 2 });
   await page.locator('#planResult button[data-title="Clarified Oil"]').click();
   expect(await rawMaterials(page)).toMatchObject({ 'Fresh Milk': 1, 'Warm Proto-Milk': 1 });
+});
+
+test('ticks build the plan upward and survive a reload', async ({ page }) => {
+  await page.goto('./#calculators');
+  const roundOne = page.locator('#planResult li:has(> div > h4:text-is("Round 1"))');
+  await expect(roundOne).toContainText('Needs the cargo hold');
+  for (const tile of await page.locator('#planHold label').all()) await tile.click();
+  await expect(page.locator('#planHold')).toContainText('14 of 14 gathered');
+  await expect(roundOne).toContainText('Ready to craft');
+  await page.reload();
+  await expect(page.locator('#planHold')).toContainText('14 of 14 gathered');
+  await page.getByRole('button', { name: 'One more' }).click();
+  await expect(page.locator('#planHold')).toContainText('0 of 14 gathered'); // a different plan starts fresh
 });
 
 test('base value and extractor yield use wiki values', async ({ page }) => {

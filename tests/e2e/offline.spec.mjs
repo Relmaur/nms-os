@@ -17,7 +17,7 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   await page.goto('./#systems');
   await expect(page.locator('#systemList')).toContainText('Hesper Drift');
   await page.goto('./#calculators');
-  await expect(page.locator('#planResult tbody tr', { hasText: 'Radon' })).toContainText('500');
+  await expect(page.locator('#planResult [data-raw="Radon"]')).toHaveAttribute('data-qty', '500');
 
   await page.goto('./wiki/#/?q=oxygen');
   await expect(page.locator('#browseBody .result').first()).toContainText('Oxygen');
