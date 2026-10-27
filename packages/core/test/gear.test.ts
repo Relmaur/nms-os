@@ -1,6 +1,6 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { gearFromFleet, gearOrder, normalizeGear, parseSlots, slotGrid } from '../src/gear.ts';
+import { gearFromFleet, gearOrder, normalizeGear, parseSlots, slotGrid, toggleSlot } from '../src/gear.ts';
 import { buildState } from '../src/state.ts';
 import { mergeStates } from '../src/sync.ts';
 
@@ -24,6 +24,9 @@ test('typed supercharged slots are tidied, and what isn’t a slot is reported',
   const grid = slotGrid(['R4C10', 'R1C1']);
   assert.deepEqual([grid.rows, grid.cols, grid.marked.has('R4C10')], [4, 10, true]);
   assert.deepEqual([slotGrid([]).rows, slotGrid([]).cols], [3, 8]);
+  assert.deepEqual([slotGrid(['R2C2'], { rows: 4, cols: 10 }).rows, slotGrid([], { rows: 4, cols: 10 }).cols], [4, 10]);
+  assert.deepEqual(toggleSlot(['R2C4', 'R1C9'], 'R2C2'), ['R1C9', 'R2C2', 'R2C4']);
+  assert.deepEqual(toggleSlot(['R1C9', 'R2C2'], 'R1C9'), ['R2C2']);
 });
 
 test('the old fleet notes become records with fixed ids, so two devices migrate to the same records', () => {

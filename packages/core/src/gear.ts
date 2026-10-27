@@ -38,10 +38,14 @@ export function parseSlots(input: string): { slots: string[]; rejected: string[]
   return { slots, rejected };
 }
 
-// The grid a card draws: big enough for every supercharged slot, at least 3 × 8.
-export function slotGrid(slots: string[]): { rows: number; cols: number; marked: Set<string> } {
-  let rows = 3;
-  let cols = 8;
+// The grid drawn for a set of slots: big enough for every one, and at least `min` (a card's preview is 3 × 8; the
+// editor's picker is 4 × 10, the first 40 coordinates where Book III says supercharged slots spawn).
+export function slotGrid(
+  slots: string[],
+  min = { rows: 3, cols: 8 }
+): { rows: number; cols: number; marked: Set<string> } {
+  let rows = min.rows;
+  let cols = min.cols;
   for (const slot of slots) {
     const match = SLOT.exec(slot);
     if (!match) continue;
@@ -49,6 +53,16 @@ export function slotGrid(slots: string[]): { rows: number; cols: number; marked:
     cols = Math.max(cols, Number(match[2]));
   }
   return { rows, cols, marked: new Set(slots) };
+}
+
+// Tapping a cell in the picker: marks or unmarks it. Kept in reading order (row, then column).
+export function toggleSlot(slots: string[], slot: string): string[] {
+  const next = slots.includes(slot) ? slots.filter(item => item !== slot) : [...slots, slot];
+  const key = (item: string) => {
+    const match = SLOT.exec(item);
+    return Number(match?.[1]) * 100 + Number(match?.[2]);
+  };
+  return next.sort((a, b) => key(a) - key(b));
 }
 
 export function normalizeGear(value: unknown): GearItem[] {

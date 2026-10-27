@@ -12,7 +12,7 @@ That content is worth keeping, for the owner. Every player has findings like it.
 
 ## Decision
 - **Two record types in the log**, both lists of records with ids:
-  - `gear[]`: ships and Multi-Tools, structured (kind, name, class, type, role, supercharged slots as `R<row>C<col>`, Markdown notes). Home's fleet card reads it. Its own screen is "Ships & Multi-Tools" (`#gear`).
+  - `gear[]`: ships and Multi-Tools, structured (kind, name, class, type, role, supercharged slots as `R<row>C<col>`, marked on a tappable grid, Markdown notes). Home's fleet card reads it. Its own screen is "Ships & Multi-Tools" (`#gear`).
   - `notes[]`: Markdown notes, each pinnable to Home and to any Guide book (`pins`). Pinned notes show under the book, marked as the player's own, and never in the header search's "In the manual" results. Its own screen is "Notes" (`#notes`), with search and a Markdown file import.
 - **Pins, not per-book fields:** one note can sit in several places, places can be added later without a migration, and `pins` merges as a set in sync.
 - **Records with ids** merge record by record in sync (ADR-0005). The old `fleet` object had no ids and was taken whole from the newer copy.

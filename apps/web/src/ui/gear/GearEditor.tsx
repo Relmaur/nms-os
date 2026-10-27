@@ -1,12 +1,12 @@
-// Add or edit a ship or Multi-Tool. Supercharged slots are typed as R2C3 (row 2, column 3); the grid previews them.
+// Add or edit a ship or Multi-Tool. Supercharged slots are marked by tapping the inventory grid (SlotPicker).
 import { useCallback, useState, type SubmitEvent } from 'react';
 import { newId } from '@atlas/core/systems-model';
-import { ROLE_SUGGESTIONS, parseSlots, type GearItem, type GearKind } from '@atlas/core/gear';
+import { ROLE_SUGGESTIONS, type GearItem, type GearKind } from '@atlas/core/gear';
 import { deleteGear, saveGear } from '../actions.ts';
 import { showToast } from '../../app/ui.ts';
 import { closeEditor } from '../parts/editor-store.ts';
 import { Modal } from '../parts/Modal.tsx';
-import { SlotGrid } from './GearCard.tsx';
+import { SlotPicker } from './SlotPicker.tsx';
 
 const KINDS: [GearKind, string][] = [
   ['starship', 'Starship'],
@@ -29,15 +29,13 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
         createdAt: new Date().toISOString()
       }
   );
-  const [slotText, setSlotText] = useState(draft.superchargedSlots.join(' '));
-  const [original] = useState(() => JSON.stringify({ draft, slotText }));
+  const [original] = useState(() => JSON.stringify(draft));
   // Deleted on another device (or tab) while open: the first Save says so, a second one keeps it on purpose.
   const [wasSaved] = useState(Boolean(existing));
   const [restore, setRestore] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [error, setError] = useState('');
-  const dirty = JSON.stringify({ draft, slotText }) !== original;
-  const parsed = parseSlots(slotText);
+  const dirty = JSON.stringify(draft) !== original;
   const set = (changes: Partial<GearItem>) => {
     setDraft(current => ({ ...current, ...changes }));
   };
@@ -53,16 +51,12 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
       setError('Give it a name.');
       return;
     }
-    if (parsed.rejected.length) {
-      setError(`Slots look like R2C3 (row, column): check ${parsed.rejected.join(', ')}.`);
-      return;
-    }
     if (wasSaved && !existing && !restore) {
       setRestore(true);
       setError(`${draft.name} was deleted on another device. Save again to keep it.`);
       return;
     }
-    saveGear({ ...draft, superchargedSlots: parsed.slots });
+    saveGear(draft);
     closeEditor();
   };
   const field = (key: 'name' | 'class' | 'type' | 'role' | 'notes') => ({
@@ -172,25 +166,12 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
           <option key={value} value={value} />
         ))}
       </datalist>
-      <div className="space-y-2">
-        <label className="field">
-          Supercharged slots
-          <input
-            id="gearSlots"
-            maxLength={200}
-            spellCheck={false}
-            autoCapitalize="characters"
-            placeholder="R2C2 R2C3 R2C4 R3C7"
-            className="font-mono uppercase"
-            value={slotText}
-            onChange={event => {
-              setSlotText(event.target.value);
-            }}
-          />
-        </label>
-        <p className="text-xs text-slate-400">Row then column, counted from the top-left of the inventory grid.</p>
-        {parsed.slots.length > 0 && <SlotGrid slots={parsed.slots} />}
-      </div>
+      <SlotPicker
+        slots={draft.superchargedSlots}
+        onChange={superchargedSlots => {
+          set({ superchargedSlots });
+        }}
+      />
       <label className="field">
         Notes
         <textarea

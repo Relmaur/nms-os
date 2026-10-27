@@ -48,7 +48,8 @@ test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools'
   await page.locator('#sec-gear').getByRole('button', { name: 'Add starship' }).click();
   await page.locator('#gearName').fill('Vela Run');
   await page.locator('#gearEditor').getByLabel('Class', { exact: true }).fill('A');
-  await page.locator('#gearSlots').fill('r1c1 R1C2');
+  await page.locator('#slotPicker [data-slot="R1C2"]').click();
+  await page.locator('#slotPicker [data-slot="R1C1"]').click();
   await page.locator('#gearEditor').getByRole('button', { name: 'Add', exact: true }).click();
   await expect(page.locator('#toastMessage')).toHaveText('Added Vela Run.');
   await expect(page.locator('#sec-gear [data-gear]').filter({ hasText: 'Vela Run' })).toContainText('R1C1 · R1C2');
@@ -59,12 +60,15 @@ test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools'
   expect(saved.superchargedSlots).toEqual(['R1C1', 'R1C2']);
 });
 
-test('a slot typo is caught before saving', async ({ page }) => {
+test('a supercharged slot is marked with a tap and cleared with another', async ({ page }) => {
   await page.goto('./#gear');
   await page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
-  await page.locator('#gearSlots').fill('R2C2 B7');
+  const cell = page.locator('#slotPicker [data-slot="R2C3"]');
+  await expect(cell).toHaveAttribute('aria-pressed', 'true');
+  await cell.click();
+  await expect(cell).toHaveAttribute('aria-pressed', 'false');
   await page.locator('#gearEditor').getByRole('button', { name: 'Save' }).click();
-  await expect(page.locator('#gearEditor [role="alert"]')).toContainText('B7');
+  await expect(page.locator('#sec-gear [data-gear="gear-kestrel"]')).toContainText('R2C2 · R2C4');
 });
 
 test('a note pinned to Book III shows under the book and on Home, rendered and safe', async ({ page }) => {

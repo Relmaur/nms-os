@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.14.2] - 2026-10-27
+### Changed
+- Supercharged slots are marked by tapping the inventory grid in the ship and Multi-Tool editor: tap a cell to mark it, tap again to clear it. With a keyboard, the arrow keys move and Space toggles.
+
 ## [3.14.1] - 2026-10-27
 ### Fixed
 - "Alerts when the app is asleep" flips on as soon as you tap it, showing "Turning on…" while the browser registers for push (a second or two on desktop), and flips back if that fails.
