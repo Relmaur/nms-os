@@ -11,6 +11,8 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 
 More's Support row links to the owner's Ko-fi page (3.11.0).
 
+**Push alerts for timers shipped in 3.12.0** (ADR-0006; owner chose an opt-in switch and cleared the Data Privacy gate on 2026-10-27). The relay's minute cron sends due pushes; the VAPID private key is a Worker secret.
+
 ADR-0004 steps 3 and 4 are done: every screen is React (3.8.0), and Session mode with timers shipped in 3.9.0.
 
 History of step 3:
@@ -25,7 +27,7 @@ History of step 3:
 - 3.6.0: the Codex is React, with each article's index up front on phones; every phone sheet closes by its grab bar (no ✕), and the system editor swipes too.
 - 3.5.0: Calculators gets a tool dock with the planner first (owner's request), and ticks carry over when what was gathered still covers a smaller need. The DESIGN.md names ("The Ship's Console", colour names) stay as recorded (owner deferred to the recommendation).
 
-Next: Web Push for finished timers on the same Worker.
+Next: the recommendations engine on `wiki/game-data.json`.
 
 ## Blockers
 None.
@@ -38,14 +40,14 @@ None.
 
 ## Next steps
 1. **Owner check done (2026-10-27):** an iPhone and the PC synced on the live site (a system renamed on the phone showed on the PC).
-2. **Web Push for finished timers** on the same Worker: the device registers a push subscription and the timer's end time; a cron or Durable Object alarm sends the push. It needs its own Data Privacy note: push endpoints and end times would be stored.
+2. **Owner check:** with the app installed on the iPhone, turn on "Alerts when the app is asleep", start a 2-minute timer, lock the phone, and confirm one notification with the timer's name arrives.
 3. The recommendations engine on `wiki/game-data.json`.
 4. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
 
 ## Known residuals
 - **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The fleet's multi-tool list has no ids, so it's taken whole from the newer copy. The relay refuses copies over 1 MB (after gzip and encryption).
 - **Sync on iPhone:** an installed iPhone app doesn't share storage with Safari, so a scanned QR opens the wrong one. The code field covers it, and the UI says so.
-- **Timer alerts need the app running:** with no push server, a finished timer alerts while the browser runs the app (open, or in the background on desktop or a phone kept awake); a suspended phone shows it on return. Real background alerts would need Web Push, which means a server: part of the sync decision.
+- **Timer alerts while asleep need the switch:** without "Alerts when the app is asleep", a finished timer alerts only while the browser runs the app. With it on, pushes arrive within about a minute; on iPhone and iPad only for the Home Screen app (iOS 16.4+).
 - **Crop harvest times are player input:** the wiki states them only in article prose ("approximately 60 minutes"), not as data; a later wiki-sync parser could extract them.
 - **Book content is hand-written:** the six books (`src/ui/guides/books/`) were ported as written. Their game facts (slot counts, prices, recipes) predate the wiki mirror and aren't sourced from it (the invariant in AGENTS.md, ADR-0003). A later content pass could link claims to Codex articles or drop what the wiki contradicts; owner's call.
 - **Codex rendering:** it still renders Markdown in the browser (bundled `marked` 12 + DOMPurify), now in React. ADR-0004's move to build time is left for its own slice: it reshapes the 3,160-article data pipeline.

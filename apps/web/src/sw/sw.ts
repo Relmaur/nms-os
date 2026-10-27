@@ -63,7 +63,75 @@ setCatchHandler(async ({ request, url }) => {
   return (await matchPrecache(page)) ?? Response.error();
 });
 
-// A finished-timer notification (src/ui/session/timer-runner.ts): tapping it brings the app back, or opens it.
+// A timer pushed by the relay while the app sleeps (ADR-0006). The payload is only the timer's id; the words come from
+// the cache the page filled (src/app/push.ts), so the relay never sees a timer's name. The tag is the timer's id, the
+// same as the open app's own alert (timer-runner.ts), so the two replace each other rather than doubling. Browsers
+// expect a notification for every push, so one is always shown.
+self.addEventListener('push', event => {
+  let id = '';
+  try {
+    const data: unknown = event.data?.json();
+    if (data && typeof data === 'object' && 't' in data && typeof data.t === 'string') id = data.t;
+  } catch {}
+  event.waitUntil(
+    (async () => {
+      let note = { title: 'A timer is done', body: 'Tap to open ATLAS.' };
+      if (/^[A-Za-z0-9_-]{1,80}$/.test(id)) {
+        const saved = await caches.match(new URL(`timer-notes/${id}`, self.registration.scope).href, {
+          cacheName: 'atlas-timer-notes'
+        });
+        const parsed: unknown = await saved?.json().catch(() => null);
+        if (parsed && typeof parsed === 'object' && 'title' in parsed && typeof parsed.title === 'string')
+          note = { title: parsed.title, body: 'body' in parsed && typeof parsed.body === 'string' ? parsed.body : '' };
+      }
+      await self.registration.showNotification(note.title, {
+        body: note.body,
+        ...(id && { tag: id }),
+        icon: 'assets/icons/icon-192.png'
+      });
+    })()
+  );
+});
+
+// The browser replaced this device's push subscription (Firefox and Chrome do, now and then) while the app may be
+// asleep: subscribe again and send the relay the new one with the last schedule, from what the page left in the notes
+// cache. Without this the relay's next push would fail and drop the device until the app is opened.
+interface DeviceNote {
+  url: string;
+  key: string;
+  deviceId: string;
+  token: string;
+  timers: unknown[];
+}
+const toBytes = (text: string) =>
+  Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), ch => ch.charCodeAt(0));
+self.addEventListener('pushsubscriptionchange', event => {
+  // PushSubscriptionChangeEvent isn't in TypeScript's WebWorker library yet.
+  const change = event as ExtendableEvent & { newSubscription?: PushSubscription | null };
+  change.waitUntil(
+    (async () => {
+      const saved = await caches.match(new URL('timer-notes/_device', self.registration.scope).href, {
+        cacheName: 'atlas-timer-notes'
+      });
+      const device = (await saved?.json().catch(() => null)) as DeviceNote | null;
+      if (!device?.url || !device.deviceId) return;
+      const subscription =
+        change.newSubscription ??
+        (await self.registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: toBytes(device.key)
+        }));
+      const { endpoint, keys } = subscription.toJSON();
+      await fetch(`${device.url}/v1/push/${device.deviceId}`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${device.token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscription: { endpoint, keys }, now: Date.now(), timers: device.timers })
+      });
+    })().catch(() => undefined)
+  );
+});
+
+// A finished-timer notification (src/ui/session/timer-runner.ts, or a push): tapping it brings the app back, or opens it.
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   const home = new URL('./#home', self.registration.scope).href;

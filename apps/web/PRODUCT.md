@@ -24,7 +24,7 @@ Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/gam
 - Static PWA on GitHub Pages under `/nms-os/`; React + TypeScript + Vite; Tailwind compiled at build time; no CDNs at run time (docs/architecture.md, ADR-0004).
 - Calculators may only show wiki data, arithmetic on it, or player inputs (docs/calculators.md). The planner expands crafting and cooking recipes to items with no such recipe, rounds up multi-output crafts to whole batches, and lets the player switch alternative recipes per item.
 - Saved state shape is a compatibility contract (docs/state-schema.md); changes are additive.
-- Session mode (3.9.0): a session bar with a recap, and timers saved in the log. A refiner's time is the wiki's refining time; a crop's or a custom timer's is the player's input. Alerts are local (toast, vibration, a service-worker notification) and arrive while the browser runs the app; there is no push server.
+- Session mode (3.9.0): a session bar with a recap, and timers saved in the log. A refiner's time is the wiki's refining time; a crop's or a custom timer's is the player's input. Alerts are local (toast, vibration, a service-worker notification) while the browser runs the app. With "Alerts when the app is asleep" on (3.12.0, ADR-0006), the relay pushes them too; it sees timer ids and end times, never names.
 - Sync (3.10.0): opt-in, no account. Turn it on, then pair another device with a QR code or the code. Both logs are merged three-way, so nothing typed on either side is lost. Delete cloud copy removes it for every device. More's Support row opens the owner's Ko-fi page (3.11.0); nothing is ever locked behind it.
 - Planner ticks persist on this device only (owner's decision, 2026-10-27): not in `nms_state.json` or exports.
 

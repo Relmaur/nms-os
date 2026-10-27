@@ -2,12 +2,11 @@
 // first timer). One timeout is armed for the next finish and re-armed after every change and whenever the app comes
 // back. A web app can't wake itself without a push server, so a timer that finishes while the browser has suspended
 // the page is announced as soon as you return. Nothing leaves the device.
-import { dueForAlert, nextDue } from '@atlas/core/timers';
+import { dueForAlert, nextDue, timerNotice } from '@atlas/core/timers';
 import { appState, isLoaded, subscribe } from '../../app/store.ts';
 import { haptic, showToast } from '../../app/ui.ts';
 import { markAlerted } from '../actions.ts';
 
-const KIND_TITLE = { refine: 'Refiner done', crop: 'Ready to harvest', custom: 'Timer done' } as const;
 let armed: ReturnType<typeof setTimeout> | undefined;
 let armedFor: number | null = null;
 
@@ -19,11 +18,16 @@ function announce(): void {
   if (!marked.length) return;
   const first = marked[0];
   if (!first) return;
-  const text =
-    marked.length === 1 ? `${KIND_TITLE[first.kind]}: ${first.label}` : `${String(marked.length)} timers done`;
+  const text = marked.length === 1 ? timerNotice(first).title : `${String(marked.length)} timers done`;
   showToast(`${text}.`);
   haptic([120, 80, 120]);
-  void notify(text, marked.map(timer => timer.label).join(' · '), first.id);
+  // A system notification only when the app isn't in front of you (the toast covers that), one per timer and tagged
+  // with its id, so a push for the same timer (ADR-0006) replaces it instead of adding another.
+  if (document.visibilityState === 'visible' && document.hasFocus()) return;
+  for (const timer of marked) {
+    const notice = timerNotice(timer);
+    void notify(notice.title, notice.body, timer.id);
+  }
 }
 
 async function notify(title: string, body: string, tag: string): Promise<void> {

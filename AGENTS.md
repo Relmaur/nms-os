@@ -18,7 +18,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 - **`packages/core` stays pure:** no DOM, no Node APIs. The web app, the wiki scripts and a future API all import it.
 - **Parse, don't cast:** data from outside the code (files, storage, network) goes through a Zod schema before use.
 - **Relative paths everywhere**, since the site lives under `/nms-os/`.
-- **User data stays on the device** (`localStorage` key `nms_master_os_state`). Nothing is sent anywhere except by an explicit Export (ADR-0002), or the opt-in sync copy, encrypted on the device with a key the relay never sees (ADR-0005). Any other change is a Data Privacy gate.
+- **User data stays on the device** (`localStorage` key `nms_master_os_state`). Nothing is sent anywhere except by an explicit Export (ADR-0002), the opt-in sync copy, encrypted on the device with a key the relay never sees (ADR-0005), and, with "Alerts when the app is asleep" on, a push address plus running timers' ids and end times (ADR-0006). Any other change is a Data Privacy gate.
 - **State compatibility:** every saved or exported `nms_state.json` must keep loading. Shape changes are additive, with a migration in the state module, or a MAJOR release.
 - **Game facts come only from the wiki mirror** (`wiki/game-data.json`), never hand-typed. Anything the wiki can't know is a labelled user input (ADR-0003).
 - **Never hand-edit mirrored files** in `wiki/<category>/`: the sync overwrites them. Never delete them; the sync flags removals. Your own articles go in `wiki/custom/`.

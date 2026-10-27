@@ -9,6 +9,8 @@
   3. `pnpm exec wrangler d1 migrations apply atlas-sync --remote`.
   4. `pnpm exec wrangler deploy`. It prints the `https://atlas-sync.<account>.workers.dev` address.
 
+  5. Push alerts (ADR-0006): generate a P-256 VAPID key pair once. Store the private JWK with `pnpm exec wrangler secret put VAPID_PRIVATE_JWK` (never in the repo); put the public key (raw, base64url) in `apps/web/.env` as `VITE_VAPID_PUBLIC_KEY`. `VAPID_SUBJECT` and the minute cron are in `wrangler.toml`. After a new migration, run `wrangler d1 migrations apply atlas-sync --remote` before deploying.
+
   Put that address in `apps/web/.env` as `VITE_SYNC_URL`. The app shows the Sync group only when it's set; browser tests build with `--mode e2e` (`apps/web/.env.e2e`) and answer a test address themselves. Redeploy with `pnpm exec wrangler deploy` after changing `apps/sync`. Local runs: `wrangler d1 migrations apply atlas-sync --local`, then `pnpm --filter @atlas/sync dev` (port 8787; `http://localhost:4173` and `:5173` are allowed origins). The relay is cross-origin, so the service worker never caches it.
 - Site URL: `https://relmaur.github.io/nms-os/`. Every path in the app is relative so it works under that subpath.
 - Service worker (`apps/web/src/sw/sw.ts`, Workbox via vite-plugin-pwa, served as `sw.js` so installed apps update in place):

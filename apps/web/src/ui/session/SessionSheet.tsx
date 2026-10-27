@@ -11,6 +11,8 @@ import { loadGameData } from '../calculators/game-data.ts';
 import { SheetGrab, useSheetDrag, useSheetOpen } from '../parts/Sheet.tsx';
 import { useAppState } from '../useAppState.ts';
 import { AddTimer } from './AddTimer.tsx';
+import { AlertsSwitch } from './AlertsSwitch.tsx';
+import { usePushStatus } from '../../app/push.ts';
 import { closeSessionSheet, showRecap, useSheetView } from './sheet-store.ts';
 import { TimerRow } from './TimerRow.tsx';
 import { useClock } from './useClock.ts';
@@ -146,9 +148,26 @@ function SessionControl({ session, now }: { session: { startedAt: string } | nul
   );
 }
 
-// Where the system alert stands; a web app can only alert while the browser runs it.
+// Where the system alert stands. Without push (its switch, ADR-0006), a web app can only alert while the browser runs
+// it; with it on, the relay sends the alert when the app is asleep.
 function Alerts() {
   const permission = usePermission();
+  const push = usePushStatus();
+  return (
+    <section aria-label="Alerts" className="space-y-3 border-t border-slate-800 pt-4">
+      <AlertsSwitch id="sheetPushSwitch" />
+      {push.enabled && !push.problem ? (
+        <p className="text-xs text-slate-400 leading-relaxed">
+          A finished timer alerts here, and within a minute of its end on this device even while the app is asleep.
+        </p>
+      ) : (
+        <AlertsNote permission={permission} />
+      )}
+    </section>
+  );
+}
+
+function AlertsNote({ permission }: { permission: NotificationPermission }) {
   return (
     <p className="text-xs text-slate-400 leading-relaxed">
       {permission === 'granted'

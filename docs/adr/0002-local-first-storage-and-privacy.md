@@ -1,6 +1,6 @@
 # ADR-0002: Local-first storage, privacy posture and consistency model
 
-- **Status:** Accepted (2026-10-27), recording the design in place since 2.0.0 plus the 3.0.0 hardening. Amended by ADR-0005: opt-in, end-to-end encrypted sync between a player's devices.
+- **Status:** Accepted (2026-10-27), recording the design in place since 2.0.0 plus the 3.0.0 hardening. Amended by ADR-0005 (opt-in, end-to-end encrypted sync between a player's devices) and ADR-0006 (opt-in push alerts for timers).
 
 ## Context
 Everything the player logs (systems, planets, visits, notes, checklists, fleet, outlaw settings) is personal, small (well under 1 MB), and used on one device at a time, often offline mid-session. There is no server.

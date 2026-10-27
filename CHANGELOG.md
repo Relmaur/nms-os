@@ -6,6 +6,15 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.12.0] - 2026-10-27
+### Added
+- Alerts when the app is asleep: turn on the switch in the Session sheet (or More → This device), and a finished timer notifies you within about a minute even if your phone put the app to sleep. Tapping the notification opens the app.
+  - It's off until you turn it on. Only your device's push address and each running timer's end time go to the alert server; timer names stay on your device.
+  - On iPhone and iPad it needs the app on the Home Screen (iOS 16.4 or later).
+### Internal
+- The relay gains `/v1/push/:device` and a minute cron that sends due pushes; `migrations/0002_push.sql`. The VAPID private key is a Worker secret (ADR-0006).
+- `@atlas/core/timers`: `pendingPushes()` and `timerNotice()`, shared by the app's own alert and the pushed one.
+
 ## [3.11.0] - 2026-10-27
 ### Added
 - More → Support: a link to ATLAS's Ko-fi page, for anyone who'd like to buy a coffee. Everything stays free; nothing is locked behind it.

@@ -12,6 +12,7 @@ import { reportStorage } from '../ui/shell/StorageBanner.tsx';
 import { setWikiEntries } from '../ui/shell/wiki-index.ts';
 import { startTimerRunner } from '../ui/session/timer-runner.ts';
 import { startSync, takePairingLink } from './sync.ts';
+import { startPush } from './push.ts';
 
 registerServiceWorker();
 startDevice();
@@ -29,4 +30,5 @@ mountScreens();
 takePairingLink(); // before the sections read the address: a #pair= link opens More and asks first
 window.addEventListener('hashchange', takePairingLink); // registered before the sections' own listener
 startSync(); // after the state loads, so the first sync merges with the saved log
+startPush(); // resends this device's timer schedule if its alerts are on
 startSections(); // after the state loads, so #new-system can open the editor

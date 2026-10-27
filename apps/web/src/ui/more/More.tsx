@@ -10,6 +10,8 @@ import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device
 import { useWikiCount } from '../shell/wiki-index.ts';
 import { useSyncStatus } from '../../app/sync.ts';
 import { Sync } from './Sync.tsx';
+import { usePushStatus } from '../../app/push.ts';
+import { AlertsSwitch } from '../session/AlertsSwitch.tsx';
 
 // The owner's Ko-fi page; the Support row stays hidden while this is empty.
 const KOFI_URL: string = 'https://ko-fi.com/mlizardo';
@@ -20,6 +22,7 @@ export function More() {
   const device = useDevice();
   const wikiCount = useWikiCount();
   const sync = useSyncStatus();
+  const push = usePushStatus();
   return (
     <>
       <h1 className="font-display text-2xl font-bold text-white">More</h1>
@@ -73,6 +76,14 @@ export function More() {
             </button>
           )}
         </li>
+        {push.support !== 'no' && (
+          <li className="list-row">
+            <Tile icon="ph-bell-ringing text-cyan-300" />
+            <div className="flex-1 min-w-0">
+              <AlertsSwitch id="morePushSwitch" />
+            </div>
+          </li>
+        )}
         <li className="list-row">
           <Tile icon="ph-hard-drives text-emerald-300" />
           <Text title="Storage">
