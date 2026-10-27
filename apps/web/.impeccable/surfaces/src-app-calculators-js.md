@@ -18,3 +18,6 @@ STORY: The player sees at once what the product is worth against its inputs, scr
 FIRST VIEWPORT: Sticky picker (item, quantity, presets). Below it, the capstone card: ×100 Stasis Device, worth versus raw inputs, steps count, and a large "Start at the cargo hold ↓" jump. Rounds then descend in reverse (last round first), each a band of step rows: output ×qty ← input chips, alternative-recipe switch, tick.
 FORM: "Build it upward", a grounded structure, 4th on the re-rolled ordered list; seed key e943a213.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Screen layout (3.5.0)
+The owner asked for easier switching between the calculators, with the recipe planner visually first. A tool dock (ARIA tabs) sits under the screen header: the planner is the lead cell (full first row on a phone, 1.5fr from sm) carrying the plan in progress in mono, then Base value, Extractors and Registers. The planner is the default; every tool stays mounted; selection is cyan tint-and-edge.

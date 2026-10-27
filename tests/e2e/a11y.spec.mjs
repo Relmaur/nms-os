@@ -14,6 +14,8 @@ const tickHalf = async page => {
   for (const tile of tiles.slice(0, 7)) await tile.click();
 };
 
+const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
+
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
@@ -23,6 +25,7 @@ for (const [name, path, ready, region, setup] of [
   ['System editor', './#systems', '#systemEditor', '#systemPanel', openEditor],
   ['Calculators', './#calculators', '#planHold', '#sec-calculators'],
   ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
+  ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
   ['Codex', './wiki/', '#browseBody', null]
 ]) {
   test(`axe: ${name}`, async ({ page }, testInfo) => {

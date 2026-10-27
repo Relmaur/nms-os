@@ -1,4 +1,5 @@
-// Calculators: the recipe planner first, then a haul's base value, mineral extractors and Harmonic Camp registers.
+// Calculators: a dock switches between the recipe planner (first, and the default) and the small tools: a haul's base
+// value, mineral extractors and Harmonic Camp registers.
 // Recipes and values come from the wiki mirror; anything the wiki can't know is an input the player sets.
 import { useMemo, useState, type SubmitEvent } from 'react';
 import { evaluateRegister, extractorYield, formatQty, formatUnits, haulValue } from '@atlas/core/calc';
@@ -6,12 +7,25 @@ import { findItem, type Catalog } from '@atlas/core/planner';
 import { showToast } from '../../app/ui.ts';
 import { useGameData, type GameDataState } from './game-data.ts';
 import { Planner } from './Planner.tsx';
+import { panelId, tabId, ToolDock } from './ToolDock.tsx';
+import { useTool, type Tool } from './tool-store.ts';
 
 const VALUE_DEFAULTS = ['Radiant Shard', 'Inverted Mirror', 'Hyaline Brain']; // Sentinel salvage
 const REGISTER_DEFAULTS = ['6 - 2', '2 + 8', '11 + 5'];
 
 export function Calculators() {
   const data = useGameData();
+  const tool = useTool();
+  const [summary, setSummary] = useState('');
+  const catalog = data.status === 'ready' ? data.catalog : null;
+  // Every tool stays mounted, so switching never loses what was typed in another.
+  const panel = (id: Tool) => ({
+    id: panelId(id),
+    role: 'tabpanel',
+    // The planner's tab also carries the live summary; its panel is named by its own heading, which doesn't change.
+    'aria-labelledby': id === 'planner' ? 'calcPlanHeading' : tabId(id),
+    hidden: tool !== id
+  });
   return (
     <>
       <div className="max-w-3xl">
@@ -24,35 +38,37 @@ export function Calculators() {
         <SourceLine data={data} />
       </div>
 
-      <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-        <h2 className="font-display font-bold text-base text-white flex items-center gap-2">
-          <i className="ph-bold ph-stack text-cyan-300" />
+      <ToolDock summary={data.status === 'ready' ? summary : data.status === 'failed' ? '' : 'Loading recipes…'} />
+
+      <div {...panel('planner')} className="hud-card rounded-2xl px-4 sm:px-5 pb-4 sm:pb-5">
+        {/* The dock names the planner on screen; this heading keeps the outline (h1, h2, then the capstone's h3). */}
+        <h2 id="calcPlanHeading" className="sr-only">
           Recipe planner
         </h2>
         {data.status === 'ready' ? (
-          <Planner catalog={data.catalog} />
+          <Planner catalog={data.catalog} onSummary={setSummary} />
         ) : (
-          <p className="text-sm text-slate-400">
+          <p className="pt-4 sm:pt-5 text-sm text-slate-400">
             {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
           </p>
         )}
       </div>
-
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
-        <BaseValue catalog={data.status === 'ready' ? data.catalog : null} />
-        <div className="space-y-6">
-          <Extractors catalog={data.status === 'ready' ? data.catalog : null} />
-          <Registers />
-        </div>
+      <div {...panel('value')} className="max-w-3xl space-y-4">
+        <BaseValue catalog={catalog} />
+        <p className="text-xs text-slate-400 px-1">
+          Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in{' '}
+          <a href="#outlaw" className="text-emerald-300 hover:text-emerald-200">
+            Outlaw Run
+          </a>
+          , then Run settings.
+        </p>
       </div>
-
-      <p className="text-xs text-slate-400">
-        Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in{' '}
-        <a href="#outlaw" className="text-emerald-300 hover:text-emerald-200">
-          Outlaw Run
-        </a>
-        , then Run settings.
-      </p>
+      <div {...panel('extractors')} className="max-w-3xl">
+        <Extractors catalog={catalog} />
+      </div>
+      <div {...panel('registers')} className="max-w-3xl">
+        <Registers />
+      </div>
     </>
   );
 }
@@ -71,15 +87,23 @@ function SourceLine({ data }: { data: GameDataState }) {
       </p>
     );
   const v = data.verification;
+  const pages = data.catalog.pages.toLocaleString();
+  const checked = v?.status === 'match' ? new Date(v.checkedAt) : null;
+  // One line on a phone, so the planner's answer keeps the first screen.
   return (
     <p id="calcSource" className="text-xs text-slate-400 mt-2">
-      {`Using ${data.catalog.pages.toLocaleString()} wiki pages${
-        v?.status === 'match'
-          ? `, verified against the wiki on ${new Date(v.checkedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`
-          : ''
-      }. `}
+      <span className="sm:hidden">
+        {`${pages} wiki pages${checked ? ` · verified ${checked.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })}` : ''} · `}
+      </span>
+      <span className="hidden sm:inline">
+        {`Using ${pages} wiki pages${
+          checked
+            ? `, verified against the wiki on ${checked.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`
+            : ''
+        }. `}
+      </span>
       <a href="wiki/" className="text-emerald-300 hover:text-emerald-200 inline-flex items-center gap-1">
-        Open the Codex
+        <span className="hidden sm:inline">Open the</span> Codex
         <i className="ph-bold ph-arrow-right" aria-hidden="true" />
       </a>
     </p>

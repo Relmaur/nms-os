@@ -11,6 +11,7 @@ import {
   makeCatalog,
   planProgress,
   rawKey,
+  untick,
   type BuildPlan
 } from '../src/planner.ts';
 import type { GameItem } from '../src/game-data.ts';
@@ -176,4 +177,15 @@ test('a title with an @ in it still carries over', () => {
   const plan = { product: { title: 'X', qty: 1 }, rounds: [], raw: [{ title: 'A@B', qty: 5 }] } as unknown as BuildPlan;
   assert.ok(carryTicks(plan, odd).has('raw:A@B@5'));
   assert.equal(carryTicks(plan, ticked).size, 1);
+});
+
+test('an untick also drops the larger ticks that would cover it again', () => {
+  const one = buildPlan(made, 'Widget', 1);
+  assert.ok(one);
+  const carried = carryTicks(one, new Set([rawKey('Ore', 8), rawKey('Ore', 2), craftKey('Gear', 6)]));
+  const after = untick(carried, rawKey('Ore', 4));
+  // Not having 4 Ore means not having 8 either; 2 may still be true, and Gear is untouched.
+  assert.deepEqual([...after].sort(), [craftKey('Gear', 3), craftKey('Gear', 6), rawKey('Ore', 2)].sort());
+  assert.equal(planProgress(one, carryTicks(one, after)).gathered, 0);
+  assert.ok(!carryTicks(one, new Set(['raw:Ore@Infinity'])).has(rawKey('Ore', 4)));
 });

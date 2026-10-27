@@ -52,7 +52,9 @@ test('ticks build the plan upward and survive a reload', async ({ page }) => {
 
 test('base value and extractor yield use wiki values', async ({ page }) => {
   await page.goto('./#calculators');
+  await page.getByRole('tab', { name: 'Base value' }).click();
   await expect(page.locator('#valueTotal')).toHaveText('Total: 53,900 Units');
+  await page.getByRole('tab', { name: 'Extractors' }).click();
   await page.locator('#mineCount').fill('4');
   await page.locator('#mineRate').fill('250');
   await expect(page.locator('#mineResult')).toContainText('1,000 Gold per hour, worth 353,000 Units');
@@ -60,7 +62,25 @@ test('base value and extractor yield use wiki values', async ({ page }) => {
 
 test('Harmonic Camp registers evaluate the expressions', async ({ page }) => {
   await page.goto('./#calculators');
+  await page.getByRole('tab', { name: 'Registers' }).click();
   await expect(page.locator('#calcAns3')).toHaveText('16');
   await page.locator('#calcReg1').fill('3 * 3');
   await expect(page.locator('#calcAns1')).toHaveText('9');
+});
+
+test('the dock keeps the chosen tool while the app is open', async ({ page }) => {
+  await page.goto('./#calculators');
+  await expect(page.getByRole('tab', { name: /^Recipe planner/ })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#calcPlanSummary')).toContainText('Stasis Device');
+  await page.getByRole('tab', { name: 'Registers' }).click();
+  await page.locator('#calcReg1').fill('3 * 3');
+  await page.evaluate(() => {
+    location.hash = '#systems';
+  });
+  await expect(page.locator('#sec-systems')).toBeVisible();
+  await page.evaluate(() => {
+    location.hash = '#calculators';
+  });
+  await expect(page.locator('#calcAns1')).toHaveText('9');
+  await expect(page.locator('#planHold')).toBeHidden();
 });

@@ -1,7 +1,7 @@
 // Recipe planner, built upward: raw stock in the cargo hold at the bottom, crafting rounds stacked above it, the
 // product as the capstone. The player ticks off what they've gathered and crafted; a round lights once its inputs
 // are ticked. Every number is the wiki's recipes and base values, or arithmetic on them (docs/calculators.md).
-import { Fragment, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { formatQty, formatUnits } from '@atlas/core/calc';
 import {
   buildPlan,
@@ -15,7 +15,8 @@ import {
   type Catalog,
   type PlanProgress,
   type PlanStep,
-  type StepState
+  type StepState,
+  untick
 } from '@atlas/core/planner';
 import type { GameItem } from '@atlas/core/game-data';
 import { showToast } from '../../app/ui.ts';
@@ -25,6 +26,7 @@ const PRESETS = ['Stasis Device', 'Fusion Ignitor', 'Circuit Board', 'Living Gla
 const DEFAULT_PLAN: PlanSettings = { item: 'Stasis Device', qty: 1, choices: {} };
 const MAX_QTY = 9999;
 
+const count = (n: number, noun: string) => `${formatQty(n)} ${noun}${n === 1 ? '' : 's'}`;
 const rawValue = (plan: BuildPlan) => plan.raw.reduce((sum, entry) => sum + (entry.item?.value ?? 0) * entry.qty, 0);
 const codexHref = (item: GameItem) => `wiki/#/a/${encodeURIComponent(item.path)}`;
 
@@ -41,7 +43,17 @@ function ItemName({ item, title, className = '' }: { item: GameItem | undefined;
   );
 }
 
-export function Planner({ catalog }: { catalog: Catalog }) {
+// The plan in a line, for the dock: what's being built and how far along it is.
+const summarize = (plan: BuildPlan, progress: PlanProgress) =>
+  `×${formatQty(plan.product.qty)} ${plan.product.title} · ${
+    progress.complete
+      ? 'done'
+      : progress.gathered < plan.raw.length
+        ? `${String(progress.gathered)}/${String(plan.raw.length)} gathered`
+        : `${String(progress.crafted)}/${String(plan.steps)} crafted`
+  }`;
+
+export function Planner({ catalog, onSummary }: { catalog: Catalog; onSummary?: (summary: string) => void }) {
   // The saved plan comes back with its ticks; if its item has left the wiki data, the default starts fresh.
   const [saved] = useState(() => {
     const progress = readProgress();
@@ -57,6 +69,10 @@ export function Planner({ catalog }: { catalog: Catalog }) {
 
   const plan = useMemo(() => buildPlan(catalog, settings.item, settings.qty, settings.choices), [catalog, settings]);
   const progress = plan ? planProgress(plan, ticked) : null;
+  const summary = plan && progress ? summarize(plan, progress) : '';
+  useEffect(() => {
+    onSummary?.(summary);
+  }, [summary, onSummary]);
 
   const save = (next: PlanSettings, nextTicked: ReadonlySet<string>) => {
     writeProgress(next, nextTicked);
@@ -118,9 +134,7 @@ export function Planner({ catalog }: { catalog: Catalog }) {
     setSwitched({ title: step.title, delta: next.delta });
   };
   const toggle = (key: string) => {
-    const next = new Set(ticked);
-    if (next.has(key)) next.delete(key);
-    else next.add(key);
+    const next = ticked.has(key) ? untick(ticked, key) : new Set(ticked).add(key);
     setTicked(next);
     save(settings, next);
   };
@@ -137,7 +151,7 @@ export function Planner({ catalog }: { catalog: Catalog }) {
   return (
     <div className="space-y-5">
       {/* The picker stays reachable while the plan scrolls; presets scroll away with the page. */}
-      <div className="sticky top-[calc(3.5rem+env(safe-area-inset-top))] lg:top-[calc(4rem+env(safe-area-inset-top))] z-20 -mx-4 sm:-mx-5 px-4 sm:px-5 py-3 bg-slate-950/90 backdrop-blur-md border-y border-slate-800/80">
+      <div className="sticky top-[calc(3.5rem+env(safe-area-inset-top))] lg:top-[calc(4rem+env(safe-area-inset-top))] z-20 -mx-4 sm:-mx-5 px-4 sm:px-5 py-3 rounded-t-2xl bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
         <div className="flex items-end gap-2.5">
           <label className="field flex-1 min-w-0">
             Item to make
@@ -150,6 +164,7 @@ export function Planner({ catalog }: { catalog: Catalog }) {
               autoCorrect="off"
               value={query}
               placeholder="Search craftable and cookable items"
+              className="text-ellipsis" // a long name shows it's cut off, on a phone beside the stepper
               onChange={event => {
                 const { value } = event.target;
                 setQuery(value);
@@ -258,7 +273,7 @@ function QtyStepper({ qty, onChange }: { qty: number; onChange: (qty: number) =>
       >
         <i className="ph-bold ph-minus" />
       </button>
-      <label className="field w-[4.5rem]">
+      <label className="field w-16">
         How many
         <input
           id="planQty"
@@ -500,7 +515,7 @@ function Capstone({
             ? 'Crafted. The plan is complete.'
             : started
               ? `${String(progress.gathered)} of ${String(plan.raw.length)} gathered · ${String(progress.crafted)} of ${String(plan.steps)} crafted`
-              : `${String(plan.steps)} crafts in ${String(plan.rounds.length + 1)} rounds · ${String(plan.raw.length)} raw materials`}
+              : `${count(plan.steps, 'craft')} in ${count(plan.rounds.length + 1, 'round')} · ${count(plan.raw.length, 'raw material')}`}
         </p>
         {progress.complete ? null : (
           <a

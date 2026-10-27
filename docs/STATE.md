@@ -12,6 +12,7 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - The React foundation and Home shipped in 3.2.0.
 - Systems, the system panel and Outlaw Run shipped in 3.3.0.
 - Calculators shipped in 3.4.0, with the recipe planner rebuilt as a build order ("Build it upward", owner's pick; brief in `apps/web/.impeccable/surfaces/`).
+- 3.5.0: Calculators gets a tool dock with the planner first (owner's request), and ticks carry over when what was gathered still covers a smaller need. The DESIGN.md names ("The Ship's Console", colour names) stay as recorded (owner deferred to the recommendation).
 
 Next slice: the Codex (`apps/web/src/codex.js`, its own page).
 
@@ -34,7 +35,7 @@ None.
        - Home (3.2.0), Systems, Outlaw Run, the system panel and the editor (3.3.0): gated on their own content, with the populated fixture only; empty states aren't axe-checked yet.
        - The page shell: `page-has-heading-one` (no `h1`; found on Systems at 3.1.0). Fix with the header's move.
        - Codex: `aria-allowed-attr` (10, critical), `aria-dialog-name`, `aria-allowed-role`, `empty-heading`.
-       - Calculators (3.4.0): gated, opening view and mid-plan.
+       - Calculators (3.4.0): gated, opening view, mid-plan, and the Registers tab (3.5.0).
 2. **Session mode + timers**, built natively in React (ADR-0004 step 4).
 3. **Cross-device sync** (Data Privacy gate, `apps/api`: Hono + Drizzle + Postgres), then the recommendations engine on `wiki/game-data.json`.
 

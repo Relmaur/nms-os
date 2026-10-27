@@ -6,6 +6,13 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-10-27
+### Changed
+- Calculators opens on the recipe planner, with a dock at the top to switch between the planner, Base value, Extractors and Registers in one tap, without scrolling past the plan. The planner leads the dock and shows the plan in progress ("×1 Stasis Device · 3/14 gathered"). Switching keeps what you typed in each tool, and the chosen tool stays while the app is open.
+- A planner tick now stays when what you gathered or crafted still covers a smaller need after a change of amount or recipe (500 Radon gathered covers a need of 300). A larger need still starts that tick fresh.
+### Fixed
+- The planner said "1 crafts in 1 rounds"; it now says "1 craft in 1 round". A long item name in the picker ends in an ellipsis instead of being cut off.
+
 ## [3.4.0] - 2026-10-27
 ### Changed
 - The recipe planner is a build order instead of an indented tree. The product sits at the top with its worth against the raw inputs; below it, crafts are grouped into rounds (round 1 needs only raw materials); at the bottom, the raw materials wait in a cargo hold. Each intermediate appears once with its total.

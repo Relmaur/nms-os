@@ -251,15 +251,20 @@ export function buildPlan(
 export const rawKey = (title: string, qty: number): string => `raw:${title}@${String(qty)}`;
 export const craftKey = (title: string, qty: number): string => `craft:${title}@${String(qty)}`;
 export const stepKey = (step: PlanStep): string => craftKey(step.title, step.qty);
+// A tick key split into its `kind:title` and amount.
+const splitKey = (key: string): [string, number] => {
+  const at = key.lastIndexOf('@');
+  return at > 0 ? [key.slice(0, at), Number(key.slice(at + 1))] : [key, NaN];
+};
+
 // After a change of amount or recipe, a tick also covers the new plan wherever what was gathered or crafted is at
 // least what's now needed (500 Radon gathered covers a need of 300). The old keys stay, so a tick still comes back
 // if the plan returns to that amount.
 export function carryTicks(plan: BuildPlan, ticked: ReadonlySet<string>): Set<string> {
   const most = new Map<string, number>(); // `kind:title` -> the largest ticked amount
   for (const key of ticked) {
-    const at = key.lastIndexOf('@');
-    const qty = Number(key.slice(at + 1));
-    if (at > 0 && qty > (most.get(key.slice(0, at)) ?? 0)) most.set(key.slice(0, at), qty);
+    const [item, qty] = splitKey(key);
+    if (Number.isFinite(qty) && qty > (most.get(item) ?? 0)) most.set(item, qty);
   }
   const next = new Set(ticked);
   const covered = (kind: string, title: string, qty: number) => (most.get(`${kind}:${title}`) ?? 0) >= qty;
@@ -268,6 +273,17 @@ export function carryTicks(plan: BuildPlan, ticked: ReadonlySet<string>): Set<st
     if (covered('craft', step.title, step.qty)) next.add(stepKey(step));
   return next;
 }
+// Unticking says the player doesn't have that amount, so no larger tick of the same item may cover it again later.
+export function untick(ticked: ReadonlySet<string>, key: string): Set<string> {
+  const [item, qty] = splitKey(key);
+  return new Set(
+    [...ticked].filter(other => {
+      const [otherItem, otherQty] = splitKey(other);
+      return other !== key && !(otherItem === item && otherQty >= qty);
+    })
+  );
+}
+
 export type StepState = 'done' | 'ready' | 'waiting';
 export interface PlanProgress {
   step: (title: string) => StepState; // ready = every input is ticked
