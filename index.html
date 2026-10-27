@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS // MASTER OS — Unabridged NMS Manual, Calculators & Agent Spec</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        atlas: {
+                            bg: '#050811',
+                            panel: '#0b1325',
+                            border: '#1e293b',
+                            cyan: '#06b6d4',
+                            amber: '#f59e0b',
+                            purple: '#a855f7',
+                            emerald: '#10b981',
+                            crimson: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050811;
+            background-image: 
+                radial-gradient(circle at 12% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 88% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 60%);
+            color: #e2e8f0;
+        }
+        .hud-card {
+            background: rgba(11, 19, 37, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+        }
+        .sc-slot {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(59, 130, 246, 0.25));
+            border: 1.5px solid #c084fc;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #050811; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+        input[type="range"] { accent-color: #06b6d4; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-slate-950">
+
+    <!-- Toast Notification Banner -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/95 border border-cyan-400/50 text-cyan-300 shadow-2xl font-mono text-xs">
+        <i class="ph-fill ph-check-circle text-lg text-emerald-400"></i>
+        <span id="toastMessage">Action completed</span>
+    </div>
+
+    <!-- Top Header & Global Toolbar -->
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-cyan-500/30">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-slate-900 border border-slate-700 text-cyan-400">
+                    <i class="ph-bold ph-list text-xl"></i>
+                </button>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-purple-600/20 border border-red-500/50 flex items-center justify-center shadow-lg shadow-red-500/10">
+                    <i class="ph-fill ph-planet text-2xl text-red-500"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-display font-bold text-base sm:text-lg tracking-wider text-white">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</h1>
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">Local Repo v2.0</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden sm:block">Unabridged 6-Book Manual • Custom Ship & Tool Schematics • Agent Build Spec</p>
+                </div>
+            </div>
+
+            <!-- Global Search & State Backup Controls -->
+            <div class="flex items-center gap-2 sm:gap-3 flex-1 max-w-xl justify-end ml-auto">
+                <div class="relative flex-1 max-w-xs hidden md:block">
+                    <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="globalSearchInput" oninput="handleGlobalSearch(this.value)" placeholder="Filter sections (e.g. Ythgall, Doughnut, Brain)..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white focus:outline-none">
+                </div>
+
+                <!-- Overall Checklist Progress -->
+                <div class="flex items-center gap-2.5 bg-slate-900 border border-cyan-500/30 rounded-xl px-3 py-1.5">
+                    <div class="text-right">
+                        <span class="text-[10px] text-slate-400 block leading-none">Master Progress</span>
+                        <span id="headerProgressText" class="font-mono text-xs font-bold text-cyan-400">0%</span>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-300">
+                        <i class="ph-bold ph-check-square-offset text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Export / Import JSON for Git Repo -->
+                <button onclick="exportStateJSON()" title="Export State to JSON for Git Repo" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-emerald-300 flex items-center gap-1.5 transition">
+                    <i class="ph-bold ph-download-simple"></i>
+                    <span class="hidden sm:inline">Export JSON</span>
+                </button>
+                <label title="Import State JSON" class="cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-amber-300 flex items-center gap-1.5 transition">
+                    <i class="ph-bold ph-upload-simple"></i>
+                    <span class="hidden sm:inline">Import</span>
+                    <input type="file" accept=".json" onchange="importStateJSON(event)" class="hidden">
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <div class="flex-1 max-w-[1600px] w-full mx-auto flex relative">
+
+        <!-- Left Navigation Sidebar -->
+        <aside id="sidebarNav" class="w-72 shrink-0 bg-slate-950/95 lg:bg-transparent border-r border-slate-800/80 p-4 space-y-6 fixed lg:static inset-y-0 left-0 z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto">
+            <div class="space-y-1">
+                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-cyan-400">📚 The 6 Master Books</div>
+                <button onclick="showSection('book1')" id="nav-book1" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition bg-cyan-500/15 text-cyan-300 border border-cyan-500/40">
+                    <i class="ph-duotone ph-cloud-arrow-up text-base shrink-0"></i>
+                    <span>Book I: Cross-Save, Modes & First 5 Hrs</span>
+                </button>
+                <button onclick="showSection('book2')" id="nav-book2" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-coins text-base text-emerald-400 shrink-0"></i>
+                    <span>Book II: 4.29B Unit & Nanite Blueprint</span>
+                </button>
+                <button onclick="showSection('book3')" id="nav-book3" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-sword text-base text-purple-400 shrink-0"></i>
+                    <span>Book III: Custom Ship & Multi-Tool Meta</span>
+                </button>
+                <button onclick="showSection('book4')" id="nav-book4" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-house-line text-base text-amber-400 shrink-0"></i>
+                    <span>Book IV: Self-Sufficient Cozy Base</span>
+                </button>
+                <button onclick="showSection('book5')" id="nav-book5" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-compass text-base text-cyan-400 shrink-0"></i>
+                    <span>Book V: Expeditions & Item Porting</span>
+                </button>
+                <button onclick="showSection('book6')" id="nav-book6" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-planet text-base text-red-400 shrink-0"></i>
+                    <span>Book VI: 7 Pillars of Post-Wealth Endgame</span>
+                </button>
+            </div>
+
+            <div class="space-y-1 pt-2 border-t border-slate-800/80">
+                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-amber-400">🛠️ Interactive Calculators & Logs</div>
+                <button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <span class="flex items-center gap-2.5"><i class="ph-duotone ph-cpu text-base text-amber-400"></i> 5 Live Calculators</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">TOOLS</span>
+                </button>
+                <button onclick="showSection('logbook')" id="nav-logbook" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <span class="flex items-center gap-2.5"><i class="ph-duotone ph-bookmarks text-base text-purple-400"></i> Coordinate & Note Log</span>
+                    <span id="sidebarLogCount" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">2</span>
+                </button>
+            </div>
+
+            <div class="space-y-1 pt-2 border-t border-slate-800/80">
+                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-emerald-400">🤖 Repository & Agent Spec</div>
+                <button onclick="showSection('agentspec')" id="nav-agentspec" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-terminal-window text-base text-emerald-400 shrink-0"></i>
+                    <span>Agent Architecture & Repo Spec</span>
+                </button>
+                <button onclick="showSection('allbooks')" id="nav-allbooks" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
+                    <i class="ph-duotone ph-books text-base text-cyan-400 shrink-0"></i>
+                    <span>View All Books (Single-Page Scroll)</span>
+                </button>
+            </div>
+
+            <!-- Your Custom Fleet Quick Card -->
+            <div class="hud-card rounded-xl p-3.5 space-y-2 border border-purple-500/30">
+                <div class="text-[10px] font-mono uppercase text-purple-300 flex items-center justify-between">
+                    <span>Active Registered Fleet</span>
+                    <i class="ph-fill ph-shield-check text-emerald-400"></i>
+                </div>
+                <div class="text-xs space-y-1">
+                    <div class="flex justify-between"><span class="text-slate-400">Flagship:</span><span class="font-mono text-white font-semibold">Ythgall (S)</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Scrap Spare:</span><span class="font-mono text-amber-300">Aeron-ημ (S)</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Combat Tool:</span><span class="font-mono text-purple-300">Defiance of Thought</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Scanner Tool:</span><span class="font-mono text-cyan-300">Light Capacitor</span></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-8 overflow-y-auto">
+
+            <!-- ===================================================================== -->
+            <!-- BOOK I: CROSS-SAVE SETUP, GAME MODES & FIRST 5 HOURS                  -->
+            <!-- ===================================================================== -->
+            <section id="sec-book1" class="book-section space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-cyan-400">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-mono uppercase text-cyan-400">Book I of VI • Initialization & Foundation</span>
+                            <h2 class="font-display text-2xl font-bold text-white mt-1">Cross-Save Setup, Game Modes & First 5 Hours</h2>
+                        </div>
+                        <a href="https://cloud.nomanssky.com/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition">
+                            <i class="ph-bold ph-arrow-square-out"></i> cloud.nomanssky.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 1. Cross-Save Checklist & Parity Checker -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 hud-card rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                                <i class="ph-duotone ph-cloud-check text-cyan-400 text-xl"></i>
+                                1. Hello Games Cloud Cross-Save Checklist
+                            </h3>
+                            <span class="text-xs font-mono text-cyan-300">PC / Mac / Switch / iOS (Oct 28, 2026)</span>
+                        </div>
+                        <div id="checklist-crosssave" class="space-y-2"></div>
+                        <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 space-y-1">
+                            <div class="font-bold flex items-center gap-1.5 text-amber-300"><i class="ph-fill ph-warning"></i> The Golden Rule of Cross-Play (Patch Parity):</div>
+                            <p>You cannot open a save file saved on a newer game patch using a device running an older patch. Because Nintendo Switch and iOS App Store certifications occasionally take 2–5 extra days compared to Steam, always check that your version numbers match at the bottom-left of the title screen after a major update!</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+                            <i class="ph-duotone ph-Sliders text-emerald-400 text-xl"></i>
+                            Recommended QoL Custom Settings
+                        </h3>
+                        <p class="text-xs text-slate-300">Start in <strong>Normal Mode</strong> (for 9,999 cargo stack sizes and safe handheld play), then open <code class="text-cyan-300">Options &rarr; Difficulty</code> to configure:</p>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-cyan-300 block">1. Item Transfer Range &rarr; "Infinite"</strong>
+                                Pull crafting materials straight from your starship or Freighter storage containers anywhere on a planet without standing next to your ship.
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-cyan-300 block">2. Sprint & Scanner Recharge &rarr; "Fast"</strong>
+                                Eliminates downtime during early planet exploration.
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-purple-300 block">3. Multiplayer Toggle (`Options &rarr; Network`)</strong>
+                                <strong>100% Safe to toggle anytime!</strong> Flip Multiplayer <strong>OFF</strong> when claiming crashed S-Class ships or Multi-Tool cabinets so another player doesn't grab your spawn; flip it <strong>ON</strong> inside the Space Anomaly!
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. Complete Game Mode Comparison Table -->
+                <div class="hud-card rounded-2xl p-5 space-y-4">
+                    <h3 class="font-display font-bold text-base text-white">2. Complete Game Mode Comparison Table</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 font-mono uppercase">
+                                    <th class="py-2.5 px-3">Feature / Mechanic</th>
+                                    <th class="py-2.5 px-3 text-emerald-400">Normal (Recommended)</th>
+                                    <th class="py-2.5 px-3 text-amber-400">Survival</th>
+                                    <th class="py-2.5 px-3 text-red-400">Permadeath</th>
+                                    <th class="py-2.5 px-3 text-cyan-400">Relaxed</th>
+                                    <th class="py-2.5 px-3 text-purple-400">Community Expedition</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/80 text-slate-200">
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Inventory Stack Size</td>
+                                    <td class="py-2.5 px-3 font-mono text-emerald-300 font-bold">9,999 / slot</td>
+                                    <td class="py-2.5 px-3 font-mono text-amber-300">250 – 500 / slot</td>
+                                    <td class="py-2.5 px-3 font-mono text-red-300">250 – 500 / slot</td>
+                                    <td class="py-2.5 px-3 font-mono">9,999 / slot</td>
+                                    <td class="py-2.5 px-3 font-mono">9,999 / slot</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Death Penalty</td>
+                                    <td class="py-2.5 px-3">Respawn; pick up Grave</td>
+                                    <td class="py-2.5 px-3">Cargo destroyed; Tech breaks</td>
+                                    <td class="py-2.5 px-3 font-bold text-red-400">Save permanently deleted</td>
+                                    <td class="py-2.5 px-3">No penalty (Keep all)</td>
+                                    <td class="py-2.5 px-3">Standard Grave recovery</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Crafting & Costs</td>
+                                    <td class="py-2.5 px-3">Standard</td>
+                                    <td class="py-2.5 px-3">Expensive</td>
+                                    <td class="py-2.5 px-3">Expensive</td>
+                                    <td class="py-2.5 px-3">Discounted</td>
+                                    <td class="py-2.5 px-3">Fast-tracked via milestones</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Change Settings Later?</td>
+                                    <td class="py-2.5 px-3 text-emerald-400 font-bold">Yes</td>
+                                    <td class="py-2.5 px-3">Yes (Except Permadeath)</td>
+                                    <td class="py-2.5 px-3 text-red-400">Locked</td>
+                                    <td class="py-2.5 px-3">Yes</td>
+                                    <td class="py-2.5 px-3">Locked until Event ends</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 3. First 5 Hours Interactive Roadmap & Freighter Locked Bay Fix -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+                            <i class="ph-duotone ph-rocket-launch text-purple-400 text-xl"></i>
+                            3. The "First 5 Hours" Optimal Roadmap
+                        </h3>
+                        <div id="checklist-roadmap" class="space-y-2"></div>
+                    </div>
+
+                    <div class="lg:col-span-5 hud-card rounded-2xl p-5 space-y-4 border border-red-500/30">
+                        <h3 class="font-display font-bold text-base text-red-300 flex items-center gap-2 border-b border-slate-800 pb-3">
+                            <i class="ph-duotone ph-lock-key text-red-400 text-xl"></i>
+                            Troubleshooting: Locked Freighter Hangar Bays
+                        </h3>
+                        <p class="text-xs text-slate-300">After 3 cumulative hours and your 5th warp jump, you trigger a Freighter pirate rescue battle. If the Freighter bay doors stay red and locked after the fight:</p>
+                        <ol class="space-y-2.5 text-xs text-slate-200 list-decimal list-inside">
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-red-300">Zero Friendly Fire (#1 Culprit):</strong> If even a <em>single stray bullet</em> hits the friendly Freighter or its cargo pods during the dogfight, the Freighter flags you as hostile and locks its doors red! Hold fire when pirates cross the hull.
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-cyan-300">Answer Your Ship Communicator (`X` / `Down D-Pad`):</strong> Right when the last pirate explodes, answer the Captain's radio call—the hangar doors stay red until he invites you aboard, turning them blue!
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <strong class="text-emerald-300">Free Capital Ship Upgrade Trick:</strong> Your 1st battle is always a smaller System Freighter. Choose <em>"Request Payment Instead"</em> (or skip it)—every subsequent battle (3 hrs + 5 jumps) spawns a massive <strong>Capital Freighter</strong> that is still <strong>100% FREE</strong>!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- BOOK II: THE ZERO-TO-HERO 4.29B UNIT & NANITE WEALTH BLUEPRINT        -->
+            <!-- ===================================================================== -->
+            <section id="sec-book2" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
+                    <span class="text-xs font-mono uppercase text-emerald-400">Book II of VI • Post-Nerf Economic Engine</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">The "Zero-to-Hero" 4.29B Unit & Nanite Wealth Blueprint</h2>
+                    <p class="text-xs text-slate-300 mt-1">Maximum hard-coded wallet limit: <span class="font-mono text-emerald-300 font-bold">4,294,967,295 Units</span> (32-bit unsigned integer cap).</p>
+                </div>
+
+                <!-- Immediate 15-Minute Recovery Plan for Your Exact Hardware -->
+                <div class="hud-card rounded-2xl p-5 border border-amber-500/40 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h3 class="font-display font-bold text-base text-amber-300 flex items-center gap-2">
+                            <i class="ph-fill ph-lightning text-amber-400 text-xl"></i>
+                            Immediate 15-Minute Recovery Gameplan (Your Custom Hardware)
+                        </h3>
+                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300">+50M to 300M Units Fast</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
+                            <div class="font-mono text-amber-400 font-bold">STEP 1: SCRAP AERON-ημ (+50M U)</div>
+                            <p class="text-slate-300">Fly into any Space Station in <strong>Ythgall</strong>. Use Quick Menu (<code>X</code>) &rarr; <em>Summon Vehicles</em> &rarr; <em>Switch Docked Starship</em> to select <strong>Aeron-ημ</strong>. Hover over all tech modules and press <strong><code>X</code> (Store Technology)</strong> to keep them as grey boxes. Melt the empty hull at the Starship Outfitting Terminal for <strong>~45M–55M Units</strong> + <strong>1–3 Storage Augmentations</strong> for Ythgall!</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
+                            <div class="font-mono text-cyan-400 font-bold">STEP 2: NEVER BUY MT SLOTS WITH UNITS</div>
+                            <p class="text-slate-300">Buying Multi-Tool slots with Units drains tens of millions per slot! Instead, claim cheap C/B-Class Multi-Tools or harmonic spares and scrap them at the <strong>Multi-Tool Decommissioning Terminal</strong> on the <strong>Space Anomaly</strong> (left of the teleporter, by Tethys) for <strong>free Multi-Tool Expansion Slots</strong>!</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
+                            <div class="font-mono text-emerald-400 font-bold">STEP 3: WHY SCANS PAID 180K VS. 30M</div>
+                            <p class="text-slate-300">Even with S-Class Scanner mods, <strong>Light Capacitor</strong> caps around <strong>180k–450k Units</strong> per creature on its own. To hit <strong>10M–33M Units per scan</strong>, you MUST put <strong>Anomalous Doughnuts</strong> inside your Exosuit's <strong>Nutrient Ingestor</strong> and click <em>"Begin Ingestion"</em> (+6,443% compounding Fauna multiplier)!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 1 & 2: Infinite Sentinel Ship Salvage + Troubleshooting -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-purple-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-flying-saucer text-purple-400 text-xl"></i>
+                            Phase 2: Infinite Sentinel Interceptor Salvage (25M–50M U / Ship)
+                        </h3>
+                        <ol class="space-y-2 text-xs text-slate-300 list-decimal list-inside">
+                            <li><strong>The "On-Foot Peek" Trick for Echo Locators:</strong> Do <strong>NOT</strong> shoot Dissonance Resonators from your starship! 80% drop <em>Inverted Mirrors</em> and only 20% drop <strong>Echo Locators</strong>. Land, walk right up to the tripod drill with your weapon holstered (Corrupted Sentinels ignore you until you fire), and read its HUD label. Only shoot when it says <strong>Echo Locator</strong>!</li>
+                            <li><strong>Harmonic Camp Capacity & Infinite Loop:</strong> Pop the Echo Locator, drop a <strong>Save Beacon</strong> at the Harmonic Camp, and input the 3 math register glyphs. Each camp cycles through <strong>3 to 6 crash sites</strong> in its local radius. Once it repeats a site, fly to the other side of the planet and use another Echo Locator for a fresh camp!</li>
+                            <li><strong>Duplicating a Natural S-Class Crash Site:</strong> Drop a <strong>Base Computer 50u away</strong> (not directly on the scorched dirt), turn <strong>Multiplayer OFF</strong>, and claim/scrap the ship. Every few days after warping around other systems, that exact S-Class ship respawns at your Base Computer!</li>
+                        </ol>
+                    </div>
+
+                    <div class="lg:col-span-5 hud-card rounded-2xl p-5 space-y-3 border border-purple-500/30">
+                        <h3 class="font-display font-bold text-base text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-brain text-purple-400 text-xl"></i>
+                            Fix: When the Hyaline Brain Won't Probe
+                        </h3>
+                        <p class="text-xs text-slate-300">If pressing <em>"Probe Subconscious"</em> (<code>E</code> / <code>X</code>) on the Hyaline Brain zooms out briefly and does nothing, verify these 3 rules:</p>
+                        <ul class="space-y-2 text-xs text-slate-200">
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-purple-500/30">
+                                <strong class="text-purple-300">1. Hold 3 Radiant Shards + 1 Inverted Mirror (#1 Culprit):</strong> The Hyaline Brain silently refuses to mark the Ancient Monolith unless you currently hold at least <strong>3 Radiant Shards AND 1 Inverted Mirror</strong> in your pockets!
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <strong class="text-cyan-300">2. Click the Ship's Broken Brain Slot:</strong> Open the crashed ship and click directly on the damaged <em>Harmonic Brain / Pilot Interface</em> slot to pin the quest.
+                            </li>
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                                <strong class="text-emerald-300">3. Check Mission Log / Probe in Space:</strong> Highlight the <em>Salvage Site</em> quest in <code>Pause &rarr; Log</code> (abandon duplicate salvage quests) or probe while floating in low orbit.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Two-Vendor Outlaw Station Nanite Flip & Anomalous Doughnut Tree -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-emerald-300 border-b border-slate-800 pb-2.5">
+                            The Two-Vendor Outlaw Station Loop (Units &rarr; 25,000+ Nanites)
+                        </h3>
+                        <p class="text-xs text-slate-300">Regular upgrade vendors only accept Nanites. To buy Nanites using <strong>Units</strong>, visit an <strong>Outlaw (Pirate) Station</strong> and use both vendors:</p>
+                        <div class="p-3.5 rounded-xl bg-slate-950 border border-emerald-500/30 font-mono text-xs space-y-2 text-slate-200">
+                            <div class="text-amber-300 font-bold">[VENDOR #1: CONTRABAND AGENT] (Sitting by tent/crates)</div>
+                            <div>1. Spend <strong>UNITS (~75,000 U each)</strong> to buy all <em>"Suspicious Packet (Tech)"</em> and <em>"Suspicious Packet (Arms)"</em>.</div>
+                            <div>2. Open your inventory and <strong>UNPACK (<code>E</code>/<code>X</code>)</strong> every packet into unopened X-Class Upgrade Modules!</div>
+                            <div class="text-emerald-400 font-bold pt-1">[VENDOR #2: UPGRADE MERCHANT] (Next to Multi-Tool booth)</div>
+                            <div>3. Click <em>"Buy Upgrade Modules"</em> &rarr; Switch to the <strong>"SELL" tab</strong> at the top-left of the screen!</div>
+                            <div>4. Sell the unpacked X-Class modules for <strong>300 to 500 NANITES each</strong>! (75 packets = ~25,000+ Nanites in 15 mins).</div>
+                        </div>
+                    </div>
+
+                    <div class="hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-amber-300 border-b border-slate-800 pb-2.5">
+                            Phase 3: Complete Anomalous Doughnut Recipe Tree
+                        </h3>
+                        <div class="p-3.5 rounded-xl bg-slate-950 border border-amber-500/30 font-mono text-xs space-y-1.5 text-slate-200">
+                            <div><span class="text-cyan-300">Frost Crystal</span> &rarr; Glass Grains &rarr; <strong class="text-white">Refined Flour</strong></div>
+                            <div><span class="text-cyan-300">Faecium</span> &rarr; <strong class="text-white">Wild Yeast</strong></div>
+                            <div>Refined Flour + Wild Yeast &rarr; <strong class="text-amber-300">Dough</strong></div>
+                            <div><span class="text-cyan-300">Fresh Milk</span> &rarr; Cream &rarr; Churned Butter &rarr; <strong class="text-white">Clarified Oil</strong></div>
+                            <div><span class="text-cyan-300">Cactus Flesh</span> &rarr; Cactus Nectar &rarr; <strong class="text-white">Processed Sugar</strong></div>
+                            <div>Dough + Clarified Oil + Processed Sugar &rarr; <strong class="text-amber-300">Lumpy Doughnut</strong></div>
+                            <div><span class="text-purple-300">Hexaberry</span> (Exotic Planets) + Processed Sugar &rarr; <strong class="text-purple-300">Anomalous Jam</strong></div>
+                            <div class="pt-1 border-t border-slate-800 text-emerald-300 font-bold">Lumpy Doughnut + Anomalous Jam &rarr; ★ ANOMALOUS DOUGHNUT ★</div>
+                        </div>
+                        <p class="text-[11px] text-amber-200"><strong>Execution:</strong> Do NOT eat from Cargo! Load into the Exosuit <strong>Nutrient Ingestor</strong> tech slot and click <em>"Begin Ingestion"</em> for 10M–33M Units per creature scan.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 4: Stasis Device & Split Gold Mines -->
+                <div class="hud-card rounded-2xl p-5 space-y-3">
+                    <h3 class="font-display font-bold text-base text-cyan-300 border-b border-slate-800 pb-2.5">
+                        Phase 4: Stasis Device Megafactory (15.6M U Each) & Split-Network Gold Mines
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300">
+                        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+                            <div class="font-mono text-cyan-300 font-bold">STASIS DEVICE FORMULA (312M U / Batch of 20)</div>
+                            <p><strong>Quantum Processor</strong> (Circuit Board + Superconductor) + <strong>Cryogenic Chamber</strong> (Living Glass + Cryo-Pump) + <strong>Iridesite</strong> (Aronium + Magno-Gold + Grantine).</p>
+                            <p class="text-slate-400">Raw Batch of 20 Needs: 8,000 Radon, 8,000 Sulphurine, 8,000 Nitrogen, 8,000 Frost Crystal, 4,000 Gamma Root, 1,000 Faecium, 4,000 Star Bulb, 2,000 Cactus Flesh, 4,000 Solanium.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+                            <div class="font-mono text-amber-300 font-bold">BYPASSING THE 1,000/HR GOLD EXTRACTOR NERF</div>
+                            <p>Any single connected pipeline exceeding <strong>1,000 mineral/hr</strong> suffers severe diminishing returns. Stack <strong>3–4 Mineral Extractors</strong> on the hotspot center wired to <strong>Supply Pipe A &rarr; Depot Row A</strong>. Stack another 3–4 Extractors directly above them wired to an <strong>isolated Supply Pipe B &rarr; Depot Row B</strong> so pipes and depots never touch!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- BOOK III: STARSHIP & MULTI-TOOL META (YOUR CUSTOM HARDWARE)           -->
+            <!-- ===================================================================== -->
+            <section id="sec-book3" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-purple-400">
+                    <span class="text-xs font-mono uppercase text-purple-400">Book III of VI • Custom Hardware Schematics</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">Starship & Multi-Tool Meta (Ythgall, Defiance of Thought & Light Capacitor)</h2>
+                </div>
+
+                <!-- 1. The 3 Golden Rules of Supercharged Slots -->
+                <div class="hud-card rounded-2xl p-5 space-y-3">
+                    <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">1. The 3 Golden Rules of Supercharged Slots</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+                        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                            <strong class="text-purple-300 block mb-1">Rule 1: Strictly Tied to Class</strong>
+                            Every S-Class ship, Multi-Tool, or Freighter gets <strong>4 Supercharged Slots</strong> (A=3, B=2, C=1). Royal, Experimental, and Sentinel tools never get more than 4 slots; they have higher hidden base stat multipliers instead.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900 border border-purple-500/40">
+                            <strong class="text-amber-300 block mb-1">Rule 2: Why "Defiance of Thought" Showed 0 SC Slots</strong>
+                            Supercharged slots spawn anywhere in the <strong>first 40 grid coordinates (Rows 1–4, Cols 1–10)</strong>. Because <em>Defiance of Thought</em> started with only <strong>3 Rows &times; 8 Cols (23 slots)</strong> unlocked, its SC slots rolled inside locked <strong>Cols 9–10</strong> or <strong>Row 4</strong>! Unlocking those slots reveals them immediately.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                            <strong class="text-cyan-300 block mb-1">Rule 3: Harmonic Camp Cabinet Lock</strong>
+                            Reloading a Save Beacon at the same Harmonic Camp <strong>never</strong> changes the cabinet's Class (a B-Class camp stays B-Class). Reloading on different planets only swaps the visual model between Sentinel Pistol and Sentinel Rifle.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Your Starships: Ythgall vs Aeron-ημ + Visual Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">2. Your S-Class Ships: Ythgall vs. Aeron-ημ</h3>
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                                    <th class="py-2">Metric</th>
+                                    <th class="py-2 text-emerald-400">🥇 Ythgall (Keep Flagship)</th>
+                                    <th class="py-2 text-amber-400">🥈 Aeron-ημ (Strip & Scrap)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-200">
+                                <tr>
+                                    <td class="py-2 font-semibold">SC Coordinates</td>
+                                    <td class="py-2 font-mono text-purple-300 font-bold">R2C2, R2C3, R2C4 (3-in-a-Row!) + R3C8</td>
+                                    <td class="py-2 font-mono text-slate-400">R3C1, R2C2, R2C4, R1C5 (Diagonal)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">Flat Edge Synergy</td>
+                                    <td class="py-2 text-emerald-300 font-bold">Massive (3 shared edges)</td>
+                                    <td class="py-2 text-red-300">Zero (Diagonals don't count)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">Why Screenshot DMG Differed</td>
+                                    <td class="py-2">SC slots were empty (337.1)</td>
+                                    <td class="py-2">Sentinel Cannon sat in R1C5 (387.1)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">Max Infra-Knife DPS</td>
+                                    <td class="py-2 text-emerald-400 font-bold">90,000+ DPS</td>
+                                    <td class="py-2">~35% lower ceiling</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-purple-300 border-b border-slate-800 pb-2.5">Optimal Infra-Knife Grid for Ythgall</h3>
+                        <div class="grid grid-cols-3 gap-2.5 text-center text-xs font-mono">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                                <span class="text-[10px] text-slate-400 block">R1, Col 2</span>
+                                <strong class="text-cyan-300">S-Class Infra Mod #3</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                                <span class="text-[10px] text-slate-400 block">R1, Col 3</span>
+                                <strong class="text-white">Q-Resonator (Tech)</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                                <span class="text-[10px] text-slate-400 block">R1, Col 4</span>
+                                <strong class="text-cyan-300">S-Class Infra Mod #2</strong>
+                            </div>
+                            <div class="p-3 rounded-xl sc-slot">
+                                <span class="text-[10px] text-purple-200 block">★ SC SLOT (R2, Col 2)</span>
+                                <strong class="text-white">S-Class Infra Mod #1</strong>
+                            </div>
+                            <div class="p-3 rounded-xl sc-slot">
+                                <span class="text-[10px] text-purple-200 block">★ SC SLOT (R2, Col 3)</span>
+                                <strong class="text-amber-300">MAIN INFRA-KNIFE</strong>
+                            </div>
+                            <div class="p-3 rounded-xl sc-slot">
+                                <span class="text-[10px] text-purple-200 block">★ SC SLOT (R2, Col 4)</span>
+                                <strong class="text-white">S-Class Infra Mod #2</strong>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Put your <strong>Luminance Engine (Pulse Drive)</strong> or <strong>Hyperdrive</strong> upgrade into Ythgall's 4th Supercharged slot at <code>Row 3, Col 8</code>!</p>
+                    </div>
+                </div>
+
+                <!-- 3. Your Multi-Tools: Light Capacitor & Defiance of Thought -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-cyan-300 border-b border-slate-800 pb-2.5">3. Wiring "Light Capacitor 3-93F/33Q" (Scanner & Mining)</h3>
+                        <div class="grid grid-cols-3 gap-2.5 text-center text-xs font-mono">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                                <span class="text-[10px] text-slate-400 block">R1, Col 7</span>
+                                <strong class="text-cyan-300">S-Class Scanner Mod</strong>
+                            </div>
+                            <div class="p-3 rounded-xl sc-slot">
+                                <span class="text-[10px] text-purple-200 block">★ SC SLOT (R1, Col 8)</span>
+                                <strong class="text-amber-300">Best S-Class Scanner</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                                <span class="text-[10px] text-slate-400 block">R1, Col 9</span>
+                                <strong class="text-cyan-300">A-Class Scanner (from R3C6)</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-700">
+                                <span class="text-[10px] text-slate-400 block">R2, Col 7</span>
+                                <strong class="text-white">Analysis Visor (from R1C2)</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-700">
+                                <span class="text-[10px] text-slate-400 block">R2, Col 8</span>
+                                <strong class="text-white">Main Scanner Module</strong>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-700">
+                                <span class="text-[10px] text-slate-400 block">R2, Col 9</span>
+                                <strong class="text-white">Survey Device</strong>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-300"><strong>+88% Mining Yield Trick:</strong> Move your <strong>Optical Drill</strong> (from <code>R3C9</code>) onto the Supercharged slot at <strong><code>Row 2, Col 4</code></strong> surrounded by your green Mining Beam mods!</p>
+                    </div>
+
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">Multi-Tool Archetype Meta & "Defiance of Thought"</h3>
+                        <p class="text-xs text-slate-300">Upgrade <strong>Defiance of Thought</strong> (Sentinel Long-Rifle) to <strong>S-Class (50k Nanites)</strong> and expand Row 4 + Cols 9–10 using free Anomaly Expansion Slots. Sentinel Rifles have the <strong>highest base combat damage (+50%)</strong> AND let you install both the <strong>Hijacked Laser + Standard Mining Beam</strong> simultaneously for 2&times; mining speed and zero overheating!</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-[11px]">
+                                <thead>
+                                    <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                                        <th class="py-1.5">Archetype</th>
+                                        <th class="py-1.5">Damage</th>
+                                        <th class="py-1.5">Mining</th>
+                                        <th class="py-1.5">Scanner</th>
+                                        <th class="py-1.5">Best Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-200">
+                                    <tr><td class="py-1.5 font-bold text-purple-300">Sentinel Rifle/Pistol</td><td>★ S+ (+50%)</td><td>Med (+15%)</td><td>High (+50%)</td><td>#1 Combat & Dual-Laser</td></tr>
+                                    <tr><td class="py-1.5 font-bold text-cyan-300">Experimental / Royal</td><td>Med (+25%)</td><td>High (+30%)</td><td>★ S+ (+100%)</td><td>#1 Fauna Scanner</td></tr>
+                                    <tr><td class="py-1.5 font-bold text-emerald-300">Atlantid (Runic)</td><td>Med (+20%)</td><td>★ S+ (+50%)</td><td>★ S+ (+100%)</td><td>#1 Pure Mining Speed</td></tr>
+                                    <tr><td class="py-1.5 font-bold text-amber-300">Voltaic Staff</td><td>★ S+ (+50%)</td><td>Med (+20%)</td><td>High (+50%)</td><td>Tied #1 Heavy Combat</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- BOOK IV: THE ULTIMATE SELF-SUFFICIENT & COZY BASE BLUEPRINT           -->
+            <!-- ===================================================================== -->
+            <section id="sec-book4" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-amber-400">
+                    <span class="text-xs font-mono uppercase text-amber-400">Book IV of VI • Automated Sanctuary Engineering</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">The Ultimate Self-Sufficient & Cozy Base Blueprint</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-5 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">1. Scouting the "Golden Triangle" Site</h3>
+                        <p class="text-xs text-slate-300">Use your <strong>Survey Device</strong> on a <strong>Paradise, Bountiful, or Bioluminescent</strong> planet to find 3 hotspots within 300u–600u:</p>
+                        <ul class="space-y-2 text-xs text-slate-200">
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-slate-800"><strong class="text-cyan-300">⚡ 1. Electromagnetic Power Hotspot:</strong> Infinite 24/7 power with zero solar panels or batteries.</li>
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-slate-800"><strong class="text-emerald-300">🫧 2. Oxygen Gas Hotspot:</strong> Fuels your Refiner Alchemy Chamber to multiply almost every survival material in the game.</li>
+                            <li class="p-2.5 rounded-xl bg-slate-900 border border-slate-800"><strong class="text-purple-300">🪨 3. Mineral Hotspot / Curious Deposit:</strong> Paraffinium/Magnetised Ferrite for building, or Runaway Mould balls for 1,999 Nanites per 9,999 stack!</li>
+                        </ul>
+                        <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs text-cyan-200">
+                            <strong>Extending Base Radius (300u &rarr; 1,000u):</strong> Drop your Base Computer in the center. Walk toward a distant hotspot with your Build Menu open; right where it says <em>"Out of Base Range"</em>, take 2 steps back and place a small floor plate or light post to push the boundary out by 50u!
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-emerald-300 border-b border-slate-800 pb-2.5">2. Wing 1: The Oxygen Alchemy Refiner Chamber</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                                        <th class="py-2 px-2">Target Material</th>
+                                        <th class="py-2 px-2">Refiner Input Formula</th>
+                                        <th class="py-2 px-2">Ratio</th>
+                                        <th class="py-2 px-2">What It Automates</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-slate-200">
+                                    <tr><td class="py-2 px-2 font-bold text-red-300">Condensed Carbon</td><td class="py-2 px-2 font-mono">1 Cond. Carbon + 2 Oxygen</td><td class="py-2 px-2 font-mono text-emerald-400 font-bold">1 &rarr; 6</td><td class="py-2 px-2">Infinite fuel & Stasis crafting</td></tr>
+                                    <tr><td class="py-2 px-2 font-bold text-amber-300">Sodium Nitrate</td><td class="py-2 px-2 font-mono">1 Sodium Nitrate + 1 Oxygen</td><td class="py-2 px-2 font-mono text-emerald-400 font-bold">1 &rarr; 2</td><td class="py-2 px-2">Hazard Protection & shields</td></tr>
+                                    <tr><td class="py-2 px-2 font-bold text-cyan-300">Ionised Cobalt</td><td class="py-2 px-2 font-mono">1 Ionised Cobalt + 2 Oxygen</td><td class="py-2 px-2 font-mono text-emerald-400 font-bold">1 &rarr; 6</td><td class="py-2 px-2">Infinite Ion Batteries (+ Ferrite)</td></tr>
+                                    <tr><td class="py-2 px-2 font-bold text-purple-300">Faecium (Yeast)</td><td class="py-2 px-2 font-mono">1 Faecium + 1 Oxygen</td><td class="py-2 px-2 font-mono text-emerald-400 font-bold">1 &rarr; 3</td><td class="py-2 px-2">Wild Yeast for Doughnuts</td></tr>
+                                    <tr><td class="py-2 px-2 font-bold text-slate-200">Magnetised Ferrite</td><td class="py-2 px-2 font-mono">1 Pure Ferrite + 1 Oxygen</td><td class="py-2 px-2 font-mono text-emerald-400 font-bold">1 &rarr; 2</td><td class="py-2 px-2">Infinite building materials</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
+                            <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <strong class="text-amber-300 block">3. Wing 2: 4-Biodome "One-Click" Farm + Ranch</strong>
+                                <p class="text-slate-300">Click <em>"Harvest All Plants"</em> on the ceiling monitor of each Biodome: <strong>Dome 1 (Bakery):</strong> 8 Frostwort + 6 Echinocactus + 2 Gutrot. <strong>Dome 2:</strong> 8 Mordite + 8 Fungal Mould. <strong>Dome 3:</strong> 16 NipNip Buds. <strong>Dome 4:</strong> 6 Star Bramble + 6 Solar Vine + 4 Gamma Weed. Place <strong>1 Automated Feeder + 1 Livestock Unit</strong> outside for automatic Fresh Milk!</p>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                                <strong class="text-cyan-300 block">4. Wing 3: Red Barrel & Green Crate Trick</strong>
+                                <p class="text-slate-300">Build <strong>5 Red Barrel Fabricators</strong> (AtlasPass v1) and <strong>5 Green Crate Fabricators</strong>. A Red Barrel's drop depends on its exact <code>(X,Y,Z)</code> spot—if it drops Antimatter Housing instead of a full <strong>Warp Cell</strong>, move it 1 foot over until it locks onto Warp Cells permanently!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- BOOK V: THE COMPLETE EXPEDITIONS & ITEM PORTING MANUAL                -->
+            <!-- ===================================================================== -->
+            <section id="sec-book5" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-cyan-400">
+                    <span class="text-xs font-mono uppercase text-cyan-400">Book V of VI • Omega Terminus Protocol</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">The Complete Community Expeditions & Item Porting Manual</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4">
+                        <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">1. The #1 Rule: Always Start from the Space Anomaly!</h3>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-red-950/30 border border-red-500/40 text-red-200">
+                                <strong class="text-red-400 block">❌ WRONG WAY: Main Title Screen ("New Game &rarr; Expedition")</strong>
+                                Creates an isolated save slot that CANNOT receive your main ships/items and CANNOT transfer cargo stacks or cloned ships back to your primary character!
+                            </div>
+                            <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/40 text-emerald-200">
+                                <strong class="text-emerald-400 block">✅ CORRECT WAY: Space Anomaly "Expedition Terminus"</strong>
+                                Load your main save (with <strong>Ythgall</strong> and <strong>Defiance of Thought</strong> equipped), fly into the Space Anomaly, and use the <strong>Expedition Terminus</strong> console behind the Nexus cube!
+                            </div>
+                        </div>
+
+                        <h4 class="font-display font-bold text-sm text-cyan-300 pt-2">2. Pre-Loading Your 8 Tech + 24 Cargo "Care Package"</h4>
+                        <div id="checklist-expedition" class="space-y-2"></div>
+                    </div>
+
+                    <div class="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4 border border-purple-500/30">
+                        <h3 class="font-display font-bold text-base text-purple-300 border-b border-slate-800 pb-2.5">3. Cloning Ythgall & Zero-Loss Extraction Protocol</h3>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <strong class="text-cyan-300 block mb-1">Cloning Ythgall & Defiance of Thought INTO the Event:</strong>
+                                Once you make 1 warp jump inside the Expedition and summon the Space Anomaly, visit the Terminus, refine/sell your packed Runaway Mould or Suspicious Packets for ~5,000 Nanites, and click <strong>"Copy Starship" (~2,800 Nanites)</strong> and <strong>"Copy Multi-Tool" (~2,200 Nanites)</strong>!
+                            </li>
+                            <li class="p-3 rounded-xl bg-slate-900 border border-amber-500/40">
+                                <strong class="text-amber-300 block mb-1">Trick #1: The Infinite Multi-Batch Mule (Before Clicking End!)</strong>
+                                Once you click <em>"End Expedition"</em>, the Terminus locks forever! If you have more than 24 Cargo stacks to bring home, load Batch #1 into the Terminus, open <code>Pause &rarr; Options</code> and click <strong>"Return to Primary Save"</strong> (do NOT click End Expedition!), empty the Terminus on your main save, resume the Expedition, and load Batch #2!
+                            </li>
+                            <li class="p-3 rounded-xl bg-slate-900 border border-emerald-500/40">
+                                <strong class="text-emerald-300 block mb-1">Trick #2: Infinite Reward Ship & Photonix Core Duplication</strong>
+                                Equip the exclusive <strong>Expedition Reward Ship & Multi-Tool</strong> before clicking <em>"End Expedition"</em>. Back on your Main Save, click <strong>"Copy Starship"</strong> at the Terminus, strip its unique tech (<code>X</code>) and scrap/salvage the hull at the Space Station, then return to the Terminus to click <strong>"Copy Starship" again and again</strong>!
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- BOOK VI: THE 7 PILLARS OF POST-WEALTH & ENDGAME PROGRESSION           -->
+            <!-- ===================================================================== -->
+            <section id="sec-book6" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-red-500">
+                    <span class="text-xs font-mono uppercase text-red-400">Book VI of VI • Deep Space & Endgame Mastery</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">The 7 Pillars of Post-Wealth & Endgame Progression</h2>
+                </div>
+
+                <div class="hud-card rounded-2xl p-5 space-y-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 font-mono uppercase">
+                                    <th class="py-2.5 px-3">Pillar</th>
+                                    <th class="py-2.5 px-3">Questline / Trigger</th>
+                                    <th class="py-2.5 px-3">Ultimate Reward</th>
+                                    <th class="py-2.5 px-3">Exact Unlock Prerequisite</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-200">
+                                <tr><td class="py-2.5 px-3 font-bold text-cyan-300">1. Portal Mastery & Lush Reset</td><td class="py-2.5 px-3"><em>The Purge</em> & <em>Atlas Path</em></td><td class="py-2.5 px-3">All 16 Glyphs, Star Seed & <strong>Eissentam (#10)</strong></td><td class="py-2.5 px-3">Finish Artemis story; pick <strong>Green Orb</strong> (equip junk ship/tool first!)</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-purple-300">2. Autophage Robot Faction</td><td class="py-2.5 px-3"><em>They Who Returned</em></td><td class="py-2.5 px-3"><strong>Voltaic Staffs</strong>, Atlantid Rifles & Armor</td><td class="py-2.5 px-3">Complete <em>The Purge</em> + Unlock 1 Harmonic Camp + Warp in ship</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-amber-300">3. Purple Stars & Gas Giants</td><td class="py-2.5 px-3"><em>In Stellar Multitudes</em></td><td class="py-2.5 px-3"><strong>Atlantid Drive</strong>, Gas Giants & Deep Oceans</td><td class="py-2.5 px-3">Complete <em>Atlas Path</em> + <em>They Who Returned</em>, then pulse in space</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-red-400">4. Pirate Dreadnought Flagship</td><td class="py-2.5 px-3">Outlaw Warp Battle</td><td class="py-2.5 px-3"><strong>S-Class Pirate Dreadnought Freighter</strong></td><td class="py-2.5 px-3">Own any normal Freighter, then warp into Outlaw Systems (3h + 5 jumps)</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-emerald-300">5. AI Minotaur & Laylaps Drone</td><td class="py-2.5 px-3"><em>A Trace of Metal</em></td><td class="py-2.5 px-3"><strong>Autonomous AI Combat Mech</strong> + Drone Buddy</td><td class="py-2.5 px-3">Claim a Planetary Settlement & defend against first Sentinel attack</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-cyan-300">6. Custom S-Class Ship Foundry</td><td class="py-2.5 px-3">Station Ship Fabricator</td><td class="py-2.5 px-3"><strong>Custom-Built S-Class Fighter/Hauler/Solar</strong></td><td class="py-2.5 px-3">Salvage Cockpit + Wings + Thrusters from donor ships + S-Reactor Core</td></tr>
+                                <tr><td class="py-2.5 px-3 font-bold text-purple-300">7. Living Ships & Organic Fleet</td><td class="py-2.5 px-3"><em>Starbirth</em> & Dream Aerial</td><td class="py-2.5 px-3"><strong>S-Class Living Ship</strong> & Organic Frigates</td><td class="py-2.5 px-3">Pulse in space with your <strong>Void Egg</strong> in inventory (5-day timer)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-white border-b border-slate-800 pb-2">Endgame Pillars Checklist</h3>
+                        <div id="checklist-endgame" class="space-y-2"></div>
+                    </div>
+                    <div class="hud-card rounded-2xl p-5 space-y-3 border border-red-500/30">
+                        <h3 class="font-display font-bold text-base text-red-300 border-b border-slate-800 pb-2">How to Force a Pirate Dreadnought to Surrender in 45 Seconds</h3>
+                        <ol class="space-y-2 text-xs text-slate-300 list-decimal list-inside">
+                            <li><strong>Destroy the 4 Rear Warp Engines First:</strong> Fly directly underneath the rear stern of the Pirate Dreadnought (inside its shield bubble) and blast the <strong>4 glowing Warp Engines</strong> so it cannot escape.</li>
+                            <li><strong>Destroy the 6 Top Deck Anti-Freighter Turrets:</strong> Fly straight up to the top dorsal trench and blast the <strong>6 Heavy Laser Cannons</strong> firing on the civilian fleet.</li>
+                            <li><strong>Board & Claim for Free:</strong> The Dreadnought surrenders immediately! Land in its hangar, scan the wall with your Analysis Visor to check its Class, and either <strong>Claim the Dreadnought for Free</strong> or demand <strong>6.7M Units + Freighter Bulkheads</strong> from the Captain!</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- INTERACTIVE CALCULATORS SUITE (5 LIVE TOOLS)                          -->
+            <!-- ===================================================================== -->
+            <section id="sec-calculators" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-amber-400">
+                    <span class="text-xs font-mono uppercase text-amber-400">Interactive Utility Suite</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">5 Live Gameplay Calculators & Solvers</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Tool 1: Harmonic Camp Solver & Salvage Calculator -->
+                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-purple-500/30">
+                        <h3 class="font-display font-bold text-base text-purple-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-terminal-window text-xl"></i>
+                            1. Harmonic Camp Override Solver & Salvage Planner
+                        </h3>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 1</span>
+                                <input type="text" id="calcReg1" value="6 - 2" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
+                                <span id="calcAns1" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">4</span>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 2</span>
+                                <input type="text" id="calcReg2" value="2 + 8" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
+                                <span id="calcAns2" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">10</span>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 3</span>
+                                <input type="text" id="calcReg3" value="11 + 5" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
+                                <span id="calcAns3" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">16</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 pt-2">
+                            <div class="flex justify-between text-xs"><span class="text-slate-300">Sentinel Ships to Salvage:</span><span id="calcShipLabel" class="font-mono text-purple-300 font-bold">4 Ships</span></div>
+                            <input type="range" id="calcShipSlider" min="1" max="12" value="4" oninput="runCalculators()" class="w-full">
+                            <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Radiant Shards</span><span id="calcShards" class="font-bold text-purple-300">12</span></div>
+                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Inverted Mirrors</span><span id="calcMirrors" class="font-bold text-purple-300">4</span></div>
+                                <div class="bg-slate-900 p-2 rounded-lg border border-emerald-500/30"><span class="text-[10px] text-slate-400 block">Est. Scrap Value</span><span id="calcShipUnits" class="font-bold text-emerald-400">~160M U</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: Anomalous Doughnut Batch Calculator -->
+                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-amber-500/30">
+                        <h3 class="font-display font-bold text-base text-amber-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-cookie text-xl"></i>
+                            2. Anomalous Doughnut Batch & Scan Payout Planner
+                        </h3>
+                        <div class="flex justify-between text-xs"><span class="text-slate-300">Target Doughnut Batch:</span><span id="calcDoughnutLabel" class="font-mono text-amber-300 font-bold">10 Doughnuts (100 Mins Buff)</span></div>
+                        <input type="range" id="calcDoughnutSlider" min="1" max="50" value="10" oninput="runCalculators()" class="w-full">
+                        <div class="grid grid-cols-5 gap-2 text-center text-xs">
+                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Frost Crystal</span><span id="calcFrost" class="font-bold text-white">10</span></div>
+                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Faecium</span><span id="calcFaecium" class="font-bold text-white">10</span></div>
+                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Fresh Milk</span><span id="calcMilk" class="font-bold text-white">10</span></div>
+                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Cactus Flesh</span><span id="calcCactus" class="font-bold text-white">20</span></div>
+                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Hexaberry</span><span id="calcHexa" class="font-bold text-purple-300">10</span></div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex justify-between items-center text-xs">
+                            <span class="text-slate-300">Est. Fauna Scan Yield (~8 creatures / doughnut):</span>
+                            <span id="calcScanPayout" class="font-mono font-bold text-emerald-400">~1.44 Billion Units</span>
+                        </div>
+                    </div>
+
+                    <!-- Tool 3: Stasis Device Megafactory Batch Calculator -->
+                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-cyan-500/30">
+                        <h3 class="font-display font-bold text-base text-cyan-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-cpu text-xl"></i>
+                            3. Stasis Device Megafactory Calculator (15.6M U / Device)
+                        </h3>
+                        <div class="flex justify-between text-xs"><span class="text-slate-300">Stasis Devices to Craft:</span><span id="calcStasisLabel" class="font-mono text-cyan-300 font-bold">20 Devices (312.0M Units)</span></div>
+                        <input type="range" id="calcStasisSlider" min="1" max="50" value="20" oninput="runCalculators()" class="w-full">
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Radon / Sulph / Nitro</span><span id="calcGases" class="font-bold text-cyan-300">8,000 each</span></div>
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Frost Crystal</span><span id="calcStasisFrost" class="font-bold text-white">8,000</span></div>
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Star Bulb / Solanium</span><span id="calcStasisStar" class="font-bold text-white">4,000 each</span></div>
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Gamma Root</span><span id="calcStasisGamma" class="font-bold text-white">4,000</span></div>
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Cactus Flesh</span><span id="calcStasisCactus" class="font-bold text-white">2,000</span></div>
+                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Faecium</span><span id="calcStasisFaecium" class="font-bold text-white">1,000</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 4 & 5: Split-Network Gold Mine & Outlaw Nanite Flipper -->
+                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-emerald-500/30">
+                        <h3 class="font-display font-bold text-base text-emerald-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                            <i class="ph-duotone ph-dna text-xl"></i>
+                            4. Outlaw Nanite Flipper & Gold Pipe Splitter
+                        </h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs"><span class="text-slate-300">Outlaw Stations Visited (15 Tech/Arms Packets each):</span><span id="calcOutlawLabel" class="font-mono text-emerald-400 font-bold">5 Stations (75 Packets)</span></div>
+                            <input type="range" id="calcOutlawSlider" min="1" max="15" value="5" oninput="runCalculators()" class="w-full">
+                            <div class="grid grid-cols-2 gap-2 text-center text-xs">
+                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Unit Cost (~75k/pkt)</span><span id="calcOutlawCost" class="font-bold text-amber-300">~5.6M Units</span></div>
+                                <div class="bg-slate-900 p-2 rounded-lg border border-emerald-500/30"><span class="text-[10px] text-slate-400 block">Nanite Yield (~350 N/pkt)</span><span id="calcOutlawNanites" class="font-bold text-emerald-400">+26,250 Nanites</span></div>
+                            </div>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t border-slate-800">
+                            <div class="flex justify-between text-xs"><span class="text-slate-300">Total Gold Mineral Extractors (S-Class Hotspot):</span><span id="calcGoldLabel" class="font-mono text-cyan-300 font-bold">12 Extractors &rarr; 4 Isolated Pipes</span></div>
+                            <input type="range" id="calcGoldSlider" min="3" max="30" step="3" value="12" oninput="runCalculators()" class="w-full">
+                            <div class="text-[11px] font-mono text-slate-300 flex justify-between">
+                                <span>Hourly Output: <strong id="calcGoldHr" class="text-white">6,600 Gold/hr</strong></span>
+                                <span>24-Hr Value: <strong id="calcGoldDay" class="text-emerald-400">55.9M Units/day</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- COORDINATE & CUSTOM NOTEBOOK LOGBOOK                                  -->
+            <!-- ===================================================================== -->
+            <section id="sec-logbook" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-purple-400">
+                    <span class="text-xs font-mono uppercase text-purple-400">Persistent Local Database</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">Star System, Crash Site & Custom Note Logbook</h2>
+                    <p class="text-xs text-slate-300 mt-1">Add, edit, or delete star systems, S-Class crash coordinates, or custom notes. Everything exports cleanly into your Git repository via the <strong>Export JSON</strong> button.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-4 hud-card rounded-2xl p-5 space-y-3">
+                        <h3 class="font-display font-bold text-base text-white">Add New Entry</h3>
+                        <input type="text" id="entryTitle" placeholder="System, Planet, or Note Title" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                        <select id="entryCategory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                            <option value="S-Class Crash Site">🟣 S-Class Ship Crash Site</option>
+                            <option value="Harmonic Camp">🟠 Harmonic Camp Terminal</option>
+                            <option value="Outlaw Station">🔴 Outlaw Station (Nanite Flip)</option>
+                            <option value="Hotspot / Base">🟢 Base / Curious Deposit</option>
+                            <option value="Custom Guide Note">🔵 Custom Guide / Meta Note</option>
+                        </select>
+                        <textarea id="entryDetails" rows="3" placeholder="Coordinates (e.g. +12.4, -84.1), glyphs, or custom notes..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+                        <button onclick="addLogEntry()" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs transition">Save to Local Repository</button>
+                    </div>
+
+                    <div class="lg:col-span-8 hud-card rounded-2xl p-5 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
+                            <h3 class="font-display font-bold text-base text-white">Saved Repository Entries</h3>
+                            <span id="logEntryCounter" class="text-xs font-mono text-cyan-400">0 Entries</span>
+                        </div>
+                        <div id="logEntriesContainer" class="space-y-2.5 max-h-[500px] overflow-y-auto pr-1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- AGENT ARCHITECTURE & GIT REPOSITORY BUILD SPECIFICATION               -->
+            <!-- ===================================================================== -->
+            <section id="sec-agentspec" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-mono uppercase text-emerald-400">Developer & AI Coding Agent Blueprint</span>
+                            <h2 class="font-display text-2xl font-bold text-white mt-1">Repository Setup & AI Agent Build Specification</h2>
+                            <p class="text-xs text-slate-300 mt-1">Copy this prompt or specification directly into Claude Code, Cursor, Windsurf, or GitHub Copilot to initialize, modularize, or extend this local web app repository.</p>
+                        </div>
+                        <button onclick="copyAgentSpec()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition">
+                            <i class="ph-bold ph-copy"></i> Copy Agent Prompt to Clipboard
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hud-card rounded-2xl p-5 space-y-4">
+                    <pre id="agentSpecCodeBlock" class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre-wrap leading-relaxed"># AGENT SPECIFICATION: ATLAS // MASTER OS (No Man's Sky Local Companion & Knowledge Base)
+
+## 1. Project Overview & Purpose
+This repository (`nms-atlas-master-os`) hosts a local-first, offline-capable web application and structured knowledge base for a multi-platform No Man's Sky playthrough (PC/Mac, Nintendo Switch, and iOS).
+- **Single-File Zero-Build Entrypoint:** `index.html` (or `nms_master_os.html`) runs directly in any browser (`open index.html` or `npx serve .`) with zero build steps required.
+- **Persistent State & Git-Friendly Sync:** All user checklists, progress flags, and star system coordinate logs are stored in `localStorage` under the key `ATLAS_MASTER_OS_STATE_V2` and can be exported/imported as a tracked `data/nms_state.json` file for Git version control.
+
+## 2. Recommended Repository Structure (For Agent Scaffolding)
+If the user asks the agent to modularize or expand this project, maintain the following clean directory structure:
+```
+nms-atlas-master-os/
+├── index.html                  # Self-contained local web app (ATLAS // MASTER OS)
+├── README.md                   # Quickstart & local launch instructions
+├── AGENT_INSTRUCTIONS.md       # This specification file for AI coding agents
+├── data/
+│   ├── nms_state.json          # Exported checklists, ship builds & system coordinates
+│   └── books_content.json      # Structured markdown/JSON of Books I–VI for easy editing
+└── docs/
+    ├── book1_cross_save_and_5hrs.md
+    ├── book2_wealth_and_nanites.md
+    ├── book3_ship_and_multitool_meta.md
+    ├── book4_cozy_self_sufficient_base.md
+    ├── book5_expeditions_manual.md
+    └── book6_endgame_7_pillars.md
+```
+
+## 3. Core Player Context & Hardware Constants (DO NOT OVERWRITE)
+When adding or updating guides, calculators, or schematics, preserve the user's actual in-game fleet and gear:
+1. **Main Flagship Starship (`Ythgall`):** Natural S-Class Sentinel Interceptor. Supercharged slots at `R2C2`, `R2C3`, `R2C4` (3-in-a-row horizontal bar) + `R3C8`. Wired for Infra-Knife Accelerator + Q-Resonator.
+2. **Scrap Donor Ship (`Aeron-ημ`):** Spare S-Class Sentinel Interceptor (`R3C1, R2C2, R2C4, R1C5` diagonal SC slots). Strip tech via `X` and scrap for ~50M Units + Storage Augmentations.
+3. **Primary Combat Multi-Tool (`Defiance of Thought`):** Sentinel Long-Rifle (upgraded B -> A -> S-Class). SC slots located in outer columns (`Cols 9–10` / `Row 4`). Supports dual Mining Lasers (Hijacked Laser + Mining Beam) and Neutron Cannon.
+4. **Primary Scanner & Mining Multi-Tool (`Light Capacitor 3-93F/33Q`):** 40-slot A-Class Rifle with Supercharged slots at `R1C8` (Scanner cluster), `R2C4` (Optical Drill for +88% harvest yield), and `R4C6`.
+
+## 4. State Schema (`data/nms_state.json`)
+```json
+{
+  "version": "2.0",
+  "lastUpdated": "2026-10-26T00:00:00.000Z",
+  "checkedItems": {
+    "cs1": true,
+    "rm1": false
+  },
+  "logEntries": [
+    {
+      "id": 1730000000,
+      "title": "System Name / Crash Site",
+      "category": "S-Class Crash Site",
+      "details": "Planet +12.34, -56.78 | Harmonic Camp nearby"
+    }
+  ]
+}
+```
+
+## 5. Agent Tasks & Commands
+- **To Run Locally:** Run `python3 -m http.server 8080` or `npx serve .` and open `http://localhost:8080`.
+- **To Add New Guides or Calculators:** Add a new `<section id="sec-custom">` block inside `index.html`, register its navigation button in `#sidebarNav`, and bind any interactive inputs to `runCalculators()` and `saveAppState()`.</pre>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. MASTER CHECKLIST DATA DEFINITIONS
+        // =========================================================================
+        const CHECKLIST_DATA = {
+            crosssave: [
+                { id: 'cs1', title: 'Step 1: Log In to Hello Games Cloud', desc: 'Visit cloud.nomanssky.com and sign in.' },
+                { id: 'cs2', title: 'Step 2: Link All Platform Accounts', desc: 'Connect Steam/Mac, Nintendo Switch, and Apple/iOS accounts.' },
+                { id: 'cs3', title: 'Step 3: Enable Cross-Save Toggle', desc: 'Verify every connected platform is switched ON.' },
+                { id: 'cs4', title: 'Step 4: Upload Primary Save Slot', desc: 'Click the Cloud Icon next to your main save slot in-game (max 5 slots).' },
+                { id: 'cs5', title: 'Step 5: Verify Patch Parity Before Syncing', desc: 'Confirm version numbers match at the bottom-left of the title screen.' }
+            ],
+            roadmap: [
+                { id: 'rm1', title: 'Hr 0–1: Planet Escape & Melee-Boost', desc: 'Gather Sodium/Oxygen; Sprint + Melee (Q/R) + Jetpack to fly 3x faster.' },
+                { id: 'rm2', title: 'Hr 1–3: Rush the Space Anomaly', desc: 'Follow Awakenings until first warp jump and summon the Space Anomaly.' },
+                { id: 'rm3', title: 'Hr 1–3: Unlock Nutrient Ingestor & Survey Device', desc: 'Purchase blueprints from Iteration: Selene & Eos on the Anomaly.' },
+                { id: 'rm4', title: 'Ongoing: Double Exosuit Slots Per System', desc: 'Buy Slot #1 at the Space Station + Slot #2 inside the Space Anomaly.' },
+                { id: 'rm5', title: 'Jump #5: Skip First System Freighter', desc: 'Avoid hitting friendly Freighter; answer radio (X); choose "Request Payment Instead".' },
+                { id: 'rm6', title: 'Jump #10: Claim Free Capital Freighter', desc: 'Win second rescue battle (3 hrs + 5 warps) to claim a giant Capital Freighter 100% free.' },
+                { id: 'rm7', title: 'Recovery: Strip & Scrap Aeron-ημ', desc: 'Store tech (X) on Aeron-ημ and scrap hull for ~50M Units + Storage Augmentations.' },
+                { id: 'rm8', title: 'Meta Gear: Wire Ythgall & Light Capacitor', desc: 'Place Infra-Knife in Ythgall R2C2–R2C4; put Optical Drill in Light Capacitor R2C4.' }
+            ],
+            expedition: [
+                { id: 'ex1', title: 'Pack 8 Tech Slots at Anomaly Terminus', desc: '3x S-Class Scanner Mods, 1x Optical Drill, 3x Movement Mods, 1x Personal Refiner Mk 2.' },
+                { id: 'ex2', title: 'Pack Nanite Seed (For Cloning Ythgall)', desc: '2–3 stacks of 9,999 Runaway Mould OR 30 Unopened Suspicious Tech Packets (~6,000 Nanites).' },
+                { id: 'ex3', title: 'Pack Unit Seed & Survival Stacks', desc: '10x Anomalous Doughnuts, 5x AI Valves, 9,999 Oxygen, Cond. Carbon, Ferrite, Batteries.' },
+                { id: 'ex4', title: 'Equip Ythgall & Defiance of Thought Before Starting', desc: 'Ensure both are active so you can clone them inside the Expedition for ~5,000 Nanites.' },
+                { id: 'ex5', title: 'Zero-Loss Extraction Before Clicking End', desc: 'Use "Return to Primary Save" to mule multiple batches; equip Reward Ship before ending!' }
+            ],
+            endgame: [
+                { id: 'eg1', title: 'Pillar 1: Portal Mastery & Eissentam Reset', desc: 'Finish The Purge (16 Glyphs) and choose the Green Orb (equip junk ship/tool first).' },
+                { id: 'eg2', title: 'Pillar 2: The Autophage Faction', desc: 'Complete The Purge + Unlock 1 Harmonic Camp + Warp to trigger They Who Returned.' },
+                { id: 'eg3', title: 'Pillar 3: Purple Stars & Gas Giants', desc: 'Finish Atlas Path + Autophage to unlock the Atlantid Drive in In Stellar Multitudes.' },
+                { id: 'eg4', title: 'Pillar 4: S-Class Pirate Dreadnought', desc: 'Blast 4 rear warp engines + 6 top deck laser cannons in Outlaw battle to force surrender.' },
+                { id: 'eg5', title: 'Pillar 5: AI Minotaur & Laylaps Companion', desc: 'Claim a Planetary Settlement and complete A Trace of Metal.' },
+                { id: 'eg6', title: 'Pillar 6: Custom S-Class Ship Foundry', desc: 'Salvage Cockpit, Wings & Thrusters and assemble with an S-Class Reactor Core.' },
+                { id: 'eg7', title: 'Pillar 7: Starbirth (Void Egg Living Ship)', desc: 'Pulse in space with your Void Egg to complete the 5-day organic ship questline.' }
+            ]
+        };
+
+        // =========================================================================
+        // 2. APPLICATION STATE & STORAGE ENGINE
+        // =========================================================================
+        const STORAGE_KEY = 'ATLAS_MASTER_OS_STATE_V2';
+
+        let appState = {
+            version: '2.0',
+            lastUpdated: new Date().toISOString(),
+            checkedItems: {},
+            logEntries: [
+                {
+                    id: 1,
+                    title: 'Ythgall & Aeron-ημ Dissonant System',
+                    category: 'S-Class Crash Site',
+                    details: 'Ythgall flagship (R2C2, R2C3, R2C4 3-in-a-row SC slots). Harmonic Camp solved (Registers: 4, 10, 16).'
+                },
+                {
+                    id: 2,
+                    title: 'Defiance of Thought & Light Capacitor Loadout',
+                    category: 'Custom Guide Note',
+                    details: 'Defiance of Thought (Sentinel Rifle, SC slots in Cols 9-10/Row 4). Light Capacitor (Optical Drill in R2C4 SC slot, Scanner in R1C8 SC slot).'
+                }
+            ]
+        };
+
+        function loadAppState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    appState.checkedItems = parsed.checkedItems || {};
+                    if (Array.isArray(parsed.logEntries)) {
+                        appState.logEntries = parsed.logEntries;
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not read local state:', e);
+            }
+        }
+
+        function saveAppState() {
+            appState.lastUpdated = new Date().toISOString();
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.warn('Could not save local state:', e);
+            }
+            renderAllChecklists();
+            renderLogEntries();
+        }
+
+        function showToast(msg) {
+            const banner = document.getElementById('toastBanner');
+            document.getElementById('toastMessage').textContent = msg;
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
+            setTimeout(() => {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }, 3000);
+        }
+
+        // =========================================================================
+        // 3. NAVIGATION & SINGLE-PAGE VIEW CONTROLLER
+        // =========================================================================
+        function showSection(sectionKey) {
+            const allSections = document.querySelectorAll('.book-section');
+            const allNavBtns = document.querySelectorAll('.nav-btn');
+
+            allNavBtns.forEach(btn => {
+                btn.className = 'nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent';
+            });
+
+            const activeBtn = document.getElementById(`nav-${sectionKey}`);
+            if (activeBtn) {
+                activeBtn.className = 'nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition bg-cyan-500/15 text-cyan-300 border border-cyan-500/40';
+            }
+
+            if (sectionKey === 'allbooks') {
+                allSections.forEach(sec => sec.classList.remove('hidden'));
+            } else {
+                allSections.forEach(sec => sec.classList.add('hidden'));
+                const target = document.getElementById(`sec-${sectionKey}`);
+                if (target) target.classList.remove('hidden');
+            }
+
+            // Close mobile sidebar if open
+            document.getElementById('sidebarNav').classList.add('-translate-x-full');
+        }
+
+        function toggleMobileSidebar() {
+            const nav = document.getElementById('sidebarNav');
+            nav.classList.toggle('-translate-x-full');
+        }
+
+        function handleGlobalSearch(query) {
+            const q = query.trim().toLowerCase();
+            const allSections = document.querySelectorAll('.book-section');
+            if (!q) {
+                showSection('book1');
+                return;
+            }
+            // Show all matching sections when searching
+            allSections.forEach(sec => {
+                const text = sec.innerText.toLowerCase();
+                if (text.includes(q)) {
+                    sec.classList.remove('hidden');
+                } else {
+                    sec.classList.add('hidden');
+                }
+            });
+        }
+
+        // =========================================================================
+        // 4. CHECKLIST RENDERING ENGINE
+        // =========================================================================
+        function toggleCheckItem(id) {
+            appState.checkedItems[id] = !appState.checkedItems[id];
+            saveAppState();
+        }
+
+        function renderChecklistGroup(groupKey, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return 0;
+            const list = CHECKLIST_DATA[groupKey] || [];
+            let completed = 0;
+
+            container.innerHTML = list.map(item => {
+                const isDone = !!appState.checkedItems[item.id];
+                if (isDone) completed++;
+                return `
+                    <div onclick="toggleCheckItem('${item.id}')" class="cursor-pointer p-3 rounded-xl border text-xs flex items-start gap-3 transition ${isDone ? 'bg-cyan-950/30 border-cyan-500/40 text-slate-400 line-through' : 'bg-slate-900/90 border-slate-800 hover:border-slate-700 text-slate-200'}">
+                        <input type="checkbox" ${isDone ? 'checked' : ''} class="mt-0.5 pointer-events-none accent-cyan-400">
+                        <div>
+                            <strong class="${isDone ? 'text-slate-400' : 'text-white'} block">${item.title}</strong>
+                            <span class="text-slate-400">${item.desc}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return completed;
+        }
+
+        function renderAllChecklists() {
+            let done = 0;
+            let total = 0;
+            Object.keys(CHECKLIST_DATA).forEach(key => {
+                total += CHECKLIST_DATA[key].length;
+                done += renderChecklistGroup(key, `checklist-${key}`);
+            });
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+            document.getElementById('headerProgressText').textContent = `${pct}% (${done}/${total})`;
+        }
+
+        // =========================================================================
+        // 5. LIVE GAMEPLAY CALCULATORS
+        // =========================================================================
+        function safeMathEval(expr) {
+            try {
+                const sanitized = expr.replace(/[^0-9+\-*/().\s]/g, '');
+                return Function(`"use strict"; return (${sanitized})`)();
+            } catch {
+                return '?';
+            }
+        }
+
+        function runCalculators() {
+            // 1. Harmonic Registers
+            document.getElementById('calcAns1').textContent = safeMathEval(document.getElementById('calcReg1').value || '0');
+            document.getElementById('calcAns2').textContent = safeMathEval(document.getElementById('calcReg2').value || '0');
+            document.getElementById('calcAns3').textContent = safeMathEval(document.getElementById('calcReg3').value || '0');
+
+            // 2. Sentinel Salvage
+            const ships = parseInt(document.getElementById('calcShipSlider').value, 10);
+            document.getElementById('calcShipLabel').textContent = `${ships} Ships`;
+            document.getElementById('calcShards').textContent = ships * 3;
+            document.getElementById('calcMirrors').textContent = ships;
+            document.getElementById('calcShipUnits').textContent = `~${ships * 40}M U`;
+
+            // 3. Anomalous Doughnuts
+            const doughnuts = parseInt(document.getElementById('calcDoughnutSlider').value, 10);
+            document.getElementById('calcDoughnutLabel').textContent = `${doughnuts} Doughnuts (${doughnuts * 10} Mins Buff)`;
+            document.getElementById('calcFrost').textContent = doughnuts;
+            document.getElementById('calcFaecium').textContent = doughnuts;
+            document.getElementById('calcMilk').textContent = doughnuts;
+            document.getElementById('calcCactus').textContent = doughnuts * 2;
+            document.getElementById('calcHexa').textContent = doughnuts;
+            const estScanTotalMillions = doughnuts * 8 * 18; // ~8 animals per 10-min doughnut @ ~18M avg
+            document.getElementById('calcScanPayout').textContent = estScanTotalMillions >= 1000
+                ? `~${(estScanTotalMillions / 1000).toFixed(2)} Billion Units`
+                : `~${estScanTotalMillions} Million Units`;
+
+            // 4. Stasis Devices
+            const stasis = parseInt(document.getElementById('calcStasisSlider').value, 10);
+            document.getElementById('calcStasisLabel').textContent = `${stasis} Devices (${(stasis * 15.6).toFixed(1)}M Units)`;
+            document.getElementById('calcGases').textContent = `${(stasis * 400).toLocaleString()} each`;
+            document.getElementById('calcStasisFrost').textContent = (stasis * 400).toLocaleString();
+            document.getElementById('calcStasisStar').textContent = `${(stasis * 200).toLocaleString()} each`;
+            document.getElementById('calcStasisGamma').textContent = (stasis * 200).toLocaleString();
+            document.getElementById('calcStasisCactus').textContent = (stasis * 100).toLocaleString();
+            document.getElementById('calcStasisFaecium').textContent = (stasis * 50).toLocaleString();
+
+            // 5. Outlaw Nanites & Split Gold Mine
+            const stations = parseInt(document.getElementById('calcOutlawSlider').value, 10);
+            const packets = stations * 15;
+            document.getElementById('calcOutlawLabel').textContent = `${stations} Stations (${packets} Packets)`;
+            document.getElementById('calcOutlawCost').textContent = `~${((packets * 75000) / 1000000).toFixed(1)}M Units`;
+            document.getElementById('calcOutlawNanites').textContent = `+${(packets * 350).toLocaleString()} Nanites`;
+
+            const extractors = parseInt(document.getElementById('calcGoldSlider').value, 10);
+            const pipes = Math.ceil(extractors / 3);
+            const goldPerHr = extractors * 550;
+            const goldDayMillions = (goldPerHr * 24 * 353) / 1000000;
+            document.getElementById('calcGoldLabel').textContent = `${extractors} Extractors → ${pipes} Isolated Pipes`;
+            document.getElementById('calcGoldHr').textContent = `${goldPerHr.toLocaleString()} Gold/hr`;
+            document.getElementById('calcGoldDay').textContent = `${goldDayMillions.toFixed(1)}M Units/day`;
+        }
+
+        // =========================================================================
+        // 6. LOGBOOK & JSON EXPORT / IMPORT FOR GIT REPO
+        // =========================================================================
+        function renderLogEntries() {
+            const container = document.getElementById('logEntriesContainer');
+            const count = appState.logEntries.length;
+            document.getElementById('logEntryCounter').textContent = `${count} Entries`;
+            document.getElementById('sidebarLogCount').textContent = count;
+
+            container.innerHTML = appState.logEntries.map(entry => `
+                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-start justify-between gap-4">
+                    <div class="space-y-1 text-xs">
+                        <div class="flex items-center gap-2">
+                            <strong class="text-white font-display">${entry.title}</strong>
+                            <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[10px]">${entry.category}</span>
+                        </div>
+                        <p class="text-slate-300 whitespace-pre-line">${entry.details}</p>
+                    </div>
+                    <button onclick="deleteLogEntry(${entry.id})" class="text-slate-500 hover:text-red-400 p-1 transition" title="Delete Entry">
+                        <i class="ph-bold ph-trash text-base"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addLogEntry() {
+            const title = document.getElementById('entryTitle').value.trim();
+            const category = document.getElementById('entryCategory').value;
+            const details = document.getElementById('entryDetails').value.trim();
+            if (!title) {
+                showToast('Please enter a title for your log entry.');
+                return;
+            }
+            appState.logEntries.unshift({
+                id: Date.now(),
+                title,
+                category,
+                details
+            });
+            document.getElementById('entryTitle').value = '';
+            document.getElementById('entryDetails').value = '';
+            saveAppState();
+            showToast('Entry saved to local repository!');
+        }
+
+        function deleteLogEntry(id) {
+            appState.logEntries = appState.logEntries.filter(item => item.id !== id);
+            saveAppState();
+            showToast('Entry removed.');
+        }
+
+        function exportStateJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "nms_state.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+            showToast('Exported nms_state.json for your Git repo!');
+        }
+
+        function importStateJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && typeof imported === 'object') {
+                        appState.checkedItems = imported.checkedItems || {};
+                        appState.logEntries = Array.isArray(imported.logEntries) ? imported.logEntries : [];
+                        saveAppState();
+                        showToast('Imported nms_state.json successfully!');
+                    }
+                } catch (err) {
+                    showToast('Invalid JSON file.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function copyAgentSpec() {
+            const text = document.getElementById('agentSpecCodeBlock').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+            showToast('Agent Build Specification copied to clipboard!');
+        }
+
+        window.onload = function() {
+            loadAppState();
+            renderAllChecklists();
+            renderLogEntries();
+            runCalculators();
+        };
+    </script>
+</body>
+</html>
