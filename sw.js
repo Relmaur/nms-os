@@ -15,6 +15,7 @@ const SHELL = [
     'assets/theme.css',
     'assets/theme.js',
     'assets/wiki-search.js',
+    'assets/systems.js',
     'assets/pwa.js',
     'assets/icons/icon.svg',
     'assets/icons/icon-192.png',

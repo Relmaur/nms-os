@@ -8,7 +8,7 @@
 ### Repository layout
 ```text
 nms-os/
-├── index.html              # Main app: 6 Books, 5 calculators, logbook, state sync, global search
+├── index.html              # Main app: 6 Books, 5 calculators, Systems log, Outlaw Run, state sync, global search
 ├── manifest.webmanifest    # PWA manifest (name, icons, standalone display, shortcuts)
 ├── sw.js                   # Service worker: offline app shell + wiki + CDN libraries
 ├── .github/workflows/pages.yml  # Builds the wiki and deploys to GitHub Pages
@@ -16,14 +16,15 @@ nms-os/
 │   ├── pwa.js              # Registers sw.js (both pages); no-op on file:// and plain-http LAN
 │   ├── icons/              # App icons (svg source + 192/512/maskable/apple-touch PNGs)
 │   ├── theme.js / theme.css # Shared Tailwind config + styles for every page
-│   └── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
-├── nms_state.json          # Shared state (meta, fleet, checklists, logbook)
+│   ├── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
+│   ├── systems.js          # Systems log + Outlaw Run (model, migration, list/filters, detail panel)
+├── nms_state.json          # Shared state (meta, fleet, checklists, systems, outlaw)
 ├── AGENTS.md               # This file
 ├── package.json            # npm start | sync:wiki | seed:wiki | index:wiki
 ├── scripts/
 │   ├── sync-wiki.mjs       # Zero-dependency MediaWiki → .md harvester + indexer (Node 18+)
 │   └── seed-articles.mjs   # Curated offline starter articles
-└── wiki/                   # GIT-IGNORED except index.html + custom/ — rebuild with `npm run sync:wiki`
+└── wiki/                   # Articles COMMITTED (permanent archive); only index.json + offline-bundle.js are git-ignored
     ├── index.html          # COMMITTED: the Codex page, served at /wiki/ (hash routes #/?q=… and #/a/<path>)
     ├── index.json          # Search manifest { title, slug, category, path, summary, source, url? }
     ├── offline-bundle.js   # Same articles with bodies, loaded only when fetch() fails (file://)
@@ -31,7 +32,7 @@ nms-os/
     └── custom/<category>/  # COMMITTED hand-written articles
 ```
 
-**Fresh clone:** run `npm run sync:wiki` (or `npm run seed:wiki` offline), then `npm start`. Never commit generated `wiki/` files — each re-sync rewrites ~700 files.
+**Fresh clone:** run `npm run index:wiki` (no network needed) to rebuild `wiki/index.json` + `wiki/offline-bundle.js` from the committed articles, then `npm start`. `npm run sync:wiki` refreshes from Fandom and only rewrites articles whose content changed; it never deletes, so pages removed upstream stay archived here.
 
 ## 2. Shared State Protocol (`nms_state.json`)
 The application state MUST be serializable to and from `nms_state.json` at the repository root.
@@ -44,11 +45,13 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - `meta` — `version`, `lastUpdated`, `platforms`, `currentPhase`
 - `fleet` — `primaryStarship`, `salvageStarship`, `multiTools[]`
 - `checklists` — flat map of `id -> boolean` (named milestones such as `crossSaveLinked`, plus guide checklist item ids such as `cs1`, `rm3`)
-- `logbook[]` — `{ id, system, type, glyphSolution: number[], notes }`
+- `systems[]` — `{ id, name, galaxy, region, glyphs (12 hex or ''), star (yellow|red|green|blue|purple|''), race (gek|korvax|vykeen|none|abandoned|''), economy, wealth (0–3), conflict (low|medium|high|pirate|''), tags: string[], favorite, rating (0–5), notes, planets: [{ id, name, biome, tags, notes }], visits: [{ at: ISO, note?, packets? }], createdAt }`. Tags are lowercase slugs (`trade-hub`).
+- `outlaw` — `{ restockHours, packetsPerVisit, runSize }`. Outlaw stations are systems tagged `outlaw`; one counts as ready once `restockHours` have passed since its last visit with `packets`.
+- Legacy keys `logbook[]` and `outlaw.stations[]` are migrated into `systems[]` by `migrateToSystems()` (assets/systems.js) on load and import; ids are kept so re-merging never duplicates.
 
 ### Merge rules
 - Precedence: built-in defaults ← `nms_state.json` ← `localStorage`. If `nms_state.json`'s `meta.lastUpdated` is newer than the browser copy (e.g. after a `git pull` from another machine), the file wins instead.
-- Objects merge key-by-key; arrays (`logbook`, `multiTools`, slot lists) are replaced wholesale.
+- Objects merge key-by-key; arrays (`systems`, `multiTools`, slot lists) are replaced wholesale.
 - Data from the pre-2.0 key `ATLAS_MASTER_OS_STATE_V2` (`checkedItems` / `logEntries`) is migrated automatically on load and on import.
 
 ## 3. Local Wiki Codex (`wiki/`)
@@ -59,7 +62,7 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - Frontmatter: `title`, `category`, `summary`, `source` (`"seed"`, `"custom"` or the original page URL), `updated`, and for harvested pages `pageId` + `license`. String values are JSON-quoted, which is valid YAML.
 - A harvested page whose slug collides with a seed article is saved as `<slug>_wiki.md`, so both are kept.
 - Harvested text is CC BY-SA 3.0 (No Man's Sky Wiki contributors). Keep the `source`/`license` frontmatter when editing.
-- Custom articles live in `wiki/custom/<category>/` (committed, alongside `wiki/index.html`) and are tagged `custom` in the index. Never `rm -rf wiki/` to reset — delete only the generated folders.
+- Custom articles live in `wiki/custom/<category>/` and are tagged `custom` in the index. Never `rm -rf wiki/`: the committed articles are the permanent archive.
 - Codex page (`wiki/index.html`): loads `offline-bundle.js` for full-text search; faceted category/source/A–Z filters with live counts, 20 results per page, quick-look panel (↑/↓, Space, Enter), article view with TOC, outgoing links, "Mentioned in" backlinks and category neighbours. The main page's header search uses the light `index.json` and deep-links into `wiki/#/a/<path>`.
 - Search ranks title > summary > headings > body > fuzzy title subsequence, with simple plural folding. `[[Article Title]]` in Markdown links to that local article. Rendered Markdown is sanitized with DOMPurify. "Create Custom .MD Article" downloads the file and keeps a browser draft until the file is indexed.
 

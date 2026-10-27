@@ -2,7 +2,12 @@
   "meta": {
     "version": "2.0.0",
     "lastUpdated": "2026-10-26",
-    "platforms": ["PC", "Mac", "Switch", "iOS"],
+    "platforms": [
+      "PC",
+      "Mac",
+      "Switch",
+      "iOS"
+    ],
     "currentPhase": "Phase 3: Anomalous Doughnut Scanner & Base Setup"
   },
   "fleet": {
@@ -10,7 +15,12 @@
       "name": "Ythgall",
       "class": "S",
       "type": "Sentinel Interceptor",
-      "superchargedSlots": ["R2C2", "R2C3", "R2C4", "R3C7"],
+      "superchargedSlots": [
+        "R2C2",
+        "R2C3",
+        "R2C4",
+        "R3C7"
+      ],
       "layoutNotes": "3-in-a-row horizontal SC bar on Row 2 (Cols 2,3,4). Put Infra-Knife Accelerator in R2C3 flanked by S/X upgrades in R2C2 and R2C4."
     },
     "salvageStarship": {
@@ -31,7 +41,11 @@
         "name": "Light Capacitor 3-93F/33Q",
         "class": "A",
         "type": "Standard Rifle (40 Slots Unlocked)",
-        "superchargedSlots": ["R1C8", "R2C4", "R4C6"],
+        "superchargedSlots": [
+          "R1C8",
+          "R2C4",
+          "R4C6"
+        ],
         "role": "Active Scanner & Optical Drill Harvester",
         "notes": "S-Class Scanner mod in R1C8; place Optical Drill in R2C4 for +88% plant yields."
       }
@@ -49,13 +63,23 @@
     "oxygenAlchemyBaseBuilt": false,
     "autophageUnlocked": false
   },
-  "logbook": [
+  "outlaw": {
+    "restockHours": 24,
+    "packetsPerVisit": 15,
+    "runSize": 5
+  },
+  "systems": [
     {
       "id": "camp-01",
-      "system": "Dissonant System #1",
-      "type": "Harmonic Camp",
-      "glyphSolution": [4, 10, 16],
-      "notes": "Spawned S-Class Interceptors Ythgall and Aeron-ημ + B-Class Sentinel Rifle Defiance of Thought"
+      "name": "Dissonant System #1",
+      "galaxy": "Euclid",
+      "tags": [
+        "harmonic-camp"
+      ],
+      "notes": "Spawned S-Class Interceptors Ythgall and Aeron-ημ + B-Class Sentinel Rifle Defiance of Thought\nHarmonic Camp solution: 4, 10, 16",
+      "planets": [],
+      "visits": [],
+      "createdAt": "2026-10-26T00:00:00.000Z"
     }
   ]
 }

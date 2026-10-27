@@ -18,7 +18,7 @@
   ],
   "shortcuts": [
     { "name": "Wiki Codex", "short_name": "Codex", "url": "wiki/", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
-    { "name": "Calculators", "url": "./#calculators", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
-    { "name": "Logbook", "url": "./#logbook", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+    { "name": "Outlaw Run", "url": "./#outlaw", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Systems", "url": "./#systems", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
   ]
 }

@@ -111,7 +111,8 @@
                     <p class="nav-group-label">Tools</p>
                     <ul class="space-y-1">
                         <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
-                        <li><button onclick="showSection('logbook')" id="nav-logbook" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-map-pin-area"></i></span><span class="truncate">Logbook</span><span id="sidebarLogCount" class="nav-count">0</span></button></li>
+                        <li><button onclick="showSection('systems')" id="nav-systems" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-planet"></i></span><span class="truncate">Systems</span><span id="sidebarSystemsCount" class="nav-count">0</span></button></li>
+                        <li><button onclick="showSection('outlaw')" id="nav-outlaw" class="nav-btn"><span class="nav-tile text-red-300"><i class="ph-bold ph-skull"></i></span><span class="truncate">Outlaw Run</span><span id="sidebarOutlawCount" class="nav-count">0</span></button></li>
                         <li><a href="wiki/" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span><i class="ph-bold ph-arrow-up-right text-xs text-slate-400 ml-2"></i></a></li>
                     </ul>
                 </div>
@@ -362,6 +363,7 @@
                         <h3 class="font-display font-bold text-base text-emerald-300 border-b border-slate-800 pb-2.5">
                             The Two-Vendor Outlaw Station Loop (Units &rarr; 25,000+ Nanites)
                         </h3>
+                        <button onclick="showSection('outlaw')" class="text-xs font-medium text-emerald-300 hover:text-emerald-200 flex items-center gap-1.5"><i class="ph-bold ph-skull"></i> Track your stations and plan the next run →</button>
                         <p class="text-xs text-slate-300">Regular upgrade vendors only accept Nanites. To buy Nanites using <strong>Units</strong>, visit an <strong>Outlaw (Pirate) Station</strong> and use both vendors:</p>
                         <div class="p-3.5 rounded-xl bg-slate-950 border border-emerald-500/30 font-mono text-xs space-y-2 text-slate-200">
                             <div class="text-amber-300 font-bold">[VENDOR #1: CONTRABAND AGENT] (Sitting by tent/crates)</div>
@@ -813,6 +815,7 @@
                         <div class="space-y-2">
                             <div class="flex justify-between text-xs"><span class="text-slate-300">Outlaw Stations Visited (15 Tech/Arms Packets each):</span><span id="calcOutlawLabel" class="font-mono text-emerald-400 font-bold">5 Stations (75 Packets)</span></div>
                             <input type="range" id="calcOutlawSlider" min="1" max="15" value="5" oninput="runCalculators()" class="w-full">
+                            <button onclick="showSection('outlaw')" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">Open Outlaw Run →</button>
                             <div class="grid grid-cols-2 gap-2 text-center text-xs">
                                 <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Unit Cost (~75k/pkt)</span><span id="calcOutlawCost" class="font-bold text-amber-300">~5.6M Units</span></div>
                                 <div class="bg-slate-900 p-2 rounded-lg border border-emerald-500/30"><span class="text-[10px] text-slate-400 block">Nanite Yield (~350 N/pkt)</span><span id="calcOutlawNanites" class="font-bold text-emerald-400">+26,250 Nanites</span></div>
@@ -831,45 +834,122 @@
             </section>
 
             <!-- ===================================================================== -->
-            <!-- COORDINATE & CUSTOM NOTEBOOK LOGBOOK                                  -->
+            <!-- SYSTEMS LOG (assets/systems.js · nms_state.json → systems)            -->
             <!-- ===================================================================== -->
-            <section id="sec-logbook" class="book-section hidden space-y-6">
-                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-purple-400">
-                    <span class="text-xs font-mono uppercase text-purple-400">Persistent Local Database</span>
-                    <h2 class="font-display text-2xl font-bold text-white mt-1">Star System, Crash Site & Custom Note Logbook</h2>
-                    <p class="text-xs text-slate-300 mt-1">Add, edit, or delete star systems, S-Class crash coordinates, or custom notes. Everything exports cleanly into your Git repository via the <strong>Export JSON</strong> button.</p>
+            <section id="sec-systems" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div class="max-w-2xl">
+                            <h2 class="font-display text-2xl font-bold text-white">Systems</h2>
+                            <p class="text-sm text-slate-300 mt-1.5">Every system you warp to, with the details the game shows, your own tags, planets, notes and a visit journal. Filter it the way the in-game Discoveries page can’t.</p>
+                        </div>
+                        <button onclick="openSystemEditor()" class="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm flex items-center gap-2 transition">
+                            <i class="ph-bold ph-plus"></i> Add system
+                        </button>
+                    </div>
+                    <p id="systemsSummary" class="text-sm text-slate-300"></p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-4 hud-card rounded-2xl p-5 space-y-3">
-                        <h3 class="font-display font-bold text-base text-white">Add New Entry</h3>
-                        <input type="text" id="entryTitle" placeholder="System, Planet, or Note Title" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
-                        <input type="text" id="entryGlyphs" placeholder="Glyph / register solution (optional, e.g. 4, 10, 16)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white">
-                        <select id="entryCategory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
-                            <option value="S-Class Crash Site">🟣 S-Class Ship Crash Site</option>
-                            <option value="Harmonic Camp">🟠 Harmonic Camp Terminal</option>
-                            <option value="Outlaw Station">🔴 Outlaw Station (Nanite Flip)</option>
-                            <option value="Hotspot / Base">🟢 Base / Curious Deposit</option>
-                            <option value="Custom Guide Note">🔵 Custom Guide / Meta Note</option>
-                        </select>
-                        <textarea id="entryDetails" rows="3" placeholder="Coordinates (e.g. +12.4, -84.1), glyphs, or custom notes..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
-                        <button onclick="addLogEntry()" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs transition">Save to Local Repository</button>
+                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                    <div class="flex flex-col md:flex-row gap-2.5">
+                        <div class="relative flex-1">
+                            <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+                            <input type="search" id="systemSearch" autocomplete="off" oninput="setSystemFilter({ q: this.value })" placeholder="Search systems, planets, notes, tags…" aria-label="Search systems" class="w-full h-10 bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl pl-9 pr-3 text-base md:text-sm text-white placeholder:text-slate-500 focus:outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                            <button id="systemFavFilter" onclick="setSystemFilter({ favorites: !systemFilter.favorites })" aria-pressed="false" class="seg-filter h-10"><i class="ph-bold ph-star"></i>Favourites</button>
+                            <select id="systemStarFilter" onchange="setSystemFilter({ star: this.value })" aria-label="Star colour" class="filter-select"></select>
+                            <select id="systemRaceFilter" onchange="setSystemFilter({ race: this.value })" aria-label="Dominant race" class="filter-select"></select>
+                            <select id="systemConflictFilter" onchange="setSystemFilter({ conflict: this.value })" aria-label="Conflict level" class="filter-select"></select>
+                            <select id="systemSort" onchange="setSystemFilter({ sort: this.value })" aria-label="Sort" class="filter-select col-span-2 sm:col-span-1"></select>
+                        </div>
+                    </div>
+                    <div id="systemTagFilters" class="flex flex-wrap gap-1.5"></div>
+                    <p id="systemResultCount" class="text-xs text-slate-400"></p>
+                    <ul id="systemList" class="grid grid-cols-1 lg:grid-cols-2 gap-3"></ul>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
+            <!-- OUTLAW RUN (systems tagged "outlaw" · Suspicious Packet Nanite flip)  -->
+            <!-- ===================================================================== -->
+            <section id="sec-outlaw" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div class="max-w-2xl">
+                            <h2 class="font-display text-2xl font-bold text-white">Outlaw Run</h2>
+                            <p class="text-sm text-slate-300 mt-1.5">Your outlaw systems, which Contraband Agents have restocked, and the next stations to hit. Method: <button onclick="showSection('book2')" class="text-emerald-300 hover:text-emerald-200 underline underline-offset-2">Book II · Two-Vendor Loop</button>.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="toggleOutlawBulk(true)" class="h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm text-slate-200 flex items-center gap-2"><i class="ph-bold ph-list-plus"></i> Paste a list</button>
+                            <button onclick="openSystemEditor(null, { tags: ['outlaw'], conflict: 'pirate' })" class="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm flex items-center gap-2 transition"><i class="ph-bold ph-plus"></i> Add outlaw system</button>
+                        </div>
+                    </div>
+                    <p id="outlawSummary" class="text-sm text-slate-300"></p>
+                    <form id="outlawBulkForm" class="hidden rounded-xl bg-slate-900/70 border border-slate-700 p-4 space-y-3" onsubmit="saveOutlawBulk(event)">
+                        <label class="block text-xs text-slate-300">One system per line: <code class="text-emerald-300">System | Glyphs | Region | Notes</code> (only the name is required)
+                            <textarea id="outlawBulkInput" rows="7" placeholder="Okyama XI | 0123456789AB | Ezdaranit Spur | 2 jumps from base&#10;Ivorsk&#10;Hesperus Prime | 1A2B3C4D5E6F" class="mt-1 w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-base sm:text-sm font-mono text-white"></textarea>
+                        </label>
+                        <p id="outlawBulkError" class="hidden text-xs text-rose-300"></p>
+                        <div class="flex justify-end gap-2">
+                            <button type="button" onclick="toggleOutlawBulk(false)" class="h-9 px-3.5 rounded-lg bg-slate-950 border border-slate-700 text-sm text-slate-300 hover:bg-slate-800">Cancel</button>
+                            <button type="submit" class="h-9 px-3.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">Add systems</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    <div class="xl:col-span-5 hud-card rounded-2xl p-5 space-y-4 self-start">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <h3 class="font-display font-bold text-base text-white">Next run</h3>
+                            <label class="flex items-center gap-2 text-xs text-slate-300">
+                                Stations
+                                <select id="outlawRunSize" onchange="setOutlawSetting('runSize', this.value)" class="h-9 bg-slate-900 border border-slate-700 rounded-lg px-2 text-sm text-white"></select>
+                            </label>
+                        </div>
+                        <ol id="outlawRunList" class="space-y-2"></ol>
+                        <div id="outlawRunFooter"></div>
                     </div>
 
-                    <div class="lg:col-span-8 hud-card rounded-2xl p-5 space-y-3">
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
-                            <h3 class="font-display font-bold text-base text-white">Saved Repository Entries</h3>
-                            <span id="logEntryCounter" class="text-xs font-mono text-cyan-400">0 Entries</span>
+                    <div class="xl:col-span-7 hud-card rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <h3 class="font-display font-bold text-base text-white">Outlaw systems</h3>
+                            <div id="outlawFilters" class="flex gap-1.5"></div>
                         </div>
-                        <div id="logEntriesContainer" class="space-y-2.5 max-h-[500px] overflow-y-auto pr-1"></div>
+                        <ul id="outlawStationList" class="space-y-2"></ul>
+                        <details class="rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-3 text-xs text-slate-300">
+                            <summary class="cursor-pointer text-sm font-medium text-slate-200">Run settings</summary>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                                <label class="block">Restock timer (hours)
+                                    <input id="outlawRestockHours" type="number" min="1" max="720" step="1" onchange="setOutlawSetting('restockHours', this.value)" class="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
+                                    <span class="block mt-1 text-slate-400">How long after a packet run a station counts as restocked. Set it to what you see in-game.</span>
+                                </label>
+                                <label class="block">Packets bought per visit
+                                    <input id="outlawPacketsPerVisit" type="number" min="1" max="99" step="1" onchange="setOutlawSetting('packetsPerVisit', this.value)" class="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
+                                    <span class="block mt-1 text-slate-400">Used for the Units and Nanite estimates (~75k Units and ~350 Nanites per packet).</span>
+                                </label>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </section>
 
-
         </main>
     </div>
 
+    <!-- System detail / editor: side panel from md, bottom sheet below (assets/systems.js) -->
+    <div id="systemBackdrop" onclick="closeSystemPanel()" class="fixed inset-0 z-[55] bg-slate-950/60 backdrop-blur-[2px] opacity-0 pointer-events-none transition-opacity duration-200"></div>
+    <aside id="systemPanel" role="dialog" aria-modal="true" aria-labelledby="systemPanelTitle" aria-hidden="true" class="fixed z-[56] flex flex-col bg-slate-950 border-slate-700 shadow-[0_24px_64px_-12px_rgba(0,0,0,0.85)] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+        inset-x-0 bottom-0 h-[92dvh] rounded-t-3xl border-t translate-y-full
+        md:inset-x-auto md:right-0 md:top-0 md:h-full md:w-[min(40rem,92vw)] md:rounded-none md:border-t-0 md:border-l md:translate-y-0 md:translate-x-full">
+        <div id="systemPanelScroll" class="flex-1 overflow-y-auto overscroll-contain rounded-t-3xl md:rounded-none">
+            <div id="systemPanelBody" class="min-h-full flex flex-col"></div>
+        </div>
+    </aside>
+    <datalist id="economyOptions"></datalist>
+    <datalist id="biomeOptions"></datalist>
+
+    <script src="assets/systems.js"></script>
     <script>
         // =========================================================================
         // 1. MASTER CHECKLIST DATA DEFINITIONS
@@ -982,13 +1062,21 @@
                 oxygenAlchemyBaseBuilt: false,
                 autophageUnlocked: false
             },
-            logbook: [
+            outlaw: {
+                restockHours: 24,
+                packetsPerVisit: 15,
+                runSize: 5
+            },
+            systems: [
                 {
                     id: 'camp-01',
-                    system: 'Dissonant System #1',
-                    type: 'Harmonic Camp',
-                    glyphSolution: [4, 10, 16],
-                    notes: 'Spawned S-Class Interceptors Ythgall and Aeron-ημ + B-Class Sentinel Rifle Defiance of Thought'
+                    name: 'Dissonant System #1',
+                    galaxy: 'Euclid',
+                    tags: ['harmonic-camp'],
+                    notes: 'Spawned S-Class Interceptors Ythgall and Aeron-ημ + B-Class Sentinel Rifle Defiance of Thought\nHarmonic Camp solution: 4, 10, 16',
+                    planets: [],
+                    visits: [],
+                    createdAt: '2026-10-26T00:00:00.000Z'
                 }
             ]
         };
@@ -1031,7 +1119,11 @@
             if (!isPlainObject(state.meta)) state.meta = structuredClone(DEFAULT_STATE.meta);
             if (!isPlainObject(state.fleet)) state.fleet = {};
             if (!isPlainObject(state.checklists)) state.checklists = {};
-            if (!Array.isArray(state.logbook)) state.logbook = [];
+            if (!isPlainObject(state.outlaw)) state.outlaw = structuredClone(DEFAULT_STATE.outlaw);
+            migrateToSystems(state); // folds old logbook[] / outlaw.stations[] into systems[] (assets/systems.js)
+            ['restockHours', 'packetsPerVisit', 'runSize'].forEach(key => {
+                if (!(Number(state.outlaw[key]) > 0)) state.outlaw[key] = DEFAULT_STATE.outlaw[key];
+            });
             return state;
         }
 
@@ -1082,8 +1174,10 @@
 
         function renderAll() {
             renderAllChecklists();
-            renderLogEntries();
             renderFleetCard();
+            renderSystems();
+            renderOutlaw();
+            if (panelSystemId && panelMode === 'view') renderSystemPanel();
             document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
         }
 
@@ -1118,6 +1212,7 @@
         // =========================================================================
         function showSection(sectionKey) {
             if (sectionKey === 'wiki') { location.href = 'wiki/'; return; } // the Codex moved to its own page
+            if (sectionKey === 'logbook') sectionKey = 'systems'; // the Logbook was folded into Systems
             const target = document.getElementById(`sec-${sectionKey}`);
             if (!target) sectionKey = 'book1';
             document.querySelectorAll('.book-section').forEach(sec => {
@@ -1143,6 +1238,7 @@
 
         const SEARCH_WIKI_LIMIT = 6;
         const SEARCH_BOOK_LIMIT = 6;
+        const SEARCH_SYSTEM_LIMIT = 5;
         const SEARCH_BLOCKS = 'h3, h4, p, li, tr, [onclick^="toggleCheckItem"]';
         let wikiEntries = [];
         let searchHits = [];
@@ -1159,7 +1255,7 @@
         function findBookHits(tokens) {
             const hits = [];
             const seen = new Set();
-            document.querySelectorAll('.book-section').forEach(section => {
+            document.querySelectorAll('.book-section:not(#sec-systems):not(#sec-outlaw)').forEach(section => {
                 const sectionTitle = section.querySelector('h2')?.textContent.trim() || section.id;
                 section.querySelectorAll(SEARCH_BLOCKS).forEach(el => {
                     if (el.querySelector(SEARCH_BLOCKS)) return; // prefer the innermost block
@@ -1188,21 +1284,40 @@
 
             const wikiMatches = WikiSearch.search(wikiEntries, query).map(result => result.entry);
             const wikiHits = wikiMatches.slice(0, SEARCH_WIKI_LIMIT).map(entry => ({ type: 'wiki', entry }));
+            const systemMatches = appState.systems.filter(system => {
+                const haystack = systemHaystack(system);
+                return tokens.every(token => haystack.includes(token));
+            });
+            const systemHits = systemMatches.slice(0, SEARCH_SYSTEM_LIMIT).map(system => ({ type: 'system', system }));
             const bookHits = findBookHits(tokens);
-            searchHits = [...wikiHits, ...bookHits];
+            searchHits = [...systemHits, ...wikiHits, ...bookHits];
 
             const groupLabel = (label, detail) => `<p class="flex justify-between px-3 pt-3 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400"><span>${label}</span><span class="normal-case tracking-normal font-mono font-normal">${detail}</span></p>`;
             let html = '';
+            if (systemHits.length) {
+                html += groupLabel('Your systems', `${systemMatches.length}`);
+                html += systemHits.map((hit, i) => `
+                    <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
+                        <span class="nav-tile mt-0.5">${starDot(hit.system)}</span>
+                        <span class="min-w-0 flex-1">
+                            <strong class="block text-sm text-white truncate">${WikiSearch.highlight(hit.system.name, tokens)}</strong>
+                            <span class="block text-xs text-slate-400 truncate">${escapeHtml([hit.system.region, ...hit.system.tags].filter(Boolean).join(' · ') || hit.system.galaxy)}</span>
+                        </span>
+                    </button>`).join('');
+            }
             if (wikiHits.length) {
                 html += groupLabel('Wiki articles', `${wikiMatches.length} match${wikiMatches.length === 1 ? '' : 'es'}`);
-                html += wikiHits.map((hit, i) => `
+                html += wikiHits.map((hit, j) => {
+                    const i = systemHits.length + j;
+                    return `
                     <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
                         <span class="nav-tile text-emerald-300 mt-0.5"><i class="ph-bold ${WikiSearch.CATEGORIES[hit.entry.category]?.icon || 'ph-file-text'}"></i></span>
                         <span class="min-w-0 flex-1">
                             <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${WikiSearch.highlight(hit.entry.title, tokens)}</strong>${WikiSearch.badge(hit.entry.source)}</span>
                             <span class="block text-xs text-slate-400 truncate">${escapeHtml(hit.entry.category)} · ${escapeHtml(hit.entry.summary || '')}</span>
                         </span>
-                    </button>`).join('');
+                    </button>`;
+                }).join('');
                 if (wikiMatches.length > wikiHits.length) {
                     html += `<button onclick="showAllWikiResults()" class="w-full px-3 py-2 text-left text-xs font-medium text-cyan-300 hover:text-cyan-200">Show all ${wikiMatches.length} wiki results →</button>`;
                 }
@@ -1210,7 +1325,7 @@
             if (bookHits.length) {
                 html += groupLabel('In the manual', `${bookHits.length}${bookHits.length === SEARCH_BOOK_LIMIT ? '+' : ''}`);
                 html += bookHits.map((hit, j) => {
-                    const i = wikiHits.length + j;
+                    const i = systemHits.length + wikiHits.length + j;
                     return `
                     <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
                         <span class="nav-tile text-cyan-300 mt-0.5"><i class="ph-bold ph-book-open"></i></span>
@@ -1252,6 +1367,11 @@
             if (!hit) return;
             const query = document.getElementById('globalSearchInput').value;
             closeGlobalSearch();
+            if (hit.type === 'system') {
+                showSection('systems');
+                openSystem(hit.system.id);
+                return;
+            }
             if (hit.type === 'wiki') {
                 location.href = `wiki/#/a/${encodeURIComponent(hit.entry.path)}?q=${encodeURIComponent(query)}`;
                 return;
@@ -1412,8 +1532,8 @@
             const stations = parseInt(document.getElementById('calcOutlawSlider').value, 10);
             const packets = stations * 15;
             document.getElementById('calcOutlawLabel').textContent = `${stations} Stations (${packets} Packets)`;
-            document.getElementById('calcOutlawCost').textContent = `~${((packets * 75000) / 1000000).toFixed(1)}M Units`;
-            document.getElementById('calcOutlawNanites').textContent = `+${(packets * 350).toLocaleString()} Nanites`;
+            document.getElementById('calcOutlawCost').textContent = `~${((packets * OUTLAW_UNITS_PER_PACKET) / 1000000).toFixed(1)}M Units`;
+            document.getElementById('calcOutlawNanites').textContent = `+${(packets * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites`;
 
             const extractors = parseInt(document.getElementById('calcGoldSlider').value, 10);
             const pipes = Math.ceil(extractors / 3);
@@ -1425,60 +1545,8 @@
         }
 
         // =========================================================================
-        // 6. LOGBOOK & JSON EXPORT / IMPORT FOR GIT REPO
+        // 6. JSON EXPORT / IMPORT FOR GIT REPO
         // =========================================================================
-        function renderLogEntries() {
-            const container = document.getElementById('logEntriesContainer');
-            const count = appState.logbook.length;
-            document.getElementById('logEntryCounter').textContent = `${count} Entries`;
-            document.getElementById('sidebarLogCount').textContent = count;
-
-            container.innerHTML = appState.logbook.map(entry => `
-                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-start justify-between gap-4">
-                    <div class="space-y-1 text-xs">
-                        <div class="flex flex-wrap items-center gap-2">
-                            <strong class="text-white font-display">${escapeHtml(entry.system)}</strong>
-                            <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[10px]">${escapeHtml(entry.type)}</span>
-                            ${Array.isArray(entry.glyphSolution) && entry.glyphSolution.length ? `<span class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 font-mono text-[10px]">Solution: ${entry.glyphSolution.map(escapeHtml).join(' · ')}</span>` : ''}
-                        </div>
-                        <p class="text-slate-300 whitespace-pre-line">${escapeHtml(entry.notes)}</p>
-                    </div>
-                    <button data-id="${escapeHtml(entry.id)}" onclick="deleteLogEntry(this.dataset.id)" class="text-slate-500 hover:text-red-400 p-1 transition" title="Delete Entry">
-                        <i class="ph-bold ph-trash text-base"></i>
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function addLogEntry() {
-            const system = document.getElementById('entryTitle').value.trim();
-            const type = document.getElementById('entryCategory').value;
-            const notes = document.getElementById('entryDetails').value.trim();
-            const glyphSolution = (document.getElementById('entryGlyphs').value.match(/-?\d+/g) || []).map(Number);
-            if (!system) {
-                showToast('Please enter a title for your log entry.');
-                return;
-            }
-            appState.logbook.unshift({
-                id: `log-${Date.now()}`,
-                system,
-                type,
-                glyphSolution,
-                notes
-            });
-            document.getElementById('entryTitle').value = '';
-            document.getElementById('entryGlyphs').value = '';
-            document.getElementById('entryDetails').value = '';
-            saveAppState();
-            showToast('Entry saved to local repository!');
-        }
-
-        function deleteLogEntry(id) {
-            appState.logbook = appState.logbook.filter(item => String(item.id) !== id);
-            saveAppState();
-            showToast('Entry removed.');
-        }
-
         function exportStateJSON() {
             const blob = new Blob([JSON.stringify(appState, null, 2) + '\n'], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
