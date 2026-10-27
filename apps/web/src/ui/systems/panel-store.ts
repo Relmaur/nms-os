@@ -63,6 +63,18 @@ export function closeSystemPanel(): void {
   if (panel.open) setPanel({ open: false });
 }
 
+// A swipe or a tap on the sheet's bar asks first: the editor refuses while it has unsaved changes (and says so), so
+// a stray swipe never loses a draft. Cancel and Esc are explicit, and don't ask.
+let closeGuard: (() => boolean) | null = null;
+export function setCloseGuard(guard: (() => boolean) | null): void {
+  closeGuard = guard;
+}
+export function dismissSystemPanel(): boolean {
+  if (closeGuard && !closeGuard()) return false;
+  closeSystemPanel();
+  return true;
+}
+
 export const getPanel = (): PanelState => panel;
 
 export function usePanel(): PanelState {

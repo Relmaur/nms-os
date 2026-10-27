@@ -60,3 +60,21 @@ test('filters by tag and deletes only on the second click', async ({ page }) => 
   await page.getByRole('button', { name: 'Click again to delete this system' }).click();
   expect((await storedState(page)).systems.some(item => item.id === 'sys-ekwa')).toBe(false);
 });
+
+test('on a phone, dragging the sheet’s bar down closes it', async ({ page, browserName }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone' || browserName !== 'chromium', 'touch drag on the phone sheet');
+  await page.goto('./#systems');
+  await page.locator('#systemList').getByText('Ekwa Nexus').click();
+  const handle = page.locator('#systemPanel [data-sheet-handle]');
+  await expect(handle).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Close', exact: true })).toHaveCount(1); // the bar, no ✕
+  const box = await handle.boundingBox();
+  const x = box.x + box.width / 2;
+  const y = box.y + box.height / 2;
+  const cdp = await page.context().newCDPSession(page);
+  const touch = (type, points) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: points });
+  await touch('touchStart', [{ x, y }]);
+  for (let step = 1; step <= 10; step++) await touch('touchMove', [{ x, y: y + step * 25 }]);
+  await touch('touchEnd', []);
+  await expect(page.locator('#systemPanel')).toHaveAttribute('aria-hidden', 'true');
+});

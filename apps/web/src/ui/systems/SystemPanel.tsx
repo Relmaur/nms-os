@@ -1,8 +1,16 @@
 // The system panel: a side panel from md up, a bottom sheet below. Shows a system (SystemDetails) or the editor.
 // It stays mounted so it can slide in and out; while closed it is inert and hidden from assistive tech.
-import { useEffect, useRef, type RefObject } from 'react';
+import { useEffect, useRef } from 'react';
 import { BIOMES, ECONOMIES } from '@atlas/core/systems-model';
-import { closeSystemPanel, findSystem, getPanel, openSystem, takeReturnFocus, usePanel } from './panel-store.ts';
+import {
+  closeSystemPanel,
+  dismissSystemPanel,
+  findSystem,
+  openSystem,
+  takeReturnFocus,
+  usePanel
+} from './panel-store.ts';
+import { useSheetDrag } from '../parts/Sheet.tsx';
 import { useAppState } from '../useAppState.ts';
 import { SystemDetails } from './SystemDetails.tsx';
 import { SystemEditor } from './SystemEditor.tsx';
@@ -44,7 +52,7 @@ export function SystemPanel() {
     };
   }, [panel.open, panel.mode, panel.systemId]);
 
-  useSheetDrag(sheet);
+  useSheetDrag(sheet, dismissSystemPanel);
 
   return (
     <>
@@ -89,49 +97,4 @@ export function SystemPanel() {
       </datalist>
     </>
   );
-}
-
-// Drag the sheet's header down to dismiss it: phones only, and only while viewing, so an editor draft isn't lost.
-function useSheetDrag(sheet: RefObject<HTMLElement | null>) {
-  useEffect(() => {
-    const panel = sheet.current;
-    if (!panel) return;
-    let startY: number | null = null;
-    let startAt = 0;
-    let dy = 0;
-    const start = (event: TouchEvent) => {
-      const target = event.target instanceof Element ? event.target : null;
-      const touch = event.touches[0];
-      if (window.innerWidth >= 768 || getPanel().mode !== 'view' || event.touches.length !== 1 || !touch) return;
-      if (!target?.closest('[data-sheet-grab]') || target.closest('button, a, input, textarea, select, label')) return;
-      startY = touch.clientY;
-      startAt = performance.now();
-      dy = 0;
-      panel.style.transition = 'none';
-    };
-    const move = (event: TouchEvent) => {
-      const touch = event.touches[0];
-      if (startY === null || !touch) return;
-      dy = Math.max(0, touch.clientY - startY);
-      panel.style.transform = `translateY(${dy}px)`;
-    };
-    const end = () => {
-      if (startY === null) return;
-      const flicked = dy / (performance.now() - startAt) > 0.6 && dy > 40;
-      startY = null;
-      panel.style.transition = '';
-      panel.style.transform = ''; // the class transform takes over and animates from here
-      if (dy > 120 || flicked) closeSystemPanel();
-    };
-    panel.addEventListener('touchstart', start, { passive: true });
-    panel.addEventListener('touchmove', move, { passive: true });
-    panel.addEventListener('touchend', end);
-    panel.addEventListener('touchcancel', end);
-    return () => {
-      panel.removeEventListener('touchstart', start);
-      panel.removeEventListener('touchmove', move);
-      panel.removeEventListener('touchend', end);
-      panel.removeEventListener('touchcancel', end);
-    };
-  }, [sheet]);
 }

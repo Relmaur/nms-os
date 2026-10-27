@@ -249,3 +249,25 @@ test('focus: the editor keeps it, and closing returns it to what opened the pane
   await userEvent.keyboard('{Escape}');
   expect(document.activeElement?.textContent).toBe('New system');
 });
+
+test('on a phone the grab bar closes the view; in the editor it refuses while there are unsaved changes', async () => {
+  const handle = () => document.querySelector<HTMLButtonElement>('#systemPanel [data-sheet-handle]')!;
+  open('sys-a');
+  await userEvent.click(handle());
+  expect(getPanel().open).toBe(false);
+
+  act(() => {
+    openSystemEditor('sys-a');
+  });
+  await userEvent.click(handle()); // nothing changed yet: it closes
+  expect(getPanel().open).toBe(false);
+
+  act(() => {
+    openSystemEditor('sys-a');
+  });
+  await userEvent.type(screen.getByRole('textbox', { name: /System name/ }), ' Prime');
+  await userEvent.click(handle());
+  expect(getPanel()).toMatchObject({ open: true, mode: 'edit' });
+  await userEvent.click(screen.getAllByRole('button', { name: 'Cancel' })[1]!); // Cancel still discards
+  expect(getPanel()).toMatchObject({ open: true, mode: 'view' });
+});

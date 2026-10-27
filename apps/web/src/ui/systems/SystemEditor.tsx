@@ -1,5 +1,5 @@
 // Add or edit a system. The draft lives here until Save; the stored system changes only through saveSystem().
-import { useId, useState, type SubmitEvent, type KeyboardEvent, type ReactNode } from 'react';
+import { useEffect, useId, useState, type SubmitEvent, type KeyboardEvent, type ReactNode } from 'react';
 import { tagSuggestions } from '@atlas/core/systems-list';
 import {
   CONFLICT_LEVELS,
@@ -13,7 +13,9 @@ import {
 } from '@atlas/core/systems-model';
 import { saveSystem } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
-import { closeSystemPanel, openSystem, type EditorPreset } from './panel-store.ts';
+import { showToast } from '../../app/ui.ts';
+import { closeSystemPanel, dismissSystemPanel, openSystem, setCloseGuard, type EditorPreset } from './panel-store.ts';
+import { SheetGrab } from '../parts/Sheet.tsx';
 
 type Draft = Omit<System, 'wealth'> & { wealth: string };
 type TextField = 'name' | 'region' | 'galaxy' | 'glyphs' | 'economy' | 'notes';
@@ -36,6 +38,19 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
     if (existing) openSystem(existing.id);
     else closeSystemPanel();
   };
+
+  // A swipe or a tap on the bar leaves only when nothing would be lost; Cancel stays the way to discard.
+  const [original] = useState(() => JSON.stringify({ draft, tags }));
+  const dirty = typed.trim() !== '' || JSON.stringify({ draft, tags }) !== original;
+  useEffect(() => {
+    setCloseGuard(() => {
+      if (dirty) showToast('Unsaved changes: save, or Cancel to discard.');
+      return !dirty;
+    });
+    return () => {
+      setCloseGuard(null);
+    };
+  }, [dirty]);
 
   const addTag = (value: string) => {
     const tag = tagSlug(value);
@@ -80,10 +95,11 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
 
   return (
     <form id="systemEditor" onSubmit={submit} className="flex flex-col min-h-full">
-      <div className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4">
-        <div className="md:hidden flex justify-center mb-3">
-          <span className="w-10 h-1 rounded-full bg-slate-700" />
-        </div>
+      <div
+        data-sheet-grab
+        className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4"
+      >
+        <SheetGrab onClose={dismissSystemPanel} />
         <div className="flex items-center justify-between gap-3">
           <h2 id="systemPanelTitle" className="font-display font-bold text-lg text-white">
             {isNew ? 'Add system' : 'Edit system'}
@@ -92,7 +108,7 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
             type="button"
             onClick={cancel}
             aria-label="Cancel"
-            className="w-9 h-9 -mr-1.5 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
+            className="hidden md:flex w-9 h-9 -mr-1.5 rounded-xl items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
           >
             <i className="ph-bold ph-x text-lg" />
           </button>

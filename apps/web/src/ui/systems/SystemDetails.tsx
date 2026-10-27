@@ -24,7 +24,8 @@ import {
 } from '../actions.ts';
 import { useNow } from '../useNow.ts';
 import { GlyphChip, MetaLine, OutlawPill, StarDot, TagChip, WealthStars } from '../parts/SystemBits.tsx';
-import { closeSystemPanel, filterByTag, openSystemEditor } from './panel-store.ts';
+import { closeSystemPanel, dismissSystemPanel, filterByTag, openSystemEditor } from './panel-store.ts';
+import { SheetGrab } from '../parts/Sheet.tsx';
 
 const ICON_BUTTON = 'w-9 h-9 rounded-xl flex items-center justify-center';
 const ARMED = 'px-2 text-xs font-semibold text-rose-200 bg-rose-500/15 border border-rose-500/50';
@@ -108,9 +109,7 @@ export function SystemDetails({ system, open }: { system: System; open: boolean 
         data-sheet-grab
         className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4 space-y-3"
       >
-        <div className="md:hidden flex justify-center">
-          <span className="w-10 h-1 rounded-full bg-slate-700" />
-        </div>
+        <SheetGrab onClose={dismissSystemPanel} />
         <div className="flex items-start gap-3">
           <span className="mt-2">
             <StarDot system={system} size="w-3.5 h-3.5" />
@@ -158,7 +157,7 @@ export function SystemDetails({ system, open }: { system: System; open: boolean 
             type="button"
             onClick={closeSystemPanel}
             aria-label="Close"
-            className="w-9 h-9 -mr-1.5 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
+            className="hidden md:flex w-9 h-9 -mr-1.5 rounded-xl items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
           >
             <i className="ph-bold ph-x text-lg" />
           </button>
