@@ -8,7 +8,7 @@
 ### Repository layout
 ```text
 nms-os/
-├── index.html              # Main app: Home, Systems, Outlaw Run, calculators, Guides (6 books), More; state sync, global search
+├── index.html              # Main app: Home, Systems, Outlaw Run, Calculators, Guides (6 books), More; state sync, global search
 ├── manifest.webmanifest    # PWA manifest (name, icons, standalone display, shortcuts)
 ├── sw.js                   # Service worker: offline app shell + wiki + CDN libraries
 ├── .github/workflows/pages.yml  # Syncs + verifies the wiki mirror and deploys to GitHub Pages
@@ -18,6 +18,7 @@ nms-os/
 │   ├── theme.js / theme.css # Shared Tailwind config + styles for every page
 │   ├── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
 │   ├── systems.js          # Systems log + Outlaw Run (model, migration, list/filters, detail panel)
+│   ├── calculators.js      # Calculators on wiki/game-data.json: recipe planner, base value, mineral extractors
 │   ├── companion.js        # Home screen + device integration (keep-awake, app badge, haptics, share, install, swipe-to-close)
 ├── nms_state.json          # Shared state (meta, fleet, checklists, systems, outlaw)
 ├── AGENTS.md               # This file
@@ -49,7 +50,7 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - `fleet` — `primaryStarship`, `salvageStarship`, `multiTools[]`
 - `checklists` — flat map of `id -> boolean` (named milestones such as `crossSaveLinked`, plus guide checklist item ids such as `cs1`, `rm3`)
 - `systems[]` — `{ id, name, galaxy, region, glyphs (12 hex or ''), star (yellow|red|green|blue|purple|''), race (gek|korvax|vykeen|none|abandoned|''), economy, wealth (0–3), conflict (low|medium|high|pirate|''), tags: string[], favorite, rating (0–5), notes, planets: [{ id, name, biome, tags, notes }], visits: [{ at: ISO, note?, packets? }], createdAt }`. Tags are lowercase slugs (`trade-hub`).
-- `outlaw` — `{ restockHours, packetsPerVisit, runSize }`. Outlaw stations are systems tagged `outlaw`; one counts as ready once `restockHours` have passed since its last visit with `packets`.
+- `outlaw` — `{ restockHours, packetsPerVisit, runSize, unitsPerPacket, nanitesPerPacket }`. The last two are the player's own in-game averages (packet prices and contents aren't fixed game data). Outlaw stations are systems tagged `outlaw`; one counts as ready once `restockHours` have passed since its last visit with `packets`.
 - Legacy keys `logbook[]` and `outlaw.stations[]` are migrated into `systems[]` by `migrateToSystems()` (assets/systems.js) on load and import; ids are kept so re-merging never duplicates.
 
 ### Merge rules
@@ -81,3 +82,8 @@ The Codex is a verified mirror of the **game-data pages** of the No Man's Sky Wi
 - Service workers only run on HTTPS or `localhost`. Over `file://` or a plain-http LAN address the app works online-only.
 - `nms_state.json` is published with the site. Edits made on a phone stay in that phone's browser storage; use Export/Import to move them, and commit the exported file to update the shared copy.
 - Icons: edit `assets/icons/icon.svg` / `icon-maskable.svg` (Phosphor "planet" fill), then re-render the PNGs at 192, 512, 512 (maskable) and 180 (apple-touch).
+
+## 5. Calculators (`assets/calculators.js`)
+- Built only on the wiki mirror: `wiki/game-data.json` is fetched when the Calculators section first opens (precached by the service worker). Every number shown is wiki data, arithmetic on it, or an input the player sets; never a hand-typed game fact.
+- Recipe planner: expands crafting and cooking recipes (not refining, which is a way to obtain raw materials) down to items with no such recipe. Skips self-multiplying recipes, guards against cycles, rounds up to whole batches for multi-output crafts, and lets the player cycle alternative recipes per item. Values are the wiki's base values.
+- Harmonic Camp registers are plain arithmetic (`safeMathEval` in `index.html`).

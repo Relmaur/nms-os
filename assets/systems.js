@@ -4,8 +4,6 @@
 // appState, saveAppState, isPlainObject, escapeHtml, showToast, showSection.
 
 const OUTLAW_TAG = 'outlaw';
-const OUTLAW_UNITS_PER_PACKET = 75000;
-const OUTLAW_NANITES_PER_PACKET = 350;
 const HOUR_MS = 3600 * 1000;
 
 const STAR_CLASSES = {
@@ -770,10 +768,12 @@ function renderOutlaw() {
 
     document.getElementById('sidebarOutlawCount').textContent = rows.length ? `${ready.length}/${rows.length}` : '0';
     document.getElementById('outlawSummary').innerHTML = rows.length
-        ? `<strong class="text-white">${rows.length}</strong> outlaw system${rows.length === 1 ? '' : 's'} · <strong class="text-emerald-300">${ready.length} ready</strong> · ${runs} packet run${runs === 1 ? '' : 's'} · ~${(packets * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites earned so far`
+        ? `<strong class="text-white">${rows.length}</strong> outlaw system${rows.length === 1 ? '' : 's'} · <strong class="text-emerald-300">${ready.length} ready</strong> · ${runs} packet run${runs === 1 ? '' : 's'} · ~${(packets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites earned so far`
         : 'No outlaw systems yet. Add the ones you use (10–20 makes a good rotation). They’re regular systems tagged “outlaw”, so they also show up under Systems.';
     document.getElementById('outlawRestockHours').value = outlaw.restockHours;
     document.getElementById('outlawPacketsPerVisit').value = outlaw.packetsPerVisit;
+    document.getElementById('outlawUnitsPerPacket').value = outlaw.unitsPerPacket;
+    document.getElementById('outlawNanitesPerPacket').value = outlaw.nanitesPerPacket;
     document.getElementById('outlawRunSize').innerHTML = Array.from({ length: 15 }, (_, i) => `<option value="${i + 1}" ${outlaw.runSize === i + 1 ? 'selected' : ''}>${i + 1}</option>`).join('');
 
     const run = ready.slice(0, outlaw.runSize);
@@ -796,7 +796,7 @@ function renderOutlaw() {
             : 'Add outlaw systems to plan a run.'}</li>`;
     document.getElementById('outlawRunFooter').innerHTML = run.length ? `
         <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <p class="text-xs text-slate-300">${run.length} station${run.length === 1 ? '' : 's'} · ${runPackets} packets · ~${(runPackets * OUTLAW_UNITS_PER_PACKET / 1e6).toFixed(1)}M Units → <strong class="text-emerald-300">~${(runPackets * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites</strong></p>
+            <p class="text-xs text-slate-300">${run.length} station${run.length === 1 ? '' : 's'} · ${runPackets} packets · ~${(runPackets * appState.outlaw.unitsPerPacket / 1e6).toFixed(1)}M Units → <strong class="text-emerald-300">~${(runPackets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites</strong></p>
             ${run.length > 1 ? '<button onclick="logOutlawRun()" class="h-9 px-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs font-medium text-slate-200">Mark whole run visited</button>' : ''}
         </div>` : '';
 
@@ -815,7 +815,7 @@ function renderOutlaw() {
             </div>
             ${system.glyphs || system.notes ? `<div class="flex flex-wrap items-center gap-2">${glyphChip(system.glyphs)}${system.notes ? `<span class="text-xs text-slate-300 line-clamp-1">${escapeHtml(system.notes.split('\n')[0])}</span>` : ''}</div>` : ''}
             <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-                <span class="text-xs text-slate-400">${runCount ? `${runCount} run${runCount === 1 ? '' : 's'} · last ${formatAgo(last.at)} · ~${(packetsLogged(system) * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites` : 'No packet runs yet'}</span>
+                <span class="text-xs text-slate-400">${runCount ? `${runCount} run${runCount === 1 ? '' : 's'} · last ${formatAgo(last.at)} · ~${(packetsLogged(system) * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites` : 'No packet runs yet'}</span>
                 <div class="flex items-center gap-1.5">
                     <button onclick="logPacketRun('${system.id}')" class="h-8 px-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/25 text-xs font-semibold flex items-center gap-1"><i class="ph-bold ph-check"></i>Visited</button>
                     ${runCount ? `<button onclick="undoPacketRun('${system.id}')" title="Undo last run" aria-label="Undo last run at ${escapeHtml(system.name)}" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 flex items-center justify-center"><i class="ph-bold ph-arrow-counter-clockwise"></i></button>` : ''}
@@ -827,7 +827,7 @@ function renderOutlaw() {
 }
 
 function setOutlawSetting(key, value) {
-    const limits = { restockHours: [1, 720], packetsPerVisit: [1, 99], runSize: [1, 15] };
+    const limits = { restockHours: [1, 720], packetsPerVisit: [1, 99], runSize: [1, 15], unitsPerPacket: [1, 1e9], nanitesPerPacket: [1, 1e6] };
     const [min, max] = limits[key];
     appState.outlaw[key] = Math.min(max, Math.max(min, Math.round(Number(value)) || min));
     saveAppState();

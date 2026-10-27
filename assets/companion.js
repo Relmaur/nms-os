@@ -85,7 +85,7 @@ function renderHomeOutlaw() {
     const next = ready.slice(0, HOME_OUTLAW_LIMIT);
     const runPackets = Math.min(ready.length, appState.outlaw.runSize) * appState.outlaw.packetsPerVisit;
     el.innerHTML = `
-        <p class="text-sm text-slate-300"><strong class="${ready.length ? 'text-emerald-300' : 'text-amber-300'}">${ready.length} of ${rows.length} ready</strong>${ready.length ? ` · next run ~${(runPackets * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites` : ''}</p>
+        <p class="text-sm text-slate-300"><strong class="${ready.length ? 'text-emerald-300' : 'text-amber-300'}">${ready.length} of ${rows.length} ready</strong>${ready.length ? ` · next run ~${(runPackets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites` : ''}</p>
         ${next.length ? `<ul class="mt-3 space-y-1">${next.map(({ system }) => `
             <li class="flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70">
                 <button onclick="openSystem('${system.id}')" class="min-w-0 flex-1 text-left py-1"><span class="block text-sm text-white truncate">${escapeHtml(system.name)}</span><span class="block text-xs text-slate-400 truncate">${escapeHtml([system.region, system.galaxy].filter(Boolean).join(' · ') || 'No region logged')}</span></button>

@@ -17,13 +17,15 @@ const SHELL = [
     'assets/wiki-search.js',
     'assets/systems.js',
     'assets/companion.js',
+    'assets/calculators.js',
     'assets/pwa.js',
     'assets/icons/icon.svg',
     'assets/icons/icon-192.png',
     'assets/icons/icon-512.png',
     'assets/icons/apple-touch-icon.png',
     'wiki/index.json',
-    'wiki/offline-bundle.js'
+    'wiki/offline-bundle.js',
+    'wiki/game-data.json'
 ];
 
 // Libraries the pages load from CDNs. Fetched up front so the first install already works offline;

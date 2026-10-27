@@ -66,7 +66,9 @@
   "outlaw": {
     "restockHours": 24,
     "packetsPerVisit": 15,
-    "runSize": 5
+    "runSize": 5,
+    "unitsPerPacket": 75000,
+    "nanitesPerPacket": 350
   },
   "systems": [
     {

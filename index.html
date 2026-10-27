@@ -83,7 +83,7 @@
                         <li><button onclick="showSection('home')" id="nav-home" class="nav-btn"><span class="nav-tile text-cyan-300"><i class="ph-bold ph-house"></i></span><span class="truncate">Home</span></button></li>
                         <li><button onclick="showSection('systems')" id="nav-systems" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-planet"></i></span><span class="truncate">Systems</span><span id="sidebarSystemsCount" class="nav-count">0</span></button></li>
                         <li><button onclick="showSection('outlaw')" id="nav-outlaw" class="nav-btn"><span class="nav-tile text-red-300"><i class="ph-bold ph-skull"></i></span><span class="truncate">Outlaw Run</span><span id="sidebarOutlawCount" class="nav-count">0</span></button></li>
-                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
+                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span></button></li>
                         <li><a href="wiki/" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span><i class="ph-bold ph-arrow-up-right text-xs text-slate-400 ml-2"></i></a></li>
                     </ul>
                 </div>
@@ -165,7 +165,7 @@
                 <div class="space-y-2">
                     <h2 class="list-heading">Tools &amp; reading</h2>
                     <ul class="list-group">
-                        <li><button onclick="showSection('calculators')" class="list-row"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Calculators</span><span class="block text-xs text-slate-400">Harmonic Camp, salvage, scanning, Stasis, outlaw yield</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
+                        <li><button onclick="showSection('calculators')" class="list-row"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Calculators</span><span class="block text-xs text-slate-400">Recipe planner, base values, extractors, Harmonic Camp</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
                         <li><button onclick="showSection('guides')" class="list-row"><span class="nav-tile text-sky-300"><i class="ph-bold ph-book-open-text"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Guides</span><span class="block text-xs text-slate-400">Six books · <span data-guides-progress>0%</span> of checklists done</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></button></li>
                         <li><a href="wiki/" class="list-row"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="flex-1 min-w-0"><span class="block text-sm text-white">Wiki Codex</span><span class="block text-xs text-slate-400"><span data-wiki-count>0</span> game-data pages, matched to the wiki</span></span><i class="ph-bold ph-caret-right text-slate-500"></i></a></li>
                     </ul>
@@ -792,110 +792,75 @@
             <!-- INTERACTIVE CALCULATORS SUITE (5 LIVE TOOLS)                          -->
             <!-- ===================================================================== -->
             <section id="sec-calculators" class="book-section hidden space-y-6">
-                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-amber-400">
-                    <span class="text-xs font-mono uppercase text-amber-400">Interactive Utility Suite</span>
-                    <h2 class="font-display text-2xl font-bold text-white mt-1">5 Live Gameplay Calculators & Solvers</h2>
+                <div class="max-w-3xl">
+                    <h1 class="font-display text-2xl font-bold text-white">Calculators</h1>
+                    <p class="text-sm text-slate-300 mt-1.5">Recipes and values come from the wiki mirror, so they match the wiki exactly. Anything the wiki can’t know, like your extractor’s output, is an input you set.</p>
+                    <p id="calcSource" class="text-xs text-slate-400 mt-2">Loading the wiki data…</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Tool 1: Harmonic Camp Solver & Salvage Calculator -->
-                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-purple-500/30">
-                        <h3 class="font-display font-bold text-base text-purple-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
-                            <i class="ph-duotone ph-terminal-window text-xl"></i>
-                            1. Harmonic Camp Override Solver & Salvage Planner
-                        </h3>
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 1</span>
-                                <input type="text" id="calcReg1" value="6 - 2" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
-                                <span id="calcAns1" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">4</span>
-                            </div>
-                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 2</span>
-                                <input type="text" id="calcReg2" value="2 + 8" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
-                                <span id="calcAns2" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">10</span>
-                            </div>
-                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                                <span class="text-[10px] font-mono text-purple-300 block">REGISTER 3</span>
-                                <input type="text" id="calcReg3" value="11 + 5" oninput="runCalculators()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs font-mono text-white mt-1">
-                                <span id="calcAns3" class="font-display font-bold text-lg text-purple-400 block text-right mt-1">16</span>
-                            </div>
+                <!-- Recipe planner (assets/calculators.js) -->
+                <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                    <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-tree-structure text-cyan-300"></i>Recipe planner</h2>
+                    <div class="flex flex-wrap items-end gap-3">
+                        <label class="field flex-1 min-w-[13rem]">Item to make
+                            <input id="planItem" list="planItemOptions" type="search" autocomplete="off" spellcheck="false" placeholder="Search craftable and cookable items" onchange="setPlanItem(this.value)" onkeydown="if (event.key === 'Enter') setPlanItem(this.value)">
+                        </label>
+                        <label class="field w-28">How many
+                            <input id="planQty" type="number" inputmode="numeric" min="1" max="9999" value="1" oninput="renderPlanner()">
+                        </label>
+                    </div>
+                    <div id="planPresets" class="flex flex-wrap gap-1.5"></div>
+                    <div id="planResult" class="pt-1"></div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                    <!-- Base value -->
+                    <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div>
+                            <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-coins text-amber-300"></i>Base value</h2>
+                            <p class="text-xs text-slate-400 mt-1">What a haul is worth at the wiki’s base values, e.g. Sentinel salvage. Terminals pay more or less depending on the system’s economy.</p>
                         </div>
-                        <div class="space-y-2 pt-2">
-                            <div class="flex justify-between text-xs"><span class="text-slate-300">Sentinel Ships to Salvage:</span><span id="calcShipLabel" class="font-mono text-purple-300 font-bold">4 Ships</span></div>
-                            <input type="range" id="calcShipSlider" min="1" max="12" value="4" oninput="runCalculators()" class="w-full">
-                            <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Radiant Shards</span><span id="calcShards" class="font-bold text-purple-300">12</span></div>
-                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Inverted Mirrors</span><span id="calcMirrors" class="font-bold text-purple-300">4</span></div>
-                                <div class="bg-slate-900 p-2 rounded-lg border border-emerald-500/30"><span class="text-[10px] text-slate-400 block">Est. Scrap Value</span><span id="calcShipUnits" class="font-bold text-emerald-400">~160M U</span></div>
-                            </div>
-                        </div>
+                        <ul id="valueRows" class="space-y-1.5"></ul>
+                        <form class="flex gap-2" onsubmit="event.preventDefault(); addValueRow()">
+                            <input id="valueAdd" list="valueItemOptions" type="search" autocomplete="off" spellcheck="false" placeholder="Add an item" aria-label="Add an item" class="flex-1 min-w-0 h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base sm:text-sm text-white placeholder:text-slate-400">
+                            <button class="h-10 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm text-slate-100">Add</button>
+                        </form>
+                        <p id="valueTotal" class="text-sm text-slate-300"></p>
                     </div>
 
-                    <!-- Tool 2: Anomalous Doughnut Batch Calculator -->
-                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-amber-500/30">
-                        <h3 class="font-display font-bold text-base text-amber-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
-                            <i class="ph-duotone ph-cookie text-xl"></i>
-                            2. Anomalous Doughnut Batch & Scan Payout Planner
-                        </h3>
-                        <div class="flex justify-between text-xs"><span class="text-slate-300">Target Doughnut Batch:</span><span id="calcDoughnutLabel" class="font-mono text-amber-300 font-bold">10 Doughnuts (100 Mins Buff)</span></div>
-                        <input type="range" id="calcDoughnutSlider" min="1" max="50" value="10" oninput="runCalculators()" class="w-full">
-                        <div class="grid grid-cols-5 gap-2 text-center text-xs">
-                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Frost Crystal</span><span id="calcFrost" class="font-bold text-white">10</span></div>
-                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Faecium</span><span id="calcFaecium" class="font-bold text-white">10</span></div>
-                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Fresh Milk</span><span id="calcMilk" class="font-bold text-white">10</span></div>
-                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Cactus Flesh</span><span id="calcCactus" class="font-bold text-white">20</span></div>
-                            <div class="bg-slate-900 p-2.5 rounded-xl"><span class="text-[10px] text-slate-400 block">Hexaberry</span><span id="calcHexa" class="font-bold text-purple-300">10</span></div>
-                        </div>
-                        <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex justify-between items-center text-xs">
-                            <span class="text-slate-300">Est. Fauna Scan Yield (~8 creatures / doughnut):</span>
-                            <span id="calcScanPayout" class="font-mono font-bold text-emerald-400">~1.44 Billion Units</span>
-                        </div>
-                    </div>
-
-                    <!-- Tool 3: Stasis Device Megafactory Batch Calculator -->
-                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-cyan-500/30">
-                        <h3 class="font-display font-bold text-base text-cyan-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
-                            <i class="ph-duotone ph-cpu text-xl"></i>
-                            3. Stasis Device Megafactory Calculator (15.6M U / Device)
-                        </h3>
-                        <div class="flex justify-between text-xs"><span class="text-slate-300">Stasis Devices to Craft:</span><span id="calcStasisLabel" class="font-mono text-cyan-300 font-bold">20 Devices (312.0M Units)</span></div>
-                        <input type="range" id="calcStasisSlider" min="1" max="50" value="20" oninput="runCalculators()" class="w-full">
-                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Radon / Sulph / Nitro</span><span id="calcGases" class="font-bold text-cyan-300">8,000 each</span></div>
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Frost Crystal</span><span id="calcStasisFrost" class="font-bold text-white">8,000</span></div>
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Star Bulb / Solanium</span><span id="calcStasisStar" class="font-bold text-white">4,000 each</span></div>
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Gamma Root</span><span id="calcStasisGamma" class="font-bold text-white">4,000</span></div>
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Cactus Flesh</span><span id="calcStasisCactus" class="font-bold text-white">2,000</span></div>
-                            <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Faecium</span><span id="calcStasisFaecium" class="font-bold text-white">1,000</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Tool 4 & 5: Split-Network Gold Mine & Outlaw Nanite Flipper -->
-                    <div class="hud-card rounded-2xl p-5 space-y-4 border border-emerald-500/30">
-                        <h3 class="font-display font-bold text-base text-emerald-300 flex items-center gap-2 border-b border-slate-800 pb-2.5">
-                            <i class="ph-duotone ph-dna text-xl"></i>
-                            4. Outlaw Nanite Flipper & Gold Pipe Splitter
-                        </h3>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-xs"><span class="text-slate-300">Outlaw Stations Visited (15 Tech/Arms Packets each):</span><span id="calcOutlawLabel" class="font-mono text-emerald-400 font-bold">5 Stations (75 Packets)</span></div>
-                            <input type="range" id="calcOutlawSlider" min="1" max="15" value="5" oninput="runCalculators()" class="w-full">
-                            <button onclick="showSection('outlaw')" class="text-xs font-medium text-emerald-300 hover:text-emerald-200">Open Outlaw Run →</button>
-                            <div class="grid grid-cols-2 gap-2 text-center text-xs">
-                                <div class="bg-slate-900 p-2 rounded-lg"><span class="text-[10px] text-slate-400 block">Unit Cost (~75k/pkt)</span><span id="calcOutlawCost" class="font-bold text-amber-300">~5.6M Units</span></div>
-                                <div class="bg-slate-900 p-2 rounded-lg border border-emerald-500/30"><span class="text-[10px] text-slate-400 block">Nanite Yield (~350 N/pkt)</span><span id="calcOutlawNanites" class="font-bold text-emerald-400">+26,250 Nanites</span></div>
+                    <div class="space-y-6">
+                        <!-- Mineral extractors -->
+                        <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                            <div>
+                                <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-mountains text-emerald-300"></i>Mineral extractors</h2>
+                                <p class="text-xs text-slate-400 mt-1">Output depends on the deposit, so enter the rate your extractor shows in game. The mineral’s value comes from the wiki.</p>
                             </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="field">Mineral<select id="mineMineral" onchange="renderExtractors()" class="filter-select w-full mt-1.5"></select></label>
+                                <label class="field">Extractors<input id="mineCount" type="number" inputmode="numeric" min="1" max="99" value="1" oninput="renderExtractors()"></label>
+                                <label class="field">Units/hour each<input id="mineRate" type="number" inputmode="numeric" min="0" placeholder="e.g. 250" oninput="renderExtractors()"></label>
+                            </div>
+                            <p id="mineResult" class="text-sm text-slate-300"></p>
                         </div>
-                        <div class="space-y-2 pt-2 border-t border-slate-800">
-                            <div class="flex justify-between text-xs"><span class="text-slate-300">Total Gold Mineral Extractors (S-Class Hotspot):</span><span id="calcGoldLabel" class="font-mono text-cyan-300 font-bold">12 Extractors &rarr; 4 Isolated Pipes</span></div>
-                            <input type="range" id="calcGoldSlider" min="3" max="30" step="3" value="12" oninput="runCalculators()" class="w-full">
-                            <div class="text-[11px] font-mono text-slate-300 flex justify-between">
-                                <span>Hourly Output: <strong id="calcGoldHr" class="text-white">6,600 Gold/hr</strong></span>
-                                <span>24-Hr Value: <strong id="calcGoldDay" class="text-emerald-400">55.9M Units/day</strong></span>
+
+                        <!-- Harmonic Camp registers -->
+                        <div class="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
+                            <div>
+                                <h2 class="font-display font-bold text-base text-white flex items-center gap-2"><i class="ph-bold ph-terminal-window text-purple-300"></i>Harmonic Camp registers</h2>
+                                <p class="text-xs text-slate-400 mt-1">Type each register’s expression to get the override code.</p>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="field">Register 1<input type="text" id="calcReg1" value="6 - 2" oninput="runCalculators()" class="font-mono"><span id="calcAns1" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">4</span></label>
+                                <label class="field">Register 2<input type="text" id="calcReg2" value="2 + 8" oninput="runCalculators()" class="font-mono"><span id="calcAns2" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">10</span></label>
+                                <label class="field">Register 3<input type="text" id="calcReg3" value="11 + 5" oninput="runCalculators()" class="font-mono"><span id="calcAns3" class="block font-display font-bold text-lg text-purple-300 text-right mt-1">16</span></label>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <p class="text-xs text-slate-400">Outlaw run estimates use your own packet price and yield, since neither is fixed game data: set them in <a href="#outlaw" class="text-emerald-300 hover:text-emerald-200">Outlaw Run</a> → Run settings.</p>
+                <datalist id="planItemOptions"></datalist>
+                <datalist id="valueItemOptions"></datalist>
             </section>
 
             <!-- ===================================================================== -->
@@ -991,7 +956,15 @@
                                 </label>
                                 <label class="block">Packets bought per visit
                                     <input id="outlawPacketsPerVisit" type="number" min="1" max="99" step="1" onchange="setOutlawSetting('packetsPerVisit', this.value)" class="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
-                                    <span class="block mt-1 text-slate-400">Used for the Units and Nanite estimates (~75k Units and ~350 Nanites per packet).</span>
+                                    <span class="block mt-1 text-slate-400">Multiplies the two estimates below.</span>
+                                </label>
+                                <label class="block">Units you pay per packet
+                                    <input id="outlawUnitsPerPacket" type="number" min="1" step="1000" onchange="setOutlawSetting('unitsPerPacket', this.value)" class="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
+                                    <span class="block mt-1 text-slate-400">Your average at Contraband Agents. The price isn’t fixed game data, so set it from what you see.</span>
+                                </label>
+                                <label class="block">Nanites you get per packet
+                                    <input id="outlawNanitesPerPacket" type="number" min="1" step="10" onchange="setOutlawSetting('nanitesPerPacket', this.value)" class="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
+                                    <span class="block mt-1 text-slate-400">Your average after opening and scrapping. Packet contents are random, so this is an estimate.</span>
                                 </label>
                             </div>
                         </details>
@@ -1025,6 +998,7 @@
 
     <script src="assets/systems.js"></script>
     <script src="assets/companion.js"></script>
+    <script src="assets/calculators.js"></script>
     <script>
         // =========================================================================
         // 1. MASTER CHECKLIST DATA DEFINITIONS
@@ -1140,7 +1114,9 @@
             outlaw: {
                 restockHours: 24,
                 packetsPerVisit: 15,
-                runSize: 5
+                runSize: 5,
+                unitsPerPacket: 75000,  // your own in-game averages, not game data
+                nanitesPerPacket: 350
             },
             systems: [
                 {
@@ -1196,7 +1172,7 @@
             if (!isPlainObject(state.checklists)) state.checklists = {};
             if (!isPlainObject(state.outlaw)) state.outlaw = structuredClone(DEFAULT_STATE.outlaw);
             migrateToSystems(state); // folds old logbook[] / outlaw.stations[] into systems[] (assets/systems.js)
-            ['restockHours', 'packetsPerVisit', 'runSize'].forEach(key => {
+            ['restockHours', 'packetsPerVisit', 'runSize', 'unitsPerPacket', 'nanitesPerPacket'].forEach(key => {
                 if (!(Number(state.outlaw[key]) > 0)) state.outlaw[key] = DEFAULT_STATE.outlaw[key];
             });
             return state;
@@ -1331,6 +1307,7 @@
             });
             if (location.hash !== `#${sectionKey}`) history.replaceState(null, '', `#${sectionKey}`);
             if (newSystem) openSystemEditor();
+            if (sectionKey === 'calculators') loadGameData();
         }
 
         function renderGuides(progress) {
@@ -1624,55 +1601,10 @@
         }
 
         function runCalculators() {
-            // 1. Harmonic Registers
-            document.getElementById('calcAns1').textContent = safeMathEval(document.getElementById('calcReg1').value || '0');
-            document.getElementById('calcAns2').textContent = safeMathEval(document.getElementById('calcReg2').value || '0');
-            document.getElementById('calcAns3').textContent = safeMathEval(document.getElementById('calcReg3').value || '0');
-
-            // 2. Sentinel Salvage
-            const ships = parseInt(document.getElementById('calcShipSlider').value, 10);
-            document.getElementById('calcShipLabel').textContent = `${ships} Ships`;
-            document.getElementById('calcShards').textContent = ships * 3;
-            document.getElementById('calcMirrors').textContent = ships;
-            document.getElementById('calcShipUnits').textContent = `~${ships * 40}M U`;
-
-            // 3. Anomalous Doughnuts
-            const doughnuts = parseInt(document.getElementById('calcDoughnutSlider').value, 10);
-            document.getElementById('calcDoughnutLabel').textContent = `${doughnuts} Doughnuts (${doughnuts * 10} Mins Buff)`;
-            document.getElementById('calcFrost').textContent = doughnuts;
-            document.getElementById('calcFaecium').textContent = doughnuts;
-            document.getElementById('calcMilk').textContent = doughnuts;
-            document.getElementById('calcCactus').textContent = doughnuts * 2;
-            document.getElementById('calcHexa').textContent = doughnuts;
-            const estScanTotalMillions = doughnuts * 8 * 18; // ~8 animals per 10-min doughnut @ ~18M avg
-            document.getElementById('calcScanPayout').textContent = estScanTotalMillions >= 1000
-                ? `~${(estScanTotalMillions / 1000).toFixed(2)} Billion Units`
-                : `~${estScanTotalMillions} Million Units`;
-
-            // 4. Stasis Devices
-            const stasis = parseInt(document.getElementById('calcStasisSlider').value, 10);
-            document.getElementById('calcStasisLabel').textContent = `${stasis} Devices (${(stasis * 15.6).toFixed(1)}M Units)`;
-            document.getElementById('calcGases').textContent = `${(stasis * 400).toLocaleString()} each`;
-            document.getElementById('calcStasisFrost').textContent = (stasis * 400).toLocaleString();
-            document.getElementById('calcStasisStar').textContent = `${(stasis * 200).toLocaleString()} each`;
-            document.getElementById('calcStasisGamma').textContent = (stasis * 200).toLocaleString();
-            document.getElementById('calcStasisCactus').textContent = (stasis * 100).toLocaleString();
-            document.getElementById('calcStasisFaecium').textContent = (stasis * 50).toLocaleString();
-
-            // 5. Outlaw Nanites & Split Gold Mine
-            const stations = parseInt(document.getElementById('calcOutlawSlider').value, 10);
-            const packets = stations * 15;
-            document.getElementById('calcOutlawLabel').textContent = `${stations} Stations (${packets} Packets)`;
-            document.getElementById('calcOutlawCost').textContent = `~${((packets * OUTLAW_UNITS_PER_PACKET) / 1000000).toFixed(1)}M Units`;
-            document.getElementById('calcOutlawNanites').textContent = `+${(packets * OUTLAW_NANITES_PER_PACKET).toLocaleString()} Nanites`;
-
-            const extractors = parseInt(document.getElementById('calcGoldSlider').value, 10);
-            const pipes = Math.ceil(extractors / 3);
-            const goldPerHr = extractors * 550;
-            const goldDayMillions = (goldPerHr * 24 * 353) / 1000000;
-            document.getElementById('calcGoldLabel').textContent = `${extractors} Extractors → ${pipes} Isolated Pipes`;
-            document.getElementById('calcGoldHr').textContent = `${goldPerHr.toLocaleString()} Gold/hr`;
-            document.getElementById('calcGoldDay').textContent = `${goldDayMillions.toFixed(1)}M Units/day`;
+            // Harmonic Camp registers; the data-driven calculators live in assets/calculators.js
+            [1, 2, 3].forEach(n => {
+                document.getElementById(`calcAns${n}`).textContent = safeMathEval(document.getElementById(`calcReg${n}`).value || '0');
+            });
         }
 
         // =========================================================================
