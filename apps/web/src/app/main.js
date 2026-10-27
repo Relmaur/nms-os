@@ -5,7 +5,7 @@ import { buildState, migrateLegacyState } from '@atlas/core/state';
 import { validateState, describeErrors } from '@atlas/core/schema';
 import { systemHaystack } from '@atlas/core/systems-model';
 import { WikiSearch } from './wiki-data.js';
-import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.js';
+import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.ts';
 import { showToast } from './ui.js';
 import { showSection, renderGuides, decorateBooks, onSection } from './nav.js';
 import {

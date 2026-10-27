@@ -2,7 +2,7 @@
 import { escapeHtml } from '@atlas/core/util';
 import { formatAgo, formatDuration } from '@atlas/core/format';
 import { lastVisit } from '@atlas/core/systems-model';
-import { appState, saveAppState } from './store.js';
+import { appState, saveAppState } from './store.ts';
 import { showToast, haptic } from './ui.js';
 import {
   findSystem,

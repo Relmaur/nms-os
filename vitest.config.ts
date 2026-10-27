@@ -1,9 +1,18 @@
-// Unit tests for the shared packages (and, until ADR-0004 step 3, the remaining checks on the vanilla UI).
+// Unit tests: the shared packages and repo checks run in Node; the web app's components (apps/web/vitest.config.ts)
+// run in a simulated DOM.
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    include: ['packages/*/test/**/*.test.ts', 'tests/unit/**/*.test.mjs'],
-    environment: 'node'
+    projects: [
+      {
+        test: {
+          name: 'node',
+          include: ['packages/*/test/**/*.test.ts', 'tests/unit/**/*.test.mjs'],
+          environment: 'node'
+        }
+      },
+      'apps/web'
+    ]
   }
 });

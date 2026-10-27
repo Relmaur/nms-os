@@ -3,6 +3,7 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
   { ignores: ['**/node_modules/', 'wiki/offline-bundle.js', 'test-results/', 'playwright-report/', '**/dist/'] },
@@ -27,9 +28,9 @@ export default [
     files: ['apps/web/src/**/*.js'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.browser } }
   },
-  ...tseslint.configs.strictTypeChecked.map(config => ({ ...config, files: ['**/*.ts'] })),
+  ...tseslint.configs.strictTypeChecked.map(config => ({ ...config, files: ['**/*.{ts,tsx}'] })),
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } },
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
@@ -52,5 +53,11 @@ export default [
     // Shared logic must run in the browser, in Node scripts and in a future API alike.
     files: ['packages/core/src/**/*.ts'],
     rules: { 'no-restricted-imports': ['error', { patterns: ['node:*'] }] }
+  },
+  { ...reactHooks.configs.flat.recommended, files: ['apps/web/src/**/*.tsx'] },
+  {
+    // Component tests render fixtures they just built; a wrong guess fails the test anyway.
+    files: ['apps/web/src/**/*.test.tsx'],
+    rules: { '@typescript-eslint/no-non-null-assertion': 'off' }
   }
 ];

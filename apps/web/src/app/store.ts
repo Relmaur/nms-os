@@ -1,33 +1,63 @@
 // The app state, one document (docs/state-schema.md): loading, saving, and the hook that re-renders after a save.
 // Only this module reassigns `appState`; others read the live binding and mutate it, then call saveAppState().
-import { DEFAULT_STATE, buildState, migrateLegacyState, stateTimestamp } from '@atlas/core/state';
+// Vanilla screens re-render through onSave(); React screens subscribe() (see src/ui/useAppState.ts). Both fire
+// after every load, save and adoption of another tab's copy.
+import { buildState, migrateLegacyState, stateTimestamp, type AppState } from '@atlas/core/state';
 import { validateState, describeErrors } from '@atlas/core/schema';
+import { isPlainObject } from '@atlas/core/util';
 
 export const STORAGE_KEY = 'nms_master_os_state';
 const LEGACY_STORAGE_KEY = 'ATLAS_MASTER_OS_STATE_V2';
 const STATE_FILE = './nms_state.json';
 const STATE_FETCH_TIMEOUT_MS = 5000; // the browser copy renders without the repo file; a slow network must not block it
 
-export let appState = structuredClone(DEFAULT_STATE);
+export let appState: AppState = buildState();
 
-export function setAppState(next) {
+export function setAppState(next: AppState): void {
   appState = next;
+  changed();
 }
 
 let renderAll = () => {};
-export function onSave(render) {
+export function onSave(render: () => void): void {
   renderAll = render;
 }
 
-// Storage problems the person must see (never only the console): { saveFailed, recoveredKey, fromOtherTab }.
-let reportStatus = () => {};
-export function onStorageStatus(report) {
+// A version number that changes whenever appState may have: React's useSyncExternalStore compares it, since the
+// state object itself is mutated in place.
+let version = 0;
+const listeners = new Set<() => void>();
+export function subscribe(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+export function getVersion(): number {
+  return version;
+}
+function changed(): void {
+  version += 1;
+  listeners.forEach(listener => {
+    listener();
+  });
+}
+
+// Storage problems the person must see (never only the console).
+export interface StorageStatus {
+  saveFailed?: boolean;
+  recoveredKey?: string;
+  unreadableNotKept?: boolean;
+  fromOtherTab?: boolean;
+}
+let reportStatus: (status: StorageStatus) => void = () => {};
+export function onStorageStatus(report: (status: StorageStatus) => void): void {
   reportStatus = report;
 }
 let saveFailed = false;
 
+const errorName = (e: unknown) => (e instanceof Error ? e.name : String(e));
+
 // Diagnostics carry the event and reason only, never state contents (ADR-0002).
-function logEvent(event, detail = {}) {
+function logEvent(event: string, detail: Record<string, unknown> = {}): void {
   console.warn('[atlas]', { event, ...detail });
 }
 
@@ -37,8 +67,8 @@ let protectUnread = false;
 
 // An unreadable browser copy is kept under its own key before the app falls back to defaults, so a bug or a bad
 // edit can never silently destroy someone's log. The same copy is reused on later reloads, not duplicated.
-function preserveUnreadable(raw, reason) {
-  let key;
+function preserveUnreadable(raw: string, reason: string): void {
+  let key: string | null;
   try {
     key =
       Object.keys(localStorage).find(
@@ -50,7 +80,7 @@ function preserveUnreadable(raw, reason) {
     }
   } catch (e) {
     protectUnread = true;
-    logEvent('local-state-unreadable', { reason, keptAs: null, copyFailed: e.name });
+    logEvent('local-state-unreadable', { reason, keptAs: null, copyFailed: errorName(e) });
     reportStatus({ unreadableNotKept: true });
     return;
   }
@@ -58,49 +88,49 @@ function preserveUnreadable(raw, reason) {
   reportStatus({ recoveredKey: key });
 }
 
-function readLocalState() {
-  let raw;
-  let legacy;
+function readLocalState(): Record<string, unknown> | null {
+  let raw: string | null;
+  let legacy: string | null;
   try {
     raw = localStorage.getItem(STORAGE_KEY);
     legacy = raw ? null : localStorage.getItem(LEGACY_STORAGE_KEY);
   } catch (e) {
-    logEvent('storage-unavailable', { reason: e.name });
+    logEvent('storage-unavailable', { reason: errorName(e) });
     return null;
   }
   const source = raw ?? legacy;
   if (!source) return null;
-  let state;
+  let state: unknown;
   try {
     state = JSON.parse(source);
-    if (!raw) state = migrateLegacyState(state);
+    if (!raw && isPlainObject(state)) state = migrateLegacyState(state);
   } catch {
     preserveUnreadable(source, 'not JSON');
     return null;
   }
   const { ok, errors } = validateState(state);
-  if (!ok) {
+  if (!ok || !isPlainObject(state)) {
     preserveUnreadable(source, describeErrors(errors));
     return null;
   }
   return state;
 }
 
-async function fetchRepoState() {
+async function fetchRepoState(): Promise<Record<string, unknown> | null> {
   try {
     const res = await fetch(STATE_FILE, { cache: 'no-store', signal: AbortSignal.timeout(STATE_FETCH_TIMEOUT_MS) });
     if (!res.ok) return null;
-    const state = await res.json();
+    const state: unknown = await res.json();
     const { ok, errors } = validateState(state);
-    if (ok) return state;
+    if (ok && isPlainObject(state)) return state;
     logEvent('repo-state-invalid', { reason: describeErrors(errors) });
   } catch (e) {
-    logEvent('repo-state-unavailable', { reason: e.name }); // offline, timed out, or file://
+    logEvent('repo-state-unavailable', { reason: errorName(e) }); // offline or timed out
   }
   return null;
 }
 
-export async function loadAppState() {
+export async function loadAppState(): Promise<void> {
   const repoState = await fetchRepoState();
   const localState = readLocalState();
   // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
@@ -108,10 +138,11 @@ export async function loadAppState() {
     localState && stateTimestamp(repoState) > stateTimestamp(localState)
       ? buildState(localState, repoState)
       : buildState(repoState, localState);
+  changed();
 }
 
 // The only way the state reaches storage. Returns true once it's written; every failure reaches the banner.
-export function persistState() {
+export function persistState(): boolean {
   appState.meta.lastUpdated = new Date().toISOString();
   if (protectUnread) {
     reportStatus({ unreadableNotKept: true });
@@ -125,21 +156,22 @@ export function persistState() {
     // Quota exceeded or storage blocked (private mode): the data stays in memory, and the banner tells the
     // person to export it before closing the app.
     saveFailed = true;
-    logEvent('save-failed', { reason: e.name });
+    logEvent('save-failed', { reason: errorName(e) });
     reportStatus({ saveFailed: true });
     return false;
   }
 }
 
-export function saveAppState() {
+export function saveAppState(): void {
   persistState();
   renderAll();
+  changed();
 }
 
 // Run after another tab's copy is adopted and before re-rendering, so features can carry over work in progress
 // (notes being typed) or react to records that disappeared.
-const adoptHooks = [];
-export function onAdopt(run) {
+const adoptHooks: (() => void)[] = [];
+export function onAdopt(run: () => void): void {
   adoptHooks.push(run);
 }
 
@@ -147,7 +179,7 @@ export function onAdopt(run) {
 // Last write wins between tabs (ADR-0002); this makes sure the last write was made on fresh data.
 window.addEventListener('storage', event => {
   if (event.key !== STORAGE_KEY || !event.newValue) return;
-  let next;
+  let next: unknown;
   try {
     next = JSON.parse(event.newValue);
   } catch {
@@ -159,7 +191,10 @@ window.addEventListener('storage', event => {
     return;
   }
   appState = buildState(next);
-  adoptHooks.forEach(run => run());
+  adoptHooks.forEach(run => {
+    run();
+  });
   renderAll();
+  changed();
   reportStatus({ fromOtherTab: true });
 });

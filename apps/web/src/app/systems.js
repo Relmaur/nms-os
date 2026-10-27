@@ -22,7 +22,7 @@ import {
   outlawStatus as computeOutlawStatus,
   rankOutlaw
 } from '@atlas/core/systems-model';
-import { appState, saveAppState, persistState, onAdopt } from './store.js';
+import { appState, saveAppState, persistState, onAdopt } from './store.ts';
 import { showToast, haptic } from './ui.js';
 import { showSection } from './nav.js';
 
@@ -684,7 +684,7 @@ function flushNotes() {
   if (status) status.textContent = saved ? 'Saved' : 'Not saved';
 }
 
-// Another tab saved while this one is open (store.js adopts its copy first).
+// Another tab saved while this one is open (store.ts adopts its copy first).
 onAdopt(() => {
   // Carry notes typed here into the adopted copy, so they aren't lost under the other tab's save.
   const textarea = document.getElementById('systemNotes');
