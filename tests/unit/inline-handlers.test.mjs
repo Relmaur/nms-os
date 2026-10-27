@@ -5,7 +5,7 @@ import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const root = new URL('../../', import.meta.url);
+const root = new URL('../../apps/web/', import.meta.url);
 const read = path => fs.readFileSync(new URL(path, root), 'utf8');
 const BUILTINS = new Set([
   'event',
@@ -26,13 +26,13 @@ const BUILTINS = new Set([
 
 const PAGES = {
   'index.html': [
-    'assets/app/main.js',
-    'assets/app/nav.js',
-    'assets/app/systems.js',
-    'assets/app/companion.js',
-    'assets/app/calculators.js'
+    'src/app/main.js',
+    'src/app/nav.js',
+    'src/app/systems.js',
+    'src/app/companion.js',
+    'src/app/calculators.js'
   ],
-  'wiki/index.html': ['wiki/codex.js']
+  'wiki/index.html': ['src/codex.js']
 };
 
 // Names a handler calls (`name(`) or reads a property of (`NAME.x`) without a receiver.

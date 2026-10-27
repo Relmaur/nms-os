@@ -1,4 +1,5 @@
-# Syncs the wiki mirror, runs lint + unit tests, then deploys ATLAS // MASTER OS to GitHub Pages.
+# Syncs the wiki mirror, type-checks, lints and unit-tests, then builds ATLAS // MASTER OS with Vite and deploys it to
+# GitHub Pages.
 # One-time setup: repo Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
@@ -25,26 +26,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4 # version from packageManager in package.json
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
+          node-version: 24
+          cache: pnpm
 
-      - name: Install dev tools (ESLint)
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       # Mirrors the wiki's game-data pages over the committed archive (only pages with a new revision change)
       # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, the committed
       # archive ships as-is and the Codex says it couldn't be checked.
       - name: Sync and verify the wiki mirror
-        run: node scripts/sync-wiki.mjs
+        run: pnpm sync:wiki
 
-      # Gate: nothing is committed back or deployed unless lint and unit tests pass on the synced data.
-      # Browser tests (npm run test:e2e) run locally as part of npm run check, not in CI, to keep runs short.
+      # Gate: nothing is committed back or deployed unless types, lint and unit tests pass on the synced data.
+      # Browser tests (pnpm test:e2e) run locally as part of pnpm check, not in CI, to keep runs short.
+      - name: Type check
+        run: pnpm typecheck
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
       - name: Unit tests
-        run: npm test
+        run: pnpm test
 
       # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
       # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.
@@ -63,18 +68,13 @@ jobs:
           done
           echo "::error::Could not push the wiki sync commit." && exit 1
 
-      - name: Stamp the service worker so this deploy gets a fresh offline cache
-        run: sed -i "s/^const BUILD = 'dev';/const BUILD = '${GITHUB_SHA::12}-${GITHUB_RUN_NUMBER}';/" sw.js
-
-      - name: Assemble the site
-        run: |
-          mkdir _site
-          cp -r index.html nms_state.json manifest.webmanifest sw.js assets wiki _site/
-          touch _site/.nojekyll
+      # The service worker's precache revisions come from file contents, so every deploy updates installed apps.
+      - name: Build the site
+        run: pnpm build
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: apps/web/dist
 
   deploy:
     needs: build

@@ -14,7 +14,7 @@ export default [
     }
   },
   {
-    files: ['scripts/**/*.mjs', 'tests/**/*.mjs', '*.config.js', '*.config.ts', 'packages/wiki/**/*.ts'],
+    files: ['tests/**/*.mjs', '*.config.js', '**/*.config.ts', 'packages/wiki/**/*.ts'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.node } }
   },
   {
@@ -23,27 +23,9 @@ export default [
     languageOptions: { globals: { ...globals.node, ...globals.browser } }
   },
   {
-    files: ['sw.js'],
-    languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { ...globals.serviceworker } }
-  },
-  {
     // ES modules: dependencies are explicit imports, so undefined names are real bugs.
-    files: ['assets/lib/**/*.js', 'assets/app/**/*.js', 'wiki/codex.js'],
+    files: ['apps/web/src/**/*.js'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.browser } }
-  },
-  {
-    // The Codex page loads these from the CDN (see CDN_PRECACHE in sw.js).
-    files: ['wiki/codex.js'],
-    languageOptions: { globals: { marked: 'readonly', DOMPurify: 'readonly' } }
-  },
-  {
-    // The two remaining classic scripts: the Tailwind CDN config and the service-worker registration.
-    files: ['assets/theme.js', 'assets/pwa.js'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'script',
-      globals: { ...globals.browser, tailwind: 'writable' }
-    }
   },
   ...tseslint.configs.strictTypeChecked.map(config => ({ ...config, files: ['**/*.ts'] })),
   {

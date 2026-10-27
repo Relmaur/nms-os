@@ -1,0 +1,5 @@
+/* Stylesheet for the Codex page (wiki/index.html): the app's styles plus the Codex's own, before Tailwind. */
+@import './fonts.css';
+@import './theme.css';
+@import './codex-page.css';
+@import './tailwind.css';

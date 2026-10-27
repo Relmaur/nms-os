@@ -2,7 +2,14 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { makeCatalog, findItem, planRecipes, expandPlan, collectRaw, countSteps } from '../../assets/lib/planner.js';
+import {
+  makeCatalog,
+  findItem,
+  planRecipes,
+  expandPlan,
+  collectRaw,
+  countSteps
+} from '../../apps/web/src/lib/planner.js';
 
 const catalog = makeCatalog(
   JSON.parse(fs.readFileSync(new URL('../fixtures/game-data-subset.json', import.meta.url), 'utf8'))

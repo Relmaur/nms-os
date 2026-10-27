@@ -1,6 +1,6 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { prepare, search, tokenize, highlight, snippet, isOld } from '../../assets/lib/search.js';
+import { prepare, search, tokenize, highlight, snippet, isOld } from '../../apps/web/src/lib/search.js';
 
 const entries = [
   {

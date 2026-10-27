@@ -9,16 +9,19 @@
     "node": ">=24"
   },
   "scripts": {
-    "start": "node scripts/serve.mjs",
+    "dev": "pnpm --filter @atlas/web dev",
+    "build": "pnpm --filter @atlas/web build",
+    "preview": "pnpm --filter @atlas/web preview",
+    "start": "pnpm dev",
     "sync:wiki": "node packages/wiki/src/sync.ts",
     "verify:wiki": "node packages/wiki/src/sync.ts --verify",
     "index:wiki": "node packages/wiki/src/sync.ts --index-only",
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web && tsc -p apps/web/src/sw",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "pnpm build && playwright test",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm test:e2e"
   },
   "devDependencies": {

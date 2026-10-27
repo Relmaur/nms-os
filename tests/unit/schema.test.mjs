@@ -1,10 +1,10 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { validateState, describeErrors } from '../../assets/lib/schema.js';
-import { migrateLegacyState } from '../../assets/lib/state.js';
+import { validateState, describeErrors } from '../../apps/web/src/lib/schema.js';
+import { migrateLegacyState } from '../../apps/web/src/lib/state.js';
 
-const repoState = JSON.parse(fs.readFileSync(new URL('../../nms_state.json', import.meta.url), 'utf8'));
+const repoState = JSON.parse(fs.readFileSync(new URL('../../apps/web/public/nms_state.json', import.meta.url), 'utf8'));
 
 test('the repo’s nms_state.json is valid', () => {
   assert.deepEqual(validateState(repoState), { ok: true, errors: [] });

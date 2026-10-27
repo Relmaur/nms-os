@@ -16,6 +16,9 @@ test('search finds Oxygen and the article cites its wiki revision', async ({ pag
   await expect(page.locator('#articleHeader h1')).toHaveText('Oxygen');
   await expect(page.locator('#articleHeader')).toContainText(/Wiki revision \d+/);
   await expect(page.locator('#articleRail')).toContainText('Used in');
+  // Rendered as HTML, not shown as raw Markdown.
+  await expect(page.locator('#articleBody h2', { hasText: 'Quick Facts' })).toBeVisible();
+  await expect(page.locator('#articleBody')).not.toContainText('**');
 });
 
 test('obsolete pages appear only when asked for', async ({ page }) => {

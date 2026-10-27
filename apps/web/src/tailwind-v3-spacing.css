@@ -1,0 +1,13 @@
+/* space-y-* as in Tailwind v3: a top margin on every visible child after the first. v4 puts a bottom margin on every
+   child but the last, which leaves a gap under the last visible child whenever the final one is hidden (common in this
+   markup). The v4 rule is reset right after Tailwind's utilities; both rules can go when the screens move to React
+   (ADR-0004 step 3). */
+@utility space-y-* {
+  & > :not([hidden]) ~ :not([hidden]) {
+    margin-top: --spacing(--value(number));
+  }
+}
+
+:where([class*='space-y-'] > :not(:last-child)) {
+  margin-block: 0;
+}

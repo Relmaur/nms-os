@@ -6,7 +6,7 @@ import fs from 'node:fs/promises';
 const readJson = async path => JSON.parse(await fs.readFile(new URL(`../../${path}`, import.meta.url), 'utf8'));
 
 test('nms_state.json is the canonical default shape', async () => {
-  const state = await readJson('nms_state.json');
+  const state = await readJson('apps/web/public/nms_state.json');
   for (const key of ['meta', 'fleet', 'checklists', 'outlaw', 'systems']) assert.ok(key in state, `missing ${key}`);
   assert.equal(typeof state.meta.lastUpdated, 'string');
   assert.ok(Array.isArray(state.systems));

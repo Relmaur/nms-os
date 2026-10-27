@@ -10,3 +10,5 @@ node_modules/
 # Playwright output
 test-results/
 playwright-report/
+apps/web/dist/
+apps/web/dev-dist/

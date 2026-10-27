@@ -7,8 +7,8 @@ import {
   rankOutlaw,
   systemHaystack,
   HOUR_MS
-} from '../../assets/lib/systems-model.js';
-import { formatDuration, formatAgo } from '../../assets/lib/format.js';
+} from '../../apps/web/src/lib/systems-model.js';
+import { formatDuration, formatAgo } from '../../apps/web/src/lib/format.js';
 
 test('normalizeSystem cleans user input into the stored shape', () => {
   const system = normalizeSystem({

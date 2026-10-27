@@ -1,6 +1,12 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { DEFAULT_STATE, buildState, deepMerge, migrateLegacyState, stateTimestamp } from '../../assets/lib/state.js';
+import {
+  DEFAULT_STATE,
+  buildState,
+  deepMerge,
+  migrateLegacyState,
+  stateTimestamp
+} from '../../apps/web/src/lib/state.js';
 
 test('deepMerge merges objects key by key and replaces arrays wholesale', () => {
   const merged = deepMerge({ a: { x: 1, y: 2 }, list: [1, 2] }, { a: { y: 3 }, list: [9] });

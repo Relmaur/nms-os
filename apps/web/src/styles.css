@@ -1,0 +1,4 @@
+/* Stylesheet for the app page (index.html). The Codex page has its own, src/codex.css. */
+@import './fonts.css';
+@import './theme.css';
+@import './tailwind.css';

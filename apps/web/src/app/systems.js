@@ -347,7 +347,7 @@ export function renderSystemPanel() {
                     <h3 class="panel-heading">Notes</h3>
                     <span id="notesStatus" class="text-[11px] text-slate-400"></span>
                 </div>
-                <textarea id="systemNotes" rows="5" oninput="queueNotesSave('${system.id}')" onblur="flushNotes()" placeholder="Anything worth remembering: what's here, what to do next time, who to talk to…" class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-base sm:text-sm leading-relaxed text-white focus:outline-none resize-y">${escapeHtml(system.notes)}</textarea>
+                <textarea id="systemNotes" rows="5" oninput="queueNotesSave('${system.id}')" onblur="flushNotes()" placeholder="Anything worth remembering: what's here, what to do next time, who to talk to…" class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-base sm:text-sm leading-relaxed text-white focus:outline-hidden resize-y">${escapeHtml(system.notes)}</textarea>
             </section>
 
             ${
@@ -526,7 +526,7 @@ function renderTagEditor() {
         <span class="inline-flex items-center gap-1 h-7 pl-2 pr-1 rounded-md bg-emerald-500/15 border border-emerald-500/40 text-xs text-emerald-100">${escapeHtml(tag)}<button type="button" onclick="removeEditorTag('${escapeHtml(tag)}')" aria-label="Remove ${escapeHtml(tag)}" class="w-5 h-5 rounded flex items-center justify-center hover:bg-emerald-500/20"><i class="ph-bold ph-x text-[10px]"></i></button></span>`
       )
       .join('') +
-    `<input id="tagInput" type="text" maxlength="40" value="${escapeHtml(typed)}" placeholder="${editorTags.length ? 'Add tag' : 'Type a tag and press Enter'}" oninput="renderTagSuggestions()" onkeydown="onTagKey(event)" class="flex-1 min-w-[8rem] h-7 bg-transparent px-1.5 text-base sm:text-sm text-white focus:outline-none">`;
+    `<input id="tagInput" type="text" maxlength="40" value="${escapeHtml(typed)}" placeholder="${editorTags.length ? 'Add tag' : 'Type a tag and press Enter'}" oninput="renderTagSuggestions()" onkeydown="onTagKey(event)" class="flex-1 min-w-[8rem] h-7 bg-transparent px-1.5 text-base sm:text-sm text-white focus:outline-hidden">`;
   renderTagSuggestions();
 }
 

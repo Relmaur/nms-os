@@ -1,0 +1,11 @@
+{
+  // The web app's TypeScript: Vite config (Node) and, as ADR-0004 step 3 lands, React components (DOM).
+  // The service worker has its own config (src/sw/), since WebWorker and DOM globals conflict.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"]
+  },
+  "include": ["vite.config.ts", "src/**/*.ts"],
+  "exclude": ["src/sw"]
+}

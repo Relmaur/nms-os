@@ -19,6 +19,9 @@ import {
   starDot
 } from './systems.js';
 import { renderHome } from './companion.js';
+import { registerServiceWorker } from './pwa.js';
+
+registerServiceWorker();
 import { loadGameData } from './calculators.js';
 
 // =========================================================================
