@@ -7,7 +7,11 @@ _Last updated: 2026-10-27_
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
-**ADR-0004 migration.** Steps 1–2 (core and wiki sync in TypeScript, Vite build, Workbox service worker, no CDNs) are done and released as 3.1.0. Next is step 3: React, screen by screen.
+**ADR-0004 step 3, React screen by screen.** Done so far:
+- Steps 1–2 shipped in 3.1.0.
+- The React foundation and Home shipped in 3.2.0.
+
+Next slice: Systems + Outlaw (`apps/web/src/app/systems.js`).
 
 ## Blockers
 None.
@@ -19,12 +23,13 @@ None.
 
 ## Next steps
 1. **ADR-0004 step 3: React, screen by screen.** Each section mounts as a React root; plan it as its own cycle.
-   - Suggested order: Home, Systems, Outlaw, Calculators, Codex, Guides.
+   - Order: ~~Home~~ (3.2.0), Systems + Outlaw, Calculators, Codex, Guides/More. Follow the React screens section of `docs/architecture.md`.
+   - With Systems: port the panel and editor, then drop `src/app/systems.d.ts` and the string helpers (`starDot`, `glyphChip`, `tagChip`); `src/ui/parts/SystemBits.tsx` already has the React versions.
    - As screens move:
      - delete the Tailwind v3 shims (`apps/web/src/tailwind-v3-*.css`, the line-height overrides in `tailwind.css`);
      - delete the `Object.assign(window, …)` exports and `tests/unit/inline-handlers.test.mjs` once no inline handlers remain;
      - fix the axe findings and make `tests/e2e/a11y.spec.mjs` a gate (it reports only, today). Baseline at 3.1.0, phone size:
-       - Home: `label-content-name-mismatch` (2).
+       - Home: fixed and gated (3.2.0).
        - Systems: `page-has-heading-one`.
        - Codex: `aria-allowed-attr` (10, critical), `aria-dialog-name`, `aria-allowed-role`, `empty-heading`.
        - Calculators: clean.

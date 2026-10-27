@@ -6,6 +6,16 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-10-27
+### Changed
+- Home is the first React screen (ADR-0004 step 3): it looks and works as before, and refreshes its relative times every minute and when you return to the app. The rest of the app is unchanged.
+- The "I’m here" buttons on Home announce "I’m here: <system>" to screen readers, matching what's on screen.
+### Added
+- React tooling: component tests (Vitest + Testing Library), React lint rules, and a store subscription later screens reuse.
+- Accessibility (axe) now fails the build on any violation on Home.
+### Internal
+- CI actions updated to their Node 24 releases.
+
 ## [3.1.0] - 2026-10-27
 ### Added
 - ADR-0004: full-stack TypeScript (React + Vite, Zod, pnpm workspaces), with a stepwise migration plan. Steps 1 and 2 ship in this release.

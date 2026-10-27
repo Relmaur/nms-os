@@ -44,6 +44,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 - Comments explain *why* (domain rules, trade-offs, fallbacks), not what.
 - YAGNI: the smallest reversible change; no new abstraction without a second use.
 - Pure logic goes in `packages/core` with unit tests; DOM code stays in `apps/web`.
+- New or moved screens are React: `apps/web/src/ui/<screen>/*.tsx`, logic in `@atlas/core`, state via `useAppState()` + actions, no inline handlers, a component test, and an axe gate (`docs/architecture.md`, React screens).
 - TypeScript: no `any`; types for external data come from Zod schemas (`z.infer`); a cast needs a comment saying what proved it safe.
 - External I/O gets a timeout and a visible fallback. Never fail silently on user data.
 - Diagnostics: one structured `console.warn('[atlas]', { event, ... })` line, never user content.

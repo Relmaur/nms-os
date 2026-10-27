@@ -24,12 +24,13 @@ nms-os/                          pnpm workspace
 ├── apps/web/                    @atlas/web: the PWA
 │   ├── index.html               Main app: Home, Systems, Outlaw Run, Calculators, Guides (6 books), More
 │   ├── wiki/index.html          The Codex page, served at /wiki/ (hash routes #/?q=… and #/a/<path>)
-│   ├── src/app/                 UI modules (vanilla JS until ADR-0004 step 3)
-│   │   ├── main.js              Main page entry: renderAll, header search, checklists, Export/Import
-│   │   ├── store.js             appState: load, validate, save, tab sync, failure banner
+│   ├── src/ui/                  React screens (ADR-0004 step 3): home/ so far; parts/ shared pieces; useAppState, useNow, actions
+│   ├── src/app/                 Vanilla UI modules, moving to src/ui/ screen by screen
+│   │   ├── main.js              Main page entry: renderAll, header search, checklists, Export/Import; mounts React screens
+│   │   ├── store.ts             appState: load, validate, save, tab sync, failure banner; subscribe() for React
 │   │   ├── nav.js / ui.js       Section routing + Guides; toast and haptics
 │   │   ├── systems.js           Systems log + Outlaw Run UI
-│   │   ├── companion.js         Home screen + device integration
+│   │   ├── companion.js         Device integration (keep-awake, badges, install, share)
 │   │   ├── calculators.js       Calculators UI (docs/calculators.md)
 │   │   ├── wiki-data.js         Wiki index/bundle loading + drafts; exports WikiSearch
 │   │   └── pwa.js               Registers the service worker (production builds only)
@@ -52,8 +53,15 @@ nms-os/                          pnpm workspace
 ## Module model
 - `@atlas/core` is the only home for logic that doesn't touch the DOM. Its types come from its Zod schemas where data crosses a boundary (state documents, game data) and from interfaces for the normalised in-memory shapes (`AppState`, `System`).
 - **Parse, don't cast:** anything read from outside the code is parsed before use: imports, `localStorage`, `nms_state.json`, `game-data.json`, wiki API responses and article frontmatter. Remaining unparsed inputs are listed in `docs/STATE.md`.
-- The UI modules are still vanilla JS with string templates (ADR-0004 step 3 moves them to React). Only `store.js` reassigns `appState`; other modules read the live binding, mutate it, and call `saveAppState()`, which re-renders through the hook `main.js` registers (`onSave`). `nav.js` lets features react to a section opening through `onSection()`, which avoids import cycles.
+- The remaining vanilla UI modules render string templates. Only `store.ts` reassigns `appState`; other modules read the live binding, mutate it, and call `saveAppState()`, which re-renders through the hook `main.js` registers (`onSave`). `nav.js` lets features react to a section opening through `onSection()`, which avoids import cycles.
 - Inline `on…=""` handlers run in the global scope, so each module exposes exactly the functions its markup and templates call with `Object.assign(window, {…})`. `tests/unit/inline-handlers.test.mjs` fails if a handler calls anything not exposed.
+
+## React screens (ADR-0004 step 3)
+- Each moved screen lives in `apps/web/src/ui/<screen>/` and is mounted once into a container in `index.html` (`#homeRoot` for Home) from `main.js`, after the state loads. The vanilla page around it is unchanged.
+- **State:** `useAppState()` returns the live `appState` and re-renders on every change. The store mutates one object in place, so React subscribes to `getVersion()` through `useSyncExternalStore`; the version moves after every load, save and adopted tab copy. Components change state only through actions (`src/ui/actions.ts`) that mutate, `saveAppState()` and confirm.
+- **What a screen shows** is computed by a pure function in `@atlas/core` (e.g. `homeSummary()`), unit-tested; components only render it. `useNow()` supplies the clock (every minute and on returning to the app).
+- **Calling vanilla code** (the Systems panel and editor) goes through direct imports typed by `src/app/systems.d.ts`, never `window`.
+- Tests: component tests next to the screen (`*.test.tsx`, Vitest + Testing Library in happy-dom); axe gates every moved screen (`tests/e2e/a11y.spec.mjs`).
 
 ## Styling
 - Tailwind v4 is compiled at build time. The markup was written for Tailwind v3's CDN, so `tailwind.css` keeps v3's preflight (`tailwind-v3-preflight.css`), its text line heights and its `space-y-*` behaviour (`tailwind-v3-spacing.css`), and imports Tailwind after the app's CSS without cascade layers, as the CDN did. These shims go when the screens move to React.
