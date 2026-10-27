@@ -8,18 +8,10 @@ import { WikiSearch } from './wiki-data.js';
 import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.ts';
 import { showToast } from './ui.ts';
 import { showSection, renderGuides, decorateBooks, onSection } from './nav.js';
-import {
-  renderSystems,
-  renderOutlaw,
-  renderSystemPanel,
-  panelSystemId,
-  panelMode,
-  openSystem,
-  openSystemEditor,
-  starDot
-} from './systems.js';
+import { STAR_CLASSES } from '@atlas/core/systems-model';
+import { openSystem, openSystemEditor } from '../ui/systems/panel-store.ts';
 import { updateOutlawBadges } from './companion.js';
-import { mountHome } from '../ui/home/mount.tsx';
+import { mountScreens } from '../ui/mount.tsx';
 import { registerServiceWorker } from './pwa.js';
 
 registerServiceWorker();
@@ -199,11 +191,8 @@ const CHECKLIST_DATA = {
 
 function renderAll() {
   renderAllChecklists();
-  renderSystems();
-  renderOutlaw();
-  updateOutlawBadges(); // Home itself is React (src/ui/home) and re-renders on its own
-  // Re-rendering the panel replaces the notes textarea; never do that under someone's typing.
-  if (panelSystemId && panelMode === 'view' && document.activeElement?.id !== 'systemNotes') renderSystemPanel();
+  document.getElementById('sidebarSystemsCount').textContent = appState.systems.length;
+  updateOutlawBadges(); // the React screens (src/ui) re-render on their own
   document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
   document.getElementById('homePhase').textContent = appState.meta.currentPhase || '';
 }
@@ -218,6 +207,12 @@ const SEARCH_BLOCKS = 'h3, h4, p, li, tr, [onclick^="toggleCheckItem"]';
 let wikiEntries = [];
 let searchHits = [];
 let searchActiveIndex = -1;
+
+// A system's star colour as markup, for the search results (the React screens use src/ui/parts/SystemBits.tsx).
+function starDot(system) {
+  const star = STAR_CLASSES[system.star];
+  return `<span class="w-3 h-3 shrink-0 rounded-full ${star ? '' : 'border border-dashed border-slate-600'}" style="${star ? `background:${star.color}; box-shadow: 0 2px 8px -1px ${star.color}88` : ''}" title="${escapeHtml(star?.label || 'Star colour unknown')}"></span>`;
+}
 
 function snippetAround(text, token, radius = 70) {
   const at = Math.max(0, text.toLowerCase().indexOf(token));
@@ -609,7 +604,7 @@ onSection('new-system', () => openSystemEditor());
     });
   });
   await loadAppState();
-  mountHome(); // after loading, so Home never flashes the built-in defaults
+  mountScreens(); // after loading, so no screen flashes the built-in defaults
   renderAll();
   showSection(location.hash.slice(1) || 'home'); // after state loads, so #new-system can open the editor
 })();

@@ -4,15 +4,13 @@ import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { HOUR_MS } from '@atlas/core/systems-model';
 import { appState, setAppState } from '../../app/store.ts';
-import { openSystem, openSystemEditor } from '../../app/systems.js';
+import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
 import { Home } from './Home.tsx';
 
-// The vanilla Systems screen (its panel and editor) isn't part of what's under test.
-vi.mock('../../app/systems.js', () => ({
+// The system panel (its own screen) isn't part of what's under test.
+vi.mock('../systems/panel-store.ts', () => ({
   openSystem: vi.fn(),
-  openSystemEditor: vi.fn(),
-  logPacketRun: vi.fn(),
-  copyGlyphs: vi.fn()
+  openSystemEditor: vi.fn()
 }));
 
 const ago = (hours: number) => new Date(Date.now() - hours * HOUR_MS).toISOString();

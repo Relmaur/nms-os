@@ -8,6 +8,7 @@ import {
   systemMeta,
   systemsSummary,
   tagCounts,
+  tagSuggestions,
   type SystemFilter
 } from '../src/systems-list.ts';
 import { normalizeSystem, HOUR_MS } from '../src/systems-model.ts';
@@ -130,4 +131,11 @@ test('a pasted outlaw list names the first bad line', () => {
   assert.deepEqual(parseOutlawList('Short | 123'), {
     error: 'Line 1: needs a name, and glyphs must be exactly 12 hex digits.'
   });
+});
+
+test('tag suggestions: tags in use first (as they appear), then built-ins; minus chosen ones, matching the query', () => {
+  const suggestions = tagSuggestions(systems, ['mining'], '');
+  assert.deepEqual(suggestions.slice(0, 2), ['trade-hub', 'base']);
+  assert.ok(!suggestions.includes('mining'));
+  assert.deepEqual(tagSuggestions(systems, [], 'min'), ['mining', 'farming']); // "farming" contains "min" too
 });

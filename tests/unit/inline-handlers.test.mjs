@@ -25,13 +25,7 @@ const BUILTINS = new Set([
 ]);
 
 const PAGES = {
-  'index.html': [
-    'src/app/main.js',
-    'src/app/nav.js',
-    'src/app/systems.js',
-    'src/app/companion.js',
-    'src/app/calculators.js'
-  ],
+  'index.html': ['src/app/main.js', 'src/app/nav.js', 'src/app/companion.js', 'src/app/calculators.js'],
   'wiki/index.html': ['src/codex.js']
 };
 

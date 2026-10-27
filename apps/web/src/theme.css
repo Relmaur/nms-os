@@ -293,7 +293,7 @@ input[type='search']::-webkit-search-cancel-button {
   }
 }
 
-/* Systems log + Outlaw Run (assets/app/systems.js) */
+/* Systems log + Outlaw Run (src/ui/systems, src/ui/outlaw) */
 .panel-heading {
   font-size: 11px;
   font-weight: 600;

@@ -5,6 +5,7 @@ import {
   OUTLAW_TAG,
   RACES,
   SORTS,
+  SUGGESTED_TAGS,
   lastVisit,
   normalizeGlyphs,
   systemHaystack,
@@ -80,6 +81,12 @@ export function tagCounts(systems: System[]): [string, number][] {
     );
   });
   return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+
+// Tag suggestions for the editor: tags already in use (in the order they first appear), then the built-in ones.
+export function tagSuggestions(systems: System[], exclude: string[], query: string): string[] {
+  const used = systems.flatMap(system => [...system.tags, ...system.planets.flatMap(planet => planet.tags)]);
+  return [...new Set([...used, ...SUGGESTED_TAGS])].filter(tag => !exclude.includes(tag) && tag.includes(query));
 }
 
 export function systemsSummary(systems: System[]): { systems: number; planets: number; visits: number } {

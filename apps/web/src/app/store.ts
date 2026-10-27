@@ -162,10 +162,12 @@ export function persistState(): boolean {
   }
 }
 
-export function saveAppState(): void {
-  persistState();
+// Returns whether the state reached storage (the banner already reports a failure; notes also show it inline).
+export function saveAppState(): boolean {
+  const saved = persistState();
   renderAll();
   changed();
+  return saved;
 }
 
 // Run after another tab's copy is adopted and before re-rendering, so features can carry over work in progress

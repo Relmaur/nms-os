@@ -13,6 +13,6 @@ export function showToast(msg: string): void {
   }, 3000);
 }
 
-export function haptic(pattern = 12): void {
+export function haptic(pattern: number | number[] = 12): void {
   if ('vibrate' in navigator) navigator.vibrate(pattern); // Android; iOS Safari has no vibrate()
 }

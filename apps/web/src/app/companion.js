@@ -1,35 +1,23 @@
-// Device integration: keep-awake, app badge, share sheet, install, swipe-to-close. (Home is React: src/ui/home.)
+// Device integration: keep-awake, outlaw badges, install, storage protection. (Screens are React: src/ui.)
+import { rankOutlaw } from '@atlas/core/systems-model';
 import { appState } from './store.ts';
 import { showToast, haptic } from './ui.ts';
-import { findSystem, sortedOutlaw, renderOutlaw, renderSystems, panelMode, closeSystemPanel } from './systems.js';
 
 const KEEP_AWAKE_KEY = 'atlas_keep_awake'; // per-device preference, so not part of nms_state.json
 
 // ---------------------------------------------------------------------------
 // Device integration
 // ---------------------------------------------------------------------------
-// Ready outlaw stations on the home-screen icon and the Outlaw tab.
+// Ready outlaw stations on the home-screen icon, the Outlaw tab and the sidebar.
 export function updateOutlawBadges() {
-  const rows = sortedOutlaw();
+  const rows = rankOutlaw(appState.systems, appState.outlaw.restockHours);
   const readyCount = rows.filter(row => row.status.ready).length;
+  document.getElementById('sidebarOutlawCount').textContent = rows.length ? `${readyCount}/${rows.length}` : '0';
   const badge = document.getElementById('tabOutlawBadge');
   badge.textContent = readyCount;
   badge.classList.toggle('hidden', !readyCount);
   if ('setAppBadge' in navigator)
     (readyCount ? navigator.setAppBadge(readyCount) : navigator.clearAppBadge()).catch(() => {});
-}
-
-function shareSystem(id) {
-  const system = findSystem(id);
-  if (!system || !navigator.share) return;
-  const text = [
-    system.name,
-    [system.region, system.galaxy].filter(Boolean).join(' · '),
-    system.glyphs ? `Portal glyphs: ${system.glyphs}` : ''
-  ]
-    .filter(Boolean)
-    .join('\n');
-  navigator.share({ title: system.name, text }).catch(() => {}); // dismissing the sheet rejects
 }
 
 let wakeLock = null;
@@ -121,46 +109,6 @@ async function renderStorage() {
     : 'The browser may clear site data when space runs low. Install the app, and export a backup now and then.';
 }
 
-// Drag the detail sheet's header down to dismiss it (phones only, view mode only so drafts aren't lost).
-function enableSheetDrag() {
-  const panel = document.getElementById('systemPanel');
-  let startY = null;
-  let startAt = 0;
-  let dy = 0;
-  panel.addEventListener(
-    'touchstart',
-    event => {
-      const target = event.target;
-      if (window.innerWidth >= 768 || panelMode !== 'view' || event.touches.length !== 1) return;
-      if (!target.closest('[data-sheet-grab]') || target.closest('button, a, input, textarea, select, label')) return;
-      startY = event.touches[0].clientY;
-      startAt = performance.now();
-      dy = 0;
-      panel.style.transition = 'none';
-    },
-    { passive: true }
-  );
-  panel.addEventListener(
-    'touchmove',
-    event => {
-      if (startY === null) return;
-      dy = Math.max(0, event.touches[0].clientY - startY);
-      panel.style.transform = `translateY(${dy}px)`;
-    },
-    { passive: true }
-  );
-  const end = () => {
-    if (startY === null) return;
-    const flicked = dy / (performance.now() - startAt) > 0.6 && dy > 40;
-    startY = null;
-    panel.style.transition = '';
-    panel.style.transform = ''; // the class transform takes over and animates from here
-    if (dy > 120 || flicked) closeSystemPanel();
-  };
-  panel.addEventListener('touchend', end);
-  panel.addEventListener('touchcancel', end);
-}
-
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   installPrompt = event;
@@ -172,24 +120,22 @@ window.addEventListener('appinstalled', () => {
   showToast('Installed. Atlas OS is on your home screen.');
 });
 
-// Coming back to the app (e.g. after an hour in-game): refresh countdowns and re-take the wake lock.
+// Coming back to the app (e.g. after an hour in-game): refresh the badges and re-take the wake lock. The React
+// screens refresh their own countdowns (src/ui/useNow.ts).
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState !== 'visible' || !appState.systems) return;
+  if (document.visibilityState !== 'visible') return;
   applyKeepAwake();
-  renderOutlaw();
-  renderSystems();
   updateOutlawBadges();
 });
 
-// Stations restock while the app sits open (keep-awake, mid-session): keep the badges in step with Home's minute tick.
+// Stations restock while the app sits open (keep-awake, mid-session): keep the badges in step with the screens' minute tick.
 setInterval(updateOutlawBadges, 60000);
 
 document.addEventListener('DOMContentLoaded', () => {
   if ('wakeLock' in navigator) applyKeepAwake();
   renderInstallRow();
   renderStorage();
-  enableSheetDrag();
 });
 
 // Called from inline on…="" handlers in the markup and in rendered templates.
-Object.assign(window, { shareSystem, toggleKeepAwake, promptInstall });
+Object.assign(window, { toggleKeepAwake, promptInstall });
