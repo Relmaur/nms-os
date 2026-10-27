@@ -9,7 +9,12 @@
 ```text
 nms-os/
 ├── index.html              # Main app: 6 Books, 5 calculators, logbook, state sync, global search
+├── manifest.webmanifest    # PWA manifest (name, icons, standalone display, shortcuts)
+├── sw.js                   # Service worker: offline app shell + wiki + CDN libraries
+├── .github/workflows/pages.yml  # Builds the wiki and deploys to GitHub Pages
 ├── assets/
+│   ├── pwa.js              # Registers sw.js (both pages); no-op on file:// and plain-http LAN
+│   ├── icons/              # App icons (svg source + 192/512/maskable/apple-touch PNGs)
 │   ├── theme.js / theme.css # Shared Tailwind config + styles for every page
 │   └── wiki-search.js      # Shared Codex data loading + full-text search engine (window.WikiSearch)
 ├── nms_state.json          # Shared state (meta, fleet, checklists, logbook)
@@ -57,3 +62,12 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - Custom articles live in `wiki/custom/<category>/` (committed, alongside `wiki/index.html`) and are tagged `custom` in the index. Never `rm -rf wiki/` to reset — delete only the generated folders.
 - Codex page (`wiki/index.html`): loads `offline-bundle.js` for full-text search; faceted category/source/A–Z filters with live counts, 20 results per page, quick-look panel (↑/↓, Space, Enter), article view with TOC, outgoing links, "Mentioned in" backlinks and category neighbours. The main page's header search uses the light `index.json` and deep-links into `wiki/#/a/<path>`.
 - Search ranks title > summary > headings > body > fuzzy title subsequence, with simple plural folding. `[[Article Title]]` in Markdown links to that local article. Rendered Markdown is sanitized with DOMPurify. "Create Custom .MD Article" downloads the file and keeps a browser draft until the file is indexed.
+
+## 4. Installable App & Deployment (GitHub Pages)
+- Live build: `.github/workflows/pages.yml` runs on every push to `main`, weekly (Mondays 06:17 UTC, to refresh the wiki) and on demand. It runs `node scripts/sync-wiki.mjs`, stamps `BUILD` in `sw.js`, and publishes only `index.html`, `nms_state.json`, `manifest.webmanifest`, `sw.js`, `assets/` and `wiki/`. One-time setup: Settings → Pages → Source: **GitHub Actions**.
+- Site URL: `https://relmaur.github.io/nms-os/`. Every path in the app is relative so it works under that subpath.
+- Service worker strategy: pages and `nms_state.json` are network-first (3.5s timeout for pages) with cache fallback; other same-origin files and CDN libraries are stale-while-revalidate. Each deploy gets a new shell cache (`atlas-os-shell-<BUILD>`); old ones are deleted on activate.
+- When adding a new file the app needs offline, add it to `SHELL` in `sw.js`. When adding or bumping a CDN library, update `CDN_PRECACHE` (and `CDN_HOSTS` for a new host).
+- Service workers only run on HTTPS or `localhost`. Over `file://` or a plain-http LAN address the app works online-only.
+- `nms_state.json` is published with the site. Edits made on a phone stay in that phone's browser storage; use Export/Import to move them, and commit the exported file to update the shared copy.
+- Icons: edit `assets/icons/icon.svg` / `icon-maskable.svg` (Phosphor "planet" fill), then re-render the PNGs at 192, 512, 512 (maskable) and 180 (apple-touch).

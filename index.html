@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATLAS // MASTER OS</title>
+    <meta name="description" content="Local-first No Man's Sky companion: the six-book manual, live calculators, logbook and an offline wiki Codex.">
+    <!-- Installable app (PWA) -->
+    <meta name="theme-color" content="#050811">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Atlas OS">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="assets/pwa.js" defer></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons -->
@@ -1296,6 +1307,9 @@
             }
             if (event.key === 'Escape') setNavDrawer(false);
         });
+
+        // Back/forward and home-screen shortcuts (./#calculators) change only the hash.
+        window.addEventListener('hashchange', () => showSection(location.hash.slice(1) || 'book1'));
 
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) setNavDrawer(false);
