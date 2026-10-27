@@ -469,6 +469,17 @@ label,
 .tab-item[aria-current='page'] {
   color: #67e8f9;
 }
+/* Something in More needs the person (sync can't continue on its own). */
+.tab-alert {
+  position: absolute;
+  top: -0.1rem;
+  right: -0.2rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: #fbbf24;
+  box-shadow: 0 0 0 2px #020617;
+}
 .tab-badge {
   position: absolute;
   top: -0.3rem;

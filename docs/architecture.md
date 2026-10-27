@@ -1,6 +1,6 @@
 # Architecture
 
-ATLAS // MASTER OS is a static web app built by Vite: two HTML pages plus bundled modules, served from GitHub Pages and installable as a PWA. Nothing runs on a server; user data lives in the browser (ADR-0002). The stack and its migration plan are ADR-0004.
+ATLAS // MASTER OS is a static web app built by Vite: two HTML pages plus bundled modules, served from GitHub Pages and installable as a PWA. Nothing runs on a server but the opt-in sync relay, which stores only copies sealed on the device; user data lives in the browser (ADR-0002, ADR-0005). The stack and its migration plan are ADR-0004.
 
 ## Layout
 ```text
@@ -16,6 +16,7 @@ nms-os/                          pnpm workspace
 │   │   ├── src/search.ts        Codex search engine and labels
 │   │   ├── src/game-data.ts     Zod schemas for game-data.json and recipes (shared with the wiki sync)
 │   │   ├── src/slug.ts          Article file names (shared with the wiki sync)
+│   │   ├── src/sync.ts / sync-crypto.ts   Three-way merge of two copies; the sync code, key derivation and sealing (Web Crypto)
 │   │   └── test/                Vitest
 │   └── wiki/                    @atlas/wiki: the mirror's sync, parser and API schema; Node runs the .ts directly
 │       ├── src/sync.ts          Orchestration: sync, verify, index (pnpm sync:wiki | verify:wiki | index:wiki)
@@ -35,6 +36,7 @@ nms-os/                          pnpm workspace
 │   ├── src/app/                 Non-UI modules the screens share
 │   │   ├── main.ts              Main page entry: mounts the frame, loads the state, mounts the screens, opens the section
 │   │   ├── backup.ts            Export/Import of nms_state.json (More and the header)
+│   │   ├── sync.ts              Opt-in sync: pairing, the pull-merge-push cycle and its triggers, the status More shows
 │   │   ├── store.ts             appState: load, validate, save, tab sync, storage status; subscribe() for React
 │   │   ├── ui.ts                Toast and haptics
 │   │   ├── wiki-data.js         Wiki index/bundle loading (parsed with @atlas/core/wiki-files) + drafts; exports WikiSearch
@@ -43,6 +45,7 @@ nms-os/                          pnpm workspace
 │   ├── src/styles.css / codex.css   Each page's stylesheet: fonts.css, theme.css (+ codex-page.css), tailwind.css
 │   ├── public/                  Copied into the build as-is: icons, manifest, nms_state.json, wiki → ../../../wiki
 │   └── vite.config.ts           Two pages, relative base (the site lives under /nms-os/), PWA plugin
+├── apps/sync/                   @atlas/sync: the sync relay, a Cloudflare Worker + D1 (handler.ts is tested without Cloudflare; wrangler.toml; migrations/)
 ├── wiki/<category>/*.md         Mirrored wiki pages (committed) + aliases.json; derived indexes are git-ignored
 ├── tests/e2e/                   Playwright on the built app: desktop, phone, offline
 ├── docs/                        This documentation, ADRs, STATE.md, process
@@ -52,7 +55,8 @@ nms-os/                          pnpm workspace
 ## Runtime data flow
 1. **State:** the app builds its state from built-in defaults ← `nms_state.json` (fetched) ← `localStorage` (`nms_master_os_state`), after validating each document (`validateState`), then renders every section from that single object. Every change goes through `saveAppState()`, which stamps `meta.lastUpdated`, writes `localStorage`, and re-renders.
 2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open and parse it with `GameDataSchema`. The index, the bundle, `verification.json` and drafts are parsed with the schemas in `packages/core/src/wiki-files.ts`. All three are derived from the committed `.md` archive by `pnpm index:wiki`.
-3. **Offline:** the service worker precaches the build (pages, modules, styles, icons, Latin and Greek fonts) and the wiki indexes under content-hash revisions. `nms_state.json` and `wiki/verification.json` are network-first; wiki articles are cached as they are read (docs/deploy.md).
+3. **Sync (opt-in, ADR-0005):** after load, 3 s after a save, when the app comes back into view or online, and every 2 minutes while visible, `app/sync.ts` pulls the sealed cloud copy, merges it three-way with this device's copy, adopts the result through the store, and pushes it back with the version it was based on (a 409 means another device wrote first: merge again).
+4. **Offline:** the service worker precaches the build (pages, modules, styles, icons, Latin and Greek fonts) and the wiki indexes under content-hash revisions. `nms_state.json` and `wiki/verification.json` are network-first; wiki articles are cached as they are read (docs/deploy.md).
 
 ## Module model
 - `@atlas/core` is the only home for logic that doesn't touch the DOM. Its types come from its Zod schemas where data crosses a boundary (state documents, game data) and from interfaces for the normalised in-memory shapes (`AppState`, `System`).

@@ -5,6 +5,7 @@ import { rankOutlaw } from '@atlas/core/systems-model';
 import { appState, isLoaded, subscribe } from '../../app/store.ts';
 import { useOutlawReady } from './counts.ts';
 import { useSection } from './section-store.ts';
+import { useSyncAttention } from '../../app/sync.ts';
 
 const OWN_TAB = new Set(['home', 'systems', 'outlaw']);
 
@@ -12,6 +13,7 @@ export function TabBar() {
   const section = useSection();
   const { ready } = useOutlawReady();
   const at = OWN_TAB.has(section) ? section : 'more';
+  const syncAttention = useSyncAttention();
 
   // Ready stations on the installed app's icon too (where the platform supports badges). It keeps counting while the
   // app sits minimised, which is when the icon matters: on its own minute timer, since the screens' clock pauses
@@ -32,13 +34,18 @@ export function TabBar() {
     };
   }, []);
 
-  const tab = (key: string, href: string, icon: string, label: string, badge?: number) => {
+  const tab = (key: string, href: string, icon: string, label: string, badge?: number, alert?: string) => {
     const active = at === key;
     const glyph = <i className={`${active ? 'ph-fill' : 'ph-bold'} ${icon}`} aria-hidden="true" />;
     return (
       <a href={href} data-tab={key} aria-current={active ? 'page' : undefined} className="tab-item">
-        {badge === undefined ? (
+        {badge === undefined && !alert ? (
           glyph
+        ) : alert ? (
+          <span className="relative">
+            {glyph}
+            <span className="tab-alert" aria-hidden="true" />
+          </span>
         ) : (
           <span className="relative">
             {glyph}
@@ -48,6 +55,7 @@ export function TabBar() {
           </span>
         )}
         <span>{label}</span>
+        {alert && <span className="sr-only">({alert})</span>}
       </a>
     );
   };
@@ -57,7 +65,7 @@ export function TabBar() {
       {tab('systems', '#systems', 'ph-planet', 'Systems')}
       {tab('outlaw', '#outlaw', 'ph-skull', 'Outlaw', ready)}
       {tab('codex', 'wiki/', 'ph-books', 'Codex')}
-      {tab('more', '#more', 'ph-dots-three-circle', 'More')}
+      {tab('more', '#more', 'ph-dots-three-circle', 'More', undefined, syncAttention ? 'sync needs attention' : '')}
     </nav>
   );
 }

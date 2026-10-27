@@ -5,6 +5,18 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Added
+- Sync between your devices, in More → Sync. It's off until you turn it on, and needs no account.
+  - Turn it on, then pair your phone by scanning the QR code or pasting the code. Both logs are merged: systems, visits, notes and checklists from either side are kept, and an edit made on both goes to the copy saved last.
+  - After that, devices sync on their own when you save, open the app or come back online.
+  - Your log is encrypted on your device before it's sent; the relay keeps a locked copy it can't open, and deletes it after a year without syncing.
+  - **Delete cloud copy** removes it for every device; **Turn off on this device** stops syncing here only.
+  - If something needs you (the cloud copy was deleted, or storage is full), More shows an amber dot.
+- A Support row in More for the app's Ko-fi page (hidden until the page is set).
+### Internal
+- `apps/sync`: the relay, a Cloudflare Worker with D1. Compare-and-swap versions, a 1 MB cap, a rate limit, no logs, and a yearly purge (ADR-0005).
+- `@atlas/core/sync` (three-way merge) and `@atlas/core/sync-crypto` (sync code, HKDF, AES-GCM sealing).
+- Browser tests build in `e2e` mode with a test relay address; normal builds without `VITE_SYNC_URL` carry no sync code.
 
 ## [3.9.0] - 2026-10-27
 ### Added

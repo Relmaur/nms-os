@@ -13,7 +13,7 @@ One player (the owner), on a phone propped beside the PC while playing No Man's 
 ATLAS // MASTER OS is a local-first No Man's Sky companion: a log of visited systems, an Outlaw Run planner for Suspicious Packet loops, calculators over a verified wiki mirror, a Codex of wiki articles, and a six-book personal guide. Success is answering an in-game question in a glance and a tap, without alt-tabbing or losing place in the game.
 
 ## Positioning
-Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/game-data.json`), never hand-typed and never community-crafted data; anything the wiki can't know is a labelled player input. User data never leaves the device except by explicit Export.
+Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/game-data.json`), never hand-typed and never community-crafted data; anything the wiki can't know is a labelled player input. User data never leaves the device except by explicit Export, or the opt-in sync copy, which is encrypted on the device and unreadable to the relay (ADR-0005).
 
 ## Operating Context
 - Mid-session use: one hand, short glances, the game's own crafting/refiner menus open on the PC.
@@ -25,6 +25,7 @@ Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/gam
 - Calculators may only show wiki data, arithmetic on it, or player inputs (docs/calculators.md). The planner expands crafting and cooking recipes to items with no such recipe, rounds up multi-output crafts to whole batches, and lets the player switch alternative recipes per item.
 - Saved state shape is a compatibility contract (docs/state-schema.md); changes are additive.
 - Session mode (3.9.0): a session bar with a recap, and timers saved in the log. A refiner's time is the wiki's refining time; a crop's or a custom timer's is the player's input. Alerts are local (toast, vibration, a service-worker notification) and arrive while the browser runs the app; there is no push server.
+- Sync (3.10.0): opt-in, no account. Turn it on, then pair another device with a QR code or the code. Both logs are merged three-way, so nothing typed on either side is lost. Delete cloud copy removes it for every device. A Ko-fi Support row in More appears once the owner's page is set; nothing is ever locked behind it.
 - Planner ticks persist on this device only (owner's decision, 2026-10-27): not in `nms_state.json` or exports.
 
 ## Brand Commitments

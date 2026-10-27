@@ -1,5 +1,5 @@
-// More: the tools and reading kept out of the tab bar, this device (keep-awake, install, storage protection) and
-// your data (Export and Import, the only way it leaves the device: ADR-0002).
+// More: the tools and reading kept out of the tab bar, this device (keep-awake, install, storage protection), sync
+// between devices (opt-in and encrypted: ADR-0005), your data (Export and Import), and a way to support the app.
 import type { ReactNode } from 'react';
 import { guideProgress } from '@atlas/core/guides';
 import { formatDuration } from '@atlas/core/format';
@@ -8,12 +8,18 @@ import { exportState, importState } from '../../app/backup.ts';
 import { useAppState } from '../useAppState.ts';
 import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device-store.ts';
 import { useWikiCount } from '../shell/wiki-index.ts';
+import { useSyncStatus } from '../../app/sync.ts';
+import { Sync } from './Sync.tsx';
+
+// The owner's Ko-fi page; the Support row stays hidden while this is empty.
+const KOFI_URL: string = '';
 
 export function More() {
   const state = useAppState();
   const { checklists } = state;
   const device = useDevice();
   const wikiCount = useWikiCount();
+  const sync = useSyncStatus();
   return (
     <>
       <h1 className="font-display text-2xl font-bold text-white">More</h1>
@@ -107,6 +113,8 @@ export function More() {
         </Group>
       )}
 
+      <Sync />
+
       <div className="space-y-2">
         <h2 className="list-heading">Your data</h2>
         <ul className="list-group">
@@ -132,8 +140,24 @@ export function More() {
             </label>
           </li>
         </ul>
-        <p className="px-1 text-xs text-slate-400">Everything you log stays on this device until you export it.</p>
+        <p className="px-1 text-xs text-slate-400">
+          {sync.enabled
+            ? 'Everything you log stays on this device, plus the encrypted copy sync keeps for your devices.'
+            : 'Everything you log stays on this device until you export it or turn on sync.'}
+        </p>
       </div>
+
+      {KOFI_URL && (
+        <Group title="Support">
+          <li>
+            <a href={KOFI_URL} target="_blank" rel="noopener" className="list-row">
+              <Tile icon="ph-coffee text-amber-300" />
+              <Text title="Support ATLAS on Ko-fi">Free, with nothing locked. A coffee helps keep sync running.</Text>
+              <i className="ph-bold ph-arrow-square-out text-slate-500" aria-hidden="true" />
+            </a>
+          </li>
+        </Group>
+      )}
     </>
   );
 }

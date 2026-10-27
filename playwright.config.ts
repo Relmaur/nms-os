@@ -1,5 +1,5 @@
 // Browser tests on a desktop and a phone viewport, plus an offline run, against the built app served by
-// `vite preview`: what users get, not the dev server. `pnpm test:e2e` builds first.
+// `vite preview`: what users get, not the dev server. `pnpm test:e2e` builds first (in e2e mode: the same build with a test sync address, apps/web/.env.e2e).
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4173;

@@ -11,6 +11,7 @@ import { onSection, startSections } from '../ui/shell/section-store.ts';
 import { reportStorage } from '../ui/shell/StorageBanner.tsx';
 import { setWikiEntries } from '../ui/shell/wiki-index.ts';
 import { startTimerRunner } from '../ui/session/timer-runner.ts';
+import { startSync, takePairingLink } from './sync.ts';
 
 registerServiceWorker();
 startDevice();
@@ -25,4 +26,7 @@ void WikiSearch.load('wiki/').then(setWikiEntries);
 await loadAppState();
 startTimerRunner(); // a timer that finished while the app was closed is announced now
 mountScreens();
+takePairingLink(); // before the sections read the address: a #pair= link opens More and asks first
+window.addEventListener('hashchange', takePairingLink); // registered before the sections' own listener
+startSync(); // after the state loads, so the first sync merges with the saved log
 startSections(); // after the state loads, so #new-system can open the editor

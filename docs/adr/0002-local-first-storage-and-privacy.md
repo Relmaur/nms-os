@@ -1,6 +1,6 @@
 # ADR-0002: Local-first storage, privacy posture and consistency model
 
-- **Status:** Accepted (2026-10-27), recording the design in place since 2.0.0 plus the 3.0.0 hardening
+- **Status:** Accepted (2026-10-27), recording the design in place since 2.0.0 plus the 3.0.0 hardening. Amended by ADR-0005: opt-in, end-to-end encrypted sync between a player's devices.
 
 ## Context
 Everything the player logs (systems, planets, visits, notes, checklists, fleet, outlaw settings) is personal, small (well under 1 MB), and used on one device at a time, often offline mid-session. There is no server.
@@ -11,7 +11,7 @@ Everything the player logs (systems, planets, visits, notes, checklists, fleet, 
 - **Consistency:**
   - Strong within a tab: a single writer applies whole-document saves.
   - Between tabs on one device, last write wins. From 3.0.0 a `storage` event listener reloads the other tab immediately, so a stale tab can't silently overwrite newer data.
-  - Between devices: manual and explicit (Export/Import). There is no concurrent cross-device editing to reconcile.
+  - Between devices: manual and explicit (Export/Import), or, once the person turns it on, encrypted sync with a three-way merge (ADR-0005).
 - **Durability:**
   - A failed write (quota, private mode) shows a persistent banner that offers an export.
   - A corrupt stored copy is preserved under a `.corrupt-<timestamp>` key before recovery.

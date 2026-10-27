@@ -5,6 +5,7 @@ import { useAppState } from '../useAppState.ts';
 import { useWikiCount } from './wiki-index.ts';
 import { useLoaded, useOutlawReady } from './counts.ts';
 import { showSection, useSection } from './section-store.ts';
+import { useSyncAttention } from '../../app/sync.ts';
 
 export function Sidebar() {
   const state = useAppState();
@@ -12,6 +13,7 @@ export function Sidebar() {
   const outlaw = useOutlawReady();
   const wikiCount = useWikiCount();
   const loaded = useLoaded();
+  const syncAttention = useSyncAttention();
   const at = section.startsWith('book') ? 'guides' : section; // a book is part of Guides
   const item = (key: string, icon: string, color: string, label: string, count?: ReactNode, countId?: string) => (
     <li>
@@ -83,7 +85,18 @@ export function Sidebar() {
             'Guides',
             `${String(loaded ? guideProgress(state.checklists).pct : 0)}%`
           )}
-          {item('more', 'ph-gear-six', 'text-slate-300', 'Device & data')}
+          {item(
+            'more',
+            'ph-gear-six',
+            'text-slate-300',
+            'Device & data',
+            syncAttention ? (
+              <>
+                <span className="tab-alert static inline-block" aria-hidden="true" />
+                <span className="sr-only">Sync needs attention</span>
+              </>
+            ) : undefined
+          )}
         </ul>
       </div>
     </nav>

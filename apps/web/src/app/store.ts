@@ -127,8 +127,16 @@ async function fetchRepoState(): Promise<Record<string, unknown> | null> {
   return null;
 }
 
+// What a device holds before anyone logs anything (defaults + the repo file). Sync merges a first pairing against it,
+// so starter data a player removed or changed on one device doesn't come back from another device's untouched copy.
+let startingState: AppState = buildState();
+export function getStartingState(): AppState {
+  return structuredClone(startingState);
+}
+
 export async function loadAppState(): Promise<void> {
   const repoState = await fetchRepoState();
+  startingState = buildState(repoState);
   const localState = readLocalState();
   // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
   appState =
@@ -139,8 +147,9 @@ export async function loadAppState(): Promise<void> {
 }
 
 // The only way the state reaches storage. Returns true once it's written; every failure reaches the banner.
-export function persistState(): boolean {
-  appState.meta.lastUpdated = new Date().toISOString();
+// `touch: false` keeps the save time, for a copy merged from sync that this device didn't edit.
+export function persistState({ touch = true } = {}): boolean {
+  if (touch) appState.meta.lastUpdated = new Date().toISOString();
   if (protectUnread) {
     reportStatus({ unreadableNotKept: true });
     return false;
@@ -188,10 +197,28 @@ window.addEventListener('storage', event => {
     logEvent('other-tab-state-ignored', { reason: describeErrors(check.errors) });
     return;
   }
-  appState = buildState(next);
+  adoptState(buildState(next));
+  reportStatus({ fromOtherTab: true });
+});
+
+// Another tab may have saved a moment ago and its `storage` event not arrived yet: take that copy first if it's newer,
+// so sync never merges (and then saves) an older log over it.
+export function adoptNewerStoredCopy(): void {
+  let next: unknown;
+  try {
+    next = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
+  } catch {
+    return;
+  }
+  if (!isPlainObject(next) || !validateState(next).ok) return;
+  if (stateTimestamp(next) > stateTimestamp(appState)) adoptState(buildState(next));
+}
+
+// Take a newer copy from elsewhere (another tab, or sync) and re-render, carrying over work in progress.
+export function adoptState(next: AppState): void {
+  appState = next;
   adoptHooks.forEach(run => {
     run();
   });
   changed();
-  reportStatus({ fromOtherTab: true });
-});
+}
