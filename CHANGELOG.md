@@ -5,6 +5,8 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Internal
+- The phone sheet drag test waits until the sheet has no animation left running before touching its bar; comparing two quick position reads (3.7.1) could pass mid-slide.
 
 ## [3.8.0] - 2026-10-27
 ### Changed
