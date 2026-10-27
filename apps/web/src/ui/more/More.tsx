@@ -12,7 +12,7 @@ import { useSyncStatus } from '../../app/sync.ts';
 import { Sync } from './Sync.tsx';
 
 // The owner's Ko-fi page; the Support row stays hidden while this is empty.
-const KOFI_URL: string = '';
+const KOFI_URL: string = 'https://ko-fi.com/mlizardo';
 
 export function More() {
   const state = useAppState();

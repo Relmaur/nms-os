@@ -41,3 +41,11 @@ test('past play sessions are listed, newest first', () => {
   const rows = screen.getByRole('heading', { name: 'Play sessions' }).nextElementSibling?.textContent ?? '';
   expect(rows.indexOf('2h 30m · 0 visits · 3 timers')).toBeLessThan(rows.indexOf('1h · 0 visits'));
 });
+
+test('Support opens the Ko-fi page in a new tab', () => {
+  render(<More />);
+  const link = screen.getByRole('link', { name: /Support ATLAS on Ko-fi/ });
+  expect(link.getAttribute('href')).toBe('https://ko-fi.com/mlizardo');
+  expect(link.getAttribute('target')).toBe('_blank');
+  expect(link.getAttribute('rel')).toContain('noopener');
+});

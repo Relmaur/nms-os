@@ -9,7 +9,7 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 ## In progress
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.atlas-companion.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).
 
-Waiting on the owner's Ko-fi page URL, for `KOFI_URL` in `apps/web/src/ui/more/More.tsx`. The Support row stays hidden until then.
+More's Support row links to the owner's Ko-fi page (3.11.0).
 
 ADR-0004 steps 3 and 4 are done: every screen is React (3.8.0), and Session mode with timers shipped in 3.9.0.
 
@@ -37,7 +37,7 @@ None.
 - **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is CC BY-SA 3.0, which allows this with attribution.
 
 ## Next steps
-1. **Owner check:** pair a real phone with the PC on the live site.
+1. **Owner check done (2026-10-27):** an iPhone and the PC synced on the live site (a system renamed on the phone showed on the PC).
 2. **Web Push for finished timers** on the same Worker: the device registers a push subscription and the timer's end time; a cron or Durable Object alarm sends the push. It needs its own Data Privacy note: push endpoints and end times would be stored.
 3. The recommendations engine on `wiki/game-data.json`.
 4. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.

@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.11.0] - 2026-10-27
+### Added
+- More → Support: a link to ATLAS's Ko-fi page, for anyone who'd like to buy a coffee. Everything stays free; nothing is locked behind it.
+
 ## [3.10.0] - 2026-10-27
 ### Added
 - Sync between your devices, in More → Sync. It's off until you turn it on, and needs no account.
