@@ -6,6 +6,12 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.7.1] - 2026-10-27
+### Fixed
+- "Keep screen on" sometimes took two taps to turn on. When the system had let the screen sleep (battery saver, a moment away from the app), the first tap switched off a setting that still read as on. A tap now always flips what the switch shows.
+### Internal
+- The phone sheet drag test waits for the sheet to finish sliding in before touching its bar; under load it sometimes measured mid-slide and missed.
+
 ## [3.7.0] - 2026-10-27
 ### Changed
 - Guides, the six books and More are React screens (ADR-0004 step 3). They read and work as before, at the same addresses (`#guides`, `#book1`–`#book6`, `#more`); the books' text is unchanged.

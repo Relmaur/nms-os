@@ -68,7 +68,16 @@ test('on a phone, dragging the sheet’s bar down closes it', async ({ page, bro
   const handle = page.locator('#systemPanel [data-sheet-handle]');
   await expect(handle).toBeVisible();
   await expect(page.getByRole('button', { name: 'Close', exact: true })).toHaveCount(1); // the bar, no ✕
-  const box = await handle.boundingBox();
+  // Measure once the sheet has finished sliding in: under a loaded machine the animation runs long, and a box taken
+  // mid-slide puts the touch beside the bar.
+  let box = await handle.boundingBox();
+  await expect
+    .poll(async () => {
+      const previous = box;
+      box = await handle.boundingBox();
+      return previous.y === box.y;
+    })
+    .toBe(true);
   const x = box.x + box.width / 2;
   const y = box.y + box.height / 2;
   const cdp = await page.context().newCDPSession(page);

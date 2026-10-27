@@ -96,8 +96,10 @@ async function syncWakeLock(): Promise<void> {
   changed();
 }
 
+// A tap flips what the switch shows (whether the lock is held), not the stored wish: the system can drop the lock
+// (battery saver, a moment away) while the wish stays on, and flipping the wish then took a second tap to show.
 export function toggleKeepAwake(): void {
-  const next = !keepAwakeWanted();
+  const next = wakeLock === null;
   try {
     localStorage.setItem(KEEP_AWAKE_KEY, next ? '1' : '0');
   } catch {
