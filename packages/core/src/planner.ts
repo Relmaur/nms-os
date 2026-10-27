@@ -103,3 +103,183 @@ export function collectRaw(node: PlanNode, totals: Map<string, RawTotal> = new M
 
 export const countSteps = (node: PlanNode): number =>
   node.recipe ? 1 + node.children.reduce((sum, child) => sum + countSteps(child), 0) : 0;
+
+// ---------------------------------------------------------------------------
+// Build order: the same plan as crafting rounds instead of a tree. Each crafted item appears once with its total
+// demand, so a shared intermediate is batched once (as you would craft it in game), and round N only needs what
+// rounds below it made.
+// ---------------------------------------------------------------------------
+export interface StepInput {
+  title: string;
+  item: GameItem | undefined;
+  qty: number;
+  raw: boolean;
+}
+export interface PlanStep {
+  title: string;
+  item: GameItem | undefined;
+  qty: number; // how many the plan needs
+  batches: number;
+  makes: number; // batches × the recipe's output, ≥ qty
+  recipe: Recipe;
+  recipes: Recipe[]; // the alternatives, for the recipe switch
+  index: number;
+  round: number; // 1 = needs only raw materials
+  inputs: StepInput[];
+}
+export interface BuildPlan {
+  product: PlanStep;
+  rounds: PlanStep[][]; // rounds[0] is round 1; the product is not in them
+  raw: (RawTotal & { title: string })[]; // largest amount first
+  steps: number; // crafting and cooking steps, the product included
+}
+
+interface Craft {
+  title: string;
+  item: GameItem;
+  recipes: Recipe[];
+  index: number;
+  recipe: Recipe;
+  inputs: { title: string; item: GameItem | undefined; perBatch: number; raw: boolean }[];
+}
+
+export function buildPlan(
+  catalog: Catalog,
+  name: string,
+  qty: number,
+  choices: Record<string, number> = {}
+): BuildPlan | undefined {
+  const crafts = new Map<string, Craft>(); // in discovery order: an item's inputs follow it
+  // An input already on the path back to the product is a cycle, and is treated as raw.
+  const discover = (title: string, item: GameItem, depth: number, path: Set<string>): void => {
+    if (crafts.has(title)) return;
+    const recipes = planRecipes(catalog, item);
+    const index = Math.min(choices[title] ?? 0, recipes.length - 1);
+    const recipe = recipes[index];
+    if (!recipe) return;
+    const next = new Set(path).add(title);
+    const craft: Craft = { title, item, recipes, index, recipe, inputs: [] };
+    crafts.set(title, craft);
+    for (const input of recipe.inputs) {
+      const inputItem = findItem(catalog, input.name);
+      const inputTitle = inputItem?.title ?? input.name;
+      const craftable =
+        inputItem && depth + 1 < PLAN_MAX_DEPTH && !next.has(inputTitle) && planRecipes(catalog, inputItem).length;
+      craft.inputs.push({ title: inputTitle, item: inputItem, perBatch: Number(input.qty) || 1, raw: !craftable });
+      if (craftable) discover(inputTitle, inputItem, depth + 1, next);
+    }
+  };
+  const productItem = findItem(catalog, name);
+  if (!productItem) return undefined;
+  discover(productItem.title, productItem, 0, new Set());
+  const product = crafts.get(productItem.title);
+  if (!product) return undefined;
+
+  // Consumers before their inputs (a topological order), so every demand is complete before it is batched.
+  const order: Craft[] = [];
+  const seen = new Set<string>();
+  const visit = (craft: Craft): void => {
+    if (seen.has(craft.title)) return;
+    seen.add(craft.title);
+    craft.inputs.forEach(input => {
+      const next = input.raw ? undefined : crafts.get(input.title);
+      if (next) visit(next);
+    });
+    order.unshift(craft);
+  };
+  visit(product);
+
+  const demand = new Map<string, number>([[product.title, qty]]);
+  const raw = new Map<string, RawTotal>();
+  const steps = new Map<string, PlanStep>();
+  for (const craft of order) {
+    const need = demand.get(craft.title) ?? 0;
+    const perBatch = Number(craft.recipe.outputs[0]?.qty) || 1;
+    const batches = Math.ceil(need / perBatch);
+    const inputs = craft.inputs.map(input => {
+      const amount = input.perBatch * batches;
+      if (input.raw) {
+        const entry = raw.get(input.title) ?? { item: input.item, qty: 0 };
+        entry.qty += amount;
+        raw.set(input.title, entry);
+      } else {
+        demand.set(input.title, (demand.get(input.title) ?? 0) + amount);
+      }
+      return { title: input.title, item: input.item, qty: amount, raw: input.raw };
+    });
+    steps.set(craft.title, {
+      title: craft.title,
+      item: craft.item,
+      qty: need,
+      batches,
+      makes: batches * perBatch,
+      recipe: craft.recipe,
+      recipes: craft.recipes,
+      index: craft.index,
+      round: 0,
+      inputs
+    });
+  }
+
+  // Round = 1 + the highest round among crafted inputs; inputs come later in `order`, so walk it backwards.
+  for (const craft of [...order].reverse()) {
+    const step = steps.get(craft.title);
+    if (!step) continue;
+    step.round = 1 + Math.max(0, ...step.inputs.map(input => (input.raw ? 0 : (steps.get(input.title)?.round ?? 0))));
+  }
+  const productStep = steps.get(product.title);
+  if (!productStep) return undefined;
+  const rounds: PlanStep[][] = [];
+  for (const craft of crafts.values()) {
+    const step = steps.get(craft.title);
+    if (!step || step === productStep) continue;
+    (rounds[step.round - 1] ??= []).push(step);
+  }
+  return {
+    product: productStep,
+    rounds: rounds.filter(Boolean),
+    raw: [...raw.entries()].map(([title, entry]) => ({ title, ...entry })).sort((a, b) => b.qty - a.qty),
+    steps: steps.size
+  };
+}
+
+// What the player has ticked off: gathered raw materials (`raw:<title>`) and finished crafts (`craft:<title>`).
+export const rawKey = (title: string): string => `raw:${title}`;
+export const craftKey = (title: string): string => `craft:${title}`;
+export type StepState = 'done' | 'ready' | 'waiting';
+export interface PlanProgress {
+  step: (title: string) => StepState; // ready = every input is ticked
+  round: (index: number) => StepState; // ready = every step in it is ready or done
+  gathered: number;
+  crafted: number;
+  complete: boolean;
+}
+
+export function planProgress(plan: BuildPlan, ticked: ReadonlySet<string>): PlanProgress {
+  const all = [...plan.rounds.flat(), plan.product];
+  const states = new Map<string, StepState>(
+    all.map(step => [
+      step.title,
+      ticked.has(craftKey(step.title))
+        ? 'done'
+        : step.inputs.every(input => ticked.has(input.raw ? rawKey(input.title) : craftKey(input.title)))
+          ? 'ready'
+          : 'waiting'
+    ])
+  );
+  const step = (title: string): StepState => states.get(title) ?? 'waiting';
+  return {
+    step,
+    round: index => {
+      const list = (plan.rounds[index] ?? []).map(item => step(item.title));
+      return list.every(state => state === 'done')
+        ? 'done'
+        : list.every(state => state !== 'waiting')
+          ? 'ready'
+          : 'waiting';
+    },
+    gathered: plan.raw.filter(entry => ticked.has(rawKey(entry.title))).length,
+    crafted: all.filter(item => ticked.has(craftKey(item.title))).length,
+    complete: ticked.has(craftKey(plan.product.title))
+  };
+}
