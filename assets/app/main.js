@@ -70,7 +70,8 @@ function renderAll() {
     renderSystems();
     renderOutlaw();
     renderHome();
-    if (panelSystemId && panelMode === 'view') renderSystemPanel();
+    // Re-rendering the panel replaces the notes textarea; never do that under someone's typing.
+    if (panelSystemId && panelMode === 'view' && document.activeElement?.id !== 'systemNotes') renderSystemPanel();
     document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
     document.getElementById('homePhase').textContent = appState.meta.currentPhase || '';
 }
@@ -409,6 +410,7 @@ function dismissStorageBanner() {
 onStorageStatus(status => {
     if (status.saveFailed) setStorageBanner('Not saved on this device: the browser refused to store your changes (storage may be full, or this is a private window). They’re kept until you close the app, so export a backup now.', { offerExport: true });
     else if (status.saveFailed === false) setStorageBanner('');
+    if (status.unreadableNotKept) setStorageBanner('Your saved data in this browser couldn’t be read, and there’s no room to keep a copy aside, so the app won’t write over it: changes you make now are not saved. Export them if you need them, then free up browser storage and reload.', { offerExport: true });
     if (status.recoveredKey) setStorageBanner(`Your saved data in this browser couldn’t be read, so the app started from the default state. Nothing was deleted: the unreadable copy is kept in this browser under “${status.recoveredKey}”.`);
     if (status.fromOtherTab) showToast('Updated with changes from another tab.');
 });

@@ -31,11 +31,26 @@ function logEvent(event, detail = {}) {
     console.warn('[atlas]', { event, ...detail });
 }
 
+// Set when the stored copy couldn't be read *and* couldn't be copied aside (storage full): from then on the app
+// never writes over it, so unread data is never destroyed. Saving resumes after a reload once there is room.
+let protectUnread = false;
+
 // An unreadable browser copy is kept under its own key before the app falls back to defaults, so a bug or a bad
-// edit can never silently destroy someone's log.
+// edit can never silently destroy someone's log. The same copy is reused on later reloads, not duplicated.
 function preserveUnreadable(raw, reason) {
-    const key = `${STORAGE_KEY}.corrupt-${new Date().toISOString()}`;
-    try { localStorage.setItem(key, raw); } catch {}
+    let key;
+    try {
+        key = Object.keys(localStorage).find(name => name.startsWith(`${STORAGE_KEY}.corrupt-`) && localStorage.getItem(name) === raw) || null;
+        if (!key) {
+            key = `${STORAGE_KEY}.corrupt-${new Date().toISOString()}`;
+            localStorage.setItem(key, raw);
+        }
+    } catch (e) {
+        protectUnread = true;
+        logEvent('local-state-unreadable', { reason, keptAs: null, copyFailed: e.name });
+        reportStatus({ unreadableNotKept: true });
+        return;
+    }
     logEvent('local-state-unreadable', { reason, keptAs: key });
     reportStatus({ recoveredKey: key });
 }
@@ -91,19 +106,37 @@ export async function loadAppState() {
         : buildState(repoState, localState);
 }
 
-export function saveAppState() {
+// The only way the state reaches storage. Returns true once it's written; every failure reaches the banner.
+export function persistState() {
     appState.meta.lastUpdated = new Date().toISOString();
+    if (protectUnread) {
+        reportStatus({ unreadableNotKept: true });
+        return false;
+    }
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
         if (saveFailed) reportStatus({ saveFailed: (saveFailed = false) });
+        return true;
     } catch (e) {
         // Quota exceeded or storage blocked (private mode): the data stays in memory, and the banner tells the
         // person to export it before closing the app.
         saveFailed = true;
         logEvent('save-failed', { reason: e.name });
         reportStatus({ saveFailed: true });
+        return false;
     }
+}
+
+export function saveAppState() {
+    persistState();
     renderAll();
+}
+
+// Run after another tab's copy is adopted and before re-rendering, so features can carry over work in progress
+// (notes being typed) or react to records that disappeared.
+const adoptHooks = [];
+export function onAdopt(run) {
+    adoptHooks.push(run);
 }
 
 // Another tab of the app saved: adopt its copy, so this tab never writes stale data over newer changes.
@@ -111,9 +144,14 @@ export function saveAppState() {
 window.addEventListener('storage', event => {
     if (event.key !== STORAGE_KEY || !event.newValue) return;
     let next;
-    try { next = JSON.parse(event.newValue); } catch { return; }
-    if (!validateState(next).ok) return;
+    try { next = JSON.parse(event.newValue); } catch { next = null; }
+    const check = next ? validateState(next) : { ok: false, errors: [{ path: '(root)', message: 'not JSON' }] };
+    if (!check.ok) {
+        logEvent('other-tab-state-ignored', { reason: describeErrors(check.errors) });
+        return;
+    }
     appState = buildState(next);
+    adoptHooks.forEach(run => run());
     renderAll();
     reportStatus({ fromOtherTab: true });
 });

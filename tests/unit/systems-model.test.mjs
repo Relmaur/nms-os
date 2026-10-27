@@ -63,3 +63,11 @@ test('durations read naturally', () => {
   assert.equal(formatAgo('2026-10-27T11:59:30Z', now), 'just now');
   assert.equal(formatAgo('2026-10-27T10:00:00Z', now), '2h ago');
 });
+
+test('unsafe ids are made safe; generated and legacy ids are kept', () => {
+  assert.equal(normalizeSystem({ id: "x');alert(1);('" }).id, 'x---alert-1----');
+  assert.equal(normalizeSystem({ id: 1698000000000 }).id, '1698000000000');
+  assert.equal(normalizeSystem({ id: 'camp-01' }).id, 'camp-01');
+  assert.match(normalizeSystem({ id: "');('" }).id, /^sys-/, 'nothing usable left: a fresh id');
+  assert.equal(normalizeSystem({ planets: [{ id: 'pl "x"', name: 'P' }] }).planets[0].id, 'pl--x-');
+});

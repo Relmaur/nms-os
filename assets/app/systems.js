@@ -7,7 +7,7 @@ import {
     newId, tagSlug, normalizeGlyphs, normalizeSystem, lastVisit, systemHaystack, systemTags, packetsLogged,
     outlawStatus as computeOutlawStatus, rankOutlaw
 } from '../lib/systems-model.js';
-import { appState, saveAppState, STORAGE_KEY } from './store.js';
+import { appState, saveAppState, persistState, onAdopt } from './store.js';
 import { showToast, haptic } from './ui.js';
 import { showSection } from './nav.js';
 
@@ -522,8 +522,12 @@ export function filterByTag(tag) {
 
 let notesTimer = null;
 let notesSystemId = null;
+// True only between a keystroke and its autosave. Only unsaved typing may be written back or carried into another
+// tab's copy; writing a stale textarea would overwrite newer notes (and two tabs would keep undoing each other).
+let notesDirty = false;
 function queueNotesSave(id) {
     notesSystemId = id;
+    notesDirty = true;
     document.getElementById('notesStatus').textContent = 'Editing…';
     clearTimeout(notesTimer);
     notesTimer = setTimeout(flushNotes, 800);
@@ -534,14 +538,38 @@ function flushNotes() {
     clearTimeout(notesTimer);
     const textarea = document.getElementById('systemNotes');
     const system = notesSystemId && findSystem(notesSystemId);
+    if (!notesDirty) {
+        // Nothing typed here, but another tab may have saved while this textarea had focus: show its notes.
+        // Only the text is updated; re-rendering the panel on blur would swallow the click that caused the blur.
+        if (textarea && system && textarea.value !== system.notes) textarea.value = system.notes;
+        return;
+    }
+    notesDirty = false;
     if (!textarea || !system || system.notes === textarea.value) return;
     system.notes = textarea.value;
-    appState.meta.lastUpdated = new Date().toISOString();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); } catch (e) { console.warn('Could not save notes:', e); }
+    const saved = persistState(); // a failure raises the storage banner like any other save
     renderSystems();
     const status = document.getElementById('notesStatus');
-    if (status) status.textContent = 'Saved';
+    if (status) status.textContent = saved ? 'Saved' : 'Not saved';
 }
+
+// Another tab saved while this one is open (store.js adopts its copy first).
+onAdopt(() => {
+    // Carry notes typed here into the adopted copy, so they aren't lost under the other tab's save.
+    const textarea = document.getElementById('systemNotes');
+    const system = notesDirty && textarea && notesSystemId && findSystem(notesSystemId);
+    if (system && system.notes !== textarea.value) {
+        clearTimeout(notesTimer);
+        notesDirty = false;
+        system.notes = textarea.value;
+        persistState();
+    }
+    // Saving an edit to a system the other tab deleted would bring it back.
+    if (panelMode === 'edit' && panelSystemId && !findSystem(panelSystemId)) {
+        closeSystemPanel();
+        showToast('That system was deleted in another tab.');
+    }
+});
 
 function editPlanet(planetId) {
     editingPlanetId = planetId;

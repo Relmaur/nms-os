@@ -24,6 +24,7 @@ const WIKI_API = `${WIKI_BASE}/api.php`;
 const USER_AGENT = 'nms-os-sync-wiki/3.0 (personal offline companion app)';
 const BATCH = 50; // pages per revisions request (the API maximum for content)
 const REQUEST_DELAY_MS = 250;
+const REQUEST_TIMEOUT_MS = 30000; // a stalled connection must reach the retry/unreachable path, not hang the CI job
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // ---------------------------------------------------------------------------
@@ -33,7 +34,7 @@ async function api(params, attempt = 1) {
   const url = new URL(WIKI_API);
   Object.entries({ format: 'json', formatversion: '2', ...params }).forEach(([key, value]) => url.searchParams.set(key, String(value)));
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
+    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
     const data = await res.json();
     if (data.error) throw new Error(`${data.error.code}: ${data.error.info}`);
@@ -173,15 +174,30 @@ async function sync({ dryRun }) {
   const changes = plan(livePages, await readArchive());
   const committedAliases = await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '');
   const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles)
-    .catch(() => ({ aliases: JSON.parse(committedAliases || '{}'), unlinked: changes.unknownNames })); // keep the committed map if the wiki drops mid-sync
+    .catch(err => {
+      // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
+      console.warn(`⚠️  Couldn't refresh redirect aliases (${err.message}); keeping the committed aliases.json.`);
+      return { aliases: JSON.parse(committedAliases || '{}'), unlinked: changes.unknownNames };
+    });
   const aliasesText = `${JSON.stringify(aliases, null, 2)}\n`;
   const aliasesChanged = committedAliases !== aliasesText;
   const differences = changes.writes.length + changes.deletes.length + (aliasesChanged ? 1 : 0);
   if (!dryRun) {
-    for (const file of changes.deletes) await fs.rm(path.join(WIKI_DIR, file), { force: true });
+    // Writes first, then deletes: if the disk fails partway, a renamed page exists twice rather than not at all.
     for (const { file, text } of changes.writes) {
       await fs.mkdir(path.dirname(path.join(WIKI_DIR, file)), { recursive: true });
       await fs.writeFile(path.join(WIKI_DIR, file), text, 'utf8');
+    }
+    // A rename that only changes letter case writes into the same file on case-insensitive disks (macOS), so the old
+    // name must not be deleted there; on case-sensitive disks (Linux, CI) it is a separate file and must go.
+    const writtenByLowerCase = new Map(changes.writes.map(write => [write.file.toLowerCase(), write.file]));
+    for (const file of changes.deletes) {
+      const twin = writtenByLowerCase.get(file.toLowerCase());
+      if (twin) {
+        const [old, current] = await Promise.all([file, twin].map(name => fs.stat(path.join(WIKI_DIR, name)).catch(() => null)));
+        if (!old || (current && old.ino === current.ino && old.dev === current.dev)) continue;
+      }
+      await fs.rm(path.join(WIKI_DIR, file), { force: true });
     }
     if (aliasesChanged) await fs.writeFile(path.join(WIKI_DIR, 'aliases.json'), aliasesText, 'utf8');
   }

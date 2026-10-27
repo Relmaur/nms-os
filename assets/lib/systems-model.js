@@ -1,6 +1,6 @@
 // Systems log model: constants, normalisation, legacy migration and Outlaw Run status (pure, no DOM).
 // State lives in nms_state.json → systems[] + outlaw{} (docs/state-schema.md).
-import { isPlainObject } from './util.js';
+import { isPlainObject, SAFE_ID } from './util.js';
 import { formatDuration } from './format.js';
 
 export const OUTLAW_TAG = 'outlaw';
@@ -33,13 +33,19 @@ export function normalizeGlyphs(value) {
     return String(value || '').replace(/[^0-9a-f]/gi, '').toUpperCase();
 }
 
+// Every id the app generates already matches SAFE_ID; anything else (hand-edited files) is made safe here.
+export function safeId(value, prefix) {
+    const id = String(value ?? '').replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 80);
+    return SAFE_ID.test(id) && /[A-Za-z0-9]/.test(id) ? id : newId(prefix);
+}
+
 export function clampInt(value, min, max) {
     return Math.min(max, Math.max(min, Math.round(Number(value)) || 0));
 }
 
 export function normalizeSystem(raw) {
     const system = {
-        id: String(raw.id || newId('sys')),
+        id: safeId(raw.id, 'sys'),
         name: String(raw.name || 'Unnamed system').trim() || 'Unnamed system',
         galaxy: String(raw.galaxy || 'Euclid'),
         region: String(raw.region || ''),
@@ -54,7 +60,7 @@ export function normalizeSystem(raw) {
         rating: clampInt(raw.rating, 0, 5),
         notes: String(raw.notes || ''),
         planets: (Array.isArray(raw.planets) ? raw.planets : []).filter(isPlainObject).map(planet => ({
-            id: String(planet.id || newId('pl')),
+            id: safeId(planet.id, 'pl'),
             name: String(planet.name || 'Unnamed planet'),
             biome: String(planet.biome || ''),
             tags: [...new Set((Array.isArray(planet.tags) ? planet.tags : []).map(tagSlug).filter(Boolean))],
