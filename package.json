@@ -16,12 +16,12 @@
     "sync:wiki": "node packages/wiki/src/sync.ts",
     "verify:wiki": "node packages/wiki/src/sync.ts --verify",
     "index:wiki": "node packages/wiki/src/sync.ts --index-only",
-    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web && tsc -p apps/web/src/sw",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web && tsc -p apps/web/src/sw && tsc -p apps/sync",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "test:e2e": "pnpm build && playwright test",
+    "test:e2e": "pnpm --filter @atlas/web build --mode e2e && playwright test",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm test:e2e"
   },
   "devDependencies": {

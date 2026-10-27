@@ -1,0 +1,29 @@
+# The sync relay (ADR-0005), deployed by CI (.github/workflows/pages.yml) to <name>.<account>.workers.dev.
+# Setup and secrets: docs/deploy.md.
+name = "atlas-sync"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Logs would hold request URLs (vault ids); the relay keeps none.
+[observability]
+enabled = false
+
+[vars]
+ALLOWED_ORIGINS = "https://relmaur.github.io,http://localhost:5173,http://localhost:4173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "atlas-sync"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# 60 requests a minute per client is far above what syncing needs.
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "1001"
+simple = { limit = 60, period = 60 }
+
+# Daily, 04:23 UTC: delete vaults untouched for a year.
+[triggers]
+crons = ["23 4 * * *"]

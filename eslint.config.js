@@ -6,7 +6,16 @@ import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
-  { ignores: ['**/node_modules/', 'wiki/offline-bundle.js', 'test-results/', 'playwright-report/', '**/dist/'] },
+  {
+    ignores: [
+      '**/node_modules/',
+      'wiki/offline-bundle.js',
+      'test-results/',
+      'playwright-report/',
+      '**/dist/',
+      '**/.wrangler/'
+    ]
+  },
   js.configs.recommended,
   {
     rules: {

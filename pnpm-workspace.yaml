@@ -1,3 +1,7 @@
 packages:
   - packages/*
   - apps/*
+# Wrangler's bundler and Cloudflare's local runtime fetch their platform binaries on install.
+allowBuilds:
+  esbuild: true
+  workerd: true
