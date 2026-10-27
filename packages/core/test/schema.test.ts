@@ -59,3 +59,19 @@ test('ids that could break out of an inline handler are rejected', () => {
     'generated and legacy numeric ids pass'
   );
 });
+
+test('timers and sessions are checked when present', () => {
+  const ok = {
+    timers: [{ id: 't1', label: 'Frostwort', startedAt: '2026-10-27T10:00:00Z', endsAt: '2026-10-27T11:00:00Z' }],
+    session: { startedAt: '2026-10-27T10:00:00Z' },
+    sessions: [{ startedAt: '2026-10-27T08:00:00Z', endedAt: '2026-10-27T09:00:00Z' }]
+  };
+  assert.equal(validateState(ok).ok, true);
+  assert.equal(validateState({ session: null }).ok, true);
+  assert.equal(
+    describeErrors(
+      validateState({ timers: [{ label: 'x', startedAt: 'soon', endsAt: '2026-10-27T11:00:00Z' }] }).errors
+    ),
+    'timers[0].startedAt must be a date'
+  );
+});

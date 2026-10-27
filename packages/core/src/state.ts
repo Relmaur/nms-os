@@ -1,6 +1,8 @@
 // App state: defaults, layered merge and migrations (pure, no DOM). Shape: docs/state-schema.md.
 import { isPlainObject } from './util.ts';
 import { migrateToSystems, type System } from './systems-model.ts';
+import { normalizeTimers, type Timer } from './timers.ts';
+import { normalizeSession, normalizeSessions, type PastSession, type Session } from './session.ts';
 
 export interface OutlawSettings {
   restockHours: number;
@@ -18,6 +20,9 @@ export interface AppState {
   checklists: Record<string, boolean>;
   outlaw: OutlawSettings & Record<string, unknown>;
   systems: System[];
+  timers: Timer[];
+  session: Session | null; // the play session in progress
+  sessions: PastSession[];
 }
 const OUTLAW_KEYS = ['restockHours', 'packetsPerVisit', 'runSize', 'unitsPerPacket', 'nanitesPerPacket'] as const;
 
@@ -138,6 +143,10 @@ export function buildState(...layers: unknown[]): AppState {
   if (!isPlainObject(state.checklists)) state.checklists = {};
   if (!isPlainObject(state.outlaw)) state.outlaw = structuredClone(DEFAULT_STATE.outlaw);
   migrateToSystems(state); // folds old logbook[] / outlaw.stations[] into systems[]
+  // Added in 3.9.0: older documents have none, and a damaged entry is dropped rather than the document.
+  state.timers = normalizeTimers(state.timers);
+  state.session = normalizeSession(state.session);
+  state.sessions = normalizeSessions(state.sessions);
   const outlaw = state.outlaw as Record<string, unknown>; // made an object two lines up; migrateToSystems keeps it one
   for (const key of OUTLAW_KEYS) {
     const value = Number(outlaw[key]);

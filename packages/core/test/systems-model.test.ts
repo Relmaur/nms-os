@@ -10,7 +10,7 @@ import {
   HOUR_MS,
   type System
 } from '../src/systems-model.ts';
-import { formatDuration, formatAgo } from '../src/format.ts';
+import { formatDuration, formatAgo, formatCountdown } from '../src/format.ts';
 
 test('normalizeSystem cleans user input into the stored shape', () => {
   const system = normalizeSystem({
@@ -145,4 +145,11 @@ test('the header search matches systems holding every word typed, in any field',
     ['Ekwa Nexus']
   );
   assert.deepEqual(searchSystems(systems, '   '), []);
+});
+
+test('a countdown shows seconds under an hour and minutes above', () => {
+  assert.equal(formatCountdown(245_000), '4:05');
+  assert.equal(formatCountdown(999), '0:01');
+  assert.equal(formatCountdown(0), '0:00');
+  assert.equal(formatCountdown(3_900_000), '1h 05m');
 });

@@ -16,3 +16,13 @@ export function formatAgo(iso: string, now = Date.now()): string {
 export function formatDate(iso: string): string {
   return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
 }
+
+// A running timer: 4:05 under an hour (seconds matter when a refiner is nearly done), 1h 05m above.
+export function formatCountdown(ms: number): string {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+  if (hours) return `${String(hours)}h ${String(minutes).padStart(2, '0')}m`;
+  return `${String(minutes)}:${String(seconds).padStart(2, '0')}`;
+}

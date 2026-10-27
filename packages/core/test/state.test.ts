@@ -61,3 +61,18 @@ test('a "__proto__" key in a document never changes an object’s prototype', ()
   assert.equal(checklists.polluted, undefined);
   assert.equal(checklists.cs1, true);
 });
+
+test('timers and sessions default to empty, and an older save without them still loads', () => {
+  const state = buildState({ systems: [] });
+  assert.deepEqual(state.timers, []);
+  assert.equal(state.session, null);
+  assert.deepEqual(state.sessions, []);
+  const later = buildState({
+    timers: [
+      { id: 't', kind: 'crop', label: 'Frostwort', startedAt: '2026-10-27T10:00:00Z', endsAt: '2026-10-27T11:00:00Z' }
+    ],
+    session: { startedAt: '2026-10-27T10:00:00Z' }
+  });
+  assert.equal(later.timers[0]?.label, 'Frostwort');
+  assert.deepEqual(later.session, { startedAt: '2026-10-27T10:00:00Z', timersDone: 0 });
+});

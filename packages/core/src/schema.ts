@@ -47,7 +47,10 @@ export const StateDocumentSchema = object({
       visits: list(object({ at: date })).nullish()
     })
   ).nullish(),
-  logbook: list(withId).nullish() // legacy, migrated by buildState()
+  logbook: list(withId).nullish(), // legacy, migrated by buildState()
+  timers: list(object({ id: id.nullish(), label: text, startedAt: date, endsAt: date })).nullish(),
+  session: object({ startedAt: date }).nullish(),
+  sessions: list(object({ startedAt: date, endedAt: date })).nullish()
 });
 
 export type StateDocument = z.infer<typeof StateDocumentSchema>;
