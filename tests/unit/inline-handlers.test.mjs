@@ -7,10 +7,31 @@ import fs from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
 const read = path => fs.readFileSync(new URL(path, root), 'utf8');
-const BUILTINS = new Set(['event', 'this', 'window', 'document', 'location', 'history', 'if', 'return', 'typeof', 'Number', 'String', 'JSON', 'Math', 'setTimeout']);
+const BUILTINS = new Set([
+  'event',
+  'this',
+  'window',
+  'document',
+  'location',
+  'history',
+  'if',
+  'return',
+  'typeof',
+  'Number',
+  'String',
+  'JSON',
+  'Math',
+  'setTimeout'
+]);
 
 const PAGES = {
-  'index.html': ['assets/app/main.js', 'assets/app/nav.js', 'assets/app/systems.js', 'assets/app/companion.js', 'assets/app/calculators.js'],
+  'index.html': [
+    'assets/app/main.js',
+    'assets/app/nav.js',
+    'assets/app/systems.js',
+    'assets/app/companion.js',
+    'assets/app/calculators.js'
+  ],
   'wiki/index.html': ['wiki/codex.js']
 };
 
@@ -20,7 +41,10 @@ function handlerNames(source) {
   for (const [, code] of source.matchAll(/\son[a-z]+="([^"]*)"/g)) {
     let text = code;
     // Template data like ${system.id} or ${escapeHtml(tag)} is evaluated at render time, not by the handler.
-    for (let previous; previous !== text;) { previous = text; text = text.replace(/\$\{[^{}`]*\}/g, ''); }
+    for (let previous; previous !== text;) {
+      previous = text;
+      text = text.replace(/\$\{[^{}`]*\}/g, '');
+    }
     for (const [, name] of text.matchAll(/(?<![.\w$])([A-Za-z_$][\w$]*)\s*[(.]/g)) {
       if (!BUILTINS.has(name)) names.add(name);
     }
@@ -31,7 +55,11 @@ function handlerNames(source) {
 function exposedNames(source) {
   const names = new Set();
   for (const [, list] of source.matchAll(/Object\.assign\(window, \{([^}]*)\}\)/g)) {
-    list.split(',').map(name => name.trim()).filter(Boolean).forEach(name => names.add(name));
+    list
+      .split(',')
+      .map(name => name.trim())
+      .filter(Boolean)
+      .forEach(name => names.add(name));
   }
   return names;
 }

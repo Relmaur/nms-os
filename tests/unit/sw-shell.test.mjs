@@ -7,7 +7,9 @@ import path from 'node:path';
 
 const root = new URL('../../', import.meta.url);
 const read = file => fs.readFileSync(new URL(file, root), 'utf8');
-const shellSource = read('sw.js').match(/const SHELL = \[([\s\S]*?)\];/)[1].replace(/\/\/.*$/gm, '');
+const shellSource = read('sw.js')
+  .match(/const SHELL = \[([\s\S]*?)\];/)[1]
+  .replace(/\/\/.*$/gm, '');
 const shell = new Set([...shellSource.matchAll(/'([^']+)'/g)].map(match => match[1]));
 const DERIVED = new Set(['wiki/index.json', 'wiki/offline-bundle.js', 'wiki/game-data.json']);
 
@@ -22,10 +24,15 @@ function importGraph(entry, seen = new Set()) {
 
 test('every module the pages import is precached', () => {
   const modules = [...importGraph('assets/app/main.js'), ...importGraph('wiki/codex.js')];
-  assert.deepEqual(modules.filter(file => !shell.has(file)), []);
+  assert.deepEqual(
+    modules.filter(file => !shell.has(file)),
+    []
+  );
 });
 
 test('every precached file exists', () => {
-  const missing = [...shell].filter(file => !file.endsWith('/') && !DERIVED.has(file) && !fs.existsSync(new URL(file, root)));
+  const missing = [...shell].filter(
+    file => !file.endsWith('/') && !DERIVED.has(file) && !fs.existsSync(new URL(file, root))
+  );
   assert.deepEqual(missing, []);
 });

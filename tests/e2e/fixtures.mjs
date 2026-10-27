@@ -11,9 +11,39 @@ export function seedState() {
     meta: { version: '2.0.0', lastUpdated: '2099-01-01T00:00:00.000Z', currentPhase: 'Phase 3: Test run' },
     outlaw: { restockHours: 24, packetsPerVisit: 15, runSize: 5, unitsPerPacket: 75000, nanitesPerPacket: 350 },
     systems: [
-      { id: 'sys-ekwa', name: 'Ekwa Nexus', region: 'Odyalutai', galaxy: 'Euclid', glyphs: '0123456789AB', star: 'yellow', tags: ['trade-hub', 'base'], notes: 'S-class hauler spawns here', planets: [], visits: [{ at: minutesAgo(10) }], createdAt: '2026-10-20T00:00:00.000Z' },
-      { id: 'sys-hesper', name: 'Hesper Drift', star: 'green', tags: ['to-revisit'], planets: [], visits: [{ at: minutesAgo(2 * 24 * 60) }], createdAt: '2026-10-21T00:00:00.000Z' },
-      { id: 'sys-den', name: 'Outlaw Den', region: 'Pirate Reach', star: 'red', conflict: 'pirate', tags: ['outlaw'], planets: [], visits: [], createdAt: '2026-10-22T00:00:00.000Z' }
+      {
+        id: 'sys-ekwa',
+        name: 'Ekwa Nexus',
+        region: 'Odyalutai',
+        galaxy: 'Euclid',
+        glyphs: '0123456789AB',
+        star: 'yellow',
+        tags: ['trade-hub', 'base'],
+        notes: 'S-class hauler spawns here',
+        planets: [],
+        visits: [{ at: minutesAgo(10) }],
+        createdAt: '2026-10-20T00:00:00.000Z'
+      },
+      {
+        id: 'sys-hesper',
+        name: 'Hesper Drift',
+        star: 'green',
+        tags: ['to-revisit'],
+        planets: [],
+        visits: [{ at: minutesAgo(2 * 24 * 60) }],
+        createdAt: '2026-10-21T00:00:00.000Z'
+      },
+      {
+        id: 'sys-den',
+        name: 'Outlaw Den',
+        region: 'Pirate Reach',
+        star: 'red',
+        conflict: 'pirate',
+        tags: ['outlaw'],
+        planets: [],
+        visits: [],
+        createdAt: '2026-10-22T00:00:00.000Z'
+      }
     ]
   };
 }
@@ -24,12 +54,18 @@ export const test = base.extend({
   page: async ({ page, seed }, use) => {
     const errors = [];
     page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
-    page.on('console', message => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
-    await page.addInitScript(([key, value]) => {
-      if (sessionStorage.getItem('atlas-test-seeded')) return;
-      if (value) localStorage.setItem(key, value); else localStorage.removeItem(key);
-      sessionStorage.setItem('atlas-test-seeded', '1');
-    }, [STORAGE_KEY, seed ? JSON.stringify(seed) : '']);
+    page.on('console', message => {
+      if (message.type() === 'error') errors.push(`console: ${message.text()}`);
+    });
+    await page.addInitScript(
+      ([key, value]) => {
+        if (sessionStorage.getItem('atlas-test-seeded')) return;
+        if (value) localStorage.setItem(key, value);
+        else localStorage.removeItem(key);
+        sessionStorage.setItem('atlas-test-seeded', '1');
+      },
+      [STORAGE_KEY, seed ? JSON.stringify(seed) : '']
+    );
     await use(page);
     expect(errors, 'no uncaught or console errors').toEqual([]);
   }

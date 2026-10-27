@@ -37,6 +37,10 @@ export default [
   {
     // The two remaining classic scripts: the Tailwind CDN config and the service-worker registration.
     files: ['assets/theme.js', 'assets/pwa.js'],
-    languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { ...globals.browser, tailwind: 'writable' } }
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: { ...globals.browser, tailwind: 'writable' }
+    }
   }
 ];

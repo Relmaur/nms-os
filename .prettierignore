@@ -1,0 +1,11 @@
+# The wiki mirror and its derived files are generated; user data and fixtures are kept byte-for-byte.
+wiki/
+nms_state.json
+tests/fixtures/
+pnpm-lock.yaml
+# Markdown and HTML: hand-laid-out prose and markup (inline whitespace is significant in HTML).
+*.md
+*.html
+dist/
+test-results/
+playwright-report/

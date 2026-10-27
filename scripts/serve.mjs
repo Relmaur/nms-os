@@ -27,19 +27,25 @@ const TYPES = {
   '.txt': 'text/plain; charset=utf-8'
 };
 
-http.createServer(async (req, res) => {
-  try {
-    const { pathname } = new URL(req.url, 'http://localhost');
-    let file = path.join(ROOT, decodeURIComponent(pathname));
-    // Never serve anything outside the repository root.
-    if (!file.startsWith(ROOT + path.sep) && file !== ROOT) throw Object.assign(new Error('Forbidden'), { status: 403 });
-    if ((await fs.stat(file).catch(() => null))?.isDirectory()) file = path.join(file, 'index.html');
-    const body = await fs.readFile(file);
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
-    res.end(body);
-  } catch (err) {
-    const status = err.status || (err.code === 'ENOENT' ? 404 : 500);
-    res.writeHead(status, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end(status === 404 ? 'Not found' : status === 403 ? 'Forbidden' : 'Server error');
-  }
-}).listen(PORT, () => console.log(`ATLAS // MASTER OS on http://localhost:${PORT}`));
+http
+  .createServer(async (req, res) => {
+    try {
+      const { pathname } = new URL(req.url, 'http://localhost');
+      let file = path.join(ROOT, decodeURIComponent(pathname));
+      // Never serve anything outside the repository root.
+      if (!file.startsWith(ROOT + path.sep) && file !== ROOT)
+        throw Object.assign(new Error('Forbidden'), { status: 403 });
+      if ((await fs.stat(file).catch(() => null))?.isDirectory()) file = path.join(file, 'index.html');
+      const body = await fs.readFile(file);
+      res.writeHead(200, {
+        'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream',
+        'Cache-Control': 'no-cache'
+      });
+      res.end(body);
+    } catch (err) {
+      const status = err.status || (err.code === 'ENOENT' ? 404 : 500);
+      res.writeHead(status, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end(status === 404 ? 'Not found' : status === 403 ? 'Forbidden' : 'Server error');
+    }
+  })
+  .listen(PORT, () => console.log(`ATLAS // MASTER OS on http://localhost:${PORT}`));

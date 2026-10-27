@@ -47,7 +47,10 @@ test('the Favourites filter shows only favourite systems', async ({ page }) => {
 
 test('filters by tag and deletes only on the second click', async ({ page }) => {
   await page.goto('./#systems');
-  await page.locator('#systemTagFilters').getByRole('button', { name: /trade-hub/ }).click();
+  await page
+    .locator('#systemTagFilters')
+    .getByRole('button', { name: /trade-hub/ })
+    .click();
   await expect(page.locator('#systemList')).toContainText('Ekwa Nexus');
   await expect(page.locator('#systemList')).not.toContainText('Hesper Drift');
 

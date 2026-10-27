@@ -3,65 +3,89 @@
 import { escapeHtml } from '../lib/util.js';
 import { formatDuration, formatAgo, formatDate } from '../lib/format.js';
 import {
-    OUTLAW_TAG, STAR_CLASSES, RACES, CONFLICT_LEVELS, ECONOMIES, BIOMES, SUGGESTED_TAGS, SORTS,
-    newId, tagSlug, normalizeGlyphs, normalizeSystem, lastVisit, systemHaystack, systemTags, packetsLogged,
-    outlawStatus as computeOutlawStatus, rankOutlaw
+  OUTLAW_TAG,
+  STAR_CLASSES,
+  RACES,
+  CONFLICT_LEVELS,
+  ECONOMIES,
+  BIOMES,
+  SUGGESTED_TAGS,
+  SORTS,
+  newId,
+  tagSlug,
+  normalizeGlyphs,
+  normalizeSystem,
+  lastVisit,
+  systemHaystack,
+  systemTags,
+  packetsLogged,
+  outlawStatus as computeOutlawStatus,
+  rankOutlaw
 } from '../lib/systems-model.js';
 import { appState, saveAppState, persistState, onAdopt } from './store.js';
 import { showToast, haptic } from './ui.js';
 import { showSection } from './nav.js';
 
 export function findSystem(id) {
-    return appState.systems.find(system => system.id === id);
+  return appState.systems.find(system => system.id === id);
 }
 
 function allTags() {
-    const counts = new Map();
-    appState.systems.forEach(system => [...system.tags, ...system.planets.flatMap(planet => planet.tags)]
-        .forEach(tag => counts.set(tag, (counts.get(tag) || 0) + 1)));
-    return counts;
+  const counts = new Map();
+  appState.systems.forEach(system =>
+    [...system.tags, ...system.planets.flatMap(planet => planet.tags)].forEach(tag =>
+      counts.set(tag, (counts.get(tag) || 0) + 1)
+    )
+  );
+  return counts;
 }
 
 // ---------------------------------------------------------------------------
 // Formatting helpers
 // ---------------------------------------------------------------------------
 export function tagChip(tag, { active = false, onclick = '' } = {}) {
-    const classes = active
-        ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200'
-        : tag === OUTLAW_TAG ? 'bg-red-500/10 border-red-500/30 text-red-200' : 'bg-slate-900 border-slate-700 text-slate-300';
-    const tagName = onclick ? 'button' : 'span';
-    return `<${tagName} ${onclick ? `onclick="${onclick}" aria-pressed="${active}"` : ''} class="inline-flex items-center h-6 px-2 rounded-md border text-[11px] font-medium ${classes} ${onclick ? 'hover:border-slate-500' : ''}">${escapeHtml(tag)}</${tagName}>`;
+  const classes = active
+    ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200'
+    : tag === OUTLAW_TAG
+      ? 'bg-red-500/10 border-red-500/30 text-red-200'
+      : 'bg-slate-900 border-slate-700 text-slate-300';
+  const tagName = onclick ? 'button' : 'span';
+  return `<${tagName} ${onclick ? `onclick="${onclick}" aria-pressed="${active}"` : ''} class="inline-flex items-center h-6 px-2 rounded-md border text-[11px] font-medium ${classes} ${onclick ? 'hover:border-slate-500' : ''}">${escapeHtml(tag)}</${tagName}>`;
 }
 
 export function starDot(system, size = 'w-3 h-3') {
-    const color = STAR_CLASSES[system.star]?.color;
-    return `<span class="${size} shrink-0 rounded-full ${color ? '' : 'border border-dashed border-slate-600'}" style="${color ? `background:${color}; box-shadow: 0 2px 8px -1px ${color}88` : ''}" title="${escapeHtml(STAR_CLASSES[system.star]?.label || 'Star colour unknown')}"></span>`;
+  const color = STAR_CLASSES[system.star]?.color;
+  return `<span class="${size} shrink-0 rounded-full ${color ? '' : 'border border-dashed border-slate-600'}" style="${color ? `background:${color}; box-shadow: 0 2px 8px -1px ${color}88` : ''}" title="${escapeHtml(STAR_CLASSES[system.star]?.label || 'Star colour unknown')}"></span>`;
 }
 
 function wealthStars(wealth) {
-    return wealth ? `<span class="text-amber-300" title="Wealth ${wealth}/3">${'★'.repeat(wealth)}<span class="text-slate-600">${'★'.repeat(3 - wealth)}</span></span>` : '';
+  return wealth
+    ? `<span class="text-amber-300" title="Wealth ${wealth}/3">${'★'.repeat(wealth)}<span class="text-slate-600">${'★'.repeat(3 - wealth)}</span></span>`
+    : '';
 }
 
 export function glyphChip(glyphs) {
-    if (!glyphs) return '';
-    return `<button data-glyphs="${escapeHtml(glyphs)}" onclick="event.stopPropagation(); copyGlyphs(this.dataset.glyphs)" title="Copy portal glyphs" class="inline-flex items-center gap-1.5 h-6 px-2 rounded-md bg-slate-950 border border-slate-700 hover:border-slate-500 font-mono text-[11px] tracking-wider text-slate-200">${escapeHtml(glyphs)}<i class="ph-bold ph-copy text-slate-400"></i></button>`;
+  if (!glyphs) return '';
+  return `<button data-glyphs="${escapeHtml(glyphs)}" onclick="event.stopPropagation(); copyGlyphs(this.dataset.glyphs)" title="Copy portal glyphs" class="inline-flex items-center gap-1.5 h-6 px-2 rounded-md bg-slate-950 border border-slate-700 hover:border-slate-500 font-mono text-[11px] tracking-wider text-slate-200">${escapeHtml(glyphs)}<i class="ph-bold ph-copy text-slate-400"></i></button>`;
 }
 
 function copyGlyphs(glyphs) {
-    (navigator.clipboard?.writeText(glyphs) || Promise.reject())
-        .then(() => showToast(`Copied glyphs ${glyphs}.`))
-        .catch(() => showToast(glyphs));
+  (navigator.clipboard?.writeText(glyphs) || Promise.reject())
+    .then(() => showToast(`Copied glyphs ${glyphs}.`))
+    .catch(() => showToast(glyphs));
 }
 
 // HTML-safe parts for the one-line summary under a system's name.
 function systemMeta(system) {
-    return [
-        escapeHtml(system.region),
-        escapeHtml(system.galaxy),
-        escapeHtml(RACES[system.race] || ''),
-        [escapeHtml(system.economy), wealthStars(system.wealth)].filter(Boolean).join(' '),
-        system.conflict ? escapeHtml(`${CONFLICT_LEVELS[system.conflict]}${system.conflict === 'pirate' ? '' : ' conflict'}`) : ''
-    ].filter(Boolean);
+  return [
+    escapeHtml(system.region),
+    escapeHtml(system.galaxy),
+    escapeHtml(RACES[system.race] || ''),
+    [escapeHtml(system.economy), wealthStars(system.wealth)].filter(Boolean).join(' '),
+    system.conflict
+      ? escapeHtml(`${CONFLICT_LEVELS[system.conflict]}${system.conflict === 'pirate' ? '' : ' conflict'}`)
+      : ''
+  ].filter(Boolean);
 }
 
 // ---------------------------------------------------------------------------
@@ -70,85 +94,112 @@ function systemMeta(system) {
 const systemFilter = { q: '', tags: [], star: '', race: '', conflict: '', favorites: false, sort: 'recent' };
 
 function filteredSystems() {
-    const tokens = systemFilter.q.toLowerCase().split(/\s+/).filter(Boolean);
-    const list = appState.systems.filter(system => {
-        if (systemFilter.favorites && !system.favorite) return false;
-        if (systemFilter.star && system.star !== systemFilter.star) return false;
-        if (systemFilter.race && system.race !== systemFilter.race) return false;
-        if (systemFilter.conflict && system.conflict !== systemFilter.conflict) return false;
-        const tags = systemTags(system);
-        if (!systemFilter.tags.every(tag => tags.has(tag))) return false;
-        if (tokens.length) {
-            const haystack = systemHaystack(system);
-            if (!tokens.every(token => haystack.includes(token))) return false;
-        }
-        return true;
-    });
-    const lastAt = system => Date.parse(lastVisit(system)?.at || system.createdAt);
-    const sorters = {
-        recent: (a, b) => lastAt(b) - lastAt(a),
-        discovered: (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt),
-        name: (a, b) => a.name.localeCompare(b.name),
-        rating: (a, b) => b.rating - a.rating || b.favorite - a.favorite || lastAt(b) - lastAt(a),
-        region: (a, b) => (a.region || '~').localeCompare(b.region || '~') || a.name.localeCompare(b.name)
-    };
-    return list.sort((a, b) => (b.favorite - a.favorite) * (systemFilter.sort === 'name' || systemFilter.sort === 'region' ? 0 : 1) || sorters[systemFilter.sort](a, b));
+  const tokens = systemFilter.q.toLowerCase().split(/\s+/).filter(Boolean);
+  const list = appState.systems.filter(system => {
+    if (systemFilter.favorites && !system.favorite) return false;
+    if (systemFilter.star && system.star !== systemFilter.star) return false;
+    if (systemFilter.race && system.race !== systemFilter.race) return false;
+    if (systemFilter.conflict && system.conflict !== systemFilter.conflict) return false;
+    const tags = systemTags(system);
+    if (!systemFilter.tags.every(tag => tags.has(tag))) return false;
+    if (tokens.length) {
+      const haystack = systemHaystack(system);
+      if (!tokens.every(token => haystack.includes(token))) return false;
+    }
+    return true;
+  });
+  const lastAt = system => Date.parse(lastVisit(system)?.at || system.createdAt);
+  const sorters = {
+    recent: (a, b) => lastAt(b) - lastAt(a),
+    discovered: (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt),
+    name: (a, b) => a.name.localeCompare(b.name),
+    rating: (a, b) => b.rating - a.rating || b.favorite - a.favorite || lastAt(b) - lastAt(a),
+    region: (a, b) => (a.region || '~').localeCompare(b.region || '~') || a.name.localeCompare(b.name)
+  };
+  return list.sort(
+    (a, b) =>
+      (b.favorite - a.favorite) * (systemFilter.sort === 'name' || systemFilter.sort === 'region' ? 0 : 1) ||
+      sorters[systemFilter.sort](a, b)
+  );
 }
 
 function setSystemFilter(changes) {
-    Object.assign(systemFilter, changes);
-    renderSystems();
+  Object.assign(systemFilter, changes);
+  renderSystems();
 }
 
 function toggleFavoritesFilter() {
-    setSystemFilter({ favorites: !systemFilter.favorites });
+  setSystemFilter({ favorites: !systemFilter.favorites });
 }
 
 function toggleSystemTagFilter(tag) {
-    const tags = new Set(systemFilter.tags);
-    tags.has(tag) ? tags.delete(tag) : tags.add(tag);
-    setSystemFilter({ tags: [...tags] });
+  const tags = new Set(systemFilter.tags);
+  tags.has(tag) ? tags.delete(tag) : tags.add(tag);
+  setSystemFilter({ tags: [...tags] });
 }
 
 function clearSystemFilters() {
-    Object.assign(systemFilter, { q: '', tags: [], star: '', race: '', conflict: '', favorites: false });
-    document.getElementById('systemSearch').value = '';
-    renderSystems();
+  Object.assign(systemFilter, { q: '', tags: [], star: '', race: '', conflict: '', favorites: false });
+  document.getElementById('systemSearch').value = '';
+  renderSystems();
 }
 
 export function renderSystems() {
-    const systems = appState.systems;
-    const visible = filteredSystems();
-    const visits = systems.reduce((sum, system) => sum + system.visits.length, 0);
-    const planets = systems.reduce((sum, system) => sum + system.planets.length, 0);
-    document.getElementById('sidebarSystemsCount').textContent = systems.length;
-    document.getElementById('systemsSummary').innerHTML = systems.length
-        ? `<strong class="text-white">${systems.length}</strong> system${systems.length === 1 ? '' : 's'} · ${planets} planet${planets === 1 ? '' : 's'} · ${visits} visit${visits === 1 ? '' : 's'} logged`
-        : 'Nothing logged yet. Warp somewhere and add it. Only the name is required; fill in the rest whenever you like.';
+  const systems = appState.systems;
+  const visible = filteredSystems();
+  const visits = systems.reduce((sum, system) => sum + system.visits.length, 0);
+  const planets = systems.reduce((sum, system) => sum + system.planets.length, 0);
+  document.getElementById('sidebarSystemsCount').textContent = systems.length;
+  document.getElementById('systemsSummary').innerHTML = systems.length
+    ? `<strong class="text-white">${systems.length}</strong> system${systems.length === 1 ? '' : 's'} · ${planets} planet${planets === 1 ? '' : 's'} · ${visits} visit${visits === 1 ? '' : 's'} logged`
+    : 'Nothing logged yet. Warp somewhere and add it. Only the name is required; fill in the rest whenever you like.';
 
-    const select = (id, options, value, label) => {
-        document.getElementById(id).innerHTML = `<option value="">${label}</option>` + Object.entries(options).map(([key, text]) => `<option value="${key}" ${value === key ? 'selected' : ''}>${escapeHtml(text.label || text)}</option>`).join('');
-    };
-    select('systemStarFilter', STAR_CLASSES, systemFilter.star, 'Any star');
-    select('systemRaceFilter', RACES, systemFilter.race, 'Any race');
-    select('systemConflictFilter', CONFLICT_LEVELS, systemFilter.conflict, 'Any conflict');
-    document.getElementById('systemSort').innerHTML = Object.entries(SORTS).map(([key, label]) => `<option value="${key}" ${systemFilter.sort === key ? 'selected' : ''}>${label}</option>`).join('');
-    const favButton = document.getElementById('systemFavFilter');
-    favButton.setAttribute('aria-pressed', String(systemFilter.favorites));
+  const select = (id, options, value, label) => {
+    document.getElementById(id).innerHTML =
+      `<option value="">${label}</option>` +
+      Object.entries(options)
+        .map(
+          ([key, text]) =>
+            `<option value="${key}" ${value === key ? 'selected' : ''}>${escapeHtml(text.label || text)}</option>`
+        )
+        .join('');
+  };
+  select('systemStarFilter', STAR_CLASSES, systemFilter.star, 'Any star');
+  select('systemRaceFilter', RACES, systemFilter.race, 'Any race');
+  select('systemConflictFilter', CONFLICT_LEVELS, systemFilter.conflict, 'Any conflict');
+  document.getElementById('systemSort').innerHTML = Object.entries(SORTS)
+    .map(([key, label]) => `<option value="${key}" ${systemFilter.sort === key ? 'selected' : ''}>${label}</option>`)
+    .join('');
+  const favButton = document.getElementById('systemFavFilter');
+  favButton.setAttribute('aria-pressed', String(systemFilter.favorites));
 
-    const tags = [...allTags().entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-    document.getElementById('systemTagFilters').innerHTML = tags.length
-        ? tags.map(([tag, n]) => `<button onclick="toggleSystemTagFilter('${escapeHtml(tag)}')" aria-pressed="${systemFilter.tags.includes(tag)}" class="tag-filter">${escapeHtml(tag)} <span class="font-mono opacity-60">${n}</span></button>`).join('')
-        : '<span class="text-xs text-slate-400">Tags you add to systems and planets show up here as filters.</span>';
+  const tags = [...allTags().entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  document.getElementById('systemTagFilters').innerHTML = tags.length
+    ? tags
+        .map(
+          ([tag, n]) =>
+            `<button onclick="toggleSystemTagFilter('${escapeHtml(tag)}')" aria-pressed="${systemFilter.tags.includes(tag)}" class="tag-filter">${escapeHtml(tag)} <span class="font-mono opacity-60">${n}</span></button>`
+        )
+        .join('')
+    : '<span class="text-xs text-slate-400">Tags you add to systems and planets show up here as filters.</span>';
 
-    const active = systemFilter.q || systemFilter.tags.length || systemFilter.star || systemFilter.race || systemFilter.conflict || systemFilter.favorites;
-    document.getElementById('systemResultCount').innerHTML = `${visible.length} of ${systems.length}${active ? ' · <button onclick="clearSystemFilters()" class="text-emerald-300 hover:text-emerald-200">Clear filters</button>' : ''}`;
+  const active =
+    systemFilter.q ||
+    systemFilter.tags.length ||
+    systemFilter.star ||
+    systemFilter.race ||
+    systemFilter.conflict ||
+    systemFilter.favorites;
+  document.getElementById('systemResultCount').innerHTML =
+    `${visible.length} of ${systems.length}${active ? ' · <button onclick="clearSystemFilters()" class="text-emerald-300 hover:text-emerald-200">Clear filters</button>' : ''}`;
 
-    document.getElementById('systemList').innerHTML = visible.length ? visible.map(system => {
-        const last = lastVisit(system);
-        const meta = systemMeta(system);
-        const status = system.tags.includes(OUTLAW_TAG) ? outlawStatus(system) : null;
-        return `
+  document.getElementById('systemList').innerHTML = visible.length
+    ? visible
+        .map(system => {
+          const last = lastVisit(system);
+          const meta = systemMeta(system);
+          const status = system.tags.includes(OUTLAW_TAG) ? outlawStatus(system) : null;
+          return `
         <li>
             <button onclick="openSystem('${escapeHtml(system.id)}')" class="system-card w-full h-full text-left p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-600 transition space-y-2.5">
                 <span class="flex items-start justify-between gap-3">
@@ -160,87 +211,106 @@ export function renderSystems() {
                     ${status ? outlawPill(status) : system.rating ? `<span class="text-xs text-amber-300 shrink-0" title="Rating ${system.rating}/5">${'★'.repeat(system.rating)}</span>` : ''}
                 </span>
                 ${meta.length ? `<span class="block text-xs text-slate-400">${meta.join(' · ')}</span>` : ''}
-                ${system.tags.length ? `<span class="flex flex-wrap gap-1">${system.tags.slice(0, 6).map(tag => tagChip(tag)).join('')}${system.tags.length > 6 ? `<span class="text-[11px] text-slate-400 self-center">+${system.tags.length - 6}</span>` : ''}</span>` : ''}
+                ${
+                  system.tags.length
+                    ? `<span class="flex flex-wrap gap-1">${system.tags
+                        .slice(0, 6)
+                        .map(tag => tagChip(tag))
+                        .join(
+                          ''
+                        )}${system.tags.length > 6 ? `<span class="text-[11px] text-slate-400 self-center">+${system.tags.length - 6}</span>` : ''}</span>`
+                    : ''
+                }
                 ${system.notes ? `<span class="block text-xs text-slate-300 line-clamp-2">${escapeHtml(system.notes)}</span>` : ''}
                 <span class="block text-[11px] text-slate-400">${last ? `Last visit ${formatAgo(last.at)} · ${system.visits.length} visit${system.visits.length === 1 ? '' : 's'}` : 'No visits logged'}${system.planets.length ? ` · ${system.planets.length} planet${system.planets.length === 1 ? '' : 's'}` : ''}</span>
             </button>
         </li>`;
-    }).join('') : `<li class="sm:col-span-2 p-6 rounded-xl border border-dashed border-slate-700 text-center text-sm text-slate-400">${systems.length ? 'No systems match these filters.' : 'Your atlas is empty. Use “Add system” after your next warp.'}</li>`;
+        })
+        .join('')
+    : `<li class="sm:col-span-2 p-6 rounded-xl border border-dashed border-slate-700 text-center text-sm text-slate-400">${systems.length ? 'No systems match these filters.' : 'Your atlas is empty. Use “Add system” after your next warp.'}</li>`;
 }
 
 // ---------------------------------------------------------------------------
 // System panel (view + edit) — side panel on desktop, bottom sheet on mobile
 // ---------------------------------------------------------------------------
 export let panelSystemId = null;
-export let panelMode = 'view';           // 'view' | 'edit'
-let panelDraft = null;            // working copy while editing
+export let panelMode = 'view'; // 'view' | 'edit'
+let panelDraft = null; // working copy while editing
 let editorTags = [];
-let editingPlanetId = null;       // planet being edited inline, or 'new'
-let pendingDelete = null;         // two-step delete key
+let editingPlanetId = null; // planet being edited inline, or 'new'
+let pendingDelete = null; // two-step delete key
 
 function setPanelOpen(open) {
-    const panel = document.getElementById('systemPanel');
-    panel.classList.toggle('translate-y-full', !open);
-    panel.classList.toggle('md:translate-x-full', !open);
-    const backdrop = document.getElementById('systemBackdrop');
-    backdrop.classList.toggle('opacity-0', !open);
-    backdrop.classList.toggle('pointer-events-none', !open);
-    document.body.classList.toggle('overflow-hidden', open);
-    panel.setAttribute('aria-hidden', String(!open));
+  const panel = document.getElementById('systemPanel');
+  panel.classList.toggle('translate-y-full', !open);
+  panel.classList.toggle('md:translate-x-full', !open);
+  const backdrop = document.getElementById('systemBackdrop');
+  backdrop.classList.toggle('opacity-0', !open);
+  backdrop.classList.toggle('pointer-events-none', !open);
+  document.body.classList.toggle('overflow-hidden', open);
+  panel.setAttribute('aria-hidden', String(!open));
 }
 
 export function openSystem(id) {
-    if (!findSystem(id)) return;
-    panelSystemId = id;
-    panelMode = 'view';
-    editingPlanetId = null;
-    pendingDelete = null;
-    renderSystemPanel();
-    setPanelOpen(true);
-    document.getElementById('systemPanelScroll').scrollTop = 0;
+  if (!findSystem(id)) return;
+  panelSystemId = id;
+  panelMode = 'view';
+  editingPlanetId = null;
+  pendingDelete = null;
+  renderSystemPanel();
+  setPanelOpen(true);
+  document.getElementById('systemPanelScroll').scrollTop = 0;
 }
 
 export function openSystemEditor(id = null, preset = {}) {
-    const existing = id ? findSystem(id) : null;
-    panelSystemId = existing ? existing.id : null;
-    panelMode = 'edit';
-    panelDraft = existing ? structuredClone(existing) : normalizeSystem({ ...preset, id: newId('sys') });
-    editorTags = [...panelDraft.tags];
-    renderSystemPanel();
-    setPanelOpen(true);
-    document.getElementById('systemPanelScroll').scrollTop = 0;
-    document.getElementById('sysName')?.focus();
+  const existing = id ? findSystem(id) : null;
+  panelSystemId = existing ? existing.id : null;
+  panelMode = 'edit';
+  panelDraft = existing ? structuredClone(existing) : normalizeSystem({ ...preset, id: newId('sys') });
+  editorTags = [...panelDraft.tags];
+  renderSystemPanel();
+  setPanelOpen(true);
+  document.getElementById('systemPanelScroll').scrollTop = 0;
+  document.getElementById('sysName')?.focus();
 }
 
 export function closeSystemPanel() {
-    if (document.getElementById('systemPanel').getAttribute('aria-hidden') === 'true') return;
-    flushNotes();
-    setPanelOpen(false);
-    panelSystemId = null;
-    panelDraft = null;
+  if (document.getElementById('systemPanel').getAttribute('aria-hidden') === 'true') return;
+  flushNotes();
+  setPanelOpen(false);
+  panelSystemId = null;
+  panelDraft = null;
 }
 
 export function renderSystemPanel() {
-    const body = document.getElementById('systemPanelBody');
-    if (panelMode === 'edit') return renderSystemEditor(body);
-    const system = findSystem(panelSystemId);
-    if (!system) { closeSystemPanel(); return; }
-    const outlaw = system.tags.includes(OUTLAW_TAG);
-    const status = outlaw ? outlawStatus(system) : null;
-    const facts = [
-        ['Galaxy', escapeHtml(system.galaxy)],
-        ['Region', escapeHtml(system.region)],
-        ['Portal glyphs', glyphChip(system.glyphs)],
-        ['Star', system.star ? `<span class="inline-flex items-center gap-2">${starDot(system)}${STAR_CLASSES[system.star].label}</span>` : ''],
-        ['Dominant race', escapeHtml(RACES[system.race] || '')],
-        ['Economy', [escapeHtml(system.economy), wealthStars(system.wealth)].filter(Boolean).join(' ')],
-        ['Conflict', escapeHtml(CONFLICT_LEVELS[system.conflict] || '')],
-        ['First logged', formatDate(system.createdAt)]
-    ].filter(([, value]) => value);
-    const visits = [...system.visits].reverse();
-    const deleteArmed = pendingDelete === `system:${system.id}`;
+  const body = document.getElementById('systemPanelBody');
+  if (panelMode === 'edit') return renderSystemEditor(body);
+  const system = findSystem(panelSystemId);
+  if (!system) {
+    closeSystemPanel();
+    return;
+  }
+  const outlaw = system.tags.includes(OUTLAW_TAG);
+  const status = outlaw ? outlawStatus(system) : null;
+  const facts = [
+    ['Galaxy', escapeHtml(system.galaxy)],
+    ['Region', escapeHtml(system.region)],
+    ['Portal glyphs', glyphChip(system.glyphs)],
+    [
+      'Star',
+      system.star
+        ? `<span class="inline-flex items-center gap-2">${starDot(system)}${STAR_CLASSES[system.star].label}</span>`
+        : ''
+    ],
+    ['Dominant race', escapeHtml(RACES[system.race] || '')],
+    ['Economy', [escapeHtml(system.economy), wealthStars(system.wealth)].filter(Boolean).join(' ')],
+    ['Conflict', escapeHtml(CONFLICT_LEVELS[system.conflict] || '')],
+    ['First logged', formatDate(system.createdAt)]
+  ].filter(([, value]) => value);
+  const visits = [...system.visits].reverse();
+  const deleteArmed = pendingDelete === `system:${system.id}`;
 
-    body.innerHTML = `
+  body.innerHTML = `
         <div data-sheet-grab class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4 space-y-3">
             <div class="md:hidden flex justify-center"><span class="w-10 h-1 rounded-full bg-slate-700"></span></div>
             <div class="flex items-start gap-3">
@@ -280,11 +350,15 @@ export function renderSystemPanel() {
                 <textarea id="systemNotes" rows="5" oninput="queueNotesSave('${system.id}')" onblur="flushNotes()" placeholder="Anything worth remembering: what's here, what to do next time, who to talk to…" class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-base sm:text-sm leading-relaxed text-white focus:outline-none resize-y">${escapeHtml(system.notes)}</textarea>
             </section>
 
-            ${facts.length ? `
+            ${
+              facts.length
+                ? `
             <section class="space-y-2">
                 <h3 class="panel-heading">System</h3>
                 <dl class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">${facts.map(([label, value]) => `<dt class="text-slate-400">${label}</dt><dd class="text-slate-100 min-w-0">${value}</dd>`).join('')}</dl>
-            </section>` : ''}
+            </section>`
+                : ''
+            }
 
             <section class="space-y-3">
                 <div class="flex items-center justify-between">
@@ -292,7 +366,11 @@ export function renderSystemPanel() {
                     ${editingPlanetId === 'new' ? '' : `<button onclick="editPlanet('new')" class="text-xs font-medium text-emerald-300 hover:text-emerald-200 flex items-center gap-1"><i class="ph-bold ph-plus"></i>Add planet</button>`}
                 </div>
                 ${editingPlanetId === 'new' ? planetForm(system) : ''}
-                <ul class="space-y-2">${system.planets.map(planet => editingPlanetId === planet.id ? `<li>${planetForm(system, planet)}</li>` : `
+                <ul class="space-y-2">${system.planets
+                  .map(planet =>
+                    editingPlanetId === planet.id
+                      ? `<li>${planetForm(system, planet)}</li>`
+                      : `
                     <li class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
                         <div class="flex items-start justify-between gap-2">
                             <p class="min-w-0"><strong class="text-sm text-white">${escapeHtml(planet.name)}</strong> ${planet.biome ? `<span class="text-xs text-slate-400">${escapeHtml(planet.biome)}</span>` : ''}</p>
@@ -303,16 +381,21 @@ export function renderSystemPanel() {
                         </div>
                         ${planet.tags.length ? `<div class="flex flex-wrap gap-1">${planet.tags.map(tag => tagChip(tag)).join('')}</div>` : ''}
                         ${planet.notes ? `<p class="text-xs text-slate-300 whitespace-pre-line">${escapeHtml(planet.notes)}</p>` : ''}
-                    </li>`).join('')}
+                    </li>`
+                  )
+                  .join('')}
                 </ul>
                 ${!system.planets.length && editingPlanetId !== 'new' ? '<p class="text-xs text-slate-400">No planets logged. Add the ones with bases, hotspots, crash sites or anything else worth finding again.</p>' : ''}
             </section>
 
             <section class="space-y-3">
                 <h3 class="panel-heading">Visit journal <span class="font-mono font-normal text-slate-400">${system.visits.length}</span></h3>
-                ${visits.length ? `<ol class="space-y-2">${visits.map((visit, i) => {
-                    const index = system.visits.length - 1 - i;
-                    return `
+                ${
+                  visits.length
+                    ? `<ol class="space-y-2">${visits
+                        .map((visit, i) => {
+                          const index = system.visits.length - 1 - i;
+                          return `
                     <li class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                         <i class="ph-bold ph-map-pin text-emerald-300 mt-0.5"></i>
                         <div class="min-w-0 flex-1">
@@ -321,7 +404,10 @@ export function renderSystemPanel() {
                         </div>
                         <button onclick="deleteVisit('${system.id}', ${index})" aria-label="Delete this visit" class="h-8 ${pendingDelete === `visit:${system.id}:${index}` ? 'px-2 text-xs font-semibold text-rose-200 bg-rose-500/15 border border-rose-500/50' : 'w-8 text-slate-500 hover:text-rose-300 hover:bg-slate-800'} rounded-lg flex items-center justify-center gap-1 shrink-0"><i class="ph-bold ph-x"></i>${pendingDelete === `visit:${system.id}:${index}` ? 'Delete?' : ''}</button>
                     </li>`;
-                }).join('')}</ol>` : '<p class="text-xs text-slate-400">No visits yet. “Log visit” records today’s date and an optional note.</p>'}
+                        })
+                        .join('')}</ol>`
+                    : '<p class="text-xs text-slate-400">No visits yet. “Log visit” records today’s date and an optional note.</p>'
+                }
             </section>
 
             <section class="pt-4 border-t border-slate-800">
@@ -331,7 +417,7 @@ export function renderSystemPanel() {
 }
 
 function planetForm(system, planet = null) {
-    return `
+  return `
         <form onsubmit="savePlanet(event, '${system.id}', '${planet ? planet.id : ''}')" class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 space-y-2.5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <input name="name" required maxlength="80" value="${escapeHtml(planet?.name || '')}" placeholder="Planet name *" class="h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white">
@@ -347,13 +433,17 @@ function planetForm(system, planet = null) {
 }
 
 function renderSystemEditor(body) {
-    const draft = panelDraft;
-    const isNew = !panelSystemId;
-    const segmented = (name, options, value) => `
-        <div class="flex flex-wrap gap-1.5" role="radiogroup">${options.map(([key, label, extra = '']) => `
-            <button type="button" role="radio" aria-checked="${value === key}" onclick="setDraftField('${name}', '${key}')" class="seg ${value === key ? 'is-on' : ''}">${extra}${label}</button>`).join('')}
+  const draft = panelDraft;
+  const isNew = !panelSystemId;
+  const segmented = (name, options, value) => `
+        <div class="flex flex-wrap gap-1.5" role="radiogroup">${options
+          .map(
+            ([key, label, extra = '']) => `
+            <button type="button" role="radio" aria-checked="${value === key}" onclick="setDraftField('${name}', '${key}')" class="seg ${value === key ? 'is-on' : ''}">${extra}${label}</button>`
+          )
+          .join('')}
         </div>`;
-    body.innerHTML = `
+  body.innerHTML = `
         <form id="systemEditor" onsubmit="saveSystemEditor(event)" class="flex flex-col min-h-full">
             <div class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4">
                 <div class="md:hidden flex justify-center mb-3"><span class="w-10 h-1 rounded-full bg-slate-700"></span></div>
@@ -375,7 +465,16 @@ function renderSystemEditor(body) {
                 <div class="space-y-1.5"><p class="field-label">Star colour</p>${segmented('star', [['', 'Unknown'], ...Object.entries(STAR_CLASSES).map(([key, star]) => [key, star.label, `<span class="w-2.5 h-2.5 rounded-full" style="background:${star.color}"></span>`])], draft.star)}</div>
                 <div class="space-y-1.5"><p class="field-label">Dominant race</p>${segmented('race', [['', 'Unknown'], ...Object.entries(RACES)], draft.race)}</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="space-y-1.5"><p class="field-label">Wealth</p>${segmented('wealth', [['0', 'Unknown'], ['1', '★'], ['2', '★★'], ['3', '★★★']], String(draft.wealth))}</div>
+                    <div class="space-y-1.5"><p class="field-label">Wealth</p>${segmented(
+                      'wealth',
+                      [
+                        ['0', 'Unknown'],
+                        ['1', '★'],
+                        ['2', '★★'],
+                        ['3', '★★★']
+                      ],
+                      String(draft.wealth)
+                    )}</div>
                     <div class="space-y-1.5"><p class="field-label">Conflict</p>${segmented('conflict', [['', '?'], ...Object.entries(CONFLICT_LEVELS).map(([key, label]) => [key, key === 'pirate' ? 'Pirate' : label])], draft.conflict)}</div>
                 </div>
                 <div class="space-y-1.5">
@@ -383,9 +482,13 @@ function renderSystemEditor(body) {
                     <div id="tagEditor" class="flex flex-wrap items-center gap-1.5 min-h-10 p-1.5 rounded-xl bg-slate-900 border border-slate-700 focus-within:border-emerald-400" onclick="document.getElementById('tagInput').focus()"></div>
                     <div id="tagSuggestions" class="flex flex-wrap gap-1.5"></div>
                 </div>
-                ${isNew ? `
+                ${
+                  isNew
+                    ? `
                 <label class="field">Notes<textarea name="notes" rows="4" maxlength="5000" placeholder="First impressions, what's here, why it matters">${escapeHtml(draft.notes)}</textarea></label>
-                <label class="flex items-center gap-2.5 text-sm text-slate-200"><input name="logVisit" type="checkbox" ${draft.logVisit === false ? '' : 'checked'} class="w-4 h-4 accent-emerald-400">I'm here now (log a visit)</label>` : ''}
+                <label class="flex items-center gap-2.5 text-sm text-slate-200"><input name="logVisit" type="checkbox" ${draft.logVisit === false ? '' : 'checked'} class="w-4 h-4 accent-emerald-400">I'm here now (log a visit)</label>`
+                    : ''
+                }
             </div>
             <div class="sticky bottom-0 bg-slate-950/95 backdrop-blur border-t border-slate-800 px-5 py-3 flex items-center justify-end gap-2">
                 <p id="editorError" class="mr-auto text-xs text-rose-300"></p>
@@ -393,131 +496,159 @@ function renderSystemEditor(body) {
                 <button type="submit" class="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">${isNew ? 'Add system' : 'Save changes'}</button>
             </div>
         </form>`;
-    renderTagEditor();
+  renderTagEditor();
 }
 
 // Segmented buttons write straight into the draft; text inputs are read on save.
 function setDraftField(name, value) {
-    captureEditorInputs();
-    panelDraft[name] = name === 'wealth' ? Number(value) : value;
-    renderSystemPanel();
+  captureEditorInputs();
+  panelDraft[name] = name === 'wealth' ? Number(value) : value;
+  renderSystemPanel();
 }
 
 function captureEditorInputs() {
-    const form = document.getElementById('systemEditor');
-    if (!form) return;
-    ['name', 'region', 'galaxy', 'glyphs', 'economy', 'notes'].forEach(field => {
-        if (form.elements[field]) panelDraft[field] = form.elements[field].value;
-    });
-    panelDraft.logVisit = form.elements.logVisit ? form.elements.logVisit.checked : undefined;
+  const form = document.getElementById('systemEditor');
+  if (!form) return;
+  ['name', 'region', 'galaxy', 'glyphs', 'economy', 'notes'].forEach(field => {
+    if (form.elements[field]) panelDraft[field] = form.elements[field].value;
+  });
+  panelDraft.logVisit = form.elements.logVisit ? form.elements.logVisit.checked : undefined;
 }
 
 function renderTagEditor() {
-    const editor = document.getElementById('tagEditor');
-    if (!editor) return;
-    const typed = document.getElementById('tagInput')?.value || '';
-    editor.innerHTML = editorTags.map(tag => `
-        <span class="inline-flex items-center gap-1 h-7 pl-2 pr-1 rounded-md bg-emerald-500/15 border border-emerald-500/40 text-xs text-emerald-100">${escapeHtml(tag)}<button type="button" onclick="removeEditorTag('${escapeHtml(tag)}')" aria-label="Remove ${escapeHtml(tag)}" class="w-5 h-5 rounded flex items-center justify-center hover:bg-emerald-500/20"><i class="ph-bold ph-x text-[10px]"></i></button></span>`).join('') +
-        `<input id="tagInput" type="text" maxlength="40" value="${escapeHtml(typed)}" placeholder="${editorTags.length ? 'Add tag' : 'Type a tag and press Enter'}" oninput="renderTagSuggestions()" onkeydown="onTagKey(event)" class="flex-1 min-w-[8rem] h-7 bg-transparent px-1.5 text-base sm:text-sm text-white focus:outline-none">`;
-    renderTagSuggestions();
+  const editor = document.getElementById('tagEditor');
+  if (!editor) return;
+  const typed = document.getElementById('tagInput')?.value || '';
+  editor.innerHTML =
+    editorTags
+      .map(
+        tag => `
+        <span class="inline-flex items-center gap-1 h-7 pl-2 pr-1 rounded-md bg-emerald-500/15 border border-emerald-500/40 text-xs text-emerald-100">${escapeHtml(tag)}<button type="button" onclick="removeEditorTag('${escapeHtml(tag)}')" aria-label="Remove ${escapeHtml(tag)}" class="w-5 h-5 rounded flex items-center justify-center hover:bg-emerald-500/20"><i class="ph-bold ph-x text-[10px]"></i></button></span>`
+      )
+      .join('') +
+    `<input id="tagInput" type="text" maxlength="40" value="${escapeHtml(typed)}" placeholder="${editorTags.length ? 'Add tag' : 'Type a tag and press Enter'}" oninput="renderTagSuggestions()" onkeydown="onTagKey(event)" class="flex-1 min-w-[8rem] h-7 bg-transparent px-1.5 text-base sm:text-sm text-white focus:outline-none">`;
+  renderTagSuggestions();
 }
 
 function renderTagSuggestions() {
-    const query = tagSlug(document.getElementById('tagInput')?.value || '');
-    const pool = [...new Set([...allTags().keys(), ...SUGGESTED_TAGS])].filter(tag => !editorTags.includes(tag) && (!query || tag.includes(query)));
-    document.getElementById('tagSuggestions').innerHTML = pool.slice(0, 12).map(tag => `<button type="button" onclick="addEditorTag('${escapeHtml(tag)}')" class="h-7 px-2 rounded-md border border-dashed border-slate-600 text-xs text-slate-300 hover:text-white hover:border-slate-400">+ ${escapeHtml(tag)}</button>`).join('');
+  const query = tagSlug(document.getElementById('tagInput')?.value || '');
+  const pool = [...new Set([...allTags().keys(), ...SUGGESTED_TAGS])].filter(
+    tag => !editorTags.includes(tag) && (!query || tag.includes(query))
+  );
+  document.getElementById('tagSuggestions').innerHTML = pool
+    .slice(0, 12)
+    .map(
+      tag =>
+        `<button type="button" onclick="addEditorTag('${escapeHtml(tag)}')" class="h-7 px-2 rounded-md border border-dashed border-slate-600 text-xs text-slate-300 hover:text-white hover:border-slate-400">+ ${escapeHtml(tag)}</button>`
+    )
+    .join('');
 }
 
 function addEditorTag(value) {
-    const tag = tagSlug(value);
-    if (tag && !editorTags.includes(tag)) editorTags.push(tag);
-    const input = document.getElementById('tagInput');
-    if (input) input.value = '';
-    renderTagEditor();
-    document.getElementById('tagInput')?.focus();
+  const tag = tagSlug(value);
+  if (tag && !editorTags.includes(tag)) editorTags.push(tag);
+  const input = document.getElementById('tagInput');
+  if (input) input.value = '';
+  renderTagEditor();
+  document.getElementById('tagInput')?.focus();
 }
 
 function removeEditorTag(tag) {
-    editorTags = editorTags.filter(item => item !== tag);
-    renderTagEditor();
+  editorTags = editorTags.filter(item => item !== tag);
+  renderTagEditor();
 }
 
 function onTagKey(event) {
-    if (event.key === 'Enter' || event.key === ',') {
-        event.preventDefault();
-        if (event.target.value.trim()) addEditorTag(event.target.value);
-    } else if (event.key === 'Backspace' && !event.target.value && editorTags.length) {
-        editorTags.pop();
-        renderTagEditor();
-        document.getElementById('tagInput')?.focus();
-    }
+  if (event.key === 'Enter' || event.key === ',') {
+    event.preventDefault();
+    if (event.target.value.trim()) addEditorTag(event.target.value);
+  } else if (event.key === 'Backspace' && !event.target.value && editorTags.length) {
+    editorTags.pop();
+    renderTagEditor();
+    document.getElementById('tagInput')?.focus();
+  }
 }
 
 function saveSystemEditor(event) {
-    event.preventDefault();
-    captureEditorInputs();
-    const pendingTag = document.getElementById('tagInput')?.value;
-    if (pendingTag?.trim()) addEditorTag(pendingTag);
-    const glyphs = normalizeGlyphs(panelDraft.glyphs);
-    const error = message => { document.getElementById('editorError').textContent = message; };
-    if (!panelDraft.name.trim()) return error('The system needs a name.');
-    if (glyphs && glyphs.length !== 12) return error('Portal glyphs are 12 hex digits (0–9, A–F), or leave them empty.');
+  event.preventDefault();
+  captureEditorInputs();
+  const pendingTag = document.getElementById('tagInput')?.value;
+  if (pendingTag?.trim()) addEditorTag(pendingTag);
+  const glyphs = normalizeGlyphs(panelDraft.glyphs);
+  const error = message => {
+    document.getElementById('editorError').textContent = message;
+  };
+  if (!panelDraft.name.trim()) return error('The system needs a name.');
+  if (glyphs && glyphs.length !== 12) return error('Portal glyphs are 12 hex digits (0–9, A–F), or leave them empty.');
 
-    const logNow = panelDraft.logVisit;
-    delete panelDraft.logVisit;
-    const system = normalizeSystem({ ...panelDraft, glyphs, tags: editorTags, galaxy: panelDraft.galaxy.trim() || 'Euclid' });
-    const index = appState.systems.findIndex(item => item.id === system.id);
-    if (index === -1) {
-        if (logNow) system.visits.push({ at: new Date().toISOString() });
-        appState.systems.push(system);
-    } else {
-        appState.systems[index] = system;
-    }
-    saveAppState();
-    showToast(index === -1 ? `Added ${system.name}.` : `Saved ${system.name}.`);
-    openSystem(system.id);
+  const logNow = panelDraft.logVisit;
+  delete panelDraft.logVisit;
+  const system = normalizeSystem({
+    ...panelDraft,
+    glyphs,
+    tags: editorTags,
+    galaxy: panelDraft.galaxy.trim() || 'Euclid'
+  });
+  const index = appState.systems.findIndex(item => item.id === system.id);
+  if (index === -1) {
+    if (logNow) system.visits.push({ at: new Date().toISOString() });
+    appState.systems.push(system);
+  } else {
+    appState.systems[index] = system;
+  }
+  saveAppState();
+  showToast(index === -1 ? `Added ${system.name}.` : `Saved ${system.name}.`);
+  openSystem(system.id);
 }
 
 // ---------------------------------------------------------------------------
 // System actions
 // ---------------------------------------------------------------------------
 function armDelete(key) {
-    pendingDelete = key;
-    clearTimeout(armDelete.timer);
-    armDelete.timer = setTimeout(() => { pendingDelete = null; renderSystemPanel(); renderOutlaw(); }, 4000);
+  pendingDelete = key;
+  clearTimeout(armDelete.timer);
+  armDelete.timer = setTimeout(() => {
+    pendingDelete = null;
+    renderSystemPanel();
+    renderOutlaw();
+  }, 4000);
 }
 
 function logVisitFromPanel(event, id) {
-    event.preventDefault();
-    const system = findSystem(id);
-    if (!system) return;
-    const note = document.getElementById('visitNote').value.trim();
-    const packetRun = document.getElementById('visitPackets')?.checked;
-    system.visits.push({ at: new Date().toISOString(), ...(note ? { note } : {}), ...(packetRun ? { packets: appState.outlaw.packetsPerVisit } : {}) });
-    haptic();
-    saveAppState();
-    showToast(`Logged a visit to ${system.name}.`);
+  event.preventDefault();
+  const system = findSystem(id);
+  if (!system) return;
+  const note = document.getElementById('visitNote').value.trim();
+  const packetRun = document.getElementById('visitPackets')?.checked;
+  system.visits.push({
+    at: new Date().toISOString(),
+    ...(note ? { note } : {}),
+    ...(packetRun ? { packets: appState.outlaw.packetsPerVisit } : {})
+  });
+  haptic();
+  saveAppState();
+  showToast(`Logged a visit to ${system.name}.`);
 }
 
 function toggleFavorite(id) {
-    const system = findSystem(id);
-    if (!system) return;
-    system.favorite = !system.favorite;
-    saveAppState();
+  const system = findSystem(id);
+  if (!system) return;
+  system.favorite = !system.favorite;
+  saveAppState();
 }
 
 function setSystemRating(id, rating) {
-    const system = findSystem(id);
-    if (!system) return;
-    system.rating = system.rating === rating ? 0 : rating;
-    saveAppState();
+  const system = findSystem(id);
+  if (!system) return;
+  system.rating = system.rating === rating ? 0 : rating;
+  saveAppState();
 }
 
 export function filterByTag(tag) {
-    closeSystemPanel();
-    Object.assign(systemFilter, { tags: [tag] });
-    showSection('systems');
-    renderSystems();
+  closeSystemPanel();
+  Object.assign(systemFilter, { tags: [tag] });
+  showSection('systems');
+  renderSystems();
 }
 
 let notesTimer = null;
@@ -526,152 +657,170 @@ let notesSystemId = null;
 // tab's copy; writing a stale textarea would overwrite newer notes (and two tabs would keep undoing each other).
 let notesDirty = false;
 function queueNotesSave(id) {
-    notesSystemId = id;
-    notesDirty = true;
-    document.getElementById('notesStatus').textContent = 'Editing…';
-    clearTimeout(notesTimer);
-    notesTimer = setTimeout(flushNotes, 800);
+  notesSystemId = id;
+  notesDirty = true;
+  document.getElementById('notesStatus').textContent = 'Editing…';
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(flushNotes, 800);
 }
 
 // Saves the notes textarea without re-rendering the panel, so typing is never interrupted.
 function flushNotes() {
-    clearTimeout(notesTimer);
-    const textarea = document.getElementById('systemNotes');
-    const system = notesSystemId && findSystem(notesSystemId);
-    if (!notesDirty) {
-        // Nothing typed here, but another tab may have saved while this textarea had focus: show its notes.
-        // Only the text is updated; re-rendering the panel on blur would swallow the click that caused the blur.
-        if (textarea && system && textarea.value !== system.notes) textarea.value = system.notes;
-        return;
-    }
-    notesDirty = false;
-    if (!textarea || !system || system.notes === textarea.value) return;
-    system.notes = textarea.value;
-    const saved = persistState(); // a failure raises the storage banner like any other save
-    renderSystems();
-    const status = document.getElementById('notesStatus');
-    if (status) status.textContent = saved ? 'Saved' : 'Not saved';
+  clearTimeout(notesTimer);
+  const textarea = document.getElementById('systemNotes');
+  const system = notesSystemId && findSystem(notesSystemId);
+  if (!notesDirty) {
+    // Nothing typed here, but another tab may have saved while this textarea had focus: show its notes.
+    // Only the text is updated; re-rendering the panel on blur would swallow the click that caused the blur.
+    if (textarea && system && textarea.value !== system.notes) textarea.value = system.notes;
+    return;
+  }
+  notesDirty = false;
+  if (!textarea || !system || system.notes === textarea.value) return;
+  system.notes = textarea.value;
+  const saved = persistState(); // a failure raises the storage banner like any other save
+  renderSystems();
+  const status = document.getElementById('notesStatus');
+  if (status) status.textContent = saved ? 'Saved' : 'Not saved';
 }
 
 // Another tab saved while this one is open (store.js adopts its copy first).
 onAdopt(() => {
-    // Carry notes typed here into the adopted copy, so they aren't lost under the other tab's save.
-    const textarea = document.getElementById('systemNotes');
-    const system = notesDirty && textarea && notesSystemId && findSystem(notesSystemId);
-    if (system && system.notes !== textarea.value) {
-        clearTimeout(notesTimer);
-        notesDirty = false;
-        system.notes = textarea.value;
-        persistState();
-    }
-    // Saving an edit to a system the other tab deleted would bring it back.
-    if (panelMode === 'edit' && panelSystemId && !findSystem(panelSystemId)) {
-        closeSystemPanel();
-        showToast('That system was deleted in another tab.');
-    }
+  // Carry notes typed here into the adopted copy, so they aren't lost under the other tab's save.
+  const textarea = document.getElementById('systemNotes');
+  const system = notesDirty && textarea && notesSystemId && findSystem(notesSystemId);
+  if (system && system.notes !== textarea.value) {
+    clearTimeout(notesTimer);
+    notesDirty = false;
+    system.notes = textarea.value;
+    persistState();
+  }
+  // Saving an edit to a system the other tab deleted would bring it back.
+  if (panelMode === 'edit' && panelSystemId && !findSystem(panelSystemId)) {
+    closeSystemPanel();
+    showToast('That system was deleted in another tab.');
+  }
 });
 
 function editPlanet(planetId) {
-    editingPlanetId = planetId;
-    renderSystemPanel();
-    document.querySelector('#systemPanelBody form[onsubmit^="savePlanet"] input[name="name"]')?.focus();
+  editingPlanetId = planetId;
+  renderSystemPanel();
+  document.querySelector('#systemPanelBody form[onsubmit^="savePlanet"] input[name="name"]')?.focus();
 }
 
 function savePlanet(event, systemId, planetId) {
-    event.preventDefault();
-    const system = findSystem(systemId);
-    if (!system) return;
-    const form = event.target.elements;
-    const fields = {
-        name: form.name.value.trim(),
-        biome: form.biome.value.trim(),
-        tags: form.tags.value.split(',').map(tagSlug).filter(Boolean),
-        notes: form.notes.value.trim()
-    };
-    if (!fields.name) return;
-    const planet = system.planets.find(item => item.id === planetId);
-    if (planet) Object.assign(planet, fields, { tags: [...new Set(fields.tags)] });
-    else system.planets.push({ id: newId('pl'), ...fields, tags: [...new Set(fields.tags)] });
-    editingPlanetId = null;
-    saveAppState();
+  event.preventDefault();
+  const system = findSystem(systemId);
+  if (!system) return;
+  const form = event.target.elements;
+  const fields = {
+    name: form.name.value.trim(),
+    biome: form.biome.value.trim(),
+    tags: form.tags.value.split(',').map(tagSlug).filter(Boolean),
+    notes: form.notes.value.trim()
+  };
+  if (!fields.name) return;
+  const planet = system.planets.find(item => item.id === planetId);
+  if (planet) Object.assign(planet, fields, { tags: [...new Set(fields.tags)] });
+  else system.planets.push({ id: newId('pl'), ...fields, tags: [...new Set(fields.tags)] });
+  editingPlanetId = null;
+  saveAppState();
 }
 
 function deletePlanet(systemId, planetId) {
-    if (pendingDelete !== `planet:${planetId}`) { armDelete(`planet:${planetId}`); renderSystemPanel(); return; }
-    const system = findSystem(systemId);
-    system.planets = system.planets.filter(planet => planet.id !== planetId);
-    pendingDelete = null;
-    saveAppState();
+  if (pendingDelete !== `planet:${planetId}`) {
+    armDelete(`planet:${planetId}`);
+    renderSystemPanel();
+    return;
+  }
+  const system = findSystem(systemId);
+  system.planets = system.planets.filter(planet => planet.id !== planetId);
+  pendingDelete = null;
+  saveAppState();
 }
 
 function deleteVisit(systemId, index) {
-    const key = `visit:${systemId}:${index}`;
-    if (pendingDelete !== key) { armDelete(key); renderSystemPanel(); return; }
-    findSystem(systemId)?.visits.splice(index, 1);
-    pendingDelete = null;
-    saveAppState();
+  const key = `visit:${systemId}:${index}`;
+  if (pendingDelete !== key) {
+    armDelete(key);
+    renderSystemPanel();
+    return;
+  }
+  findSystem(systemId)?.visits.splice(index, 1);
+  pendingDelete = null;
+  saveAppState();
 }
 
 function deleteSystem(id) {
-    const key = `system:${id}`;
-    if (pendingDelete !== key) { armDelete(key); renderSystemPanel(); renderOutlaw(); return; }
-    const system = findSystem(id);
-    appState.systems = appState.systems.filter(item => item.id !== id);
-    pendingDelete = null;
-    closeSystemPanel();
-    saveAppState();
-    showToast(`Deleted ${system?.name || 'system'}.`);
+  const key = `system:${id}`;
+  if (pendingDelete !== key) {
+    armDelete(key);
+    renderSystemPanel();
+    renderOutlaw();
+    return;
+  }
+  const system = findSystem(id);
+  appState.systems = appState.systems.filter(item => item.id !== id);
+  pendingDelete = null;
+  closeSystemPanel();
+  saveAppState();
+  showToast(`Deleted ${system?.name || 'system'}.`);
 }
 
 // ---------------------------------------------------------------------------
 // Outlaw Run: systems tagged "outlaw", ready once restockHours passed since the last packet run
 // ---------------------------------------------------------------------------
 function outlawStatus(system) {
-    return computeOutlawStatus(system, appState.outlaw.restockHours);
+  return computeOutlawStatus(system, appState.outlaw.restockHours);
 }
 
 function outlawPill(status) {
-    const tones = {
-        new: 'bg-cyan-500/10 text-cyan-200 border-cyan-500/30',
-        ready: 'bg-emerald-500/10 text-emerald-200 border-emerald-500/30',
-        wait: 'bg-amber-500/10 text-amber-200 border-amber-500/30'
-    };
-    const icons = { new: 'ph-sparkle', ready: 'ph-check-circle', wait: 'ph-hourglass-medium' };
-    return `<span class="inline-flex items-center gap-1 h-6 px-2 rounded-full border text-[11px] font-medium whitespace-nowrap shrink-0 ${tones[status.tone]}"><i class="ph-bold ${icons[status.tone]}"></i>${status.label}</span>`;
+  const tones = {
+    new: 'bg-cyan-500/10 text-cyan-200 border-cyan-500/30',
+    ready: 'bg-emerald-500/10 text-emerald-200 border-emerald-500/30',
+    wait: 'bg-amber-500/10 text-amber-200 border-amber-500/30'
+  };
+  const icons = { new: 'ph-sparkle', ready: 'ph-check-circle', wait: 'ph-hourglass-medium' };
+  return `<span class="inline-flex items-center gap-1 h-6 px-2 rounded-full border text-[11px] font-medium whitespace-nowrap shrink-0 ${tones[status.tone]}"><i class="ph-bold ${icons[status.tone]}"></i>${status.label}</span>`;
 }
 
 export function sortedOutlaw() {
-    return rankOutlaw(appState.systems, appState.outlaw.restockHours);
+  return rankOutlaw(appState.systems, appState.outlaw.restockHours);
 }
 
 let outlawFilter = 'all';
 
 function setOutlawFilter(key) {
-    outlawFilter = key;
-    renderOutlaw();
+  outlawFilter = key;
+  renderOutlaw();
 }
 
 export function renderOutlaw() {
-    const outlaw = appState.outlaw;
-    const rows = sortedOutlaw();
-    const ready = rows.filter(row => row.status.ready);
-    const runs = rows.reduce((sum, row) => sum + row.system.visits.filter(visit => visit.packets).length, 0);
-    const packets = rows.reduce((sum, row) => sum + packetsLogged(row.system), 0);
+  const outlaw = appState.outlaw;
+  const rows = sortedOutlaw();
+  const ready = rows.filter(row => row.status.ready);
+  const runs = rows.reduce((sum, row) => sum + row.system.visits.filter(visit => visit.packets).length, 0);
+  const packets = rows.reduce((sum, row) => sum + packetsLogged(row.system), 0);
 
-    document.getElementById('sidebarOutlawCount').textContent = rows.length ? `${ready.length}/${rows.length}` : '0';
-    document.getElementById('outlawSummary').innerHTML = rows.length
-        ? `<strong class="text-white">${rows.length}</strong> outlaw system${rows.length === 1 ? '' : 's'} · <strong class="text-emerald-300">${ready.length} ready</strong> · ${runs} packet run${runs === 1 ? '' : 's'} · ~${(packets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites earned so far`
-        : 'No outlaw systems yet. Add the ones you use (10–20 makes a good rotation). They’re regular systems tagged “outlaw”, so they also show up under Systems.';
-    document.getElementById('outlawRestockHours').value = outlaw.restockHours;
-    document.getElementById('outlawPacketsPerVisit').value = outlaw.packetsPerVisit;
-    document.getElementById('outlawUnitsPerPacket').value = outlaw.unitsPerPacket;
-    document.getElementById('outlawNanitesPerPacket').value = outlaw.nanitesPerPacket;
-    document.getElementById('outlawRunSize').innerHTML = Array.from({ length: 15 }, (_, i) => `<option value="${i + 1}" ${outlaw.runSize === i + 1 ? 'selected' : ''}>${i + 1}</option>`).join('');
+  document.getElementById('sidebarOutlawCount').textContent = rows.length ? `${ready.length}/${rows.length}` : '0';
+  document.getElementById('outlawSummary').innerHTML = rows.length
+    ? `<strong class="text-white">${rows.length}</strong> outlaw system${rows.length === 1 ? '' : 's'} · <strong class="text-emerald-300">${ready.length} ready</strong> · ${runs} packet run${runs === 1 ? '' : 's'} · ~${(packets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites earned so far`
+    : 'No outlaw systems yet. Add the ones you use (10–20 makes a good rotation). They’re regular systems tagged “outlaw”, so they also show up under Systems.';
+  document.getElementById('outlawRestockHours').value = outlaw.restockHours;
+  document.getElementById('outlawPacketsPerVisit').value = outlaw.packetsPerVisit;
+  document.getElementById('outlawUnitsPerPacket').value = outlaw.unitsPerPacket;
+  document.getElementById('outlawNanitesPerPacket').value = outlaw.nanitesPerPacket;
+  document.getElementById('outlawRunSize').innerHTML = Array.from(
+    { length: 15 },
+    (_, i) => `<option value="${i + 1}" ${outlaw.runSize === i + 1 ? 'selected' : ''}>${i + 1}</option>`
+  ).join('');
 
-    const run = ready.slice(0, outlaw.runSize);
-    const runPackets = run.length * outlaw.packetsPerVisit;
-    document.getElementById('outlawRunList').innerHTML = run.length
-        ? run.map(({ system }, i) => `
+  const run = ready.slice(0, outlaw.runSize);
+  const runPackets = run.length * outlaw.packetsPerVisit;
+  document.getElementById('outlawRunList').innerHTML = run.length
+    ? run
+        .map(
+          ({ system }, i) => `
             <li class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
                 <span class="nav-tile text-emerald-300 mt-0.5">${i + 1}</span>
                 <div class="min-w-0 flex-1 space-y-1">
@@ -682,24 +831,40 @@ export function renderOutlaw() {
                     ${glyphChip(system.glyphs)}
                 </div>
                 <button onclick="logPacketRun('${system.id}')" class="shrink-0 h-9 px-3 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/25 text-xs font-semibold flex items-center gap-1.5"><i class="ph-bold ph-check"></i>Visited</button>
-            </li>`).join('')
-        : `<li class="p-4 rounded-xl border border-dashed border-slate-700 text-sm text-slate-400">${rows.length
-            ? `Every station is restocking. Next one ready in ${formatDuration(rows[0].status.readyAt - Date.now())} (${escapeHtml(rows[0].system.name)}).`
-            : 'Add outlaw systems to plan a run.'}</li>`;
-    document.getElementById('outlawRunFooter').innerHTML = run.length ? `
+            </li>`
+        )
+        .join('')
+    : `<li class="p-4 rounded-xl border border-dashed border-slate-700 text-sm text-slate-400">${
+        rows.length
+          ? `Every station is restocking. Next one ready in ${formatDuration(rows[0].status.readyAt - Date.now())} (${escapeHtml(rows[0].system.name)}).`
+          : 'Add outlaw systems to plan a run.'
+      }</li>`;
+  document.getElementById('outlawRunFooter').innerHTML = run.length
+    ? `
         <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <p class="text-xs text-slate-300">${run.length} station${run.length === 1 ? '' : 's'} · ${runPackets} packets · ~${(runPackets * appState.outlaw.unitsPerPacket / 1e6).toFixed(1)}M Units → <strong class="text-emerald-300">~${(runPackets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites</strong></p>
+            <p class="text-xs text-slate-300">${run.length} station${run.length === 1 ? '' : 's'} · ${runPackets} packets · ~${((runPackets * appState.outlaw.unitsPerPacket) / 1e6).toFixed(1)}M Units → <strong class="text-emerald-300">~${(runPackets * appState.outlaw.nanitesPerPacket).toLocaleString()} Nanites</strong></p>
             ${run.length > 1 ? '<button onclick="logOutlawRun()" class="h-9 px-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs font-medium text-slate-200">Mark whole run visited</button>' : ''}
-        </div>` : '';
+        </div>`
+    : '';
 
-    const filters = [['all', 'All', rows.length], ['ready', 'Ready', ready.length], ['wait', 'Restocking', rows.length - ready.length]];
-    document.getElementById('outlawFilters').innerHTML = filters.map(([key, label, n]) => `
-        <button onclick="setOutlawFilter('${key}')" aria-pressed="${outlawFilter === key}" class="h-8 px-3 rounded-full border text-xs font-medium transition ${outlawFilter === key ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white'}">${label} <span class="font-mono opacity-70">${n}</span></button>`).join('');
-    const visible = rows.filter(row => outlawFilter === 'all' || (outlawFilter === 'ready') === row.status.ready);
-    document.getElementById('outlawStationList').innerHTML = visible.length ? visible.map(({ system, status }) => {
-        const last = [...system.visits].reverse().find(visit => visit.packets);
-        const runCount = system.visits.filter(visit => visit.packets).length;
-        return `
+  const filters = [
+    ['all', 'All', rows.length],
+    ['ready', 'Ready', ready.length],
+    ['wait', 'Restocking', rows.length - ready.length]
+  ];
+  document.getElementById('outlawFilters').innerHTML = filters
+    .map(
+      ([key, label, n]) => `
+        <button onclick="setOutlawFilter('${key}')" aria-pressed="${outlawFilter === key}" class="h-8 px-3 rounded-full border text-xs font-medium transition ${outlawFilter === key ? 'bg-emerald-500/15 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white'}">${label} <span class="font-mono opacity-70">${n}</span></button>`
+    )
+    .join('');
+  const visible = rows.filter(row => outlawFilter === 'all' || (outlawFilter === 'ready') === row.status.ready);
+  document.getElementById('outlawStationList').innerHTML = visible.length
+    ? visible
+        .map(({ system, status }) => {
+          const last = [...system.visits].reverse().find(visit => visit.packets);
+          const runCount = system.visits.filter(visit => visit.packets).length;
+          return `
         <li class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2.5">
             <div class="flex flex-wrap items-start justify-between gap-2">
                 <button onclick="openSystem('${system.id}')" class="min-w-0 text-left"><strong class="text-sm text-white hover:underline underline-offset-2">${escapeHtml(system.name)}</strong> <span class="block text-xs text-slate-400">${escapeHtml([system.region, system.galaxy].filter(Boolean).join(' · '))}</span></button>
@@ -715,90 +880,143 @@ export function renderOutlaw() {
                 </div>
             </div>
         </li>`;
-    }).join('') : `<li class="p-4 rounded-xl border border-dashed border-slate-700 text-sm text-slate-400">${rows.length ? 'No stations in this view.' : 'Your outlaw list is empty. Use “Add outlaw system”, or paste a whole list at once.'}</li>`;
+        })
+        .join('')
+    : `<li class="p-4 rounded-xl border border-dashed border-slate-700 text-sm text-slate-400">${rows.length ? 'No stations in this view.' : 'Your outlaw list is empty. Use “Add outlaw system”, or paste a whole list at once.'}</li>`;
 }
 
 function setOutlawSetting(key, value) {
-    const limits = { restockHours: [1, 720], packetsPerVisit: [1, 99], runSize: [1, 15], unitsPerPacket: [1, 1e9], nanitesPerPacket: [1, 1e6] };
-    const [min, max] = limits[key];
-    appState.outlaw[key] = Math.min(max, Math.max(min, Math.round(Number(value)) || min));
-    saveAppState();
+  const limits = {
+    restockHours: [1, 720],
+    packetsPerVisit: [1, 99],
+    runSize: [1, 15],
+    unitsPerPacket: [1, 1e9],
+    nanitesPerPacket: [1, 1e6]
+  };
+  const [min, max] = limits[key];
+  appState.outlaw[key] = Math.min(max, Math.max(min, Math.round(Number(value)) || min));
+  saveAppState();
 }
 
 export function logPacketRun(id) {
-    const system = findSystem(id);
-    if (!system) return;
-    system.visits.push({ at: new Date().toISOString(), packets: appState.outlaw.packetsPerVisit });
-    haptic();
-    saveAppState();
-    showToast(`Logged ${system.name}. Ready again in ${appState.outlaw.restockHours}h.`);
+  const system = findSystem(id);
+  if (!system) return;
+  system.visits.push({ at: new Date().toISOString(), packets: appState.outlaw.packetsPerVisit });
+  haptic();
+  saveAppState();
+  showToast(`Logged ${system.name}. Ready again in ${appState.outlaw.restockHours}h.`);
 }
 
 function logOutlawRun() {
-    const run = sortedOutlaw().filter(row => row.status.ready).slice(0, appState.outlaw.runSize);
-    const at = new Date().toISOString();
-    run.forEach(({ system }) => system.visits.push({ at, packets: appState.outlaw.packetsPerVisit }));
-    haptic([12, 60, 12]);
-    saveAppState();
-    showToast(`Logged a run of ${run.length} stations.`);
+  const run = sortedOutlaw()
+    .filter(row => row.status.ready)
+    .slice(0, appState.outlaw.runSize);
+  const at = new Date().toISOString();
+  run.forEach(({ system }) => system.visits.push({ at, packets: appState.outlaw.packetsPerVisit }));
+  haptic([12, 60, 12]);
+  saveAppState();
+  showToast(`Logged a run of ${run.length} stations.`);
 }
 
 function undoPacketRun(id) {
-    const system = findSystem(id);
-    if (!system) return;
-    for (let i = system.visits.length - 1; i >= 0; i--) {
-        if (system.visits[i].packets) { system.visits.splice(i, 1); break; }
+  const system = findSystem(id);
+  if (!system) return;
+  for (let i = system.visits.length - 1; i >= 0; i--) {
+    if (system.visits[i].packets) {
+      system.visits.splice(i, 1);
+      break;
     }
-    saveAppState();
-    showToast(`Removed the last run at ${system.name}.`);
+  }
+  saveAppState();
+  showToast(`Removed the last run at ${system.name}.`);
 }
 
 function toggleOutlawBulk(open) {
-    document.getElementById('outlawBulkForm').classList.toggle('hidden', !open);
-    document.getElementById('outlawBulkError').classList.add('hidden');
-    if (open) document.getElementById('outlawBulkInput').focus();
+  document.getElementById('outlawBulkForm').classList.toggle('hidden', !open);
+  document.getElementById('outlawBulkError').classList.add('hidden');
+  if (open) document.getElementById('outlawBulkInput').focus();
 }
 
 function saveOutlawBulk(event) {
-    event.preventDefault();
-    const fail = message => {
-        const error = document.getElementById('outlawBulkError');
-        error.textContent = message;
-        error.classList.remove('hidden');
-    };
-    const lines = document.getElementById('outlawBulkInput').value.split('\n').map(line => line.trim()).filter(Boolean);
-    const parsed = lines.map(line => {
-        const [name, glyphs, region, ...notes] = line.split('|').map(part => part.trim());
-        return { name, glyphs: normalizeGlyphs(glyphs), region, notes: notes.join(' | ') };
-    });
-    if (!parsed.length) return fail('Paste at least one system, one per line.');
-    const bad = parsed.findIndex(item => !item.name || (item.glyphs && item.glyphs.length !== 12));
-    if (bad !== -1) return fail(`Line ${bad + 1}: needs a name, and glyphs must be exactly 12 hex digits.`);
-    parsed.forEach(item => appState.systems.push(normalizeSystem({ ...item, id: newId('sys'), conflict: 'pirate', tags: [OUTLAW_TAG] })));
-    document.getElementById('outlawBulkInput').value = '';
-    toggleOutlawBulk(false);
-    saveAppState();
-    showToast(`Added ${parsed.length} outlaw system${parsed.length === 1 ? '' : 's'}.`);
+  event.preventDefault();
+  const fail = message => {
+    const error = document.getElementById('outlawBulkError');
+    error.textContent = message;
+    error.classList.remove('hidden');
+  };
+  const lines = document
+    .getElementById('outlawBulkInput')
+    .value.split('\n')
+    .map(line => line.trim())
+    .filter(Boolean);
+  const parsed = lines.map(line => {
+    const [name, glyphs, region, ...notes] = line.split('|').map(part => part.trim());
+    return { name, glyphs: normalizeGlyphs(glyphs), region, notes: notes.join(' | ') };
+  });
+  if (!parsed.length) return fail('Paste at least one system, one per line.');
+  const bad = parsed.findIndex(item => !item.name || (item.glyphs && item.glyphs.length !== 12));
+  if (bad !== -1) return fail(`Line ${bad + 1}: needs a name, and glyphs must be exactly 12 hex digits.`);
+  parsed.forEach(item =>
+    appState.systems.push(normalizeSystem({ ...item, id: newId('sys'), conflict: 'pirate', tags: [OUTLAW_TAG] }))
+  );
+  document.getElementById('outlawBulkInput').value = '';
+  toggleOutlawBulk(false);
+  saveAppState();
+  showToast(`Added ${parsed.length} outlaw system${parsed.length === 1 ? '' : 's'}.`);
 }
 
 // Panel keyboard + keeping countdowns current while the app stays open.
 document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && document.getElementById('systemPanel')?.getAttribute('aria-hidden') === 'false') {
-        if (panelMode === 'edit' && panelSystemId) openSystem(panelSystemId);
-        else closeSystemPanel();
-    }
+  if (event.key === 'Escape' && document.getElementById('systemPanel')?.getAttribute('aria-hidden') === 'false') {
+    if (panelMode === 'edit' && panelSystemId) openSystem(panelSystemId);
+    else closeSystemPanel();
+  }
 });
 
 setInterval(() => {
-    if (!appState.systems) return;
-    renderOutlaw();
-    renderSystems();
+  if (!appState.systems) return;
+  renderOutlaw();
+  renderSystems();
 }, 60000);
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('economyOptions').innerHTML = ECONOMIES.map(value => `<option value="${value}">`).join('');
-    document.getElementById('biomeOptions').innerHTML = BIOMES.map(value => `<option value="${value}">`).join('');
+  document.getElementById('economyOptions').innerHTML = ECONOMIES.map(value => `<option value="${value}">`).join('');
+  document.getElementById('biomeOptions').innerHTML = BIOMES.map(value => `<option value="${value}">`).join('');
 });
 
 // Called from inline on…="" handlers in the markup and in rendered templates.
-Object.assign(window, { addEditorTag, clearSystemFilters, closeSystemPanel, copyGlyphs, deletePlanet, deleteSystem, deleteVisit, editPlanet, filterByTag, flushNotes, logOutlawRun, logPacketRun, logVisitFromPanel, onTagKey, openSystem, openSystemEditor, queueNotesSave, removeEditorTag, renderOutlaw, renderTagSuggestions, saveOutlawBulk, savePlanet, saveSystemEditor, setDraftField, setOutlawFilter, setOutlawSetting, setSystemFilter, setSystemRating, toggleFavoritesFilter, toggleFavorite, toggleOutlawBulk, toggleSystemTagFilter, undoPacketRun });
+Object.assign(window, {
+  addEditorTag,
+  clearSystemFilters,
+  closeSystemPanel,
+  copyGlyphs,
+  deletePlanet,
+  deleteSystem,
+  deleteVisit,
+  editPlanet,
+  filterByTag,
+  flushNotes,
+  logOutlawRun,
+  logPacketRun,
+  logVisitFromPanel,
+  onTagKey,
+  openSystem,
+  openSystemEditor,
+  queueNotesSave,
+  removeEditorTag,
+  renderOutlaw,
+  renderTagSuggestions,
+  saveOutlawBulk,
+  savePlanet,
+  saveSystemEditor,
+  setDraftField,
+  setOutlawFilter,
+  setOutlawSetting,
+  setSystemFilter,
+  setSystemRating,
+  toggleFavoritesFilter,
+  toggleFavorite,
+  toggleOutlawBulk,
+  toggleSystemTagFilter,
+  undoPacketRun
+});

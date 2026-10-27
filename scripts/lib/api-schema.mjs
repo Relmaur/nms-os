@@ -16,7 +16,9 @@ export function readEmbeddedIn(data, template) {
   if (!Array.isArray(pages)) throw new InvalidResponse(`embeddedin for ${template}: no page list in the response`);
   for (const page of pages) {
     if (!Number.isInteger(page?.pageid) || typeof page?.title !== 'string') {
-      throw new InvalidResponse(`embeddedin for ${template}: entry ${JSON.stringify(page).slice(0, 120)} has no pageid/title`);
+      throw new InvalidResponse(
+        `embeddedin for ${template}: entry ${JSON.stringify(page).slice(0, 120)} has no pageid/title`
+      );
     }
   }
   return pages;
@@ -27,14 +29,17 @@ export function readEmbeddedIn(data, template) {
 export function readRevisions(data) {
   const pages = data?.query?.pages;
   if (!Array.isArray(pages)) throw new InvalidResponse('revisions: no page list in the response');
-  return pages.filter(page => !page?.missing).map(page => {
-    const revision = page?.revisions?.[0];
-    const content = revision?.slots?.main?.content;
-    const where = `page ${page?.pageid} (${page?.title})`;
-    if (!Number.isInteger(page?.pageid) || typeof page?.title !== 'string') throw new InvalidResponse(`revisions: ${where} has no pageid/title`);
-    if (!Number.isInteger(revision?.revid)) throw new InvalidResponse(`revisions: ${where} has no revision id`);
-    if (!isDate(revision.timestamp)) throw new InvalidResponse(`revisions: ${where} has no valid timestamp`);
-    if (typeof content !== 'string') throw new InvalidResponse(`revisions: ${where} has no wikitext`);
-    return { pageid: page.pageid, title: page.title, revid: revision.revid, timestamp: revision.timestamp, content };
-  });
+  return pages
+    .filter(page => !page?.missing)
+    .map(page => {
+      const revision = page?.revisions?.[0];
+      const content = revision?.slots?.main?.content;
+      const where = `page ${page?.pageid} (${page?.title})`;
+      if (!Number.isInteger(page?.pageid) || typeof page?.title !== 'string')
+        throw new InvalidResponse(`revisions: ${where} has no pageid/title`);
+      if (!Number.isInteger(revision?.revid)) throw new InvalidResponse(`revisions: ${where} has no revision id`);
+      if (!isDate(revision.timestamp)) throw new InvalidResponse(`revisions: ${where} has no valid timestamp`);
+      if (typeof content !== 'string') throw new InvalidResponse(`revisions: ${where} has no wikitext`);
+      return { pageid: page.pageid, title: page.title, revid: revision.revid, timestamp: revision.timestamp, content };
+    });
 }

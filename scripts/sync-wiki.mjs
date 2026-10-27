@@ -15,7 +15,17 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { WIKI_BASE, LICENSE, SCOPE, FOLDERS, slugify, toFrontmatter, parseFrontmatter, summarize, buildArticle } from './lib/wikitext.mjs';
+import {
+  WIKI_BASE,
+  LICENSE,
+  SCOPE,
+  FOLDERS,
+  slugify,
+  toFrontmatter,
+  parseFrontmatter,
+  summarize,
+  buildArticle
+} from './lib/wikitext.mjs';
 import { InvalidResponse, readEmbeddedIn, readRevisions } from './lib/api-schema.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -32,9 +42,14 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // ---------------------------------------------------------------------------
 async function api(params, attempt = 1) {
   const url = new URL(WIKI_API);
-  Object.entries({ format: 'json', formatversion: '2', ...params }).forEach(([key, value]) => url.searchParams.set(key, String(value)));
+  Object.entries({ format: 'json', formatversion: '2', ...params }).forEach(([key, value]) =>
+    url.searchParams.set(key, String(value))
+  );
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+    const res = await fetch(url, {
+      headers: { 'User-Agent': USER_AGENT },
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
     const data = await res.json();
     if (data.error) throw new Error(`${data.error.code}: ${data.error.info}`);
@@ -52,7 +67,14 @@ async function fetchScope() {
   for (const [template, kind] of Object.entries(SCOPE)) {
     let cont = {};
     while (cont) {
-      const data = await api({ action: 'query', list: 'embeddedin', eititle: `Template:${template}`, einamespace: 0, eilimit: 500, ...cont });
+      const data = await api({
+        action: 'query',
+        list: 'embeddedin',
+        eititle: `Template:${template}`,
+        einamespace: 0,
+        eilimit: 500,
+        ...cont
+      });
       for (const page of readEmbeddedIn(data, template)) {
         if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind });
       }
@@ -67,11 +89,24 @@ async function fetchRevisions(scope) {
   const ids = [...scope.keys()].sort((a, b) => a - b);
   const pages = [];
   for (let i = 0; i < ids.length; i += BATCH) {
-    const data = await api({ action: 'query', prop: 'revisions', rvprop: 'ids|timestamp|content', rvslots: 'main', pageids: ids.slice(i, i + BATCH).join('|') });
+    const data = await api({
+      action: 'query',
+      prop: 'revisions',
+      rvprop: 'ids|timestamp|content',
+      rvslots: 'main',
+      pageids: ids.slice(i, i + BATCH).join('|')
+    });
     for (const page of readRevisions(data)) {
-      pages.push({ ...scope.get(page.pageid), title: page.title, revId: page.revid, revTimestamp: page.timestamp, content: page.content });
+      pages.push({
+        ...scope.get(page.pageid),
+        title: page.title,
+        revId: page.revid,
+        revTimestamp: page.timestamp,
+        content: page.content
+      });
     }
-    if (process.stdout.isTTY) process.stdout.write(`\r📥 Fetched ${Math.min(i + BATCH, ids.length)}/${ids.length} pages`);
+    if (process.stdout.isTTY)
+      process.stdout.write(`\r📥 Fetched ${Math.min(i + BATCH, ids.length)}/${ids.length} pages`);
     await sleep(REQUEST_DELAY_MS);
   }
   console.log(`${process.stdout.isTTY ? '\n' : ''}📥 Fetched ${pages.length} pages.`);
@@ -107,10 +142,15 @@ function plan(livePages, archive) {
   const recipeNames = new Set();
   for (const page of [...livePages].sort((a, b) => a.pageId - b.pageId)) {
     const article = buildArticle(page);
-    if (article.excluded) { excluded.push({ title: page.title, reason: article.excluded }); continue; }
+    if (article.excluded) {
+      excluded.push({ title: page.title, reason: article.excluded });
+      continue;
+    }
     kept.add(page.pageId);
     titles.add(page.title.toLowerCase());
-    article.meta.data.recipes.forEach(recipe => [...recipe.inputs, ...recipe.outputs].forEach(item => recipeNames.add(String(item.name))));
+    article.meta.data.recipes.forEach(recipe =>
+      [...recipe.inputs, ...recipe.outputs].forEach(item => recipeNames.add(String(item.name)))
+    );
     let slug = slugify(page.title) || String(page.pageId);
     if (taken.has(`${article.category}/${slug.toLowerCase()}`)) slug = `${slug}_${page.pageId}`;
     taken.add(`${article.category}/${slug.toLowerCase()}`);
@@ -118,7 +158,8 @@ function plan(livePages, archive) {
     const text = toFrontmatter(article.meta) + article.body;
     const existing = archive.get(page.pageId);
     if (!existing) missing.push(page.title);
-    else if (existing.meta.revId !== page.revId) outdated.push({ title: page.title, archived: existing.meta.revId, live: page.revId });
+    else if (existing.meta.revId !== page.revId)
+      outdated.push({ title: page.title, archived: existing.meta.revId, live: page.revId });
     if (existing && existing.file !== file) deletes.push(existing.file);
     if (!existing || existing.file !== file || existing.text !== text) writes.push({ file, text });
   }
@@ -173,12 +214,11 @@ async function sync({ dryRun }) {
 
   const changes = plan(livePages, await readArchive());
   const committedAliases = await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '');
-  const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles)
-    .catch(err => {
-      // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
-      console.warn(`⚠️  Couldn't refresh redirect aliases (${err.message}); keeping the committed aliases.json.`);
-      return { aliases: JSON.parse(committedAliases || '{}'), unlinked: changes.unknownNames };
-    });
+  const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles).catch(err => {
+    // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
+    console.warn(`⚠️  Couldn't refresh redirect aliases (${err.message}); keeping the committed aliases.json.`);
+    return { aliases: JSON.parse(committedAliases || '{}'), unlinked: changes.unknownNames };
+  });
   const aliasesText = `${JSON.stringify(aliases, null, 2)}\n`;
   const aliasesChanged = committedAliases !== aliasesText;
   const differences = changes.writes.length + changes.deletes.length + (aliasesChanged ? 1 : 0);
@@ -194,7 +234,9 @@ async function sync({ dryRun }) {
     for (const file of changes.deletes) {
       const twin = writtenByLowerCase.get(file.toLowerCase());
       if (twin) {
-        const [old, current] = await Promise.all([file, twin].map(name => fs.stat(path.join(WIKI_DIR, name)).catch(() => null)));
+        const [old, current] = await Promise.all(
+          [file, twin].map(name => fs.stat(path.join(WIKI_DIR, name)).catch(() => null))
+        );
         if (!old || (current && old.ino === current.ino && old.dev === current.dev)) continue;
       }
       await fs.rm(path.join(WIKI_DIR, file), { force: true });
@@ -212,20 +254,32 @@ async function sync({ dryRun }) {
     matched: dryRun ? pages - changes.outdated.length - changes.missing.length : pages,
     obsolete: archived.filter(entry => entry.meta.status === 'current' && entry.meta.obsolete).length,
     excluded: changes.excluded.length,
-    removed: archived.filter(entry => entry.meta.status === 'removed').map(entry => entry.meta.title).sort(),
+    removed: archived
+      .filter(entry => entry.meta.status === 'removed')
+      .map(entry => entry.meta.title)
+      .sort(),
     aliases: Object.keys(aliases).length,
     unlinkedIngredients: unlinked,
-    ...(dryRun && { outdated: changes.outdated, missing: changes.missing, removedUpstream: changes.removed, filesToRewrite: differences })
+    ...(dryRun && {
+      outdated: changes.outdated,
+      missing: changes.missing,
+      removedUpstream: changes.removed,
+      filesToRewrite: differences
+    })
   };
   await writeVerification(report);
 
   if (dryRun) {
-    console.log(differences
-      ? `❌ The archive differs from the wiki: ${changes.outdated.length} outdated, ${changes.missing.length} missing, ${changes.removed.length} removed upstream, ${differences} file(s) to rewrite. Run npm run sync:wiki.`
-      : `✅ The archive matches the wiki: ${report.matched}/${pages} pages at their latest revision.`);
+    console.log(
+      differences
+        ? `❌ The archive differs from the wiki: ${changes.outdated.length} outdated, ${changes.missing.length} missing, ${changes.removed.length} removed upstream, ${differences} file(s) to rewrite. Run npm run sync:wiki.`
+        : `✅ The archive matches the wiki: ${report.matched}/${pages} pages at their latest revision.`
+    );
     return !differences;
   }
-  console.log(`✅ Synced ${pages} pages: ${changes.writes.length} written, ${changes.deletes.length} renamed, ${changes.removed.length} marked removed, ${changes.excluded.length} player-found pages skipped.`);
+  console.log(
+    `✅ Synced ${pages} pages: ${changes.writes.length} written, ${changes.deletes.length} renamed, ${changes.removed.length} marked removed, ${changes.excluded.length} player-found pages skipped.`
+  );
   return true;
 }
 
@@ -262,7 +316,13 @@ async function buildIndexes() {
           })
         };
         articles.push({ ...entry, body, ...(meta.data?.recipes?.length && { recipes: meta.data.recipes }) });
-        if (isWiki) items.push({ ...entry, fields: meta.data?.fields || {}, value: meta.data?.value, recipes: meta.data?.recipes || [] });
+        if (isWiki)
+          items.push({
+            ...entry,
+            fields: meta.data?.fields || {},
+            value: meta.data?.value,
+            recipes: meta.data?.recipes || []
+          });
       }
     }
   }
@@ -270,13 +330,31 @@ async function buildIndexes() {
 
   const aliases = JSON.parse(await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '{}'));
   // The light index only carries what the main app's header search shows.
-  const index = articles.map(({ title, category, path, summary, source, obsolete, removed }) => ({ title, category, path, summary, source, ...(obsolete && { obsolete }), ...(removed && { removed }) }));
+  const index = articles.map(({ title, category, path, summary, source, obsolete, removed }) => ({
+    title,
+    category,
+    path,
+    summary,
+    source,
+    ...(obsolete && { obsolete }),
+    ...(removed && { removed })
+  }));
   await fs.writeFile(path.join(WIKI_DIR, 'index.json'), `${JSON.stringify(index)}\n`, 'utf8');
   // Loaded via <script>: the Codex's full-text search, and the fallback when fetch() is unavailable (file://).
-  await fs.writeFile(path.join(WIKI_DIR, 'offline-bundle.js'), `window.WIKI_OFFLINE_BUNDLE = ${JSON.stringify({ aliases, articles })};\n`, 'utf8');
+  await fs.writeFile(
+    path.join(WIKI_DIR, 'offline-bundle.js'),
+    `window.WIKI_OFFLINE_BUNDLE = ${JSON.stringify({ aliases, articles })};\n`,
+    'utf8'
+  );
   // The structured dataset for deterministic tools: one record per wiki page, recipes included.
-  await fs.writeFile(path.join(WIKI_DIR, 'game-data.json'), `${JSON.stringify({ schema: 1, source: WIKI_BASE, license: LICENSE, aliases, items })}\n`, 'utf8');
-  console.log(`🎉 Indexed ${articles.length} articles (${items.length} wiki pages) into wiki/index.json, offline-bundle.js and game-data.json`);
+  await fs.writeFile(
+    path.join(WIKI_DIR, 'game-data.json'),
+    `${JSON.stringify({ schema: 1, source: WIKI_BASE, license: LICENSE, aliases, items })}\n`,
+    'utf8'
+  );
+  console.log(
+    `🎉 Indexed ${articles.length} articles (${items.length} wiki pages) into wiki/index.json, offline-bundle.js and game-data.json`
+  );
 }
 
 async function run() {

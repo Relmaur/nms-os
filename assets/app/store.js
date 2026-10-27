@@ -11,24 +11,24 @@ const STATE_FETCH_TIMEOUT_MS = 5000; // the browser copy renders without the rep
 export let appState = structuredClone(DEFAULT_STATE);
 
 export function setAppState(next) {
-    appState = next;
+  appState = next;
 }
 
 let renderAll = () => {};
 export function onSave(render) {
-    renderAll = render;
+  renderAll = render;
 }
 
 // Storage problems the person must see (never only the console): { saveFailed, recoveredKey, fromOtherTab }.
 let reportStatus = () => {};
 export function onStorageStatus(report) {
-    reportStatus = report;
+  reportStatus = report;
 }
 let saveFailed = false;
 
 // Diagnostics carry the event and reason only, never state contents (ADR-0002).
 function logEvent(event, detail = {}) {
-    console.warn('[atlas]', { event, ...detail });
+  console.warn('[atlas]', { event, ...detail });
 }
 
 // Set when the stored copy couldn't be read *and* couldn't be copied aside (storage full): from then on the app
@@ -38,120 +38,128 @@ let protectUnread = false;
 // An unreadable browser copy is kept under its own key before the app falls back to defaults, so a bug or a bad
 // edit can never silently destroy someone's log. The same copy is reused on later reloads, not duplicated.
 function preserveUnreadable(raw, reason) {
-    let key;
-    try {
-        key = Object.keys(localStorage).find(name => name.startsWith(`${STORAGE_KEY}.corrupt-`) && localStorage.getItem(name) === raw) || null;
-        if (!key) {
-            key = `${STORAGE_KEY}.corrupt-${new Date().toISOString()}`;
-            localStorage.setItem(key, raw);
-        }
-    } catch (e) {
-        protectUnread = true;
-        logEvent('local-state-unreadable', { reason, keptAs: null, copyFailed: e.name });
-        reportStatus({ unreadableNotKept: true });
-        return;
+  let key;
+  try {
+    key =
+      Object.keys(localStorage).find(
+        name => name.startsWith(`${STORAGE_KEY}.corrupt-`) && localStorage.getItem(name) === raw
+      ) || null;
+    if (!key) {
+      key = `${STORAGE_KEY}.corrupt-${new Date().toISOString()}`;
+      localStorage.setItem(key, raw);
     }
-    logEvent('local-state-unreadable', { reason, keptAs: key });
-    reportStatus({ recoveredKey: key });
+  } catch (e) {
+    protectUnread = true;
+    logEvent('local-state-unreadable', { reason, keptAs: null, copyFailed: e.name });
+    reportStatus({ unreadableNotKept: true });
+    return;
+  }
+  logEvent('local-state-unreadable', { reason, keptAs: key });
+  reportStatus({ recoveredKey: key });
 }
 
 function readLocalState() {
-    let raw;
-    let legacy;
-    try {
-        raw = localStorage.getItem(STORAGE_KEY);
-        legacy = raw ? null : localStorage.getItem(LEGACY_STORAGE_KEY);
-    } catch (e) {
-        logEvent('storage-unavailable', { reason: e.name });
-        return null;
-    }
-    const source = raw ?? legacy;
-    if (!source) return null;
-    let state;
-    try {
-        state = JSON.parse(source);
-        if (!raw) state = migrateLegacyState(state);
-    } catch {
-        preserveUnreadable(source, 'not JSON');
-        return null;
-    }
-    const { ok, errors } = validateState(state);
-    if (!ok) {
-        preserveUnreadable(source, describeErrors(errors));
-        return null;
-    }
-    return state;
+  let raw;
+  let legacy;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+    legacy = raw ? null : localStorage.getItem(LEGACY_STORAGE_KEY);
+  } catch (e) {
+    logEvent('storage-unavailable', { reason: e.name });
+    return null;
+  }
+  const source = raw ?? legacy;
+  if (!source) return null;
+  let state;
+  try {
+    state = JSON.parse(source);
+    if (!raw) state = migrateLegacyState(state);
+  } catch {
+    preserveUnreadable(source, 'not JSON');
+    return null;
+  }
+  const { ok, errors } = validateState(state);
+  if (!ok) {
+    preserveUnreadable(source, describeErrors(errors));
+    return null;
+  }
+  return state;
 }
 
 async function fetchRepoState() {
-    try {
-        const res = await fetch(STATE_FILE, { cache: 'no-store', signal: AbortSignal.timeout(STATE_FETCH_TIMEOUT_MS) });
-        if (!res.ok) return null;
-        const state = await res.json();
-        const { ok, errors } = validateState(state);
-        if (ok) return state;
-        logEvent('repo-state-invalid', { reason: describeErrors(errors) });
-    } catch (e) {
-        logEvent('repo-state-unavailable', { reason: e.name }); // offline, timed out, or file://
-    }
-    return null;
+  try {
+    const res = await fetch(STATE_FILE, { cache: 'no-store', signal: AbortSignal.timeout(STATE_FETCH_TIMEOUT_MS) });
+    if (!res.ok) return null;
+    const state = await res.json();
+    const { ok, errors } = validateState(state);
+    if (ok) return state;
+    logEvent('repo-state-invalid', { reason: describeErrors(errors) });
+  } catch (e) {
+    logEvent('repo-state-unavailable', { reason: e.name }); // offline, timed out, or file://
+  }
+  return null;
 }
 
 export async function loadAppState() {
-    const repoState = await fetchRepoState();
-    const localState = readLocalState();
-    // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
-    appState = localState && stateTimestamp(repoState) > stateTimestamp(localState)
-        ? buildState(localState, repoState)
-        : buildState(repoState, localState);
+  const repoState = await fetchRepoState();
+  const localState = readLocalState();
+  // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
+  appState =
+    localState && stateTimestamp(repoState) > stateTimestamp(localState)
+      ? buildState(localState, repoState)
+      : buildState(repoState, localState);
 }
 
 // The only way the state reaches storage. Returns true once it's written; every failure reaches the banner.
 export function persistState() {
-    appState.meta.lastUpdated = new Date().toISOString();
-    if (protectUnread) {
-        reportStatus({ unreadableNotKept: true });
-        return false;
-    }
-    try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-        if (saveFailed) reportStatus({ saveFailed: (saveFailed = false) });
-        return true;
-    } catch (e) {
-        // Quota exceeded or storage blocked (private mode): the data stays in memory, and the banner tells the
-        // person to export it before closing the app.
-        saveFailed = true;
-        logEvent('save-failed', { reason: e.name });
-        reportStatus({ saveFailed: true });
-        return false;
-    }
+  appState.meta.lastUpdated = new Date().toISOString();
+  if (protectUnread) {
+    reportStatus({ unreadableNotKept: true });
+    return false;
+  }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    if (saveFailed) reportStatus({ saveFailed: (saveFailed = false) });
+    return true;
+  } catch (e) {
+    // Quota exceeded or storage blocked (private mode): the data stays in memory, and the banner tells the
+    // person to export it before closing the app.
+    saveFailed = true;
+    logEvent('save-failed', { reason: e.name });
+    reportStatus({ saveFailed: true });
+    return false;
+  }
 }
 
 export function saveAppState() {
-    persistState();
-    renderAll();
+  persistState();
+  renderAll();
 }
 
 // Run after another tab's copy is adopted and before re-rendering, so features can carry over work in progress
 // (notes being typed) or react to records that disappeared.
 const adoptHooks = [];
 export function onAdopt(run) {
-    adoptHooks.push(run);
+  adoptHooks.push(run);
 }
 
 // Another tab of the app saved: adopt its copy, so this tab never writes stale data over newer changes.
 // Last write wins between tabs (ADR-0002); this makes sure the last write was made on fresh data.
 window.addEventListener('storage', event => {
-    if (event.key !== STORAGE_KEY || !event.newValue) return;
-    let next;
-    try { next = JSON.parse(event.newValue); } catch { next = null; }
-    const check = next ? validateState(next) : { ok: false, errors: [{ path: '(root)', message: 'not JSON' }] };
-    if (!check.ok) {
-        logEvent('other-tab-state-ignored', { reason: describeErrors(check.errors) });
-        return;
-    }
-    appState = buildState(next);
-    adoptHooks.forEach(run => run());
-    renderAll();
-    reportStatus({ fromOtherTab: true });
+  if (event.key !== STORAGE_KEY || !event.newValue) return;
+  let next;
+  try {
+    next = JSON.parse(event.newValue);
+  } catch {
+    next = null;
+  }
+  const check = next ? validateState(next) : { ok: false, errors: [{ path: '(root)', message: 'not JSON' }] };
+  if (!check.ok) {
+    logEvent('other-tab-state-ignored', { reason: describeErrors(check.errors) });
+    return;
+  }
+  appState = buildState(next);
+  adoptHooks.forEach(run => run());
+  renderAll();
+  reportStatus({ fromOtherTab: true });
 });

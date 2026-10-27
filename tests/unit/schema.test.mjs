@@ -25,7 +25,10 @@ test('errors name the exact path and the problem', () => {
     systems: [{ name: 'Fine' }, { name: 42, visits: [{ at: 'soon' }] }, 'not a system']
   });
   assert.equal(result.ok, false);
-  assert.deepEqual(result.errors.map(error => error.path), ['meta.lastUpdated', 'checklists.cs1', 'outlaw.restockHours', 'systems[1].name', 'systems[1].visits[0].at']);
+  assert.deepEqual(
+    result.errors.map(error => error.path),
+    ['meta.lastUpdated', 'checklists.cs1', 'outlaw.restockHours', 'systems[1].name', 'systems[1].visits[0].at']
+  );
   assert.equal(describeErrors(result.errors.slice(0, 1)), 'meta.lastUpdated must be a date');
 });
 
@@ -43,5 +46,14 @@ test('ids that could break out of an inline handler are rejected', () => {
     { outlaw: { stations: [{ id: evil }] } }
   ].map(state => validateState(state).errors[0]?.path);
   assert.deepEqual(paths, ['systems[0].id', 'systems[0].planets[0].id', 'logbook[0].id', 'outlaw.stations[0].id']);
-  assert.equal(validateState({ systems: [{ name: 'Old', id: 1698000000000 }, { name: 'New', id: 'sys-lx9k2abc' }] }).ok, true, 'generated and legacy numeric ids pass');
+  assert.equal(
+    validateState({
+      systems: [
+        { name: 'Old', id: 1698000000000 },
+        { name: 'New', id: 'sys-lx9k2abc' }
+      ]
+    }).ok,
+    true,
+    'generated and legacy numeric ids pass'
+  );
 });

@@ -9,12 +9,19 @@ test('deepMerge merges objects key by key and replaces arrays wholesale', () => 
 
 test('buildState layers defaults ← file ← local and normalises systems', () => {
   const file = { meta: { lastUpdated: '2026-01-01T00:00:00Z', currentPhase: 'From file' }, checklists: { cs1: true } };
-  const local = { meta: { lastUpdated: '2026-02-01T00:00:00Z' }, checklists: { cs2: true }, systems: [{ id: 'a', name: 'Alpha', tags: ['Trade Hub'] }] };
+  const local = {
+    meta: { lastUpdated: '2026-02-01T00:00:00Z' },
+    checklists: { cs2: true },
+    systems: [{ id: 'a', name: 'Alpha', tags: ['Trade Hub'] }]
+  };
   const state = buildState(file, local);
   assert.equal(state.meta.currentPhase, 'From file');
   assert.deepEqual({ cs1: state.checklists.cs1, cs2: state.checklists.cs2 }, { cs1: true, cs2: true });
   assert.equal(state.fleet.primaryStarship.name, DEFAULT_STATE.fleet.primaryStarship.name);
-  assert.deepEqual(state.systems.map(system => [system.id, system.galaxy, system.tags]), [['a', 'Euclid', ['trade-hub']]]);
+  assert.deepEqual(
+    state.systems.map(system => [system.id, system.galaxy, system.tags]),
+    [['a', 'Euclid', ['trade-hub']]]
+  );
 });
 
 test('buildState repairs invalid outlaw settings with the defaults', () => {
@@ -26,7 +33,11 @@ test('buildState repairs invalid outlaw settings with the defaults', () => {
 });
 
 test('the pre-2.0 save shape migrates into systems', () => {
-  const legacy = { lastUpdated: '2025-01-01T00:00:00Z', checkedItems: { cs1: true }, logEntries: [{ id: 7, title: 'Old Camp', category: 'Harmonic Camp', details: 'by the ridge' }] };
+  const legacy = {
+    lastUpdated: '2025-01-01T00:00:00Z',
+    checkedItems: { cs1: true },
+    logEntries: [{ id: 7, title: 'Old Camp', category: 'Harmonic Camp', details: 'by the ridge' }]
+  };
   const state = buildState(migrateLegacyState(legacy));
   assert.equal(state.checklists.cs1, true);
   const camp = state.systems.find(system => system.id === '7');

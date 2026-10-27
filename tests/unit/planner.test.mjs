@@ -4,13 +4,30 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { makeCatalog, findItem, planRecipes, expandPlan, collectRaw, countSteps } from '../../assets/lib/planner.js';
 
-const catalog = makeCatalog(JSON.parse(fs.readFileSync(new URL('../fixtures/game-data-subset.json', import.meta.url), 'utf8')));
-const raw = (name, qty, choices) => Object.fromEntries([...collectRaw(expandPlan(catalog, name, qty, choices)).entries()].map(([title, entry]) => [title, entry.qty]));
+const catalog = makeCatalog(
+  JSON.parse(fs.readFileSync(new URL('../fixtures/game-data-subset.json', import.meta.url), 'utf8'))
+);
+const raw = (name, qty, choices) =>
+  Object.fromEntries(
+    [...collectRaw(expandPlan(catalog, name, qty, choices)).entries()].map(([title, entry]) => [title, entry.qty])
+  );
 
 test('a Stasis Device expands to the wiki’s raw totals', () => {
   assert.deepEqual(raw('Stasis Device', 1), {
-    'Frost Crystal': 300, Solanium: 200, 'Cactus Flesh': 100, 'Star Bulb': 200, Radon: 500, 'Condensed Carbon': 300,
-    Sulphurine: 500, Nitrogen: 500, Faecium: 50, 'Gamma Root': 400, Paraffinium: 50, 'Ionised Cobalt': 150, Phosphorus: 50, Dioxite: 50
+    'Frost Crystal': 300,
+    Solanium: 200,
+    'Cactus Flesh': 100,
+    'Star Bulb': 200,
+    Radon: 500,
+    'Condensed Carbon': 300,
+    Sulphurine: 500,
+    Nitrogen: 500,
+    Faecium: 50,
+    'Gamma Root': 400,
+    Paraffinium: 50,
+    'Ionised Cobalt': 150,
+    Phosphorus: 50,
+    Dioxite: 50
   });
   assert.equal(countSteps(expandPlan(catalog, 'Stasis Device', 1)), 23);
   assert.equal(raw('Stasis Device', 20).Radon, 10000);
@@ -25,7 +42,10 @@ test('multi-output crafts round up to whole batches', () => {
 test('self-multiplying recipes are not production steps', () => {
   const yeast = findItem(catalog, 'Wild Yeast');
   assert.equal(yeast.recipes.length, 2);
-  assert.deepEqual(planRecipes(catalog, yeast).map(recipe => recipe.inputs[0].name), ['Faecium']);
+  assert.deepEqual(
+    planRecipes(catalog, yeast).map(recipe => recipe.inputs[0].name),
+    ['Faecium']
+  );
 });
 
 test('alternative recipes are chosen per item', () => {

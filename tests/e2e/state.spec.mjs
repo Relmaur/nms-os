@@ -5,7 +5,10 @@ test('Export then Import round-trips the save', async ({ page }) => {
   await page.goto('./#more');
   const [download] = await Promise.all([
     page.waitForEvent('download'),
-    page.locator('#sec-more').getByRole('button', { name: /Export nms_state\.json/ }).click()
+    page
+      .locator('#sec-more')
+      .getByRole('button', { name: /Export nms_state\.json/ })
+      .click()
   ]);
   expect(download.suggestedFilename()).toBe('nms_state.json');
   const file = await download.path();
@@ -26,10 +29,21 @@ test('Export then Import round-trips the save', async ({ page }) => {
 test('an old Logbook save migrates into Systems', async ({ page }) => {
   await page.addInitScript(key => {
     if (sessionStorage.getItem('atlas-test-legacy')) return;
-    localStorage.setItem(key, JSON.stringify({
-      meta: { lastUpdated: '2099-01-01T00:00:00.000Z' },
-      logbook: [{ id: 'log-1', system: 'Old Camp', type: 'Harmonic Camp', notes: 'Behind the ridge', glyphSolution: [4, 10, 16] }]
-    }));
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        meta: { lastUpdated: '2099-01-01T00:00:00.000Z' },
+        logbook: [
+          {
+            id: 'log-1',
+            system: 'Old Camp',
+            type: 'Harmonic Camp',
+            notes: 'Behind the ridge',
+            glyphSolution: [4, 10, 16]
+          }
+        ]
+      })
+    );
     sessionStorage.setItem('atlas-test-legacy', '1');
   }, STORAGE_KEY);
   await page.goto('./#systems');

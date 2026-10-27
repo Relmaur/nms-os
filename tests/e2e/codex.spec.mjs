@@ -3,7 +3,9 @@ import { test, expect } from './fixtures.mjs';
 test('the Codex landing shows the verification result and all categories', async ({ page }) => {
   await page.goto('./wiki/');
   // verification.json only exists after a sync or verify, so either state is valid here.
-  await expect(page.locator('#browseBody')).toContainText(/Matches the wiki|Not verified on this copy|behind the wiki|couldn’t be reached/);
+  await expect(page.locator('#browseBody')).toContainText(
+    /Matches the wiki|Not verified on this copy|behind the wiki|couldn’t be reached/
+  );
   await expect(page.locator('#browseBody a.group')).toHaveCount(10);
 });
 

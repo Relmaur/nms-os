@@ -5,7 +5,9 @@ test('a failed save shows a persistent banner offering an export', async ({ page
   await page.goto('./');
   await page.evaluate(() => {
     window.__setItem = Storage.prototype.setItem;
-    Storage.prototype.setItem = () => { throw new DOMException('Storage is full', 'QuotaExceededError'); };
+    Storage.prototype.setItem = () => {
+      throw new DOMException('Storage is full', 'QuotaExceededError');
+    };
   });
   await page.locator('#homeNow').getByRole('button', { name: 'Log visit' }).click();
   await expect(page.locator('#storageBanner')).toBeVisible();
@@ -13,23 +15,37 @@ test('a failed save shows a persistent banner offering an export', async ({ page
   await expect(page.locator('#storageBannerExport')).toBeVisible();
 
   // Once saving works again, the next save clears the banner.
-  await page.evaluate(() => { Storage.prototype.setItem = window.__setItem; });
+  await page.evaluate(() => {
+    Storage.prototype.setItem = window.__setItem;
+  });
   await page.locator('#homeNow').getByRole('button', { name: 'Log visit' }).click();
   await expect(page.locator('#storageBanner')).toBeHidden();
   const ekwa = (await storedState(page)).systems.find(system => system.id === 'sys-ekwa');
   expect(ekwa.visits).toHaveLength(3); // the visit logged while saving failed was kept in memory
 });
 
-for (const [label, raw] of [['not JSON', '{"systems": [ broken'], ['the wrong shape', JSON.stringify({ systems: { not: 'a list' } })]]) {
+for (const [label, raw] of [
+  ['not JSON', '{"systems": [ broken'],
+  ['the wrong shape', JSON.stringify({ systems: { not: 'a list' } })]
+]) {
   test(`a stored copy that is ${label} is kept aside, not deleted`, async ({ page }) => {
-    await page.addInitScript(([key, value]) => {
-      if (sessionStorage.getItem('atlas-test-corrupt')) return;
-      localStorage.setItem(key, value);
-      sessionStorage.setItem('atlas-test-corrupt', '1');
-    }, [STORAGE_KEY, raw]);
+    await page.addInitScript(
+      ([key, value]) => {
+        if (sessionStorage.getItem('atlas-test-corrupt')) return;
+        localStorage.setItem(key, value);
+        sessionStorage.setItem('atlas-test-corrupt', '1');
+      },
+      [STORAGE_KEY, raw]
+    );
     await page.goto('./');
     await expect(page.locator('#storageBannerText')).toContainText('couldn’t be read');
-    const kept = await page.evaluate(key => Object.keys(localStorage).filter(name => name.startsWith(`${key}.corrupt-`)).map(name => localStorage.getItem(name)), STORAGE_KEY);
+    const kept = await page.evaluate(
+      key =>
+        Object.keys(localStorage)
+          .filter(name => name.startsWith(`${key}.corrupt-`))
+          .map(name => localStorage.getItem(name)),
+      STORAGE_KEY
+    );
     expect(kept).toEqual([raw]);
     await expect(page.locator('#homeNow')).toBeVisible(); // the app still starts, from the defaults
   });
@@ -38,7 +54,11 @@ for (const [label, raw] of [['not JSON', '{"systems": [ broken'], ['the wrong sh
 test('a malformed import is rejected with the reason and changes nothing', async ({ page }) => {
   await page.goto('./#more');
   const input = page.locator('#sec-more input[type="file"]');
-  await input.setInputFiles({ name: 'nms_state.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ systems: [{ name: 42 }] })) });
+  await input.setInputFiles({
+    name: 'nms_state.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify({ systems: [{ name: 42 }] }))
+  });
   await expect(page.locator('#toastMessage')).toHaveText('Not imported: systems[0].name must be text.');
   await input.setInputFiles({ name: 'nms_state.json', mimeType: 'application/json', buffer: Buffer.from('{ nope') });
   await expect(page.locator('#toastMessage')).toHaveText('That file isn’t valid JSON, so nothing was imported.');
@@ -77,27 +97,40 @@ test('a failed notes autosave says "Not saved" and raises the banner', async ({ 
 
 test('an unreadable copy is never overwritten when there is no room to keep it aside', async ({ page }) => {
   const raw = '{"systems": [ broken';
-  await page.addInitScript(([key, value]) => {
-    if (!sessionStorage.getItem('atlas-test-full')) {
-      localStorage.setItem(key, value);
-      sessionStorage.setItem('atlas-test-full', '1');
-    }
-    const original = Storage.prototype.setItem;
-    Storage.prototype.setItem = function (name, item) {
-      if (this === localStorage) throw new DOMException('Storage is full', 'QuotaExceededError');
-      return original.call(this, name, item);
-    };
-  }, [STORAGE_KEY, raw]);
+  await page.addInitScript(
+    ([key, value]) => {
+      if (!sessionStorage.getItem('atlas-test-full')) {
+        localStorage.setItem(key, value);
+        sessionStorage.setItem('atlas-test-full', '1');
+      }
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function (name, item) {
+        if (this === localStorage) throw new DOMException('Storage is full', 'QuotaExceededError');
+        return original.call(this, name, item);
+      };
+    },
+    [STORAGE_KEY, raw]
+  );
   await page.goto('./');
   await expect(page.locator('#storageBannerText')).toContainText('no room to keep a copy aside');
-  await page.locator('#homeNow').getByRole('button', { name: /Log visit|Warped somewhere new/ }).first().click();
+  await page
+    .locator('#homeNow')
+    .getByRole('button', { name: /Log visit|Warped somewhere new/ })
+    .first()
+    .click();
   expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
 });
 
 test('a stored id crafted to inject script is refused, not run', async ({ page }) => {
   await page.addInitScript(key => {
     if (sessionStorage.getItem('atlas-test-xss')) return;
-    localStorage.setItem(key, JSON.stringify({ meta: { lastUpdated: '2099-01-01T00:00:00.000Z' }, systems: [{ id: "x');window.__pwned=1;('", name: 'Evil' }] }));
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        meta: { lastUpdated: '2099-01-01T00:00:00.000Z' },
+        systems: [{ id: "x');window.__pwned=1;('", name: 'Evil' }]
+      })
+    );
     sessionStorage.setItem('atlas-test-xss', '1');
   }, STORAGE_KEY);
   await page.goto('./#systems');
@@ -132,7 +165,12 @@ test('two tabs with the same notes open settle on the newest text', async ({ pag
   const other = await page.context().newPage();
   await other.goto('./#systems');
   await other.locator('#systemList').getByText('Ekwa Nexus').click();
-  await page.evaluate(() => { window.__storageEvents = 0; addEventListener('storage', () => { window.__storageEvents += 1; }); });
+  await page.evaluate(() => {
+    window.__storageEvents = 0;
+    addEventListener('storage', () => {
+      window.__storageEvents += 1;
+    });
+  });
   await other.locator('#systemNotes').fill('B newer text');
   await expect(other.locator('#notesStatus')).toHaveText('Saved');
   await page.waitForTimeout(1500);

@@ -1,15 +1,32 @@
 import { test, expect } from './fixtures.mjs';
 
-const rawMaterials = page => page.locator('#planResult tbody tr').evaluateAll(rows =>
-  Object.fromEntries(rows.map(row => [row.cells[0].innerText.trim(), Number(row.cells[1].innerText.replace(/,/g, ''))])));
+const rawMaterials = page =>
+  page
+    .locator('#planResult tbody tr')
+    .evaluateAll(rows =>
+      Object.fromEntries(
+        rows.map(row => [row.cells[0].innerText.trim(), Number(row.cells[1].innerText.replace(/,/g, ''))])
+      )
+    );
 
 test('the Stasis Device plan matches the wiki’s totals', async ({ page }) => {
   await page.goto('./#calculators');
   await expect(page.locator('#planResult tbody tr').first()).toBeVisible();
   expect(await rawMaterials(page)).toEqual({
-    Radon: 500, Sulphurine: 500, Nitrogen: 500, 'Gamma Root': 400, 'Frost Crystal': 300, 'Condensed Carbon': 300,
-    Solanium: 200, 'Star Bulb': 200, 'Ionised Cobalt': 150, 'Cactus Flesh': 100, Faecium: 50, Paraffinium: 50,
-    Phosphorus: 50, Dioxite: 50
+    Radon: 500,
+    Sulphurine: 500,
+    Nitrogen: 500,
+    'Gamma Root': 400,
+    'Frost Crystal': 300,
+    'Condensed Carbon': 300,
+    Solanium: 200,
+    'Star Bulb': 200,
+    'Ionised Cobalt': 150,
+    'Cactus Flesh': 100,
+    Faecium: 50,
+    Paraffinium: 50,
+    Phosphorus: 50,
+    Dioxite: 50
   });
   await expect(page.locator('#planResult dl')).toContainText('15.6M Units');
 });
