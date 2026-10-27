@@ -181,6 +181,9 @@ document.addEventListener('visibilitychange', () => {
   updateOutlawBadges();
 });
 
+// Stations restock while the app sits open (keep-awake, mid-session): keep the badges in step with Home's minute tick.
+setInterval(updateOutlawBadges, 60000);
+
 document.addEventListener('DOMContentLoaded', () => {
   if ('wakeLock' in navigator) applyKeepAwake();
   renderInstallRow();

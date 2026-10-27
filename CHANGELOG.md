@@ -12,7 +12,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 - The "I’m here" buttons on Home announce "I’m here: <system>" to screen readers, matching what's on screen.
 ### Added
 - React tooling: component tests (Vitest + Testing Library), React lint rules, and a store subscription later screens reuse.
-- Accessibility (axe) now fails the build on any violation on Home.
+- Accessibility (axe) on Home now fails `pnpm check` on any violation (browser tests run locally, not in CI).
 ### Internal
 - CI actions updated to their Node 24 releases.
 

@@ -273,7 +273,8 @@ function OutlawCard({ card, now }: { card: HomeSummary['outlaw']; now: number })
 const FLEET_COLORS = ['text-purple-300', 'text-cyan-300'];
 
 function Fleet({ fleet }: { fleet: AppState['fleet'] }) {
-  const tools = Array.isArray(fleet.multiTools) ? (fleet.multiTools as unknown[]) : [];
+  // Fleet entries come from the user's file as-is: each one is checked with isPlainObject() below.
+  const tools: unknown[] = Array.isArray(fleet.multiTools) ? fleet.multiTools : [];
   const rows: [string, unknown, string][] = [
     ['Flagship', fleet.primaryStarship, 'text-white font-semibold'],
     ['Scrap Spare', fleet.salvageStarship, 'text-amber-300'],

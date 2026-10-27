@@ -29,7 +29,7 @@ None.
      - delete the Tailwind v3 shims (`apps/web/src/tailwind-v3-*.css`, the line-height overrides in `tailwind.css`);
      - delete the `Object.assign(window, …)` exports and `tests/unit/inline-handlers.test.mjs` once no inline handlers remain;
      - fix the axe findings and make `tests/e2e/a11y.spec.mjs` a gate (it reports only, today). Baseline at 3.1.0, phone size:
-       - Home: fixed and gated (3.2.0).
+       - Home: fixed and gated (3.2.0), with the populated fixture only; the empty states aren't axe-checked yet.
        - Systems: `page-has-heading-one`.
        - Codex: `aria-allowed-attr` (10, critical), `aria-dialog-name`, `aria-allowed-role`, `empty-heading`.
        - Calculators: clean.
@@ -41,5 +41,6 @@ None.
 - **Codex rendering:** it still renders Markdown in the browser (bundled `marked` 12 + DOMPurify). ADR-0004 moves this to build time with the Codex's React move.
 - **Visual differences (1–5 px):** a few headings with both `leading-*` and a responsive `text-*` class are slightly taller. Tailwind v4 lets the explicit line height win; v3 let the responsive size override it.
 - **macOS renames:** on case-insensitive disks, a case-only wiki title change keeps the old file name's casing. The next local sync re-plans the rename harmlessly; CI (Linux) renames normally.
+- **Flaky browser test:** `resilience.spec.mjs` › "two tabs with the same notes settle on the newest text" failed once under full parallel load on 2026-10-27 and passed 10/10 alone and in two further full runs. It leans on an 800 ms autosave and a fixed 1.5 s wait; give it an explicit condition to wait for if it recurs.
 - **Phone e2e:** the phone project skips the header-search test (the phone opens search from a button).
 - **Precache size:** about 12 MB, mostly the Codex's full-text bundle (7 MB) and `game-data.json` (2.3 MB), as before.
