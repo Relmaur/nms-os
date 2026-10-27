@@ -15,7 +15,7 @@ ALLOWED_ORIGINS = "https://relmaur.github.io,http://localhost:5173,http://localh
 [[d1_databases]]
 binding = "DB"
 database_name = "atlas-sync"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "d50bb89b-0f72-4a67-9728-dcd7fae755ee"
 migrations_dir = "migrations"
 
 # 60 requests a minute per client is far above what syncing needs.

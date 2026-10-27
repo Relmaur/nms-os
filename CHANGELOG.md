@@ -5,6 +5,8 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+
+## [3.10.0] - 2026-10-27
 ### Added
 - Sync between your devices, in More → Sync. It's off until you turn it on, and needs no account.
   - Turn it on, then pair your phone by scanning the QR code or pasting the code. Both logs are merged: systems, visits, notes and checklists from either side are kept, and an edit made on both goes to the copy saved last.
