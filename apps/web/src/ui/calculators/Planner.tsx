@@ -5,6 +5,7 @@ import { Fragment, useMemo, useRef, useState } from 'react';
 import { formatQty, formatUnits } from '@atlas/core/calc';
 import {
   buildPlan,
+  carryTicks,
   findItem,
   planProgress,
   planRecipes,
@@ -61,11 +62,13 @@ export function Planner({ catalog }: { catalog: Catalog }) {
     writeProgress(next, nextTicked);
   };
 
-  // Another amount or recipe keeps the ticks: each names an amount, so it holds wherever the new plan still needs
-  // exactly that and lapses where it doesn't (and comes back if the plan does). A different item starts fresh.
+  // Another amount or recipe keeps the ticks: each names an amount, so it holds wherever what was gathered or
+  // crafted still covers the new need and lapses where it doesn't (and comes back if the plan does). A different
+  // item starts fresh.
   const replan = (next: PlanSettings) => {
-    const fresh = next.item !== settings.item;
-    const nextTicked = fresh ? new Set<string>() : ticked;
+    const nextPlan = buildPlan(catalog, next.item, next.qty, next.choices);
+    const nextTicked =
+      next.item !== settings.item ? new Set<string>() : nextPlan ? carryTicks(nextPlan, ticked) : ticked;
     setSettings(next);
     setTicked(nextTicked);
     setSwitched(null);

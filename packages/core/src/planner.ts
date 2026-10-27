@@ -251,6 +251,23 @@ export function buildPlan(
 export const rawKey = (title: string, qty: number): string => `raw:${title}@${String(qty)}`;
 export const craftKey = (title: string, qty: number): string => `craft:${title}@${String(qty)}`;
 export const stepKey = (step: PlanStep): string => craftKey(step.title, step.qty);
+// After a change of amount or recipe, a tick also covers the new plan wherever what was gathered or crafted is at
+// least what's now needed (500 Radon gathered covers a need of 300). The old keys stay, so a tick still comes back
+// if the plan returns to that amount.
+export function carryTicks(plan: BuildPlan, ticked: ReadonlySet<string>): Set<string> {
+  const most = new Map<string, number>(); // `kind:title` -> the largest ticked amount
+  for (const key of ticked) {
+    const at = key.lastIndexOf('@');
+    const qty = Number(key.slice(at + 1));
+    if (at > 0 && qty > (most.get(key.slice(0, at)) ?? 0)) most.set(key.slice(0, at), qty);
+  }
+  const next = new Set(ticked);
+  const covered = (kind: string, title: string, qty: number) => (most.get(`${kind}:${title}`) ?? 0) >= qty;
+  for (const entry of plan.raw) if (covered('raw', entry.title, entry.qty)) next.add(rawKey(entry.title, entry.qty));
+  for (const step of [...plan.rounds.flat(), plan.product])
+    if (covered('craft', step.title, step.qty)) next.add(stepKey(step));
+  return next;
+}
 export type StepState = 'done' | 'ready' | 'waiting';
 export interface PlanProgress {
   step: (title: string) => StepState; // ready = every input is ticked

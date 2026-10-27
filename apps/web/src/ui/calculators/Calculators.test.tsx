@@ -144,13 +144,14 @@ test('a typed amount applies on Enter, not on every keystroke', async () => {
   expect(screen.getByRole('checkbox', { name: 'Gathered 5,000 Radon' })).toBeTruthy();
 });
 
-test('a recipe switch keeps the ticks the new plan still needs at the same amount', async () => {
+test('a recipe switch keeps every tick that still covers what the new plan needs', async () => {
   render(<Calculators />);
   await userEvent.click(screen.getByRole('button', { name: 'Anomalous Doughnut' }));
   await userEvent.click(screen.getByRole('checkbox', { name: 'Gathered 2 Grahberry' }));
   await userEvent.click(screen.getByRole('checkbox', { name: 'Gathered 2 Fresh Milk' }));
   fireEvent.click(document.querySelector('#planResult button[data-title="Clarified Oil"]')!);
   expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 2 Grahberry' }).checked).toBe(true);
-  // Fresh Milk now needs 1, not 2: that tick no longer describes the plan.
-  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 1 Fresh Milk' }).checked).toBe(false);
+  // Fresh Milk now needs 1: the 2 already gathered cover it. Warm Proto-Milk is new, so it isn't ticked.
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 1 Fresh Milk' }).checked).toBe(true);
+  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Gathered 1 Warm Proto-Milk' }).checked).toBe(false);
 });

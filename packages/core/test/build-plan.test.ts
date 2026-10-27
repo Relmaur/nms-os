@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
   buildPlan,
+  carryTicks,
   collectRaw,
   craftKey,
   expandPlan,
@@ -151,4 +152,28 @@ test('a tick holds while the plan still needs that amount, and lapses when it ch
   assert.equal(planProgress(one, ticked).gathered, 1);
   // Two widgets need 6 Gear (two batches) and more Ore, so both ticks lapse.
   assert.deepEqual([planProgress(two, ticked).gathered, planProgress(two, ticked).crafted], [0, 0]);
+});
+
+test('a tick carries over wherever what was gathered or crafted covers the new need', () => {
+  const one = buildPlan(made, 'Widget', 1);
+  const two = buildPlan(made, 'Widget', 2);
+  assert.ok(one && two);
+  const big = new Set([rawKey('Ore', 8), craftKey('Gear', 6), rawKey('Loop', 1)]);
+  const carried = carryTicks(one, big);
+  // 8 Ore and 6 Gear cover a need of 4 and 3; the old keys stay for when the plan goes back.
+  assert.ok(carried.has(rawKey('Ore', 4)) && carried.has(craftKey('Gear', 3)) && carried.has(rawKey('Ore', 8)));
+  assert.equal(planProgress(one, carried).gathered, 1);
+  // A larger need isn't covered by a smaller tick, and a title only covers itself.
+  const small = carryTicks(two, new Set([rawKey('Ore', 4), craftKey('Gear', 3)]));
+  assert.deepEqual([planProgress(two, small).gathered, planProgress(two, small).crafted], [0, 0]);
+  assert.ok(!carryTicks(one, new Set([rawKey('Loop', 99)])).has(rawKey('Ore', 4)));
+});
+
+test('a title with an @ in it still carries over', () => {
+  const ticked = new Set([rawKey('Ore', 4)]);
+  const odd = new Set(['raw:A@B@10']);
+  // Only the fields carryTicks reads.
+  const plan = { product: { title: 'X', qty: 1 }, rounds: [], raw: [{ title: 'A@B', qty: 5 }] } as unknown as BuildPlan;
+  assert.ok(carryTicks(plan, odd).has('raw:A@B@5'));
+  assert.equal(carryTicks(plan, ticked).size, 1);
 });
