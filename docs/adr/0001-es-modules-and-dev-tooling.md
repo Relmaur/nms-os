@@ -1,6 +1,6 @@
 # ADR-0001: Native ES modules, dev-only tooling, no build step
 
-- **Status:** Accepted (2026-10-27). To be superseded by ADR-0004 at its migration step 2 (Vite build).
+- **Status:** Superseded by ADR-0004 (3.1.0, 2026-10-27): the app is now built by Vite and its logic is TypeScript.
 - **Release:** 3.0.0 (MAJOR: drops opening `index.html` from disk)
 
 ## Context

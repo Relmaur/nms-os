@@ -5,7 +5,7 @@
 | Harness layer | Applies? | How it applies today | Re-evaluate when |
 |---|---|---|---|
 | Context engine (`AGENTS.md`, `docs/STATE.md`) | Yes | `AGENTS.md` holds invariants only; `docs/STATE.md` is updated before any non-trivial task ends. | Always applies. |
-| Schema guard | Yes | State files (import, `localStorage`, repo `nms_state.json`) are validated; the wiki sync validates API payloads before writing. | New external input or payload. |
+| Schema guard | Yes | Zod schemas in `@atlas/core` and `@atlas/wiki`: state files (import, `localStorage`, `nms_state.json`), `game-data.json` in the calculators, wiki API payloads and article frontmatter in the sync. Not yet: the Codex's `index.json` and offline bundle (see `docs/STATE.md`). | New external input or payload. |
 | Failure mode & retry guard | Yes | Wiki API: retries with backoff, the committed archive ships if unreachable. Browser: timeouts on fetches, visible save-failure banner, multi-tab reload. | New I/O boundary. |
 | Context pruning | Yes (process) | Long sessions compact into `docs/STATE.md` and commit messages. | — |
 | PII scrubbing | Not today | No user data is sent anywhere: no server, no telemetry, no model calls. Notes and system names stay on the device. | Cross-device sync, accounts, analytics, error reporting, or any AI feature that sends user text. |

@@ -5,8 +5,22 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+
+## [3.1.0] - 2026-10-27
 ### Added
-- ADR-0004: full-stack TypeScript (React + Vite, Zod, pnpm workspaces), with a stepwise migration plan.
+- ADR-0004: full-stack TypeScript (React + Vite, Zod, pnpm workspaces), with a stepwise migration plan. Steps 1 and 2 ship in this release.
+- An offline browser test: after one online visit, Home, Systems, Calculators and the Codex (search and a previously read article) work with the network cut.
+- `pnpm typecheck` (strict TypeScript) and Prettier; CI type-checks before every deploy.
+- A report-only accessibility check (axe) on Home, Systems, Calculators and the Codex; its baseline is in `docs/STATE.md`.
+### Changed
+- The app is built with Vite (`apps/web`) and served from the build. Shared logic is strict TypeScript in `packages/core`, the wiki sync in `packages/wiki`; Node runs the sync's `.ts` files directly. pnpm replaces npm.
+- Nothing loads from a CDN any more: Tailwind is compiled at build time, Phosphor icons, marked and DOMPurify are bundled, and Inter, Orbitron and JetBrains Mono are self-hosted (visitors' IP addresses are no longer sent to Google Fonts). Screens render as before.
+- New service worker (Workbox) at the same `sw.js` address, so installed apps update in place: each deploy is one consistent precached version; the shared state file and the verification report stay network-first; wiki articles are cached as they are read. The old worker's caches are deleted.
+- The state schema, game-data file, wiki API responses and article frontmatter are parsed with Zod; import errors read exactly as before.
+- Unit tests run on Vitest; browser tests run against the built app.
+### Fixed
+- A Codex article could show raw Markdown if the CDN libraries failed to load; they are now bundled.
+- A system field whose value was an inherited name such as `toString` (star class, race, conflict) was kept instead of cleared.
 
 ## [3.0.0] - 2026-10-27
 ### Added

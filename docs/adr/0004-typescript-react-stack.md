@@ -1,6 +1,6 @@
 # ADR-0004: Full-stack TypeScript, React + Vite, built and bundled
 
-- **Status:** Accepted (2026-10-26). Supersedes ADR-0001 once migration step 2 lands; until then ADR-0001 describes the running app.
+- **Status:** Accepted (2026-10-26). Supersedes ADR-0001 (steps 1–2 shipped in 3.1.0).
 - **Release:** the migration ships in steps (below). A step is MAJOR only if it breaks a saved/exported state, a bookmarked URL or a supported way of running the app; the plan is that none does.
 
 ## Context
@@ -17,7 +17,7 @@
 - **Data at the boundaries:** Zod 4 schemas in `core` are the single source of truth; types are inferred from them. Every external input (imports, the browser copy, `nms_state.json`, wiki JSON, API payloads) is parsed, never cast.
 - **App state:** a Zustand store wrapping the existing persistence rules (single write path, unread-copy protection, tab adoption). Storage stays `localStorage` key `nms_master_os_state` on the same origin, so existing saves load unchanged (ADR-0002 still holds; no Data Privacy gate).
 - **PWA:** vite-plugin-pwa (Workbox) generates the precache list from the build.
-- **Codex:** wiki pages are rendered and sanitised at build time; the browser no longer needs `marked` and DOMPurify.
+- **Codex:** wiki pages are rendered and sanitised at build time; the browser no longer needs `marked` and DOMPurify (with the Codex's React move; 3.1.0 bundles both).
 - **Back end (recorded, not built):** Hono, Drizzle ORM on Postgres, request/response types shared from `core` schemas. Built only when cross-device sync starts, which opens the Data Privacy gate and its own ADR.
 - **Quality tooling:**
   - Vitest for unit tests.
@@ -28,8 +28,9 @@
   - CI runs type check, lint and unit tests, then builds and deploys. Browser tests stay local (owner's decision).
 
 ## Migration (each step ships on its own; the Playwright suite stays green throughout)
-1. **Core to TypeScript:** `assets/lib/*` → `packages/core` with Zod schemas; unit tests → Vitest; wiki scripts → `packages/wiki` as `.ts`. No user-visible change.
-2. **Vite shell:** Vite builds the current app unchanged; build-time Tailwind; vite-plugin-pwa. Pages deploys the build output. This step retires ADR-0001's "no build step".
+Steps 1 and 2 shipped together in 3.1.0: the browser can't load `.ts` files, so the core couldn't become TypeScript before there was a build.
+1. **Core to TypeScript:** `assets/lib/*` → `packages/core` with Zod schemas; unit tests → Vitest; wiki scripts → `packages/wiki` as `.ts`. No user-visible change. *(Done, 3.1.0.)*
+2. **Vite shell:** Vite builds the current app unchanged; build-time Tailwind; vite-plugin-pwa. Pages deploys the build output. This step retires ADR-0001's "no build step". *(Done, 3.1.0: Tailwind v3's preflight, line heights and `space-y` are kept as shims so screens render as before; nothing loads from a CDN.)*
 3. **React, screen by screen:** each section mounts as a React root until no inline handlers remain (Home, Systems, Outlaw, Calculators, Codex, Guides).
 4. **Session mode + timers:** the first feature built natively in React.
 5. **`apps/api`:** when sync is picked up.
@@ -46,6 +47,7 @@
   - Moving the UI means rewriting it rather than relocating it, and the Playwright suite is what proves behaviour survived.
 
 ## Consequences
-- `AGENTS.md` invariants change as each step lands. "No build step" goes at step 2. "Libraries only from CDNs" goes at step 2 (only Phosphor/fonts remain, if any). "Add new files to `SHELL`" goes at step 2.
+- `AGENTS.md` invariants changed with steps 1–2: "no build step", "libraries only from CDNs" and "add new files to `SHELL`" are gone.
+- The precache is generated from the build; the Playwright `offline` project proves the app works without a network.
 - `packages/core` must stay free of DOM and Node APIs so the web app, the wiki scripts and a future API all share it.
 - Tests that guard string-template hazards (inline handlers, SW shell) are deleted when their hazard is gone, not before.
