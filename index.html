@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Markdown rendering + sanitising for the Wiki Codex -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -61,62 +64,114 @@
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
         input[type="range"] { accent-color: #06b6d4; }
+
+        /* Wiki Codex markdown reader */
+        .md-body { font-size: 0.8125rem; line-height: 1.65; color: #cbd5e1; }
+        .md-body > * + * { margin-top: 0.75rem; }
+        .md-body h1 { font-family: 'Orbitron', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff; }
+        .md-body h2 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #67e8f9; padding-top: 0.75rem; border-top: 1px solid #1e293b; }
+        .md-body h3 { font-size: 0.9rem; font-weight: 700; color: #c4b5fd; }
+        .md-body h4 { font-size: 0.85rem; font-weight: 600; color: #fcd34d; }
+        .md-body strong { color: #fff; }
+        .md-body a { color: #22d3ee; text-decoration: underline; text-underline-offset: 2px; }
+        .md-body ul { list-style: disc; padding-left: 1.25rem; }
+        .md-body ol { list-style: decimal; padding-left: 1.25rem; }
+        .md-body li + li { margin-top: 0.25rem; }
+        .md-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fcd34d; background: #0f172a; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.05rem 0.35rem; }
+        .md-body pre { background: #020617; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 0.75rem; overflow-x: auto; }
+        .md-body pre code { border: 0; padding: 0; color: #e2e8f0; }
+        .md-body blockquote { border-left: 3px solid #06b6d4; padding-left: 0.75rem; color: #94a3b8; }
+        .md-body table { width: 100%; border-collapse: collapse; font-size: 0.75rem; display: block; overflow-x: auto; }
+        .md-body th { text-align: left; color: #94a3b8; font-family: 'JetBrains Mono', monospace; border-bottom: 1px solid #334155; padding: 0.4rem 0.5rem; }
+        .md-body td { border-bottom: 1px solid #1e293b; padding: 0.4rem 0.5rem; vertical-align: top; }
+
+        /* Shell: browser surfaces */
+        html { scroll-padding-top: 5rem; -webkit-tap-highlight-color: transparent; }
+        ::selection { background: rgba(34, 211, 238, 0.35); color: #fff; }
+        input, textarea { caret-color: #22d3ee; }
+        :focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+        input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+        /* Shell: navigation */
+        .nav-group-label { padding: 0 0.75rem; margin-bottom: 0.5rem; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8b9ab0; }
+        .nav-btn { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 2.75rem; padding: 0.375rem 0.625rem; border-radius: 0.75rem; font-size: 0.8125rem; font-weight: 500; color: #94a3b8; text-align: left; transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease; }
+        .nav-btn:hover { color: #fff; background: rgba(30, 41, 59, 0.55); }
+        .nav-btn[aria-current="page"] { color: #fff; background: rgba(6, 182, 212, 0.1); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.3); }
+        .nav-tile { flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 0.625rem; background: rgba(30, 41, 59, 0.7); font-family: 'Orbitron', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.02em; }
+        .nav-tile i { font-size: 1rem; }
+        .nav-btn[aria-current="page"] .nav-tile { background: rgba(6, 182, 212, 0.16); }
+        .nav-count { margin-left: auto; padding-left: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8b9ab0; font-variant-numeric: tabular-nums; }
+
+        /* Shell: global search */
+        .search-hit { display: flex; align-items: flex-start; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border-radius: 0.75rem; text-align: left; transition: background-color 120ms ease; }
+        .search-hit:hover, .search-hit[aria-selected="true"] { background: rgba(30, 41, 59, 0.8); }
+        .search-hit mark, .search-snippet mark { background: rgba(34, 211, 238, 0.2); color: #a5f3fc; border-radius: 0.2rem; padding: 0 0.1rem; }
+        .search-flash { animation: search-flash 2.2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 0.5rem; }
+        @keyframes search-flash {
+            0%, 35% { background-color: rgba(34, 211, 238, 0.18); box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.55); }
+            100% { background-color: transparent; box-shadow: 0 0 0 2px transparent; }
+        }
+        @media (max-width: 767px) {
+            /* backdrop-filter would make the header the containing block for the fixed sheet */
+            body.search-open header { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            body.search-open #globalSearch { display: block; position: fixed; inset: 0; z-index: 60; max-width: none; margin: 0; padding: 0.75rem 1rem; background: #050811; }
+            body.search-open #globalSearchResults { display: block; position: static; margin-top: 0.75rem; max-height: calc(100dvh - 5.5rem); border: 0; box-shadow: none; background: transparent; padding: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; scroll-behavior: auto !important; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-slate-950">
+<body class="min-h-screen flex flex-col font-sans">
 
     <!-- Toast Notification Banner -->
-    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/95 border border-cyan-400/50 text-cyan-300 shadow-2xl font-mono text-xs">
-        <i class="ph-fill ph-check-circle text-lg text-emerald-400"></i>
+    <div id="toastBanner" role="status" aria-live="polite" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-sm z-[70] hidden items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 border border-cyan-400/40 text-cyan-100 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.8)] text-xs">
+        <i class="ph-fill ph-check-circle text-lg text-emerald-400 shrink-0"></i>
         <span id="toastMessage">Action completed</span>
     </div>
 
-    <!-- Top Header & Global Toolbar -->
-    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-cyan-500/30">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-slate-900 border border-slate-700 text-cyan-400">
-                    <i class="ph-bold ph-list text-xl"></i>
-                </button>
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-purple-600/20 border border-red-500/50 flex items-center justify-center shadow-lg shadow-red-500/10">
-                    <i class="ph-fill ph-planet text-2xl text-red-500"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="font-display font-bold text-base sm:text-lg tracking-wider text-white">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</h1>
-                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">Local Repo v2.0</span>
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-[1600px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
+            <button id="menuButton" onclick="setNavDrawer(true)" aria-label="Open navigation" aria-controls="sidebarNav" aria-expanded="false" class="lg:hidden w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
+                <i class="ph-bold ph-list text-xl"></i>
+            </button>
+            <a href="#book1" onclick="showSection('book1'); return false;" class="flex items-center gap-3 shrink-0 min-w-0 rounded-lg">
+                <span class="hidden sm:flex w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 items-center justify-center"><i class="ph-fill ph-planet text-xl text-red-500"></i></span>
+                <span class="font-display font-bold text-sm sm:text-base tracking-wider text-white whitespace-nowrap">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</span>
+            </a>
+
+            <!-- Global search: wiki articles + every book section -->
+            <div id="globalSearch" class="hidden md:block relative flex-1 max-w-xl mx-auto">
+                <div class="flex items-center gap-2">
+                    <div class="relative flex-1">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+                        <input type="search" id="globalSearchInput" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="globalSearchResults" aria-autocomplete="list" aria-label="Search the wiki and the manual" placeholder="Search the wiki and all six books…" oninput="handleGlobalSearch(this.value)" onfocus="handleGlobalSearch(this.value)" onkeydown="handleGlobalSearchKey(event)" class="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-400 focus:outline-none transition">
+                        <kbd class="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">/</kbd>
                     </div>
-                    <p class="text-[11px] text-slate-400 hidden sm:block">Unabridged 6-Book Manual • Custom Ship & Tool Schematics • Agent Build Spec</p>
+                    <button onclick="closeGlobalSearch()" class="md:hidden h-10 px-2 text-sm font-medium text-cyan-300">Cancel</button>
                 </div>
+                <div id="globalSearchResults" role="listbox" aria-label="Search results" class="hidden absolute left-0 right-0 top-full mt-2 max-h-[72vh] overflow-y-auto overscroll-contain rounded-2xl border border-slate-700 bg-slate-950 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.75)] p-2"></div>
             </div>
 
-            <!-- Global Search & State Backup Controls -->
-            <div class="flex items-center gap-2 sm:gap-3 flex-1 max-w-xl justify-end ml-auto">
-                <div class="relative flex-1 max-w-xs hidden md:block">
-                    <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="globalSearchInput" oninput="handleGlobalSearch(this.value)" placeholder="Filter sections (e.g. Ythgall, Doughnut, Brain)..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white focus:outline-none">
-                </div>
-
-                <!-- Overall Checklist Progress -->
-                <div class="flex items-center gap-2.5 bg-slate-900 border border-cyan-500/30 rounded-xl px-3 py-1.5">
-                    <div class="text-right">
-                        <span class="text-[10px] text-slate-400 block leading-none">Master Progress</span>
-                        <span id="headerProgressText" class="font-mono text-xs font-bold text-cyan-400">0%</span>
-                    </div>
-                    <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-300">
-                        <i class="ph-bold ph-check-square-offset text-sm"></i>
-                    </div>
-                </div>
-
-                <!-- Export / Import JSON for Git Repo -->
-                <button onclick="exportStateJSON()" title="Export State to JSON for Git Repo" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-emerald-300 flex items-center gap-1.5 transition">
-                    <i class="ph-bold ph-download-simple"></i>
-                    <span class="hidden sm:inline">Export JSON</span>
+            <div class="ml-auto md:ml-0 flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <button onclick="openGlobalSearch()" aria-label="Search" class="md:hidden w-10 h-10 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-900 transition">
+                    <i class="ph-bold ph-magnifying-glass text-lg"></i>
                 </button>
-                <label title="Import State JSON" class="cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-amber-300 flex items-center gap-1.5 transition">
-                    <i class="ph-bold ph-upload-simple"></i>
-                    <span class="hidden sm:inline">Import</span>
-                    <input type="file" accept=".json" onchange="importStateJSON(event)" class="hidden">
+                <div id="headerProgress" title="Checklist progress" class="h-10 px-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5">
+                    <div class="hidden sm:block w-16 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                        <div id="headerProgressBar" class="h-full rounded-full bg-cyan-400 transition-[width] duration-500" style="width: 0%"></div>
+                    </div>
+                    <span id="headerProgressText" class="font-mono text-xs font-semibold text-cyan-300 tabular-nums">0%</span>
+                </div>
+                <button onclick="exportStateJSON()" title="Export nms_state.json" aria-label="Export nms_state.json" class="hidden sm:flex h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-emerald-300 items-center gap-2 transition">
+                    <i class="ph-bold ph-download-simple text-base"></i>
+                    <span class="hidden xl:inline">Export</span>
+                </button>
+                <label id="importDropzone" title="Import nms_state.json (click or drop the file here)" ondragover="handleStateDragOver(event)" ondragleave="setDropzoneActive(false)" ondrop="handleStateDrop(event)" class="hidden sm:flex cursor-pointer h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-700 text-xs font-medium text-amber-300 items-center gap-2 transition focus-within:ring-2 focus-within:ring-cyan-400">
+                    <i class="ph-bold ph-upload-simple text-base"></i>
+                    <span class="hidden xl:inline">Import</span>
+                    <input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only" aria-label="Import nms_state.json">
                 </label>
             </div>
         </div>
@@ -125,77 +180,57 @@
     <!-- Main Workspace Container -->
     <div class="flex-1 max-w-[1600px] w-full mx-auto flex relative">
 
-        <!-- Left Navigation Sidebar -->
-        <aside id="sidebarNav" class="w-72 shrink-0 bg-slate-950/95 lg:bg-transparent border-r border-slate-800/80 p-4 space-y-6 fixed lg:static inset-y-0 left-0 z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto">
-            <div class="space-y-1">
-                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-cyan-400">📚 The 6 Master Books</div>
-                <button onclick="showSection('book1')" id="nav-book1" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition bg-cyan-500/15 text-cyan-300 border border-cyan-500/40">
-                    <i class="ph-duotone ph-cloud-arrow-up text-base shrink-0"></i>
-                    <span>Book I: Cross-Save, Modes & First 5 Hrs</span>
-                </button>
-                <button onclick="showSection('book2')" id="nav-book2" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-coins text-base text-emerald-400 shrink-0"></i>
-                    <span>Book II: 4.29B Unit & Nanite Blueprint</span>
-                </button>
-                <button onclick="showSection('book3')" id="nav-book3" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-sword text-base text-purple-400 shrink-0"></i>
-                    <span>Book III: Custom Ship & Multi-Tool Meta</span>
-                </button>
-                <button onclick="showSection('book4')" id="nav-book4" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-house-line text-base text-amber-400 shrink-0"></i>
-                    <span>Book IV: Self-Sufficient Cozy Base</span>
-                </button>
-                <button onclick="showSection('book5')" id="nav-book5" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-compass text-base text-cyan-400 shrink-0"></i>
-                    <span>Book V: Expeditions & Item Porting</span>
-                </button>
-                <button onclick="showSection('book6')" id="nav-book6" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-planet text-base text-red-400 shrink-0"></i>
-                    <span>Book VI: 7 Pillars of Post-Wealth Endgame</span>
+        <div id="navBackdrop" onclick="setNavDrawer(false)" class="lg:hidden fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+        <!-- Navigation: drawer below lg, sticky column from lg -->
+        <aside id="sidebarNav" aria-label="Primary" class="fixed inset-y-0 left-0 z-50 w-[19rem] max-w-[86vw] -translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] bg-slate-950 border-r border-slate-800 flex flex-col lg:sticky lg:top-16 lg:z-auto lg:h-[calc(100dvh-4rem)] lg:w-72 lg:max-w-none lg:translate-x-0 lg:shrink-0 lg:bg-transparent">
+            <div class="lg:hidden h-16 px-4 flex items-center justify-between border-b border-slate-800 shrink-0">
+                <span class="font-display font-bold text-sm tracking-wider text-white">ATLAS<span class="text-cyan-400">//</span>MASTER_OS</span>
+                <button onclick="setNavDrawer(false)" aria-label="Close navigation" class="w-10 h-10 -mr-2 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 transition">
+                    <i class="ph-bold ph-x text-lg"></i>
                 </button>
             </div>
 
-            <div class="space-y-1 pt-2 border-t border-slate-800/80">
-                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-amber-400">🛠️ Interactive Calculators & Logs</div>
-                <button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <span class="flex items-center gap-2.5"><i class="ph-duotone ph-cpu text-base text-amber-400"></i> 5 Live Calculators</span>
-                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">TOOLS</span>
-                </button>
-                <button onclick="showSection('logbook')" id="nav-logbook" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <span class="flex items-center gap-2.5"><i class="ph-duotone ph-bookmarks text-base text-purple-400"></i> Coordinate & Note Log</span>
-                    <span id="sidebarLogCount" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">2</span>
-                </button>
-            </div>
-
-            <div class="space-y-1 pt-2 border-t border-slate-800/80">
-                <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-emerald-400">🤖 Repository & Agent Spec</div>
-                <button onclick="showSection('agentspec')" id="nav-agentspec" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-terminal-window text-base text-emerald-400 shrink-0"></i>
-                    <span>Agent Architecture & Repo Spec</span>
-                </button>
-                <button onclick="showSection('allbooks')" id="nav-allbooks" class="nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent">
-                    <i class="ph-duotone ph-books text-base text-cyan-400 shrink-0"></i>
-                    <span>View All Books (Single-Page Scroll)</span>
-                </button>
-            </div>
-
-            <!-- Your Custom Fleet Quick Card -->
-            <div class="hud-card rounded-xl p-3.5 space-y-2 border border-purple-500/30">
-                <div class="text-[10px] font-mono uppercase text-purple-300 flex items-center justify-between">
-                    <span>Active Registered Fleet</span>
-                    <i class="ph-fill ph-shield-check text-emerald-400"></i>
+            <nav class="flex-1 overflow-y-auto overscroll-contain px-3 py-6 space-y-8">
+                <div>
+                    <p class="nav-group-label">Manual</p>
+                    <ul class="space-y-1">
+                        <li><button onclick="showSection('book1')" id="nav-book1" class="nav-btn" title="Book I: Cross-Save, Game Modes & First 5 Hours"><span class="nav-tile text-cyan-300">I</span><span class="truncate">Cross-Save & First Hours</span></button></li>
+                        <li><button onclick="showSection('book2')" id="nav-book2" class="nav-btn" title="Book II: The 4.29B Unit & Nanite Blueprint"><span class="nav-tile text-emerald-300">II</span><span class="truncate">Units & Nanites</span></button></li>
+                        <li><button onclick="showSection('book3')" id="nav-book3" class="nav-btn" title="Book III: Starship & Multi-Tool Meta"><span class="nav-tile text-purple-300">III</span><span class="truncate">Ship & Multi-Tool Meta</span></button></li>
+                        <li><button onclick="showSection('book4')" id="nav-book4" class="nav-btn" title="Book IV: Self-Sufficient & Cozy Base"><span class="nav-tile text-amber-300">IV</span><span class="truncate">Self-Sufficient Base</span></button></li>
+                        <li><button onclick="showSection('book5')" id="nav-book5" class="nav-btn" title="Book V: Expeditions & Item Porting"><span class="nav-tile text-sky-300">V</span><span class="truncate">Expeditions & Porting</span></button></li>
+                        <li><button onclick="showSection('book6')" id="nav-book6" class="nav-btn" title="Book VI: The 7 Pillars of Post-Wealth Endgame"><span class="nav-tile text-red-300">VI</span><span class="truncate">Endgame Pillars</span></button></li>
+                    </ul>
                 </div>
-                <div class="text-xs space-y-1">
-                    <div class="flex justify-between"><span class="text-slate-400">Flagship:</span><span class="font-mono text-white font-semibold">Ythgall (S)</span></div>
-                    <div class="flex justify-between"><span class="text-slate-400">Scrap Spare:</span><span class="font-mono text-amber-300">Aeron-ημ (S)</span></div>
-                    <div class="flex justify-between"><span class="text-slate-400">Combat Tool:</span><span class="font-mono text-purple-300">Defiance of Thought</span></div>
-                    <div class="flex justify-between"><span class="text-slate-400">Scanner Tool:</span><span class="font-mono text-cyan-300">Light Capacitor</span></div>
+
+                <div>
+                    <p class="nav-group-label">Tools</p>
+                    <ul class="space-y-1">
+                        <li><button onclick="showSection('calculators')" id="nav-calculators" class="nav-btn"><span class="nav-tile text-amber-300"><i class="ph-bold ph-calculator"></i></span><span class="truncate">Calculators</span><span class="nav-count">5</span></button></li>
+                        <li><button onclick="showSection('logbook')" id="nav-logbook" class="nav-btn"><span class="nav-tile text-purple-300"><i class="ph-bold ph-map-pin-area"></i></span><span class="truncate">Logbook</span><span id="sidebarLogCount" class="nav-count">0</span></button></li>
+                        <li><button onclick="showSection('wiki')" id="nav-wiki" class="nav-btn"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-books"></i></span><span class="truncate">Wiki Codex</span><span id="sidebarWikiCount" class="nav-count">0</span></button></li>
+                    </ul>
                 </div>
-            </div>
+
+                <div class="rounded-2xl bg-slate-900/60 border border-slate-800 p-4 space-y-3">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 flex items-center justify-between">
+                        <span>Active Fleet</span>
+                        <i class="ph-fill ph-shield-check text-emerald-400 text-sm"></i>
+                    </p>
+                    <div id="fleetCardBody" class="text-xs space-y-2.5"></div>
+                </div>
+
+                <div class="sm:hidden space-y-2">
+                    <p class="nav-group-label">Shared State</p>
+                    <button onclick="exportStateJSON()" class="nav-btn text-emerald-300"><span class="nav-tile text-emerald-300"><i class="ph-bold ph-download-simple"></i></span>Export nms_state.json</button>
+                    <label class="nav-btn cursor-pointer text-amber-300"><span class="nav-tile text-amber-300"><i class="ph-bold ph-upload-simple"></i></span>Import nms_state.json<input type="file" accept=".json,application/json" onchange="importStateJSON(event)" class="sr-only"></label>
+                </div>
+            </nav>
         </aside>
 
         <!-- Main Content Area -->
-        <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-8 overflow-y-auto">
+        <main class="flex-1 min-w-0 px-4 py-6 sm:p-6 lg:p-8 space-y-8">
 
             <!-- ===================================================================== -->
             <!-- BOOK I: CROSS-SAVE SETUP, GAME MODES & FIRST 5 HOURS                  -->
@@ -211,6 +246,18 @@
                             <i class="ph-bold ph-arrow-square-out"></i> cloud.nomanssky.com
                         </a>
                     </div>
+                </div>
+
+                <!-- 0. Campaign Milestones (nms_state.json → checklists) -->
+                <div class="hud-card rounded-2xl p-5 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                        <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                            <i class="ph-duotone ph-flag-banner text-cyan-400 text-xl"></i>
+                            Campaign Milestones
+                        </h3>
+                        <span id="currentPhaseText" class="text-xs font-mono text-cyan-300"></span>
+                    </div>
+                    <div id="checklist-milestones" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
                 </div>
 
                 <!-- 1. Cross-Save Checklist & Parity Checker -->
@@ -881,6 +928,48 @@
             </section>
 
             <!-- ===================================================================== -->
+            <!-- LOCAL WIKI CODEX (.MD) — fed by scripts/sync-wiki.mjs                 -->
+            <!-- ===================================================================== -->
+            <section id="sec-wiki" class="book-section hidden space-y-6">
+                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-mono uppercase text-emerald-400">Offline Knowledge Base • wiki/*.md</span>
+                            <h2 class="font-display text-2xl font-bold text-white mt-1">Local Wiki Codex</h2>
+                            <p class="text-xs text-slate-300 mt-1">Search the local Markdown wiki. Refresh it with <code class="text-cyan-300">npm run sync:wiki</code>; index hand-written articles with <code class="text-cyan-300">npm run index:wiki</code>.</p>
+                        </div>
+                        <button onclick="openWikiModal()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition">
+                            <i class="ph-bold ph-note-pencil"></i> Create Custom .MD Article
+                        </button>
+                    </div>
+                    <div class="mt-4 flex flex-col md:flex-row md:items-center gap-3">
+                        <div class="relative flex-1">
+                            <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                            <input type="search" id="wikiSearchInput" oninput="setWikiQuery(this.value)" placeholder="Search titles, categories, summaries (e.g. doughnut, infra knife, nanite)..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-emerald-400 rounded-xl pl-9 pr-3 py-2 text-xs text-white focus:outline-none">
+                        </div>
+                        <div id="wikiCategoryPills" class="flex flex-wrap gap-1.5"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-4 hud-card rounded-2xl p-4 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <h3 class="font-display font-bold text-sm text-white">Articles</h3>
+                            <span id="wikiResultCount" class="text-[11px] font-mono text-emerald-300">Loading…</span>
+                        </div>
+                        <div id="wikiResultList" class="space-y-2 max-h-[70vh] overflow-y-auto pr-1"></div>
+                    </div>
+
+                    <article class="lg:col-span-8 hud-card rounded-2xl p-5 lg:p-6 min-h-[50vh]">
+                        <div id="wikiReaderMeta" class="hidden flex-wrap items-center gap-2 mb-4 text-[11px] font-mono"></div>
+                        <div id="wikiReader" class="md-body">
+                            <p class="text-slate-400">Select an article on the left to read it here.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ===================================================================== -->
             <!-- COORDINATE & CUSTOM NOTEBOOK LOGBOOK                                  -->
             <!-- ===================================================================== -->
             <section id="sec-logbook" class="book-section hidden space-y-6">
@@ -894,6 +983,7 @@
                     <div class="lg:col-span-4 hud-card rounded-2xl p-5 space-y-3">
                         <h3 class="font-display font-bold text-base text-white">Add New Entry</h3>
                         <input type="text" id="entryTitle" placeholder="System, Planet, or Note Title" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                        <input type="text" id="entryGlyphs" placeholder="Glyph / register solution (optional, e.g. 4, 10, 16)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white">
                         <select id="entryCategory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
                             <option value="S-Class Crash Site">🟣 S-Class Ship Crash Site</option>
                             <option value="Harmonic Camp">🟠 Harmonic Camp Terminal</option>
@@ -915,84 +1005,32 @@
                 </div>
             </section>
 
-            <!-- ===================================================================== -->
-            <!-- AGENT ARCHITECTURE & GIT REPOSITORY BUILD SPECIFICATION               -->
-            <!-- ===================================================================== -->
-            <section id="sec-agentspec" class="book-section hidden space-y-6">
-                <div class="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
-                    <div class="flex flex-wrap items-center justify-between gap-4">
-                        <div>
-                            <span class="text-xs font-mono uppercase text-emerald-400">Developer & AI Coding Agent Blueprint</span>
-                            <h2 class="font-display text-2xl font-bold text-white mt-1">Repository Setup & AI Agent Build Specification</h2>
-                            <p class="text-xs text-slate-300 mt-1">Copy this prompt or specification directly into Claude Code, Cursor, Windsurf, or GitHub Copilot to initialize, modularize, or extend this local web app repository.</p>
-                        </div>
-                        <button onclick="copyAgentSpec()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition">
-                            <i class="ph-bold ph-copy"></i> Copy Agent Prompt to Clipboard
-                        </button>
-                    </div>
-                </div>
-
-                <div class="hud-card rounded-2xl p-5 space-y-4">
-                    <pre id="agentSpecCodeBlock" class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre-wrap leading-relaxed"># AGENT SPECIFICATION: ATLAS // MASTER OS (No Man's Sky Local Companion & Knowledge Base)
-
-## 1. Project Overview & Purpose
-This repository (`nms-atlas-master-os`) hosts a local-first, offline-capable web application and structured knowledge base for a multi-platform No Man's Sky playthrough (PC/Mac, Nintendo Switch, and iOS).
-- **Single-File Zero-Build Entrypoint:** `index.html` (or `nms_master_os.html`) runs directly in any browser (`open index.html` or `npx serve .`) with zero build steps required.
-- **Persistent State & Git-Friendly Sync:** All user checklists, progress flags, and star system coordinate logs are stored in `localStorage` under the key `ATLAS_MASTER_OS_STATE_V2` and can be exported/imported as a tracked `data/nms_state.json` file for Git version control.
-
-## 2. Recommended Repository Structure (For Agent Scaffolding)
-If the user asks the agent to modularize or expand this project, maintain the following clean directory structure:
-```
-nms-atlas-master-os/
-├── index.html                  # Self-contained local web app (ATLAS // MASTER OS)
-├── README.md                   # Quickstart & local launch instructions
-├── AGENT_INSTRUCTIONS.md       # This specification file for AI coding agents
-├── data/
-│   ├── nms_state.json          # Exported checklists, ship builds & system coordinates
-│   └── books_content.json      # Structured markdown/JSON of Books I–VI for easy editing
-└── docs/
-    ├── book1_cross_save_and_5hrs.md
-    ├── book2_wealth_and_nanites.md
-    ├── book3_ship_and_multitool_meta.md
-    ├── book4_cozy_self_sufficient_base.md
-    ├── book5_expeditions_manual.md
-    └── book6_endgame_7_pillars.md
-```
-
-## 3. Core Player Context & Hardware Constants (DO NOT OVERWRITE)
-When adding or updating guides, calculators, or schematics, preserve the user's actual in-game fleet and gear:
-1. **Main Flagship Starship (`Ythgall`):** Natural S-Class Sentinel Interceptor. Supercharged slots at `R2C2`, `R2C3`, `R2C4` (3-in-a-row horizontal bar) + `R3C8`. Wired for Infra-Knife Accelerator + Q-Resonator.
-2. **Scrap Donor Ship (`Aeron-ημ`):** Spare S-Class Sentinel Interceptor (`R3C1, R2C2, R2C4, R1C5` diagonal SC slots). Strip tech via `X` and scrap for ~50M Units + Storage Augmentations.
-3. **Primary Combat Multi-Tool (`Defiance of Thought`):** Sentinel Long-Rifle (upgraded B -> A -> S-Class). SC slots located in outer columns (`Cols 9–10` / `Row 4`). Supports dual Mining Lasers (Hijacked Laser + Mining Beam) and Neutron Cannon.
-4. **Primary Scanner & Mining Multi-Tool (`Light Capacitor 3-93F/33Q`):** 40-slot A-Class Rifle with Supercharged slots at `R1C8` (Scanner cluster), `R2C4` (Optical Drill for +88% harvest yield), and `R4C6`.
-
-## 4. State Schema (`data/nms_state.json`)
-```json
-{
-  "version": "2.0",
-  "lastUpdated": "2026-10-26T00:00:00.000Z",
-  "checkedItems": {
-    "cs1": true,
-    "rm1": false
-  },
-  "logEntries": [
-    {
-      "id": 1730000000,
-      "title": "System Name / Crash Site",
-      "category": "S-Class Crash Site",
-      "details": "Planet +12.34, -56.78 | Harmonic Camp nearby"
-    }
-  ]
-}
-```
-
-## 5. Agent Tasks & Commands
-- **To Run Locally:** Run `python3 -m http.server 8080` or `npx serve .` and open `http://localhost:8080`.
-- **To Add New Guides or Calculators:** Add a new `<section id="sec-custom">` block inside `index.html`, register its navigation button in `#sidebarNav`, and bind any interactive inputs to `runCalculators()` and `saveAppState()`.</pre>
-                </div>
-            </section>
 
         </main>
+    </div>
+
+    <!-- Create Custom .MD Article Modal -->
+    <div id="wikiModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4" onclick="if (event.target === this) closeWikiModal()">
+        <div class="hud-card w-full max-w-4xl rounded-2xl p-5 space-y-3 max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 class="font-display font-bold text-base text-white">Create Custom .MD Article</h3>
+                <button onclick="closeWikiModal()" class="text-slate-400 hover:text-white p-1" title="Close"><i class="ph-bold ph-x text-lg"></i></button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <input type="text" id="wikiNewTitle" placeholder="Article title" class="md:col-span-2 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                <select id="wikiNewCategory" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></select>
+            </div>
+            <input type="text" id="wikiNewSummary" placeholder="One-line summary (shown in search results)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <textarea id="wikiNewBody" rows="16" oninput="renderWikiDraftPreview()" placeholder="## Overview&#10;Write Markdown here. Link other articles with [[Article Title]]." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-white"></textarea>
+                <div id="wikiNewPreview" class="md-body bg-slate-950/60 border border-slate-800 rounded-xl p-3 overflow-y-auto max-h-[22rem]"></div>
+            </div>
+            <p class="text-[11px] text-slate-400">The file downloads as <code class="text-cyan-300">&lt;Title&gt;.md</code>. Move it into <code class="text-cyan-300">wiki/custom/&lt;category&gt;/</code> and run <code class="text-cyan-300">npm run index:wiki</code>. Until then it stays in this browser as a draft.</p>
+            <div class="flex justify-end gap-2">
+                <button onclick="closeWikiModal()" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:bg-slate-800">Cancel</button>
+                <button onclick="saveWikiDraft()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs flex items-center gap-2"><i class="ph-bold ph-download-simple"></i> Save Draft & Download .md</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1000,6 +1038,19 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
         // 1. MASTER CHECKLIST DATA DEFINITIONS
         // =========================================================================
         const CHECKLIST_DATA = {
+            // Ids match the named keys of nms_state.json → checklists
+            milestones: [
+                { id: 'crossSaveLinked', title: 'Cross-Save Linked', desc: 'PC, Mac, Switch & iOS share one Hello Games Cloud save.' },
+                { id: 'anomalyUnlocked', title: 'Space Anomaly Unlocked', desc: 'Summoned the Anomaly and opened the Iteration vendors.' },
+                { id: 'harmonicCampUnlocked', title: 'Harmonic Camp Unlocked', desc: 'Solved a Dissonant System register puzzle.' },
+                { id: 'sClassInterceptorSecured', title: 'S-Class Interceptor Secured', desc: 'Ythgall claimed as flagship.' },
+                { id: 'sentinelRifleSecured', title: 'Sentinel Rifle Secured', desc: 'Defiance of Thought claimed.' },
+                { id: 'nutrientIngestorInstalled', title: 'Nutrient Ingestor Installed', desc: 'Required to eat Anomalous Doughnuts for the scanner buff.' },
+                { id: 'anomalousDoughnutBatchCooked', title: 'Anomalous Doughnut Batch Cooked', desc: 'First batch ready for the fauna-scan Unit run.' },
+                { id: 'capitalFreighterClaimed', title: 'Capital Freighter Claimed', desc: 'Won the second rescue battle for a free Capital Freighter.' },
+                { id: 'oxygenAlchemyBaseBuilt', title: 'Oxygen Alchemy Base Built', desc: 'Oxygen hotspot feeding the refiner chamber (Book IV).' },
+                { id: 'autophageUnlocked', title: 'Autophage Unlocked', desc: 'They Who Returned triggered after The Purge + Harmonic Camp.' }
+            ],
             crosssave: [
                 { id: 'cs1', title: 'Step 1: Log In to Hello Games Cloud', desc: 'Visit cloud.nomanssky.com and sign in.' },
                 { id: 'cs2', title: 'Step 2: Link All Platform Accounts', desc: 'Connect Steam/Mac, Nintendo Switch, and Apple/iOS accounts.' },
@@ -1038,52 +1089,180 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
         // =========================================================================
         // 2. APPLICATION STATE & STORAGE ENGINE
         // =========================================================================
-        const STORAGE_KEY = 'ATLAS_MASTER_OS_STATE_V2';
+        const STORAGE_KEY = 'nms_master_os_state';
+        const LEGACY_STORAGE_KEY = 'ATLAS_MASTER_OS_STATE_V2';
+        const STATE_FILE = './nms_state.json';
 
-        let appState = {
-            version: '2.0',
-            lastUpdated: new Date().toISOString(),
-            checkedItems: {},
-            logEntries: [
-                {
-                    id: 1,
-                    title: 'Ythgall & Aeron-ημ Dissonant System',
-                    category: 'S-Class Crash Site',
-                    details: 'Ythgall flagship (R2C2, R2C3, R2C4 3-in-a-row SC slots). Harmonic Camp solved (Registers: 4, 10, 16).'
+        // Mirrors the repo's nms_state.json; used when that file can't be fetched (e.g. opened via file://).
+        const DEFAULT_STATE = {
+            meta: {
+                version: '2.0.0',
+                lastUpdated: '2026-10-26',
+                platforms: ['PC', 'Mac', 'Switch', 'iOS'],
+                currentPhase: 'Phase 3: Anomalous Doughnut Scanner & Base Setup'
+            },
+            fleet: {
+                primaryStarship: {
+                    name: 'Ythgall',
+                    class: 'S',
+                    type: 'Sentinel Interceptor',
+                    superchargedSlots: ['R2C2', 'R2C3', 'R2C4', 'R3C7'],
+                    layoutNotes: '3-in-a-row horizontal SC bar on Row 2 (Cols 2,3,4). Put Infra-Knife Accelerator in R2C3 flanked by S/X upgrades in R2C2 and R2C4.'
                 },
+                salvageStarship: {
+                    name: 'Aeron-ημ',
+                    class: 'S',
+                    type: 'Sentinel Interceptor',
+                    status: 'Ready to store tech and scrap for ~50M Units + Storage Augmentations'
+                },
+                multiTools: [
+                    {
+                        name: 'Defiance of Thought',
+                        class: 'A -> S',
+                        type: 'Sentinel Long-Rifle',
+                        role: 'Dedicated Combat & Double-Laser Mining',
+                        notes: 'Supercharged slots hidden in locked Cols 9-10 / Row 4. Unlock via free Multi-Tool Expansion Slots from Anomaly decommissioning.'
+                    },
+                    {
+                        name: 'Light Capacitor 3-93F/33Q',
+                        class: 'A',
+                        type: 'Standard Rifle (40 Slots Unlocked)',
+                        superchargedSlots: ['R1C8', 'R2C4', 'R4C6'],
+                        role: 'Active Scanner & Optical Drill Harvester',
+                        notes: 'S-Class Scanner mod in R1C8; place Optical Drill in R2C4 for +88% plant yields.'
+                    }
+                ]
+            },
+            checklists: {
+                crossSaveLinked: true,
+                anomalyUnlocked: true,
+                harmonicCampUnlocked: true,
+                sClassInterceptorSecured: true,
+                sentinelRifleSecured: true,
+                nutrientIngestorInstalled: false,
+                anomalousDoughnutBatchCooked: false,
+                capitalFreighterClaimed: false,
+                oxygenAlchemyBaseBuilt: false,
+                autophageUnlocked: false
+            },
+            logbook: [
                 {
-                    id: 2,
-                    title: 'Defiance of Thought & Light Capacitor Loadout',
-                    category: 'Custom Guide Note',
-                    details: 'Defiance of Thought (Sentinel Rifle, SC slots in Cols 9-10/Row 4). Light Capacitor (Optical Drill in R2C4 SC slot, Scanner in R1C8 SC slot).'
+                    id: 'camp-01',
+                    system: 'Dissonant System #1',
+                    type: 'Harmonic Camp',
+                    glyphSolution: [4, 10, 16],
+                    notes: 'Spawned S-Class Interceptors Ythgall and Aeron-ημ + B-Class Sentinel Rifle Defiance of Thought'
                 }
             ]
         };
 
-        function loadAppState() {
+        let appState = structuredClone(DEFAULT_STATE);
+
+        function isPlainObject(value) {
+            return value !== null && typeof value === 'object' && !Array.isArray(value);
+        }
+
+        // Objects merge key-by-key; arrays and scalars from `patch` replace those in `base`.
+        function deepMerge(base, patch) {
+            if (patch === undefined) return base;
+            if (!isPlainObject(base) || !isPlainObject(patch)) return structuredClone(patch);
+            const merged = { ...base };
+            Object.keys(patch).forEach(key => {
+                merged[key] = deepMerge(base[key], patch[key]);
+            });
+            return merged;
+        }
+
+        // Pre-2.0 shape ({ checkedItems, logEntries }) → nms_state.json shape.
+        function migrateLegacyState(legacy) {
+            if (!('checkedItems' in legacy) && !('logEntries' in legacy)) return legacy;
+            return {
+                meta: { lastUpdated: legacy.lastUpdated },
+                checklists: legacy.checkedItems || {},
+                logbook: (legacy.logEntries || []).map(entry => ({
+                    id: String(entry.id),
+                    system: entry.title,
+                    type: entry.category,
+                    glyphSolution: [],
+                    notes: entry.details
+                }))
+            };
+        }
+
+        function buildState(...layers) {
+            const state = layers.filter(isPlainObject).reduce(deepMerge, structuredClone(DEFAULT_STATE));
+            if (!isPlainObject(state.meta)) state.meta = structuredClone(DEFAULT_STATE.meta);
+            if (!isPlainObject(state.fleet)) state.fleet = {};
+            if (!isPlainObject(state.checklists)) state.checklists = {};
+            if (!Array.isArray(state.logbook)) state.logbook = [];
+            return state;
+        }
+
+        function stateTimestamp(state) {
+            return Date.parse(state?.meta?.lastUpdated) || 0;
+        }
+
+        function readLocalState() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    appState.checkedItems = parsed.checkedItems || {};
-                    if (Array.isArray(parsed.logEntries)) {
-                        appState.logEntries = parsed.logEntries;
-                    }
-                }
+                if (raw) return JSON.parse(raw);
+                const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+                if (legacy) return migrateLegacyState(JSON.parse(legacy));
             } catch (e) {
                 console.warn('Could not read local state:', e);
             }
+            return null;
+        }
+
+        async function fetchRepoState() {
+            try {
+                const res = await fetch(STATE_FILE, { cache: 'no-store' });
+                if (res.ok) return await res.json();
+            } catch (e) {
+                console.info('nms_state.json not reachable (file:// or offline); using built-in defaults.');
+            }
+            return null;
+        }
+
+        async function loadAppState() {
+            const repoState = await fetchRepoState();
+            const localState = readLocalState();
+            // Browser edits win, unless the repo file is newer (e.g. pulled from another machine).
+            appState = localState && stateTimestamp(repoState) > stateTimestamp(localState)
+                ? buildState(localState, repoState)
+                : buildState(repoState, localState);
         }
 
         function saveAppState() {
-            appState.lastUpdated = new Date().toISOString();
+            appState.meta.lastUpdated = new Date().toISOString();
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
             } catch (e) {
                 console.warn('Could not save local state:', e);
             }
+            renderAll();
+        }
+
+        function renderAll() {
             renderAllChecklists();
             renderLogEntries();
+            renderFleetCard();
+            document.getElementById('currentPhaseText').textContent = appState.meta.currentPhase || '';
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+        }
+
+        function renderFleetCard() {
+            const { primaryStarship, salvageStarship, multiTools = [] } = appState.fleet;
+            const row = (label, item, color) => item ? `
+                <div title="${escapeHtml(item.role || item.type)}"><span class="block text-[11px] text-slate-400">${label}</span><span class="block font-mono ${color} leading-snug">${escapeHtml(item.name)}${item.class ? ` <span class="text-slate-400">${escapeHtml(item.class)}</span>` : ''}</span></div>` : '';
+            const toolColors = ['text-purple-300', 'text-cyan-300'];
+            document.getElementById('fleetCardBody').innerHTML =
+                row('Flagship', primaryStarship, 'text-white font-semibold') +
+                row('Scrap Spare', salvageStarship, 'text-amber-300') +
+                multiTools.map((tool, i) => row('Multi-Tool', tool, toolColors[i % toolColors.length])).join('');
         }
 
         function showToast(msg) {
@@ -1098,61 +1277,225 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
         }
 
         // =========================================================================
-        // 3. NAVIGATION & SINGLE-PAGE VIEW CONTROLLER
+        // 3. NAVIGATION, MOBILE DRAWER & GLOBAL SEARCH
         // =========================================================================
         function showSection(sectionKey) {
-            const allSections = document.querySelectorAll('.book-section');
-            const allNavBtns = document.querySelectorAll('.nav-btn');
-
-            allNavBtns.forEach(btn => {
-                btn.className = 'nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent';
+            const target = document.getElementById(`sec-${sectionKey}`);
+            if (!target) sectionKey = 'book1';
+            document.querySelectorAll('.book-section').forEach(sec => {
+                sec.classList.toggle('hidden', sec.id !== `sec-${sectionKey}`);
             });
-
-            const activeBtn = document.getElementById(`nav-${sectionKey}`);
-            if (activeBtn) {
-                activeBtn.className = 'nav-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2.5 transition bg-cyan-500/15 text-cyan-300 border border-cyan-500/40';
-            }
-
-            if (sectionKey === 'allbooks') {
-                allSections.forEach(sec => sec.classList.remove('hidden'));
-            } else {
-                allSections.forEach(sec => sec.classList.add('hidden'));
-                const target = document.getElementById(`sec-${sectionKey}`);
-                if (target) target.classList.remove('hidden');
-            }
-
-            // Close mobile sidebar if open
-            document.getElementById('sidebarNav').classList.add('-translate-x-full');
+            document.querySelectorAll('.nav-btn[id^="nav-"]').forEach(btn => {
+                if (btn.id === `nav-${sectionKey}`) btn.setAttribute('aria-current', 'page');
+                else btn.removeAttribute('aria-current');
+            });
+            if (location.hash !== `#${sectionKey}`) history.replaceState(null, '', `#${sectionKey}`);
+            setNavDrawer(false);
+            window.scrollTo({ top: 0 });
         }
 
-        function toggleMobileSidebar() {
-            const nav = document.getElementById('sidebarNav');
-            nav.classList.toggle('-translate-x-full');
+        function setNavDrawer(open) {
+            document.getElementById('sidebarNav').classList.toggle('-translate-x-full', !open);
+            const backdrop = document.getElementById('navBackdrop');
+            backdrop.classList.toggle('opacity-0', !open);
+            backdrop.classList.toggle('pointer-events-none', !open);
+            document.getElementById('menuButton').setAttribute('aria-expanded', String(open));
+            document.body.classList.toggle('overflow-hidden', open && window.innerWidth < 1024);
+        }
+
+        const SEARCH_WIKI_LIMIT = 6;
+        const SEARCH_BOOK_LIMIT = 6;
+        const SEARCH_BLOCKS = 'h3, h4, p, li, tr, [onclick^="toggleCheckItem"]';
+        const WIKI_CATEGORY_ICONS = { resources: 'ph-atom', products: 'ph-package', cooking: 'ph-cooking-pot', technology: 'ph-cpu', guides: 'ph-book-open-text' };
+        let searchHits = [];
+        let searchActiveIndex = -1;
+
+        function highlightTokens(text, tokens) {
+            const escaped = escapeHtml(text);
+            const pattern = tokens.map(token => escapeHtml(token).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+            return pattern ? escaped.replace(new RegExp(`(${pattern})`, 'gi'), '<mark>$1</mark>') : escaped;
+        }
+
+        function snippetAround(text, token, radius = 70) {
+            const at = Math.max(0, text.toLowerCase().indexOf(token));
+            const start = Math.max(0, at - radius);
+            const end = Math.min(text.length, at + token.length + radius);
+            return `${start > 0 ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
+        }
+
+        // Book text lives in the DOM, so search the smallest text blocks of every section (hidden ones included).
+        function findBookHits(tokens) {
+            const hits = [];
+            const seen = new Set();
+            document.querySelectorAll('.book-section:not(#sec-wiki)').forEach(section => {
+                const sectionTitle = section.querySelector('h2')?.textContent.trim() || section.id;
+                section.querySelectorAll(SEARCH_BLOCKS).forEach(el => {
+                    if (el.querySelector(SEARCH_BLOCKS)) return; // prefer the innermost block
+                    const text = el.textContent.replace(/\s+/g, ' ').trim();
+                    const lower = text.toLowerCase();
+                    if (!text || seen.has(lower) || !tokens.every(token => lower.includes(token))) return;
+                    seen.add(lower);
+                    const isHeading = /^H[34]$/.test(el.tagName);
+                    hits.push({ type: 'book', el, sectionKey: section.id.slice(4), sectionTitle, text, score: isHeading ? 2 : 1 });
+                });
+            });
+            return hits.sort((a, b) => b.score - a.score).slice(0, SEARCH_BOOK_LIMIT);
         }
 
         function handleGlobalSearch(query) {
-            const q = query.trim().toLowerCase();
-            const allSections = document.querySelectorAll('.book-section');
-            if (!q) {
-                showSection('book1');
+            const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+            const panel = document.getElementById('globalSearchResults');
+            const input = document.getElementById('globalSearchInput');
+            searchActiveIndex = -1;
+            if (!tokens.length) {
+                searchHits = [];
+                panel.classList.add('hidden');
+                input.setAttribute('aria-expanded', 'false');
                 return;
             }
-            // Show all matching sections when searching
-            allSections.forEach(sec => {
-                const text = sec.innerText.toLowerCase();
-                if (text.includes(q)) {
-                    sec.classList.remove('hidden');
-                } else {
-                    sec.classList.add('hidden');
+
+            const wikiMatches = wikiArticles
+                .map(entry => [wikiScore(entry, tokens), entry])
+                .filter(([score]) => score > 0)
+                .sort((a, b) => b[0] - a[0] || a[1]._title.localeCompare(b[1]._title))
+                .map(([, entry]) => entry);
+            const wikiHits = wikiMatches.slice(0, SEARCH_WIKI_LIMIT).map(entry => ({ type: 'wiki', entry }));
+            const bookHits = findBookHits(tokens);
+            searchHits = [...wikiHits, ...bookHits];
+
+            const groupLabel = (label, detail) => `<p class="flex justify-between px-3 pt-3 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400"><span>${label}</span><span class="normal-case tracking-normal font-mono font-normal">${detail}</span></p>`;
+            let html = '';
+            if (wikiHits.length) {
+                html += groupLabel('Wiki articles', `${wikiMatches.length} match${wikiMatches.length === 1 ? '' : 'es'}`);
+                html += wikiHits.map((hit, i) => `
+                    <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
+                        <span class="nav-tile text-emerald-300 mt-0.5"><i class="ph-bold ${WIKI_CATEGORY_ICONS[hit.entry.category] || 'ph-file-text'}"></i></span>
+                        <span class="min-w-0 flex-1">
+                            <span class="flex items-center gap-2"><strong class="text-sm text-white truncate">${highlightTokens(hit.entry.title, tokens)}</strong>${sourceBadge(hit.entry.source)}</span>
+                            <span class="block text-xs text-slate-400 truncate">${escapeHtml(hit.entry.category)} · ${escapeHtml(hit.entry.summary || '')}</span>
+                        </span>
+                    </button>`).join('');
+                if (wikiMatches.length > wikiHits.length) {
+                    html += `<button onclick="showAllWikiResults()" class="w-full px-3 py-2 text-left text-xs font-medium text-cyan-300 hover:text-cyan-200">Show all ${wikiMatches.length} wiki results →</button>`;
                 }
+            }
+            if (bookHits.length) {
+                html += groupLabel('In the manual', `${bookHits.length}${bookHits.length === SEARCH_BOOK_LIMIT ? '+' : ''}`);
+                html += bookHits.map((hit, j) => {
+                    const i = wikiHits.length + j;
+                    return `
+                    <button id="search-hit-${i}" role="option" aria-selected="false" onclick="activateSearchHit(${i})" class="search-hit">
+                        <span class="nav-tile text-cyan-300 mt-0.5"><i class="ph-bold ph-book-open"></i></span>
+                        <span class="min-w-0 flex-1">
+                            <span class="block text-[11px] font-medium text-cyan-300/80 truncate">${escapeHtml(hit.sectionTitle)}</span>
+                            <span class="search-snippet block text-xs text-slate-300 leading-relaxed">${highlightTokens(snippetAround(hit.text, tokens[0]), tokens)}</span>
+                        </span>
+                    </button>`;
+                }).join('');
+            }
+            if (!searchHits.length) {
+                html = `<p class="px-3 py-6 text-center text-sm text-slate-400">Nothing matches “${escapeHtml(query.trim())}”. Try fewer words.</p>`;
+            }
+            panel.innerHTML = html;
+            panel.classList.remove('hidden');
+            input.setAttribute('aria-expanded', 'true');
+        }
+
+        function setSearchActive(index) {
+            if (!searchHits.length) return;
+            searchActiveIndex = (index + searchHits.length) % searchHits.length;
+            searchHits.forEach((_, i) => {
+                const el = document.getElementById(`search-hit-${i}`);
+                el?.setAttribute('aria-selected', String(i === searchActiveIndex));
+                if (i === searchActiveIndex) el?.scrollIntoView({ block: 'nearest' });
+            });
+            document.getElementById('globalSearchInput').setAttribute('aria-activedescendant', `search-hit-${searchActiveIndex}`);
+        }
+
+        function handleGlobalSearchKey(event) {
+            if (event.key === 'ArrowDown') { event.preventDefault(); setSearchActive(searchActiveIndex + 1); }
+            else if (event.key === 'ArrowUp') { event.preventDefault(); setSearchActive(searchActiveIndex - 1); }
+            else if (event.key === 'Enter' && searchHits.length) { event.preventDefault(); activateSearchHit(Math.max(searchActiveIndex, 0)); }
+            else if (event.key === 'Escape') { event.preventDefault(); closeGlobalSearch(); }
+        }
+
+        function activateSearchHit(index) {
+            const hit = searchHits[index];
+            if (!hit) return;
+            const query = document.getElementById('globalSearchInput').value;
+            closeGlobalSearch();
+            if (hit.type === 'wiki') {
+                showSection('wiki');
+                document.getElementById('wikiSearchInput').value = query;
+                setWikiQuery(query);
+                openWikiArticle(hit.entry.path);
+                return;
+            }
+            showSection(hit.sectionKey);
+            const el = hit.el.isConnected ? hit.el : null;
+            if (!el) return;
+            requestAnimationFrame(() => {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.classList.remove('search-flash');
+                void el.offsetWidth; // restart the animation on repeat jumps
+                el.classList.add('search-flash');
+                setTimeout(() => el.classList.remove('search-flash'), 2300);
             });
         }
+
+        function showAllWikiResults() {
+            const query = document.getElementById('globalSearchInput').value;
+            closeGlobalSearch();
+            showSection('wiki');
+            document.getElementById('wikiSearchInput').value = query;
+            setWikiCategory('all');
+            setWikiQuery(query);
+        }
+
+        function openGlobalSearch() {
+            document.body.classList.add('search-open', 'overflow-hidden');
+            const input = document.getElementById('globalSearchInput');
+            input.focus();
+            handleGlobalSearch(input.value);
+        }
+
+        function closeGlobalSearch() {
+            document.body.classList.remove('search-open');
+            const drawerOpen = window.innerWidth < 1024 && !document.getElementById('sidebarNav').classList.contains('-translate-x-full');
+            if (!drawerOpen) document.body.classList.remove('overflow-hidden');
+            document.getElementById('globalSearchResults').classList.add('hidden');
+            const input = document.getElementById('globalSearchInput');
+            input.setAttribute('aria-expanded', 'false');
+            input.blur();
+        }
+
+        document.addEventListener('pointerdown', event => {
+            if (!document.getElementById('globalSearch').contains(event.target)) {
+                document.getElementById('globalSearchResults').classList.add('hidden');
+                document.getElementById('globalSearchInput').setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+            if ((event.key === '/' && !typing) || (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey))) {
+                event.preventDefault();
+                if (window.innerWidth < 768) openGlobalSearch();
+                else document.getElementById('globalSearchInput').focus();
+            }
+            if (event.key === 'Escape') setNavDrawer(false);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) setNavDrawer(false);
+            if (window.innerWidth >= 768) document.body.classList.remove('search-open');
+        });
 
         // =========================================================================
         // 4. CHECKLIST RENDERING ENGINE
         // =========================================================================
         function toggleCheckItem(id) {
-            appState.checkedItems[id] = !appState.checkedItems[id];
+            appState.checklists[id] = !appState.checklists[id];
             saveAppState();
         }
 
@@ -1163,7 +1506,7 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
             let completed = 0;
 
             container.innerHTML = list.map(item => {
-                const isDone = !!appState.checkedItems[item.id];
+                const isDone = !!appState.checklists[item.id];
                 if (isDone) completed++;
                 return `
                     <div onclick="toggleCheckItem('${item.id}')" class="cursor-pointer p-3 rounded-xl border text-xs flex items-start gap-3 transition ${isDone ? 'bg-cyan-950/30 border-cyan-500/40 text-slate-400 line-through' : 'bg-slate-900/90 border-slate-800 hover:border-slate-700 text-slate-200'}">
@@ -1187,7 +1530,9 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
                 done += renderChecklistGroup(key, `checklist-${key}`);
             });
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-            document.getElementById('headerProgressText').textContent = `${pct}% (${done}/${total})`;
+            document.getElementById('headerProgressText').textContent = `${pct}%`;
+            document.getElementById('headerProgressBar').style.width = `${pct}%`;
+            document.getElementById('headerProgress').title = `Checklist progress: ${done} of ${total} done`;
         }
 
         // =========================================================================
@@ -1259,20 +1604,21 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
         // =========================================================================
         function renderLogEntries() {
             const container = document.getElementById('logEntriesContainer');
-            const count = appState.logEntries.length;
+            const count = appState.logbook.length;
             document.getElementById('logEntryCounter').textContent = `${count} Entries`;
             document.getElementById('sidebarLogCount').textContent = count;
 
-            container.innerHTML = appState.logEntries.map(entry => `
+            container.innerHTML = appState.logbook.map(entry => `
                 <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-start justify-between gap-4">
                     <div class="space-y-1 text-xs">
-                        <div class="flex items-center gap-2">
-                            <strong class="text-white font-display">${entry.title}</strong>
-                            <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[10px]">${entry.category}</span>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <strong class="text-white font-display">${escapeHtml(entry.system)}</strong>
+                            <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[10px]">${escapeHtml(entry.type)}</span>
+                            ${Array.isArray(entry.glyphSolution) && entry.glyphSolution.length ? `<span class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 font-mono text-[10px]">Solution: ${entry.glyphSolution.map(escapeHtml).join(' · ')}</span>` : ''}
                         </div>
-                        <p class="text-slate-300 whitespace-pre-line">${entry.details}</p>
+                        <p class="text-slate-300 whitespace-pre-line">${escapeHtml(entry.notes)}</p>
                     </div>
-                    <button onclick="deleteLogEntry(${entry.id})" class="text-slate-500 hover:text-red-400 p-1 transition" title="Delete Entry">
+                    <button data-id="${escapeHtml(entry.id)}" onclick="deleteLogEntry(this.dataset.id)" class="text-slate-500 hover:text-red-400 p-1 transition" title="Delete Entry">
                         <i class="ph-bold ph-trash text-base"></i>
                     </button>
                 </div>
@@ -1280,78 +1626,395 @@ When adding or updating guides, calculators, or schematics, preserve the user's 
         }
 
         function addLogEntry() {
-            const title = document.getElementById('entryTitle').value.trim();
-            const category = document.getElementById('entryCategory').value;
-            const details = document.getElementById('entryDetails').value.trim();
-            if (!title) {
+            const system = document.getElementById('entryTitle').value.trim();
+            const type = document.getElementById('entryCategory').value;
+            const notes = document.getElementById('entryDetails').value.trim();
+            const glyphSolution = (document.getElementById('entryGlyphs').value.match(/-?\d+/g) || []).map(Number);
+            if (!system) {
                 showToast('Please enter a title for your log entry.');
                 return;
             }
-            appState.logEntries.unshift({
-                id: Date.now(),
-                title,
-                category,
-                details
+            appState.logbook.unshift({
+                id: `log-${Date.now()}`,
+                system,
+                type,
+                glyphSolution,
+                notes
             });
             document.getElementById('entryTitle').value = '';
+            document.getElementById('entryGlyphs').value = '';
             document.getElementById('entryDetails').value = '';
             saveAppState();
             showToast('Entry saved to local repository!');
         }
 
         function deleteLogEntry(id) {
-            appState.logEntries = appState.logEntries.filter(item => item.id !== id);
+            appState.logbook = appState.logbook.filter(item => String(item.id) !== id);
             saveAppState();
             showToast('Entry removed.');
         }
 
         function exportStateJSON() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const blob = new Blob([JSON.stringify(appState, null, 2) + '\n'], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
             const dlAnchor = document.createElement('a');
-            dlAnchor.setAttribute("href", dataStr);
-            dlAnchor.setAttribute("download", "nms_state.json");
+            dlAnchor.href = url;
+            dlAnchor.download = 'nms_state.json';
             document.body.appendChild(dlAnchor);
             dlAnchor.click();
             dlAnchor.remove();
+            URL.revokeObjectURL(url);
             showToast('Exported nms_state.json for your Git repo!');
         }
 
-        function importStateJSON(event) {
-            const file = event.target.files[0];
+        function readStateFile(file) {
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
+            file.text()
+                .then(text => {
+                    const imported = JSON.parse(text);
+                    if (!isPlainObject(imported)) throw new Error('nms_state.json must be a JSON object');
+                    appState = buildState(migrateLegacyState(imported));
+                    saveAppState();
+                    showToast('Imported nms_state.json successfully!');
+                })
+                .catch(() => showToast('Invalid JSON file.'));
+        }
+
+        function importStateJSON(event) {
+            readStateFile(event.target.files[0]);
+            event.target.value = ''; // allow re-importing the same file
+        }
+
+        function setDropzoneActive(active) {
+            const zone = document.getElementById('importDropzone');
+            zone.classList.toggle('border-amber-400', active);
+            zone.classList.toggle('bg-amber-500/10', active);
+        }
+
+        function handleStateDragOver(event) {
+            event.preventDefault();
+            setDropzoneActive(true);
+        }
+
+        function handleStateDrop(event) {
+            event.preventDefault();
+            setDropzoneActive(false);
+            readStateFile(event.dataTransfer.files[0]);
+        }
+
+        // =========================================================================
+        // 7. LOCAL WIKI CODEX (.MD) — wiki/index.json + wiki/<category>/<slug>.md
+        // =========================================================================
+        const WIKI_CATEGORIES = ['resources', 'products', 'cooking', 'technology', 'guides'];
+        const WIKI_DRAFTS_KEY = 'nms_master_os_wiki_drafts';
+        const WIKI_RESULT_LIMIT = 200;
+        const WIKI_SOURCE_BADGES = {
+            seed: ['codex', 'text-amber-300 bg-amber-500/10 border-amber-500/30'],
+            wiki: ['wiki', 'text-cyan-300 bg-cyan-500/10 border-cyan-500/30'],
+            custom: ['custom', 'text-purple-300 bg-purple-500/10 border-purple-500/30'],
+            draft: ['draft', 'text-rose-300 bg-rose-500/10 border-rose-500/30']
+        };
+
+        let wikiArticles = [];
+        let wikiQuery = '';
+        let wikiCategory = 'all';
+        let wikiActivePath = null;
+        let wikiOfflineBundle; // undefined = not attempted yet, null = unavailable
+
+        // Must match slugify() in scripts/sync-wiki.mjs so drafts land at the path the indexer expects.
+        function wikiSlugify(title) {
+            return title.replace(/[^a-zA-Z0-9_\-\s]/g, '').trim().replace(/\s+/g, '_');
+        }
+
+        function stripFrontmatter(text) {
+            return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+        }
+
+        function readWikiDrafts() {
+            try {
+                const drafts = JSON.parse(localStorage.getItem(WIKI_DRAFTS_KEY) || '[]');
+                return Array.isArray(drafts) ? drafts : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function writeWikiDrafts(drafts) {
+            try {
+                localStorage.setItem(WIKI_DRAFTS_KEY, JSON.stringify(drafts));
+            } catch (e) {
+                console.warn('Could not save wiki drafts:', e);
+            }
+        }
+
+        // fetch() is blocked on file://, but a <script> tag is not — so the bundle keeps the Codex usable offline.
+        function loadWikiOfflineBundle() {
+            if (wikiOfflineBundle !== undefined) return Promise.resolve(wikiOfflineBundle);
+            return new Promise(resolve => {
+                const script = document.createElement('script');
+                script.src = './wiki/offline-bundle.js';
+                script.onload = () => resolve(wikiOfflineBundle = window.WIKI_OFFLINE_BUNDLE || null);
+                script.onerror = () => resolve(wikiOfflineBundle = null);
+                document.head.appendChild(script);
+            });
+        }
+
+        async function loadWikiIndex() {
+            let entries = [];
+            try {
+                const res = await fetch('./wiki/index.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                entries = await res.json();
+            } catch (e) {
+                const bundle = await loadWikiOfflineBundle();
+                entries = bundle?.articles || [];
+            }
+
+            // Drafts that have since been dropped into wiki/ and indexed are no longer needed.
+            const indexedPaths = new Set(entries.map(entry => entry.path));
+            const drafts = readWikiDrafts().filter(draft => !indexedPaths.has(draft.path));
+            writeWikiDrafts(drafts);
+
+            wikiArticles = [...drafts.map(draft => ({ ...draft, source: 'draft' })), ...entries].map(entry => ({
+                ...entry,
+                _title: String(entry.title).toLowerCase(),
+                _haystack: `${entry.title} ${entry.category} ${entry.summary || ''}`.toLowerCase()
+            }));
+            document.getElementById('sidebarWikiCount').textContent = wikiArticles.length;
+            renderWikiPills();
+            renderWikiResults();
+        }
+
+        function isSubsequence(needle, haystack) {
+            let i = 0;
+            for (const ch of haystack) {
+                if (ch === needle[i]) i++;
+                if (i === needle.length) return true;
+            }
+            return false;
+        }
+
+        // Every token must match; title hits outrank summary hits, and loose
+        // subsequence matches ("infknf" → "infra-knife") rank last.
+        function wikiScore(entry, tokens) {
+            let score = 0;
+            for (const token of tokens) {
+                if (entry._title.startsWith(token)) score += 4;
+                else if (entry._title.includes(token)) score += 3;
+                else if (entry._haystack.includes(token)) score += 1;
+                else if (token.length >= 3 && isSubsequence(token, entry._title)) score += 0.5;
+                else return 0;
+            }
+            return score;
+        }
+
+        function getWikiMatches() {
+            const pool = wikiCategory === 'all' ? wikiArticles : wikiArticles.filter(entry => entry.category === wikiCategory);
+            const tokens = wikiQuery.toLowerCase().split(/\s+/).filter(Boolean);
+            if (!tokens.length) return pool;
+            return pool
+                .map(entry => [wikiScore(entry, tokens), entry])
+                .filter(([score]) => score > 0)
+                .sort((a, b) => b[0] - a[0] || a[1]._title.localeCompare(b[1]._title))
+                .map(([, entry]) => entry);
+        }
+
+        function setWikiQuery(value) {
+            wikiQuery = value;
+            renderWikiResults();
+        }
+
+        function setWikiCategory(category) {
+            wikiCategory = category;
+            renderWikiPills();
+            renderWikiResults();
+        }
+
+        function renderWikiPills() {
+            document.getElementById('wikiCategoryPills').innerHTML = ['all', ...WIKI_CATEGORIES].map(category => {
+                const count = category === 'all' ? wikiArticles.length : wikiArticles.filter(entry => entry.category === category).length;
+                const active = category === wikiCategory;
+                return `<button onclick="setWikiCategory('${category}')" class="px-2.5 py-1 rounded-full text-[11px] font-mono border transition ${active ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-200' : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'}">${category} <span class="opacity-60">${count}</span></button>`;
+            }).join('');
+        }
+
+        function sourceBadge(source) {
+            const [label, classes] = WIKI_SOURCE_BADGES[source] || WIKI_SOURCE_BADGES.custom;
+            return `<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono ${classes}">${label}</span>`;
+        }
+
+        function renderWikiResults() {
+            const matches = getWikiMatches();
+            const shown = matches.slice(0, WIKI_RESULT_LIMIT);
+            document.getElementById('wikiResultCount').textContent = `${matches.length} / ${wikiArticles.length}`;
+            const list = document.getElementById('wikiResultList');
+            if (!wikiArticles.length) {
+                list.innerHTML = '<p class="text-xs text-slate-400">No wiki found. Run <code class="text-cyan-300">npm run seed:wiki</code> and serve the folder with <code class="text-cyan-300">npm start</code>.</p>';
+                return;
+            }
+            if (!shown.length) {
+                list.innerHTML = '<p class="text-xs text-slate-400">No articles match this search.</p>';
+                return;
+            }
+            list.innerHTML = shown.map(entry => `
+                <button data-path="${escapeHtml(entry.path)}" onclick="openWikiArticle(this.dataset.path)" class="w-full text-left p-3 rounded-xl border transition ${entry.path === wikiActivePath ? 'bg-emerald-950/40 border-emerald-500/50' : 'bg-slate-900/90 border-slate-800 hover:border-slate-600'}">
+                    <div class="flex items-center justify-between gap-2">
+                        <strong class="text-xs text-white truncate">${escapeHtml(entry.title)}</strong>
+                        ${sourceBadge(entry.source)}
+                    </div>
+                    <div class="text-[10px] font-mono text-emerald-300/80 mt-0.5">${escapeHtml(entry.category)}</div>
+                    <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${escapeHtml(entry.summary)}</p>
+                </button>
+            `).join('') + (matches.length > shown.length
+                ? `<p class="text-[11px] text-slate-500 text-center py-1">Showing first ${WIKI_RESULT_LIMIT} — refine your search.</p>`
+                : '');
+        }
+
+        function renderMarkdown(markdown) {
+            // [[Article Title]] becomes an in-app link when that article exists locally.
+            const linked = markdown.replace(/\[\[([^\]]+)\]\]/g, (_, title) => {
+                const target = wikiArticles.find(entry => entry._title === title.trim().toLowerCase());
+                return target ? `[${title}](#wiki:${encodeURIComponent(target.path)})` : `*${title}*`;
+            });
+            if (!window.marked || !window.DOMPurify) {
+                return `<pre class="whitespace-pre-wrap">${escapeHtml(markdown)}</pre>`;
+            }
+            return DOMPurify.sanitize(marked.parse(linked));
+        }
+
+        async function openWikiArticle(path) {
+            const entry = wikiArticles.find(item => item.path === path);
+            if (!entry) return;
+            wikiActivePath = path;
+            renderWikiResults();
+            const reader = document.getElementById('wikiReader');
+            reader.innerHTML = '<p class="text-slate-400">Loading…</p>';
+
+            let markdown = entry.body;
+            if (markdown === undefined) {
                 try {
-                    const imported = JSON.parse(e.target.result);
-                    if (imported && typeof imported === 'object') {
-                        appState.checkedItems = imported.checkedItems || {};
-                        appState.logEntries = Array.isArray(imported.logEntries) ? imported.logEntries : [];
-                        saveAppState();
-                        showToast('Imported nms_state.json successfully!');
-                    }
-                } catch (err) {
-                    showToast('Invalid JSON file.');
+                    const res = await fetch(`./${entry.path}`);
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    markdown = stripFrontmatter(await res.text());
+                } catch (e) {
+                    const bundle = await loadWikiOfflineBundle();
+                    markdown = bundle?.articles.find(article => article.path === entry.path)?.body;
                 }
-            };
-            reader.readAsText(file);
+            }
+            if (wikiActivePath !== path) return; // another article was opened meanwhile
+
+            const meta = document.getElementById('wikiReaderMeta');
+            meta.classList.remove('hidden');
+            meta.classList.add('flex');
+            meta.innerHTML = `
+                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300">${escapeHtml(entry.category)}</span>
+                ${sourceBadge(entry.source)}
+                <code class="text-slate-400">${escapeHtml(entry.path)}</code>
+                ${entry.url ? `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline">Original page ↗</a>` : ''}
+                ${entry.source === 'draft' ? `<button data-path="${escapeHtml(entry.path)}" onclick="removeWikiDraft(this.dataset.path)" class="ml-auto px-2 py-0.5 rounded border border-rose-500/40 text-rose-300 hover:bg-rose-500/10">Remove draft</button>` : ''}
+            `;
+            reader.innerHTML = markdown !== undefined
+                ? renderMarkdown(markdown)
+                : `<p class="text-red-300">Could not load <code>${escapeHtml(entry.path)}</code>. Serve the repo with <code>npm start</code>, or rebuild the offline bundle with <code>npm run index:wiki</code>.</p>`;
+            if (window.innerWidth < 1024) reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function copyAgentSpec() {
-            const text = document.getElementById('agentSpecCodeBlock').innerText;
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            textarea.remove();
-            showToast('Agent Build Specification copied to clipboard!');
+        function openWikiModal() {
+            const select = document.getElementById('wikiNewCategory');
+            if (!select.options.length) {
+                select.innerHTML = WIKI_CATEGORIES.map(category => `<option value="${category}">${category}</option>`).join('');
+            }
+            if (WIKI_CATEGORIES.includes(wikiCategory)) select.value = wikiCategory;
+            const modal = document.getElementById('wikiModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            renderWikiDraftPreview();
+            document.getElementById('wikiNewTitle').focus();
         }
 
-        window.onload = function() {
-            loadAppState();
-            renderAllChecklists();
-            renderLogEntries();
+        function closeWikiModal() {
+            const modal = document.getElementById('wikiModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function renderWikiDraftPreview() {
+            const title = document.getElementById('wikiNewTitle').value.trim() || 'Untitled Article';
+            const body = document.getElementById('wikiNewBody').value;
+            document.getElementById('wikiNewPreview').innerHTML = renderMarkdown(`# ${title}\n\n${body}`);
+        }
+
+        async function saveWikiDraft() {
+            const title = document.getElementById('wikiNewTitle').value.trim();
+            const category = document.getElementById('wikiNewCategory').value;
+            const body = document.getElementById('wikiNewBody').value.trim();
+            const slug = wikiSlugify(title);
+            if (!slug || !body) {
+                showToast('Add a title (letters or numbers) and some Markdown first.');
+                return;
+            }
+            const summary = document.getElementById('wikiNewSummary').value.trim()
+                || body.replace(/[#*_`>\[\]|-]/g, '').replace(/\s+/g, ' ').trim().slice(0, 200);
+            const path = `wiki/custom/${category}/${slug}.md`;
+            const markdown = `# ${title}\n\n${body}\n`;
+            // Frontmatter format matches what scripts/sync-wiki.mjs writes and parses.
+            const fileText = [
+                '---',
+                `title: ${JSON.stringify(title)}`,
+                `category: ${JSON.stringify(category)}`,
+                `summary: ${JSON.stringify(summary)}`,
+                'source: "custom"',
+                `updated: ${JSON.stringify(new Date().toISOString().slice(0, 10))}`,
+                '---',
+                '',
+                markdown
+            ].join('\n');
+
+            const url = URL.createObjectURL(new Blob([fileText], { type: 'text/markdown' }));
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = `${slug}.md`;
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            URL.revokeObjectURL(url);
+
+            const drafts = readWikiDrafts().filter(draft => draft.path !== path);
+            drafts.unshift({ title, slug, category, path, summary, body: markdown });
+            writeWikiDrafts(drafts);
+
+            closeWikiModal();
+            ['wikiNewTitle', 'wikiNewSummary', 'wikiNewBody'].forEach(id => { document.getElementById(id).value = ''; });
+            await loadWikiIndex();
+            openWikiArticle(path);
+            showToast(`Downloaded ${slug}.md — move it into wiki/custom/${category}/ and run npm run index:wiki.`);
+        }
+
+        async function removeWikiDraft(path) {
+            writeWikiDrafts(readWikiDrafts().filter(draft => draft.path !== path));
+            wikiActivePath = null;
+            document.getElementById('wikiReaderMeta').classList.add('hidden');
+            document.getElementById('wikiReader').innerHTML = '<p class="text-slate-400">Draft removed.</p>';
+            await loadWikiIndex();
+        }
+
+        document.addEventListener('click', event => {
+            const link = event.target.closest('#wikiReader a[href^="#wiki:"]');
+            if (!link) return;
+            event.preventDefault();
+            openWikiArticle(decodeURIComponent(link.getAttribute('href').slice('#wiki:'.length)));
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeWikiModal();
+        });
+
+        window.onload = async function() {
+            showSection(location.hash.slice(1) || 'book1');
             runCalculators();
+            loadWikiIndex();
+            await loadAppState();
+            renderAll();
         };
     </script>
 </body>
