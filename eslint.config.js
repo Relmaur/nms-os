@@ -38,9 +38,15 @@ export default [
     }
   },
   {
-    // Tests index fixtures they just wrote; a wrong guess fails the test anyway.
+    // Tests index fixtures they just wrote and read raw JSON files; a wrong guess fails the test anyway.
     files: ['packages/*/test/**/*.ts'],
-    rules: { '@typescript-eslint/no-non-null-assertion': 'off' }
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off'
+    }
   },
   {
     // Shared logic must run in the browser, in Node scripts and in a future API alike.

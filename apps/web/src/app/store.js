@@ -1,7 +1,7 @@
 // The app state, one document (docs/state-schema.md): loading, saving, and the hook that re-renders after a save.
 // Only this module reassigns `appState`; others read the live binding and mutate it, then call saveAppState().
-import { DEFAULT_STATE, buildState, migrateLegacyState, stateTimestamp } from '../lib/state.js';
-import { validateState, describeErrors } from '../lib/schema.js';
+import { DEFAULT_STATE, buildState, migrateLegacyState, stateTimestamp } from '@atlas/core/state';
+import { validateState, describeErrors } from '@atlas/core/schema';
 
 export const STORAGE_KEY = 'nms_master_os_state';
 const LEGACY_STORAGE_KEY = 'ATLAS_MASTER_OS_STATE_V2';

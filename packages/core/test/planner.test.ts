@@ -2,19 +2,12 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {
-  makeCatalog,
-  findItem,
-  planRecipes,
-  expandPlan,
-  collectRaw,
-  countSteps
-} from '../../apps/web/src/lib/planner.js';
+import { makeCatalog, findItem, planRecipes, expandPlan, collectRaw, countSteps } from '../src/planner.ts';
 
 const catalog = makeCatalog(
-  JSON.parse(fs.readFileSync(new URL('../fixtures/game-data-subset.json', import.meta.url), 'utf8'))
+  JSON.parse(fs.readFileSync(new URL('../../../tests/fixtures/game-data-subset.json', import.meta.url), 'utf8'))
 );
-const raw = (name, qty, choices) =>
+const raw = (name: string, qty: number, choices?: Record<string, number>) =>
   Object.fromEntries(
     [...collectRaw(expandPlan(catalog, name, qty, choices)).entries()].map(([title, entry]) => [title, entry.qty])
   );
@@ -48,9 +41,10 @@ test('multi-output crafts round up to whole batches', () => {
 
 test('self-multiplying recipes are not production steps', () => {
   const yeast = findItem(catalog, 'Wild Yeast');
+  assert.ok(yeast);
   assert.equal(yeast.recipes.length, 2);
   assert.deepEqual(
-    planRecipes(catalog, yeast).map(recipe => recipe.inputs[0].name),
+    planRecipes(catalog, yeast).map(recipe => recipe.inputs[0]?.name),
     ['Faecium']
   );
 });

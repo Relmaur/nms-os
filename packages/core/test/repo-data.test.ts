@@ -3,7 +3,8 @@ import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 
-const readJson = async path => JSON.parse(await fs.readFile(new URL(`../../${path}`, import.meta.url), 'utf8'));
+const readJson = async (path: string) =>
+  JSON.parse(await fs.readFile(new URL(`../../../${path}`, import.meta.url), 'utf8'));
 
 test('nms_state.json is the canonical default shape', async () => {
   const state = await readJson('apps/web/public/nms_state.json');

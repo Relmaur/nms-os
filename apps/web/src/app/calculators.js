@@ -1,7 +1,8 @@
 // Calculators on the wiki mirror (wiki/game-data.json): recipe planner, base value, mineral extractors.
 // Every number shown is wiki data, arithmetic on it, or an input the player sets (docs/calculators.md).
-import { escapeHtml } from '../lib/util.js';
-import * as planner from '../lib/planner.js';
+import { escapeHtml } from '@atlas/core/util';
+import * as planner from '@atlas/core/planner';
+import { GameDataSchema } from '@atlas/core/game-data';
 import { showToast } from './ui.js';
 
 const findItem = name => planner.findItem(gameData, name);
@@ -30,14 +31,15 @@ export function loadGameData() {
       .catch(() => null)
   ])
     .then(([data, verification]) => {
-      gameData = { ...makeCatalog(data), verification };
+      gameData = { ...makeCatalog(GameDataSchema.parse(data)), verification }; // a malformed file fails here, loudly
       fillCalculatorOptions();
       renderCalculators();
     })
-    .catch(() => {
+    .catch(err => {
       gameDataPromise = null;
+      console.warn('[atlas]', { event: 'game-data-unavailable', reason: err?.name || String(err) });
       document.getElementById('calcSource').textContent =
-        'The wiki data couldn’t be loaded. Open the app from the live site or run npm start (it isn’t available when index.html is opened as a file).';
+        'The wiki data couldn’t be loaded. Check your connection, then open Calculators again.';
     });
   return gameDataPromise;
 }

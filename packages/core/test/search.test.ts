@@ -1,6 +1,6 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { prepare, search, tokenize, highlight, snippet, isOld } from '../../apps/web/src/lib/search.js';
+import { prepare, search, tokenize, highlight, snippet, isOld } from '../src/search.ts';
 
 const entries = [
   {
@@ -41,7 +41,7 @@ test('title matches outrank body matches', () => {
     search(entries, 'oxygen').map(result => result.entry.title),
     ['Oxygen', 'Oxygen Harvester', 'Kelp Sac']
   );
-  assert.equal(search(entries, 'oxygen')[2].field, 'text');
+  assert.equal(search(entries, 'oxygen')[2]?.field, 'text');
 });
 
 test('plurals fold onto the singular', () => {
@@ -50,7 +50,7 @@ test('plurals fold onto the singular', () => {
 
 test('obsolete and removed pages only appear when asked for', () => {
   assert.equal(search(entries, 'blaze').length, 0);
-  assert.equal(search(entries, 'blaze', { includeOld: true })[0].entry.title, 'Blaze Javelin (Atlas)');
+  assert.equal(search(entries, 'blaze', { includeOld: true })[0]?.entry.title, 'Blaze Javelin (Atlas)');
   assert.equal(
     search(entries, '').some(result => isOld(result.entry)),
     false
@@ -63,5 +63,5 @@ test('category filter, highlighting and snippets', () => {
     ['Oxygen Harvester']
   );
   assert.equal(highlight('Oxygen <b>', tokenize('oxygen')), '<mark>Oxygen</mark> &lt;b&gt;');
-  assert.match(snippet(entries[2], ['oxygen']), /Refines into oxygen/);
+  assert.match(snippet(entries[2]!, ['oxygen']), /Refines into oxygen/);
 });

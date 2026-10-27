@@ -135,7 +135,7 @@ function renderBrowse() {
             <div class="rounded-2xl border border-dashed border-slate-700 p-8 text-center space-y-3">
                 <i class="ph-duotone ph-books text-4xl text-emerald-300"></i>
                 <h2 class="font-display font-bold text-lg text-white">The Codex is empty</h2>
-                <p class="text-sm text-slate-300 max-w-md mx-auto">Run <code class="text-emerald-300">npm run index:wiki</code> to index the committed archive (or <code class="text-emerald-300">npm run sync:wiki</code> to refresh it from the wiki), then reload this page.</p>
+                <p class="text-sm text-slate-300 max-w-md mx-auto">Run <code class="text-emerald-300">pnpm index:wiki</code> to index the committed archive (or <code class="text-emerald-300">pnpm sync:wiki</code> to refresh it from the wiki), then reload this page.</p>
             </div>`;
     return;
   }
@@ -245,8 +245,7 @@ function verificationPanel() {
   const tone = !v ? 'border-slate-700' : v.status === 'match' ? 'border-emerald-500/40' : 'border-amber-500/40';
   let icon = 'ph-question text-slate-400';
   let headline = 'Not verified on this copy';
-  let detail =
-    'Run <code class="text-emerald-300">npm run verify:wiki</code> to compare the archive with the live wiki.';
+  let detail = 'Run <code class="text-emerald-300">pnpm verify:wiki</code> to compare the archive with the live wiki.';
   if (v?.status === 'match') {
     icon = 'ph-seal-check text-emerald-300';
     headline = `Matches the wiki: ${v.matched.toLocaleString()} of ${v.pages.toLocaleString()} pages at their latest revision`;
@@ -254,7 +253,7 @@ function verificationPanel() {
   } else if (v?.status === 'differs') {
     icon = 'ph-warning text-amber-300';
     headline = `${(v.pages - v.matched).toLocaleString()} pages behind the wiki`;
-    detail = `Checked ${formatDate(v.checkedAt)}. Run <code class="text-emerald-300">npm run sync:wiki</code> to catch up.`;
+    detail = `Checked ${formatDate(v.checkedAt)}. Run <code class="text-emerald-300">pnpm sync:wiki</code> to catch up.`;
   } else if (v?.status === 'unreachable') {
     icon = 'ph-cloud-slash text-amber-300';
     headline = 'The wiki couldn’t be reached at the last check';
@@ -776,7 +775,7 @@ async function saveDraft() {
   });
   await loadEntries();
   location.hash = `#/a/${encodeURIComponent(path)}`;
-  showToast(`Downloaded ${slug}.md. Move it into wiki/custom/${category}/ and run npm run index:wiki.`);
+  showToast(`Downloaded ${slug}.md. Move it into wiki/custom/${category}/ and run pnpm index:wiki.`);
 }
 
 async function removeDraft(path) {

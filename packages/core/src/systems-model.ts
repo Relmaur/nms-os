@@ -1,7 +1,46 @@
 // Systems log model: constants, normalisation, legacy migration and Outlaw Run status (pure, no DOM).
 // State lives in nms_state.json → systems[] + outlaw{} (docs/state-schema.md).
-import { isPlainObject, SAFE_ID } from './util.js';
-import { formatDuration } from './format.js';
+import { asString, isPlainObject, SAFE_ID, toText } from './util.ts';
+import { formatDuration } from './format.ts';
+
+export interface Visit {
+  at: string;
+  note?: string;
+  packets?: number;
+}
+export interface Planet {
+  id: string;
+  name: string;
+  biome: string;
+  tags: string[];
+  notes: string;
+}
+// A system as normalizeSystem() stores it: every field present, with a known type.
+export interface System {
+  id: string;
+  name: string;
+  galaxy: string;
+  region: string;
+  glyphs: string;
+  star: StarClass | '';
+  race: Race | '';
+  economy: string;
+  wealth: number;
+  conflict: ConflictLevel | '';
+  tags: string[];
+  favorite: boolean;
+  rating: number;
+  notes: string;
+  planets: Planet[];
+  visits: Visit[];
+  createdAt: string;
+}
+export interface OutlawStatus {
+  ready: boolean;
+  tone: 'new' | 'ready' | 'wait';
+  label: string;
+  readyAt: number;
+}
 
 export const OUTLAW_TAG = 'outlaw';
 export const HOUR_MS = 3600 * 1000;
@@ -15,6 +54,9 @@ export const STAR_CLASSES = {
 };
 export const RACES = { gek: 'Gek', korvax: 'Korvax', vykeen: "Vy'keen", none: 'Uncharted', abandoned: 'Abandoned' };
 export const CONFLICT_LEVELS = { low: 'Low', medium: 'Medium', high: 'High', pirate: 'Pirate (outlaw)' };
+export type StarClass = keyof typeof STAR_CLASSES;
+export type Race = keyof typeof RACES;
+export type ConflictLevel = keyof typeof CONFLICT_LEVELS;
 export const ECONOMIES = [
   'Trading',
   'Mining',
@@ -63,7 +105,7 @@ export const SORTS = {
   rating: 'Rating',
   region: 'Region'
 };
-export const LOGBOOK_TYPE_TAGS = {
+export const LOGBOOK_TYPE_TAGS: Record<string, string> = {
   'S-Class Crash Site': 's-class-ship',
   'Harmonic Camp': 'harmonic-camp',
   'Outlaw Station': OUTLAW_TAG,
@@ -71,88 +113,106 @@ export const LOGBOOK_TYPE_TAGS = {
   'Custom Guide Note': 'note'
 };
 
-export function newId(prefix) {
+export function newId(prefix: string): string {
   return `${prefix}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
 }
 
-export function tagSlug(value) {
-  return String(value ?? '')
+export function tagSlug(value: unknown): string {
+  return asString(value)
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 }
 
-export function normalizeGlyphs(value) {
-  return String(value || '')
+export function normalizeGlyphs(value: unknown): string {
+  return toText(value, '')
     .replace(/[^0-9a-f]/gi, '')
     .toUpperCase();
 }
 
 // Every id the app generates already matches SAFE_ID; anything else (hand-edited files) is made safe here.
-export function safeId(value, prefix) {
-  const id = String(value ?? '')
+export function safeId(value: unknown, prefix: string): string {
+  const id = asString(value)
     .replace(/[^A-Za-z0-9_-]/g, '-')
     .slice(0, 80);
   return SAFE_ID.test(id) && /[A-Za-z0-9]/.test(id) ? id : newId(prefix);
 }
 
-export function clampInt(value, min, max) {
+export function clampInt(value: unknown, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(Number(value)) || 0));
 }
 
-export function normalizeSystem(raw) {
-  const system = {
+// Keys of `map` only (`in` would also accept inherited names such as "toString").
+function oneOf<K extends string>(map: Record<K, unknown>, value: unknown): K | '' {
+  return typeof value === 'string' && Object.hasOwn(map, value) ? (value as K) : '';
+}
+
+const tagList = (value: unknown): string[] => [
+  ...new Set((Array.isArray(value) ? value : []).map(tagSlug).filter(Boolean))
+];
+const isDate = (value: unknown): value is string => typeof value === 'string' && !Number.isNaN(Date.parse(value));
+
+export function normalizeSystem(raw: Record<string, unknown>): System {
+  const rawVisits: unknown[] = Array.isArray(raw.visits) ? raw.visits : [];
+  const firstVisit = rawVisits[0];
+  const system: System = {
     id: safeId(raw.id, 'sys'),
-    name: String(raw.name || 'Unnamed system').trim() || 'Unnamed system',
-    galaxy: String(raw.galaxy || 'Euclid'),
-    region: String(raw.region || ''),
+    name: toText(raw.name, 'Unnamed system').trim() || 'Unnamed system',
+    galaxy: toText(raw.galaxy, 'Euclid'),
+    region: toText(raw.region, ''),
     glyphs: normalizeGlyphs(raw.glyphs),
-    star: raw.star in STAR_CLASSES ? raw.star : '',
-    race: raw.race in RACES ? raw.race : '',
-    economy: String(raw.economy || ''),
+    star: oneOf(STAR_CLASSES, raw.star),
+    race: oneOf(RACES, raw.race),
+    economy: toText(raw.economy, ''),
     wealth: clampInt(raw.wealth, 0, 3),
-    conflict: raw.conflict in CONFLICT_LEVELS ? raw.conflict : '',
-    tags: [...new Set((Array.isArray(raw.tags) ? raw.tags : []).map(tagSlug).filter(Boolean))],
+    conflict: oneOf(CONFLICT_LEVELS, raw.conflict),
+    tags: tagList(raw.tags),
     favorite: !!raw.favorite,
     rating: clampInt(raw.rating, 0, 5),
-    notes: String(raw.notes || ''),
-    planets: (Array.isArray(raw.planets) ? raw.planets : []).filter(isPlainObject).map(planet => ({
+    notes: toText(raw.notes, ''),
+    planets: (Array.isArray(raw.planets) ? (raw.planets as unknown[]) : []).filter(isPlainObject).map(planet => ({
       id: safeId(planet.id, 'pl'),
-      name: String(planet.name || 'Unnamed planet'),
-      biome: String(planet.biome || ''),
-      tags: [...new Set((Array.isArray(planet.tags) ? planet.tags : []).map(tagSlug).filter(Boolean))],
-      notes: String(planet.notes || '')
+      name: toText(planet.name, 'Unnamed planet'),
+      biome: toText(planet.biome, ''),
+      tags: tagList(planet.tags),
+      notes: toText(planet.notes, '')
     })),
-    visits: (Array.isArray(raw.visits) ? raw.visits : [])
-      .filter(visit => isPlainObject(visit) && !Number.isNaN(Date.parse(visit.at)))
-      .map(visit => ({
-        at: visit.at,
-        ...(visit.note ? { note: String(visit.note) } : {}),
-        ...(Number(visit.packets) > 0 ? { packets: Number(visit.packets) } : {})
-      }))
+    visits: rawVisits
+      .filter(isPlainObject)
+      .flatMap(visit =>
+        isDate(visit.at)
+          ? [
+              {
+                at: visit.at,
+                ...(visit.note ? { note: toText(visit.note) } : {}),
+                ...(Number(visit.packets) > 0 ? { packets: Number(visit.packets) } : {})
+              }
+            ]
+          : []
+      )
       .sort((a, b) => Date.parse(a.at) - Date.parse(b.at)),
-    createdAt:
-      raw.createdAt && !Number.isNaN(Date.parse(raw.createdAt))
-        ? raw.createdAt
-        : raw.visits?.[0]?.at || new Date().toISOString()
+    createdAt: isDate(raw.createdAt)
+      ? raw.createdAt
+      : (isPlainObject(firstVisit) && typeof firstVisit.at === 'string' && firstVisit.at) || new Date().toISOString()
   };
   return system;
 }
 
 // Folds the pre-Systems `logbook[]` and `outlaw.stations[]` into `systems[]`. Ids are kept, so running it
 // on an already-migrated state (or merging an old export into a new one) never duplicates entries.
-export function migrateToSystems(state) {
-  const systems = Array.isArray(state.systems) ? state.systems.filter(isPlainObject) : [];
+export function migrateToSystems(state: Record<string, unknown>): void {
+  const systems = Array.isArray(state.systems) ? (state.systems as unknown[]).filter(isPlainObject) : [];
   const ids = new Set(systems.map(system => String(system.id)));
-  const add = system => {
+  const add = (system: Record<string, unknown> & { id: string }) => {
     if (!ids.has(system.id)) {
       ids.add(system.id);
       systems.push(system);
     }
   };
+  const list = (value: unknown) => (Array.isArray(value) ? (value as unknown[]) : []).filter(isPlainObject);
 
-  (Array.isArray(state.logbook) ? state.logbook : []).filter(isPlainObject).forEach(entry => {
+  list(state.logbook).forEach(entry => {
     const solution =
       Array.isArray(entry.glyphSolution) && entry.glyphSolution.length
         ? `Harmonic Camp solution: ${entry.glyphSolution.join(', ')}`
@@ -160,11 +220,11 @@ export function migrateToSystems(state) {
     add({
       id: String(entry.id),
       name: entry.system || entry.title,
-      tags: [LOGBOOK_TYPE_TAGS[entry.type] || tagSlug(entry.type || 'note')],
+      tags: [LOGBOOK_TYPE_TAGS[String(entry.type)] || tagSlug(entry.type || 'note')],
       notes: [entry.notes || entry.details, solution].filter(Boolean).join('\n')
     });
   });
-  (Array.isArray(state.outlaw?.stations) ? state.outlaw.stations : []).filter(isPlainObject).forEach(station => {
+  list(isPlainObject(state.outlaw) ? state.outlaw.stations : undefined).forEach(station => {
     add({
       id: String(station.id),
       name: station.system || station.name,
@@ -172,7 +232,10 @@ export function migrateToSystems(state) {
       glyphs: station.glyphs,
       conflict: 'pirate',
       tags: [OUTLAW_TAG],
-      notes: [station.system && station.name !== station.system ? `Station: ${station.name}` : '', station.notes]
+      notes: [
+        station.system && station.name !== station.system ? `Station: ${String(station.name)}` : '',
+        station.notes
+      ]
         .filter(Boolean)
         .join('\n'),
       visits: station.visits
@@ -184,11 +247,11 @@ export function migrateToSystems(state) {
   state.systems = systems.map(normalizeSystem);
 }
 
-export function lastVisit(system) {
+export function lastVisit(system: System): Visit | undefined {
   return system.visits[system.visits.length - 1];
 }
 
-export function systemHaystack(system) {
+export function systemHaystack(system: System): string {
   return [
     system.name,
     system.region,
@@ -196,8 +259,8 @@ export function systemHaystack(system) {
     system.economy,
     system.notes,
     system.glyphs,
-    RACES[system.race],
-    STAR_CLASSES[system.star]?.label,
+    system.race ? RACES[system.race] : undefined,
+    system.star ? STAR_CLASSES[system.star].label : undefined,
     ...system.tags,
     ...system.planets.flatMap(planet => [planet.name, planet.biome, planet.notes, ...planet.tags]),
     ...system.visits.map(visit => visit.note)
@@ -207,16 +270,16 @@ export function systemHaystack(system) {
     .toLowerCase();
 }
 
-export function systemTags(system) {
+export function systemTags(system: System): Set<string> {
   return new Set([...system.tags, ...system.planets.flatMap(planet => planet.tags)]);
 }
 
-export function packetsLogged(system) {
+export function packetsLogged(system: System): number {
   return system.visits.reduce((sum, visit) => sum + (Number(visit.packets) || 0), 0);
 }
 
 // An outlaw station is ready once `restockHours` have passed since its last visit with packets.
-export function outlawStatus(system, restockHours, now = Date.now()) {
+export function outlawStatus(system: Pick<System, 'visits'>, restockHours: number, now = Date.now()): OutlawStatus {
   const last = [...system.visits].reverse().find(visit => visit.packets);
   if (!last) return { ready: true, tone: 'new', label: 'Never run', readyAt: 0 };
   const readyAt = Date.parse(last.at) + restockHours * HOUR_MS;
@@ -227,13 +290,17 @@ export function outlawStatus(system, restockHours, now = Date.now()) {
 }
 
 // Ready first (never run, then longest since the last run); restocking by soonest ready.
-export function rankOutlaw(systems, restockHours, now = Date.now()) {
+export function rankOutlaw(
+  systems: System[],
+  restockHours: number,
+  now = Date.now()
+): { system: System; status: OutlawStatus }[] {
   return systems
     .filter(system => system.tags.includes(OUTLAW_TAG))
     .map(system => ({ system, status: outlawStatus(system, restockHours, now) }))
     .sort(
       (a, b) =>
-        b.status.ready - a.status.ready ||
+        Number(b.status.ready) - Number(a.status.ready) ||
         a.status.readyAt - b.status.readyAt ||
         a.system.name.localeCompare(b.system.name)
     );

@@ -1,7 +1,7 @@
 // Home screen + device integration: keep-awake, app badge, share sheet, install, swipe-to-close.
-import { escapeHtml } from '../lib/util.js';
-import { formatAgo, formatDuration } from '../lib/format.js';
-import { lastVisit } from '../lib/systems-model.js';
+import { escapeHtml } from '@atlas/core/util';
+import { formatAgo, formatDuration } from '@atlas/core/format';
+import { lastVisit } from '@atlas/core/systems-model';
 import { appState, saveAppState } from './store.js';
 import { showToast, haptic } from './ui.js';
 import {

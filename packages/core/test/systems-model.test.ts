@@ -6,9 +6,10 @@ import {
   outlawStatus,
   rankOutlaw,
   systemHaystack,
-  HOUR_MS
-} from '../../apps/web/src/lib/systems-model.js';
-import { formatDuration, formatAgo } from '../../apps/web/src/lib/format.js';
+  HOUR_MS,
+  type System
+} from '../src/systems-model.ts';
+import { formatDuration, formatAgo } from '../src/format.ts';
 
 test('normalizeSystem cleans user input into the stored shape', () => {
   const system = normalizeSystem({
@@ -32,7 +33,7 @@ test('normalizeSystem cleans user input into the stored shape', () => {
     system.visits.map(visit => visit.at),
     ['2026-01-01T00:00:00Z', '2026-01-02T00:00:00Z']
   );
-  assert.equal(system.visits[1].packets, 15);
+  assert.equal(system.visits[1]?.packets, 15);
 });
 
 test('migrating logbook and outlaw stations is idempotent and keeps ids', () => {
@@ -50,19 +51,20 @@ test('migrating logbook and outlaw stations is idempotent and keeps ids', () => 
   const once = JSON.stringify(state.systems);
   migrateToSystems(state);
   assert.equal(JSON.stringify(state.systems), once, 'running it again changes nothing');
+  const systems = (state as Record<string, unknown>).systems as System[];
   assert.deepEqual(
-    state.systems.map(system => system.id),
+    systems.map(system => system.id),
     ['keep', 'log-1', 'st-1']
   );
-  assert.deepEqual(state.systems[2].tags, ['outlaw']);
-  assert.equal(state.systems[1].notes, 'Harmonic Camp solution: 4, 10, 16');
+  assert.deepEqual(systems[2]?.tags, ['outlaw']);
+  assert.equal(systems[1]?.notes, 'Harmonic Camp solution: 4, 10, 16');
   assert.equal(state.logbook, undefined);
   assert.equal(state.outlaw.stations, undefined);
 });
 
 test('outlaw status: never run, restocking, then ready after restockHours', () => {
   const now = Date.parse('2026-10-27T12:00:00Z');
-  const visit = hoursAgo => ({ at: new Date(now - hoursAgo * HOUR_MS).toISOString(), packets: 15 });
+  const visit = (hoursAgo: number) => ({ at: new Date(now - hoursAgo * HOUR_MS).toISOString(), packets: 15 });
   assert.deepEqual(outlawStatus({ visits: [] }, 24, now).label, 'Never run');
   const waiting = outlawStatus({ visits: [visit(20)] }, 24, now);
   assert.deepEqual([waiting.ready, waiting.label], [false, 'Ready in 4h']);
@@ -76,7 +78,7 @@ test('outlaw status: never run, restocking, then ready after restockHours', () =
 
 test('rankOutlaw puts ready stations first, then the soonest to restock', () => {
   const now = Date.parse('2026-10-27T12:00:00Z');
-  const station = (name, hoursAgo) =>
+  const station = (name: string, hoursAgo: number | null) =>
     normalizeSystem({
       name,
       tags: ['outlaw'],
@@ -125,5 +127,5 @@ test('unsafe ids are made safe; generated and legacy ids are kept', () => {
   assert.equal(normalizeSystem({ id: 1698000000000 }).id, '1698000000000');
   assert.equal(normalizeSystem({ id: 'camp-01' }).id, 'camp-01');
   assert.match(normalizeSystem({ id: "');('" }).id, /^sys-/, 'nothing usable left: a fresh id');
-  assert.equal(normalizeSystem({ planets: [{ id: 'pl "x"', name: 'P' }] }).planets[0].id, 'pl--x-');
+  assert.equal(normalizeSystem({ planets: [{ id: 'pl "x"', name: 'P' }] }).planets[0]?.id, 'pl--x-');
 });

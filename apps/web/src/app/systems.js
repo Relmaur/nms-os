@@ -1,7 +1,7 @@
 // Systems log + Outlaw Run UI: the list with filters, the detail panel and editor, and the outlaw planner.
 // The model (normalisation, migration, outlaw status) is assets/lib/systems-model.js.
-import { escapeHtml } from '../lib/util.js';
-import { formatDuration, formatAgo, formatDate } from '../lib/format.js';
+import { escapeHtml } from '@atlas/core/util';
+import { formatDuration, formatAgo, formatDate } from '@atlas/core/format';
 import {
   OUTLAW_TAG,
   STAR_CLASSES,
@@ -21,7 +21,7 @@ import {
   packetsLogged,
   outlawStatus as computeOutlawStatus,
   rankOutlaw
-} from '../lib/systems-model.js';
+} from '@atlas/core/systems-model';
 import { appState, saveAppState, persistState, onAdopt } from './store.js';
 import { showToast, haptic } from './ui.js';
 import { showSection } from './nav.js';

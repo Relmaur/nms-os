@@ -1,7 +1,7 @@
 // Wiki Codex data loading (DOM + storage): the light index, the full bundle, and browser drafts of your own
 // articles. The pure search engine is assets/lib/search.js; both are re-exported as `WikiSearch`.
-import * as engine from '../lib/search.js';
-import { escapeHtml } from '../lib/util.js';
+import * as engine from '@atlas/core/search';
+import { escapeHtml } from '@atlas/core/util';
 
 const { prepare } = engine;
 

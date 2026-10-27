@@ -1,6 +1,6 @@
 // Time and duration formatting (pure; `now` is injectable for tests).
 
-export function formatDuration(ms) {
+export function formatDuration(ms: number): string {
   const minutes = Math.max(1, Math.round(ms / 60000));
   if (minutes < 60) return `${minutes}m`;
   const hours = Math.floor(minutes / 60);
@@ -8,11 +8,11 @@ export function formatDuration(ms) {
   return `${Math.round(hours / 24)}d`;
 }
 
-export function formatAgo(iso, now = Date.now()) {
+export function formatAgo(iso: string, now = Date.now()): string {
   const ms = now - Date.parse(iso);
   return ms < 60000 ? 'just now' : `${formatDuration(ms)} ago`;
 }
 
-export function formatDate(iso) {
+export function formatDate(iso: string): string {
   return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
 }

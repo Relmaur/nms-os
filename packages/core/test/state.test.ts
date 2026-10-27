@@ -1,12 +1,6 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import {
-  DEFAULT_STATE,
-  buildState,
-  deepMerge,
-  migrateLegacyState,
-  stateTimestamp
-} from '../../apps/web/src/lib/state.js';
+import { DEFAULT_STATE, buildState, deepMerge, migrateLegacyState, stateTimestamp } from '../src/state.ts';
 
 test('deepMerge merges objects key by key and replaces arrays wholesale', () => {
   const merged = deepMerge({ a: { x: 1, y: 2 }, list: [1, 2] }, { a: { y: 3 }, list: [9] });
@@ -23,7 +17,7 @@ test('buildState layers defaults ← file ← local and normalises systems', () 
   const state = buildState(file, local);
   assert.equal(state.meta.currentPhase, 'From file');
   assert.deepEqual({ cs1: state.checklists.cs1, cs2: state.checklists.cs2 }, { cs1: true, cs2: true });
-  assert.equal(state.fleet.primaryStarship.name, DEFAULT_STATE.fleet.primaryStarship.name);
+  assert.equal((state.fleet.primaryStarship as { name: string }).name, DEFAULT_STATE.fleet.primaryStarship.name);
   assert.deepEqual(
     state.systems.map(system => [system.id, system.galaxy, system.tags]),
     [['a', 'Euclid', ['trade-hub']]]
@@ -47,7 +41,7 @@ test('the pre-2.0 save shape migrates into systems', () => {
   const state = buildState(migrateLegacyState(legacy));
   assert.equal(state.checklists.cs1, true);
   const camp = state.systems.find(system => system.id === '7');
-  assert.deepEqual([camp.name, camp.tags, camp.notes], ['Old Camp', ['harmonic-camp'], 'by the ridge']);
+  assert.deepEqual([camp?.name, camp?.tags, camp?.notes], ['Old Camp', ['harmonic-camp'], 'by the ridge']);
   assert.equal(state.logbook, undefined);
 });
 

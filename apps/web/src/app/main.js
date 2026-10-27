@@ -1,9 +1,9 @@
 // Main page: renders every section from the app state, plus header search, checklists, Harmonic Camp
 // registers and Export/Import. Feature UIs live in the sibling modules imported below.
-import { escapeHtml, isPlainObject } from '../lib/util.js';
-import { buildState, migrateLegacyState } from '../lib/state.js';
-import { validateState, describeErrors } from '../lib/schema.js';
-import { systemHaystack } from '../lib/systems-model.js';
+import { escapeHtml, isPlainObject } from '@atlas/core/util';
+import { buildState, migrateLegacyState } from '@atlas/core/state';
+import { validateState, describeErrors } from '@atlas/core/schema';
+import { systemHaystack } from '@atlas/core/systems-model';
 import { WikiSearch } from './wiki-data.js';
 import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.js';
 import { showToast } from './ui.js';

@@ -1,8 +1,27 @@
 // App state: defaults, layered merge and migrations (pure, no DOM). Shape: docs/state-schema.md.
-import { isPlainObject } from './util.js';
-import { migrateToSystems } from './systems-model.js';
+import { isPlainObject } from './util.ts';
+import { migrateToSystems, type System } from './systems-model.ts';
 
-// Mirrors the repo's nms_state.json; used when that file can't be fetched (e.g. opened via file://).
+export interface OutlawSettings {
+  restockHours: number;
+  packetsPerVisit: number;
+  runSize: number;
+  unitsPerPacket: number;
+  nanitesPerPacket: number;
+}
+// The state after buildState(): the keys the app reads always exist with these types. Other keys (from newer
+// exports, or the fleet notes) are carried along untouched.
+export interface AppState {
+  [key: string]: unknown;
+  meta: { version?: string; lastUpdated?: string; currentPhase?: string; [key: string]: unknown };
+  fleet: Record<string, unknown>;
+  checklists: Record<string, boolean>;
+  outlaw: OutlawSettings & Record<string, unknown>;
+  systems: System[];
+}
+const OUTLAW_KEYS = ['restockHours', 'packetsPerVisit', 'runSize', 'unitsPerPacket', 'nanitesPerPacket'] as const;
+
+// Mirrors the repo's nms_state.json; used when that file can't be fetched (offline on a first visit).
 export const DEFAULT_STATE = {
   meta: {
     version: '2.0.0',
@@ -79,10 +98,12 @@ export const DEFAULT_STATE = {
 };
 
 // Objects merge key-by-key; arrays and scalars from `patch` replace those in `base`.
-export function deepMerge(base, patch) {
+export function deepMerge(base: Record<string, unknown>, patch: Record<string, unknown>): Record<string, unknown>;
+export function deepMerge(base: unknown, patch: unknown): unknown;
+export function deepMerge(base: unknown, patch: unknown): unknown {
   if (patch === undefined) return base;
   if (!isPlainObject(base) || !isPlainObject(patch)) return structuredClone(patch);
-  const merged = { ...base };
+  const merged: Record<string, unknown> = { ...base };
   Object.keys(patch).forEach(key => {
     merged[key] = deepMerge(base[key], patch[key]);
   });
@@ -90,34 +111,42 @@ export function deepMerge(base, patch) {
 }
 
 // Pre-2.0 shape ({ checkedItems, logEntries }) → nms_state.json shape.
-export function migrateLegacyState(legacy) {
+export function migrateLegacyState(legacy: Record<string, unknown>): Record<string, unknown> {
   if (!('checkedItems' in legacy) && !('logEntries' in legacy)) return legacy;
   return {
     meta: { lastUpdated: legacy.lastUpdated },
     checklists: legacy.checkedItems || {},
-    logbook: (legacy.logEntries || []).map(entry => ({
-      id: String(entry.id),
-      system: entry.title,
-      type: entry.category,
-      glyphSolution: [],
-      notes: entry.details
-    }))
+    logbook: (Array.isArray(legacy.logEntries) ? (legacy.logEntries as unknown[]) : [])
+      .filter(isPlainObject)
+      .map(entry => ({
+        id: String(entry.id),
+        system: entry.title,
+        type: entry.category,
+        glyphSolution: [],
+        notes: entry.details
+      }))
   };
 }
 
-export function buildState(...layers) {
-  const state = layers.filter(isPlainObject).reduce(deepMerge, structuredClone(DEFAULT_STATE));
+export function buildState(...layers: unknown[]): AppState {
+  const state = layers
+    .filter(isPlainObject)
+    .reduce<Record<string, unknown>>((merged, layer) => deepMerge(merged, layer), structuredClone(DEFAULT_STATE));
   if (!isPlainObject(state.meta)) state.meta = structuredClone(DEFAULT_STATE.meta);
   if (!isPlainObject(state.fleet)) state.fleet = {};
   if (!isPlainObject(state.checklists)) state.checklists = {};
   if (!isPlainObject(state.outlaw)) state.outlaw = structuredClone(DEFAULT_STATE.outlaw);
   migrateToSystems(state); // folds old logbook[] / outlaw.stations[] into systems[]
-  ['restockHours', 'packetsPerVisit', 'runSize', 'unitsPerPacket', 'nanitesPerPacket'].forEach(key => {
-    if (!(Number(state.outlaw[key]) > 0)) state.outlaw[key] = DEFAULT_STATE.outlaw[key];
-  });
-  return state;
+  const outlaw = state.outlaw as Record<string, unknown>; // made an object two lines up; migrateToSystems keeps it one
+  for (const key of OUTLAW_KEYS) {
+    const value = Number(outlaw[key]);
+    outlaw[key] = value > 0 ? value : DEFAULT_STATE.outlaw[key];
+  }
+  // Every key AppState promises was checked or filled in above; documents were validated before merging.
+  return state as AppState;
 }
 
-export function stateTimestamp(state) {
-  return Date.parse(state?.meta?.lastUpdated) || 0;
+export function stateTimestamp(state: unknown): number {
+  const meta = isPlainObject(state) ? state.meta : undefined;
+  return (isPlainObject(meta) && typeof meta.lastUpdated === 'string' && Date.parse(meta.lastUpdated)) || 0;
 }

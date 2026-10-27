@@ -1,6 +1,6 @@
 // Section navigation (hash routes), the Guides library and the book pager. Other modules react to a section
 // opening through onSection(), which keeps this module free of imports from them.
-import { escapeHtml } from '../lib/util.js';
+import { escapeHtml } from '@atlas/core/util';
 
 const sectionHooks = {};
 export function onSection(key, run) {

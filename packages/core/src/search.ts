@@ -1,8 +1,43 @@
-// Wiki Codex search engine and labels (pure, no DOM). The data loading half lives in assets/app/wiki-data.js.
-import { escapeHtml } from './util.js';
+// Wiki Codex search engine and labels (pure, no DOM). The data loading half lives in apps/web/src/app/wiki-data.js.
+import { escapeHtml } from './util.ts';
 
-// Folders under wiki/ (scripts/sync-wiki.mjs decides which page goes where from its infobox).
-export const CATEGORIES = {
+export { slugify } from './slug.ts';
+
+// One Codex entry: from wiki/index.json (header search) or the offline bundle (with `body`), or a local draft.
+export interface Entry {
+  title: string;
+  category: string;
+  path?: string;
+  summary?: string;
+  source?: string;
+  body?: string;
+  obsolete?: boolean;
+  removed?: boolean;
+  [key: string]: unknown;
+}
+// An entry with the lower-cased fields search() scores against.
+export interface PreparedEntry extends Entry {
+  _title: string;
+  _summary: string;
+  _headings: string;
+  _text: string;
+  _body: string;
+  _letter: string;
+}
+export interface SearchResult {
+  entry: PreparedEntry;
+  score: number;
+  field: string;
+}
+export interface SearchOptions {
+  category?: string;
+  source?: string;
+  letter?: string;
+  includeOld?: boolean;
+}
+
+// Folders under wiki/ (the wiki sync, packages/wiki, decides which page goes where from its infobox).
+export const CATEGORIES: Record<string, { label: string; icon: string; blurb: string }> = {
   resources: { label: 'Resources', icon: 'ph-atom', blurb: 'Elements, gases and minerals' },
   products: { label: 'Products', icon: 'ph-package', blurb: 'Components, tradeables, curiosities' },
   cooking: { label: 'Cooking', icon: 'ph-cooking-pot', blurb: 'Edible products and raw ingredients' },
@@ -14,20 +49,17 @@ export const CATEGORIES = {
   galaxies: { label: 'Galaxies', icon: 'ph-shooting-star', blurb: 'All 256 galaxies' },
   updates: { label: 'Updates', icon: 'ph-newspaper', blurb: 'Every patch, with its notes' }
 };
-export const SOURCES = {
-  custom: { label: 'Custom', badge: 'custom', classes: 'text-purple-300 bg-purple-500/10 border-purple-500/30' },
+const CUSTOM_SOURCE = {
+  label: 'Custom',
+  badge: 'custom',
+  classes: 'text-purple-300 bg-purple-500/10 border-purple-500/30'
+};
+export const SOURCES: Record<string, { label: string; badge: string; classes: string }> = {
+  custom: CUSTOM_SOURCE,
   draft: { label: 'Draft', badge: 'draft', classes: 'text-rose-300 bg-rose-500/10 border-rose-500/30' },
   wiki: { label: 'Wiki page', badge: 'wiki', classes: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/30' }
 };
-// Must match slugify() in scripts/sync-wiki.mjs so drafts land where the indexer expects them.
-export function slugify(title) {
-  return title
-    .replace(/[^a-zA-Z0-9_\-\s]/g, '')
-    .trim()
-    .replace(/\s+/g, '_');
-}
-
-export function plainText(markdown) {
+export function plainText(markdown: string): string {
   return markdown
     .replace(/^#{1,6}\s+/gm, '')
     .replace(/^\|?\s*:?-{3,}.*$/gm, '')
@@ -37,21 +69,21 @@ export function plainText(markdown) {
     .trim();
 }
 
-export function prepare(entry) {
+export function prepare(entry: Entry): PreparedEntry {
   const text = entry.body ? plainText(entry.body.replace(/^\s*#\s+[^\n]*\n*/, '')) : '';
   const headings = entry.body ? (entry.body.match(/^#{2,4}\s+.+$/gm) || []).join(' ').toLowerCase() : '';
   return {
     ...entry,
-    _title: String(entry.title).toLowerCase(),
-    _summary: String(entry.summary || '').toLowerCase(),
+    _title: entry.title.toLowerCase(),
+    _summary: (entry.summary ?? '').toLowerCase(),
     _headings: headings,
     _text: text,
     _body: text.toLowerCase(),
-    _letter: (String(entry.title).replace(/^[^a-z0-9]+/i, '')[0] || '#').toUpperCase().replace(/[^A-Z]/, '#')
+    _letter: (entry.title.replace(/^[^a-z0-9]+/i, '')[0] || '#').toUpperCase().replace(/[^A-Z]/, '#')
   };
 }
 
-export function tokenize(query) {
+export function tokenize(query: unknown): string[] {
   return String(query)
     .toLowerCase()
     .split(/[\s,]+/)
@@ -59,14 +91,14 @@ export function tokenize(query) {
 }
 
 // "doughnuts" should still find "Doughnut".
-function variants(token) {
+function variants(token: string): string[] {
   const out = [token];
   if (token.length > 4 && token.endsWith('es')) out.push(token.slice(0, -2));
   if (token.length > 3 && token.endsWith('s')) out.push(token.slice(0, -1));
   return out;
 }
 
-function isSubsequence(needle, haystack) {
+function isSubsequence(needle: string, haystack: string): boolean {
   let i = 0;
   for (const ch of haystack) {
     if (ch === needle[i]) i++;
@@ -75,19 +107,19 @@ function isSubsequence(needle, haystack) {
   return false;
 }
 
-function startsWord(text, token) {
+function startsWord(text: string, token: string): boolean {
   return new RegExp(`(^|[^a-z0-9])${token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(text);
 }
 
 // Every token must match somewhere; title > summary > headings > body > loose title subsequence.
-function score(entry, tokens, phrase) {
+function score(entry: PreparedEntry, tokens: string[], phrase: string): { score: number; field: string } | null {
   let total = 0;
   let field = 'title';
   for (const token of tokens) {
     let best = 0;
     let bestField = '';
     for (const t of variants(token)) {
-      const hits = [
+      const hits: [boolean, number, string][] = [
         [entry._title === t, 12, 'title'],
         [entry._title.startsWith(t), 8, 'title'],
         [startsWord(entry._title, t), 6, 'title'],
@@ -109,9 +141,13 @@ function score(entry, tokens, phrase) {
 }
 
 // Pages for items no longer in the game, or removed from the wiki, only appear when asked for.
-export const isOld = entry => Boolean(entry.obsolete || entry.removed);
+export const isOld = (entry: Pick<Entry, 'obsolete' | 'removed'>): boolean => Boolean(entry.obsolete || entry.removed);
 
-export function search(entries, query, { category = 'all', source = 'all', letter = '', includeOld = false } = {}) {
+export function search(
+  entries: PreparedEntry[],
+  query: unknown,
+  { category = 'all', source = 'all', letter = '', includeOld = false }: SearchOptions = {}
+): SearchResult[] {
   const tokens = tokenize(query);
   const phrase = tokens.join(' ');
   const pool = entries.filter(
@@ -127,12 +163,14 @@ export function search(entries, query, { category = 'all', source = 'all', lette
       .sort((a, b) => a.entry._title.localeCompare(b.entry._title));
   }
   return pool
-    .map(entry => ({ entry, ...score(entry, tokens, phrase) }))
-    .filter(result => result.score)
+    .flatMap(entry => {
+      const result = score(entry, tokens, phrase);
+      return result?.score ? [{ entry, ...result }] : [];
+    })
     .sort((a, b) => b.score - a.score || a.entry._title.localeCompare(b.entry._title));
 }
 
-export function highlight(text, tokens) {
+export function highlight(text: unknown, tokens: string[]): string {
   const escaped = escapeHtml(text);
   const pattern = tokens
     .flatMap(variants)
@@ -143,7 +181,7 @@ export function highlight(text, tokens) {
 }
 
 // Context around the first body match, or the summary when the match is in the title.
-export function snippet(entry, tokens, radius = 90) {
+export function snippet(entry: Pick<PreparedEntry, '_text' | 'summary'>, tokens: string[], radius = 90): string {
   const text = entry._text || entry.summary || '';
   const lower = text.toLowerCase();
   let at = -1;
@@ -158,12 +196,12 @@ export function snippet(entry, tokens, radius = 90) {
   return `${start > 0 ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
 }
 
-export function badge(source) {
-  const meta = SOURCES[source] || SOURCES.custom;
+export function badge(source: string): string {
+  const meta = SOURCES[source] ?? CUSTOM_SOURCE;
   return `<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono leading-none ${meta.classes}">${meta.badge}</span>`;
 }
 
-export function statusBadge(entry) {
+export function statusBadge(entry: Pick<Entry, 'obsolete' | 'removed'>): string {
   if (entry.removed)
     return '<span class="px-1.5 py-0.5 rounded border text-[10px] font-mono leading-none text-rose-300 bg-rose-500/10 border-rose-500/30">removed</span>';
   if (entry.obsolete)
