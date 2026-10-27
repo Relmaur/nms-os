@@ -5,6 +5,8 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Added
+- ADR-0004: full-stack TypeScript (React + Vite, Zod, pnpm workspaces), with a stepwise migration plan.
 
 ## [3.0.0] - 2026-10-27
 ### Added

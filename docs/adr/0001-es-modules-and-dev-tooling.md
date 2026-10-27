@@ -1,6 +1,6 @@
 # ADR-0001: Native ES modules, dev-only tooling, no build step
 
-- **Status:** Accepted (2026-10-27)
+- **Status:** Accepted (2026-10-27). To be superseded by ADR-0004 at its migration step 2 (Vite build).
 - **Release:** 3.0.0 (MAJOR: drops opening `index.html` from disk)
 
 ## Context
