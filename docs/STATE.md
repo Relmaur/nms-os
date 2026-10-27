@@ -13,7 +13,7 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - The owner's fleet migrates into `gear` on their devices. Their book findings are Markdown files kept outside the repo, to import once with Notes → Import .md.
 
 **Roadmap approved 2026-10-27** (plan `mighty-plotting-quasar`):
-- **3.15.0:** the security audit's client, web and CI fixes (ADR-0005/0006 sections). Then the shareable audit report, and branch protection for `main` once the owner says yes.
+- **3.15.0 shipped:** the security audit's client, web and CI fixes (ADR-0005/0006 sections). Branch protection on `main` (no force-push or deletion; owner approved). Audit report published as a private Artifact (https://claude.ai/artifact/B9w8mV5n6vrEJ8bchYpKxm), which the owner shares from its Share menu. Its open items: a shared github.io origin (a custom domain would fix it), framing, a "change sync code" action, and Dependabot PRs #1–#3 to review (#1 and #2 are major artifact-action bumps; merge them together).
 - **3.16.0:** mechanics pages from the wiki (Inventory, Supercharged Slot, Starship, Multi-Tool…) as a Codex category, plus "cited facts": prose facts used as data only with their quote, checked by `verify:wiki`. The slot picker then follows the class limits, with an Exosuit preset.
 - **3.17.0:** a local, read-only MCP server (`apps/mcp`) that pairs with the sync code (ADR-0008). The owner cleared its Data Privacy gate with the roadmap.
 
