@@ -2,7 +2,7 @@
 // It stays mounted so it can slide in and out; while closed it is inert and hidden from assistive tech.
 import { useEffect, useRef, type RefObject } from 'react';
 import { BIOMES, ECONOMIES } from '@atlas/core/systems-model';
-import { closeSystemPanel, findSystem, getPanel, openSystem, usePanel } from './panel-store.ts';
+import { closeSystemPanel, findSystem, getPanel, openSystem, takeReturnFocus, usePanel } from './panel-store.ts';
 import { useAppState } from '../useAppState.ts';
 import { SystemDetails } from './SystemDetails.tsx';
 import { SystemEditor } from './SystemEditor.tsx';
@@ -14,18 +14,21 @@ export function SystemPanel() {
   const scroller = useRef<HTMLDivElement>(null);
   const system = findSystem(panel.systemId);
 
-  // Each open starts at the top, keeps the page behind from scrolling, and hands focus back on close.
+  // Each open (and each switch between view and editor) starts at the top.
+  useEffect(() => {
+    if (panel.open && scroller.current) scroller.current.scrollTop = 0;
+  }, [panel.open, panel.session]);
+
+  // While open the page behind doesn't scroll; on close, focus goes back to what opened the panel.
   useEffect(() => {
     if (!panel.open) return;
-    if (scroller.current) scroller.current.scrollTop = 0;
-    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const dialog = sheet.current;
     document.body.classList.add('overflow-hidden');
     return () => {
       document.body.classList.remove('overflow-hidden');
-      if (opener?.isConnected && !dialog?.contains(opener)) opener.focus({ preventScroll: true });
+      const opener = takeReturnFocus();
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
     };
-  }, [panel.open, panel.session]);
+  }, [panel.open]);
 
   // Esc leaves the editor for the system's view, or closes the panel.
   useEffect(() => {

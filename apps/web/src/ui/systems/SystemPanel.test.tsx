@@ -214,3 +214,38 @@ test('editor: Cancel on an existing system returns to its view without saving', 
   expect(system('sys-a')?.region).toBe('Odyalutai');
   expect(getPanel()).toMatchObject({ open: true, mode: 'view', systemId: 'sys-a' });
 });
+
+test('focus: the editor keeps it, and closing returns it to what opened the panel', async () => {
+  render(
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          openSystem('sys-a');
+        }}
+      >
+        Open Ekwa
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          openSystemEditor();
+        }}
+      >
+        New system
+      </button>
+      <SystemPanel />
+    </>
+  );
+  await userEvent.click(screen.getByRole('button', { name: 'Open Ekwa' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Edit system' }));
+  expect(document.activeElement?.id).toBe('sysName');
+  await userEvent.keyboard('{Escape}'); // back to the view
+  await userEvent.keyboard('{Escape}'); // closed
+  expect(document.activeElement?.textContent).toBe('Open Ekwa');
+
+  await userEvent.click(screen.getByRole('button', { name: 'New system' }));
+  expect(document.activeElement?.id).toBe('sysName');
+  await userEvent.keyboard('{Escape}');
+  expect(document.activeElement?.textContent).toBe('New system');
+});

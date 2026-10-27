@@ -539,6 +539,7 @@ function Notes({ system, open }: { system: System; open: boolean }) {
   }, [open]);
   useEffect(
     () => () => {
+      clearTimeout(timer.current);
       savePending();
     },
     []

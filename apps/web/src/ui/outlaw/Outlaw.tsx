@@ -316,8 +316,8 @@ function VisitedButton({ id, size }: { id: string; size: string }) {
   );
 }
 
-// A number the player sets from what they see in-game. It's kept on blur or Enter (as a native change event would),
-// so a value is never clamped halfway through typing it.
+// A number the player sets from what they see in-game. It's kept on the native change event (blur, Enter or a
+// spinner step), not React's onChange, which fires per keystroke and would clamp a value halfway through typing it.
 function Setting({
   id,
   setting,
@@ -339,9 +339,17 @@ function Setting({
   useEffect(() => {
     if (input.current && document.activeElement !== input.current) input.current.value = String(value);
   }, [value]);
-  const commit = () => {
-    if (input.current) input.current.value = String(setOutlawSetting(setting, input.current.value));
-  };
+  useEffect(() => {
+    const field = input.current;
+    if (!field) return;
+    const commit = () => {
+      field.value = String(setOutlawSetting(setting, field.value));
+    };
+    field.addEventListener('change', commit);
+    return () => {
+      field.removeEventListener('change', commit);
+    };
+  }, [setting]);
   return (
     <label className="block">
       {label}
@@ -353,10 +361,6 @@ function Setting({
         max={setting === 'unitsPerPacket' || setting === 'nanitesPerPacket' ? undefined : max}
         step={step}
         defaultValue={value}
-        onBlur={commit}
-        onKeyDown={event => {
-          if (event.key === 'Enter') commit();
-        }}
         className="mt-1 w-full h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white"
       />
       <span className="block mt-1 text-slate-400">{hint}</span>

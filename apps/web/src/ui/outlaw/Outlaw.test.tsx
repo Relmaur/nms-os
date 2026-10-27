@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { HOUR_MS } from '@atlas/core/systems-model';
@@ -60,7 +60,7 @@ test('Undo removes the last packet run; the filter shows ready or restocking sta
   expect(within(document.getElementById('outlawStationList')!).getAllByRole('listitem')).toHaveLength(4);
 });
 
-test('settings are kept on blur, within their bounds', async () => {
+test('settings are kept on change (blur or a spinner step), within their bounds', async () => {
   render(<Outlaw />);
   const nanites = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Nanites you get per packet/ });
   await userEvent.clear(nanites);
@@ -71,9 +71,16 @@ test('settings are kept on blur, within their bounds', async () => {
 
   const restock = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Restock timer/ });
   await userEvent.clear(restock);
-  await userEvent.type(restock, '9999{Enter}');
+  await userEvent.type(restock, '9999');
+  await userEvent.tab(); // happy-dom doesn't fire change on Enter as browsers do; the probe covers that
   expect(appState.outlaw.restockHours).toBe(720);
   expect(restock.value).toBe('720');
+
+  // A spinner step fires a native change straight away, without leaving the field.
+  const packets = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Packets bought per visit/ });
+  packets.value = '16';
+  fireEvent.change(packets);
+  expect(appState.outlaw.packetsPerVisit).toBe(16);
 });
 
 test('pasting a list: errors name the line; a good list adds outlaw systems', async () => {

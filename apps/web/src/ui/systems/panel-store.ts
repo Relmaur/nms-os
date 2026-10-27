@@ -35,13 +35,27 @@ function setPanel(next: Partial<PanelState>): void {
 export const findSystem = (id: string | null): System | undefined =>
   id ? appState.systems.find(system => system.id === id) : undefined;
 
+// What had focus when the panel opened (closed → open only: moving between view and editor keeps it), so closing
+// hands focus back there instead of to the page's top.
+let returnFocus: HTMLElement | null = null;
+function rememberOpener(): void {
+  if (!panel.open) returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+}
+export function takeReturnFocus(): HTMLElement | null {
+  const element = returnFocus;
+  returnFocus = null;
+  return element;
+}
+
 export function openSystem(id: string): void {
   if (!findSystem(id)) return;
+  rememberOpener();
   setPanel({ open: true, mode: 'view', systemId: id, preset: {}, session: panel.session + 1 });
 }
 
 export function openSystemEditor(id: string | null = null, preset: EditorPreset = {}): void {
   const existing = findSystem(id);
+  rememberOpener();
   setPanel({ open: true, mode: 'edit', systemId: existing?.id ?? null, preset, session: panel.session + 1 });
 }
 
