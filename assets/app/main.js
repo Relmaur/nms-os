@@ -2,9 +2,10 @@
 // registers and Export/Import. Feature UIs live in the sibling modules imported below.
 import { escapeHtml, isPlainObject } from '../lib/util.js';
 import { buildState, migrateLegacyState } from '../lib/state.js';
+import { validateState, describeErrors } from '../lib/schema.js';
 import { systemHaystack } from '../lib/systems-model.js';
 import { WikiSearch } from './wiki-data.js';
-import { appState, setAppState, loadAppState, saveAppState, onSave } from './store.js';
+import { appState, setAppState, loadAppState, saveAppState, onSave, onStorageStatus } from './store.js';
 import { showToast } from './ui.js';
 import { showSection, renderGuides, decorateBooks, onSection } from './nav.js';
 import { renderSystems, renderOutlaw, renderSystemPanel, panelSystemId, panelMode, openSystem, openSystemEditor, starDot } from './systems.js';
@@ -372,18 +373,45 @@ function exportStateJSON() {
     showToast('Exported nms_state.json for your Git repo!');
 }
 
-function readStateFile(file) {
+// Nothing is replaced unless the whole file is valid; the message names the first problems so they can be fixed.
+async function readStateFile(file) {
     if (!file) return;
-    file.text()
-        .then(text => {
-            const imported = JSON.parse(text);
-            if (!isPlainObject(imported)) throw new Error('nms_state.json must be a JSON object');
-            setAppState(buildState(migrateLegacyState(imported)));
-            saveAppState();
-            showToast('Imported nms_state.json successfully!');
-        })
-        .catch(() => showToast('Invalid JSON file.'));
+    let imported;
+    try {
+        imported = JSON.parse(await file.text());
+    } catch {
+        showToast('That file isn’t valid JSON, so nothing was imported.');
+        return;
+    }
+    const candidate = isPlainObject(imported) ? migrateLegacyState(imported) : imported;
+    const { ok, errors } = validateState(candidate);
+    if (!ok) {
+        showToast(`Not imported: ${describeErrors(errors.slice(0, 2))}.`);
+        return;
+    }
+    setAppState(buildState(candidate));
+    saveAppState();
+    showToast('Imported nms_state.json successfully!');
 }
+
+function setStorageBanner(message, { offerExport = false } = {}) {
+    const banner = document.getElementById('storageBanner');
+    document.getElementById('storageBannerText').textContent = message;
+    document.getElementById('storageBannerExport').classList.toggle('hidden', !offerExport);
+    banner.classList.toggle('hidden', !message);
+    banner.classList.toggle('flex', Boolean(message));
+}
+
+function dismissStorageBanner() {
+    setStorageBanner('');
+}
+
+onStorageStatus(status => {
+    if (status.saveFailed) setStorageBanner('Not saved on this device: the browser refused to store your changes (storage may be full, or this is a private window). They’re kept until you close the app, so export a backup now.', { offerExport: true });
+    else if (status.saveFailed === false) setStorageBanner('');
+    if (status.recoveredKey) setStorageBanner(`Your saved data in this browser couldn’t be read, so the app started from the default state. Nothing was deleted: the unreadable copy is kept in this browser under “${status.recoveredKey}”.`);
+    if (status.fromOtherTab) showToast('Updated with changes from another tab.');
+});
 
 function importStateJSON(event) {
     readStateFile(event.target.files[0]);
@@ -425,4 +453,4 @@ onSection('new-system', () => openSystemEditor());
 })();
 
 // Called from inline on…="" handlers in the markup and in rendered templates.
-Object.assign(window, { handleGlobalSearch, handleGlobalSearchKey, openGlobalSearch, closeGlobalSearch, activateSearchHit, showAllWikiResults, exportStateJSON, importStateJSON, handleStateDragOver, handleStateDrop, setDropzoneActive, toggleCheckItem, runCalculators });
+Object.assign(window, { handleGlobalSearch, handleGlobalSearchKey, openGlobalSearch, closeGlobalSearch, activateSearchHit, showAllWikiResults, exportStateJSON, importStateJSON, dismissStorageBanner, handleStateDragOver, handleStateDrop, setDropzoneActive, toggleCheckItem, runCalculators });

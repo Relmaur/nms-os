@@ -21,6 +21,7 @@ const SHELL = [
     'assets/lib/systems-model.js',
     'assets/lib/planner.js',
     'assets/lib/search.js',
+    'assets/lib/schema.js',
     'assets/app/main.js',
     'assets/app/store.js',
     'assets/app/ui.js',

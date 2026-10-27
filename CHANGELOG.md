@@ -10,6 +10,11 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 - Test tooling: ESLint, `node:test` unit tests, and a Playwright suite (41 checks on desktop and phone sizes) that pins current behaviour. `npm run check` runs all three locally; CI runs lint and unit tests on the synced wiki data before any commit-back or deploy.
 - `scripts/serve.mjs`, a dependency-free local server (`npm start`).
 - Unit tests for state merging and migration, the systems model and outlaw timer, the recipe planner, search, and the wiki parser (real page fixtures), plus guards that every inline handler is exposed and every module is precached offline.
+- State schema guard: imports, the browser copy and the repo's `nms_state.json` are validated; invalid imports are rejected with the exact path and reason.
+- An unreadable browser copy is preserved under `nms_master_os_state.corrupt-<time>` instead of being overwritten, with a banner explaining it.
+- A persistent banner with Export when the browser refuses to save (storage full or private mode).
+- Tabs stay in step: a save in one tab is picked up by the others, so a stale tab can't overwrite newer data.
+- Timeouts on every fetch, and validation of the wiki API's responses before the sync writes anything.
 ### Changed
 - **Breaking:** the app is now native ES modules (`assets/lib/` pure logic, `assets/app/` UI, `wiki/codex.js`). Opening `index.html` directly from disk (`file://`) no longer works; use `npm start`, the live site or the installed app.
 - The wiki parser moved to `scripts/lib/wikitext.mjs`; mirror output is byte-identical.

@@ -44,7 +44,7 @@ async function load(base, { withBodies = false } = {}) {
         entries = (await loadBundle(base))?.articles || [];
     } else {
         try {
-            const res = await fetch(`${base}index.json`, { cache: 'no-store' });
+            const res = await fetch(`${base}index.json`, { cache: 'no-store', signal: AbortSignal.timeout(8000) }); // then the bundle
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             entries = await res.json();
         } catch {

@@ -21,8 +21,9 @@ let valueRows = VALUE_DEFAULTS.map(title => ({ title, qty: 1 }));
 
 export function loadGameData() {
     gameDataPromise ??= Promise.all([
-        fetch('wiki/game-data.json').then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))),
-        fetch('wiki/verification.json', { cache: 'no-store' }).then(res => res.ok ? res.json() : null).catch(() => null)
+        // ~2.5 MB on first open (then served by the service worker); give a slow phone connection room.
+        fetch('wiki/game-data.json', { signal: AbortSignal.timeout(20000) }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))),
+        fetch('wiki/verification.json', { cache: 'no-store', signal: AbortSignal.timeout(5000) }).then(res => res.ok ? res.json() : null).catch(() => null)
     ]).then(([data, verification]) => {
         gameData = { ...makeCatalog(data), verification };
         fillCalculatorOptions();

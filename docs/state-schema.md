@@ -17,3 +17,12 @@ See [`nms_state.json`](./nms_state.json) at the repository root — it is the ca
 - Precedence: built-in defaults ← `nms_state.json` ← `localStorage`. If `nms_state.json`'s `meta.lastUpdated` is newer than the browser copy (e.g. after a `git pull` from another machine), the file wins instead.
 - Objects merge key-by-key; arrays (`systems`, `multiTools`, slot lists) are replaced wholesale.
 - Data from the pre-2.0 key `ATLAS_MASTER_OS_STATE_V2` (`checkedItems` / `logEntries`) is migrated automatically on load and on import.
+
+## Validation and failure handling (`assets/lib/schema.js`, `assets/app/store.js`)
+- `validateState()` checks the type of every key that is present; missing keys are fine (`buildState()` fills defaults) and unknown keys are allowed, so older and newer exports both load. Errors name the path, e.g. `systems[1].name must be text`.
+- **Import** validates the whole file first; an invalid file is rejected with the first problems in the toast, and nothing is replaced.
+- **Startup:** a browser copy that isn't JSON or fails validation is kept under `nms_master_os_state.corrupt-<ISO time>` before the app falls back to defaults + the repo file, and a banner says so. Nothing is deleted.
+- **Save:** if `localStorage` refuses a write (quota, private mode), the state stays in memory and a persistent banner offers an export; the next successful save clears it.
+- **Multiple tabs:** a `storage` event adopts the other tab's saved copy and re-renders, so the last write is always made on fresh data (last-write-wins, ADR-0002).
+- **Timeouts:** `nms_state.json` 5 s (the browser copy renders without it), `wiki/index.json` 8 s (then the bundle), `wiki/game-data.json` 20 s, `verification.json` 5 s.
+- Diagnostics are one `console.warn('[atlas]', { event, reason })` line, never state contents.

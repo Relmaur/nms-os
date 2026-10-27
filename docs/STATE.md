@@ -12,7 +12,7 @@ CI runs lint + unit tests only (owner's decision: browser tests run locally via 
 - [x] Phase 1: docs harness (this file, ADRs, CHANGELOG, lean AGENTS.md).
 - [x] Phase 2: ESLint + Playwright characterization tests (41 checks) + CI gate before commit-back/deploy.
 - [x] Phase 3: ES-module refactor: `assets/lib/` (pure, 37 unit tests) + `assets/app/` (UI) + `wiki/codex.js`; `scripts/lib/wikitext.mjs` (derived wiki files byte-identical); handler and SW-shell guards.
-- [ ] Phase 4: hardening: state schema guard, save-failure banner, multi-tab reload, fetch timeouts, wiki-sync payload validation.
+- [x] Phase 4: hardening: state schema guard, save-failure banner, unreadable-copy preservation, multi-tab adoption, fetch timeouts, wiki API validation (44 unit + 53 browser checks).
 - [ ] Phase 5: independent review, CHANGELOG 3.0.0, version bump, deploy, live checks.
 
 ## Blockers

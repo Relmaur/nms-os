@@ -16,6 +16,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { WIKI_BASE, LICENSE, SCOPE, FOLDERS, slugify, toFrontmatter, parseFrontmatter, summarize, buildArticle } from './lib/wikitext.mjs';
+import { InvalidResponse, readEmbeddedIn, readRevisions } from './lib/api-schema.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
@@ -51,7 +52,7 @@ async function fetchScope() {
     let cont = {};
     while (cont) {
       const data = await api({ action: 'query', list: 'embeddedin', eititle: `Template:${template}`, einamespace: 0, eilimit: 500, ...cont });
-      for (const page of data.query.embeddedin) {
+      for (const page of readEmbeddedIn(data, template)) {
         if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind });
       }
       cont = data.continue || null;
@@ -66,10 +67,8 @@ async function fetchRevisions(scope) {
   const pages = [];
   for (let i = 0; i < ids.length; i += BATCH) {
     const data = await api({ action: 'query', prop: 'revisions', rvprop: 'ids|timestamp|content', rvslots: 'main', pageids: ids.slice(i, i + BATCH).join('|') });
-    for (const page of data.query.pages) {
-      const revision = page.revisions?.[0];
-      if (!revision) continue;
-      pages.push({ ...scope.get(page.pageid), title: page.title, revId: revision.revid, revTimestamp: revision.timestamp, content: revision.slots.main.content || '' });
+    for (const page of readRevisions(data)) {
+      pages.push({ ...scope.get(page.pageid), title: page.title, revId: page.revid, revTimestamp: page.timestamp, content: page.content });
     }
     if (process.stdout.isTTY) process.stdout.write(`\r📥 Fetched ${Math.min(i + BATCH, ids.length)}/${ids.length} pages`);
     await sleep(REQUEST_DELAY_MS);
@@ -160,8 +159,14 @@ async function sync({ dryRun }) {
     console.log(`🔎 ${scope.size} wiki pages use a game-data infobox.`);
     livePages = await fetchRevisions(scope);
   } catch (err) {
-    console.warn(`⚠️  Wiki unreachable (${err.message}); the archive was not checked.`);
-    await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'unreachable' });
+    // Nothing has been written yet: the committed archive stays as it was, and the Codex shows why it wasn't checked.
+    if (err instanceof InvalidResponse) {
+      console.error(`❌ The wiki returned data the mirror can't validate: ${err.message}. Nothing was written.`);
+      await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'invalid-response', reason: err.message });
+    } else {
+      console.warn(`⚠️  Wiki unreachable (${err.message}); the archive was not checked.`);
+      await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'unreachable' });
+    }
     return false;
   }
 

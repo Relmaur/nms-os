@@ -100,6 +100,16 @@
         <!-- Main Content Area -->
         <main class="app-main flex-1 min-w-0 px-4 py-5 sm:p-6 lg:p-8">
 
+            <!-- Storage problems: shown until resolved or dismissed (assets/app/main.js) -->
+            <div id="storageBanner" role="alert" class="hidden mb-5 rounded-xl border border-amber-500/50 bg-amber-500/10 px-4 py-3 text-sm text-amber-100 items-start gap-3">
+                <i class="ph-fill ph-warning text-xl text-amber-300 shrink-0"></i>
+                <p id="storageBannerText" class="flex-1 min-w-0"></p>
+                <div class="flex shrink-0 gap-2">
+                    <button id="storageBannerExport" onclick="exportStateJSON()" class="h-9 px-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold">Export backup</button>
+                    <button onclick="dismissStorageBanner()" aria-label="Dismiss" class="w-9 h-9 rounded-lg text-amber-200 hover:bg-amber-500/20 flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
+                </div>
+            </div>
+
             <!-- ===================================================================== -->
             <!-- HOME: what you need mid-session (assets/app/companion.js renders it)     -->
             <!-- ===================================================================== -->

@@ -190,6 +190,10 @@ function verificationPanel() {
         icon = 'ph-cloud-slash text-amber-300';
         headline = 'The wiki couldn’t be reached at the last check';
         detail = `Tried ${formatDate(v.checkedAt)}. Showing the archived copy.`;
+    } else if (v?.status === 'invalid-response') {
+        icon = 'ph-warning text-amber-300';
+        headline = 'The last check stopped on unexpected data from the wiki';
+        detail = `Checked ${formatDate(v.checkedAt)}. Nothing was changed; showing the archived copy.`;
     }
     const scope = v?.pages ? `
         <ul class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-1 text-xs text-slate-400">
@@ -642,7 +646,7 @@ async function loadEntries() {
 
 async function loadVerification() {
     try {
-        const res = await fetch('verification.json', { cache: 'no-store' });
+        const res = await fetch('verification.json', { cache: 'no-store', signal: AbortSignal.timeout(5000) });
         verification = res.ok ? await res.json() : null;
     } catch {
         verification = null;
