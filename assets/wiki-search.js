@@ -86,7 +86,7 @@
 
     // Articles with bodies (Codex page) or the light index (header search), plus browser drafts.
     async function load(base, { withBodies = false } = {}) {
-        let entries = [];
+        let entries;
         if (withBodies) {
             entries = (await loadBundle(base))?.articles || [];
         } else {

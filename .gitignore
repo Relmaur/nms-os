@@ -7,3 +7,6 @@ wiki/verification.json
 
 node_modules/
 .DS_Store
+# Playwright output
+test-results/
+playwright-report/

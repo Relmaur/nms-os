@@ -1289,7 +1289,9 @@
             };
             const animate = currentSection && currentSection !== sectionKey && document.startViewTransition
                 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (animate) document.startViewTransition(swap); else swap();
+            // Switching again mid-animation skips the transition, which rejects its promises; the DOM still
+            // updates, so the rejection is expected and must not surface as an uncaught error.
+            if (animate) document.startViewTransition(swap).ready.catch(() => {}); else swap();
             currentSection = sectionKey;
 
             const navKey = sectionKey.startsWith('book') ? 'guides' : sectionKey;

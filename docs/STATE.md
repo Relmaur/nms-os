@@ -8,7 +8,7 @@ _Last updated: 2026-10-27_
 **Release 3.0.0: put the app on the prompt-graph harness** (plan: ADR-0001, ADR-0002).
 - [x] Phase 0: calculators shipped (2.6.0).
 - [x] Phase 1: docs harness (this file, ADRs, CHANGELOG, lean AGENTS.md).
-- [ ] Phase 2: ESLint + Playwright characterization tests + CI `verify` job gating deploys.
+- [x] Phase 2: ESLint + Playwright characterization tests (41 checks) + CI gate before commit-back/deploy.
 - [ ] Phase 3: ES-module refactor: `assets/lib/` (pure, unit-tested) + `assets/app/` (UI); `scripts/lib/wikitext.mjs`.
 - [ ] Phase 4: hardening: state schema guard, save-failure banner, multi-tab reload, fetch timeouts, wiki-sync payload validation.
 - [ ] Phase 5: independent review, CHANGELOG 3.0.0, version bump, deploy, live checks.
@@ -27,4 +27,4 @@ None.
 3. Cross-device sync (Data Privacy gate), then the recommendations engine on `wiki/game-data.json`.
 
 ## Files touched this cycle
-`AGENTS.md`, `CLAUDE.md`, `CHANGELOG.md`, `docs/**`.
+`AGENTS.md`, `CLAUDE.md`, `CHANGELOG.md`, `docs/**`, `package.json`, `eslint.config.js`, `playwright.config.js`, `scripts/serve.mjs`, `tests/**`, `.github/workflows/pages.yml`, `index.html` (transition fix), `assets/wiki-search.js` (lint).

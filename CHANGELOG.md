@@ -7,6 +7,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 ## [Unreleased]
 ### Added
 - Development harness: lean `AGENTS.md`, `CLAUDE.md`, `docs/` (architecture, state schema, wiki mirror, deploy, calculators), ADRs 0001–0003, `docs/STATE.md`, and the prompt-graph protocol in `docs/process/`.
+- Test tooling: ESLint, `node:test` unit tests, and a Playwright suite (41 checks on desktop and phone sizes) that pins current behaviour. `npm run check` runs all three, and CI runs them on the synced wiki data before any commit-back or deploy.
+- `scripts/serve.mjs`, a dependency-free local server (`npm start`).
+### Fixed
+- Switching sections quickly no longer raises an uncaught "Transition was skipped" error.
 
 ## [2.6.0] - 2026-10-26
 ### Added
