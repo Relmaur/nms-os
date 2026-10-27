@@ -78,6 +78,19 @@ test('after upgrading, a ship deleted on one device stays deleted though the las
   );
 });
 
+test('slot labels are kept only for marked slots, trimmed and capped', () => {
+  const [item] = normalizeGear([
+    {
+      id: 'k',
+      name: 'Kestrel',
+      superchargedSlots: ['R2C3', 'R1C1'],
+      slotLabels: { R2C3: '  Infra-Knife ', R1C1: '', R4C4: 'gone', __proto__: 'x', R1C2: 7 }
+    }
+  ]);
+  assert.deepEqual(item?.slotLabels, { R2C3: 'Infra-Knife' });
+  assert.deepEqual(normalizeGear([{ name: 'No labels' }])[0]?.slotLabels, {});
+});
+
 test('damaged gear entries are dropped, not the list; flagships come first', () => {
   const gear = normalizeGear([
     { id: 'a', name: 'Tool', kind: 'multitool' },

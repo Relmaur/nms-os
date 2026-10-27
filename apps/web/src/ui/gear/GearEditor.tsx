@@ -25,6 +25,7 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
         type: '',
         role: '',
         superchargedSlots: [],
+        slotLabels: {},
         notes: '',
         createdAt: new Date().toISOString()
       }
@@ -168,8 +169,9 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
       </datalist>
       <SlotPicker
         slots={draft.superchargedSlots}
-        onChange={superchargedSlots => {
-          set({ superchargedSlots });
+        labels={draft.slotLabels}
+        onChange={(superchargedSlots, slotLabels) => {
+          set({ superchargedSlots, slotLabels });
         }}
       />
       <label className="field">

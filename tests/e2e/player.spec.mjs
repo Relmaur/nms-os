@@ -50,9 +50,11 @@ test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools'
   await page.locator('#gearEditor').getByLabel('Class', { exact: true }).fill('A');
   await page.locator('#slotPicker [data-slot="R1C2"]').click();
   await page.locator('#slotPicker [data-slot="R1C1"]').click();
+  await page.locator('#gearEditor [data-slot-label="R1C2"]').fill('Pulse Drive upgrade');
   await page.locator('#gearEditor').getByRole('button', { name: 'Add', exact: true }).click();
   await expect(page.locator('#toastMessage')).toHaveText('Added Vela Run.');
-  await expect(page.locator('#sec-gear [data-gear]').filter({ hasText: 'Vela Run' })).toContainText('R1C1 · R1C2');
+  const card = page.locator('#sec-gear [data-gear]').filter({ hasText: 'Vela Run' });
+  await expect(card.getByRole('list', { name: 'Supercharged slots' })).toHaveText(/R1C1\s*R1C2\s*Pulse Drive upgrade/);
   await page.goto('./');
   await expect(page.locator('#fleetCardBody')).toContainText('Kestrel IV');
   await expect(page.locator('#fleetCardBody')).toContainText('Vela Run');
@@ -63,12 +65,16 @@ test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools'
 test('a supercharged slot is marked with a tap and cleared with another', async ({ page }) => {
   await page.goto('./#gear');
   await page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
+  await page.locator('#gearEditor').getByRole('button', { name: '+ Add a row' }).click();
+  await expect(page.locator('#slotPicker [data-slot="R5C1"]')).toBeVisible();
   const cell = page.locator('#slotPicker [data-slot="R2C3"]');
   await expect(cell).toHaveAttribute('aria-pressed', 'true');
   await cell.click();
   await expect(cell).toHaveAttribute('aria-pressed', 'false');
   await page.locator('#gearEditor').getByRole('button', { name: 'Save' }).click();
-  await expect(page.locator('#sec-gear [data-gear="gear-kestrel"]')).toContainText('R2C2 · R2C4');
+  await expect(
+    page.locator('#sec-gear [data-gear="gear-kestrel"]').getByRole('list', { name: 'Supercharged slots' })
+  ).toHaveText(/R2C2\s*R2C4/);
 });
 
 test('a note pinned to Book III shows under the book and on Home, rendered and safe', async ({ page }) => {

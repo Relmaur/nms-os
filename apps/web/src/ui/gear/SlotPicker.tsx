@@ -1,8 +1,9 @@
 // Mark supercharged slots by tapping the inventory grid: tap to mark, tap again to clear. Each cell is a toggle button;
 // one is in the Tab order at a time, and the arrow keys move between them (Space or Enter toggles), so 40 cells
-// don't cost 40 Tab presses.
+// don't cost 40 Tab presses. "Add a row" grows the grid (the true inventory maximum isn't in the wiki mirror), and each
+// marked slot gets a field for what sits in it.
 import { useRef, useState, type KeyboardEvent } from 'react';
-import { slotGrid, toggleSlot } from '@atlas/core/gear';
+import { MAX_LABEL, MAX_SLOT, slotGrid, toggleSlot } from '@atlas/core/gear';
 
 const MIN = { rows: 4, cols: 10 };
 const STEP: Record<string, [number, number]> = {
@@ -12,8 +13,17 @@ const STEP: Record<string, [number, number]> = {
   ArrowRight: [0, 1]
 };
 
-export function SlotPicker({ slots, onChange }: { slots: string[]; onChange: (slots: string[]) => void }) {
-  const grid = slotGrid(slots, MIN);
+export function SlotPicker({
+  slots,
+  labels,
+  onChange
+}: {
+  slots: string[];
+  labels: Record<string, string>;
+  onChange: (slots: string[], labels: Record<string, string>) => void;
+}) {
+  const [rows, setRows] = useState(MIN.rows);
+  const grid = slotGrid(slots, { ...MIN, rows });
   const [focus, setFocus] = useState<[number, number]>([1, 1]);
   const root = useRef<HTMLDivElement>(null);
 
@@ -67,7 +77,8 @@ export function SlotPicker({ slots, onChange }: { slots: string[]; onChange: (sl
               tabIndex={row === focus[0] && col === focus[1] ? 0 : -1}
               onClick={() => {
                 setFocus([row, col]);
-                onChange(toggleSlot(slots, slot));
+                const next = toggleSlot(slots, slot);
+                onChange(next, Object.fromEntries(Object.entries(labels).filter(([key]) => next.includes(key))));
               }}
               className={`aspect-square min-h-6 rounded-md border transition-colors focus-visible:outline-2 focus-visible:outline-cyan-400 ${
                 on
@@ -78,9 +89,43 @@ export function SlotPicker({ slots, onChange }: { slots: string[]; onChange: (sl
           );
         })}
       </div>
-      <p id="slotPickerHint" className="text-xs text-slate-400">
-        Tap the cells where the inventory shows a supercharged slot; tap again to clear. Row 1 is the top row.
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+        <p id="slotPickerHint" className="flex-1 min-w-[12rem] text-xs text-slate-400">
+          Tap the cells where the inventory shows a supercharged slot; tap again to clear. Row 1 is the top row.
+        </p>
+        {grid.rows < MAX_SLOT && (
+          <button
+            type="button"
+            onClick={() => {
+              setRows(grid.rows + 1);
+            }}
+            className="h-8 px-2.5 rounded-lg border border-dashed border-slate-600 text-xs text-slate-300 hover:text-white hover:border-slate-400"
+          >
+            + Add a row
+          </button>
+        )}
+      </div>
+      {slots.length > 0 && (
+        <div className="space-y-2 pt-1">
+          <p className="field-label">What’s in each one</p>
+          {slots.map(slot => (
+            <label key={slot} className="flex items-center gap-2">
+              <span className="w-12 shrink-0 font-mono text-xs text-amber-200">{slot}</span>
+              <input
+                data-slot-label={slot}
+                maxLength={MAX_LABEL}
+                value={labels[slot] ?? ''}
+                placeholder="e.g. Infra-Knife Accelerator"
+                aria-label={`What’s in ${slot}`}
+                onChange={event => {
+                  onChange(slots, { ...labels, [slot]: event.target.value });
+                }}
+                className="flex-1 min-w-0 h-9 bg-slate-900 border border-slate-700 rounded-lg px-2.5 text-base sm:text-sm text-white placeholder:text-slate-500"
+              />
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -14,12 +14,14 @@ export interface GearItem {
   type: string; // Sentinel Interceptor, Royal, …
   role: string; // Flagship, Scrap spare, Combat, …
   superchargedSlots: string[]; // "R2C3": row 2, column 3 of the inventory grid
+  slotLabels: Record<string, string>; // what sits in a supercharged slot ("R2C3" → "Infra-Knife"), 3.14.3
   notes: string; // Markdown
   createdAt: string;
 }
 
 export const ROLE_SUGGESTIONS = ['Flagship', 'Scrap spare', 'Combat', 'Scanner', 'Mining', 'Exploration'];
 export const MAX_SLOT = 12; // rows and columns beyond any inventory grid are typos
+export const MAX_LABEL = 40;
 
 const text = (value: unknown): string => (typeof value === 'string' ? value.trim() : '');
 const SLOT = /^R(\d{1,2})C(\d{1,2})$/i;
@@ -65,6 +67,17 @@ export function toggleSlot(slots: string[], slot: string): string[] {
   return next.sort((a, b) => key(a) - key(b));
 }
 
+// Labels are kept only for marked slots: clearing a slot drops its label too.
+function slotLabels(value: unknown, slots: string[]): Record<string, string> {
+  const labels: Record<string, string> = {};
+  if (!isPlainObject(value)) return labels;
+  for (const slot of slots) {
+    const label = text(value[slot]).slice(0, MAX_LABEL);
+    if (label) labels[slot] = label;
+  }
+  return labels;
+}
+
 export function normalizeGear(value: unknown): GearItem[] {
   if (!Array.isArray(value)) return [];
   const seen = new Set<string>();
@@ -87,6 +100,7 @@ export function normalizeGear(value: unknown): GearItem[] {
         type: text(item.type),
         role: text(item.role),
         superchargedSlots: slots,
+        slotLabels: slotLabels(item.slotLabels, slots),
         notes: typeof item.notes === 'string' ? item.notes : '',
         createdAt: typeof item.createdAt === 'string' && !Number.isNaN(Date.parse(item.createdAt)) ? item.createdAt : ''
       }

@@ -6,6 +6,11 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.14.3] - 2026-10-27
+### Added
+- Name what sits in each supercharged slot ("Infra-Knife Accelerator"); the ship or Multi-Tool's card lists each slot with its name.
+- "Add a row" under the slot grid, for inventories bigger than the first four rows.
+
 ## [3.14.2] - 2026-10-27
 ### Changed
 - Supercharged slots are marked by tapping the inventory grid in the ship and Multi-Tool editor: tap a cell to mark it, tap again to clear it. With a keyboard, the arrow keys move and Space toggles.

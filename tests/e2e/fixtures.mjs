@@ -54,6 +54,7 @@ export function seedState() {
         type: 'Interceptor',
         role: 'Flagship',
         superchargedSlots: ['R2C2', 'R2C3', 'R2C4'],
+        slotLabels: { R2C3: 'Infra-Knife Accelerator' },
         notes: 'Infra-Knife in the **middle** slot.',
         createdAt: '2026-10-20T00:00:00.000Z'
       },

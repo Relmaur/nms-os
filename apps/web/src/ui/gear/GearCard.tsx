@@ -77,7 +77,14 @@ export function GearCard({ item }: { item: GearItem }) {
       {item.superchargedSlots.length > 0 && (
         <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
           <SlotGrid slots={item.superchargedSlots} />
-          <p className="text-[11px] font-mono text-amber-200/90">{item.superchargedSlots.join(' · ')}</p>
+          <ul className="space-y-0.5 text-xs" aria-label="Supercharged slots">
+            {item.superchargedSlots.map(slot => (
+              <li key={slot} className="flex gap-2">
+                <span className="font-mono text-amber-200/90">{slot}</span>
+                {item.slotLabels[slot] && <span className="text-slate-200">{item.slotLabels[slot]}</span>}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
       {item.notes.trim() && <div className="md-body text-sm" dangerouslySetInnerHTML={{ __html: html }} />}

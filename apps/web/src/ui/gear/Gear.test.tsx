@@ -32,10 +32,13 @@ test('a new player’s Home invites them to add a ship; it then leads the fleet 
   await userEvent.click(screen.getByRole('button', { name: 'Row 2, column 2' }));
   await userEvent.click(screen.getByRole('button', { name: 'Row 1, column 9' }));
   await userEvent.click(screen.getByRole('button', { name: 'Row 1, column 9' })); // tapped again: cleared
+  await userEvent.type(screen.getByLabelText('What’s in R2C3'), 'Infra-Knife');
   expect(screen.getByRole('button', { name: 'Row 2, column 2' }).getAttribute('aria-pressed')).toBe('true');
   expect(screen.getByRole('button', { name: 'Row 1, column 9' }).getAttribute('aria-pressed')).toBe('false');
   await userEvent.click(screen.getByRole('button', { name: 'Add' }));
-  expect(appState.gear).toMatchObject([{ name: 'Kestrel', role: 'Flagship', superchargedSlots: ['R2C2', 'R2C3'] }]);
+  expect(appState.gear).toMatchObject([
+    { name: 'Kestrel', role: 'Flagship', superchargedSlots: ['R2C2', 'R2C3'], slotLabels: { R2C3: 'Infra-Knife' } }
+  ]);
   expect(card.textContent).toContain('Flagship');
   expect(card.textContent).toContain('Kestrel');
 });
