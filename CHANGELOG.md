@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.19.0] - 2026-10-28
+### Added
+- The sync relay's public usage summary also counts the vaults and push devices used in the last 30 days (migration `0004`), and the daily usage check opens one issue when active vaults reach a milestone, with the MCP package's npm downloads alongside. Aggregate numbers only, as before.
+
 ## [3.18.1] - 2026-10-27
 ### Changed
 - `nms-atlas-mcp` republished so the npm package lists the maintainer's current account details; no code changes. `docs/mcp.md` lists the `best_crafts` tool.

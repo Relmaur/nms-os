@@ -22,6 +22,7 @@ const DAILY = '23 4 * * *';
 const DAY_MS = 24 * 3_600_000;
 const RETENTION_MS = 365 * DAY_MS;
 const PUSH_RETENTION_MS = 60 * DAY_MS;
+const ACTIVE_MS = 30 * DAY_MS; // "active" in the status summary: used in the last 30 days
 const PUSH_TIMEOUT_MS = 5_000;
 const FLUSH_MS = 5 * 60_000;
 const FLUSH_EVERY = 50;
@@ -115,6 +116,8 @@ interface UsageRow {
   db_bytes: number;
   vaults: number | null;
   push_devices: number | null;
+  active_vaults: number | null;
+  active_push_devices: number | null;
 }
 let cached: { at: number; day: string; capacity: Capacity } | null = null;
 async function capacity(env: Env, now: number): Promise<Capacity> {
@@ -136,7 +139,8 @@ async function capacity(env: Env, now: number): Promise<Capacity> {
 }
 
 // The public usage summary for the daily upgrade check (.github/workflows/relay-usage.yml): shares (%) of the Free
-// plan's daily limits, the database size, and how many vaults and push devices there are. Aggregates only.
+// plan's daily limits, the database size, and how many vaults and push devices there are (all, and used in the last
+// 30 days). Aggregates only.
 async function status(env: Env, now: number): Promise<unknown> {
   const rows = await all<UsageRow>(env.DB.prepare('SELECT * FROM usage ORDER BY day DESC LIMIT 7'));
   const free = LIMITS.free;
@@ -150,8 +154,12 @@ async function status(env: Env, now: number): Promise<unknown> {
     databasePercent: percent(bytes / free.bytes),
     vaults: counted?.vaults ?? null,
     pushDevices: counted?.push_devices ?? null,
+    activeVaults: counted?.active_vaults ?? null,
+    activePushDevices: counted?.active_push_devices ?? null,
     days: rows.map(row => ({
       day: row.day,
+      // null before the day's count (or before migration 0004)
+      activeVaults: row.active_vaults ?? null,
       requests: row.requests,
       rowsRead: row.rows_read,
       rowsWritten: row.rows_written,
@@ -382,16 +390,23 @@ export default {
         await run(env.DB.prepare('DELETE FROM vaults WHERE updated_at < ?').bind(now - RETENTION_MS));
         await d1Push(env.DB).purgeDevices(now - PUSH_RETENTION_MS);
         // Counted once a day for the status summary, rather than on every status request.
-        const [counts] = await all<{ vaults: number; devices: number }>(
+        // A vault's updated_at moves on every write and, at most daily, on a read; a device's on every re-register.
+        const [counts] = await all<{ vaults: number; devices: number; activeVaults: number; activeDevices: number }>(
           env.DB.prepare(
-            'SELECT (SELECT COUNT(*) FROM vaults) AS vaults, (SELECT COUNT(*) FROM push_devices) AS devices'
-          )
+            'SELECT (SELECT COUNT(*) FROM vaults) AS vaults, (SELECT COUNT(*) FROM push_devices) AS devices, ' +
+              '(SELECT COUNT(*) FROM vaults WHERE updated_at >= ?1) AS activeVaults, ' +
+              '(SELECT COUNT(*) FROM push_devices WHERE updated_at >= ?1) AS activeDevices'
+          ).bind(now - ACTIVE_MS)
         );
         await flush(env.DB, now, true);
         await run(
-          env.DB.prepare('UPDATE usage SET vaults = ?, push_devices = ? WHERE day = ?').bind(
+          env.DB.prepare(
+            'UPDATE usage SET vaults = ?, push_devices = ?, active_vaults = ?, active_push_devices = ? WHERE day = ?'
+          ).bind(
             counts?.vaults ?? 0,
             counts?.devices ?? 0,
+            counts?.activeVaults ?? 0,
+            counts?.activeDevices ?? 0,
             utcDay(now)
           )
         );

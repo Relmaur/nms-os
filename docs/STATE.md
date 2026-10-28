@@ -2,7 +2,7 @@
 
 Read this before starting work; update it before ending any non-trivial task. Keep it current, not historical: completed work moves to `CHANGELOG.md`.
 
-_Last updated: 2026-10-27_
+_Last updated: 2026-10-28_
 
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
@@ -55,6 +55,7 @@ None.
 - **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is CC BY-SA 3.0, which allows this with attribution.
 
 ## Next steps
+0. **Owner, to go live with 3.19.0's active counts** (the workflow and code are pushed; Claude's deploy was blocked as a production deploy, so these two run from your machine): `pnpm exec wrangler d1 migrations apply atlas-sync --remote`, then `pnpm exec wrangler deploy` in `apps/sync`. Until then `/v1/status` reports no active counts and the milestone check waits. The first count lands after the next 04:23 UTC cron. The milestone (50 active vaults) is set in `.github/workflows/relay-usage.yml`.
 1. **Owner check done (2026-10-27):** an iPhone and the PC synced on the live site (a system renamed on the phone showed on the PC).
 2. **Owner check:** with the app installed on the iPhone, turn on "Alerts when the app is asleep", start a 2-minute timer, lock the phone, and confirm one notification with the timer's name arrives.
 3. The recommendations engine on `wiki/game-data.json`.

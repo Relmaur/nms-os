@@ -1,7 +1,8 @@
 # Daily check of the sync relay's use of Cloudflare's free plan (apps/sync, docs/deploy.md "Upgrading the relay").
 # Reads the relay's public /v1/status (aggregate numbers only), writes them to the run summary, and when any day of
 # the last week reached 60% of a free daily limit (or the relay was busy or full), opens or updates one issue so the
-# owner hears it's time to upgrade. Needs no Cloudflare token.
+# owner hears it's time to upgrade. It also opens, once, the issue "Sync: active-player milestone" when enough vaults
+# were used in the last 30 days. Needs no Cloudflare token.
 name: Relay usage
 
 on:
@@ -21,6 +22,10 @@ jobs:
       RELAY: https://atlas-sync.nms-os.workers.dev
       THRESHOLD: 60
       TITLE: 'Sync relay: time to upgrade?'
+      # Vaults used in the last 30 days that make the milestone: the owner's to tune.
+      MILESTONE_VAULTS: 50
+      MILESTONE_TITLE: 'Sync: active-player milestone'
+      NPM_PACKAGE: nms-atlas-mcp
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
     steps:
@@ -28,15 +33,21 @@ jobs:
         run: |
           curl -fsS --max-time 20 "$RELAY/v1/status" > status.json
           jq . status.json
+          # npm's public download count, context for the milestone (it includes mirrors and CI); never fails the run.
+          npm=$(curl -fsS --max-time 20 "https://api.npmjs.org/downloads/point/last-month/$NPM_PACKAGE" \
+            | jq -r '.downloads // "unknown"' || echo unknown)
+          npm=${npm:-unknown}
           {
             echo "### Sync relay usage ($(jq -r .plan status.json) plan, capacity today: $(jq -r .capacity status.json))"
             echo
             echo "Database: $(jq -r .databaseMB status.json) MB ($(jq -r .databasePercent status.json)% of the free 500 MB)."
             echo "Vaults: $(jq -r '.vaults // "not counted yet"' status.json). Push devices: $(jq -r '.pushDevices // "not counted yet"' status.json)."
+            echo "Used in the last 30 days: $(jq -r '.activeVaults // "not counted yet"' status.json) vaults, $(jq -r '.activePushDevices // "not counted yet"' status.json) push devices."
+            echo "\`$NPM_PACKAGE\` downloads in the last month: $npm."
             echo
-            echo "| Day (UTC) | Requests | Rows read | Rows written | Largest share of a free daily limit |"
-            echo "|---|---:|---:|---:|---:|"
-            jq -r '.days[] | "| \(.day) | \(.requests) | \(.rowsRead) | \(.rowsWritten) | \(.percent)% |"' status.json
+            echo "| Day (UTC) | Active vaults | Requests | Rows read | Rows written | Largest share of a free daily limit |"
+            echo "|---|---:|---:|---:|---:|---:|"
+            jq -r '.days[] | "| \(.day) | \(.activeVaults // "–") | \(.requests) | \(.rowsRead) | \(.rowsWritten) | \(.percent)% |"' status.json
           } | tee -a "$GITHUB_STEP_SUMMARY" > report.md
 
       - name: Open or update the upgrade issue when it's time
@@ -63,3 +74,21 @@ jobs:
           else
             gh issue create --title "$TITLE" --body-file body.md
           fi
+
+      # Once ever (closed issues count), so a milestone isn't announced twice; raise MILESTONE_VAULTS and change
+      # MILESTONE_TITLE to hear about the next one.
+      - name: Open the milestone issue when enough players are active
+        run: |
+          active=$(jq '.activeVaults // 0' status.json)
+          if [ "$active" -lt "$MILESTONE_VAULTS" ]; then
+            echo "${active} vaults used in the last 30 days (milestone at ${MILESTONE_VAULTS})."; exit 0
+          fi
+          if [ -n "$(gh issue list --state all --search "in:title \"$MILESTONE_TITLE\"" --json number --jq '.[0].number // empty')" ]; then
+            echo "Already asked."; exit 0
+          fi
+          {
+            echo "**${active}** vaults were used in the last 30 days (the milestone is ${MILESTONE_VAULTS})."
+            echo
+            cat report.md
+          } > body.md
+          gh issue create --title "$MILESTONE_TITLE" --body-file body.md

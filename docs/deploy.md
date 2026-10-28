@@ -25,7 +25,7 @@
   - The relay meters its own use of the plan's daily limits (requests, D1 rows read and written) in its `usage` table, with `PLAN = "free"` in `wrangler.toml`.
   - At 80% of any free daily limit it stops taking new vaults and push devices for the day. At 95% it answers everything but deletes with `503 { capacity: "full" }` and `Retry-After` (midnight UTC). The app then explains, links to Ko-fi, and stops calling until then. At 90% of the 500 MB database it stops taking new vaults.
   - Rate limits per client (IPv4, or IPv6 /64): 60 requests a minute; 3 new vaults or devices a minute; 4 push schedules a minute.
-  - `GET /v1/status` gives the last 7 days' usage as aggregate numbers (no ids, no IPs). `.github/workflows/relay-usage.yml` reads it daily and opens the issue "Sync relay: time to upgrade?" once any day reaches 60% of a free limit.
+  - `GET /v1/status` gives the last 7 days' usage as aggregate numbers (no ids, no IPs), including how many vaults and push devices were used in the last 30 days. `.github/workflows/relay-usage.yml` reads it daily and opens the issue "Sync relay: time to upgrade?" once any day reaches 60% of a free limit. It also opens "Sync: active-player milestone", once, when 50 vaults were used in the last 30 days (`MILESTONE_VAULTS`), and lists `nms-atlas-mcp`'s monthly npm downloads in the run summary.
   - **Upgrading the relay:**
     1. In Cloudflare, Workers & Pages → Plans → Workers Paid ($5/month).
     2. Set `PLAN = "paid"` in `apps/sync/wrangler.toml` and run `pnpm exec wrangler deploy`. Daily caps no longer apply; only the 10 GB database size does, and a run sends up to 40 pushes.
