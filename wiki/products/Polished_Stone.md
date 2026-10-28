@@ -46,6 +46,7 @@ Small amounts can also be gained from defeating Vigilant Stone guardians.
 ## Use
 
 ***Upgrades***
+
 **Polished Stone** is used to upgrade buildings in your [[Planetary Settlement]].
 
 ## Additional Information

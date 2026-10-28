@@ -34,6 +34,7 @@ data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Green","category":"Cons
 A highly refined food product, created in the Nutrient Processor.  It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Food such as this can be **highly valuable.**
+
 ## Source
 
 - **Nutrient Processor** · *Nutrient Injection* · 2.5 s per unit: 1 × [[Lumpen Doughnut]] + 1 × [[Monstrous Custard]] → 1 × Monstrous Doughnut

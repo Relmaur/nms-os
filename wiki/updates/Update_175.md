@@ -45,6 +45,7 @@ It addresses crashes, bugfixes, and new game content. The previous update is [[U
 ## Actual text
 
 **Visions: Introducing Update 1.75**
+
 Discover a more varied, more diverse universe in the Visions update. Introducing new planetary [[biome|biomes]], more colourful worlds, new [[fauna]] and [[flora]], archaeology, salvaging, and much more...
 
 ## New Planetary Biomes

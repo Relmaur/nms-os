@@ -168,7 +168,8 @@ The following [[Traveller|Travellers]] may be found in the Anomaly. Silicone/bio
 - [[Update 2.09.1|Beyond 2.09.1]] - Fixed a number of collision issues on the Space Anomaly.
 - [[Synthesis]] - New entries added to Starship and Exosuit upgrade trees, and to the **Construction Research Station** trees.
 - [[ExoMech]] - Added ExoMech related entries to the Exocraft and Construction Research Station trees.
-- [[Crossplay]] - Added purchasing of Upgrade Modules from **Iteration: Ares**- [[Desolation]] - Added two new modules to the Multi-tool upgrade tree.
+- [[Crossplay]] - Added purchasing of Upgrade Modules from **Iteration: Ares**
+- [[Desolation]] - Added two new modules to the Multi-tool upgrade tree.
 - [[Companions]] - Added an **Egg Sequencer**.
 - [[Prisms]] - Added a **Synthesis Laboratory**.
 - [[Outlaws]] - **Cargo Scan Deflector** added to the Starship upgrade tree.

@@ -42,6 +42,7 @@ data: {"fields":{"image":"ThePurgeAtlas.jpg","type":"Primary","series":"Artemis 
 ### Race to the Core
 
 *I have faced the Atlas once more. I do not know how to process what I have learned. The Atlas is everywhere because we are all part of the Atlas. It is a machine, a simulation. We have no meaning beyond it.<br>But the machine is being destroyed. Something is happening to the Atlas. I can feel it pulling me towards the centre of the galaxy, to some great cleansing...*
+
 The player will be tasked with making their way to the final Atlas Interface. Each time the player uses their [[starship]]'s [[Hyperdrive]] to warp to another system, they will permanently acquire a [[Glyph]]. Additionally, special events will occur after specific warps.
 
 If the player has not already addressed the mission update for [[The Space Anomaly]] near the end of 16 / 16, they may instead summon and board the [[Space Anomaly]] during this mission, before the player warps to the final interface.

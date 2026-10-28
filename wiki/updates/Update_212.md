@@ -89,6 +89,7 @@ While the team has quietly continued to develop and release these improvements f
 **Justin Clark** from Gamespot (9/10) said:
 
 *No Man’s Sky's most consistently powerful experience of seamless space travel nearly reduced me to tears as the upper atmosphere melted away into the silence and deep wonder of the galaxy.*
+
 **Keith Stuart** from The Guardian (5/5) described Beyond as:
 
 *Soulful, technically proficient and at times almost tearfully beautiful.*

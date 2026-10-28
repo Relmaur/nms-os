@@ -48,21 +48,25 @@ Alongside the expedition, we are also releasing a small update with a number of 
 
 Each expedition will run for two weeks, and they have been tweaked to account for this shorter time window. Each expedition has also been given a new starting planet and route through the galaxy. They will run back-to-back, as follows:
 
-|   |   |
-| --- | --- |
-| [[Expedition 1: The Pioneers\|Expedition 1 (Pioneers)]]: **24th November – 7th December**|- |   |
+|   |
+| --- |
+| [[Expedition 1: The Pioneers\|Expedition 1 (Pioneers)]]: **24th November – 7th December** |
+|   |
 
-|   |   |
-| --- | --- |
-| [[Expedition 2: Beachhead\|Expedition 2 (Beachhead/Normandy)]]: **8th December – 21st December**|- |   |
+|   |
+| --- |
+| [[Expedition 2: Beachhead\|Expedition 2 (Beachhead/Normandy)]]: **8th December – 21st December** |
+|   |
 
-|   |   |
-| --- | --- |
-| [[Expedition 3: Cartographers\|Expedition 3 (Cartographers)]]: **22nd December – 4th January**|- |   |
+|   |
+| --- |
+| [[Expedition 3: Cartographers\|Expedition 3 (Cartographers)]]: **22nd December – 4th January** |
+|   |
 
-|   |   |
-| --- | --- |
-| [[Expedition 4: Emergence\|Expedition 4 (Emergence)]]: **5th January – 19th January**|- |   |
+|   |
+| --- |
+| [[Expedition 4: Emergence\|Expedition 4 (Emergence)]]: **5th January – 19th January** |
+|   |
 
 ### Development Update
 

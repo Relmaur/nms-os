@@ -32,42 +32,14 @@ data: {"fields":{"image":"Render.landinggear.png","category":"Starship","subcate
 ## Upgrade properties
 
 Launch Thruster Upgrades grant at least one of the following bonuses:
-- *Launch Cost*- *Boost*{| class="wikitable" style="text-align:center"
-! rowspan="2" |
-! rowspan="2" |**Module****Name**! rowspan="2" |**Stats**Drawn
-! rowspan="2" |*Module**Improves*! colspan="2" | C-class
-! colspan="2" | B-class
-! colspan="2" | A-class
-! colspan="2" | S-class
-! colspan="2" | X-class
-|-
-!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!Min
-!Max
-|-
-|style="background:#2177C8;border:none" rowspan="2" |
-| rowspan="2" |[[Launch Thruster Upgrade]]
-| rowspan="2" style="text-align:left" |C-class1-2(primarily 2 stats)<br>B-class/A-class/S-class2<br>X-class1-2(primarily 2 stats)
-|*Launch Cost*| -5
-| -10
-| -10
-| -15
-| -15
-| -20
-| colspan="2" | -20
-| -5
-| -25
-|-
-|*Boost*|0
-|1
-|2
-|5
-|5
-|8
-|8
-|10
-|0
-|10
-|}
+- *Launch Cost*
+- *Boost*
+
+|   | **Module**<br>**Name** | **Stats**<br>Drawn | *Module*<br>*Improves* | C-class | B-class | A-class | S-class | X-class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | Min | Max |   |   |   |
+|   | [[Launch Thruster Upgrade]] | C-class1-2(primarily 2 stats)<br>B-class/A-class/S-class2<br>X-class1-2(primarily 2 stats) | *Launch Cost* | -5 | -10 | -10 | -15 | -15 | -20 | -20 | -5 | -25 |
+| *Boost* | 0 | 1 | 2 | 5 | 5 | 8 | 8 | 10 | 0 | 10 |   |   |
 
 Up to three Launch Thruster Upgrades can be installed in each inventory of the starship. Installing four or more upgrades in a given inventory will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -81,25 +53,30 @@ Launch Thruster Upgrades can only be obtained from opening Launch Thrusters Modu
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Launch Thruster Upgrades**|- |   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Baryonic | Nozzles | -20% | +9% |   | | De-Ionised | Fuel Injector | -20% | +9% |   | | De-Ionised | Orbit Synchroniser | -20% | +10% |   | | Flawless | Di-hydrogen Cycler | -20% | +9% |   | | Flawless | Nozzles | -20% | +9% |   | | Quantum | Gyroscope | -20% | +9% |   | | Quantum | Launch Computer | -20% | +9% |   | | Quantum | Nozzles | -20% | +10% |   | |
+|   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-class Launch Thruster Upgrades** |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Baryonic | Nozzles | -20% | +9% |   | | De-Ionised | Fuel Injector | -20% | +9% |   | | De-Ionised | Orbit Synchroniser | -20% | +10% |   | | Flawless | Di-hydrogen Cycler | -20% | +9% |   | | Flawless | Nozzles | -20% | +9% |   | | Quantum | Gyroscope | -20% | +9% |   | | Quantum | Launch Computer | -20% | +9% |   | | Quantum | Nozzles | -20% | +10% |   | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **A-class Launch Thruster Upgrades** |   |   |   |
+|   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | High Speed | Nozzles | -17% | +6% |   | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **B-class Launch Thruster Upgrades** |   |   |   |
+|   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Optical | Exhaust Vents | -13% | +3% |   | |
 
 |   |   |   |   |   |
 | --- | --- | --- | --- | --- |
-| **A-class Launch Thruster Upgrades**|- |   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | High Speed | Nozzles | -17% | +6% |   | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **B-class Launch Thruster Upgrades**|- |   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Optical | Exhaust Vents | -13% | +3% |   | |
+| **C-class Launch Thruster Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Dynamic | Nozzles | -6% | +1% |   | | Efficient | Gyroscope | -6% | +1% |   | |
 
 |   |   |   |   |   |   |
 | --- | --- | --- | --- | --- | --- |
-| **C-class Launch Thruster Upgrades**|- |   | Prefix | Suffix | Launch Cost | Boost | Screenshot | | --- | --- | --- | --- | --- | | Dynamic | Nozzles | -6% | +1% |   | | Efficient | Gyroscope | -6% | +1% |   | |
-
-|   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- |
-| **X-class Launch Thruster Upgrades**|- |   | Prefix | Suffix | Launch Cost | Boost | Procedural ID | | --- | --- | --- | --- | --- | | Outlawed Upgraded | Nozzles | -25% | +10% | 48604 | | 'Irregular' Optical | Nozzles | -25% | +10% | 85807 | | Illegal Upgraded Di-Hydrogen | Cycler | -23% | +10% | 13549 | |
+| **X-class Launch Thruster Upgrades** |   |   |   |   |   |
+|   | Prefix | Suffix | Launch Cost | Boost | Procedural ID | | --- | --- | --- | --- | --- | | Outlawed Upgraded | Nozzles | -25% | +10% | 48604 | | 'Irregular' Optical | Nozzles | -25% | +10% | 85807 | | Illegal Upgraded Di-Hydrogen | Cycler | -23% | +10% | 13549 | |
 
 ## Additional information
 

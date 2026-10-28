@@ -1,0 +1,53 @@
+// Cited facts (ADR-0003): rules the wiki states in prose, not in an infobox, turned into data only together with the
+// sentence that says so. The wiki sync defines them (packages/wiki/src/facts.ts), checks each quote against its
+// archived page, and writes the ones it found to wiki/facts.json. A fact whose quote is gone is left out of that
+// file, so nothing here ever applies a rule the mirror can no longer show.
+import { z } from 'zod';
+
+export const ClassCountsSchema = z.object({ C: z.int(), B: z.int(), A: z.int(), S: z.int() });
+// Technology inventory maximums, in slots, by class; `any` when the wiki gives one number for every class.
+export const TechMaxSchema = z.object({
+  columns: z.int().positive(),
+  slots: z.partialRecord(z.enum(['C', 'B', 'A', 'S', 'any']), z.int().positive())
+});
+const SlotListSchema = z.array(z.string().regex(/^R\d{1,2}C\d{1,2}$/));
+
+// The shape of each fact's value, by id. A fact the sync defines must match its schema here (a unit test checks).
+export const FACT_VALUES = {
+  'supercharged-per-class': ClassCountsSchema,
+  'supercharged-fixed-count': z.int().positive(),
+  'exosuit-supercharged-slots': SlotListSchema,
+  'multitool-tech-max': TechMaxSchema,
+  'starship-tech-max': TechMaxSchema,
+  'exosuit-tech-max': TechMaxSchema
+} as const;
+export type FactId = keyof typeof FACT_VALUES;
+export type FactValue<Id extends FactId> = z.infer<(typeof FACT_VALUES)[Id]>;
+
+export const CitedFactSchema = z.object({
+  page: z.string(), // the wiki page's title
+  path: z.string(), // its archived copy, for a Codex link
+  url: z.string(),
+  revId: z.int(),
+  quote: z.string(),
+  value: z.unknown()
+});
+export type CitedFact = z.infer<typeof CitedFactSchema>;
+
+export const FactsFileSchema = z.object({
+  schema: z.literal(1),
+  facts: z.record(z.string(), CitedFactSchema)
+});
+export type FactsFile = z.infer<typeof FactsFileSchema>;
+
+// The fact and its typed value, or null when it is missing or its value no longer has the expected shape.
+export function getFact<Id extends FactId>(
+  file: FactsFile | null,
+  id: Id
+): { fact: CitedFact; value: FactValue<Id> } | null {
+  const fact = file?.facts[id];
+  if (!fact) return null;
+  const parsed = FACT_VALUES[id].safeParse(fact.value);
+  // The schema for `id` produces FactValue<id>; TypeScript can't narrow the union of schemas by a generic key.
+  return parsed.success ? { fact, value: parsed.data as FactValue<Id> } : null;
+}

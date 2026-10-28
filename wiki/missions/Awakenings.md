@@ -68,7 +68,9 @@ data: {"fields":{"image":"nmsMisc_Awakenings.jpg","type":"Primary","series":"Art
 ### Introduction
 
 *I find myself alone on a strange world, unequipped and in danger. I have no memory of how I got here, no sense of a before.*
+
 *My Exosuit at least seems to know what it's doing, and I am not dead yet...*
+
 The player will spawn on a hazardous planet (valid [[Biome|Biomes]] for the planet: [[Biome - Toxic|Toxic]], [[Biome - Scorched|Scorched]], [[Biome - Frozen|Frozen]], [[Biome - Irradiated|Irradiated]]). They should mine 75 [[Ferrite Dust]] as soon as possible to repair the [[Scanner]], as they will spawn with low [[Hazard Protection]] and finding [[Sodium]] without a functioning Scanner can be difficult. Players are advised to stockpile Sodium from yellow sodium rich flowers and/or hide in caves if/when storms occur. Also, the player should find a cave to recharge their Hazard Protection and mine some [[Cobalt]] to make [[Ion Battery|Ion Batteries]] for recharging protection outside of the cave.
 
 It is strongly advised that the player does not receive help from other players during this opening mission; as being given items needed will skip tutorials and fail to make log entries. Worst of all, it will stop the player from receiving certain blueprints, such as the [[Base Computer]] module or [[Hermetic Seal]], which cannot be found elsewhere in the game.
@@ -88,6 +90,7 @@ Once the Launch Thrusters are repaired (and restored to 50% fuel capacity), the 
 ### Following Signals
 
 *The crashed ship responded to my commands, confirming my suspicion that it belonged to me. I have repaired the damage and taken it up to space, but the cause of my crash is still a mystery.*
+
 Once the transmission has ended, the player will be directed to a location on a neighboring planet in their starting star system. Pulse Drive usage is advised in order to avoid lingering long enough to be targeted by [[pirate|pirates]]. If the Pulse Engine somehow runs out of fuel on the way, additional fuel can be harvested from [[asteroid|asteroids]] by destroying them with the [[Photon Cannon]].
 
 After landing on this second planet, the player will be tasked with following the signal to its point of origin. Flying there via starship instead of walking on the planet's surface may preferred to cut down majorly on travel time, unless the player prefers scanning the planet's minerals, flora and fauna for Units/Nanite Clusters and discovering [[Knowledge Stone|Knowledge Stones]] for learning the language of the system's dominant lifeform ([[Gek]], [[Vy'keen]] or [[Korvax]]).
@@ -113,6 +116,7 @@ Once the player has the materials, they must install the Hyperdrive on their sta
 ### Warp Fuel
 
 *A strange signal led me to the rusted remains of a freighter. I found a hyperdrive blueprint among the wreckage, accompanied by a strange message. It appears that someone has been leaving me messages.*
+
 Though the player's starship now has a Hyperdrive, it will not have the fuel required to initiate interstellar travel. At this point, the player must return to space and scan nearby planets with the starship's scanner to reveal a signal. Returning to the newly obtained signal on the player's starting planet will lead them to an [[Abandoned Building]] with an infested terminal. The player should be careful not to disturb the [[Whispering Egg|Whispering Eggs]] near the base. Destroying them will spawn [[Biological Horror|Biological Horrors]], which are dangerously overpowered for a starting player and spawn. Instead, the player should walk into the building and remove [[Residual Goop]] from said terminal to obtain a unit of [[Antimatter]] and the blueprint for Antimatter Housing.
 
 [[Antimatter Housing]] can be crafted using 30 [[Oxygen]] and 50 Ferrite Dust. Once this component is built, then the player can combine it with Antimatter to produce a [[Warp Cell]], an energy source for a starship's Hyperdrive. After the player fuels their Hyperdrive to 20% capacity, they will have to fly into space and pick a nearby [[system colours|yellow coloured]] system to warp to. (If the player somehow loses the Antimatter, Warp Cell or fueled Hyperdrive before they warp, they will be directed through the fallback mission [[Replacement Antimatter]] in order to get back on track.)
@@ -120,9 +124,11 @@ Though the player's starship now has a Hyperdrive, it will not have the fuel req
 ### The Monolith
 
 *I constructed the hyperdrive. Is this what my mysterious benefactor intended? Am I really who they were leaving messages for, or have I stumbled on some business in which I am not wanted? There is nothing for it but to continue to follow the trail.*
+
 Upon arrival in this new system, the starship's Hyperdrive will be drained of any remaining fuel (in case a player decided to use more than one Warp Cell in a previous system), and the starship's guidance system will be interrupted by a mysterious message. The player will then need to travel to a new waypoint on a nearby planet. Upon approach, the marked structure will be revealed to be a [[Monolith]], and interacting with it will grant a Warp Cell as well as some more cryptic messages.
 
 *The lifeforms who left this trail have taught me all I need in order to move between the stars. I should continue my search.*
+
 Returning to space after receiving the Warp Cell will begin the secondary mission [[Base Computer Archives]]. The player has to warp to another yellow system to continue the primary mission.
 
 ### Transition into Alone Amidst the Stars
@@ -130,6 +136,7 @@ Returning to space after receiving the Warp Cell will begin the secondary missio
 After the second warp, the player will receive a transmission from a new unknown source which must be answered.
 
 *I have received a strange communication from an unknown source. A voice spoke to me, though it almost seemed as if they were speaking to someone else. They were cut off as strangely as they began, and I received a set of coordinates.*
+
 The player must now visit the potential site of a [[Crashed Ship]] and access its Distress Beacon to extract the blueprint for an [[Advanced Mining Laser]] (or another [[Multi-tool]] technology), completing this mission and starting the next mission of the [[Artemis Path]], [[Alone Amidst the Stars]]. Depending on the type of Crashed Ship, the Distress Beacon may need to be repaired first before it can be accessed; as well, a starship may not always be present.
 
 ## Rewards

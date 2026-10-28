@@ -37,6 +37,7 @@ data: {"fields":{"name":"Daily Research: Trade / Collection","image":"NmsMisc_Mi
 This part is a continuation of the Community Research (mission 9) mission, but specific to this mission.
 
 **Quicksilver Synthesis Bot**
+
 Input data to my storage banks, and I will synthesise reward output across all realities. A range of data is of utility to the Space Anomaly. Today, do you wish to contribute to TRADE / COLLECTION, EXPLORATION or DESTRUCTION?
 - Select 'Trade / Collection'
 Thank you! You have selected TRADE / COLLECTION.<br>
@@ -59,6 +60,7 @@ After collecting three pieces of Storm Crystals the mission objective will be up
 The player will be contacted again through the communicator, or after using the starship's scanner.
 
 **Quicksilver Synthesis Bot**
+
 Greetings! I am pleased to see your safe return, Traveller!<br>
 Did you successfully retrieve the requested crystal formations?
 - Transmit

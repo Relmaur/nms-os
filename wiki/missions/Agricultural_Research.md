@@ -79,4 +79,5 @@ Agricultural Research Walkthrough
 - [[Atlas Rises]] - Most of the farm-related plants were renamed and certain tasks changed.
 - [[Update 1.64|NEXT 1.64]] - Fixed an issue where players could fail to be given the blueprints for Hydroponic Trays. Fixed an issue where players could fail to be given the blueprints for the plants required by the Farmer.
 - [[Abyss]] - *Hidden changes:* After the Mordite Root step now it provides a blueprint for the [[NipNip Buds]] [[curiosity]] wrongly, which cannot be crafted, instead of the NipNip plant.
-- [[Visions]] - NipNip blueprint can now be acquired from the Farmer after their mission chain is complete. *Wiki note: The mission still gives the wrong recipe.*- [[Update 1.76|Visions 1.76]] - Fixed an issue where the Farmer would request that Coprite was planted without the player knowing the Coprite recipe. Fixed an issue where the Farmer would teach the wrong NipNip recipe.
+- [[Visions]] - NipNip blueprint can now be acquired from the Farmer after their mission chain is complete. *Wiki note: The mission still gives the wrong recipe.*
+- [[Update 1.76|Visions 1.76]] - Fixed an issue where the Farmer would request that Coprite was planted without the player knowing the Coprite recipe. Fixed an issue where the Farmer would teach the wrong NipNip recipe.

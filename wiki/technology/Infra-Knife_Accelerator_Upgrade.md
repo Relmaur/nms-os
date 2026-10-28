@@ -31,14 +31,16 @@ data: {"fields":{"image":"RENDER.PHOTONACCELMOD.png","category":"Starship","subc
 ## Upgrade Properties
 
 Infra-Knife Accelerator Upgrades grant at least one of the following bonuses:
-- *Heat Dispersion*- *Fire Rate*- *Damage*
+- *Heat Dispersion*
+- *Fire Rate*
+- *Damage*
 
-|   | **Module****Name**! rowspan="2" |**Stats**Drawn | *Module**Improves*! colspan="2" | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Min**!**Max**!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!Min | Max |   |   |   |   |   |   |   |   |   |   |   |
-|   | [[Infra-Knife Accelerator Upgrade]] | C 1-2<br>B 2-3<br>A/S 3<br>X 1-3 | *Fire Rate*| +1% | +5% | +1% | +5% | +5% | +10% | +5% | +10% | +1% | +15% |
-| *Heat Dispersion*| +2% | +3% | +4% | +5% | +6% | +7% | +8% | +9% | +1% | +13% |   |   |   |
-| *Damage*| +1% | +2% | +2% | +4% | +3% | +5% | +4% | +5% | +1% | +6% |   |   |   |
+|   | **Module**<br>**Name** | **Stats**<br>Drawn | *Module*<br>*Improves* | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | Min | Max |   |   |   |   |
+|   | [[Infra-Knife Accelerator Upgrade]] | C 1-2<br>B 2-3<br>A/S 3<br>X 1-3 | *Fire Rate* | +1% | +5% | +1% | +5% | +5% | +10% | +5% | +10% | +1% | +15% |
+| *Heat Dispersion* | +2% | +3% | +4% | +5% | +6% | +7% | +8% | +9% | +1% | +13% |   |   |   |
+| *Damage* | +1% | +2% | +2% | +4% | +3% | +5% | +4% | +5% | +1% | +6% |   |   |   |
 
 Up to three Infra-Knife Accelerator Upgrades can be installed in each inventory of the starship. Installing four or more upgrades in a given inventory will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -79,25 +81,30 @@ If # of Types roll is less than 3, the technology will not have access to all 3 
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **S-class Infra-Knife Accelerator Upgrades**|- |   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **S-class Infra-Knife Accelerator Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **A-class Infra-Knife Accelerator Upgrades**|- |   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **A-class Infra-Knife Accelerator Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **B-class Infra-Knife Accelerator Upgrades**|- |   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **B-class Infra-Knife Accelerator Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **C-class Infra-Knife Accelerator Upgrades**|- |   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **C-class Infra-Knife Accelerator Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Infra-Knife Accelerator Upgrades**|- |   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Outlawed Photonic | Amplifier | +6% | +13% | +15% | 48604 | | Black Market Ultraviolet | Resonator | +6% | +13% | +15% | 99710 | | Banned Evaporative | Resonator | +6% | +13% | +15% | 99744 | | Pirate Ultraviolet | De-Limiter | +6% | +13% | +15% | 99745 | | Smuggled Evaporative | De-Limiter | +6% | +13% | +15% | 99769 | | 'Irregular' Infrared | Resonator | +6% | +13% | +15% | 99818 | | Prohibited Photonic | Mirror | +6% | +13% | +15% | 99863 | | Forbidden Infrared | Splitter | +6% | +13% | +15% | 99976 | | Forbidden Cadmium | Filament | +6% | +13% | +14% | 05214 | | Forbidden Evaporative | Splitter | +5% | +2% | +15% | 85041 | | Suspect Evaporative | Accelerator | +6% | - | +14% | 10833 | | Modified Cadmium | Filament | +5% | - | +15% | 27524 | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **X-class Infra-Knife Accelerator Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Damage | Heat Dispersion | Fire Rate | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Outlawed Photonic | Amplifier | +6% | +13% | +15% | 48604 | | Black Market Ultraviolet | Resonator | +6% | +13% | +15% | 99710 | | Banned Evaporative | Resonator | +6% | +13% | +15% | 99744 | | Pirate Ultraviolet | De-Limiter | +6% | +13% | +15% | 99745 | | Smuggled Evaporative | De-Limiter | +6% | +13% | +15% | 99769 | | 'Irregular' Infrared | Resonator | +6% | +13% | +15% | 99818 | | Prohibited Photonic | Mirror | +6% | +13% | +15% | 99863 | | Forbidden Infrared | Splitter | +6% | +13% | +15% | 99976 | | Forbidden Cadmium | Filament | +6% | +13% | +14% | 05214 | | Forbidden Evaporative | Splitter | +5% | +2% | +15% | 85041 | | Suspect Evaporative | Accelerator | +6% | - | +14% | 10833 | | Modified Cadmium | Filament | +5% | - | +15% | 27524 | |
 
 ## Release History
 

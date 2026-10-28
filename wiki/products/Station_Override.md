@@ -46,6 +46,7 @@ It can also be obtained as a mission reward from the Bounty Master found in Outl
 Attempting to input the code at the [[Station Core]] will cause the code to be detected as counterfeit and removed from the inventory:
 
 *Counterfeit code detected... ACCESS DENIED*
+
 Currently only usable in Trading.
 
 ## Release history

@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --<br>
 --
 - Accept
@@ -83,6 +84,7 @@ When one is destroyed, the mission will be updated again, head to space for cont
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 
@@ -104,6 +106,7 @@ Return to space and contact Polo again by using the starship's scanner.
 The broadcast is amplified and the research zone extended throughout the galaxy, allowing to kill Sentinels on any planets.
 
 **Specialist Polo**
+
 --
 - Transmit data
 - End transmission.
@@ -118,6 +121,7 @@ After killing 25 Sentinels, besides the first Sentinel Quad, the research data l
 Return to space and contact Polo again by using the starship's scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 1. --

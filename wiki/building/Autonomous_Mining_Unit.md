@@ -66,4 +66,5 @@ It would appear as if an intermittent internet connection is a cause for a lot o
 - [[Update 1.10|Foundation]] - Added as a base building product.
 - [[Atlas Rises]] - Blueprint changed, formerly used [[Voltaic Cell]], [[Insulating Gel]], and [[Copper wire]].
 - [[NEXT]] - Blueprint changed, formerly used Voltaic cell, [[Heat Capacitor]], and [[Lubricant]].
-- [[Update 1.63|NEXT 1.63]] - Fixed an issue that caused the AMU to mine an incorrect resource from Resource Deposits. *Wiki note: This bug is still not fixed entirely.*- [[Update 3.00|Origins 3.0]] - Blueprint changed, formerly used [[Advanced Ion Battery]], which is now obsolete. Replaced with [[Ion Battery]]. Range no longer needs to be within base range.
+- [[Update 1.63|NEXT 1.63]] - Fixed an issue that caused the AMU to mine an incorrect resource from Resource Deposits. *Wiki note: This bug is still not fixed entirely.*
+- [[Update 3.00|Origins 3.0]] - Blueprint changed, formerly used [[Advanced Ion Battery]], which is now obsolete. Replaced with [[Ion Battery]]. Range no longer needs to be within base range.

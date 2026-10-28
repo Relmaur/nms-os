@@ -40,9 +40,10 @@ Increase the base capacity of the Hazard Protection system, allowing the user to
 Radiation Protection Upgrades grant the following bonus:
 - *Radiation Protection*
 
-| **Module****Name**! rowspan="2" |*Module**Improves*! C-class | B-class | A-class | S-class |   |   |
+| **Module**<br>**Name** | *Module*<br>*Improves* | C-class | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- | --- |
-| **Power Duration**!**Power Duration**!**Power Duration**!**Power Duration**|- | [[Radiation Protection Module]] | *Radiation Protection Duration*| - | Short | Medium | Long |
+| **Power Duration** | **Power Duration** | **Power Duration** | **Power Duration** |   |   |
+| [[Radiation Protection Module]] | *Radiation Protection Duration* | - | Short | Medium | Long |
 
 Up to three protections upgrades can be installed in the technology section of the Exosuit. Installing four or more upgrades in the technology section of the Exosuit will disable all upgrades of that type until the upgrade count is reduced to three or less.
 

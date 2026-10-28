@@ -92,6 +92,7 @@ In this mission, the player will present Atlantideum to a number of computerized
 - The computer of the player's personal [[starship]].
 
 Each computer will reveal a small binary sequence. This translates to: *motherhome | she grows | she lives | she is near*
+
 The starship will note that it has located a fragment of "New Atlantid".  The player is directed to enter space and activate their pulse drive to search for it.  After a short period of time in pulse drive, a special [[Space Encounter]] will trigger.  The player receives a starship communication, which includes logs stored in the fragment.  The final log references being saved by [[The Atlas]], and the player extracts some language data from the fragment.
 
 ### Audience with the Autophage

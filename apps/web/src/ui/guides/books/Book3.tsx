@@ -16,16 +16,16 @@ export function Book3() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
           <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
-            <strong className="text-purple-300 block mb-1">Rule 1: Strictly Tied to Class</strong> Every S-Class ship,
-            Multi-Tool, or Freighter gets <strong>4 Supercharged Slots</strong> (A=3, B=2, C=1). Royal, Experimental,
-            and Sentinel tools never get more than 4 slots; they have higher hidden base stat multipliers instead.
+            <strong className="text-purple-300 block mb-1">Rule 1: Strictly Tied to Class</strong> Starships,
+            Multi-Tools and Freighters get <strong>1 supercharged slot in Class C, 2 in B, 3 in A and 4 in S</strong>.
+            Upgrading the class can reveal more, up to 4 at S-Class. The Exosuit and Exocraft always have{' '}
+            <strong>3</strong>, in the same places for every player.
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900 border border-purple-500/40">
             <strong className="text-amber-300 block mb-1">Rule 2: Why a New Multi-Tool Can Show 0 SC Slots</strong>{' '}
-            Supercharged slots spawn anywhere in the <strong>first 40 grid coordinates (Rows 1–4, Cols 1–10)</strong>. A
-            tool that starts with only part of that grid unlocked (say <strong>3 Rows &times; 8 Cols</strong>) can have
-            its SC slots inside the locked <strong>Cols 9–10</strong> or <strong>Row 4</strong>! Unlocking those slots
-            reveals them immediately.
+            Their position is random, though <strong>almost always in the first 3 or 4 rows</strong> of the technology
+            grid, and two can touch. A tool with only part of that grid unlocked can keep them in slots it hasn’t
+            unlocked yet: they show up as the inventory grows.
           </div>
           <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
             <strong className="text-cyan-300 block mb-1">Rule 3: Harmonic Camp Cabinet Lock</strong> Reloading a Save
@@ -34,6 +34,16 @@ export function Book3() {
             Rifle.
           </div>
         </div>
+        <p className="text-xs text-slate-400">
+          Rules 1 and 2 follow the wiki’s{' '}
+          <a
+            href="wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md"
+            className="text-cyan-300 hover:text-cyan-200 underline"
+          >
+            Supercharged Slot
+          </a>{' '}
+          page; the slot picker in Ships &amp; Multi-Tools checks your marks against it.
+        </p>
       </div>
 
       {/* 2. Choosing a flagship: the layout of its supercharged slots + an example grid */}

@@ -34,9 +34,10 @@ data: {"fields":{"image":"RENDER.PROTECTHEAT.png","category":"Exosuit","subcateg
 
 Thermal Protection Upgrades (Heat) function similarly to [[Hazard Protection]] but only protect the player from heat damage. Protection effectiveness depends on upgrade class (S-class upgrades offer the best protection).
 
-| **Module****Name**! rowspan="2" |*Module**Improves*!B-class | A-class | S-class |   |   |
+| **Module**<br>**Name** | *Module*<br>*Improves* | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- |
-| **Power Duration**!**Power Duration**!**Power Duration**|- | [[Thermal Protection Upgrade (Heat)]] | *Heat Protection Duration*|Short | Medium | Long |
+| **Power Duration** | **Power Duration** | **Power Duration** |   |   |
+| [[Thermal Protection Upgrade (Heat)]] | *Heat Protection Duration* | Short | Medium | Long |
 
 The protection offered by Thermal Protection Upgrades (Heat), unlike that offered by the [[Exosuit]]'s built-in thermal protection, does not recharge automatically while in locations without a significant heat hazard. Thermal Protection Upgrades (Heat) must be manually recharged as needed using [[Phosphorus]] (6.25%/unit) or [[Ion Battery|Ion Batteries]] (100%/unit).
 

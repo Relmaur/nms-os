@@ -42,8 +42,9 @@ Underwater Protection Upgrades grant the following bonus:
 
 |   |   |   |   |   |   |
 | --- | --- | --- | --- | --- | --- |
-|   | **Module****Name**! rowspan="2" |*Module**Improves*!B-class | A-class | S-class |   |   |
-| **Power Duration**!**Power Duration**!**Power Duration**|- |   | [[Underwater Protection Module]] | *Underwater Protection *|Short | Medium | Long |
+|   | **Module**<br>**Name** | *Module*<br>*Improves* | B-class | A-class | S-class |
+| **Power Duration** | **Power Duration** | **Power Duration** |   |   |   |
+|   | [[Underwater Protection Module]] | *Underwater Protection * | Short | Medium | Long |
 
 Up to three protections upgrades can be installed in the technology section of the Exosuit. Installing four or more upgrades in the technology section of the Exosuit will disable all upgrades of that type until the upgrade count is reduced to three or less.
 

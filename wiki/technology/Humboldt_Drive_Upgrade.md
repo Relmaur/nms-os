@@ -32,8 +32,10 @@ data: {"fields":{"image":"RENDER.SUBMARINEENGINEMOD.png","category":"Exocraft","
 ## Upgrade properties
 
 Humboldt Drive Upgrades grant at least one of the following bonuses:
-- *Top Speed*- *Fuel Efficiency:* Reduces all mobility-related fuel costs
+- *Top Speed*
+- *Fuel Efficiency:* Reduces all mobility-related fuel costs
 - *Boost Power*
+
 Up to three Humboldt Drive Upgrades can be installed in the inventory of a Nautilon submarine --- installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
 ## Crafting
@@ -44,21 +46,25 @@ Humboldt Drive Upgrades can only be obtained from opening Humboldt Drive Modules
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| S-class **Humboldt Drive Upgrades**|- |   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Hydrothermal | Pelagic Cells | +15% | -20% | +69% | 32052 | | Hydrothermal | Ballast Unit | +15% | -19% | +69% | 91091 | | High Speed | Marine Jets | +15% | -20% | +68% | 25089 | | Supercharged | Turbine Intakes | +15% | -17% | +69% | 96826 | | Supercharged | Turbine Intakes | +15% | -20% | +67% | 16973 | | Supercharged | Bathyal Dynamo | +15% | -20% | +62% | 05908 | | Flawless | Bathyal Module | +11% | -16% | +67% | - | | High Pressure | Ballast Unit | +13% | -16% | +62% |   | | High Speed | Exhaust Vent | +14% | -16% | +58% |   | | High Speed | Turbine Controller | +14% | -19% | +65% |   | | Supercharged | Exhaust Vent | +11% | -16% | +55% |   | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| S-class **Humboldt Drive Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Hydrothermal | Pelagic Cells | +15% | -20% | +69% | 32052 | | Hydrothermal | Ballast Unit | +15% | -19% | +69% | 91091 | | High Speed | Marine Jets | +15% | -20% | +68% | 25089 | | Supercharged | Turbine Intakes | +15% | -17% | +69% | 96826 | | Supercharged | Turbine Intakes | +15% | -20% | +67% | 16973 | | Supercharged | Bathyal Dynamo | +15% | -20% | +62% | 05908 | | Flawless | Bathyal Module | +11% | -16% | +67% | - | | High Pressure | Ballast Unit | +13% | -16% | +62% |   | | High Speed | Exhaust Vent | +14% | -16% | +58% |   | | High Speed | Turbine Controller | +14% | -19% | +65% |   | | Supercharged | Exhaust Vent | +11% | -16% | +55% |   | |
+
+|   |   |   |
+| --- | --- | --- |
+| A-class **Humboldt Drive Upgrades** |   |   |
+|   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | |
+
+|   |   |   |
+| --- | --- | --- |
+| B-class **Humboldt Drive Upgrades** |   |   |
+|   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | |
 
 |   |   |   |   |
 | --- | --- | --- | --- |
-| A-class **Humboldt Drive Upgrades**|- |   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | |
-
-|   |   |   |   |
-| --- | --- | --- | --- |
-| B-class **Humboldt Drive Upgrades**|- |   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| C-class **Humboldt Drive Upgrades**|- |   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | | Reinforced | Turbine Controller | - | +2% | - | ? | |
+| C-class **Humboldt Drive Upgrades** |   |   |   |
+|   | Prefix | Suffix | Top Speed | Fuel Usage | Acceleration | Screenshot | | --- | --- | --- | --- | --- | --- | | Reinforced | Turbine Controller | - | +2% | - | ? | |
 
 ## Additional information
 

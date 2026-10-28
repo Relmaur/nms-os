@@ -41,11 +41,11 @@ The table shows the minimum and maximum values of the bonuses, while the number 
 
 #### Upgrade Modules
 
-|   | Module<br>Name | Stats<br>Drawn | *Module**Improves*! colspan="2" |B-class | A-class | S-class | X-class |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max |   |   |   |
-|   | [[Life Support Upgrade]] | B 1-2<br>A/S 2<br>X 1-2 | *Life Support Tanks*|5 | 20 | 20 | 50 | 50 | 100 | 0 | 110 |
-| *Solar Panel Power*|0 | 10 | 0 | 25 | 25 | 50 | 0 | 75 |   |   |   |
+|   | Module<br>Name | Stats<br>Drawn | *Module*<br>*Improves* | B-class | A-class | S-class | X-class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max |   |   |   |   |
+|   | [[Life Support Upgrade]] | B 1-2<br>A/S 2<br>X 1-2 | *Life Support Tanks* | 5 | 20 | 20 | 50 | 50 | 100 | 0 | 110 |
+| *Solar Panel Power* | 0 | 10 | 0 | 25 | 25 | 50 | 0 | 75 |   |   |   |
 
 ## Crafting
 
@@ -71,30 +71,34 @@ The sequence is taken from the game file.
 
 ## Upgrade Modules Min - Max
 
-|   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|   | Module<br>Name | Stats<br>Drawn | *Module**Improves*! colspan="2" |C-Class | B-Class | A-Class | S-Class | X-Class |   |   |
-| Min | Max | Min | Max | Min | Max | Min | Max | Max Confirmed |   |
-|   | **Life Support**| rowspan="2" |B 1-2<br>A/S 2 | *Life Support Tanks*| colspan="2" rowspan="2" |n/a | 5 | 20 | 20 | 50 | 50 | 100 | 110 |
-| *Solar Panel Power*|0 | 10 | 0 | 25 | 25 | 50 | 75 |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|   | Module<br>Name | Stats<br>Drawn | *Module*<br>*Improves* | C-Class | B-Class | A-Class | S-Class | X-Class |   |   |   |
+| Min | Max | Min | Max | Min | Max | Min | Max | Max Confirmed |   |   |   |
+|   | **Life Support** | B 1-2<br>A/S 2 | *Life Support Tanks* | n/a | 5 | 20 | 20 | 50 | 50 | 100 | 110 |
+| *Solar Panel Power* | 0 | 10 | 0 | 25 | 25 | 50 | 75 |   |   |   |   |
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Life Support Upgrades**|- |   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Kinetic | Generator Unit | +80% | +45% |   | | Kinetic | Tanks | +50% | +40% |   | | Kinetic | Drain | +94% | +41% |   | | Liquid Gas | Drain | +92% | +50% |   | | Liquid Gas | Recycler | +95% | +35% |   | | Solar | Pump | +95% | +45% |   | | Solar | Recycler | +99% | +44% |   | | T-Gel | Drain | +99% | +35% |   | | T-Gel | Generator Unit | +87% | +43% |   | | T-Gel | Recycler | +91% | +46% |   | | Vacuum | Drain | +55% | +32% |   | | Vacuum | Recycler | +58% | +33% |   | | Vacuum | Stabiliser | +84% | +44% |   | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-class Life Support Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Kinetic | Generator Unit | +80% | +45% |   | | Kinetic | Tanks | +50% | +40% |   | | Kinetic | Drain | +94% | +41% |   | | Liquid Gas | Drain | +92% | +50% |   | | Liquid Gas | Recycler | +95% | +35% |   | | Solar | Pump | +95% | +45% |   | | Solar | Recycler | +99% | +44% |   | | T-Gel | Drain | +99% | +35% |   | | T-Gel | Generator Unit | +87% | +43% |   | | T-Gel | Recycler | +91% | +46% |   | | Vacuum | Drain | +55% | +32% |   | | Vacuum | Recycler | +58% | +33% |   | | Vacuum | Stabiliser | +84% | +44% |   | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **A-class Life Support Upgrades** |   |   |   |
+|   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Microbe | Generator Unit | +24% | - |   | |
 
 |   |   |   |   |   |
 | --- | --- | --- | --- | --- |
-| **A-class Life Support Upgrades**|- |   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Microbe | Generator Unit | +24% | - |   | |
+| **B-class Life Support Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Gas | Filter | +15% | - |   | | Oxygen | Drain | - | +1% | [Link](https://drive.google.com/open?id=1xwsme3HFm1MaVPF6ZGopoOt3V1XKZXda) | |
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **B-class Life Support Upgrades**|- |   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | Screenshot | | --- | --- | --- | --- | --- | | Gas | Filter | +15% | - |   | | Oxygen | Drain | - | +1% | [Link](https://drive.google.com/open?id=1xwsme3HFm1MaVPF6ZGopoOt3V1XKZXda) | |
-
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Life Support Upgrades**|- |   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | ID | | --- | --- | --- | --- | --- | | Illegal Carbon | Tanks | +108% | +75% | 66873 | | Suspect Ammonium | Harvester | +109% | +73% | 03857 | | Banned Nitrogen | Stabliser | +108% | +64% | 31837 | | Prohibited Nitrogen | Tanks | +107% | +27% | 60508 | | Modified Oxygen | Drain | +105% | +37% | 85206 | | Banned Oxygen | Generator Unit | +104% | +66% | 70321 | | Reverse-Engineered Nitrogen | Pump | +101% | +42% | 39830 | | Counterfeit Oxygen | Pump | +102% | +74% | 85088 | | Forbidden Oxygen | Sieve | +102% | +71% | 05214 | | Prohibited Ammonium | Tanks | +97% | +72% | 11880 | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **X-class Life Support Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Life Support Tanks | Solar Panel Power | ID | | --- | --- | --- | --- | --- | | Illegal Carbon | Tanks | +108% | +75% | 66873 | | Suspect Ammonium | Harvester | +109% | +73% | 03857 | | Banned Nitrogen | Stabliser | +108% | +64% | 31837 | | Prohibited Nitrogen | Tanks | +107% | +27% | 60508 | | Modified Oxygen | Drain | +105% | +37% | 85206 | | Banned Oxygen | Generator Unit | +104% | +66% | 70321 | | Reverse-Engineered Nitrogen | Pump | +101% | +42% | 39830 | | Counterfeit Oxygen | Pump | +102% | +74% | 85088 | | Forbidden Oxygen | Sieve | +102% | +71% | 05214 | | Prohibited Ammonium | Tanks | +97% | +72% | 11880 | |
 
 ## Additional information
 

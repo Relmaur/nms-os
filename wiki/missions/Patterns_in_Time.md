@@ -52,6 +52,7 @@ data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"The Fir
 ### The Vy'keen
 
 *-null- seeks to understand more about how the universe came to be in this strange state, how the anomalies we see became so widespread. -null- feels the Vy'keen may know more. I should speak with a Cartographer and find a helpful contact.*
+
 The player must first travel to a Vy'keen [[Space Station]] and speak to the [[Cartographer]] stationed next to the Station Terminus (teleporter). The Cartographer will initially refuse to speak with the player, requiring them to prove themselves worthy of the Vy'keen before they will divulge what they know about [[The Atlas]], the [[Sentinel|Sentinels]] and the [[Traveller]]. The player will be sent to "commune with Hirk" and bring back an artifact, which requires them to travel to a nearby ruin and collect some knowledge, in the form of a [[Vy'keen Tablet]].  After communing with Hirk, dealing with a 3-star [[Wanted level]] triggered by the communion, and returning, the Vy'keen Cartographer will answer a few questions, before suddenly acting very strangely.
 
 At this point, [[The Space Anomaly]] will update, allowing the player to discuss revelations with [[Nada]] and [[Polo]].
@@ -59,6 +60,7 @@ At this point, [[The Space Anomaly]] will update, allowing the player to discuss
 ### The Korvax
 
 *-null- has a task for me. They feel something is happening to the galaxy, some great unravelling of the threads that keep reality bound together. I am to investigate, going around the Sentinels where they cannot.*
+
 Next, the player must travel to a Korvax space station and speak to the Cartographer representative stationed there. Again, the player will be refused knowledge until they have proven their worth to the Korvax by retrieving some impossible data, in the form of a [[Divergence Cube]] from a nearby [[Abandoned Building]] (which may or may not be underwater). Once the mission is complete, the player must return to the Korvax Cartographer and receive the knowledge of the Korvax through their [[Nanite Cluster|Nanite Clusters]].
 
 If the player had uploaded the soul of [[Artemis]] to the Korvax simulation, then told them about the truth of their present existence, they will receive a transmission from Artemis on the way to the Abandoned Building concerning a dream they had involving the player. If they were instead lied to, they will speak of their anticipated meeting.

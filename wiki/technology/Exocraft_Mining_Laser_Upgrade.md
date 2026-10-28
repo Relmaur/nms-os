@@ -52,21 +52,25 @@ Exocraft Mining Laser Upgrades can only be obtained from opening Exocraft Laser 
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- |
-| **S-class Exocraft Mining Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | | Incomparable | Beam Capacitor | +20% | +49% | 64954 | | Incomparable | Beam Amplifier | +18% | +49% | 81203 | | Supreme | Beam Amplifier | +17% | +46% |   | |
+|   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- |
+| **S-class Exocraft Mining Laser Upgrades** |   |   |   |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | | Incomparable | Beam Capacitor | +20% | +49% | 64954 | | Incomparable | Beam Amplifier | +18% | +49% | 81203 | | Supreme | Beam Amplifier | +17% | +46% |   | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **A-class Exocraft Mining Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **A-class Exocraft Mining Laser Upgrades** |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **B-class Exocraft Mining Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **B-class Exocraft Mining Laser Upgrades** |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **C-class Exocraft Mining Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **C-class Exocraft Mining Laser Upgrades** |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot | | --- | --- | --- | --- | --- | |
 
 ## Additional information
 

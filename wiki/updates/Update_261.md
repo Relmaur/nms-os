@@ -35,6 +35,7 @@ It corrects a number of derelict freighter issues from the initial Desolation re
 ## Actual text
 
 **DESOLATION PATCH 2.61**
+
 Hello everyone,
 Thank you to everyone playing the Desolation Update, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting.
 

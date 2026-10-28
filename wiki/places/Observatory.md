@@ -37,6 +37,7 @@ The side rooms require an [[AtlasPass v2]] to enter and contain lots of plants (
 ## Example Puzzle
 
 **1092 - 0921 - 9210 - ?**
+
 In this [[Access codes|puzzle]], the order of the digits is shifted to the left by one with each successive element, with the leftmost digit being moved to the far right position. Therefore, the correct input will be 2109.
 
 ## Additional Information

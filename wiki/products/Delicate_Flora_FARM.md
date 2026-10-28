@@ -37,6 +37,7 @@ A genetically engineered plant, ready for propagation. Sample appears to have **
 Root Structure: **Plant Roots**<br>
 Nutrient Source: **Plant Food**<br>
 Notes: **Plant Notes**
+
 ''Wiki note: The game description for Delicate Flora (FARM) has procedurally generated terms: [[Flora|Plant Roots]], [[Flora|Plant Food]] and [[Flora|Plant Notes]].
 
 ## Modifier and value ranges

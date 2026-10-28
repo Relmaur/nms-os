@@ -153,11 +153,11 @@ Despite being impossible to craft, a placeholder blueprint exists in the [[Space
 |   | Module<br>Name | Module<br>Improves | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- | --- |
 | Power Duration | Power Duration | Power Duration |   |   |   |
-|   | [[Toxin Suppressor]][[Toxic Protection Upgrade]] | *Toxic Protection*|Short | Medium | Long |   |
-| [[Radiation Deflector]][[Radiation Protection Upgrade]] | *Radiation Protection*|Short | Medium | Long |   |   |
-| [[Coolant Network]][[Thermal Protection Upgrade (Heat)]] | *Heat Protection*| Short | Medium | Long |   |   |
-| [[Thermic Layer]][[Thermal Protection Upgrade (Cold)]] | *Cold Protection*|Short | Medium | Long |   |   |
-| [[Aeration Membrane]][[Underwater Protection Module]] | *Oxygen Tank*|Short | Medium | Long |   |   |
+|   | [[Toxin Suppressor]][[Toxic Protection Upgrade]] | *Toxic Protection* | Short | Medium | Long |
+| [[Radiation Deflector]][[Radiation Protection Upgrade]] | *Radiation Protection* | Short | Medium | Long |   |
+| [[Coolant Network]][[Thermal Protection Upgrade (Heat)]] | *Heat Protection* | Short | Medium | Long |   |
+| [[Thermic Layer]][[Thermal Protection Upgrade (Cold)]] | *Cold Protection* | Short | Medium | Long |   |
+| [[Aeration Membrane]][[Underwater Protection Module]] | *Oxygen Tank* | Short | Medium | Long |   |
 
 ## Release differences
 

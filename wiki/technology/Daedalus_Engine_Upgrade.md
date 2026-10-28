@@ -32,7 +32,9 @@ data: {"fields":{"image":"RENDER.ENGINEMOD.png","category":"Exocraft","subcatego
 ## Upgrade properties
 
 Daedalus Engine Upgrades grant at least one of the following bonuses:
-- *Boost Tank Size*- *Fuel Usage*
+- *Boost Tank Size*
+- *Fuel Usage*
+
 Up to three Daedalus Engine Upgrades can be installed in the inventory of a Minotaur; installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
 ## Crafting
@@ -45,17 +47,20 @@ Daedalus Engine Upgrades can only be obtained from opening Minotaur Engine Modul
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **S-class Daedalus Engine Upgrades**|- |   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | | Supercharged | Propulsion Unit | +29% | +20% | 84243 | | Glorious | Plasma Exhaust | +29% | -19% | 63455 | |
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+| **S-class Daedalus Engine Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | | Supercharged | Propulsion Unit | +29% | +20% | 84243 | | Glorious | Plasma Exhaust | +29% | -19% | 63455 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **A-class Daedalus Engine Upgrades**|- |   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **A-class Daedalus Engine Upgrades** |   |   |
+|   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **B-class Daedalus Engine Upgrades**|- |   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **B-class Daedalus Engine Upgrades** |   |   |
+|   | Prefix | Suffix | Boost Tank Size | Fuel Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | |
 
 ## Additional information
 

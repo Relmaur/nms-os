@@ -37,6 +37,7 @@ An example is provided below as guidance:
 ### Example Puzzle
 
 **5040 - 720 - 120 - 24 - ?**
+
 In this [[Access codes|puzzle]], each number is a factor of the number that proceeds it. For instance, 720 is 5040 divided by 7. In this case, the divisor decreases by one with each number in the sequence. 720 divided by 6 yields 120, 120 divided by 5 yields 24, and thus the correct input will be 6, which is 24 divided by 4
 
 ## History

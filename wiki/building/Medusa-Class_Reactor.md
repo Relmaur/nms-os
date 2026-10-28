@@ -43,9 +43,9 @@ The Medusa-Class Reactor functions similarly to an A-class Pulse Engine upgrade,
 |   | Module Name | Module Improves | A-class |
 | --- | --- | --- | --- |
 | Min | Max |   |   |
-|   | [[Medusa-Class Reactor]] | *Maneuverability*| colspan="2" |0.5 |   |
-| *Boost Maneuverability*|5 | 16 |   |   |
-| *Boost*|10 | 20 |   |   |
+|   | [[Medusa-Class Reactor]] | *Maneuverability* | 0.5 |
+| *Boost Maneuverability* | 5 | 16 |   |
+| *Boost* | 10 | 20 |   |
 
 ## Release history
 

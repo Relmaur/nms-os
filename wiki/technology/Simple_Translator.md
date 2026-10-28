@@ -52,7 +52,8 @@ The "Words Translated" stat operates as follows:
 
 There are several variations of this technology:
 
-- Tier C - [[Artemis' Translator]] *(blueprint only available after installing the advanced translator and visiting an Atlas Interface)*- Tier B - [[Simple Translator]]
+- Tier C - [[Artemis' Translator]] *(blueprint only available after installing the advanced translator and visiting an Atlas Interface)*
+- Tier B - [[Simple Translator]]
 - Tier A - [[Superior Translator]]
 - Tier S - [[Advanced Translator]]
 

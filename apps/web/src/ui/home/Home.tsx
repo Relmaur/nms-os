@@ -3,7 +3,7 @@
 import { formatAgo, formatDuration } from '@atlas/core/format';
 import { homeSummary, type HomeSummary } from '@atlas/core/home';
 import { lastVisit, type System } from '@atlas/core/systems-model';
-import { gearOrder, type GearItem } from '@atlas/core/gear';
+import { gearOrder, type GearItem, type GearKind } from '@atlas/core/gear';
 import { notesPinnedTo } from '@atlas/core/notes';
 import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
 import { logPacketRun, logVisit } from '../actions.ts';
@@ -13,6 +13,7 @@ import { GlyphChip, StarDot, TagChip } from '../parts/SystemBits.tsx';
 import { toggleKeepAwake, useDevice } from '../more/device-store.ts';
 import { startSession } from '../actions.ts';
 import { openGearEditor } from '../parts/editor-store.ts';
+import { KINDS } from '../gear/kinds.ts';
 import { PinnedNotes } from '../notes/PinnedNotes.tsx';
 
 const ROW = 'flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70';
@@ -305,6 +306,12 @@ function OutlawCard({ card, now }: { card: HomeSummary['outlaw']; now: number })
 }
 
 // Flagships first; each shows its class and role, and opens in the editor.
+const KIND_COLOR: Record<GearKind, string> = {
+  starship: 'text-purple-300',
+  multitool: 'text-cyan-300',
+  exosuit: 'text-emerald-300'
+};
+
 function Fleet({ gear }: { gear: GearItem[] }) {
   if (!gear.length)
     return (
@@ -332,11 +339,9 @@ function Fleet({ gear }: { gear: GearItem[] }) {
       title={item.type || undefined}
       className="text-left -mx-2 px-2 py-1 rounded-lg hover:bg-slate-900/70"
     >
-      <span className="block text-[11px] text-slate-400">
-        {item.role || (item.kind === 'multitool' ? 'Multi-Tool' : 'Starship')}
-      </span>
+      <span className="block text-[11px] text-slate-400">{item.role || KINDS[item.kind].label}</span>
       <span
-        className={`block font-mono leading-snug ${/flagship/i.test(item.role) ? 'text-white font-semibold' : item.kind === 'multitool' ? 'text-cyan-300' : 'text-purple-300'}`}
+        className={`block font-mono leading-snug ${/flagship/i.test(item.role) ? 'text-white font-semibold' : KIND_COLOR[item.kind]}`}
       >
         {item.name}
         {item.class ? (

@@ -53,11 +53,13 @@ data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"Alone A
 ### First Contact
 
 *Something terrible has happened to Artemis, their signal cut off as they were surrounded by strange figures they described as having 'seeds of glass' within their skin. Before they went, they managed to transmit the frequency for someone named 'Apollo'. I do not know if this stranger will prove friend or foe.*
+
 First, the player must use their [[Starship]]'s scanner to locate a [[Holo-Terminus]], then use it to reach out to the lifeform called Apollo. During the conversation, the player will need to give Apollo their data logs, then agree to work with them to uncover the connections between the [[Portal]] system and [[Sentinel]] appearances.
 
 ### Advanced Base Building
 
 *Apollo has suggested that the Sentinels may be linked to Artemis' disappearance. They suggest we cooperate. If the Sentinels use the portal network, then if we managed to follow them inside, who knows what secrets we might unlock on our way to rescuing Artemis...*
+
 The conversation will end with Apollo referring the player to a lifeform in another star system's [[Space Station]]. The player must visit this lifeform and claim an environmental protection [[Upgrade Module]], then travel to one of their existing bases (or create a new base using another [[Base Computer]]).
 
 The player should be aware that [[Space Fleets]] will begin to spawn in all inhabited [[Star system|Star systems]] upon initial arrival in the system containing the lifeform; as well, a [[Space battle]] will trigger in that system, allowing the player to obtain their first [[freighter]] for free and begin the mission [[Freighter Command]].
@@ -69,6 +71,7 @@ Once the player has built the two terminals and hired an [[Overseer (NPC)|Overse
 ### Preparations
 
 *Apollo has asked me to upgrade my equipment by obtaining blueprints from a multitool technology trader. It is dangerous work, hunting Sentinels. I need to be prepared for anything...*
+
 The player must install a Personal Forcefield in their [[Multi-tool]] if it is not already present (a trade-in for a superior multi-tool may be required if there is not enough room for the technology in their current multi-tool). Apollo will then task the player with obtaining [[Nanite Cluster|Nanite Clusters]] from an [[Abandoned Building]]'s terminal, then exchanging 60 nanites for a multi-tool upgrade module from the marked merchant in the local [[Space station]] (though the mission objective mentions a [[Vy'keen]] system, this part can actually be accomplished in a [[Korvax]] or [[Gek]] system as well). Once the module has been acquired, the player must return to space once more to converse with Apollo.
 
 However, before Apollo has a chance to contact the player, the player will receive a transmission from a mysterious entity which claims to know all about the player's activity --- as it ends, the player will discover that the entity's name is [[-null-]] (that is, their name is missing).
@@ -76,6 +79,7 @@ However, before Apollo has a chance to contact the player, the player will recei
 ### On the Offense
 
 *Apollo wants to study the Sentinels. They hope to draw the drone's attention by attacking a Korvax facility. I appear to be the bait in this 'trap'...*
+
 Immediately after the mysterious transmission, the player must answer Apollo's transmission and indicate their readiness for whatever Apollo has planned next. They will direct the player to break into a [[Korvax]] [[Manufacturing Facility]], not only to obtain any potential data from its terminal, but also to force Sentinel appearances so Apollo can figure out how they move around.
 
 As with normal [[Manufacturing Facilities]], the player will need to destroy the reinforcement on the door with a dedicated multi-tool weapon in order to gain access. (If the player has no boltcaster installed and uses an exocraft mining beam instead, the quest will not advance)

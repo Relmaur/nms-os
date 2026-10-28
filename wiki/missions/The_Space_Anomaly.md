@@ -101,10 +101,13 @@ The Purge [Refuse the Atlas]
 ### First Visit
 
 *There is a strange space station in this system, an anomaly outside of the day-to-day business of the Gek, Vy'keen and Korvax. It emits a strange signal, as if it is speaking directly and exclusively to me...*
+
 The mission begins once the Space Anomaly appears near the start of Alone Amidst the Stars. The player must board the object like they would a [[Space station]], then speak to Nada and their [[Gek]] companion Specialist Polo. Afterward, the player must obtain [[Nanite Cluster|Nanite Clusters]] from Iteration Helios, use those nanites to purchase a [[technology]] [[blueprint]] from a Technology Researcher, and browse the blueprints available at the [[Construction Research Station]] for [[Salvaged Data]]. To conclude the visit, the player must return to Nada and ask for exploration resources, Artemis Path guidance or [[Atlas Path]] guidance. Regardless of the choice made, the conversation will initiate the Atlas Path mission.
 
 *Nada and Polo's journey through time and space continues, at a pace only they understand. They remain in touch, and will happily come to visit any location I bring to their attention.*
+
 *Use the Quick Menu ([default binding]) to send a signal to the Space Anomaly.*
+
 As the player is directed back toward Alone Amidst the Stars, they will be given the ability to summon the Space Anomaly to most locations in space. This function, accessed via the Quick Menu, will be necessary for progressing the mission further when the player is further along in the Artemis Path.
 
 ### Subsequent Visits

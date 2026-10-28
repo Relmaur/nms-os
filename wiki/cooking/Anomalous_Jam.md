@@ -2,7 +2,7 @@
 title: "Anomalous Jam"
 category: "cooking"
 kind: "product"
-summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable.It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition p…"
+summary: "A refined food product, created in the Nutrient Processor. Food such as this can be highly valuable. It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition…"
 pageId: 142692
 revId: 1320983
 revTimestamp: "2026-06-18T00:25:57Z"
@@ -31,7 +31,8 @@ data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"DarkBlue","category":"Cons
 
 ## Game description
 
-A refined food product, created in the Nutrient Processor. Food such as this can be **highly valuable.**It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
+A refined food product, created in the Nutrient Processor. Food such as this can be **highly valuable.**
+It has both the identifying shapes and aromas of an actual food item, in stark contrast with conventional nutrition paste or pellets.
 
 Can be consumed as it stands or subject to further processing.
 

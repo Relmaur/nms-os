@@ -37,12 +37,12 @@ Defence Systems Upgrades grant at least one of the following bonuses:
 
 ### Upgrade Modules
 
-|   | Module<br>Name | Stats<br>Drawn | *Module*<br>*Improves*! colspan="2" | C-class | B-class | A-class | S-class | X-class |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |
-|   | [[Defence Systems Upgrade]] | C/B 1-2<br>A/S 2<br>X 1-2 | *Core Health*| colspan="10" |20 (shows as +33%) |   |   |   |   |   |   |
-| *Shield Strength (actual)*| +10% | +15% | +15% | +19% | +20% | +29% | +30% | +34% | +10% | +34% |
-| *Shield Strength (theoretical)*| +10% | +15% | +15% | +19% | +20% | +24% | +25% | +29% | +10% | +34% |
+|   | Module<br>Name | Stats<br>Drawn | *Module*<br>*Improves* | C-class | B-class | A-class | S-class | X-class |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |   |
+|   | [[Defence Systems Upgrade]] | C/B 1-2<br>A/S 2<br>X 1-2 | *Core Health* | 20 (shows as +33%) |   |   |   |   |   |   |
+| *Shield Strength (actual)* | +10% | +15% | +15% | +19% | +20% | +29% | +30% | +34% | +10% | +34% |
+| *Shield Strength (theoretical)* | +10% | +15% | +15% | +19% | +20% | +24% | +25% | +29% | +10% | +34% |
 
 - **NOTE:** The max for X-class is the same as the current S-class stat; do not risk!
 
@@ -62,25 +62,30 @@ Defence Systems Upgrades can only be obtained from opening Shield Modules.
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **S-class Defence Systems Upgrades**|- |   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Q-Field | Polariser | +34% | +33% | 12787 | - | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **S-class Defence Systems Upgrades** |   |   |   |
+|   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Q-Field | Polariser | +34% | +33% | 12787 | - | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **A-class Defence Systems Upgrades**|- |   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Deionised | Armour | +29% | +33% | 73979 | - | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **A-class Defence Systems Upgrades** |   |   |   |
+|   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Deionised | Armour | +29% | +33% | 73979 | - | |
+
+|   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- |
+| **B-class Defence Systems Upgrades** |   |   |   |   |   |   |
+|   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Bionic | Buffer | - | +33% | 38246 | - | | Lightning | Shield | +15% | +33% | 42948 | - | | Lightning | Buffer | - | +33% | 71289 |   | | Bionic | Bulwark | +15% | - | 84783 |   | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **C-class Defence Systems Upgrades** |   |   |   |
+|   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Secondary | Grafts | - | +33% | 60582 | - | |
 
 |   |   |   |   |   |   |   |   |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **B-class Defence Systems Upgrades**|- |   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Bionic | Buffer | - | +33% | 38246 | - | | Lightning | Shield | +15% | +33% | 42948 | - | | Lightning | Buffer | - | +33% | 71289 |   | | Bionic | Bulwark | +15% | - | 84783 |   | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **C-class Defence Systems Upgrades**|- |   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Secondary | Grafts | - | +33% | 60582 | - | |
-
-|   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Defence Systems Upgrades**|- |   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Forbidden Uranium | Bulwark | +34% | +33% | 65271 | - | | Pirate Uranium | Armor | +12% | +33% | 41140 | - | | Illgegal Vector | Bulwark | +10% | - | 95292 | - | | Uranium reinforcing | Unusual | +34% | +33% | 02699 | - | | Bionic frame | Unlicensed | +33% | +33% | 01890 | - | |
+| **X-class Defence Systems Upgrades** |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | <br> Shield Strength | <br> Core Health | ID | Screenshot | | --- | --- | --- | --- | --- | --- | | Forbidden Uranium | Bulwark | +34% | +33% | 65271 | - | | Pirate Uranium | Armor | +12% | +33% | 41140 | - | | Illgegal Vector | Bulwark | +10% | - | 95292 | - | | Uranium reinforcing | Unusual | +34% | +33% | 02699 | - | | Bionic frame | Unlicensed | +33% | +33% | 01890 | - | |
 
 ## Additional information
 

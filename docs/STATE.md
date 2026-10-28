@@ -7,15 +7,15 @@ _Last updated: 2026-10-27_
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
-**3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007):
+**3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.
 - Players keep their own ships & Multi-Tools (`gear`) and Markdown notes (`notes`, pinnable to Home or a book).
 - The owner's fleet migrates into `gear` on their devices. Their book findings are Markdown files kept outside the repo, to import once with Notes → Import .md.
 
 **Roadmap approved 2026-10-27** (plan `mighty-plotting-quasar`):
 - **3.15.0 shipped:** the security audit's client, web and CI fixes (ADR-0005/0006 sections). Branch protection on `main` (no force-push or deletion; owner approved). Audit report published as a private Artifact (https://claude.ai/artifact/B9w8mV5n6vrEJ8bchYpKxm), which the owner shares from its Share menu. Its open items: a shared github.io origin (a custom domain would fix it), framing, a "change sync code" action, and Dependabot PRs #1–#3 to review (#1 and #2 are major artifact-action bumps; merge them together).
-- **3.16.0:** mechanics pages from the wiki (Inventory, Supercharged Slot, Starship, Multi-Tool…) as a Codex category, plus "cited facts": prose facts used as data only with their quote, checked by `verify:wiki`. The slot picker then follows the class limits, with an Exosuit preset.
-- **3.17.0:** a local, read-only MCP server (`apps/mcp`) that pairs with the sync code (ADR-0008). The owner cleared its Data Privacy gate with the roadmap.
+- **3.16.0 shipped:** eight mechanics pages mirrored by title (Codex "Mechanics"), six cited facts in `wiki/facts.json` (quote checked on every sync and verify; ADR-0003 section), the slot picker following them, and an Exosuit kind (ADR-0007 section). It deviates from the plan in one way: the facts went in their own small `facts.json` instead of `game-data.json` (2.3 MB), so the gear editor doesn't load the whole dataset. Book III's rules 1 and 2 now follow the wiki. The converter fix re-rendered 135 articles.
+- **3.17.0 (next):** a local, read-only MCP server (`apps/mcp`) that pairs with the sync code (ADR-0008). The owner cleared its Data Privacy gate with the roadmap.
 
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.atlas-companion.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).
 
@@ -52,7 +52,8 @@ None.
 2. **Owner check:** with the app installed on the iPhone, turn on "Alerts when the app is asleep", start a 2-minute timer, lock the phone, and confirm one notification with the timer's name arrives.
 3. The recommendations engine on `wiki/game-data.json`.
 4. **Owner check (3.14.0):** on the PC, open Ships & Multi-Tools (your fleet should be there), then Notes → Import .md with the five files from this session, pin them to Books II, III and V, and confirm they reach the iPhone.
-5. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
+5. **Freighter and Exocraft kinds:** the cited facts already cover their supercharged counts (Freighter: per class; Exocraft: three, fixed), but the wiki gives no fixed positions for the Exocraft. Add them if the owner wants to log them.
+6. **Axe on empty states:** every screen is gated with the populated fixture; empty states (no systems, no outlaw systems) aren't axe-checked yet.
 
 ## Known residuals
 - **Sync limits (ADR-0005):** there's no recovery without the code. A field changed on two devices goes to the copy saved last, not the one edited last. The legacy `fleet` object has no ids, so it's taken whole from the newer copy (gear and notes merge by id).

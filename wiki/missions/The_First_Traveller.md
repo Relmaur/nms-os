@@ -59,6 +59,7 @@ data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"A Leap 
 ### Reunion?
 
 *Artemis is dead. Perhaps they were never alive. I found a strange fragment in a [[cave]], an artifact, a projection of Artemis. But it was just data trapped in a loop. It had no understanding of who or where it was.<br>I need to contact Apollo and let them know what has happened.*
+
 The player must locate and visit a [[Holo-Terminus]] with the intent to get into contact with Apollo. However, the Holo-Terminus no longer has the frequencies of Apollo or Artemis due to glitches, and performing a manual override instead connects the player with an aberrant lifeform called -null-, who questions the purpose of life in the face of death, then offers a way for the player to bring Artemis to life, after a fashion, using a [[Mind Ark]]. Once the player has been given its blueprint (and that of the [[Soul Engine]] sub-component), -null- will set the Holo-Terminus to Artemis's frequency so that the player can capture their essence once the Mind Ark is built.
 
 At this point, [[The Space Anomaly]] will update upon departure from the current planet, allowing the player to discuss -null-'s appearance with [[Priest Entity Nada]] and [[Specialist Polo]].
@@ -66,6 +67,7 @@ At this point, [[The Space Anomaly]] will update upon departure from the current
 ### The Mind Ark
 
 *I have encountered another Traveller, named -null-. They seem unusually aware of my journey, and have offered a way to 'save' Artemis. They claim it is possible to restore Artemis' mind and store it in a device they call a 'Mind Ark'.*
+
 The player must craft a Mind Ark in order to proceed with the mission. A Mind Ark requires 1 Soul Engine, 3 [[Glass]], and 3 [[Wiring Loom|Wiring Looms]] to craft.
 
 The mission will first direct the player to install a [[Cadmium Drive]] in their [[starship]] if it is not already present, then task them with mining the 120 Cadmium required for the Soul Engine while within a red [[star system]]. These objectives must be followed exactly in order to progress as intended (for example, [[freighter|freighters]] should *not* be used in an attempt to bypass the Cadmium Drive requirement).
@@ -87,6 +89,7 @@ The player must interact with the terminal and decide whether to upload Artemis'
 ### Aftermath
 
 *Artemis' fate has been sealed. I can only hope I have done the right thing. It is time to find Apollo and see what sense I can make of this situation.*
+
 Regardless of which decision was made, the mission The Space Anomaly will reappear in the Log, and the player must return to space and converse with Apollo concerning what the player did with the soul of Artemis as well as what is to be done next. After the conversation ends, the player must scan for and activate a [[Monolith]], then visit the planet's [[Portal]] (which was marked by activating the Monolith).
 
 At the Portal, the player must charge sixteen glyphs in order to activate the Portal and discover its glyph combination.
@@ -98,6 +101,7 @@ At the Portal, the player must charge sixteen glyphs in order to activate the Po
 ### Apollo's Journey
 
 *I have so far failed to see any of my fellow Travellers beyond their projections. In the case of Artemis, perhaps there was never anything more. Apollo will be different.<br>I have the address for this portal, and they should be able to reach this planet just as I did.*
+
 Once the player has obtained the Portal's address, they must locate a Holo-Terminus and use it to contact Apollo. In the resulting conversation, the player must decide whether or not to transmit the portal glyphs to Apollo:
 - If the player transmits the glyphs to Apollo, they will use a portal some time after the conversation ends.
 - If the player refuses to transmit the glyphs, Apollo will challenge their decision and give the player a chance to reconsider their decision. If the player continues to refuse at this point, Apollo will give up and wait for more information before using a portal.
@@ -107,6 +111,7 @@ Regardless of which decision was made, The Space Anomaly will update once the pl
 ### -null-'s Task
 
 *-null- has a task for me. They feel something is happening to the galaxy, some great unravelling of the threads that keep reality bound together. I am to investigate, going around the Sentinels where they cannot.*
+
 At Apollo's request, the player must contact -null- with the intent of gathering more information. However, the conversation instead turns toward figuring out what is happening to [[The Atlas]]. The player must agree to work with -null- in order to continue the mission.
 
 -null- will direct the player to an [[Observatory]]. Interacting with its terminal will reveal a [[Crashed Freighter]] which the player must investigate. The player will discover on interaction that the [[Distress Beacon]]'s logs are encrypted. To decrypt the logs, they must unearth and repair nearby Cargo Pods to obtain [[Log Encryption Key|Log Encryption Keys]]. Three keys in total are required to decrypt all the logs.

@@ -58,6 +58,7 @@ Sean
 ## Patch Notes
 
 **Patch 3.40 – Beachhead Expedition**
+
 The second Expedition, Beachhead, begins today. We hope you enjoy the surprises it has in store.
 
 - Added a new class of procedural upgrade module for the starship [[Launch Thruster|Launch Thrusters]].

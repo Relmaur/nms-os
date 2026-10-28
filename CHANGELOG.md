@@ -6,6 +6,19 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.16.0] - 2026-10-27
+### Added
+- **Mechanics in the Codex:** eight game-mechanics pages from the wiki (Inventory, Supercharged Slot, Starship, Multi-Tool, Exosuit, Exocraft, Freighter, Starship Outfitting Terminal), checked by revision like every other page.
+- **Cited facts:** the rules those pages state in prose (supercharged slots per class, how big a technology grid gets, where the Exosuit's slots are) are now data, each kept with the wiki sentence it comes from. Every wiki check confirms the sentence is still there; if it's gone, the rule stops being applied.
+- **The slot picker follows the wiki:** 10 columns, rows up to the largest grid for the kind and class, and a note when you mark more supercharged slots than the class has. Each rule links to its Codex page. A note never stops you saving: your inventory screen wins.
+- **Exosuit** in Ships & Multi-Tools, with its three fixed supercharged slots one tap away. With sync on, open the app once on every device before adding one: a device still on an older version would turn it into a starship.
+
+### Changed
+- Book III's first two rules now follow the wiki's wording ("almost always in the first 3 or 4 rows", rather than "the first 40 coordinates") and link to the Supercharged Slot page.
+
+### Fixed
+- Wiki lists whose items end in bold no longer run together (135 Codex articles, among them cooking, ship parts and inventory tables).
+
 ## [3.15.0] - 2026-10-27
 ### Security
 Fixes from the security audit, before ATLAS is shared:

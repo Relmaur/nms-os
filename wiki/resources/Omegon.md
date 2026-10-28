@@ -53,6 +53,7 @@ A Warp Reactor Omega upgrade that uses Omegon as an ingredient may be added to t
 A thread on reddit by DRayX17 contains the following information:
 
 "*There are only 3 Omega level (tier 4) upgrades **[in the game files]**:*
+
 - **Warp Reactor Omega** (Hyperdrive Companion Unit)*
 - [[Impact Damage Omega]] (Boltcaster Companion Unit)
 - [[Combat Amplifier Omega]] (Mining Beam Companion Unit)

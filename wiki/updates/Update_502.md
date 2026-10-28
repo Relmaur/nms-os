@@ -48,7 +48,8 @@ Hello Games
 
 - Fixed a GPU crash on PlayStation platforms.
 
-**Also includes all previous changes from 5.01.1**- Fixed an issues that caused the player to become invisible after jumping and shooting.
+**Also includes all previous changes from 5.01.1**
+- Fixed an issues that caused the player to become invisible after jumping and shooting.
 - Fixed an issue that caused the player to be positioned 50m off the ground when riding some synthetic lifeforms.
 - Fixed an issue that caused some planets to become infested, resulting in a loss of any settlements on that world, and in minor terrain shifts. The infested status of planets has been restored to how it was pre-Worlds. Newly infested planets will become un-infested, and previously infested planets will be restored as such.
 - Fixed a crash related to planetary rendering.

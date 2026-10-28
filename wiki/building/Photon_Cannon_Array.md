@@ -41,12 +41,12 @@ The Photon Cannon Array functions similarly to an A-class Photon Cannon upgrade,
 - *Fire Rate*:  decreases the time between each shot.
 - *Damage:* increases the damage of each shot.
 
-|   | **Module****Name**! rowspan="2" |*Module**Improves*! colspan="2" |A-class |   |   |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Photon Cannon Array]] | *Fire Rate*|2 | 3 |
-| *Heat Dispersion*|2 | 3 |   |   |
-| *Damage*|16 | 24 |   |   |
+|   | **Module**<br>**Name** | *Module*<br>*Improves* | A-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Photon Cannon Array]] | *Fire Rate* | 2 | 3 |
+| *Heat Dispersion* | 2 | 3 |   |   |
+| *Damage* | 16 | 24 |   |   |
 
 ## Release history
 

@@ -80,6 +80,28 @@ test('a supercharged slot is marked with a tap and cleared with another', async 
   ).toHaveText(/R2C2\s*R2C4/);
 });
 
+test('the slot picker states the wiki’s rule, from the cited facts, and links to its Codex page', async ({ page }) => {
+  await page.goto('./#gear');
+  await page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
+  const rules = page.locator('#slotRules');
+  await expect(rules).toContainText('S-class: 4 supercharged slots.');
+  await expect(rules).toContainText('10 wide, up to 6 rows');
+  await expect(rules.getByRole('link', { name: 'Supercharged Slot' })).toHaveAttribute(
+    'href',
+    'wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md'
+  );
+  await page.locator('#gearEditor').getByLabel('Class').fill('C');
+  await expect(page.locator('#slotWarnings')).toContainText('C-class has 1 supercharged slot; 3 are marked');
+  await page.locator('#gearEditor').getByRole('button', { name: 'Cancel' }).click();
+
+  // Book III's rules cite the same page, mirrored in the Codex's new Mechanics category.
+  await page.goto('./#book3');
+  await page.locator('#sec-book3').getByRole('link', { name: 'Supercharged Slot' }).click();
+  await expect(page.locator('#articleHeader h1')).toHaveText('Supercharged Slot');
+  await expect(page.locator('#articleHeader')).toContainText('Mechanics');
+  await expect(page.locator('#articleBody')).toContainText('1 supercharged slot in Class C, 2 in Class B');
+});
+
 test('a note pinned to Book III shows under the book and on Home, rendered and safe', async ({ page }) => {
   await page.goto('./#book3');
   const pinned = page.locator('#sec-book3 [data-player]');

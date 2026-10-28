@@ -32,7 +32,9 @@ data: {"fields":{"image":"RENDER.VEHICLE_GUNMOD.png","category":"Exocraft","subc
 ## Upgrade properties
 
 Minotaur Cannon Upgrades grant at least one of the following bonuses:
-- *Damage*- *Rate of Fire*- *Weapon Power Efficiency: * reduces weapon charge cost of each shot
+- *Damage*
+- *Rate of Fire*
+- *Weapon Power Efficiency: * reduces weapon charge cost of each shot
 
 Up to three Minotaur Cannon Upgrades can be installed in the inventory of a Minotaur; installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -52,17 +54,20 @@ Minotaur Cannon Upgrades can only be obtained from opening Minotaur Cannon Modul
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Minotaur Cannon Upgrades**|- |   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Quantum | Capacitors | +12% | +10% | +20% | 88646 | | Faultless | Injectors | +12% | +9% | +20% | 06968 & 16259 | | Faultless | Generator Unit | +12% | +8% | +20% | 81327 | | Indium | Plating | +12% | +10% | +16% | 40959 | |
+|   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- |
+| **S-class Minotaur Cannon Upgrades** |   |   |   |   |   |   |
+|   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Quantum | Capacitors | +12% | +10% | +20% | 88646 | | Faultless | Injectors | +12% | +9% | +20% | 06968 & 16259 | | Faultless | Generator Unit | +12% | +8% | +20% | 81327 | | Indium | Plating | +12% | +10% | +16% | 40959 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **A-class Minotaur Cannon Upgrades**|- |   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **A-class Minotaur Cannon Upgrades** |   |   |
+|   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **B-class Minotaur Cannon Upgrades**|- |   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Living Glass | Stabiliser | +5% | - | +10% | 33308 | | Supercharged | Capacitors | +6% | - | +9% | 15027 | |
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+| **B-class Minotaur Cannon Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Damage | Rate of Fire | Weapon Power Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Living Glass | Stabiliser | +5% | - | +10% | 33308 | | Supercharged | Capacitors | +6% | - | +9% | 15027 | |
 
 ## Additional information
 

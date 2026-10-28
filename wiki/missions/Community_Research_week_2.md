@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --<br>
 --<br>
 --
@@ -74,6 +75,7 @@ When these picked up, each yields 12-18 pcs of [[Hexite]]. After feeding 25 crea
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 
@@ -95,6 +97,7 @@ Return to space and contact Polo again by using the starship's scanner.
 The broadcast is amplified and the research zone extended throughout the galaxy, allowing to feed creatures on any planets.
 
 **Specialist Polo**
+
 --
 - Transmit data
 - End transmission.
@@ -109,6 +112,7 @@ After feeding 100 creatures, besides the initial 25, the research data limit is 
 Return to space and contact Polo again by using the starship's scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 1. --

@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --<br>
 --<br>
 --
@@ -65,18 +66,22 @@ After arriving to the other side of the portal, the mission objective will be up
 The player needs to access the terminal located inside the building.
 
 **Oksar Repeater**
+
 --<br>
 I access the transmitter's data banks. As expected, a distress signal awaits me.
 - Apply Polo's Device
 1. As I apply Polo's device, I hear another shout, a cry of recognition.<br>They know I am listening. To my astonishment, this broadcast appears to be live.
-  - Reply *(Note: This conversation option does not have any effect on the final outcome and the conversation will continue as if the Listen option was selected in the first place)*    1. I begin to speak, but the sender cuts me off before I can utter a word.
+  - Reply *(Note: This conversation option does not have any effect on the final outcome and the conversation will continue as if the Listen option was selected in the first place)*
+    1. I begin to speak, but the sender cuts me off before I can utter a word.
   - Listen
     1. --<br>--
       - Give current coordinates
         1. --<br>A terrible sound drowns out any trace of the sender, and then collapses to static and silence.<br>I must find some way to trace the signal further.
-          - Leave *(Note: This leads to **Path G**)*      - Suggest piloting towards black hole
+          - Leave *(Note: This leads to **Path G**)*
+      - Suggest piloting towards black hole
         1. --<br>--<br>A terrible sound drowns out any trace of the sender, and then collapses to static and silence.<br>I must find some way to trace the signal further.
-          - Leave *(Note: This leads to **Path S**)*- Leave
+          - Leave *(Note: This leads to **Path S**)*
+- Leave
 
 #### Path G
 
@@ -91,6 +96,7 @@ This will lead the player to eight distinct endings and completely different fro
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Retell the story
 
@@ -125,6 +131,7 @@ The following images are needed for completion, the [[planetary coordinates]] ar
 If you turn in partial results, the following conversation takes place.
 
 **Specialist Polo**
+
 --
 - Transmit images
  Thank you for this data, friend. Data always brings hope!
@@ -135,6 +142,7 @@ After taking all 6 images, the data limit is reached and the mission objective w
 Return to space and contact Polo again by using the starship's scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 --

@@ -43,9 +43,9 @@ The Thunderbird-Class Cockpit functions similarly to a C-class Pulse Engine upgr
 |   | Module Name | Module Improves | C-class |
 | --- | --- | --- | --- |
 | Min | Max |   |   |
-|   | [[Thunderbird-Class Cockpit]] | *Maneuverability*| colspan="2" |0.5 |   |
-| *Boost Maneuverability*|1 | 7.5 |   |   |
-| *Boost*|1 | 10 |   |   |
+|   | [[Thunderbird-Class Cockpit]] | *Maneuverability* | 0.5 |
+| *Boost Maneuverability* | 1 | 7.5 |   |
+| *Boost* | 1 | 10 |   |
 
 ## Release history
 

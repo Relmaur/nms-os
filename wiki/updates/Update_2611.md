@@ -35,6 +35,7 @@ It improves performance on integrated Intel GPUs. The previous update is [[Updat
 ## Actual text
 
 **DESOLATION PATCH 2.61.1**
+
 Hello everyone,
 
 Thank you to everyone playing the Desolation Update, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting.

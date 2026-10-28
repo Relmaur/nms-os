@@ -49,6 +49,7 @@ Progress on this new item is driven by Travellers contributing to multiplayer mi
 Specialist [[Polo]] is delighted by all the Travellers sighted wearing the new Exosuit Backpack. The [[Gek]] mechanic seems especially pleased with the Quicksilver Robot's handiwork on this item.
 
 *Screenshot by u/Kuritos*
+
 The backpack and frozen base ornaments are available now in exchange for [[Quicksilver]], at the Synthesis Companion’s kiosk aboard the [[Space Anomaly]].
 
 ## Weekend Missions

@@ -37,7 +37,8 @@ Can be consumed as it stands or subjected to further processing.
 
 ## Nutrient Ingestor
 
-Exosuit nutrient system will restore **25% [[hazard protection]]**- When consumed through a [[Nutrient Ingestor]], **Seared Fillet** provides **+44% Breathing Efficiency** for 5:30 minutes.
+Exosuit nutrient system will restore **25% [[hazard protection]]**
+- When consumed through a [[Nutrient Ingestor]], **Seared Fillet** provides **+44% Breathing Efficiency** for 5:30 minutes.
 
 ## Source
 

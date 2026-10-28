@@ -32,7 +32,9 @@ data: {"fields":{"image":"RENDER.SUBMARINECANNONMOD.png","category":"Exocraft","
 ## Upgrade properties
 
 Nautilon Cannon Upgrades grant at least one of the following bonuses:
-- *Rate of Fire*- *Damage*
+- *Rate of Fire*
+- *Damage*
+
 Up to three Nautilon Cannon Upgrades can be installed in the inventory of a Nautilon submarine --- installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
 | Nautilon Cannon<br>Upgrade | Stats given: | Module Improves: | C-class | B-class | A-class | S-class |
@@ -48,21 +50,25 @@ Nautilon Cannon Upgrades can only be obtained from opening Exocraft Cannon Modul
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- |
-| **S-class Nautilon Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | | Superconducting | Lux Stabiliser | +10% | +12% | 24828 | | Brilliant | Saline Beam | +8% | +12% | 80232 | | Electromagnetic | Sonar Array | +8% | +12% | 03433 | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **A-class Nautilon Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | ID | | --- | --- | --- | --- | --- | | High Energy | Sonar Array | n/a | +9% | 66376 | |
+|   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- |
+| **S-class Nautilon Cannon Upgrades** |   |   |   |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | | Superconducting | Lux Stabiliser | +10% | +12% | 24828 | | Brilliant | Saline Beam | +8% | +12% | 80232 | | Electromagnetic | Sonar Array | +8% | +12% | 03433 | |
 
 |   |   |   |   |
 | --- | --- | --- | --- |
-| **B-class Nautilon Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | |
+| **A-class Nautilon Cannon Upgrades** |   |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | ID | | --- | --- | --- | --- | --- | | High Energy | Sonar Array | n/a | +9% | 66376 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **C-class Nautilon Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **B-class Nautilon Cannon Upgrades** |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | |
+
+|   |   |   |
+| --- | --- | --- |
+| **C-class Nautilon Cannon Upgrades** |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Screenshot/ID | | --- | --- | --- | --- | --- | |
 
 ## Additional information
 

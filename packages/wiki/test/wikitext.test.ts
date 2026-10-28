@@ -122,6 +122,7 @@ test('category folders and slugs follow the infobox', () => {
   assert.equal(categoryFor('product', { category: 'Base Building' }), 'building');
   assert.equal(categoryFor('product', { category: 'Tradeable' }), 'products');
   assert.equal(categoryFor('encounter', {}), 'places');
+  assert.equal(categoryFor('mechanic', {}), 'mechanics');
   assert.equal(slugify("'Apple' Cake of Lost Souls"), 'Apple_Cake_of_Lost_Souls');
 });
 
@@ -140,4 +141,11 @@ test('markup left in a page reaches the article as text, except the few tags art
     escapeStrayHtml('<script>x</script> <img src=x onerror=y> a<br>b <code>c</code> <weapon name>'),
     '&lt;script>x&lt;/script> &lt;img src=x onerror=y> a<br>b <code>c</code> &lt;weapon name>'
   );
+});
+
+test('a list item ending in bold stays its own item; bold opened at a line end continues', () => {
+  const md = renderWikitext("* holds '''Ion Batteries''' \n* up to 100 '''food''' items\nBefore '''\nbold''' text", {
+    title: 'X'
+  });
+  assert.equal(md, '- holds **Ion Batteries**\n- up to 100 **food** items\nBefore **bold** text');
 });

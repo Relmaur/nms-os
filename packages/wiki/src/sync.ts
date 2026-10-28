@@ -4,8 +4,9 @@
 //   pnpm verify:wiki   dry run: report how the archive differs from the live wiki (exit 1 if it does)
 //   pnpm index:wiki    reindex the committed archive only (no network)
 //
-// Scope: main-namespace pages that use one of the game-data infoboxes in SCOPE. Player discoveries (planets,
-// creatures, bases, player-found ships and multi-tools) and community pages are out of scope.
+// Scope: main-namespace pages that use one of the game-data infoboxes in SCOPE, plus the game-mechanics pages named in
+// MECHANICS (for the rules facts.ts cites). Player discoveries (planets, creatures, bases, player-found ships and
+// multi-tools) and community pages are out of scope.
 // Every article is rendered from the page's wikitext at a recorded revision id. MediaWiki revisions are immutable,
 // so an archived revId equal to the live revId means the copy matches the wiki's source exactly.
 //
@@ -19,6 +20,7 @@ import {
   WIKI_BASE,
   LICENSE,
   SCOPE,
+  MECHANICS,
   FOLDERS,
   slugify,
   toFrontmatter,
@@ -29,7 +31,8 @@ import {
   type ArticleMeta,
   type Page
 } from './wikitext.ts';
-import { InvalidResponse, readEmbeddedIn, readRevisions } from './api-schema.ts';
+import { InvalidResponse, readEmbeddedIn, readRevisions, readTitles } from './api-schema.ts';
+import { FACTS, checkFacts, type FactPage } from './facts.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
@@ -119,6 +122,12 @@ async function fetchScope(): Promise<Map<number, ScopePage>> {
       await sleep(REQUEST_DELAY_MS);
     }
   }
+  const { pages: mechanics, missing } = readTitles(await api({ action: 'query', titles: MECHANICS.join('|') }));
+  for (const page of mechanics) {
+    if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind: 'mechanic' });
+  }
+  // A renamed or deleted mechanics page: its archived copy is marked removed, and the facts citing it go stale.
+  if (missing.length) console.warn(`⚠️  Mechanics pages not on the wiki: ${missing.join(', ')}`);
   return pages;
 }
 
@@ -186,6 +195,8 @@ function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
   const kept = new Set<number>();
   const titles = new Set<string>();
   const recipeNames = new Set<string>();
+  const factTitles = new Set(Object.values(FACTS).map(fact => fact.page));
+  const factPages = new Map<string, FactPage>();
   for (const page of [...livePages].sort((a, b) => a.pageId - b.pageId)) {
     const article = buildArticle(page);
     if (article.excluded !== undefined) {
@@ -202,6 +213,8 @@ function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
     taken.add(`${article.category}/${slug.toLowerCase()}`);
     const file = `${article.category}/${slug}.md`;
     const text = toFrontmatter(article.meta) + article.body;
+    if (factTitles.has(page.title))
+      factPages.set(page.title, { path: `wiki/${file}`, url: article.meta.source, revId: page.revId, body: article.body });
     const existing = archive.get(page.pageId);
     if (!existing) missing.push(page.title);
     else if (existing.meta.revId !== page.revId)
@@ -216,7 +229,7 @@ function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
     writes.push({ file: entry.file, text: entry.text.replace(/^status: "current"$/m, 'status: "removed"') });
   }
   const unknownNames = [...recipeNames].filter(name => name && !titles.has(name.toLowerCase())).sort();
-  return { writes, deletes, excluded, outdated, missing, removed, titles, unknownNames };
+  return { writes, deletes, excluded, outdated, missing, removed, titles, unknownNames, factPages };
 }
 
 // Recipe ingredients named by an old title (e.g. "Rigogen") reach their page through a wiki redirect.
@@ -249,7 +262,7 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   let livePages: Page[];
   try {
     const scope = await fetchScope();
-    console.log(`🔎 ${scope.size} wiki pages use a game-data infobox.`);
+    console.log(`🔎 ${scope.size} wiki pages in scope (game-data infoboxes and mechanics pages).`);
     livePages = await fetchRevisions(scope);
   } catch (err) {
     // Nothing has been written yet: the committed archive stays as it was, and the Codex shows why it wasn't checked.
@@ -264,6 +277,8 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   }
 
   const changes = plan(livePages, await readArchive());
+  const { stale: staleFacts } = checkFacts(changes.factPages);
+  for (const fact of staleFacts) console.warn(`⚠️  Cited fact ${fact.id} (${fact.page}): ${fact.reason}. Update packages/wiki/src/facts.ts.`);
   const committedAliases = await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '');
   const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles).catch((err: unknown) => {
     // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
@@ -311,6 +326,8 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
       .sort(),
     aliases: Object.keys(aliases).length,
     unlinkedIngredients: unlinked,
+    facts: Object.keys(FACTS).length,
+    staleFacts,
     ...(dryRun
       ? {
           outdated: changes.outdated,
@@ -323,12 +340,13 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   await writeVerification(report);
 
   if (dryRun) {
+    if (staleFacts.length) console.log(`❌ ${staleFacts.length} cited fact(s) no longer match the wiki.`);
     console.log(
       differences
         ? `❌ The archive differs from the wiki: ${changes.outdated.length} outdated, ${changes.missing.length} missing, ${changes.removed.length} removed upstream, ${differences} file(s) to rewrite. Run npm run sync:wiki.`
         : `✅ The archive matches the wiki: ${report.matched}/${pages} pages at their latest revision.`
     );
-    return !differences;
+    return !differences && !staleFacts.length;
   }
   console.log(
     `✅ Synced ${pages} pages: ${changes.writes.length} written, ${changes.deletes.length} renamed, ${changes.removed.length} marked removed, ${changes.excluded.length} player-found pages skipped.`
@@ -337,7 +355,7 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
 }
 
 // ---------------------------------------------------------------------------
-// Indexes (derived, git-ignored): index.json, offline-bundle.js, game-data.json
+// Indexes (derived, git-ignored): index.json, offline-bundle.js, game-data.json, facts.json
 // Committed inputs: the .md archive and aliases.json.
 // ---------------------------------------------------------------------------
 async function buildIndexes(): Promise<void> {
@@ -414,6 +432,20 @@ async function buildIndexes(): Promise<void> {
     `${JSON.stringify({ schema: 1, source: WIKI_BASE, license: LICENSE, aliases, items })}\n`,
     'utf8'
   );
+  // The cited facts whose quote is in the archived page; the app applies none other.
+  const factPages = new Map<string, FactPage>();
+  for (const article of articles) {
+    if (article.source !== 'wiki' || article.removed || typeof article.body !== 'string') continue;
+    factPages.set(article.title, {
+      path: String(article.path),
+      url: String(article.url),
+      revId: Number(article.revId),
+      body: article.body
+    });
+  }
+  const { found, stale } = checkFacts(factPages);
+  for (const fact of stale) console.warn(`⚠️  Cited fact ${fact.id} (${fact.page}) left out: ${fact.reason}.`);
+  await fs.writeFile(path.join(WIKI_DIR, 'facts.json'), `${JSON.stringify({ schema: 1, facts: found }, null, 2)}\n`, 'utf8');
   console.log(
     `🎉 Indexed ${articles.length} articles (${items.length} wiki pages) into wiki/index.json, offline-bundle.js and game-data.json`
   );

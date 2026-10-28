@@ -34,9 +34,10 @@ data: {"fields":{"image":"RENDER.PROTECTCOLD.png","category":"Exosuit","subcateg
 
 Thermal Protection Upgrades (Cold) function similarly to [[Hazard Protection]] but only protect the player from cold damage. Protection effectiveness depends on upgrade class (S-class upgrades offer the best protection).
 
-| **Module****Name**! rowspan="2" |*Module**Improves*!B-class | A-class | S-class |   |   |
+| **Module**<br>**Name** | *Module*<br>*Improves* | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- |
-| **Power Duration**!**Power Duration**!**Power Duration**|- | [[Thermal Protection Upgrade (Cold)]] | *Cold Protection* *Duration*|Short | Medium | Long |
+| **Power Duration** | **Power Duration** | **Power Duration** |   |   |
+| [[Thermal Protection Upgrade (Cold)]] | *Cold Protection* *Duration* | Short | Medium | Long |
 
 The protection offered by Thermal Protection Upgrades (Cold), unlike that offered by the [[Exosuit]]'s built-in thermal protection, does not recharge automatically while in locations without a significant cold hazard. Thermal Protection Upgrades (Cold) must be manually recharged as needed using [[Dioxite]] (6.25%/unit) or [[Ion Battery|Ion Batteries]] (100.0%/unit).
 

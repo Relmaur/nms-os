@@ -32,7 +32,8 @@ data: {"fields":{"name":"Kikolgallr","image":"No Man's Sky_20181204042439.png","
 
 ## Known regions
 
-- The [[Alliance of Galactic Travellers]] have a long history and several areas discovered near the Core, *(see [[Last AGT restaurant at the end of galaxy|AGT Gateway System]])*- The [[Geknip Gang Hub]] has a civilization in the **Stongla Boundary** region (PC, [[normal mode]]) at the same co-ordinates as the [[Euclid]] hub.
+- The [[Alliance of Galactic Travellers]] have a long history and several areas discovered near the Core, *(see [[Last AGT restaurant at the end of galaxy|AGT Gateway System]])*
+- The [[Geknip Gang Hub]] has a civilization in the **Stongla Boundary** region (PC, [[normal mode]]) at the same co-ordinates as the [[Euclid]] hub.
 - [[GenBra Space Corp]] has a small base at the core.
 - [[InExCor]] has outposts in [[InExCor Kikolgallr Discoveries|several regions]].
 - [[Oxalis]] has an outpost in the **Adiscir Nebula** region.

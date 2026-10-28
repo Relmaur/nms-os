@@ -41,13 +41,13 @@ The Arcadia Heavy Booster functions similarly to an A-class Pulse Engine upgrade
 - *Maneuverability:* increases the Starship's turn rate.
 - *Boost:* increases maximum speed while boosting.
 
-|   | Module Name | Module Improves | A-class |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Arcadia Heavy Booster]] | *Pulse Drive Fuel Efficiency*|15 | 20 |
-| *Maneuverability*| colspan="2" |0.5 |   |   |   |
-| *Boost Maneuverability*|5 | 16 |   |   |
-| *Boost*|10 | 20 |   |   |
+|   | Module Name | Module Improves | A-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Arcadia Heavy Booster]] | *Pulse Drive Fuel Efficiency* | 15 | 20 |
+| *Maneuverability* | 0.5 |   |   |   |
+| *Boost Maneuverability* | 5 | 16 |   |   |
+| *Boost* | 10 | 20 |   |   |
 
 ## Release history
 

@@ -54,6 +54,7 @@ Keep in mind that all values shown here are approximate and measured without any
 ### Atmosphere
 
 *Before removing data such as this below, include a reason WHY it is being removed, and what replaces it.*
+
 A red "heat haze" can be seen around the edges of the [[starship]] when entering a planet's atmosphere. While inside the atmosphere, the average speed is 35u/s. The ship can be accelerated to reach up to 50u/s and can be braked to slow it down to 13u/s. The Boost can be engaged in planetary atmosphere to reach up to 150u/s.
 
 When a ship is upgraded with 6 suspicious pulse engine modules of 20% boost and arranged perfectly, the minimum thrust speed is 129u/s, maximum thrust speed is 667 u/s and the maximum burn speed is 1066u/s.

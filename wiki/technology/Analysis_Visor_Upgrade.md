@@ -76,25 +76,30 @@ Analysis Visor Upgrades can only be obtained by opening Scanner Modules.
 
 ## Discovered Upgrade Modules
 
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-class Analysis Visor Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Mineral Analysis Rewards | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Holographic | Siphon | +31% | +7,031% | +9,350% | - | - | | Holographic | Analysis Unit | +37% | +6,733% | +6,742% | - | 19287 | | Memory | Analysis Unit | +35% | +6,816% | +6,645% | - | - | | Non-Casual | Computer | +33% | +9,593% | +9,062% | - | - | | Non-Causal | Siphon | +31% | +9,871% | +9,900% | - | - | | Non-Causal | Visualiser | +40% | +6,501% | +6,634% | - | 19288 | | Non-Causal | Prediction Unit | +35% | - | +8,803% | +7,892% | 19286 | | Non-Causal | Probe | +32% | +9,647% | - | +7,038% | - | | Quantum | Detector | +39% | +6,500% | +7,345% | - | - | | Quantum | Probe | +35% | +6,597% | +7,311% | - | - | | Quantum | Siphon | +31% | +9,521% | +8,693% | - | - | | Quantum | Visualiser | - | +9,000% | +8,132% | +9,113% | 19289 | | Vacuum | Computer | - | +7,988% | +6,756% | +6,809% | - | | Vacuum | Processor | - | +6,518% | +7,582% | +7,319% | 19290 | | Holographic | Visualiser | - | +9086% | +9528% | +6547% | 02456 | | Vacuum | Probe | +37% | +8087% | +8177% | +6575% | 88328 | | Memory | Detector | +31% | +7738% | +6544% | +8328% | 35180 | |
+
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+| **A-class Analysis Visor Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Deep Waveform | Sweep Ray | +24% | +5,213% | +5,244% | - | | Organic | Sweep Ray | +30% | +5,008% | +5,363% | - | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **B-class Analysis Visor Upgrades** |   |   |   |
+|   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Frequency | Scope | - | +2,874% | +3,194% | - | |
+
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **C-class Analysis Visor Upgrades** |   |   |   |
+|   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Overclocked | Prediction Unit | - | +1,977% | - |   | |
+
 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Analysis Visor Upgrades**|- |   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Mineral Analysis Rewards | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Holographic | Siphon | +31% | +7,031% | +9,350% | - | - | | Holographic | Analysis Unit | +37% | +6,733% | +6,742% | - | 19287 | | Memory | Analysis Unit | +35% | +6,816% | +6,645% | - | - | | Non-Casual | Computer | +33% | +9,593% | +9,062% | - | - | | Non-Causal | Siphon | +31% | +9,871% | +9,900% | - | - | | Non-Causal | Visualiser | +40% | +6,501% | +6,634% | - | 19288 | | Non-Causal | Prediction Unit | +35% | - | +8,803% | +7,892% | 19286 | | Non-Causal | Probe | +32% | +9,647% | - | +7,038% | - | | Quantum | Detector | +39% | +6,500% | +7,345% | - | - | | Quantum | Probe | +35% | +6,597% | +7,311% | - | - | | Quantum | Siphon | +31% | +9,521% | +8,693% | - | - | | Quantum | Visualiser | - | +9,000% | +8,132% | +9,113% | 19289 | | Vacuum | Computer | - | +7,988% | +6,756% | +6,809% | - | | Vacuum | Processor | - | +6,518% | +7,582% | +7,319% | 19290 | | Holographic | Visualiser | - | +9086% | +9528% | +6547% | 02456 | | Vacuum | Probe | +37% | +8087% | +8177% | +6575% | 88328 | | Memory | Detector | +31% | +7738% | +6544% | +8328% | 35180 | |
-
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **A-class Analysis Visor Upgrades**|- |   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Deep Waveform | Sweep Ray | +24% | +5,213% | +5,244% | - | | Organic | Sweep Ray | +30% | +5,008% | +5,363% | - | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **B-class Analysis Visor Upgrades**|- |   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Frequency | Scope | - | +2,874% | +3,194% | - | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **C-class Analysis Visor Upgrades**|- |   | Prefix | Suffix | Scan Radius | Flora Analysis Rewards | Fauna Analysis Rewards | Screenshot | | --- | --- | --- | --- | --- | --- | | Overclocked | Prediction Unit | - | +1,977% | - |   | |
-
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Analysis Visor Upgrades**|- |   | Prefix | Suffix | Fauna Analysis Rewards | Flora Analysis Rewards | Mineral Analysis Rewards | Scan Radius | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Smuggled | Rewired Scope | +10,961% | +10,987% | +10,326% | +47% | 35307<br> | | 'Suspect' Nanite-Powered | Analysis Unit | +10,936% | +10,727% | +10,944% | +48% | 41633 | | 'Modified' | Parallel Siphon | +10,883% | +10,587% | +10,917% | +50% | 52041<br> | | Forbidden Calibrated | Visualiser | +10,610% | +10,341% | +10,525% | +48% | 05214 | | Suspect Nanite-Powered | Sweep Ray | +10,731% | +9,916% | +9,921% | +50% | 95248 | | Forbidden Rewired | Processor | +10,281% | +10,412% | +10,276% | +46% | 84622 | | Illegal Calibrated | Scope | +10,074% | +10,909% | +10,546% | +49% | 55232 | | Forbidden Calibrated | Processor | +9,668% | +5,419% | +10,259% | +28% | 71939 | | Banned Nanite-Powered | Detector | +9,941% | +10,838% | +10,086% | +45% | 10690 | | 'Modified' Nanite-Powered | Processor | +9,718% | +10,182% | +10,165% | +50% | 06729 | | Black Market Rewired | Sweep Ray | +7,143% | +10,641% | +1,296% | +35% | 67557 | | Banned Calibrated | Analysis Unit | +4,493% | +9,190% | - | +44% | 79829 | | Pirate Parallel | Scope | +10,426% | +10,982% | +10,804% | +49% | 93449 | | Smuggled Nanite-Powered | Siphon | +10,751% | +10,999% | +10,440% | +45% | 96551 | | Risky Parallel | Visualiser | +6% | +3171% | +1081% | - | 26756 | | Banned Nanite-powered | Siphon | - | +6009% | +8436% | - | 26513 | | Unlicensed | Frequency Analysis Unit | - | +10276% | +8599% | - | 73435 | | Banned Nanite-powered | Sweep Ray | +13% | +1569% | - | - | 35363 | |
+| **X-class Analysis Visor Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Fauna Analysis Rewards | Flora Analysis Rewards | Mineral Analysis Rewards | Scan Radius | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Smuggled | Rewired Scope | +10,961% | +10,987% | +10,326% | +47% | 35307<br> | | 'Suspect' Nanite-Powered | Analysis Unit | +10,936% | +10,727% | +10,944% | +48% | 41633 | | 'Modified' | Parallel Siphon | +10,883% | +10,587% | +10,917% | +50% | 52041<br> | | Forbidden Calibrated | Visualiser | +10,610% | +10,341% | +10,525% | +48% | 05214 | | Suspect Nanite-Powered | Sweep Ray | +10,731% | +9,916% | +9,921% | +50% | 95248 | | Forbidden Rewired | Processor | +10,281% | +10,412% | +10,276% | +46% | 84622 | | Illegal Calibrated | Scope | +10,074% | +10,909% | +10,546% | +49% | 55232 | | Forbidden Calibrated | Processor | +9,668% | +5,419% | +10,259% | +28% | 71939 | | Banned Nanite-Powered | Detector | +9,941% | +10,838% | +10,086% | +45% | 10690 | | 'Modified' Nanite-Powered | Processor | +9,718% | +10,182% | +10,165% | +50% | 06729 | | Black Market Rewired | Sweep Ray | +7,143% | +10,641% | +1,296% | +35% | 67557 | | Banned Calibrated | Analysis Unit | +4,493% | +9,190% | - | +44% | 79829 | | Pirate Parallel | Scope | +10,426% | +10,982% | +10,804% | +49% | 93449 | | Smuggled Nanite-Powered | Siphon | +10,751% | +10,999% | +10,440% | +45% | 96551 | | Risky Parallel | Visualiser | +6% | +3171% | +1081% | - | 26756 | | Banned Nanite-powered | Siphon | - | +6009% | +8436% | - | 26513 | | Unlicensed | Frequency Analysis Unit | - | +10276% | +8599% | - | 73435 | | Banned Nanite-powered | Sweep Ray | +13% | +1569% | - | - | 35363 | |
 
 ## Release history
 

@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --<br>
 --<br>
 --
@@ -66,6 +67,7 @@ After arriving to the other side of the portal, the mission objective will be up
 The player needs to access the beacon's logs located at the crash site.
 
 **Distress Beacon**
+
 I have arrived at the source of the signal, but there are no signs of life here. Only the crumpled remains of a starship, and the sickly electronic buzz of its distress beacon.
 - Access the beacon's log
  Finally - kzzkktt - must have been an hour of pursuit. My [[Deflector Shield|deflector shield]] - kzzkktt - more [[Starship Launch Fuel|launch fuel]] before I can move on, but - kzzkktt - detection. I should log my findings, for myself as well as for Polo.
@@ -79,6 +81,7 @@ I have arrived at the source of the signal, but there are no signs of life here.
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Tell about the crash site
 
@@ -149,6 +152,7 @@ The distress beacon pulses, its blinking light inviting me to play back a logged
 If you turn in partial research data, the following conversation takes place.
 
 **Specialist Polo**
+
 --
 - Transmit data
  Polo nods seriously. They say nothing, but I sense they still want to know more.
@@ -161,6 +165,7 @@ After accessing 5 logs, the research data limit is reached and the mission objec
 Return to space and contact Polo again by using the starship's scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 --

@@ -37,6 +37,7 @@ Create your own colossal, fully furnished, completely bespoke [[Corvette|Corvett
 ## Patch Notes
 
 **Corvette-class Starships**
+
 - Added a new class of starship, the [[Corvette]]. Corvettes are large, fully bespoke ships with furnished interiors, capable of accommodating multiple passengers.
 - A lightweight tutorial for assembling your first Corvette will activate upon first collecting a Corvette module or interacting with the Corvette Workshop.
 - A large catalogue of snappable structural and decorative modules is available for Corvette assembly, including habitation modules, hulls, wings, engines, windows, accessways, weapons, reactors, shield generators, connectors and decorative peripherals.
@@ -64,20 +65,25 @@ Create your own colossal, fully furnished, completely bespoke [[Corvette|Corvett
 - Added specialised camera handling for piloting Corvettes and navigating their interiors.
 
 **Corvette Multiplayer Missions**
+
 - Added a Corvette-based mission board, allowing players on board the Corvette to register as mission crew to co-operatively complete objectives in the local system and earn rewards and standing.
 
 **Corvette Expedition**
+
 - Expedition Nineteen, Corvette, will begin shortly and run for approximately six weeks.
 - Rewards include new posters, decals and titles, the vigilant jetpack trail and plasma starship trail, an exclusive deadeye cannon module for Corvettes, and the unique Mecha-Mouse robotic companion.
 
 **Skyborn Exosuit and Jetpack**
+
 - Added the 5-piece Skyborn Exosuit to the Appearance Modifier, including armour, gloves, boots, legs and torso customisations.
 - Added the Skyborn Jetpack to the Appearance Modifier.
 
 **Twitch Drops**
+
 - A new package of Twitch drops will begin shortly. Sign up and connect your platform accounts on the Twitch Drops page, then tune in to Twitch to earn exotic base parts, high-tech starships, fireworks, appearance modifications, and more.
 
 **Gameplay and Quality of Life**
+
 - Implemented support for rebinding controls on console.
 - Rearranged a number of input bindings in the controls menu for improved usability.
 - Added a graphics option to adjust the strength of blurring / light scattering on distant objects in underwater environments.
@@ -96,6 +102,7 @@ Create your own colossal, fully furnished, completely bespoke [[Corvette|Corvett
 - Robotic creatures now lay metal eggs.
 
 **Rendering**
+
 - Added support for NVIDIA DLSS4. Deep Learning Super Sampling is a revolutionary suite of neural rendering technologies that uses AI to boost FPS, reduce latency, and improve image quality.
 - Added support for PlayStation® Spectral Super Resolution (PSSR), improving image clarity using AI-enhanced resolution, for ultra-high definition and incredible detail.
 - Added support for Intel Xe Super Sampling (XeSS) 2, which uses machine learning to deliver higher performance with exceptional image quality.
@@ -108,6 +115,7 @@ Create your own colossal, fully furnished, completely bespoke [[Corvette|Corvett
 - Improved the visual stability of heavy air effects, resolving some flickering issues.
 
 **Bugfixes**
+
 - Fixed an issue that could cause multiple NPC ships to land at the same dock.
 - Fixed an issue that could cause creatures to teleport onto terrain when navigating underground caverns.
 - Fixed an issue that could cause some sections of Autophage staffs to remain visible when the player entered a short-range teleporter.
@@ -122,10 +130,12 @@ Create your own colossal, fully furnished, completely bespoke [[Corvette|Corvett
 - Fixed a number of rare multiplayer crashes.
 
 **Abandoned Mode**
+
 - Added the Mech Hardframe parts to the technology research trees in Abandoned Mode.
 - Fixed an issue that prevented learning the Creature Pellets recipe in Abandoned Mode.
 
 **Optimisations**
+
 - Implemented occlusion culling on Xbox Series, PS4, and PS5, significantly increasing framerate in indoor environments (such as in caves and planetary buildings).
 - Implemented multi-threaded rendering on PC, significantly improving CPU performance, notably in VR.
 - Implemented a significant performance optimisation on mature saves with a large number of completed or active missions.

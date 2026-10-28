@@ -32,10 +32,13 @@ data: {"fields":{"image":"RENDER.MECH.FLAME.png","category":"Exocraft","subcateg
 ## Upgrade properties
 
 Minotaur Flamethrower Upgrades grant at least one of the following bonuses:
-- *Damage*- *Weapon Power Efficiency*- *Impact Fire Duration*
+- *Damage*
+- *Weapon Power Efficiency*
+- *Impact Fire Duration*
+
 Up to three Minotaur Flamethrower Upgrades can be installed in the inventory of a Minotaur; installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
-| Module Name | Stats<br>**Drawn**! rowspan="2" |Improvements | C-class | B-class | A-class | S-class |   |   |   |   |
+| Module Name | Stats<br>**Drawn** | Improvements | C-class | B-class | A-class | S-class |   |   |   |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Min | Max | Min | Max | Min | Max | Min | Max |   |   |
 | [[Minotaur Flamethrower Upgrade]] | B-class 1-2<br>A-class 2-3<br>S-class 3 | Damage | n/a | 1.05 | 1.1 | 1.1 | 1.2 (200) | 1.2 | 1.35 (200) |
@@ -52,17 +55,20 @@ Minotaur Flamethrower Upgrades can only be obtained from opening Minotaur Flamet
 
 ## Discovered Upgrade Modules
 
+|   |   |   |
+| --- | --- | --- |
+| **S-class Minotaur Flamethrower Upgrades** |   |   |
+|   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | |
+
 |   |   |   |   |
 | --- | --- | --- | --- |
-| **S-class Minotaur Flamethrower Upgrades**|- |   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | |
+| **A-class Minotaur Flamethrower Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Plasmatic | Canisters | +137% | +11% |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **A-class Minotaur Flamethrower Upgrades**|- |   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Plasmatic | Canisters | +137% | +11% |   |   | |
-
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **B-class Minotaur Flamethrower Upgrades**|- |   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Augmented | Tubes |   | +7% |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **B-class Minotaur Flamethrower Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage | Weapon Power Efficiency | Impact Fire Duration | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Augmented | Tubes |   | +7% |   |   | |
 
 ## Additional information
 

@@ -32,14 +32,16 @@ data: {"fields":{"image":"RENDER.PHOTONBLASTMOD.png","category":"Starship","subc
 ## Upgrade Properties
 
 Positron Ejector Upgrades grant at least one of the following bonuses:
-- *Heat Dispersion*- *Fire Rate*- *Damage*
+- *Heat Dispersion*
+- *Fire Rate*
+- *Damage*
 
-|   | **Module<br>Name**! rowspan="2" |'''Stats<br>Drawn | *Module<br>Improves*! colspan="2" | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |   |   |   |
-|   | [[Positron Ejector Upgrade]] | C 1-2<br>B 2-3<br>A/S 3<br>X 2-3 | *Fire Rate*|1% | 4% | 4% | 6% | 6% | 10% | 6% | 10% | 5% | 10%[1] |
-| *Heat Dispersion*|1% | 4% | 4% | 6% | 6% | 10% | 6% | 10% | 1% | 10%[1] |   |   |   |
-| *Damage[2]*| colspan="2" |1% | 1% | 2% | 2% | 2% | 1% | 2% |   |   |   |   |   |   |
+|   | **Module<br>Name** | '''Stats<br>Drawn | *Module<br>Improves* | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |   |   |   |   |
+|   | [[Positron Ejector Upgrade]] | C 1-2<br>B 2-3<br>A/S 3<br>X 2-3 | *Fire Rate* | 1% | 4% | 4% | 6% | 6% | 10% | 6% | 10% | 5% | 10%[1] |
+| *Heat Dispersion* | 1% | 4% | 4% | 6% | 6% | 10% | 6% | 10% | 1% | 10%[1] |   |   |   |
+| *Damage[2]* | 1% | 1% | 2% | 2% | 2% | 1% | 2% |   |   |   |   |   |   |
 
 - [1] Technically X-Class upgrades can output 11% on either Fire Rate or Heat Dispersion, but there's only a 2/100000 (0.002%) chance of it happening.
 - [2] All values were nerfed in [[Update 3.94|Endurance]], which they accomplished by scaling down the values. This resulted in a strange distribution of damage percentages across all classes.
@@ -66,29 +68,30 @@ Positron Ejector Upgrades can only be obtained from opening Positron Modules.
 
 ## Discovered Upgrade Modules
 
-{| class="mw-collapsible mw-collapsed"
-|S-class**Positron Ejector Upgrades**|-
-|
+|   |   |   |   |
+| --- | --- | --- | --- |
+| S-class**Positron Ejector Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | *(First)* | *(Last)* | +3% | +15% | +15% | *(Example)* | |
 
-| Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID |
-| --- | --- | --- | --- | --- | --- |
-| *(First)*|*(Last)*| +3% | +15% | +15% | *(Example)*|} |   |   |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| A-class**Positron Ejector Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| A-class**Positron Ejector Upgrades**|- |   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| B-class**Positron Ejector Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| B-class**Positron Ejector Upgrades**|- |   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| C-class**Positron Ejector Upgrades** |   |   |   |
+|   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| C-class**Positron Ejector Upgrades**|- |   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | |   |   |   |   | |
-
-|   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| X-class**Positron Ejector Upgrades**|- |   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Outlawed Photonic | Amplifier | +2% | +10% | +10% | 48604 | | Forbidden Cadmium | Filament | +2% | +10% | +10% | 05214 | | Reverse-Engineered Cadmium | Oscillator | +2% | +9% | +4% | 01495 | | Reverse-Engineered Ultraviolet | De-Limiter | +1% | +10% | +7% | 48599 | | Smuggled Photonic | Mirror | +2% | +7% | +2% | 56216 | | Unlicensed Photonic | De-Limiter | - | +10% | +10% | 28857 | | 'Irregular' Ultraviolet | Accelerator | +2% | - | +9% | 92147 | |
+|   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| X-class**Positron Ejector Upgrades** |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Damage (%) | Fire Rate | Heat Dispersion | Screenshot/ID | | --- | --- | --- | --- | --- | --- | | Outlawed Photonic | Amplifier | +2% | +10% | +10% | 48604 | | Forbidden Cadmium | Filament | +2% | +10% | +10% | 05214 | | Reverse-Engineered Cadmium | Oscillator | +2% | +9% | +4% | 01495 | | Reverse-Engineered Ultraviolet | De-Limiter | +1% | +10% | +7% | 48599 | | Smuggled Photonic | Mirror | +2% | +7% | +2% | 56216 | | Unlicensed Photonic | De-Limiter | - | +10% | +10% | 28857 | | 'Irregular' Ultraviolet | Accelerator | +2% | - | +9% | 92147 | |
 
 ## Release Hstory
 

@@ -37,9 +37,10 @@ Toxic Protection Upgrades function similarly to [[Hazard Protection]] but only p
 Toxic Protection Upgrades grant the following bonus:
 - *Toxic Protection*
 
-|   | **Module Name**! rowspan="2" |**Module Improves**!B-class | A-class | S-class |   |   |
+|   | **Module Name** | **Module Improves** | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- | --- |
-| **Power Duration**!**Power Duration**!**Power Duration**|- |   | [[Toxic Protection Module]] | *Toxic Protection*|200-300 | 240-320 | 280-360 |
+| **Power Duration** | **Power Duration** | **Power Duration** |   |   |   |
+|   | [[Toxic Protection Module]] | *Toxic Protection* | 200-300 | 240-320 | 280-360 |
 
 Up to three protections upgrades can be installed in the technology section of the Exosuit. Installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 

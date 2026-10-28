@@ -43,6 +43,7 @@ The blueprint can be acquired from [[Manufacturing Facility|Manufacturing Facili
 - **Crafting** · needs the blueprint: 1 × [[Portable Reactor]] + 1 × [[Quantum Processor]] + 1 × [[Geodesite]] → 1 × Fusion Ignitor
 
 **Fusion ignitor**
+
 The following ingredients are needed to create the three main parts of a Fusion Ignitor.
 
 | Portable Reactor | Quantum Processor | Geodesite |

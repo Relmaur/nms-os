@@ -34,9 +34,10 @@ data: {"fields":{"image":"RENDER.PROTECTRADS.png ‎","category":"Exosuit","subc
 
 Radiation Protection Upgrades function similarly to [[Hazard Protection]] but only protect the player from radiation damage. Protection duration depends on upgrade class (S-class upgrades offer the best protection).
 
-| **Module Name**! rowspan="2" |**Module Improves**!B-class | A-class | S-class |   |   |
+| **Module Name** | **Module Improves** | B-class | A-class | S-class |
 | --- | --- | --- | --- | --- |
-| **Power Duration**!**Power Duration**!**Power Duration**|- | [[Radiation Protection Module]] | *Radiation Protection*|200-300 | 240-320 | 280-360 |
+| **Power Duration** | **Power Duration** | **Power Duration** |   |   |
+| [[Radiation Protection Module]] | *Radiation Protection* | 200-300 | 240-320 | 280-360 |
 
 The protection offered by Radiation Protection Upgrades, unlike that offered by the [[Exosuit]]'s built-in radiation protection, does not recharge automatically while in locations without a significant radiation hazard. Radiation Protection Upgrades must be manually recharged as needed using [[Uranium]] (6.25%/unit) or [[Ion Battery|Ion Batteries]] (100%/unit).
 

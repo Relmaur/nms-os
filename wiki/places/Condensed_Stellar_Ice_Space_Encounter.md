@@ -50,14 +50,15 @@ The following systems have regularly encountered Condensed Stellar Ice.
 
 **NOTE:** The first two columns must be completed, or the entry will be removed.
 
-| System | Coordinates | Galaxy | Notes |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Bebockpo |   | Euclid | Roaming Trader ships inhabit the system, making pulse spawns erratic.<br>Discovered by *MajesticSpaceDook*. |   |   |   |   |
-| Butury-Minu |   |   | Discovered by *jamandcheese85*. |   |   |   |   |
-| garage(ru) | 07FC:0081:0807:018E |   | Discovered by *jacobfrance*. |   |   |   |   |
-| [[Udeale-Kihya]] | 042F:0077:0D55:009A | Eissentam | Shows up during the first pulse through the system within the first two minutes. |   |   |   |   |
-| Neohio-Rinau | 0804:007A:07FB:008F | Corpinyaya | Neohio-Rinau is an abandoned Gek system next to the galactic core. |   |   |   |   |
-| Texannar | 0E5C:007A:0525:003B | Euclid | Encountered in front of the space station. |   |   |   |   |
-| HUB11-87 Ertann | 042F:0077:0D55:0087 | Euclid | First pulse in front of the space station. Discovered by *dokynho*. |   |   |   |   |
-| Kichongt | 0911:0083:012C:001A | Euclid | Near the planet Xaley Major (the ring one). Discovered by *Lee9*|- | Hyasta-Nocipe | 0137:0081:09B2:0108 | Eissentam |   |
-| [[Ceyx]] | 09B8:0081:0E6E:041F | Euclid | The anomalous deep space signal at the bottom of the local [[Star System Map]] marks the encounter. |   |   |   |   |
+| System | Coordinates | Galaxy | Notes |
+| --- | --- | --- | --- |
+| Bebockpo |   | Euclid | Roaming Trader ships inhabit the system, making pulse spawns erratic.<br>Discovered by *MajesticSpaceDook*. |
+| Butury-Minu |   |   | Discovered by *jamandcheese85*. |
+| garage(ru) | 07FC:0081:0807:018E |   | Discovered by *jacobfrance*. |
+| [[Udeale-Kihya]] | 042F:0077:0D55:009A | Eissentam | Shows up during the first pulse through the system within the first two minutes. |
+| Neohio-Rinau | 0804:007A:07FB:008F | Corpinyaya | Neohio-Rinau is an abandoned Gek system next to the galactic core. |
+| Texannar | 0E5C:007A:0525:003B | Euclid | Encountered in front of the space station. |
+| HUB11-87 Ertann | 042F:0077:0D55:0087 | Euclid | First pulse in front of the space station. Discovered by *dokynho*. |
+| Kichongt | 0911:0083:012C:001A | Euclid | Near the planet Xaley Major (the ring one). Discovered by *Lee9* |
+| Hyasta-Nocipe | 0137:0081:09B2:0108 | Eissentam |   |
+| [[Ceyx]] | 09B8:0081:0E6E:041F | Euclid | The anomalous deep space signal at the bottom of the local [[Star System Map]] marks the encounter. |

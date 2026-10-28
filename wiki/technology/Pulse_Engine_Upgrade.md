@@ -43,13 +43,13 @@ Other non-generated Upgrades can provide the following bonuses:
 
 Up to three generated Pulse Engine Upgrades can be installed in the starship --- installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
-|   | Module Name | Stats Drawn | Module Improves | C-class | B-class | A-class | S-class | X-class |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |   |   |
-|   | [[Pulse Engine Upgrade]] | C 1-2 <br> B 2 <br> A 2-3 <br> S 3 <br> X 2-3 | *Pulse Drive Fuel Efficiency*|5 | 10 | 10 | 15 | 15 | 20 | 20 | 5 | 25 |
-| *Maneuverability*|colspan=6 | 0.5 | 0.65 |   |   |   |   |   |   |   |   |   |   |
-| *Boost Maneuverability*|1 | 7.5 | 1 | 12 | 5 | 16 | 5 | 18 | 1 | 20 |   |   |
-| *Boost*|1 | 10 | 10 | 15 | 10 | 20 | 10 | 25 | 1 | 30 |   |   |
+|   | Module Name | Stats Drawn | Module Improves | C-class | B-class | A-class | S-class | X-class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max | Min | Max |   |   |   |
+|   | [[Pulse Engine Upgrade]] | C 1-2 <br> B 2 <br> A 2-3 <br> S 3 <br> X 2-3 | *Pulse Drive Fuel Efficiency* | 5 | 10 | 10 | 15 | 15 | 20 | 20 | 5 | 25 |
+| *Maneuverability* | 0.5 | 0.65 |   |   |   |   |   |   |   |   |   |   |
+| *Boost Maneuverability* | 1 | 7.5 | 1 | 12 | 5 | 16 | 5 | 18 | 1 | 20 |   |   |
+| *Boost* | 1 | 10 | 10 | 15 | 10 | 20 | 10 | 25 | 1 | 30 |   |   |
 
 ## Crafting
 
@@ -61,25 +61,30 @@ Pulse Engine Upgrades can only be obtained from opening Pulse Engine Modules.
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ** Pulse Engine Upgrades**|- |   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | Seed | | --- | --- | --- | --- | --- | --- | --- | | Hypersonic | Fuel Pipes | +18% | +24% | +20% |   | 13710 | | Harmonic | Thrust Controller | +6% | +13% | +20% |   | 83069 | | Supercharged | Thrust Controller | +9% | +11% | +20% |   | 63920 | | Hypersonic | Shockwave Shield | +6% | +12% | +20% |   | 04067 | | Flawless | Impulse Nozzle | +10% | +15% | +20% |   |   | | Flawless | Neutrino Injector | +12% | +15% | +20% |   |   | | Flawless | Propulsion Unit | +6% | +15% | +20% |   |   | | Glorious | Neutrino Injector | +9% | +14% | +20% |   |   | | Glorious | Neutrino Injector | +12% | +15% | +20% |   |   | | Glorious | Plasma Exhaust | +8% | +15% | +20% |   |   | | Glorious | Shockwave Shield | +12% | +14% | +20% |   |   | | Harmonic | Electron Loom | +12% | +15% | +20% |   |   | | Harmonic | Fuel Pipes | +11% | +15% | +20% |   |   | | Harmonic | Impulse Nozzle | +9% | +14% | +20% |   |   | | Harmonic | Thrust Controller | +7% | +11% | +20% |   |   | | Hypersonic | Fuel Pipes | +10% | +12% | +20% |   |   | | Hypersonic | Hydrogen Dynamo | +12% | +15% | +20% |   |   | | Supercharged | Neutrino Injector | +11% | +11% | +20% |   |   | | Supercharged | Shockwave Shield | +6% | +15% | +20% |   |   | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ** Pulse Engine Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | Seed | | --- | --- | --- | --- | --- | --- | --- | | Hypersonic | Fuel Pipes | +18% | +24% | +20% |   | 13710 | | Harmonic | Thrust Controller | +6% | +13% | +20% |   | 83069 | | Supercharged | Thrust Controller | +9% | +11% | +20% |   | 63920 | | Hypersonic | Shockwave Shield | +6% | +12% | +20% |   | 04067 | | Flawless | Impulse Nozzle | +10% | +15% | +20% |   |   | | Flawless | Neutrino Injector | +12% | +15% | +20% |   |   | | Flawless | Propulsion Unit | +6% | +15% | +20% |   |   | | Glorious | Neutrino Injector | +9% | +14% | +20% |   |   | | Glorious | Neutrino Injector | +12% | +15% | +20% |   |   | | Glorious | Plasma Exhaust | +8% | +15% | +20% |   |   | | Glorious | Shockwave Shield | +12% | +14% | +20% |   |   | | Harmonic | Electron Loom | +12% | +15% | +20% |   |   | | Harmonic | Fuel Pipes | +11% | +15% | +20% |   |   | | Harmonic | Impulse Nozzle | +9% | +14% | +20% |   |   | | Harmonic | Thrust Controller | +7% | +11% | +20% |   |   | | Hypersonic | Fuel Pipes | +10% | +12% | +20% |   |   | | Hypersonic | Hydrogen Dynamo | +12% | +15% | +20% |   |   | | Supercharged | Neutrino Injector | +11% | +11% | +20% |   |   | | Supercharged | Shockwave Shield | +6% | +15% | +20% |   |   | |
 
-|   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- |
-| ** Pulse Engine Upgrades**|- |   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | | Solid State | Neutrino Injector | - | +12% | +19% |   | | Specialist | Impulse Nozzle | +6% | +6% | - |   | | Specialist | Plasma Exhaust | +7% | - | +18% |   | |
+|   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- |
+| ** Pulse Engine Upgrades** |   |   |   |   |   |
+|   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | | Solid State | Neutrino Injector | - | +12% | +19% |   | | Specialist | Impulse Nozzle | +6% | +6% | - |   | | Specialist | Plasma Exhaust | +7% | - | +18% |   | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| ** Pulse Engine Upgrades**|- |   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| ** Pulse Engine Upgrades** |   |   |
+|   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| ** Pulse Engine Upgrades**|- |   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| ** Pulse Engine Upgrades** |   |   |
+|   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | Screenshot | | --- | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ** Pulse Engine Upgrades**|- |   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | ID | | --- | --- | --- | --- | --- | --- | | Outlawed Upgraded | Propulsion Unit | +14% | +20% | +25% | 48604 | | Forbidden Polished | Plasma Exhaust | +13% | +20% | +24% | 05214 | | Counterfeit Heated | Electron Loom | +14% | +16% | +11% | 62075 | | Suspect Rewired | Electron Loom | +10% | +20% | +21% | 88946 | | Modified Rewired | Propulsion Unit | +20% | +28% | +25% | 90908 | | Counterfeit Polished | Magnetic Fan | +20% | +28% | +23% | 19303 | | Outlawed Rewired | Propulsion Unit | +20% | +29% | +23% | 99524 | |
+|   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ** Pulse Engine Upgrades** |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Maneuverability | Boost | Pulse Drive Efficiency | ID | | --- | --- | --- | --- | --- | --- | | Outlawed Upgraded | Propulsion Unit | +14% | +20% | +25% | 48604 | | Forbidden Polished | Plasma Exhaust | +13% | +20% | +24% | 05214 | | Counterfeit Heated | Electron Loom | +14% | +16% | +11% | 62075 | | Suspect Rewired | Electron Loom | +10% | +20% | +21% | 88946 | | Modified Rewired | Propulsion Unit | +20% | +28% | +25% | 90908 | | Counterfeit Polished | Magnetic Fan | +20% | +28% | +23% | 19303 | | Outlawed Rewired | Propulsion Unit | +20% | +29% | +23% | 99524 | |
 
 ## Additional information
 

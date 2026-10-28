@@ -43,8 +43,8 @@ The Zenith-Class Reactor functions similarly to an A-class Hyperdrive upgrade, g
 |   | Module Name | Module Improves | A-class |
 | --- | --- | --- | --- |
 | Min | Max |   |   |
-|   | [[Zenith-Class Reactor]] | *Warp Cell Efficiency*| colspan="2" |100 |   |
-| *Hyperdrive Range*|165 | 220 |   |   |
+|   | [[Zenith-Class Reactor]] | *Warp Cell Efficiency* | 100 |
+| *Hyperdrive Range* | 165 | 220 |   |
 
 ## Release history
 

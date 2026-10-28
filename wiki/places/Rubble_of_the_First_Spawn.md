@@ -69,7 +69,7 @@ The following systems have regularly encountered Rubble of the First Spawn.
 | Takyush-Mis I | 0B17:007D:01B3:0206 | Euclid | approx 440,000u away from Wiporth Prime in direction to Shun 82/Y3 |   |
 | Tayisar | 08C1:007D:010C:01E3 | Euclid | 112,500u away from Tanai 43/S9, and 457,000u away from Hera XIII |   |
 | Buzhum | 082C:0081:0239:0079 | Euclid | Faces Evadorym (278,681u from it). 602,961u from Xomou. |   |
-| Yashim-Asve XIII<br>*Uncharted (K0f)*Riquik Adjunct | 0544:007D:022D:00EC | Euclid | Faces Aoedenardo Kishi. For triangulation:<br>• Aoedenardo Kishi (296,400u),<br>• Epotis XIII (607,900),<br>• Ehrach Gamma (1,596ks),<br>• Aheidiusan Iogan (2,492ks; partially occluded by Ehrach Gamma's outer ring),<br>• Bewdl (3,581ks) |   |
+| Yashim-Asve XIII<br>*Uncharted (K0f)*<br>Riquik Adjunct | 0544:007D:022D:00EC | Euclid | Faces Aoedenardo Kishi. For triangulation:<br>• Aoedenardo Kishi (296,400u),<br>• Epotis XIII (607,900),<br>• Ehrach Gamma (1,596ks),<br>• Aheidiusan Iogan (2,492ks; partially occluded by Ehrach Gamma's outer ring),<br>• Bewdl (3,581ks) |   |
 | Katamis XVIII | 04AA:0087:01F4:00A3 | Hilbert | Triangulated:<br>• 397k from Mobou<br>• 1008k from Remarinu Beta<br>• 1375k from Dublines E18<br>Found going from Mobou towards space station |   |
 | Curiin | 02AF:007F:0C79:0094 | Calypso | Encountered between Opshir Lojiy and Ercurton XVII |   |
 | Elburg | 0861:007A:0EEC:00A2 | Euclid | Encountered while traveling from Ubdu II to Fonal XIV |   |

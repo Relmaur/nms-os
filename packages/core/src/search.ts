@@ -47,7 +47,8 @@ export const CATEGORIES: Record<string, { label: string; icon: string; blurb: st
   places: { label: 'Places', icon: 'ph-map-pin', blurb: 'Points of interest and space encounters' },
   missions: { label: 'Missions', icon: 'ph-flag-banner', blurb: 'Missions and journey milestones' },
   galaxies: { label: 'Galaxies', icon: 'ph-shooting-star', blurb: 'All 256 galaxies' },
-  updates: { label: 'Updates', icon: 'ph-newspaper', blurb: 'Every patch, with its notes' }
+  updates: { label: 'Updates', icon: 'ph-newspaper', blurb: 'Every patch, with its notes' },
+  mechanics: { label: 'Mechanics', icon: 'ph-gear-six', blurb: 'Inventories, supercharged slots, ship classes' }
 };
 const CUSTOM_SOURCE = {
   label: 'Custom',

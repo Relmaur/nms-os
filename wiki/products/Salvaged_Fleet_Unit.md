@@ -69,23 +69,23 @@ Can be re-deployed into your own capital ship to improve the speed of your fleet
 
 These have *adjacency bonus* with the hyper-drive tech you already have:
 
-| **Module Name**! rowspan="2" |Module Improves | C-Class | B-Class | A-Class | S-Class |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max |
-| **Hyperdrive Upgrade**|*Hyperdrive Range*|50 | 100 | 100 | 150 | 150 | 200 | 200 | 250 |
-| *Warp Cell Efficiency*| colspan="2" |N/A | N/A | +100% | +100% |   |   |   |   |
+| **Module Name** | Module Improves | C-Class | B-Class | A-Class | S-Class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max |   |   |
+| **Hyperdrive Upgrade** | *Hyperdrive Range* | 50 | 100 | 100 | 150 | 150 | 200 | 200 | 250 |
+| *Warp Cell Efficiency* | N/A | N/A | +100% | +100% |   |   |   |   |   |
 
 All of the following have *adjacency bonus* with each other, put in massive square for most effect:
 
-| **Module Name****Salvaged Fleet...**! rowspan="2" |Module Improves | C-Class | B-Class | A-Class | S-Class |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Min | Max | Min | Max | Min | Max | Min | Max |
-| **Fuel Unit**|*Fuel Efficiency*|2 | 5 | 6 | 10 | 11 | 15 | 16 | 20 |
-| **Beacon**|*Fleet Speed:*|2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
-| **Combat Unit**|*Fleet Combat*|2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
-| **Exploration Unit**|*Fleet Exploration / Science*|2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
-| **Mining Unit**|*Fleet Mining*|2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
-| **Trade Unit**|*Fleet Trade*|2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
+| **Module Name**<br>**Salvaged Fleet...** | Module Improves | C-Class | B-Class | A-Class | S-Class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Min | Max | Min | Max | Min | Max | Min | Max |   |   |
+| **Fuel Unit** | *Fuel Efficiency* | 2 | 5 | 6 | 10 | 11 | 15 | 16 | 20 |
+| **Beacon** | *Fleet Speed:* | 2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
+| **Combat Unit** | *Fleet Combat* | 2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
+| **Exploration Unit** | *Fleet Exploration / Science* | 2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
+| **Mining Unit** | *Fleet Mining* | 2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
+| **Trade Unit** | *Fleet Trade* | 2 | 2 | 6 | 6 | 11 | 11 | 15 | 15 |
 
 ## Source
 

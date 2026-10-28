@@ -38,16 +38,19 @@ Portals are ancient structures that are all identical in appearance. They have a
 The most expedient method for finding the portal of a celestial body is to use another portal with the new planet’s address and to build a beacon at the target location to find it later. To help in this task it is advised to at least claim one homebase at another portal and to use it as a personal portal hub.
 To find a first or later portal one can use a [[monolith]]. The most reliable way is to acquire an [[Exocraft]] and install [[Exocraft Signal Booster Upgrade Tau]]. Another way is to purchase a [[Planetary Chart]] (ancient artifact site) from **Cartographer** on a [[Space Station]]. Overall, monoliths only reveal the portal of their own celestial body. Repeated tries on the same planet will not yield other portal locations and are fruitless.
 
-**Locating a Monolith with the Planetary Chart:**- Plot the Route with a chart.
+**Locating a Monolith with the Planetary Chart:**
+- Plot the Route with a chart.
 - A pulse will travel out and will reveal the location of one alien structure in the star system. If the result is "Alien Monolith detected" then move to the next step, otherwise repeat the previous step until that is the result. A navigation icon will appear for every result.
 - Travel to the monolith.
 
-**Locating a Monolith with an Exocraft Scanner:**- Build an Exocraft Station and enter the Exocraft.
+**Locating a Monolith with an Exocraft Scanner:**
+- Build an Exocraft Station and enter the Exocraft.
 - Select the Scanner in the quick menu and choose "Alien Structures".
 - If a monolith is found travel to its location, otherwise repeat.
 - Travel to the monolith.
 
-**Locating the Portal with a Monolith:**- Activate the monolith.
+**Locating the Portal with a Monolith:**
+- Activate the monolith.
 - Select "Locate a Portal" – note that this will debit either one [[Gek Relic]], [[Korvax Casing]], or [[Vy'keen Dagger]] from your inventory depending upon the dominant [[race]] in the star system. These can be found inside green containers, gained from NPCs, rewarded for monolith challenges or received in debrief from [[Frigate]] missions.
 - A message will appear that a portal has been located on the planet and a navigation icon for the portal will appear.
 - Travel to the portal.

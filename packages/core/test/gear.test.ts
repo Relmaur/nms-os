@@ -1,6 +1,17 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { gearFromFleet, gearOrder, normalizeGear, parseSlots, slotGrid, toggleSlot } from '../src/gear.ts';
+import {
+  classLetter,
+  gearFromFleet,
+  gearOrder,
+  normalizeGear,
+  parseSlots,
+  slotGrid,
+  slotRules,
+  slotWarnings,
+  toggleSlot
+} from '../src/gear.ts';
+import { getFact } from '../src/facts.ts';
 import { buildState } from '../src/state.ts';
 import { mergeStates } from '../src/sync.ts';
 
@@ -108,4 +119,77 @@ test('damaged gear entries are dropped, not the list; flagships come first', () 
     gearOrder(gear).map(item => item.id),
     ['f', 'gear-2', 'a']
   );
+});
+
+const cite = (value: unknown, page = 'Inventory') => ({
+  page,
+  path: `wiki/mechanics/${page.replace(/ /g, '_')}.md`,
+  url: `https://example.invalid/${page}`,
+  revId: 1,
+  quote: '…',
+  value
+});
+const facts = {
+  schema: 1 as const,
+  facts: {
+    'supercharged-per-class': cite({ C: 1, B: 2, A: 3, S: 4 }, 'Supercharged Slot'),
+    'supercharged-fixed-count': cite(3, 'Supercharged Slot'),
+    'exosuit-supercharged-slots': cite(['R1C5', 'R2C9', 'R3C3'], 'Exosuit'),
+    'multitool-tech-max': cite({ columns: 10, slots: { C: 30, B: 30, A: 45, S: 60 } }),
+    'starship-tech-max': cite({ columns: 10, slots: { S: 60 } }),
+    'exosuit-tech-max': cite({ columns: 10, slots: { any: 60 } })
+  }
+};
+
+test('the class is read from what the player wrote, upgrades included', () => {
+  assert.deepEqual(['S', 'a', 'A -> S', 'B-Class', 'Royal', ''].map(classLetter), ['S', 'A', 'S', 'B', null, null]);
+});
+
+test('slot rules come from the cited facts: grid size by kind and class, supercharged count, fixed positions', () => {
+  const tool = slotRules(facts, 'multitool', 'A');
+  assert.deepEqual([tool.columns, tool.maxRows, tool.maxSlots, tool.supercharged], [10, 5, 45, 3]);
+  assert.deepEqual(slotRules(facts, 'multitool', 'C').maxRows, 3);
+  // The wiki only gives the S-class ship maximum; a C-class ship can be upgraded to it.
+  assert.deepEqual([slotRules(facts, 'starship', 'C').maxRows, slotRules(facts, 'starship', 'C').supercharged], [6, 1]);
+  assert.equal(slotRules(facts, 'starship', 'Royal').supercharged, null);
+  const suit = slotRules(facts, 'exosuit', '');
+  assert.deepEqual([suit.maxRows, suit.supercharged, suit.fixed], [6, 3, ['R1C5', 'R2C9', 'R3C3']]);
+  assert.deepEqual(
+    suit.sources.map(fact => fact.page),
+    ['Inventory', 'Supercharged Slot', 'Exosuit']
+  );
+});
+
+test('without facts (or with a value in the wrong shape) the picker keeps its own limits and states no rule', () => {
+  const none = slotRules(null, 'multitool', 'S');
+  assert.deepEqual(
+    [none.columns, none.maxRows, none.maxSlots, none.supercharged, none.sources],
+    [10, 12, null, null, []]
+  );
+  const broken = { schema: 1 as const, facts: { 'supercharged-per-class': cite({ S: 'four' }) } };
+  assert.equal(getFact(broken, 'supercharged-per-class'), null);
+  assert.equal(slotRules(broken, 'starship', 'S').supercharged, null);
+});
+
+test('marks that disagree with the wiki are reported, never refused', () => {
+  const rules = slotRules(facts, 'multitool', 'C');
+  assert.deepEqual(slotWarnings(rules, ['R1C1', 'R2C2', 'R4C3']), {
+    tooMany: true,
+    outside: ['R4C3'],
+    offPreset: []
+  });
+  assert.deepEqual(slotWarnings(slotRules(facts, 'exosuit', ''), ['R1C5', 'R2C9', 'R3C4']).offPreset, ['R3C4']);
+  assert.deepEqual(slotWarnings(slotRules(null, 'starship', 'S'), ['R9C9', 'R1C1', 'R2C2', 'R3C3', 'R4C4']), {
+    tooMany: false,
+    outside: [],
+    offPreset: []
+  });
+});
+
+test('an Exosuit record keeps its kind; an unknown kind still loads as a starship', () => {
+  const [suit, odd] = normalizeGear([
+    { id: 'suit', kind: 'exosuit', name: 'Suit' },
+    { id: 'odd', kind: 'freighter', name: 'Odd' }
+  ]);
+  assert.deepEqual([suit?.kind, odd?.kind], ['exosuit', 'starship']);
 });

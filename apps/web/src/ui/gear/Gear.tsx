@@ -1,13 +1,9 @@
 // Ships & Multi-Tools: the player's own gear (state key `gear`, ADR-0007), with their supercharged slots and notes.
-import { gearOrder, type GearKind } from '@atlas/core/gear';
+import { GEAR_KINDS, gearOrder } from '@atlas/core/gear';
 import { useAppState } from '../useAppState.ts';
 import { openGearEditor } from '../parts/editor-store.ts';
 import { GearCard } from './GearCard.tsx';
-
-const GROUPS: [GearKind, string, string][] = [
-  ['starship', 'Starships', 'ph-rocket'],
-  ['multitool', 'Multi-Tools', 'ph-crosshair']
-];
+import { KINDS } from './kinds.ts';
 
 export function Gear() {
   const gear = gearOrder(useAppState().gear);
@@ -23,7 +19,8 @@ export function Gear() {
           </div>
         </div>
       </div>
-      {GROUPS.map(([kind, title, icon]) => {
+      {GEAR_KINDS.map(kind => {
+        const { plural: title, icon, label, empty } = KINDS[kind];
         const items = gear.filter(item => item.kind === kind);
         return (
           <section key={kind} aria-labelledby={`gear-${kind}`} className="space-y-3">
@@ -41,7 +38,7 @@ export function Gear() {
                 className="h-9 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold flex items-center gap-1.5"
               >
                 <i className="ph-bold ph-plus" aria-hidden="true" />
-                {kind === 'starship' ? 'Add starship' : 'Add Multi-Tool'}
+                Add {kind === 'starship' ? 'starship' : label}
               </button>
             </div>
             {items.length ? (
@@ -52,9 +49,7 @@ export function Gear() {
               </div>
             ) : (
               <p className="text-sm text-slate-400 border border-dashed border-slate-700 rounded-2xl px-4 py-3">
-                {kind === 'starship'
-                  ? 'No starships yet. Add the one you fly: its slots and layout stay with it.'
-                  : 'No Multi-Tools yet. Add yours to keep its supercharged layout at hand.'}
+                {empty}
               </p>
             )}
           </section>

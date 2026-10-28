@@ -41,6 +41,18 @@ export const SCOPE: Record<string, string> = {
   'Update infobox': 'update'
 };
 export const SCOPE_KEYS = new Set(Object.keys(SCOPE).map(name => name.toLowerCase()));
+// Game-mechanics pages have no game-data infobox: they are mirrored by title (kind "mechanic") for the rules they
+// state in prose, which packages/wiki/src/facts.ts cites. A page already in scope through an infobox keeps its kind.
+export const MECHANICS = [
+  'Inventory',
+  'Supercharged Slot',
+  'Starship',
+  'Multi-Tool',
+  'Exosuit',
+  'Exocraft',
+  'Freighter',
+  'Starship Outfitting Terminal'
+];
 export const FOLDERS = [
   'resources',
   'products',
@@ -51,7 +63,8 @@ export const FOLDERS = [
   'places',
   'missions',
   'galaxies',
-  'updates'
+  'updates',
+  'mechanics'
 ];
 
 // Pages the wiki keeps for an older version of the game, e.g. "Blaze Javelin (Atlas)".
@@ -388,7 +401,11 @@ export function convertLinks(text: string): string {
 
 export function convertInline(text: string): string {
   return text
-    .replace(/('{2,5})[ \t]*\n/g, '$1') // bold/italic opened at a line end
+    // Bold/italic opened at a line end continues on the next line. One closed there ("'''Glass''' ") ends its list
+    // item: an odd number of quote runs on the line means the last one opens.
+    .replace(/^([^\n]*?)('{2,5})[ \t]*\n/gm, (line: string, before: string, quotes: string) =>
+      (before.match(/'{2,5}/g) ?? []).length % 2 === 0 ? `${before}${quotes}` : line
+    )
     .replace(/'''''(.+?)'''''/g, '***$1***')
     .replace(/'''(.+?)'''/g, '**$1**')
     .replace(/''(.+?)''/g, '*$1*')
@@ -631,6 +648,8 @@ export function categoryFor(kind: string, fields: Record<string, string>): strin
       return 'galaxies';
     case 'update':
       return 'updates';
+    case 'mechanic':
+      return 'mechanics';
   }
   const category = (fields.category || '').toLowerCase();
   const type = (fields.type || '').toLowerCase();

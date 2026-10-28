@@ -42,13 +42,13 @@ Mining Beam Upgrades have the following bonuses:
 
 The table shows the minimum and maximum values of the bonuses, while the number of bonuses indicates how many are granted randomly for each class.
 
-|   | **Module***'Name**! rowspan="2" |**Stats***'Drawn**! rowspan="2" |*Module**Improves*! colspan="2" |C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Min**!**Max**!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!Min | Max |   |   |   |   |   |   |   |   |   |   |   |
-|   | [[Mining Beam Upgrade]] | C 1-2<br>B 2-3<br>A 3-4<br>S 4<br>X 1-4 | *Mining Speed*|5 | 10 | 5 | 15 | 10 | 20 | 15 | 20 | 5 | 20 |
-| *Fuel Efficiency*|0 | 10 | 10 | 15 | 15 | 20 | 21 | 0 | 26 |   |   |   |   |
-| *Heat Dispersion*|5 | 15 | 15 | 20 | 20 | 40 | 40 | 50 | 5 | 55 |   |   |   |
-| *Overheat Downtime*|5 | 10 | 10 | 15 | 10 | 15 | 15 | 20 | 5 | 25 |   |   |   |
+|   | **Module**<br>**Name** | **Stats**<br>**Drawn** | *Module*<br>*Improves* | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | Min | Max |   |   |   |   |
+|   | [[Mining Beam Upgrade]] | C 1-2<br>B 2-3<br>A 3-4<br>S 4<br>X 1-4 | *Mining Speed* | 5 | 10 | 5 | 15 | 10 | 20 | 15 | 20 | 5 | 20 |
+| *Fuel Efficiency* | 0 | 10 | 10 | 15 | 15 | 20 | 21 | 0 | 26 |   |   |   |   |
+| *Heat Dispersion* | 5 | 15 | 15 | 20 | 20 | 40 | 40 | 50 | 5 | 55 |   |   |   |
+| *Overheat Downtime* | 5 | 10 | 10 | 15 | 10 | 15 | 15 | 20 | 5 | 25 |   |   |   |
 
 2 It is possible to receive one without stats.
 
@@ -82,25 +82,30 @@ The sequence is taken from the game file.
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Mining Beam Upgrades**|- |   | Prefix | Suffix | Mining Speed | Fuel Efficiency | Heat Dispersion | Overheat Downtime | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Brilliant | Reflector Glass | +20% | +21% | +50% | -20% | 20187 | | Incomparable | Output Coupler | +20% | +21% | +50% | -20% | 48301 | | Brilliant | Diode Battery | +20% | +21% | +50% | -17% | 56220 | | Superconducting | Diode Battery | +20% | +21% | +48% | -16% | 71151 | | Dazzling | Photon Mirror | +20% | +21% | +50% | -20% |   | | Superconducting | Cooling System | +20% | +21% | +50% | -20% |   | | Dazzling | Diode Battery | +17% | +21% | +50% | -19% |   | | Dazzling | Emission Chamber | +17% | +21% | +50% | -17% |   | | Superconducting | Output Coupler | +17% | +21% | +41% | -16% |   | | Dazzling | Photon Mirror | +16% | +21% | +47% | -19% |   | | Brilliant | Beam Amplifier | +16% | +21% | +41% | -16% |   | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-class Mining Beam Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Mining Speed | Fuel Efficiency | Heat Dispersion | Overheat Downtime | Screenshot/ID | | --- | --- | --- | --- | --- | --- | --- | | Brilliant | Reflector Glass | +20% | +21% | +50% | -20% | 20187 | | Incomparable | Output Coupler | +20% | +21% | +50% | -20% | 48301 | | Brilliant | Diode Battery | +20% | +21% | +50% | -17% | 56220 | | Superconducting | Diode Battery | +20% | +21% | +48% | -16% | 71151 | | Dazzling | Photon Mirror | +20% | +21% | +50% | -20% |   | | Superconducting | Cooling System | +20% | +21% | +50% | -20% |   | | Dazzling | Diode Battery | +17% | +21% | +50% | -19% |   | | Dazzling | Emission Chamber | +17% | +21% | +50% | -17% |   | | Superconducting | Output Coupler | +17% | +21% | +41% | -16% |   | | Dazzling | Photon Mirror | +16% | +21% | +47% | -19% |   | | Brilliant | Beam Amplifier | +16% | +21% | +41% | -16% |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **A-class Mining Beam Upgrades**|- |   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Screenshot | | --- | --- | --- | --- | --- | --- | --- | | Supercharged | Photon Mirror | +16% | - | -18% | -15% |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **A-class Mining Beam Upgrades** |   |   |   |
+|   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Screenshot | | --- | --- | --- | --- | --- | --- | --- | | Supercharged | Photon Mirror | +16% | - | -18% | -15% |   | |
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-| **B-class Mining Beam Upgrades**|- |   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Screenshot | | --- | --- | --- | --- | --- | --- | --- | | Liquid | Output Coupler | +6% | - | - | -14% |   | |
+|   |   |   |   |
+| --- | --- | --- | --- |
+| **B-class Mining Beam Upgrades** |   |   |   |
+|   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Screenshot | | --- | --- | --- | --- | --- | --- | --- | | Liquid | Output Coupler | +6% | - | - | -14% |   | |
 
-|   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **C-class Mining Beam Upgrades**|- |   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Overheat Downtime | Screenshot | | --- | --- | --- | --- | --- | --- | --- | --- | | Additional | Beam Capacitor | +6% | - | -1% | - | - |   | | Additional | Lens Optic | - | - | -1% | - | - |   | | Enhanced | Emission Chamber | - | +6% | - | -6% | - |   | | Retuned | Beam Capacitor | - | - | - | - | - |   | | Retuned | Diode Battery | - | +6% | - | - | -6% |   | |
+|   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **C-class Mining Beam Upgrades** |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Mining Speed | Heat Dispersion | Fuel Efficiency | Reload Time | Overheat Downtime | Screenshot | | --- | --- | --- | --- | --- | --- | --- | --- | | Additional | Beam Capacitor | +6% | - | -1% | - | - |   | | Additional | Lens Optic | - | - | -1% | - | - |   | | Enhanced | Emission Chamber | - | +6% | - | -6% | - |   | | Retuned | Beam Capacitor | - | - | - | - | - |   | | Retuned | Diode Battery | - | +6% | - | - | -6% |   | |
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Mining Beam Upgrades**|- |   | Prefix | Suffix | Mining Speed | Fuel Efficiency | Heat Dispersion | Overheat Downtime | ID | | --- | --- | --- | --- | --- | --- | --- | | Prohibited Fine-Tuned | Photon Mirror | +20% | +13% | - | -8% | 02711 | | Illegal Liquid | Emission Chamber | +20% | +6% | - | -9% | 15487 | | Banned Oscillating | Reflector Glass | +20% | +2% | - | -23% | 21057 | | Outlawed Overloaded | Beam Capacitor | +20% | +5% | +6% | -22% | 43504 | | Outlawed Advanced | Lens Optics | +20% | +23% | +52% | -8% | 43517 | | Counterfeit  Advanced | Photon Mirror | +20% | +25% | 54% | -19% | 50251 | | Unlicenced Oscillating | Photon Mirror | +18% | +22% | - | - | 79601 | | Smuggled Overloaded | Light Filter | +8% | +25% | +48% | -8% | 88737 | | Outlawed Oscillating | Beam Capacitor | +8% | +23% | +55% | -8% | 34038 | | Outlawed Overloaded | Beam Amplifier | +7% | +23% | +49% | -6% | 48604 | | Counterfeit Advanced | Light Filter | +6% | +25% | +54% | -7% | 85088 | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **X-class Mining Beam Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Mining Speed | Fuel Efficiency | Heat Dispersion | Overheat Downtime | ID | | --- | --- | --- | --- | --- | --- | --- | | Prohibited Fine-Tuned | Photon Mirror | +20% | +13% | - | -8% | 02711 | | Illegal Liquid | Emission Chamber | +20% | +6% | - | -9% | 15487 | | Banned Oscillating | Reflector Glass | +20% | +2% | - | -23% | 21057 | | Outlawed Overloaded | Beam Capacitor | +20% | +5% | +6% | -22% | 43504 | | Outlawed Advanced | Lens Optics | +20% | +23% | +52% | -8% | 43517 | | Counterfeit  Advanced | Photon Mirror | +20% | +25% | 54% | -19% | 50251 | | Unlicenced Oscillating | Photon Mirror | +18% | +22% | - | - | 79601 | | Smuggled Overloaded | Light Filter | +8% | +25% | +48% | -8% | 88737 | | Outlawed Oscillating | Beam Capacitor | +8% | +23% | +55% | -8% | 34038 | | Outlawed Overloaded | Beam Amplifier | +7% | +23% | +49% | -6% | 48604 | | Counterfeit Advanced | Light Filter | +6% | +25% | +54% | -7% | 85088 | |
 
 ## Release history
 

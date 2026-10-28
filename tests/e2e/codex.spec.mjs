@@ -6,7 +6,8 @@ test('the Codex landing shows the verification result and all categories', async
   await expect(page.locator('#browseBody')).toContainText(
     /Matches the wiki|Not verified on this copy|behind the wiki|couldn’t be reached/
   );
-  await expect(page.locator('#browseBody a.group')).toHaveCount(10);
+  await expect(page.locator('#browseBody a.group')).toHaveCount(11);
+  await expect(page.locator('#browseBody a.group', { hasText: 'Mechanics' })).toBeVisible();
 });
 
 test('search finds Oxygen and the article cites its wiki revision', async ({ page }) => {

@@ -47,7 +47,8 @@ With this mission set as the active mission, fly into space and Quicksilver Synt
 Traveller? Friend of Master Polo?<br>
 Greetings! It is most pleasant to interface again. In service of creation, I have written an autonomous instruction to signal your starship. It is my intention that this will please Master Polo!
 - Continue
-*Note: The following conversation is the same as below.*<br><br>
+*Note: The following conversation is the same as below.*
+<br><br>
 **Quicksilver Synthesis Bot** (any subsequent contact)
 
 Greetings! It is most pleasant to interface again.
@@ -90,4 +91,5 @@ The mission will only be completed when the timer runs out.
 ## Additional information
 
 - In the text "**X**d : **Y**h" shows the player the remaining time in days (X) and hours (Y), for example 2d : 10h.
-- With the [[Update (2019.01.09)]] the duration of the mission is extended by 14 days. *Wiki note: It is probably done to let the players unlock the tier 3 reward, as the mission would have ended in a day.*- Tier 1, tier 2 and tier 3 were completed during the mission for all platforms. The related rewards are available at Quicksilver Synthesis Companion.
+- With the [[Update (2019.01.09)]] the duration of the mission is extended by 14 days. *Wiki note: It is probably done to let the players unlock the tier 3 reward, as the mission would have ended in a day.*
+- Tier 1, tier 2 and tier 3 were completed during the mission for all platforms. The related rewards are available at Quicksilver Synthesis Companion.

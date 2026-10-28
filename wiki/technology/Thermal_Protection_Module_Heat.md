@@ -40,9 +40,10 @@ Increase the base capacity of the Hazard Protection system, allowing the user to
 High Temperature Protection Upgrades grant the following bonus:
 - *Heat Protection*
 
-| **Module Name**! rowspan="2" |**Module Improves**! colspan="2" | B-class | A-class | S-class |   |   |   |   |   |
+| **Module Name** | **Module Improves** | B-class | A-class | S-class |   |   |   |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Min**!**Max**!**Min**!**Max**!**Min**!**Max**|- | [[Thermal Protection Module (Heat)]] | *Heat Protection*|200 | 300 | 240 | 320 | 280 | 360 |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** |   |   |
+| [[Thermal Protection Module (Heat)]] | *Heat Protection* | 200 | 300 | 240 | 320 | 280 | 360 |
 
 Up to three protections upgrades can be installed in the Exosuit. Installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 

@@ -43,9 +43,15 @@ jobs:
       # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, slow or answers
       # something unexpected, the committed archive ships as-is and the Codex says it couldn't be checked.
       - name: Sync and verify the wiki mirror
+        id: sync
         run: pnpm sync:wiki
         timeout-minutes: 15
         continue-on-error: true
+      # A sync that crashed or timed out never reached its indexing step: build the indexes (index.json,
+      # game-data.json, facts.json, the Codex bundle) from the committed archive instead.
+      - name: Index the committed archive
+        if: steps.sync.outcome != 'success'
+        run: pnpm index:wiki
 
       # Gate: nothing is committed back or deployed unless types, lint and unit tests pass on the synced data.
       # Browser tests (pnpm test:e2e) run locally as part of pnpm check, not in CI, to keep runs short.

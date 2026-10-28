@@ -37,11 +37,11 @@ A-class and S-class Hyperdrive Upgrades also grant +100% of the following bonus:
 - [[Warp Cell|Warp Cell Efficiency]]: Increases the fuel range of the ship by 100% each.
   - It has a stacking effect: 1 = 50% fuel cost / 2 = 33% fuel cost / 3 = 25% fuel cost (5% per jump!)
 
-|   | Module Name | Stats Drawn | Module Improves | C-class | B-class | A-class | S-class | X-class |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Min**!**Max**!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!Min | Max |   |   |   |   |   |   |   |   |
-|   | [[Hyperdrive Upgrade]] | C/B 1<br>A/S 2<br>X 1-2 | *Warp Cell Efficiency*| colspan="2" |n/a | n/a | 100 | 100 | 100 |   |   |
-| *Hyperdrive Range*|50 | 100 | 115 | 165 | 165 | 220 | 220 | 265 | 50 | 320 |
+|   | Module Name | Stats Drawn | Module Improves | C-class | B-class | A-class | S-class | X-class |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | Min | Max |   |
+|   | [[Hyperdrive Upgrade]] | C/B 1<br>A/S 2<br>X 1-2 | *Warp Cell Efficiency* | n/a | n/a | 100 | 100 | 100 |   |   |
+| *Hyperdrive Range* | 50 | 100 | 115 | 165 | 165 | 220 | 220 | 265 | 50 | 320 |
 
 Up to three Hyperdrive Upgrades can be installed in the [[Starship]] --- installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -55,25 +55,30 @@ Hyperdrive Upgrades can only be obtained from opening Hyperdrive Modules.
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Hyperdrive Upgrades**|- |   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Flawless | Reality Destabiliser | 242 | +100% |   | | Flawless | Reality Destabiliser | 249 | +100% |   | | Flawless | Superluminal Drive | 242 | +100% |   | | Flawless | Vacuum Drive | 207 | +100% |   | | Flawless | Antimatter Injector | 207 | +100% |   | | Glorious | Frame Drag Limiter | 235 | +100% |   | | Glorious | Relativity Shield | 200 | +100% |   | | Glorious | Relativity Shield | 240 | +100% |   | | Glorious | Superluminal Drive | 202 | +100% |   | | Glorious | Warp Core | 236 | +100% |   | | Glorious | Warp Core | 239 | +100% |   | | Harmonic | Frame Drag Limiter | 248 | +100% |   | | Harmonic | Reality Destabiliser | 250 | +100% |   | | Hypersonic | Antimatter Injector | 200 | +100% |   | | Hypersonic | Antimatter Injector | 208 | +100% |   | | Hypersonic | Antimatter Injector | 246 | +100% |   | | Hypersonic | Frame Drag Limiter | 241 | +100% |   | | Hypersonic | Frame Drag Limiter | 242 | +100% |   | | Hypersonic | Frame Drag Limiter | 245 | +100% |   | | Hypersonic | Frame Drag Limiter | 247 | +100% |   | | Hypersonic | Reality Destabiliser | 248 | +100% |   | | Supercharged | Antimatter Injector | 249 | +100% |   | | Supercharged | Reality Destabiliser | 240 | +100% |   | | Supercharged | Superluminal Drive | 200 | +100% |   | |
-
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **A-class Hyperdrive Upgrades**|- |   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Solid State | Reality Destabiliser | 160 | +100% |   | | Solid State | Frame Drag Limiter | 155 | +100% |   | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-class Hyperdrive Upgrades** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Flawless | Reality Destabiliser | 242 | +100% |   | | Flawless | Reality Destabiliser | 249 | +100% |   | | Flawless | Superluminal Drive | 242 | +100% |   | | Flawless | Vacuum Drive | 207 | +100% |   | | Flawless | Antimatter Injector | 207 | +100% |   | | Glorious | Frame Drag Limiter | 235 | +100% |   | | Glorious | Relativity Shield | 200 | +100% |   | | Glorious | Relativity Shield | 240 | +100% |   | | Glorious | Superluminal Drive | 202 | +100% |   | | Glorious | Warp Core | 236 | +100% |   | | Glorious | Warp Core | 239 | +100% |   | | Harmonic | Frame Drag Limiter | 248 | +100% |   | | Harmonic | Reality Destabiliser | 250 | +100% |   | | Hypersonic | Antimatter Injector | 200 | +100% |   | | Hypersonic | Antimatter Injector | 208 | +100% |   | | Hypersonic | Antimatter Injector | 246 | +100% |   | | Hypersonic | Frame Drag Limiter | 241 | +100% |   | | Hypersonic | Frame Drag Limiter | 242 | +100% |   | | Hypersonic | Frame Drag Limiter | 245 | +100% |   | | Hypersonic | Frame Drag Limiter | 247 | +100% |   | | Hypersonic | Reality Destabiliser | 248 | +100% |   | | Supercharged | Antimatter Injector | 249 | +100% |   | | Supercharged | Reality Destabiliser | 240 | +100% |   | | Supercharged | Superluminal Drive | 200 | +100% |   | |
 
 |   |   |   |   |   |
 | --- | --- | --- | --- | --- |
-| **B-class Hyperdrive Upgrades**|- |   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Rewired | Superluminal Drive | 132 | - |   | |
+| **A-class Hyperdrive Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Solid State | Reality Destabiliser | 160 | +100% |   | | Solid State | Frame Drag Limiter | 155 | +100% |   | |
 
 |   |   |   |   |
 | --- | --- | --- | --- |
-| **C-class Hyperdrive Upgrades**|- |   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | |
+| **B-class Hyperdrive Upgrades** |   |   |   |
+|   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | | Rewired | Superluminal Drive | 132 | - |   | |
 
-|   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **X-class Hyperdrive Upgrades**|- |   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | | Modified Heated | Superluminal Drive | 320 | +100% | 83080 | | Smuggled Heated | Causality Isolator | - | +100% |   | | Black Market Rewired | Reality Destabiliser | 302 | +100% | 52542 | | Risky Stabilised | Relativity Shield | 308 | +100% | 44574 | | Banned Rewired | Vacuum Drive | 311 | +100% | 77520 | | Counterfeit Heated | Distance Polariser | 314 | +100% | 23749 | |
+|   |   |   |
+| --- | --- | --- |
+| **C-class Hyperdrive Upgrades** |   |   |
+|   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot | | --- | --- | --- | --- | --- | |
+
+|   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **X-class Hyperdrive Upgrades** |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Hyperdrive Range (ly) | Warp Cell Efficiency | Screenshot/ID | | --- | --- | --- | --- | --- | | Modified Heated | Superluminal Drive | 320 | +100% | 83080 | | Smuggled Heated | Causality Isolator | - | +100% |   | | Black Market Rewired | Reality Destabiliser | 302 | +100% | 52542 | | Risky Stabilised | Relativity Shield | 308 | +100% | 44574 | | Banned Rewired | Vacuum Drive | 311 | +100% | 77520 | | Counterfeit Heated | Distance Polariser | 314 | +100% | 23749 | |
 
 ## Additional Information
 

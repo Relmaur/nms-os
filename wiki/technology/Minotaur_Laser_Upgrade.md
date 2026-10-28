@@ -32,7 +32,9 @@ data: {"fields":{"image":"RENDER.VEHICLE_LASERU1.png","category":"Exocraft","sub
 ## Upgrade properties
 
 Minotaur Laser Upgrades grant at least one of the following bonuses:
-- *Mining Laser Power*- *Mining Laser Efficiency*
+- *Mining Laser Power*
+- *Mining Laser Efficiency*
+
 Up to three Minotaur Laser Upgrades can be installed in the inventory of a Minotaur; installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
 | Minotaur Laser<br>Upgrade | Stats Given: | Module Improves | B-class | A-class | S-class |
@@ -50,17 +52,20 @@ Minotaur Laser Upgrades can only be obtained from opening Minotaur Laser Modules
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **S-class Minotaur Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | | Incomparable | Beam Capacitor | +20% | +49% | 64954 | | Incomparable | Beam Amplifier | +18% | +49% | 81203 | |
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+| **S-class Minotaur Laser Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | | Incomparable | Beam Capacitor | +20% | +49% | 64954 | | Incomparable | Beam Amplifier | +18% | +49% | 81203 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **A-class Minotaur Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **A-class Minotaur Laser Upgrades** |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **B-class Minotaur Laser Upgrades**|- |   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **B-class Minotaur Laser Upgrades** |   |   |
+|   | Prefix | Suffix | Mining Laser Efficiency | Mining Laser Power | Screenshot/ID | | --- | --- | --- | --- | --- | |
 
 ## Additional information
 

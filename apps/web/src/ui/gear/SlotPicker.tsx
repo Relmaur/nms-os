@@ -1,11 +1,24 @@
 // Mark supercharged slots by tapping the inventory grid: tap to mark, tap again to clear. Each cell is a toggle button;
 // one is in the Tab order at a time, and the arrow keys move between them (Space or Enter toggles), so 40 cells
-// don't cost 40 Tab presses. "Add a row" grows the grid (the true inventory maximum isn't in the wiki mirror), and each
-// marked slot gets a field for what sits in it.
+// don't cost 40 Tab presses. "Add a row" grows the grid up to the largest inventory the wiki gives (slotRules), and
+// each marked slot gets a field for what sits in it. The rules shown come from cited facts and link to their Codex
+// pages; marks that disagree get a note, never a block: the player's inventory screen is the truth.
 import { useRef, useState, type KeyboardEvent } from 'react';
-import { MAX_LABEL, MAX_SLOT, slotGrid, toggleSlot } from '@atlas/core/gear';
+import {
+  MAX_LABEL,
+  classLetter,
+  slotGrid,
+  slotWarnings,
+  toggleSlot,
+  type GearKind,
+  type SlotRules
+} from '@atlas/core/gear';
+import { KINDS } from './kinds.ts';
 
-const MIN = { rows: 4, cols: 10 };
+const MIN_ROWS = 4; // the wiki: supercharged slots are "almost always in the first 3 or 4 lines"
+const list = (slots: string[]) =>
+  slots.length > 1 ? `${slots.slice(0, -1).join(', ')} and ${slots.at(-1) ?? ''}` : (slots[0] ?? '');
+const codexHref = (path: string) => `wiki/#/a/${encodeURIComponent(path)}`;
 const STEP: Record<string, [number, number]> = {
   ArrowUp: [-1, 0],
   ArrowDown: [1, 0],
@@ -16,15 +29,30 @@ const STEP: Record<string, [number, number]> = {
 export function SlotPicker({
   slots,
   labels,
+  kind,
+  cls,
+  rules,
   onChange
 }: {
   slots: string[];
   labels: Record<string, string>;
+  kind: GearKind;
+  cls: string;
+  rules: SlotRules;
   onChange: (slots: string[], labels: Record<string, string>) => void;
 }) {
-  const [rows, setRows] = useState(MIN.rows);
-  const grid = slotGrid(slots, { ...MIN, rows });
-  const [focus, setFocus] = useState<[number, number]>([1, 1]);
+  const [rows, setRows] = useState(MIN_ROWS);
+  const grid = slotGrid(slots, { rows: Math.min(rows, rules.maxRows), cols: rules.columns });
+  const warn = slotWarnings(rules, slots);
+  const letter = classLetter(cls);
+  const name = KINDS[kind].label;
+  const pages = [...new Map(rules.sources.map(fact => [fact.path, fact.page])).entries()];
+  const fixed = rules.fixed;
+  const missing = fixed?.filter(slot => !slots.includes(slot)) ?? [];
+  const keep = (next: string[]) => Object.fromEntries(Object.entries(labels).filter(([key]) => next.includes(key)));
+  const [moved, setFocus] = useState<[number, number]>([1, 1]);
+  // Kept inside the grid: a lower class shrinks it, and the cell in the Tab order must still exist.
+  const focus: [number, number] = [Math.min(moved[0], grid.rows), Math.min(moved[1], grid.cols)];
   const root = useRef<HTMLDivElement>(null);
 
   const onKey = (event: KeyboardEvent) => {
@@ -78,7 +106,7 @@ export function SlotPicker({
               onClick={() => {
                 setFocus([row, col]);
                 const next = toggleSlot(slots, slot);
-                onChange(next, Object.fromEntries(Object.entries(labels).filter(([key]) => next.includes(key))));
+                onChange(next, keep(next));
               }}
               className={`aspect-square min-h-6 rounded-md border transition-colors focus-visible:outline-2 focus-visible:outline-cyan-400 ${
                 on
@@ -93,7 +121,7 @@ export function SlotPicker({
         <p id="slotPickerHint" className="flex-1 min-w-[12rem] text-xs text-slate-400">
           Tap the cells where the inventory shows a supercharged slot; tap again to clear. Row 1 is the top row.
         </p>
-        {grid.rows < MAX_SLOT && (
+        {grid.rows < rules.maxRows && (
           <button
             type="button"
             onClick={() => {
@@ -105,6 +133,65 @@ export function SlotPicker({
           </button>
         )}
       </div>
+      {pages.length > 0 && (
+        <p id="slotRules" className="text-xs text-slate-400">
+          {rules.supercharged !== null &&
+            (kind === 'exosuit'
+              ? `${String(rules.supercharged)} supercharged slots, in the same places for every player. `
+              : `${letter ?? ''}-class: ${String(rules.supercharged)} supercharged slot${rules.supercharged === 1 ? '' : 's'}. `)}
+          Technology grid: {rules.columns} wide, up to {rules.maxRows} rows. From the wiki:{' '}
+          {pages.map(([path, page], i) => (
+            <span key={path}>
+              {i > 0 && ', '}
+              <a
+                href={codexHref(path)}
+                target="_blank"
+                rel="noopener"
+                className="text-cyan-300 hover:text-cyan-200 underline"
+              >
+                {page}
+              </a>
+            </span>
+          ))}
+          .
+        </p>
+      )}
+      {(warn.tooMany || warn.outside.length > 0 || warn.offPreset.length > 0) && (
+        <ul id="slotWarnings" className="space-y-1 text-xs text-amber-200" aria-live="polite">
+          {warn.tooMany && !warn.offPreset.length && (
+            <li>
+              {kind === 'exosuit' ? 'The Exosuit has' : `${letter ?? ''}-class has`} {rules.supercharged} supercharged
+              slot{rules.supercharged === 1 ? '' : 's'}; {slots.length} are marked.{' '}
+              {kind === 'exosuit' ? 'Check the inventory screen.' : 'Check the class, or the inventory screen.'}
+            </li>
+          )}
+          {warn.outside.length > 0 && (
+            <li>
+              {list(warn.outside)} {warn.outside.length > 1 ? 'are' : 'is'} outside the largest {name} grid the wiki
+              gives ({rules.maxRows} rows of {rules.columns}).
+            </li>
+          )}
+          {fixed && warn.offPreset.length > 0 && (
+            <li>
+              {list(warn.offPreset)} {warn.offPreset.length > 1 ? 'aren’t' : 'isn’t'} one of the Exosuit’s (
+              {list(fixed)}).
+            </li>
+          )}
+        </ul>
+      )}
+      {missing.length > 0 && (
+        <button
+          type="button"
+          id="slotPreset"
+          onClick={() => {
+            const next = missing.reduce(toggleSlot, slots); // adds the missing ones; marks already there stay
+            onChange(next, labels);
+          }}
+          className="h-8 px-2.5 rounded-lg border border-amber-300/40 text-xs text-amber-200 hover:bg-amber-300/10"
+        >
+          Mark the Exosuit’s slots ({list(missing)})
+        </button>
+      )}
       {slots.length > 0 && (
         <div className="space-y-2 pt-1">
           <p className="field-label">What’s in each one</p>

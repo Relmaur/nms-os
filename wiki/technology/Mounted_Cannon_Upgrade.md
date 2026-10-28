@@ -32,7 +32,9 @@ data: {"fields":{"image":"RENDER.VEHICLE_GUNMOD.png","category":"Exocraft","subc
 ## Upgrade properties
 
 Exocraft Mounted Cannon Upgrades grant at least one of the following bonuses:
-- *Rate of Fire*- *Damage*- *Weapon Power Efficiency:* reduces weapon charge cost of each shot
+- *Rate of Fire*
+- *Damage*
+- *Weapon Power Efficiency:* reduces weapon charge cost of each shot
 
 Up to three Exocraft Mounted Cannon Upgrades can be installed in the inventory of an Exocraft --- installing four or more upgrades will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -52,21 +54,25 @@ Exocraft Mounted Cannon Upgrades can only be obtained from opening Exocraft Cann
 
 ## Discovered Upgrade Modules
 
-|   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-class Exocraft Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | | Quantum | Capacitors | +10% | +12% | +20% | 88646 | | Faultless | Injectors | +9% | +12% | +20% | 06968 & 16259 | | Faultless | Generator Unit | +8% | +12% | +20% | 81327 | | Indium | Plating | +10% | +12% | +16% | 40959 | |
+|   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- |
+| **S-class Exocraft Cannon Upgrades** |   |   |   |   |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | | Quantum | Capacitors | +10% | +12% | +20% | 88646 | | Faultless | Injectors | +9% | +12% | +20% | 06968 & 16259 | | Faultless | Generator Unit | +8% | +12% | +20% | 81327 | | Indium | Plating | +10% | +12% | +16% | 40959 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **A-class Exocraft Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **A-class Exocraft Cannon Upgrades** |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | |
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-| **B-class Exocraft Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | | Living Glass | Stabiliser | n/a | +5% | +10% | 33308 | | Supercharged | Capacitors | n/a | +6% | +9% | 15027 | |
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+| **B-class Exocraft Cannon Upgrades** |   |   |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | | Living Glass | Stabiliser | n/a | +5% | +10% | 33308 | | Supercharged | Capacitors | n/a | +6% | +9% | 15027 | |
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| **C-class Exocraft Cannon Upgrades**|- |   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | |
+|   |   |   |
+| --- | --- | --- |
+| **C-class Exocraft Cannon Upgrades** |   |   |
+|   | Prefix | Suffix | Rate of Fire | Damage | Weapon Power Efficiency | Image / ID | | --- | --- | --- | --- | --- | --- | |
 
 ## Additional information
 

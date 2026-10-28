@@ -51,6 +51,20 @@ export function readEmbeddedIn(data: unknown, template: string): EmbeddedPage[] 
   });
 }
 
+// titles=… → [{ pageid, title }] for the pages that exist; a title the wiki no longer has comes back `missing`.
+export function readTitles(data: unknown): { pages: EmbeddedPage[]; missing: string[] } {
+  const parsed = Revisions.safeParse(data);
+  if (!parsed.success) throw new InvalidResponse('titles: no page list in the response');
+  const pages: EmbeddedPage[] = [];
+  const missing: string[] = [];
+  for (const page of parsed.data.query.pages) {
+    const entry = EmbeddedPage.safeParse(page);
+    if (entry.success) pages.push(entry.data);
+    else missing.push(z.looseObject({ title: z.string() }).safeParse(page).data?.title ?? '?');
+  }
+  return { pages, missing };
+}
+
 function revisionProblem(path: PropertyKey[]): string {
   if (path[0] === 'pageid' || path[0] === 'title') return 'has no pageid/title';
   if (path.includes('timestamp')) return 'has no valid timestamp';

@@ -41,13 +41,13 @@ The Twin Dynamo Jets function similarly to a B-class Pulse Engine upgrade, grant
 - *Maneuverability:* increases the Starship's turn rate.
 - *Boost:* increases maximum speed while boosting.
 
-|   | Module Name | Module Improves | B-class |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Twin Dynamo Jets]] | *Pulse Drive Fuel Efficiency*|10 | 15 |
-| *Maneuverability*| colspan="2" |0.5 |   |   |   |
-| *Boost Maneuverability*|1 | 12 |   |   |
-| *Boost*|10 | 15 |   |   |
+|   | Module Name | Module Improves | B-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Twin Dynamo Jets]] | *Pulse Drive Fuel Efficiency* | 10 | 15 |
+| *Maneuverability* | 0.5 |   |   |   |
+| *Boost Maneuverability* | 1 | 12 |   |   |
+| *Boost* | 10 | 15 |   |   |
 
 ## Release history
 

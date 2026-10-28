@@ -37,6 +37,7 @@ data: {"fields":{"name":"Daily Research: Exploration","image":"NmsMisc_Mission.p
 This part is a continuation of the Community Research (mission 9) mission, but specific to this mission.
 
 **Quicksilver Synthesis Bot**
+
 Input data to my storage banks, and I will synthesise reward output across all realities. A range of data is of utility to the Space Anomaly. Today, do you wish to contribute to TRADE / COLLECTION, EXPLORATION or DESTRUCTION?
 - Select 'Exploration'
 Thank you! You have selected EXPLORATION.
@@ -58,6 +59,7 @@ After visiting four star systems the mission objective will be updated.
 The player will be contacted again through the communicator, or after using the starship's scanner.
 
 **Quicksilver Synthesis Bot**
+
 Greetings! I am pleased to see your safe return, Traveller!<br>
 Did you successfully collect the requested data from undiscovered systems?
 - Transmit

@@ -42,10 +42,13 @@ Dialogue does vary between visits to various Submerged Ruins.
 ### Base dialogue
 
 **The Voice of the Shell**
-*I hear a voice, soft but insistent, growing ever louder as I linger before the ancient altar. It flows closer, the water rushing about me, demanding that I listen to its tale.*- Accept the waves
+
+*I hear a voice, soft but insistent, growing ever louder as I linger before the ancient altar. It flows closer, the water rushing about me, demanding that I listen to its tale.*
+- Accept the waves
 1. [[Submerged Ruins|Possible dialogues]]
   - Leave
-    1. *I pull back and the roar of the oceans subsides. As the light of the ruin fades, I find an ancient key, perfect despite its age.*- Decline
+    1. *I pull back and the roar of the oceans subsides. As the light of the ruin fades, I find an ancient key, perfect despite its age.*
+- Decline
 1. *I pull back and the roar of the oceans subsides. As the light of the ruin fades, I find an ancient key, perfect despite its age.*
 
 ### Possible dialogues
@@ -66,8 +69,11 @@ One of the following will be included in the base dialogue. The sequence is take
 This dialouge is chosen after all eight possible dialogues are experienced by the player.
 
 *Note: This part of the dialogue needs further research, please help expanding it.*
+
 **The Voice of the Shell**
-*The voice speaks, but the words no longer make sense. Whatever song the sea now sings, it does so in a tongue beyond my comprehension.*- Listen
+
+*The voice speaks, but the words no longer make sense. Whatever song the sea now sings, it does so in a tongue beyond my comprehension.*
+- Listen
 - Make offering (Requires Hypnotic Eye, Gives Horrific Treasure)
 
 ## Additional information

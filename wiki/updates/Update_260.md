@@ -39,6 +39,7 @@ Currently Unknown.
 ## Actual text
 
 **DESOLATION: INTRODUCING UPDATE 2.6**
+
 Scavenge and survive in the haunted wreckage of derelict freighters with the Desolation update. Introducing procedurally-generated freighters, more story content, combat improvements, freighter customisation and more!
 
 ### Derelict Freighters

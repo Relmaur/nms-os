@@ -65,6 +65,7 @@ We are always astonished by how much beautiful art pours out of the No Man’s S
 This black and white drawing by *@mindflings* is a stunning interpretation of the living ship.
 
 We love the creativity of this organic “Ram” starship by *@alexbpart!*
+
 And '''' printed their own physical living ship – we think it looks great!
 
 Finally, some beautiful screenshots by *'', *, * and *.

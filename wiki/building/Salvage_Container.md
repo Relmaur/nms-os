@@ -46,12 +46,15 @@ When the core is destroyed, it rewards the player with a random [[Salvaged Scrap
 The following rewards ca be received
 
 **common**
+
 - [Streamlined Trim Cap](http://Corvette%20Construction%20Parts)
 
 **uncommon**
+
 no logged items
 
 **rare**
+
 no logged items
 
 ## Release history

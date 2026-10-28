@@ -37,13 +37,14 @@ This module is automatically linked to the corvette's launch systems, providing 
 ## Upgrade properties
 
 Thunderbird Landing Thrusters function similarly to a B-class Launch Thruster upgrade, granting the following bonuses:
-- *Launch Cost*- *Boost:* increases maximum speed while boosting.
+- *Launch Cost*
+- *Boost:* increases maximum speed while boosting.
 
-|   | Module Name | Module Improves | B-class |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Thunderbird Landing Thrusters]] | *Launch Cost*| -10 | -15 |
-| *Boost*|2 | 5 |   |   |
+|   | Module Name | Module Improves | B-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Thunderbird Landing Thrusters]] | *Launch Cost* | -10 | -15 |
+| *Boost* | 2 | 5 |   |   |
 
 ## Release history
 

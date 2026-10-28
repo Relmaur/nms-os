@@ -14,6 +14,7 @@ import { openSystem } from '../systems/panel-store.ts';
 import { findBookHits, flash, snippetAround, type BookHit } from './book-search.ts';
 import { showSection } from './section-store.ts';
 import { onWikiEntries, wikiEntries } from './wiki-index.ts';
+import { KINDS } from '../gear/kinds.ts';
 
 const WIKI_LIMIT = 6;
 const BOOK_LIMIT = 6;
@@ -244,15 +245,14 @@ export function Search() {
         option(
           i,
           <span className="nav-tile text-cyan-300 mt-0.5">
-            <i className={`ph-bold ${item.kind === 'multitool' ? 'ph-crosshair' : 'ph-rocket'}`} aria-hidden="true" />
+            <i className={`ph-bold ${KINDS[item.kind].icon}`} aria-hidden="true" />
           </span>,
           <>
             <strong className="block text-sm text-white truncate">
               <Highlight text={item.name} tokens={tokens} />
             </strong>
             <span className="block text-xs text-slate-400 truncate">
-              {[item.class, item.type, item.role].filter(Boolean).join(' · ') ||
-                (item.kind === 'multitool' ? 'Multi-Tool' : 'Starship')}
+              {[item.class, item.type, item.role].filter(Boolean).join(' · ') || KINDS[item.kind].label}
             </span>
           </>
         )

@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Priest Entity Nada will contact the player through the communicator.
 
 **Priest Entity Nada**
+
 --<br>
 --
 - Accept
@@ -71,6 +72,7 @@ Using the [[Photo Mode]] is required and after successfully taking a picture of 
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Priest Entity Nada**
+
 --
 - Upload photographs
 --<br>
@@ -102,6 +104,7 @@ The planets will require the following biomes with water present and they need t
 If you turn in partial results, the following conversation takes place.
 
 **Priest Entity Nada**
+
 --
 - Upload photographs
 1. Nada thanks me, clapping their hands together in a convincing display of delight. They suggest that more data would further assist Polo's existential recovery.
@@ -115,6 +118,7 @@ After taking all 10 images, the data limit is reached and the mission objective 
 The player will be contacted again through the communicator, after using the starship's scanner.
 
 **Priest Entity Nada**
+
 --
 - Upload photographs
 --

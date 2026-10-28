@@ -38,24 +38,15 @@ This module is automatically linked to the corvette's navigation systems, provid
 
 The Azimuth-Class Reactor functions similarly to an A-class Pulse Engine upgrade, granting the following bonuses:
 - *Pulse Drive Fuel Efficiency*: decreases the rate of Pulse Drive fuel consumption during Pulse Jumps.
-- *Automatic Recharging: Enabled*- *Launch Cost*{| class="wikitable" style="text-align:center"
-! rowspan="2" |
-! rowspan="2" |Module Name
-! rowspan="2" |Module Improves
-! colspan="2" |A-class
-|-
-!Min !! Max
-|-
-| rowspan="3" style="background:#f18700" |
-| rowspan="3" |[[Azimuth-Class Reactor]]
-|*Maneuverability*| colspan="2" |0.5
-|-
-|*Pulse Drive Fuel Efficiency*|15
-|20
-|-
-|*Launch Cost*| -15
-| -20
-|}
+- *Automatic Recharging: Enabled*
+- *Launch Cost*
+
+|   | Module Name | Module Improves | A-class |
+| --- | --- | --- | --- |
+| Min | Max |   |   |
+|   | [[Azimuth-Class Reactor]] | *Maneuverability* | 0.5 |
+| *Pulse Drive Fuel Efficiency* | 15 | 20 |   |
+| *Launch Cost* | -15 | -20 |   |
 
 ## Release history
 

@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --<br>
 --
 - Accept
@@ -155,6 +156,7 @@ The mission objective will be updated as the signal repeater has cached its data
 The player needs to interact with the [[Galactic Trade Terminal]].
 
 **Outpost Z51/5**
+
 { DATA PACKET CACHED... AWAITING AUTHENTICATION }
 - Provide personal key
 1. { KEY MATCH ACCEPTED... DOWNLOADING }<br>{ *▮▮* [0A00] : [009F] : [0A01] : [0100] *▮▮* }
@@ -171,6 +173,7 @@ The player can answer with *Leave* and the mission will still be updated, making
 The player will be contacted again through the communicator, after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 
@@ -194,6 +197,7 @@ The player could visit other planets, but it is advsied to return to Etch VIII, 
 Although it could take some time to locate these, as there is no icon indicating them in this part of the mission. Now they display the same message upon interaction.
 
 **Boundary Failure**
+
 ITERATION #ERROR
   A terminal blinks, awaiting input...
 - Log Coordinates for Polo
@@ -203,6 +207,7 @@ ERROR<br>ATLAS<br>ERROR<br>ERROR<br>ERROR<br>THEY SEE YOU
 If you turn in partial research data, the following conversation takes place.
 
 **Specialist Polo**
+
 --<br>
 --
 - Transmit data
@@ -216,6 +221,7 @@ After interacting with 6 Boundary Failures, the research data limit is reached a
 Return to space and contact Polo again by using the starship's scanner.
 
 **Specialist Polo**
+
 --<br>
 --
 - Transmit data

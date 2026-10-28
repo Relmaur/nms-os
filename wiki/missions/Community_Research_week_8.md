@@ -43,6 +43,7 @@ WARNING: It makes use of [[portal]] travel. Please do not forget to go back thro
 With this mission set as the active mission, fly into space and Specialist Polo will contact the player through the communicator.
 
 **Specialist Polo**
+
 --
  Polo physically bouncing with emotion, an intense brightness to their eyes - perhaps tears?
 - Listen
@@ -74,6 +75,7 @@ The player can use [[Analysis Visor]] to scan the local flora, and when seven di
 The player will be contacted again through the communicator, or after using the [[starship]]'s scanner.
 
 **Specialist Polo**
+
 --
 - Transmit data
 --<br>
@@ -96,6 +98,7 @@ The broadcast is amplified and the signal zone extended throughout the galaxy, a
 If you turn in partial results, the following conversation takes place.
 
 **Specialist Polo**
+
 --
 - Transmit data
 1. Polo thanks me repeatedly, transferring a gift to my accounts. They quickly assess the display of their tablet device, then confirm that the Synthesis Bot is still responding energetically to the accumulated data. More discoveries would power it further.
@@ -109,6 +112,7 @@ After scanning 200 floras, the data limit is reached and the mission objective w
 The player will be contacted again through the communicator, or after using the starship's scanner.
 
 **Specialist Polo**
+
 --
 - Continue
 --<br>

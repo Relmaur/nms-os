@@ -1,0 +1,339 @@
+---
+title: "Freighter"
+category: "mechanics"
+kind: "mechanic"
+summary: "A Freighter is a massive starship."
+pageId: 9929
+revId: 1327829
+revTimestamp: "2026-07-29T14:44:01Z"
+version: "Voyagers"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Freighter"
+license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{},"recipes":[]}
+---
+
+# Freighter
+
+A **Freighter** is a massive starship.
+
+## Summary
+
+A **Freighter**, also called a **Capital Ship**, is a super-large [[Starship]] operated by lifeforms in each [[star system]]. There are areas where it can be built, and it can be used as a mobile [[Base building|base]] that can move between star systems. Although it is a ship, it cannot be piloted; it must be stationary in space like a [[space station]].
+
+You can land inside through an entrance that emits a blue light. You can become the owner of another person's freighter by purchasing it by talking to the captain on the bridge (the captain and crew remain the same; you become the owner).
+
+Price depends on the class and number of slots, and a large S-class freighter costs 170 million units.
+
+You can only own one freighter. When purchasing a new freighter, you must trade in an existing freighter. When you do so, you will receive a trade-in discount of two-thirds of the value of your existing freighter. Starting with v1.5, the first freighter can be obtained for free in the automatically-occurring [[Space Rescue]] mission (no matter how many Space Rescue missions you've completed, it's free if you don't already own a freighter). So it's not necessarily a big purchase.
+
+Once you're familiar with the game, you can expect every player to own one. It offers many unique and useful features. The timing of when you acquire one depends on your playstyle; there's no need to rush into it, but you should make good use of it eventually.
+
+## Functions
+
+Owning a freighter unlocks a variety of features.
+
+- You can summon it at any time from the [[Quick Menu]].
+- Several ships from your collection will appear in the hangar.
+- You can also store and summon ships using the terminal function on the bridge. (This effectively increases the spaceship limit.)
+- You can dispatch [[frigate|frigates]] to obtain rare items. (See [[Frigate Expedition]].)
+- Upgrading them will allow you to warp longer distances than ships.
+- Freighters are one of the teleport destinations, so by having them stay in star systems you're exploring, you can turn them into forward bases.
+- They can also serve as mobile warehouses. Installing a [[Freighter Storage Unit]] , which functions similarly to a [[Storage Container]], allows for better access and visibility than planetary bases or [[Exocraft]].
+- Installing a [[Matter Beam]] allows you to access your freighter's [[Inventory]] at any time. Furthermore, when the freighter is in the same star system, you can also remotely access the contents of your storage container. This significantly increases storage capacity without the hassle of expanding your freighter's Inventory.
+- You can build facilities in the base space on your freighter.
+- You can place a [[Galactic Trade Room]], which has the same function as a [[Galactic Trade Terminal]]. You can buy and sell items without leaving the ship.
+- Placing a [[Teleport Chamber]], which has the same function as a [[Base Teleport Module]], will allow it to function as a teleport destination.
+- Installing an [[Orbital Exocraft Materialiser]] allows you to summon an exocraft at any time within the same star system as your freighter. This eliminates the need to carry materials for the [[Exocraft Summoning Station]].
+- A [[Stellar Extractor Room]] automatically collects resources.
+- You can also change the items you collect by switching star systems.
+- The [[Scanner Room]] makes exploring the star system easier by allowing you to scan all [[planet|planets]] in the system at once.
+- It also has all the functions of a planetary base, such as [[Farming]], [[Refining]], and a [[Nutrient Processor]] .
+
+## Class and Type Bonuses
+
+In v1.3, the S, A, B, and C classes were added, similar to Starships and [[Multi-Tool|Multi-Tools]].
+
+The better the class, the higher the type bonus for purchase price and hyperdrive range, and the closer the number of slots to the maximum. Freighters acquired after v2.60 will have the new bonus values.
+
+In v2.6, a frigate support bonus was also added, but this is currently under investigation.
+
+| Version | Class | Chance |
+| --- | --- | --- |
+| 1.3 | C | 31-40% |
+| 2.6 |   | 61-80% |
+| 1.3 | B | 20-30% |
+| 2.6 |   | 40-60% |
+| 1.3 | A | 10-19% |
+| 2.6 |   | 20-39% |
+| 1.3 | S | 0-9% |
+| 2.6 |   | 0-19% |
+
+## Varieties
+
+Freighters are divided into two types:
+
+| Size | Cargo | Tech | Price Range |
+| --- | --- | --- | --- |
+| Normal | 15-19 | 8-12 | 5M - 23M |
+| Capital1 | 24-34 | 12-20 | 26M-180M |
+
+### Normal Freighter
+
+There are roughly six different appearances, generated by carefully combining length, part configuration, color, and decals. While not particularly significant, the location and number of turrets vary considerably depending on the general shape.
+
+Two to three models exist for each star system (ship names are directly related to the ship's appearance; ships of the same appearance share the same name, even if they have different performance or crew). They are often found near space stations accompanied by several frigates. They may also suddenly warp out near the player.
+
+You can purchase them by searching for a purple rectangle on the radar in the spaceship's cockpit view, landing, and speaking with the captain on the bridge. Compared to large freighters, the regular freighter has fewer initial slots in its inventory. Its expansion limit is the same as that of a large freighter. Therefore, when expanding to its limit, it requires more Cargo Bulkhead recovery work than a large freighter.
+
+Due to its smaller initial slot count, it is cheaper than a large freighter. When exchanged for large cargo ships, they are often purchased at surprisingly low prices.
+
+### Non-playable Freighter
+
+It usually accompanies a number of container ships, found near the "normal freighter" mentioned above.
+
+While it looks similar to a normal freighter, it has no entrance or exit and cannot be landed on (even if you approach and aim, no freighter marker will appear). There is no way to acquire it, and rescue missions do not occur.
+
+As of v4.40 Echoes, it can be destroyed by attacking it. In normal star systems, destroying it will yield three cargo bulkheads or one S-class freighter upgrade module (random type). However, the reputation of that star system will decrease by 1.
+
+In pirate star systems, destroying it will yield only items that could potentially appear in the cargo, but this behavior is unclear, and it's unclear whether this is a bug or a feature.
+
+### Capital Freighter
+
+A gigantic freighter. Its appearance can be broadly divided into three types. Those without official names are nicknames. In addition, differences in details such as size (small, medium, large), color, and attached containers vary by star system.
+
+They (especially "Star Destroyer" freighters) can only be encountered during the [[Space Rescue]] mission and can be purchased after successfully completing the mission. As its massive appearance suggests, it has a larger number of initial slots than a normal freighter. S- and C-class freighters are more likely to appear in pirate star systems. However, even S-class freighters in pirate star systems have poor technology and item slots, while C-class freighters in pirate star systems have significantly more slots than C-class freighters in standard star systems.
+
+They can be obtained in Creative Mode, which does not include Space Rescue. While not considered a mission, encounters and battles do occur. If you land the ship after completing the surrounding battles, you can purchase items on the bridge.
+... The antennas scattered throughout the ship can also be quite a nuisance.
+
+- "Sentinel-class" - There is an antenna very close to the landing area, so if you head straight when taking off, you will hit the antenna directly (which is annoying as it temporarily disables control and changes the direction of the ship). It is similarly cumbersome when entering. If you are being chased by pirates or Sentinels and suddenly try to enter a cargo ship, it is entirely possible that you will hit an antenna, which could, at worst, lead to an unjust death.
+- "Dreadnought-class Pirate Ship" - It is better than the two above, but it has the largest hull, and oar-like parts get in the way, making it a hassle to make detours. It's unfortunate that there is no intermediate block or anything like that, and there is little variety in the parts available.
+
+## Obtaining
+
+### Rescue from Pirates
+
+- The first freighter the player rescues from pirates is offered for free.
+- If the player does not accept the first freighter they rescue, subsequent ones will still be free until the player claims one.
+- After boarding, the player is given several options. It is advised, for the first rescued freighter specifically, to select "Request payment instead", as future saved freighters will still be free. They will be free as long as the player doesn't own a freighter.
+- The first two saved freighters will always be regular freighters with at most 19 inventory slots. Starting with the third freighter, they will always be Capital Freighters.
+- There is a three-hour and 5 warps in-game cooldown before another normal space battle can occur. Pirate dreadnought battles may appear outside of that limit, depending on the system economy.
+Alternatively, it is possible to find a roaming freighter that is not being attacked, and purchase it for [[Units]]  Units, see below.
+
+### Space Battles
+
+Please note that if you have "None" selected for space combat in your difficulty settings, you won't get any freighter battles.
+
+#### Freighter in Distress
+
+The first type is a common space battle, where you'll receive a distress signal icon on your screen, and then the player can fly to the battle should they wish to participate. There can be up to eight [[pirate|pirates]] who will fly in pairs and shoot at the freighter's turrets and cargo pods.
+
+These types of battle only happen in inhabited systems, not in uncharted or abandoned systems.
+
+#### Post-Warp Freighter Battle
+
+The second type of freighter space-battles are much bigger, and may include a class of super-massive freighters with three versions of differing size. They are often collectively referred to by many as "Star Destroyers", even though only the flat Venator design seems to be inspired by the Star Wars universe.
+
+These battles begin immediately after the player warps to a system, but have a cooldown of 3 hours and 5 warps. The battle will contain one freighter and either 5 or 8 pirates. If there are 5 pirates, they will all be on their own. If there are 8, then they will fly in pairs. The freighter will have a secondary fleet of normal-sized freighters behind it like other freighters normally do; however, they do not participate in the battle. The freighter can either be a system freighter or a capital freighter, depending on your game progress (see the [[#Rescue from Pirates|Rescue from Pirates]] section above).
+
+Post-warp battles will not trigger in uncharted systems or in systems containing a [[Black Hole]] or an [[Atlas Interface]].
+
+For these two types of battles, if the player has a good relationship with the race that dominates the system, nearby civilian starships will assist you in the battle. Once you shoot at a pirate, that pirate and their wing-man will fly at you. Once they are both destroyed, another team of two will attack, then another, until the player manages to destroy all of the pirates. If you manage to defeat all the pirates, the captain will contact you on the communicator and invite you aboard and you may land inside. Proceed to the bridge and the captain will offer to sell you the freighter or give you the freighter if you don't have one. You can also choose to receive payment.
+
+##### Pirate Dreadnought Battle
+
+- For more details, see the [[Pirate Dreadnought]] page.
+
+The third and final type of freighter space battles are a subtype of the post-warp battle and only appear once you already own a freighter. They involve a Pirate Dreadnought and a fleet of Pirate Frigates which are trying to destroy a civilian freighter. The Dreadnought attacks the civilian freighter with its laser cannons and the Frigates fire waves of torpedoes, and if the player does nothing then the civilian freighter will be destroyed within a few minutes. In most systems the battle will be spawned randomly after the standard cooldown, but in some systems the battle will *always* happen.
+
+Among other rewards, notably the Dreadnought can be destroyed for an S-class [[Salvaged Fleet Unit]], forced to surrender for a [[Cargo Bulkhead]] and the opportunity for the player to claim the ship, or driven off for some [[Units]] and standing.
+
+### Purchasing
+
+To purchase a freighter, use the following steps:
+- Search for a space fleet that possesses a freighter icon above one of the ships.
+  - Alternatively, save a Freighter from pirates and it will become available to purchase.
+- Find the docking area (marked with a purple beacon) and dock your ship, then take a series of winding staircases (2 of them) until you reach the bridge.
+- Find the captain, who will be represented by an icon. You will then be able to review ship stats, including the amount of [[inventory]] slots available. You can also view the freighter's stats by using the analysis visor inside the hangar, which can save time when searching.
+- If the freighter is acceptable, it may be purchased. Note that the price increases as the number of inventory slots and/or the class of the freighter increases. Exchanging your current freighter for a new freighter will automatically transfer your current freighter base layout into the new freighter. [NOTE: Currently bugged - WORKAROUND: Leave a single item in your freighter cargo. You will then be prompted when you try to change freighters. This will allow you to move the base to your new freighter].
+-
+- The chance to purchase the candidate freighter is lost when you warp out of the system.
+
+## Upgrades
+
+Freighters can be used for interstellar travel, and their effective jump range can be increased with [[Freighter Hyperdrive|Freighter Warp Reactor]] technologies. Freighters purchased before the Atlas Rises update did not contain a hyperdrive, and one cannot be installed later.
+
+If your current ship has economy or conflict scanners, then the freighter's hyperdrive map will not make use of them.
+
+Like a normal starship [[Hyperdrive]], the [[Freighter Hyperdrive]] is refueled with [[Warp Cell|Warp Cells]] (25%/unit) or [[Warp Hypercore|Warp Hypercores]] (100%/unit). To warp your freighter, use the globe hologram in the main room with the captain and it will bring up a galaxy map.
+
+A freighter's base hyperdrive range is equal to that of a starship, though their Hyperdrive class bonus will increase their range.
+
+Normal starship [[Hyperdrive Upgrade|Hyperdrive Upgrades]] cannot be installed in freighters.
+
+#### Technology Blueprints
+
+Six levels of [[Freighter Hyperdrive|Freighter Hyperdrive upgrades]] are available for purchase at the [[Upgrade Control]] on the bridge. **Matter Beam** technology can also be researched at the terminal. This console option replaces the guild mission console and now incorporates the frigate consumables blueprints. All upgrades require [[Salvaged Frigate Module|Salvaged Frigate Modules]], occasionally available from [[Crashed Freighter|Crashed Freighters]], [[Derelict Freighter|Derelict Freighters]] (as well as the [[Derelict Freighter - Space Encounter|space encounter type]]), [[The Nexus|Nexus Missions]] and [[Frigate|Frigate Expeditions]]. They can also appear frequently when the player attacks and destroys NPC freighters' cargo containers. This activity will draw sentinel attention, so the player is advised to take caution. Attacking unarmed cargo pods surrounding the freighter will also reduce the player's standing with the dominant race.
+
+#### Freighter Upgrade Modules
+
+[[Salvaged Fleet Unit|Salvaged Fleet Units]] can be found on Derelict Freighters and installed in your freighter's tech inventory to boost your hyperdrive range or your frigate fleet's stats during expeditions. At the Engineering Core Unit, should you choose to obtain a Freighter Upgrade Module, one of seven existing upgrade types of a fixed class will be dispensed. Unlike other upgrade modules, however, these are not bound by the seed generation model. Because of this, freighter upgrade modules from a specific derelict freighter, when installed, will provide the exact same stats. If the upgrades come from different freighters, the stats will be different, but they will always give the stats from their corresponding derelict freighters, regardless of the order of installation.
+
+## Customisation
+
+Freighters can be coloured, using paint blueprints that cost 5,000 nanites each to permanently unlock for use.
+
+Both the option to unlock & the option to apply colours can be accessed from the **Upgrade Control**.
+
+The colour blueprints available to purchase are as follows: Red, Orange, Yellow, Green, Turquoise, Blue, Purple, Pink, White, and Black.
+
+## Inventory
+
+The "Core" tab contains "Technology" and "Cargo," and if certain conditions are met, a separate "Storage Container" tab will also appear.
+
+Initially, you must board the ship to operate it, but installing a Matter Beam dramatically improves usability.
+
+The "Technology" and "Cargo" slots can be expanded. If you have [[Cargo Bulkhead|Cargo Bulkheads]] obtained from missions such as [[Lost in Space]], you can do this using the [[Upgrade Control]]. The expansion limit is determined by the freighter's class. For future potential, it is recommended to use A-class or higher freighters.
+
+In [[Outlaw System]], the number of initial slots is fewer than in standard systems, and prices are correspondingly lower. However, the appearance rate of B- to S-class freighters is 5% each.
+
+### Technology
+
+This is an inventory for [[Technology]] only. Items cannot be placed inside. Prior to v2.60, this was only useful for storing all freighter [[hyperdrive]]-related tech. However, with the addition of many freighter upgrade modules in v2.60, it can now also be used to upgrade frigates.
+
+| Class | Standard Cargo Ship<br>Initial Value Range<br> (Source) | Large Cargo Ship<br>Initial Value Range<br> (Source) | Expansion Limit<br> (Source) |
+| --- | --- | --- | --- |
+| S Class | ? - 12? <br> (v4.04 Actual Measurement) | ? - 20? <br> (v4.06 Actual Measurement) | 60<br> (v4.0 Patch Notes, v4.05 Actual Measurement) |
+| A Class | 11? - 12? (Measured from v4.03 to v4.06) | ? - 20? <br> (Measured from v4.06) | 50<br> (Measured from v4.06) |
+| B Class | 10? - 11? <br> (Measured from v4.04 to v4.05) | 12? - 18? <br> (Measured from v4.05) | 30<br> (Measured from v4.05) |
+| C Class | ? - 8? <br> (Measured from v4.05) | 13? ~ 18? <br> (Measured from v4.03 to v4.04) | 27<br> (Measured from v4.05) |
+
+### Cargo
+
+Depending on the [[game mode]] and difficulty setting, the maximum number of stacks per square may be higher than the Cargo tab of other equipment. If you place a Matter Beam in the "Technology" column, you can insert and remove it from anywhere. It will also be possible to select it as a target for trading at the [[Galactic Trade Terminal]].
+
+| Class | Standard Cargo Ship<br>Initial Value Range<br> (Source) | Large Cargo Ship<br>Initial Value Range<br> (Source) | Expansion Limit<br> (Source) |
+| --- | --- | --- | --- |
+| S Class | ? - 19? <br> (Measured in v4.04) | ? - 34? <br> (Measured in v4.06) | 120<br> (Measured in v4.0 patch notes, v4.05) |
+| A Class | 18? - 19? <br> (Measured from v4.03 to v4.06) | ? - 33? <br> (Measured from v4.06) | 100<br> (Measured from v4.06) |
+| B Class | 16? - 18? <br> (Measured from v4.04 to v4.05) | 24? - 32? <br> (Measured from v4.05) | 72<br> (Measured from v4.05) |
+| C Class | ? - 15? <br> (Measured from v4.05) | 25? - 31? <br> (Measured from v4.03 to v4.12) | 48<br> (Measured from v4.05) |
+
+### Storage Container Tab
+
+Storage Containers installed at the base onboard the ship are displayed as tabs. This makes inventory management much easier.
+
+It only appears when one of the following conditions is met:
+
+- The freighter has a Matter Beam beam installed, and there is a freighter somewhere in the player's current star system.
+- The freighter does not have a Matter Beam installed, but the player is near the freighter (onboard the ship or in very close space).
+
+Its function is the same as planetary base storage containers 0-9 (they are automatically synchronized). The default label for each tab is "Storage Container," but if you directly access a base storage container and rename it using the pencil icon in the upper right corner, it will be displayed with that name. Keeping the name as short as possible, such as "0" through "9," will make it fit on the screen and make it easier to distinguish and use.
+
+Starting with v3.3 Expeditions, when you craft items, build base parts, etc. while this tab is displayed, materials from this tab will automatically be assigned to your [[Exosuit]] or Starship, not just from what you have on hand. This is useful for large-scale operations. For example, you can buy a large amount of metal plates and use them to finish off a huge mining factory's supply tanks all at once.
+
+However, there will often be cases where you want to prevent unintended inventory transfers or consumption. In such cases, for example, you could concentrate emergency supplies in container 9 and normally dismantle container 9 from the freighter base, thereby protecting the materials in container 9 from auto-selection.
+
+...If you have 10 tabs and find it difficult to keep track of them, you might consider leaving some of them empty or missing to use as secret space (like external storage, attached and used only when necessary). You cannot craft items on empty slots. However, you can create more on an existing finished product if the finished product and additional creation materials are all on the same page.
+
+## Building spaces
+
+You can customise the areas of the freighter located on the top floor behind the corridor heading to the bridge. Only a limited number of items is available, see [[Freighter Base Building]] for the full list.
+
+Note that frequent saving (with the use of a [[Save Point]]) is advised, as being stuck in a just-deleted freighter room, or falling through the freighter into space while using the build camera is not uncommon.
+
+Specialist rooms can be built inside the freighter base, in addition to those already constructed on players' planetary base(s). For example, if a [[Armourer|weapon specialist]] exists in your planetary base, another one may be added to your freighter base. As of the Fractal update, the General Options menu now has a button you can click to reset your position in the freighter.
+
+The NPC specialists, by default, will always remain posted at their last-accessed terminal, so they might not be seen standing at any duplicated terminals; However, interacting with an empty or newly-built terminal will cause the appropriate NPC specialist to re-spawn at that particular terminal location.
+
+The available building space on a capital freighter is 21 by 21, with the ramp being centre, with two rows between ramp and build limit heading to bridge. The entire room can be cleared out except the one block where the ramp is. The height is 13 extra floors upwards, and no floors downwards, giving a total of 14 21x21 floors. The building space on a system freighter is similar but only 19 wide (narrower across the beam) and with an extra floor, giving a total of 15 19x21 floors.
+
+[[Fleet Command Room|Fleet Command Rooms]] can be built in a freighter to communicate with frigate captains. Build one Fleet Command Room per expedition that you want to send out at a time. (An expedition can include multiple frigates with multiple [[Frigate Traits|traits]]) You can build up to ten of these rooms, but should never need more than six of them, as five missions spawn every 24 hours and most take around a day to complete.
+
+If you are planning to exchange your freighter for a new one - you can either delete all the rooms one by one or use the **Reset Freighter Base** option from the [[Upgrade Control]]. In the latter case, though, all materials used for the freighter base will be lost. However, player-built bases inside a freighter can also be carried over to a new freighter if desired.
+
+### Storage Rooms
+
+Additional [[Storage Room|Storage Rooms]] can be built in available building space, increasing the number of inventory slots the freighter holds. Each storage unit provides an additional fifty slots that will hold 9,999 resource units each in Normal mode, and 1000 in Survival and Permadeath. These slots hold twice the amount of items that your [[Inventory|Exosuit cargo]] can. So if a given item is up to 10 in cargo inventory, it will be 20 in storage containers/units.
+
+These storage units share/link with [[Storage Container|Storage Containers]] at your base, so there are a limit of 10 storage units that can be placed on a freighter, just as there can be up to 10 storage containers at your base. Accessing storage container 3 at your base is the same as accessing storage unit 3 on your freighter. You do not have to interact with the storage unit to access the storage there, unlike the storage containers at a base. You can access storage rooms simply by opening the freighter inventory and selecting the appropriate tab for the storage unit. This makes it much more convenient for transferring items between the Exosuit, the ship, the freighter, and the storage units. In order to move items this way, you must be aboard your freighter, but you can be anywhere on the freighter (even the hangar bay). If the **Matter Beam** is equipped, you can access the storage units anywhere in the same system as the freighter. Unlike the base storage containers, you do not have to research the blueprints for storage rooms. You can simply build them, assuming you have the space on your freighter and the material components.
+
+## Bridge and Frigates
+
+On the Bridge, talk to the captain to access your inventory. A player can own up to 30 [[frigate|frigates]] once they command a freighter.
+
+- Build a Fleet Command Room and interact with its terminal to receive the [[blueprint|blueprints]] for [[Frigate Fuel (50 Tonnes)]], [[Frigate Fuel (100 Tonnes)]] and [[Frigate Fuel (200 Tonnes)]]. Talk to the Navigator while a Fleet Command Room is free to plan and dispatch frigate expeditions.
+- Command freighter warp jumps into other systems on the Freighter Warp Map, which you will find on the starboard side of the bridge console. You will also be able to check the expedition positions of your fleet by looking for blue ship icons while viewing the galaxy map.
+- Use the Manage Fleet terminal, which you will find on the forward side of the bridge console nearest to the captain, to inspect your frigates.
+- There are five different varieties of frigate: Combat, Expedition, Industrial, Trade, and Support. Each of the first four specialise in their named class, compared to the support class which is an all-round type of frigate. Frigates can be purchased from other freighters in the same system. Unlike other spacecraft, when successful missions are completed the frigate has a chance of increasing its class. A higher rating in all categories comes with an upgrade in class, but primarily in the category that the frigate specialises in. In addition, it also decreases the amount of fuel needed per 250ly.
+- You can find upgrades for your freighter on derelict freighters that boost your frigate expeditions. These can boost the trade, combat, expedition, or industrial potential of your fleet. Specific upgrades will also increase the speed that your fleet completes expeditions.
+
+## Squadron
+
+Players can have up to four NPC Starships in their squadron. These starships will follow players into battles with pirates, or summoned to fly into formation. To manage your squadron, open the Manage Fleet terminal and select "Manage Squadron". Initially all squadron slots are disabled and can be unlocked for  Nanites starting from 800 and up to 10,000. Once the NPC starship is recruited, they can also be upgraded at this terminal: C->B for 1,200  Nanites, B->A for 4,100  Nanites, A->S for 9,500  Nanites. Both stats and traits of this starship will improve.
+
+For players looking to clone ships to outfit their squadron with the same ships (i.e. repeat buying exotics in the same system, or by copying back from the expedition terminal), the squadron can only have 1 of each combination of ship seed + race.  Aka, once you have 3 different races using your ship with a specific seed, you won't be able to recruit the 4th squadron member with that same ship seed.
+
+## Upgrading Freighters
+
+- Freighter inventory can be increased using Cargo Bulkheads, which can be received or found from different sources such as selecting a reward from saving freighters from a pirate attack, as a reward from a Derelict Freighter, or from a Merchants Guild Envoy (requires guild standing level 9). This will let you add more slots to the cargo or tech inventory.
+- Freighter class cannot be upgraded.
+- When trading in a freighter for a new one, any [[Technology|technology upgrades]] and upgrade modules will be lost. The interior base you created inside the ship and the content stored within will however be migrated to the new freighter, with the possibility to reset the layout available from the upgrade terminal if a player wants to start the new freighter with a clean slate.
+- You will be able to access your universally-shared storage slots once you have rebuilt a storage room for the slot with your desired inventory in it. Rebuild all 10 to access all of your storage slots.
+- You will have an opportunity while speaking to the captain on the new freighter to easily move cargo from the main inventory of your old freighter to the main inventory of the new one using a side-to-side transfer window.
+
+## Starship storage
+
+- To purchase additional ships, you must speak with their owner.
+- If the players owns at least six starships, new NPC ships will not be able to land inside the freighter (despite there being nine landing positions). Ships can be melted down for scrap to free up a ship slot. This can be done at the [[Starship Outfitting Terminal]] at a [[Space station]].
+- Prior to NEXT, Freighters were the only way a player could store starships, allowing the player to have up to six ships of different specialties. Since the update, a player can summon any of their owned ships using the [[Quick Menu]], allowing the player to access all of their ships without the requirement of owning a freighter.
+
+## Additional Information
+
+- If you wish to summon your freighter to your current location, use D-Pad Down (PS4/XB/Switch) or X (PC) to bring up the [[Quick Menu]] and then find the shortcut for Call Freighter. Choose the freighter's destination and call it.
+- NPC Freighters cannot defend themselves against pirates. They may be seen shooting at the attacking pirates, but it does no damage (though they can damage a player). The player must be the one to save the freighter, although they can choose to ignore it.
+- When engaging pirates, collateral damage against the friendly freighter or fighters is possible, however this will not result in the fighters turning against you until the pirate encounter is over. If you accept the freighter captain’s offer of a reward before this happens, a small pulse jump will replace the “Acts of Piracy” fight with the reward marker.
+- When a freighter battle is in progress when warping into a system, it is scripted. If you reload your save, your next jump will *always* have a freighter battle. This presents the player the opportunity to hunt for a particular freighter of their choice by reloading and warping to different systems until they find one they like.
+- You can also use the technique above to disassemble the interior of your current freighter before upgrading to a new freighter, once you find the one you like. Note: you will need to restore your save prior to purchasing the new freighter, as the game performs an auto save immediately afterward.
+- Falling into a planet is possible by jumping off your ship. However, this action carries a risk of death.
+- Super-massive freighters, each with three sizes (small, medium, and large), may spawn in a star system after a certain amount of times the player warps to a new system. This will instantly start a space battle. There can be up to 12 pirates, and other ships flying by will join the fight. These freighters will also warp into a system by obtaining a Tier 5 Sentinel Pursuit Level in space. (The "Star Destroyer" is one of these)
+- Each star system has a unique model of super-massive freighter in it, so if a player finds a particular model they like, but can't afford it yet, they can always try to get it to spawn in that system again later, and it will be the same. However, the class of the freighter will be different for every visit.
+- If you spawn your own freighter in a system where another player's freighter is present, that player's freighter will be inaccessible for you until you dismiss your own freighter.
+- Freighters contain multiple exterior cargo pods and are sometimes followed by NPC cargo ships. Both will release items in their inventory if a player destroys them.
+- When playing in multiplayer, if the freighter owner warps their freighter with other players inside to another system, all players are warped together, making it a reasonable method of transporting full parties.†
+- If a player is inside their starship while inside of another player's freighter and the owner summons their freighter elsewhere in the galaxy, the player in their starship is now suddenly flying in space and is not teleported with the freighter.
+- A common problem with super-massive Freighters are Pulse Jumps. If a player Pulse Jumps toward their capital from certain angles, the Pulse Engine will not shut down in time to prevent an impact, resulting in the player being trapped inside the model. This can be undone quickly by opening up the Galaxy Map, eliminating the need to reload the last checkpoint.
+
+## Video
+
+- How to get a Free Capital Freighter
+- How to use Freighters
+- How to Find S Class Freighters
+- No Mans Sky Freighter and Frigate Guide 2020
+- What Do Freighters Do in No Man's Sky Freighter Tips Guide 2020 + How to Build a Freighter Base
+- How to Find S Class Capital Freighters
+- No Man's Sky 2022 How to Get an S Class Freighter
+- How to Get S Class Freighter No Man's Sky 2023
+
+## Notes
+
+† As of the addition of this point, the editor updating this page only tested this out once and under certain circumstances: There was only one other player in the group and they were a No Man's Sky friend. Additionally, I used the word "reasonable" instead of "reliable" because, while this did successfully warp both myself and the other player, I, the freighter owner, glitched outside of the freighter upon arrival to the new system and landed atop the freighter where I couldn't really go anywhere, suffered severe Cold damage, then died to gamma rays. After editing in this note, I will likely have gone to test out a few other scenarios to make this method of transporting full groups more reliable.
+
+## See also
+
+- [[Crashed Freighter]]
+- [[Derelict Freighter]]
+- [[Base building]]
+- [[Starship Catalogue - Freighter]]
+
+## Release history
+
+- [[Release]] - Introduced to the game. (Unobtainable until Foundation.)
+- [[Update 1.10|Foundation]] - Added Freighter ownership which can be spawned and used for storage. Can be used like a base with the 110 available parts.
+- [[Update 1.20|Pathfinder]] - Added starship storage.
+- [[Update 1.30|Atlas Rises]] - Added class ratings to freighters; and interstellar travel while inside a freighter.
+- [[Endurance]] - Freighter rework with revamped visuals, layout and building options
+- [[Update 4.40|Echoes]] - Added pirate dreadnoughts, NPC freighters can now be destroyed
+- [[Update 4.50|Omega]] - Added ability to claim pirate dreadnoughts

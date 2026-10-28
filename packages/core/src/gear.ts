@@ -2,15 +2,16 @@
 // replaced the hard-coded fleet notes. Before 3.14.0 the log held a free-form `fleet` object; gearFromFleet() turns it
 // into records once, and `fleet` itself is carried along untouched.
 import { SAFE_ID, isPlainObject } from './util.ts';
+import { getFact, type CitedFact, type FactsFile } from './facts.ts';
 
-export const GEAR_KINDS = ['starship', 'multitool'] as const;
+export const GEAR_KINDS = ['starship', 'multitool', 'exosuit'] as const; // exosuit: 3.16.0
 export type GearKind = (typeof GEAR_KINDS)[number];
 
 export interface GearItem {
   id: string;
   kind: GearKind;
   name: string;
-  class: string; // S, A, B, C, or what the player wrote ("A -> S")
+  class: string; // S, A, B, C, or what the player wrote ("A -> S"); empty for an Exosuit, which has none
   type: string; // Sentinel Interceptor, Royal, …
   role: string; // Flagship, Scrap spare, Combat, …
   superchargedSlots: string[]; // "R2C3": row 2, column 3 of the inventory grid
@@ -41,7 +42,7 @@ export function parseSlots(input: string): { slots: string[]; rejected: string[]
 }
 
 // The grid drawn for a set of slots: big enough for every one, and at least `min` (a card's preview is 3 × 8; the
-// editor's picker is 4 × 10, the first 40 coordinates where Book III says supercharged slots spawn).
+// editor's picker starts at 4 rows, where the wiki says supercharged slots almost always are, and slotRules' width).
 export function slotGrid(
   slots: string[],
   min = { rows: 3, cols: 8 }
@@ -94,7 +95,7 @@ export function normalizeGear(value: unknown): GearItem[] {
     return [
       {
         id,
-        kind: item.kind === 'multitool' ? 'multitool' : 'starship',
+        kind: GEAR_KINDS.find(kind => kind === item.kind) ?? 'starship',
         name,
         class: text(item.class),
         type: text(item.type),
@@ -155,4 +156,81 @@ export function gearOrder(items: GearItem[]): GearItem[] {
     .map((item, i) => ({ item, i }))
     .sort((a, b) => rank(a.item) - rank(b.item) || a.i - b.i)
     .map(e => e.item);
+}
+
+// The current class in what the player wrote: "A" → A, "A -> S" → S (the class it was upgraded to), "Royal" → null.
+export function classLetter(value: string): 'C' | 'B' | 'A' | 'S' | null {
+  const letters = value.toUpperCase().match(/\b[SABC]\b/g);
+  const last = letters?.at(-1);
+  return last === 'C' || last === 'B' || last === 'A' || last === 'S' ? last : null;
+}
+
+export interface SlotRules {
+  columns: number; // the technology grid's width
+  maxRows: number; // the largest grid this kind (and class, when the wiki says) can reach
+  maxSlots: number | null; // its technology slots at most, when the wiki says
+  supercharged: number | null; // how many supercharged slots it has, when the wiki says
+  fixed: string[] | null; // where they are, for a kind whose positions are the same for every player
+  sources: CitedFact[]; // the facts behind these rules, for their Codex links
+}
+
+const FALLBACK = { columns: 10, maxRows: MAX_SLOT };
+
+// The picker's limits for one item, from the cited facts (wiki/facts.json). Without a fact the picker keeps its own
+// generous limits and says nothing: a rule shows only with the wiki sentence behind it.
+export function slotRules(facts: FactsFile | null, kind: GearKind, cls: string): SlotRules {
+  const letter = classLetter(cls);
+  const sources: CitedFact[] = [];
+  const max = getFact(
+    facts,
+    kind === 'multitool' ? 'multitool-tech-max' : kind === 'exosuit' ? 'exosuit-tech-max' : 'starship-tech-max'
+  );
+  let { columns, maxRows } = FALLBACK;
+  let maxSlots: number | null = null;
+  // A class the wiki gives no number for (a C-class ship) can be upgraded, so the largest number known applies.
+  const slots =
+    max &&
+    ((letter && max.value.slots[letter]) || max.value.slots.any || Math.max(0, ...Object.values(max.value.slots)));
+  if (max && slots) {
+    columns = max.value.columns;
+    maxRows = Math.ceil(slots / columns);
+    maxSlots = slots;
+    sources.push(max.fact);
+  }
+  let supercharged: number | null = null;
+  let fixed: string[] | null = null;
+  if (kind === 'exosuit') {
+    const count = getFact(facts, 'supercharged-fixed-count');
+    const positions = getFact(facts, 'exosuit-supercharged-slots');
+    if (count) {
+      supercharged = count.value;
+      sources.push(count.fact);
+    }
+    if (positions) {
+      fixed = positions.value;
+      sources.push(positions.fact);
+    }
+  } else {
+    const perClass = getFact(facts, 'supercharged-per-class');
+    if (perClass && letter) {
+      supercharged = perClass.value[letter];
+      sources.push(perClass.fact);
+    }
+  }
+  return { columns, maxRows, maxSlots, supercharged, fixed, sources };
+}
+
+// What the marked slots disagree with. A warning, never a block: the wiki can be wrong, and the player's screen wins.
+export function slotWarnings(
+  rules: SlotRules,
+  slots: string[]
+): { tooMany: boolean; outside: string[]; offPreset: string[] } {
+  return {
+    tooMany: rules.supercharged !== null && slots.length > rules.supercharged,
+    outside: slots.filter(slot => {
+      const match = SLOT.exec(slot);
+      return Number(match?.[1]) > rules.maxRows || Number(match?.[2]) > rules.columns;
+    }),
+    offPreset: rules.fixed ? slots.filter(slot => !rules.fixed?.includes(slot)) : []
+  };
 }

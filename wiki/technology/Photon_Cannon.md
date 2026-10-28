@@ -67,12 +67,12 @@ When used to harvest a planet's [[flora]] and [[mineral|minerals]], Photon Canno
 - [[Nonlinear Optics]]
 - [[Photon Cannon Upgrade|Photon Cannon Upgrades]]
 
-|   | **Module****Name**! rowspan="2" |**Stats**Drawn | *Module**Improves*! colspan="2" | C-class | B-class | A-class | S-class | X-class |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Min**!**Max**!**Min**!**Max**!**Min**!**Max**!**Min**!**Max**!Min | Max |   |   |   |   |   |   |   |   |   |   |
-|   | [[Photon Cannon Upgrade]]<br>(Damage Stats don't<br>appear as they should) | C/B 1-2<br>A 2-3<br>S 3<br>X 1-3 | *Fire Rate*|0 | 1 | 1 | 2 | 2 | 3 | 3 | 0 | 3 |
-| *Heat Dispersion*|0 | 1 | 1 | 2 | 2 | 3 | 3 | 0 | 4 |   |   |   |
-| *Damage*|8 | 16 | 12 | 20 | 16 | 24 | 20 (6) | 28 (8) | 8 | 32 (9) |   |   |
+|   | **Module**<br>**Name** | **Stats**<br>Drawn | *Module*<br>*Improves* | C-class | B-class | A-class | S-class | X-class |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | **Min** | **Max** | Min | Max |   |   |   |
+|   | [[Photon Cannon Upgrade]]<br>(Damage Stats don't<br>appear as they should) | C/B 1-2<br>A 2-3<br>S 3<br>X 1-3 | *Fire Rate* | 0 | 1 | 1 | 2 | 2 | 3 | 3 | 0 | 3 |
+| *Heat Dispersion* | 0 | 1 | 1 | 2 | 2 | 3 | 3 | 0 | 4 |   |   |   |
+| *Damage* | 8 | 16 | 12 | 20 | 16 | 24 | 20 (6) | 28 (8) | 8 | 32 (9) |   |   |
 
 ## Additional information
 

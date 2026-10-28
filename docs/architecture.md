@@ -15,6 +15,8 @@ nms-os/                          pnpm workspace
 │   │   ├── src/planner.ts / calc.ts   Recipe planner and build order over wiki/game-data.json; small calculators
 │   │   ├── src/search.ts        Codex search engine and labels
 │   │   ├── src/game-data.ts     Zod schemas for game-data.json and recipes (shared with the wiki sync)
+│   │   ├── src/facts.ts         Cited facts: value shapes and the facts.json schema (ADR-0003)
+│   │   ├── src/gear.ts / notes.ts   Ships, Multi-Tools and Exosuit (slot rules from cited facts); notes and pins
 │   │   ├── src/slug.ts          Article file names (shared with the wiki sync)
 │   │   ├── src/sync.ts / sync-crypto.ts   Three-way merge of two copies; the sync code, key derivation and sealing (Web Crypto)
 │   │   └── test/                Vitest
@@ -55,7 +57,7 @@ nms-os/                          pnpm workspace
 
 ## Runtime data flow
 1. **State:** the app builds its state from built-in defaults ← `nms_state.json` (fetched) ← `localStorage` (`nms_master_os_state`), after validating each document (`validateState`), then renders every section from that single object. Every change goes through `saveAppState()`, which stamps `meta.lastUpdated`, writes `localStorage`, and re-renders.
-2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open and parse it with `GameDataSchema`. The index, the bundle, `verification.json` and drafts are parsed with the schemas in `packages/core/src/wiki-files.ts`. All three are derived from the committed `.md` archive by `pnpm index:wiki`.
+2. **Wiki data:** the main page's header search loads the light `wiki/index.json`. The Codex page loads `wiki/offline-bundle.js` (bodies, recipes, aliases). Calculators load `wiki/game-data.json` on first open and parse it with `GameDataSchema`. The gear editor loads the small `wiki/facts.json` (cited facts, ADR-0003) on first open and parses it with `FactsFileSchema` (`packages/core/src/facts.ts`). The index, the bundle, `verification.json` and drafts are parsed with the schemas in `packages/core/src/wiki-files.ts`. All three are derived from the committed `.md` archive by `pnpm index:wiki`.
 3. **Sync (opt-in, ADR-0005):** after load, 3 s after a save, when the app comes back into view or online, and every 2 minutes while visible, `app/sync.ts` pulls the sealed cloud copy, merges it three-way with this device's copy, adopts the result through the store, and pushes it back with the version it was based on (a 409 means another device wrote first: merge again).
 4. **Push alerts (opt-in, ADR-0006):** with the switch on, `app/push.ts` sends the relay this device's push subscription and the ids and end times of pending timers whenever they change, and writes each timer's notification words to the `atlas-timer-notes` cache. The relay's minute cron pushes `{ t: id }` when one is due, and the service worker's `push` handler shows the saved words.
 5. **Offline:** the service worker precaches the build (pages, modules, styles, icons, Latin and Greek fonts) and the wiki indexes under content-hash revisions. `nms_state.json` and `wiki/verification.json` are network-first; wiki articles are cached as they are read (docs/deploy.md).

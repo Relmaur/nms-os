@@ -40,14 +40,14 @@ Salvaged Upgrade Components grant at least two to a maximum of four of the follo
 
 ### Upgrade Modules
 
-|   | Stats Drawn | *Module Improves*!Min | Max |
-| --- | --- | --- | --- |
-| '''Salvaged<br>Upgrade<br>Components | 2-4 | *Shield Strength*| +10% | +35% |
-| *Core Health*| colspan="2" | +20 (shown as +33%) |   |   |   |
-| *Life Support Tanks*| +5% | +110% |   |   |
-| *Solar Panel Power*| +1% | +75% |   |   |
-| *Sprint Distance*| +10% | +60% |   |   |
-| *Fuel Efficiency*| +5% | +30% |   |   |
+|   | Stats Drawn | *Module Improves* | Min | Max |
+| --- | --- | --- | --- | --- |
+| '''Salvaged<br>Upgrade<br>Components | 2-4 | *Shield Strength* | +10% | +35% |
+| *Core Health* | +20 (shown as +33%) |   |   |   |
+| *Life Support Tanks* | +5% | +110% |   |   |
+| *Solar Panel Power* | +1% | +75% |   |   |
+| *Sprint Distance* | +10% | +60% |   |   |
+| *Fuel Efficiency* | +5% | +30% |   |   |
 
 Up to three Salvaged Upgrade Components can be installed in the user's Exosuit. Installing four or more upgrades of the same type will disable all upgrades of that type until the upgrade count is reduced to three or less.
 
@@ -67,9 +67,10 @@ Salvaged Upgrade Components can only be obtained from opening [[Rebuilt Exosuit 
 
  Please note that ID values from Salvaged Upgrade Components are not interchangeable with those of other upgrades and have their own seed tree.
 
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ** Salvaged Upgrade Components**|- |   | Prefix | Suffix | Shield Strength | Core Health | Life Support Tanks | Solar Panel Power | Sprint Distance | Fuel Efficiency | ID | Screenshot | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | Makeshift | Exhaust | +34% | +33% | - | +72% | - | +8% | 87272 | - | | Adapted | Resonator | +34% | +33% | - | +68% | - | +9% | 51373 | - | | Rebuilt | Diffuser | +34% | +33% | - | - | +59% | +7% | 79481 | - | | Repurposed | Resonator | +34% | - | +99% | +73% | +58% | - | 77563 | - | | Reconstructed | Filament | +33% | - | +98% | +72% | +58% | - | 68471 | - | | Repaired | Atomiser | +34% | - | +100% | +70% | - | +8% | 55883 | - | | Reassembled | Injector | +34% | +33% | - | +69% | +57% | - | 88853 | - | | Rusted | Splitter | +34% | +33% | - | +72% | +57% | - | 40167 | - | | Repaired | Neutraliser | +33% | - | +99% | +71% | - | +7% | 60850 | - | | Repurposed | Furnace | +32% | +33% | +100% | - | +59% | - | 24640 | - | | Repurposed | Energy Field | +34% | - | +96% | - | +54% | +7% | 13766 | - | | Restored | Filter | +34% | - | +98% | - | +53% | +6% | 43785 | - | |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ** Salvaged Upgrade Components** |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   | Prefix | Suffix | Shield Strength | Core Health | Life Support Tanks | Solar Panel Power | Sprint Distance | Fuel Efficiency | ID | Screenshot | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | Makeshift | Exhaust | +34% | +33% | - | +72% | - | +8% | 87272 | - | | Adapted | Resonator | +34% | +33% | - | +68% | - | +9% | 51373 | - | | Rebuilt | Diffuser | +34% | +33% | - | - | +59% | +7% | 79481 | - | | Repurposed | Resonator | +34% | - | +99% | +73% | +58% | - | 77563 | - | | Reconstructed | Filament | +33% | - | +98% | +72% | +58% | - | 68471 | - | | Repaired | Atomiser | +34% | - | +100% | +70% | - | +8% | 55883 | - | | Reassembled | Injector | +34% | +33% | - | +69% | +57% | - | 88853 | - | | Rusted | Splitter | +34% | +33% | - | +72% | +57% | - | 40167 | - | | Repaired | Neutraliser | +33% | - | +99% | +71% | - | +7% | 60850 | - | | Repurposed | Furnace | +32% | +33% | +100% | - | +59% | - | 24640 | - | | Repurposed | Energy Field | +34% | - | +96% | - | +54% | +7% | 13766 | - | | Restored | Filter | +34% | - | +98% | - | +53% | +6% | 43785 | - | |
 
 ## Additional Information
 

@@ -50,5 +50,6 @@ Suitable for [[Hydroponic Tray|hydroponic planting]] indoors. Needs a tropical o
 - [[Atlas Rises]] - Blueprint changed, formerly used GekNip and [[Rigogen]].
 - [[NEXT]] - Blueprint changed, formerly used GekNip and [[Kelp Sac]]. *Hidden changes:* The blueprint cannot be acquired.
 - [[Abyss]] - *Hidden changes:* The [[Agricultural Research]] mission now provides a blueprint for the NipNip Buds wrongly, which cannot be crafted, instead of the NipNip plant.
-- [[Visions]] - NipNip blueprint can now be acquired from the Farmer after their mission chain is complete. *Wiki note: The mission still gives the wrong recipe.*- [[Update 1.76|Visions 1.76]] - Fixed an issue where the Farmer would teach the wrong NipNip recipe. Blueprint changed, formerly used GekNip.
+- [[Visions]] - NipNip blueprint can now be acquired from the Farmer after their mission chain is complete. *Wiki note: The mission still gives the wrong recipe.*
+- [[Update 1.76|Visions 1.76]] - Fixed an issue where the Farmer would teach the wrong NipNip recipe. Blueprint changed, formerly used GekNip.
 - [[Beyond]] - Blueprint changed, Coprite was renamed to Faecium.

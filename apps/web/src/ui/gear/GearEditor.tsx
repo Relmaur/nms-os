@@ -1,17 +1,16 @@
-// Add or edit a ship or Multi-Tool. Supercharged slots are marked by tapping the inventory grid (SlotPicker).
-import { useCallback, useState, type SubmitEvent } from 'react';
+// Add or edit a ship, Multi-Tool or Exosuit. Supercharged slots are marked by tapping the inventory grid (SlotPicker),
+// which follows the wiki's cited rules for the kind and class.
+import { useCallback, useEffect, useState, type SubmitEvent } from 'react';
 import { newId } from '@atlas/core/systems-model';
-import { ROLE_SUGGESTIONS, type GearItem, type GearKind } from '@atlas/core/gear';
+import { GEAR_KINDS, ROLE_SUGGESTIONS, slotRules, type GearItem, type GearKind } from '@atlas/core/gear';
 import { deleteGear, saveGear } from '../actions.ts';
 import { showToast } from '../../app/ui.ts';
 import { closeEditor } from '../parts/editor-store.ts';
 import { Modal } from '../parts/Modal.tsx';
 import { SlotPicker } from './SlotPicker.tsx';
+import { KINDS } from './kinds.ts';
+import { loadFacts, useFacts } from './facts-store.ts';
 
-const KINDS: [GearKind, string][] = [
-  ['starship', 'Starship'],
-  ['multitool', 'Multi-Tool']
-];
 const CLASSES = ['S', 'A', 'B', 'C'];
 
 export function GearEditor({ existing, preset }: { existing: GearItem | undefined; preset: GearKind }) {
@@ -37,6 +36,11 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [error, setError] = useState('');
   const dirty = JSON.stringify(draft) !== original;
+  const facts = useFacts();
+  const rules = slotRules(facts, draft.kind, draft.class);
+  useEffect(() => {
+    void loadFacts();
+  }, []);
   const set = (changes: Partial<GearItem>) => {
     setDraft(current => ({ ...current, ...changes }));
   };
@@ -57,7 +61,7 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
       setError(`${draft.name} was deleted on another device. Save again to keep it.`);
       return;
     }
-    saveGear(draft);
+    saveGear(draft.kind === 'exosuit' ? { ...draft, class: '', type: '' } : draft); // fields hidden for an Exosuit
     closeEditor();
   };
   const field = (key: 'name' | 'class' | 'type' | 'role' | 'notes') => ({
@@ -71,7 +75,7 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
     <Modal
       id="gearEditor"
       onSubmit={submit}
-      title={wasSaved ? `Edit ${draft.kind === 'multitool' ? 'Multi-Tool' : 'starship'}` : 'Add to your gear'}
+      title={wasSaved ? `Edit ${KINDS[draft.kind].label}` : 'Add to your gear'}
       titleId="gearEditorTitle"
       dismiss={dismiss}
       onClose={closeEditor}
@@ -120,7 +124,7 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
       }
     >
       <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label="Kind">
-        {KINDS.map(([key, label]) => (
+        {GEAR_KINDS.map(key => (
           <button
             key={key}
             type="button"
@@ -131,7 +135,7 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
             }}
             className={`seg ${draft.kind === key ? 'is-on' : ''}`}
           >
-            {label}
+            {KINDS[key].label}
           </button>
         ))}
       </div>
@@ -139,20 +143,22 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
         Name <span className="text-rose-300">*</span>
         <input id="gearName" required maxLength={80} autoFocus placeholder="As named in game" {...field('name')} />
       </label>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <label className="field">
-          Class
-          <input list="gearClasses" maxLength={20} placeholder="S, A, B, C" {...field('class')} />
-        </label>
-        <label className="field">
-          Type
-          <input
-            maxLength={60}
-            placeholder={draft.kind === 'multitool' ? 'e.g. Sentinel Rifle' : 'e.g. Interceptor'}
-            {...field('type')}
-          />
-        </label>
-      </div>
+      {draft.kind !== 'exosuit' && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label className="field">
+            Class
+            <input list="gearClasses" maxLength={20} placeholder="S, A, B, C" {...field('class')} />
+          </label>
+          <label className="field">
+            Type
+            <input
+              maxLength={60}
+              placeholder={draft.kind === 'multitool' ? 'e.g. Sentinel Rifle' : 'e.g. Interceptor'}
+              {...field('type')}
+            />
+          </label>
+        </div>
+      )}
       <label className="field">
         Role
         <input list="gearRoles" maxLength={40} placeholder="e.g. Flagship" {...field('role')} />
@@ -170,6 +176,9 @@ export function GearEditor({ existing, preset }: { existing: GearItem | undefine
       <SlotPicker
         slots={draft.superchargedSlots}
         labels={draft.slotLabels}
+        kind={draft.kind}
+        cls={draft.class}
+        rules={rules}
         onChange={(superchargedSlots, slotLabels) => {
           set({ superchargedSlots, slotLabels });
         }}

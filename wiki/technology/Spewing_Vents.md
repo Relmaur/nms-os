@@ -29,10 +29,11 @@ data: {"fields":{"image":"BIOTECH.LUMPS.png","category":"Starship","subcategory"
 
 **Spewing Vents** are the default weapon installed on all [[Living Ship (Starship)|living starships]].
 
-| **Base Specifications**|- | **Rate of Fire**|~7 shots/sec |
+| **Base Specifications** |   |
 | --- | --- |
-| **Time to Overheat**|~8 seconds |   |
-| **Overheat Cooldown Time**|4 seconds |   |
+| **Rate of Fire** | ~7 shots/sec |
+| **Time to Overheat** | ~8 seconds |
+| **Overheat Cooldown Time** | 4 seconds |
 
 ## Game description
 

@@ -51,14 +51,17 @@ As before, universal progress may be tracked from the Galactic Atlas website, an
 ### From the Quicksilver Synthesis Bot
 
 **Tier 1 Items**
+
 Three customisable base plants will unlock at tier 1…
 - The large-leafed Sail Palm, native to hot climates and naturally impervious to intense sunlight.
 - The slender Globe Tree, so named for its spherical reservoir root bulb.
 - The Rock Garden features a neat arrangement of flora and minerals, both luminous and matte.
 
-**Tier 2 Item**- The terrarium is a small observatory unit designed to house a small alien specimen for study and companionship. Specimen is included with domicile. To avoid undesirable specimen-to-specimen interactions, a limit of one terrarium per base is recommended.
+**Tier 2 Item**
+- The terrarium is a small observatory unit designed to house a small alien specimen for study and companionship. Specimen is included with domicile. To avoid undesirable specimen-to-specimen interactions, a limit of one terrarium per base is recommended.
 
-**Tier 3 Item**- The Helmet of the First Spawn, inspired in form by the war helms of ancient Gek, lends a battle-hardened appearance to Anomaly explorers.
+**Tier 3 Item**
+- The Helmet of the First Spawn, inspired in form by the war helms of ancient Gek, lends a battle-hardened appearance to Anomaly explorers.
 
 ### Community Spotlight
 

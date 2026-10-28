@@ -39,10 +39,10 @@ This module is automatically linked to the corvette's shielding system, providin
 The Deflector Shield functions similarly to a B-class Deflector Shield upgrade, granting the following bonus:
 - *Shield Strength:* Increases the Shield Absorption, indirectly increasing the Deflector Shield's durability for each upgrade.
 
-|   | Module Name | Module Improves | B-class |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Deflector Shield (Corvette)]] | *Shield Strength*|5 | 10 |
+|   | Module Name | Module Improves | B-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Deflector Shield (Corvette)]] | *Shield Strength* | 5 | 10 |
 
 ## Release history
 

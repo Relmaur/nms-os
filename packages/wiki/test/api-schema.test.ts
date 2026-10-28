@@ -1,6 +1,6 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { InvalidResponse, readEmbeddedIn, readRevisions } from '../src/api-schema.ts';
+import { InvalidResponse, readEmbeddedIn, readRevisions, readTitles } from '../src/api-schema.ts';
 
 const page = (overrides = {}) => ({
   pageid: 1,
@@ -50,4 +50,10 @@ test('malformed responses stop the sync and name the page', () => {
       }),
     /no wikitext/
   );
+});
+
+test('mechanics pages are looked up by title; a title the wiki no longer has is named', () => {
+  const data = { query: { pages: [{ pageid: 3404, ns: 0, title: 'Inventory' }, { ns: 0, title: 'Gone', missing: true }] } };
+  assert.deepEqual(readTitles(data), { pages: [{ pageid: 3404, ns: 0, title: 'Inventory' }], missing: ['Gone'] });
+  assert.throws(() => readTitles({ batchcomplete: true }), InvalidResponse);
 });

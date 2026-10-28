@@ -39,10 +39,10 @@ This module is automatically linked to the corvette's defensive systems, providi
 The Ceto-Class Reactor functions similarly to an A-class Deflector Shield upgrade, granting the following bonus:
 - *Shield Strength:* Increases the Shield Absorption, indirectly increasing the Deflector Shield's durability for each upgrade.
 
-|   | Module Name | Module Improves | A-class |
-| --- | --- | --- | --- |
-| Min | Max |   |   |
-|   | [[Ceto-Class Reactor]] | *Shield Strength*|10 | 20 |
+|   | Module Name | Module Improves | A-class |   |
+| --- | --- | --- | --- | --- |
+| Min | Max |   |   |   |
+|   | [[Ceto-Class Reactor]] | *Shield Strength* | 10 | 20 |
 
 ## Release history
 
