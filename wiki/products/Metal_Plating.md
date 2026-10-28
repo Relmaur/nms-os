@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Metal_Plating"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.metallic.sheet1.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"800.0","release":"Companions"},"value":800,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":50}],"outputs":[{"name":"Metal Plating","qty":1}]}]}
 ---
 

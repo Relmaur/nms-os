@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Icon.png","category":"Multi-tool","subcategory":"Weapon","type":"Scatter Shot Projectile Weapon","stats":"Damage Potential = 1070.7, Damage = 150 x8, Mining Power = 30 x8","recharge":"Projectile Ammunition","release":"Pathfinder"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":200},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Scatter Blaster","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Pugneum","qty":100},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Scatter Blaster","qty":1}],"outputs":[{"name":"Pugneum","qty":100}]}]}
 ---
 

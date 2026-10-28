@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Detoxified_Slime"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Detoxified Slime","image":"SPECIAL.SLIMEMED.png","category":"Customisation Part","type":"Placeable Sludge","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Faecium","qty":20}],"outputs":[{"name":"Detoxified Slime","qty":1}],"blueprint":true}]}
 ---
 

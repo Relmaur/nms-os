@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iron"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.commodity.common1.png","type":"Oxide","rarity":"Common","value":"13.8","symbol":"Fe","release":"Atlas Rises"},"value":13.8,"recipes":[]}
 ---
 

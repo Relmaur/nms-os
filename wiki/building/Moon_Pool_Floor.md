@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Moon_Pool_Floor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.MOONPOOL.png","category":"Base Building","type":"Aquatic Construction Module","release":"Synthesis"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":80},{"name":"Crystal Sulphide","qty":3},{"name":"Living Pearl","qty":2}],"outputs":[{"name":"Moon Pool Floor","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aqua-Jets"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.LANDINGGEARMOD.png","desc":"Allows aquatic landing","color":"blue","category":"Starship","subcategory":"Launch Thruster","type":"Aquatic Landing System","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":3},{"name":"Antimatter","qty":2},{"name":"Crystal Sulphide","qty":4}],"outputs":[{"name":"Aqua-Jets","qty":1}]},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Antimatter","qty":1},{"name":"Crystal Sulphide","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Aqua-Jets","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Antimatter","qty":1},{"name":"Crystal Sulphide","qty":2}]}]}
 ---
 

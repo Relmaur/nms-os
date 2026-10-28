@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mineral_Compressor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"blue","image":"PRODUCT.FRIGBOOST.MINING.png","category":"Consumable","type":"Consumable Frigate Upgrade","value":"75,000.0","release":"Origins"},"value":75000,"recipes":[{"type":"craft","inputs":[{"name":"Hydraulic Wiring","qty":1},{"name":"Gold","qty":50}],"outputs":[{"name":"Mineral Compressor","qty":1}],"blueprint":true}]}
 ---
 

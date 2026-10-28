@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Quantum_Computer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.COMPUTER.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"4,200.0","release":"Frontiers"},"value":4200,"recipes":[{"type":"craft","inputs":[{"name":"Microprocessor","qty":1},{"name":"Antimatter","qty":1},{"name":"Chromatic Metal","qty":25}],"outputs":[{"name":"Quantum Computer","qty":1}],"blueprint":true}]}
 ---
 

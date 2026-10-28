@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shield_Kinetics"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.booster.png","category":"Exosuit","subcategory":"Health","type":"Shield Kinetics","desc":"Basic exosuit protection technology. Provides an energy deflection of fast-moving projectiles.","release":"Pre-release"},"recipes":[]}
 ---
 

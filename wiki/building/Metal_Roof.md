@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Metal_Roof"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.ROOF METAL.png","category":"Base Building","type":"Metal Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20},{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Metal Roof","qty":1}],"blueprint":true}]}
 ---
 

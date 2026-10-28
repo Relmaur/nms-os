@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Community_Research_(mission_9)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_CommunityResearch.jpg","type":"Secondary","series":"Community Research","prevmission":"Community Research (week 8)","nextmission":"TBA","requires":"N/A","implemented":"Visions 1.77","desc":"Gather Data for the Space Anomaly"},"recipes":[]}
 ---
 

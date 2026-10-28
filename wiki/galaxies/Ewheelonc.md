@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ewheelonc"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ewheelonc","image":"20200117134304_1.jpg","color":"Medium Orchid","type":"Empty","order":"172","previous":"Wiensanshe","next":"Litzmantufa","release":"Waypoint"},"recipes":[]}
 ---
 

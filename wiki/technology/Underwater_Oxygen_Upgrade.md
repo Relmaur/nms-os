@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Underwater_Oxygen_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTWATER.png","color":"blue","category":"Exosuit","subcategory":"Aeration Membrane","type":"Generated Upgrade","recharge":"Oxygen, Oxygen Capsule, Life Support Gel","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Life Support Gel","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Underwater Oxygen Upgrade","qty":1}],"outputs":[{"name":"Life Support Gel","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

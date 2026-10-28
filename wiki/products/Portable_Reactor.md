@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Portable_Reactor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MEGAPROD.1.png","category":"Tradeable","color":"yellow","type":"Advanced Crafted Product","value":"4,200,000.0","release":"Prisms"},"value":4200000,"recipes":[{"type":"craft","inputs":[{"name":"Liquid Explosive","qty":1},{"name":"Fusion Accelerant","qty":1}],"outputs":[{"name":"Portable Reactor","qty":1}],"blueprint":true}]}
 ---
 

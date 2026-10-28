@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Emeril_Drive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.EMERILDRIVE.png","color":"blue","category":"Starship","subcategory":"Hyperdrive","level":"A","type":"Hyperdrive Upgrade: Green Systems","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Cadmium","qty":250},{"name":"Wiring Loom","qty":4}],"outputs":[{"name":"Emeril Drive","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Emeril Drive","qty":1}],"outputs":[{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":2}]}]}
 ---
 

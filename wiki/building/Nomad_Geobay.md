@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nomad_Geobay"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLEGARAGES.png","category":"Technology","type":"Construction module","color":"blue","desc":"Parking facility for Nomad Exocraft","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Ion Battery","qty":2},{"name":"Paraffinium","qty":50}],"outputs":[{"name":"Nomad Geobay","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Icarus_Fuel_System"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ENGINEMOD.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Solar Recharge Unit","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Storm Crystal","qty":3},{"name":"Microprocessor","qty":2},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Icarus Fuel System","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Icarus Fuel System","qty":1}],"outputs":[{"name":"Storm Crystal","qty":1},{"name":"Microprocessor","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

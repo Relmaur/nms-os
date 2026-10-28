@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Accelerated_Fire_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1mod.png","category":"Starship","subcategory":"Weapons","level":"1","upgradeicon":"speed","type":"Photon Cannon Companion Unit","desc":"Increases the photon cannon's rate of fire","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Aluminium","qty":100}],"outputs":[{"name":"Accelerated Fire Sigma","qty":1}]}]}
 ---
 

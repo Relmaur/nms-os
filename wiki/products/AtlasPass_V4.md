@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/AtlasPass_V4"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_AtlasPass4h.jpg","color":"blue","category":"Device","type":"Key","desc":"physical cardboard device","release":"Atlas Rises"},"recipes":[]}
 ---
 

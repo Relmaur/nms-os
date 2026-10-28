@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fragment_of_a_New_Atlantid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20240108215850_1.jpg","system_types":"Any","alert_1":"Dissonant Echo Detected","alert_2":"Dissonant Echo Detected","interaction":"Use Communicator or Shoot it","ramifications":"Will give you random hex numbers that can be translated to ASCII","rewards":"Radiant Shard (Atlantideum if They Who Returned mission is active)","release":"Orbital"},"recipes":[]}
 ---
 

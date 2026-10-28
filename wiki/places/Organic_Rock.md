@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/'Organic'_Rock"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Organic Rock","image":"Organic Rock.jpg","category":"Resource Node","type":"Resource Node","release":"Origins","desc":"Resource collection point"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hydrothermal_Fuel_Cell"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SUBFUEL.png","category":"Consumable","color":"red","type":"Submarine Reactor Fuel","value":"7,200.0","release":"Prisms"},"value":7200,"recipes":[{"type":"craft","inputs":[{"name":"Salt","qty":40},{"name":"Cyto-Phosphate","qty":40},{"name":"Carbon","qty":40}],"outputs":[{"name":"Hydrothermal Fuel Cell","qty":1}],"blueprint":true}]}
 ---
 

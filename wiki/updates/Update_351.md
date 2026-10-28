@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.51"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-prisms-book-cover-opt.png","date":"4 June 2021","platform":"All platforms","link":"Prisms Update 3.51","release":"Prisms","previous":"3.50","next":"3.52"},"recipes":[]}
 ---
 

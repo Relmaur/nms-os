@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Damaged_Wiring"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.TECH1.png","category":"Multi-Tool","color":"red","type":"Damaged Multi-Tool Component","release":"Abyss"},"recipes":[{"type":"repair","inputs":[{"name":"Microprocessor","qty":5},{"name":"Hermetic Seal","qty":8},{"name":"Ion Battery","qty":6}],"outputs":[]}]}
 ---
 

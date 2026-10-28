@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ancient_Data_Structure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Ancient Data Structure.jpg","category":"Resource Node","release":"Singularity"},"recipes":[]}
 ---
 

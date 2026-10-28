@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Base_Computer_Archives"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsMisc_Mission.png","type":"Secondary","origin":"Space","requires":"Partial completion of Alone Amidst the Stars","implemented":"NEXT","desc":"A time-gated mission which grants some exclusive base-building blueprints."},"recipes":[]}
 ---
 

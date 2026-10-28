@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rusted_Circuits"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.3.png","category":"Starship","color":"red","type":"Damaged Starship Component","release":"ExoMech"},"recipes":[{"type":"repair","inputs":[{"name":"Magnetised Ferrite","qty":250},{"name":"Chlorine","qty":25}],"outputs":[]}]}
 ---
 

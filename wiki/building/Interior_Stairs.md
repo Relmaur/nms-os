@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Interior_Stairs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.INTERIORSTAIRS.png","category":"Base Building","color":"blue","type":"Construction module","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":50},{"name":"Carbon","qty":30}],"outputs":[{"name":"Interior Stairs","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Interior Stairs","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":50},{"name":"Carbon","qty":30}]}]}
 ---
 

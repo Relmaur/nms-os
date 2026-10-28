@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Homingbolt_Adaptor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","category":"Multi-tool","subcategory":"Projectile","level":"5","type":"Boltcaster Companion Unit","desc":"Boltcaster rounds trace and follow target movement. Best used on lifeforms with unpredictable attack patterns, or those likely to attempt escape from user during combat. Operates automatically once constructed within user's multi-tool inventory.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"AquaSphere","qty":5},{"name":"Titanium","qty":200},{"name":"Plutonium","qty":200}],"outputs":[{"name":"Homingbolt Adaptor","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Galactic_Trade_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.TERMINAL.png","category":"Technology","type":"Terminal","desc":"Electronic access to the galactic markets","complexity":"10","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Microprocessor","qty":3}],"outputs":[{"name":"Galactic Trade Terminal","qty":1}],"blueprint":true}]}
 ---
 

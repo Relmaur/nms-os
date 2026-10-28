@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.46"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-echoes-book-cover.png","date":"8 December, 2023","platform":"All","link":"Holiday 2023 Expeditions","release":"Echoes","previous":"4.45","next":"4.46.2"},"recipes":[]}
 ---
 

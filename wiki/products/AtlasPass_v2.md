@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/AtlasPass_v2"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"blue","image":"Product.atlaspass.png","category":"Constructed Technology","type":"Access Card","value":"0","release":"Prisms"},"value":0,"recipes":[{"type":"craft","inputs":[{"name":"Cadmium","qty":200},{"name":"Microprocessor","qty":1}],"outputs":[{"name":"AtlasPass v2","qty":1}],"blueprint":true}]}
 ---
 

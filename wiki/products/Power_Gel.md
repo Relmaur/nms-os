@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Power_Gel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.gel1.png","color":"red","category":"Consumable","type":"Energy Recharge Cell","value":"171.9","desc":"Convenient and optimised power storage unit","release":"Atlas Rises"},"value":171.9,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Carbon","qty":100}],"outputs":[{"name":"Power Gel","qty":1}]}]}
 ---
 

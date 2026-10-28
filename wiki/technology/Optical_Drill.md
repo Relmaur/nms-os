@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Optical_Drill"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"AdvMiningLaserIcon.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"S","type":"Material Gain Amplifier","stats":"Resource Mined +50%","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":5},{"name":"Quantum Computer","qty":3},{"name":"Solar Mirror","qty":3}],"outputs":[{"name":"Optical Drill","qty":1}]},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":3},{"name":"Quantum Computer","qty":2},{"name":"Solar Mirror","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Optical Drill","qty":1}],"outputs":[{"name":"Wiring Loom","qty":3},{"name":"Quantum Computer","qty":2},{"name":"Solar Mirror","qty":2}]}]}
 ---
 

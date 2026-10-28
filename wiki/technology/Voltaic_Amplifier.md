@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Voltaic_Amplifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.STUNDAMAGEMOD.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"A","type":"Damage Overload Module","stats":"Damage stunned entities +21%","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Basalt","qty":70},{"name":"Ion Battery","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Voltaic Amplifier","qty":1}]},{"type":"repair","inputs":[{"name":"Basalt","qty":35},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Voltaic Amplifier","qty":1}],"outputs":[{"name":"Basalt","qty":35},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_Geobay"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLEGARAGEMECH.png","category":"Technology","type":"Heavy Loader Storage Bay","color":"blue","desc":"Parking facility for Minotaur Exocraft","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Ion Battery","qty":4},{"name":"Gold","qty":100}],"outputs":[{"name":"Minotaur Geobay","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bittersweet_Cocoa"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CHOCOLATE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"1,800","release":"WorldsTwo"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Impulse Beans","qty":1}],"outputs":[{"name":"Bittersweet Cocoa","qty":1}],"seconds":2.5,"label":"Extract Nutrients"}]}
 ---
 

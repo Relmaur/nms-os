@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iodhinxois"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Iodhinxois","image":"20200130180943_1.jpg","color":"Canary Yellow","type":"Norm","order":"185","previous":"Ulexovitab","next":"Irroswitzs","release":"Waypoint"},"recipes":[]}
 ---
 

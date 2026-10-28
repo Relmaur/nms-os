@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hyades"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hyades","image":"No Man's Sky_20190128013506.png","color":"Royal Blue","type":"Norm","order":"5","previous":"Hesperius Dimension","next":"Ickjamatew","release":"Swarm"},"recipes":[]}
 ---
 

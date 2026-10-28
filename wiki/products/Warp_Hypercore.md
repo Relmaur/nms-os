@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Hypercore"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.WARPCELL2.png","category":"Consumable","type":"Hyperdrive Charging Unit","value":"46.750","release":"Endurance"},"value":46.75,"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":1},{"name":"Storm Crystal","qty":1}],"outputs":[{"name":"Warp Hypercore","qty":1}],"blueprint":true}]}
 ---
 

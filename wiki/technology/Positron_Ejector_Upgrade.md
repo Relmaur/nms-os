@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Positron_Ejector_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLASTMOD.png","category":"Starship","subcategory":"Weapons","type":"Generated Upgrade","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Positron Ejector Upgrade","qty":1}],"outputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

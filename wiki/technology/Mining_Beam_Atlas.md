@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mining_Beam_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","category":"Multi-tool","subcategory":"Laser","type":"Mineral Extraction Laser","recharge":"Isotope","release":"Atlas Rises"},"recipes":[{"type":"repair","inputs":[{"name":"Iron","qty":100}],"outputs":[]}]}
 ---
 

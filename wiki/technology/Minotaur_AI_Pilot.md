@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_AI_Pilot"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLEAUTOPILOT.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur AI Technology","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Quantum Computer","qty":1},{"name":"Antimatter","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Minotaur AI Pilot","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Minotaur AI Pilot","qty":1}],"outputs":[{"name":"Quantum Computer","qty":1},{"name":"Antimatter","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

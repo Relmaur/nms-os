@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Hyperdrive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.FREIGHTERHD.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","type":"Lightspeed Warp Drive","recharge":"Warp Cell","release":"Endurance"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":250},{"name":"Antimatter","qty":2},{"name":"Antimatter Housing","qty":2}],"outputs":[]}]}
 ---
 

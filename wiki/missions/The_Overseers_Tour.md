@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Overseer's_Tour"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","prevmission":"Expanding the Base","origin":"Overseer","requires":"Passage of at least 24 hours (real time) since previous completion","implemented":"???","desc":"Repeatable mission involving the usage of Photo Mode"},"recipes":[]}
 ---
 

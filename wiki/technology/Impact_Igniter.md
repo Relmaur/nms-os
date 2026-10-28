@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Impact_Igniter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSESPITTERMOD.png","color":"green","category":"Multi-tool","subcategory":"Weapons","level":"S","type":"Pulse Spitter Upgrade","stats":"+80 Fire Damage 4s Impact Fire Duration","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Phosphorus","qty":200},{"name":"Hermetic Seal","qty":4},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Impact Igniter","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Phosphorus","qty":100},{"name":"Hermetic Seal","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Impact Igniter","qty":1}],"outputs":[{"name":"Phosphorus","qty":100},{"name":"Hermetic Seal","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

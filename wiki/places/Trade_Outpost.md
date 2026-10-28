@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Trade_Outpost"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Trading Post","image":"BUILDINGS.OUTPOST.png","category":"Inhabited Outpost","type":"Trade Outpost","desc":"Trade Outpost","release":"Interceptor"},"recipes":[]}
 ---
 

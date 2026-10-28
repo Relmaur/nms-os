@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Corrupted_Ichor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.SWARMDUST.png","color":"Black","type":"Corrosive Biofluid","rarity":"Rare","used":"Upgrading","symbol":"∞","value":"1616.0","release":"Swarm"},"value":1616,"recipes":[]}
 ---
 

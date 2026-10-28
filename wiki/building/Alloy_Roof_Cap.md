@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alloy_Roof_Cap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FIBREGLASS.BASIC_ROOF_MIDDLE_CAP.png","category":"Base Building","type":"Alloy Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25}],"outputs":[{"name":"Alloy Roof Cap","qty":1}],"blueprint":true}]}
 ---
 

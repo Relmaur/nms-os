@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exosuit_Expansion_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.EXOSUITTOKEN.png","color":"DarkBlue","category":"Curiosity","type":"Upgrade Unit","value":"155,000.0","release":"WorldsOne"},"value":155000,"recipes":[]}
 ---
 

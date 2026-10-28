@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dual_Chrome_Firework"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.FIREWORK05.png","category":"Base Building","type":"Exotic Collectibles","release":"Prisms"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Folded_Sail_Alloy_Roof"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FIBREGLASS.BASIC_ROOF_TOP4.png","category":"Base Building","type":"Alloy Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Folded Sail Alloy Roof","qty":1}],"blueprint":true}]}
 ---
 

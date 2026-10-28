@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frostscale_Trout"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT2.FISH.MEDIUM.2.png","color":"green","category":"Fish","type":"Common Fish","value":"1,000","used":"Cooking","release":"Aquarius"},"value":1000,"recipes":[]}
 ---
 

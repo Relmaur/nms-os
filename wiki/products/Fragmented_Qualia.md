@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fragmented_Qualia"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUB.SOULFRAG.png","category":"Curiosity","color":"grey","type":"Soul Fragment","value":"16.0","release":"Adrift"},"value":16,"recipes":[]}
 ---
 

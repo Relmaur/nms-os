@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Uagerosat"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Uagerosat","image":"20200112112023_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"166","previous":"Oyleyzhan","next":"Impoxectin","release":"Waypoint"},"recipes":[]}
 ---
 

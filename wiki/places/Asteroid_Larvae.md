@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Asteroid_Larvae"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Asteroid Larvae","image":"Asteroid Larvae Firing.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Shoot","ramifications":"Engages in combat when shot, but cannot be killed","rewards":"None","notes":"Invincible","release":"WorldsOne"},"recipes":[]}
 ---
 

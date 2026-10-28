@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/High-Power_Sonar"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Aquatic","type":"Submarine Analysis Device","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Crystal Sulphide","qty":3},{"name":"Ferrite Dust","qty":50}],"outputs":[{"name":"High-Power Sonar","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"High-Power Sonar","qty":1}],"outputs":[{"name":"Ferrite Dust","qty":25}]}]}
 ---
 

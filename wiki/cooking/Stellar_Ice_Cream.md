@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stellar_Ice_Cream"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ICECREAM.png","color":"Darkblue","category":"Consumable","type":"Edible Product","value":"36,000.0","release":"WorldsOne"},"value":36000,"recipes":[{"type":"cook","inputs":[{"name":"Stellar Custard","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Stellar Ice Cream","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Stellar Custard","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Stellar Ice Cream","qty":1}],"seconds":2.5,"label":"Rapid Chilling"}]}
 ---
 

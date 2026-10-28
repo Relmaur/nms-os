@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nipikulha"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nipikulha","image":"No Man's Sky_20190403211325.png","color":"Sky Blue","order":"36","type":"Norm","previous":"Ijsenufryos","next":"Autsurabin","release":"Waypoint"},"recipes":[]}
 ---
 

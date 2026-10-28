@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Solanium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.PLANT.HOT.png","color":"Red","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Rare","used":"Building, Crafting","symbol":"So","value":"70","release":"WorldsTwo"},"value":70,"recipes":[{"type":"refine","inputs":[{"name":"Solanium","qty":1},{"name":"Phosphorus","qty":1}],"outputs":[{"name":"Solanium","qty":2}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Phosphorus","qty":2},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Solanium","qty":1}],"seconds":0.36,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Phosphorus","qty":1},{"name":"Sulphurine","qty":1}],"outputs":[{"name":"Solanium","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Phosphorus","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Solanium","qty":1}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Sulphurine","qty":1}],"outputs":[{"name":"Solanium","qty":1}],"seconds":0.16,"label":"Sulphur Injection"}]}
 ---
 

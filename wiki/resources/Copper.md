@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Copper"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.YELLOW.2.png","color":"Yellow","type":"Refined Stellar Metal: Yellow","rarity":"Common","symbol":"Cu","desc":"A component for Chromatic Metal.","value":"41.0","release":"WorldsOne"},"value":41,"recipes":[{"type":"refine","inputs":[{"name":"Copper","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Copper","qty":2}],"seconds":0.36,"label":"Chromatic Expansion"}]}
 ---
 

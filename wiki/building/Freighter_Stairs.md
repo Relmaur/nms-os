@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Stairs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SPACE CORRIDOR STAIRS.png","category":"Base Building","type":"Freighter Interior Module","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":50}],"outputs":[{"name":"Freighter Stairs","qty":1}],"blueprint":true}]}
 ---
 

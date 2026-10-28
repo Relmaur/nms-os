@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Xeno-Sponge"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"80,800","release":"WorldsOne"},"value":80800,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Xeno-Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Xeno-Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

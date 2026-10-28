@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sloping_Concrete_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.WALLDIAG CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","color":"Blue","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":10}],"outputs":[{"name":"Sloping Concrete Panel","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.02"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"worlds-part-i-book-cover.png","date":"25 July, 2024","dateswitch":"31 July, 2024","platform":"PS, NS","link":"Worlds Part 1 Patch 5.02","release":"WorldsOne","previous":"5.01.1","next":"5.03"},"recipes":[]}
 ---
 

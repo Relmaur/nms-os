@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wiensanshe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Wiensanshe","image":"20200116112914_1.jpg","color":"Pink","type":"Norm","order":"171","previous":"Ezdaranit","next":"Ewheelonc","release":"Waypoint"},"recipes":[]}
 ---
 

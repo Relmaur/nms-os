@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator_Damage_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Infra-Knife_Accelerator_Upgrade_Icon.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"2","upgradeicon":"damage","type":"Infra-Knife Companion Unit","desc":"Increases Infra-Knife damage","stats":"Damage = +5.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":200},{"name":"Copper","qty":50},{"name":"Carbon","qty":50}],"outputs":[{"name":"Infra-Knife Accelerator Damage Tau","qty":1}]}]}
 ---
 

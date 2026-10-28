@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fusion_Accelerant"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FUSIONACCELERANT.png","color":"grey","category":"Tradeable","type":"Manufactured Gas Product","value":"1,500,000.0","release":"Prisms"},"value":1500000,"recipes":[{"type":"craft","inputs":[{"name":"Organic Catalyst","qty":1},{"name":"Nitrogen Salt","qty":1}],"outputs":[{"name":"Fusion Accelerant","qty":1}],"blueprint":true}]}
 ---
 

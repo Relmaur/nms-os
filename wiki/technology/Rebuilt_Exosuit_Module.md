@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rebuilt_Exosuit_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PROCTECH.ROBOT.SUIT.png","color":"darkblue","category":"Consumable","subcategory":"Salvaged Upgrade Components","type":"Salvaged Upgrade Components","release":"WorldsOne"},"recipes":[]}
 ---
 

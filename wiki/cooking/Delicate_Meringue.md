@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Delicate_Meringue"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGH.png","color":"Grey","category":"Consumable","type":"Edible Product","value":"5,400.0","release":"Origins"},"value":5400,"recipes":[{"type":"cook","inputs":[{"name":"Larval Core","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Delicate Meringue","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Creature Egg","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Delicate Meringue","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Tall Eggs","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Delicate Meringue","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Giant Egg","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Delicate Meringue","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Holographic_Chart_Projector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.PLANETHOLOGRAM.png","category":"Base Building","type":"Decoration","desc":"Holographic Display","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":2},{"name":"Chromatic Metal","qty":100},{"name":"Platinum","qty":25}],"outputs":[{"name":"Holographic Chart Projector","qty":1}],"blueprint":true}]}
 ---
 

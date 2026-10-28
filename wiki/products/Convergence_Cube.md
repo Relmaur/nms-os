@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Convergence_Cube"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.KORVAXCUBE.png","category":"Curiosity","color":"Purple","type":"Trade commodity","value":"13,063.0","release":"Echoes"},"value":13063,"recipes":[]}
 ---
 

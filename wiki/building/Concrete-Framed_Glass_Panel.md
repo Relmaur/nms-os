@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Concrete-Framed_Glass_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.GFLOOR CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","release":"Companions"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":10}],"outputs":[{"name":"Concrete-Framed Glass Panel","qty":1}],"blueprint":true}]}
 ---
 

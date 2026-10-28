@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Solar_Mirror"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.MIRROR.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"6,150.0","release":"Expeditions"},"value":6150,"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":40},{"name":"Silver","qty":30},{"name":"Chromatic Metal","qty":25}],"outputs":[{"name":"Solar Mirror","qty":1}],"blueprint":true}]}
 ---
 

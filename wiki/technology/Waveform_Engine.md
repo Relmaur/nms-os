@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Waveform_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ULTRAPROD.1.png","category":"Starship","type":"Highly Customised Starship Engine","desc":"Highly tuned Pulse Engine","recharge":"Tritium, Pyrite","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Crystal Sulphide","qty":3},{"name":"Magnetic Resonator","qty":1}],"outputs":[]}]}
 ---
 

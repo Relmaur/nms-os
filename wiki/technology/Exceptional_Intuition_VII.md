@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exceptional_Intuition_VII"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Exceptional Intuition VII","color":"blue","category":"Multi-tool","subcategory":"Weapon","type":"Crack Nose","release":"Pathfinder"},"recipes":[]}
 ---
 

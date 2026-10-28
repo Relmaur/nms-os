@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Construction_Research_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BLUEPRINTAN.png","category":"Base Building","color":"blue","type":"Technology Recovery Device","value":"10","used":"Building","release":"Origins"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":20},{"name":"Carbon Nanotubes","qty":1}],"outputs":[{"name":"Construction Research Unit","qty":1}],"blueprint":true}]}
 ---
 

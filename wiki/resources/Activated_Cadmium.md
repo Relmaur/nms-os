@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Activated_Cadmium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.EXRED.2.png","color":"Red","type":"Refined Stellar Metal: Red","rarity":"Rare","symbol":"Cd+","value":"111.0","release":"Waypoint"},"value":111,"recipes":[]}
 ---
 

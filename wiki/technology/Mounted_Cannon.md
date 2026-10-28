@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mounted_Cannon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Mounted Cannon","image":"RENDER.VEHICLE_GUN.png","color":"blue","category":"Exocraft","subcategory":"Weapons","recharge":"Carbon, Condensed Carbon, Oxygen","type":"Exocraft Weapon Attachment","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":50},{"name":"Copper","qty":100}],"outputs":[{"name":"Mounted Cannon","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Mounted Cannon","qty":1}],"outputs":[{"name":"Pugneum","qty":25},{"name":"Copper","qty":50}]}]}
 ---
 

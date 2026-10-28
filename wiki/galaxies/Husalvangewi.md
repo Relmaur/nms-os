@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Husalvangewi"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Husalvangewi","image":"20191016171650_1.jpg","color":"Light Green","type":"Lush","order":"70","previous":"Yebrilowisod","next":"Ovna'uesed","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Railshot_Adaptor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.railgun1.png","category":"Weapon","subcategory":"Projectile","level":"1","type":"Mining Beam Companion Unit","desc":"A powerful defensive weapon.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Aluminium","qty":100},{"name":"Copper","qty":50},{"name":"Iron","qty":200}],"outputs":[{"name":"Railshot Adaptor","qty":1}]}]}
 ---
 

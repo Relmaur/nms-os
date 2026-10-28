@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"pulse_spitter.png","category":"Multi-tool","type":"Weapon","desc":"The Pulse Spitter releases short, rapid sequences of fire.","stats":"Damage = 4.0 Mining Power = 1.0","recharge":"Isotope","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":60},{"name":"Heridium","qty":100},{"name":"Zinc","qty":20}],"outputs":[{"name":"Pulse Spitter (Atlas)","qty":1}]}]}
 ---
 

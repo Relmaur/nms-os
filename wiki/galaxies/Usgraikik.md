@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Usgraikik"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Usgraikik","image":"Usgraikik--3.png","color":"White","order":"-3","previous":"Helqvishap","next":"Hiteshamij","release":"Atlas Rises"},"recipes":[]}
 ---
 

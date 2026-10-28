@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Emergency_Containment_Device"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Emergency Containment Device","image":"ecdevice2.jpg","system_types":"Any","frequency":"Low","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Fire to Destroy","ramifications":"Destroying will drop a Terrifying Sample","rewards":"Terrifying Sample","release":"Outlaws"},"recipes":[]}
 ---
 

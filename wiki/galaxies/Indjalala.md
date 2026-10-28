@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Indjalala"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Indjalala","image":"20200107220949_1.jpg","color":"Purple","type":"Norm","order":"160","previous":"Rycempler","next":"Fontenikk","release":"Waypoint"},"recipes":[]}
 ---
 

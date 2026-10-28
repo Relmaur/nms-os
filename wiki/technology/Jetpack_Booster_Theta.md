@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jetpack_Booster_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.jetpackmod.png","category":"Exosuit","subcategory":"Utilities","type":"Aerial Propulsion Companion Unit","level":"3","upgradeicon":"jetpack","desc":"Provides an additional boost to the Jetpack","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Omegon","qty":50},{"name":"Chrysonite","qty":300},{"name":"Plutonium","qty":300}],"outputs":[{"name":"Jetpack Booster Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Medium_Refiner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.refiner2.png","category":"Base Building","color":"blue","type":"Automated Refinery Unit","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":100},{"name":"Di-hydrogen Jelly","qty":5}],"outputs":[{"name":"Medium Refiner","qty":1}],"blueprint":true}]}
 ---
 

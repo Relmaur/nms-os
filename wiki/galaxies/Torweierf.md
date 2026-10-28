@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Torweierf"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Torweierf","image":"20191203231530_1.jpg","color":"Magenta","type":"Lush","order":"119","previous":"Jasinessa","next":"Saffneckm","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glass"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPROD.3.png","category":"Tradeable","color":"grey","type":"Advanced Agricultural Product","value":"200.0","release":"Endurance"},"value":200,"recipes":[{"type":"craft","inputs":[{"name":"Frost Crystal","qty":40}],"outputs":[{"name":"Glass","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Cyto-Phosphate","qty":50},{"name":"Salt","qty":50}],"outputs":[{"name":"Glass","qty":1}],"seconds":10,"label":"Salt Crystal Polishing"},{"type":"refine","inputs":[{"name":"Silicate Powder","qty":40}],"outputs":[{"name":"Glass","qty":1}],"seconds":5,"label":"Silicate Forging"},{"type":"refine","inputs":[{"name":"Frost Crystal","qty":40}],"outputs":[{"name":"Glass","qty":1}],"seconds":30,"label":"Polish Crystals"}]}
 ---
 

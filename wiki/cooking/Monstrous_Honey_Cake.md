@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Monstrous_Honey_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"149,700.0","release":"NextGen"},"value":149700,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Synthetic Honey","qty":1}],"outputs":[{"name":"Monstrous Honey Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

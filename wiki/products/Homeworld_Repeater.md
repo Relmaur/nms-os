@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Homeworld_Repeater"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ROGUEFINDER.png","category":"Curiosity","color":"purple","type":"Homing Device","value":"16","release":"Endurance"},"value":16,"recipes":[{"type":"craft","inputs":[{"name":"Hydraulic Wiring","qty":1},{"name":"Gold","qty":20},{"name":"Magnetised Ferrite","qty":60}],"outputs":[{"name":"Homeworld Repeater","qty":1}],"blueprint":true}]}
 ---
 

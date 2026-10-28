@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nepitzaspru"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nepitzaspru","image":"20200323114348_1.jpg","color":"Magenta","type":"Lush","order":"250","previous":"Rukwatsuku","next":"Chcehoemig","release":"Interceptor"},"recipes":[]}
 ---
 

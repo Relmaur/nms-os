@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deep-Space_Base_Computer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"category":"Base Building","name":"Deep-Space Base Computer","image":"BUILDABLE.SPACEBASECOREFLAG.png","type":"Site Evaluation Device","release":"Cosmos"},"recipes":[{"type":"craft","inputs":[{"name":"Reactor Core","qty":1},{"name":"Viral Heart","qty":1},{"name":"Condensed Stellar Ice","qty":1}],"outputs":[{"name":"Deep-Space Base Computer","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "TheCursed"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.20"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"23 October, 2024","platform":"PC, Mac, XB, PS, NS","release":"TheCursed","previous":"5.12","next":"5.21","link":"Expedition Sixteen: The Cursed","image":"The-cursed-book-cover.png"},"recipes":[]}
 ---
 

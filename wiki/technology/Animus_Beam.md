@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Animus_Beam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SOULLASER.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","type":"Soul Extractor","release":"Living Ship"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":100},{"name":"Sodium Nitrate","qty":50}],"outputs":[{"name":"Animus Beam","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Condensed Carbon","qty":50},{"name":"Sodium Nitrate","qty":25}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Animus Beam","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":50},{"name":"Sodium Nitrate","qty":25}]}]}
 ---
 

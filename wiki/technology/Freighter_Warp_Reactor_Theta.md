@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Warp_Reactor_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTHETA.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"A","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 800 ly","release":"NextGen"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Indium","qty":250},{"name":"Salt Refractor","qty":1},{"name":"Antimatter Housing","qty":6}],"outputs":[{"name":"Freighter Warp Reactor Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fermented_Fruit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.FRUIT.png","color":"Green","category":"Consumable","type":"Herbivore Bait","value":"800.0","release":"Frontiers"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Fireberry","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Grahberry","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Hexaberry","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Sweetroot","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Marrow Bulb","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Star Bulb","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Cactus Flesh","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Fermented Fruit","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true}]}
 ---
 

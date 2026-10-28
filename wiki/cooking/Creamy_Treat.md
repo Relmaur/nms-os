@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Creamy_Treat"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"62,000.0","release":"Prisms"},"value":62000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Creamy Treat","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Creamy Treat","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

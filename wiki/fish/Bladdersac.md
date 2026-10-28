@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bladdersac"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.MEDIUM.1.png","color":"blue","category":"Fish","type":"Uncommon Fish","value":"3,000","release":"Xeno Arena"},"value":3000,"recipes":[]}
 ---
 

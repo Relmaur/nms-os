@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pilgrim's_Tonic"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Green","category":"Consumable","type":"Edible Product","value":"800.0","release":"Origins"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Pilgrimberry","qty":1}],"outputs":[{"name":"Pilgrim's Tonic","qty":1}],"seconds":2.5,"label":"Liquidise"}]}
 ---
 

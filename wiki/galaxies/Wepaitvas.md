@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wepaitvas"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Wepaitvas","image":"20200126131432_1.jpg","color":"Manhattan Orange","type":"Lush","order":"179","previous":"Igbinduina","next":"Sthatigudi","release":"Waypoint"},"recipes":[]}
 ---
 

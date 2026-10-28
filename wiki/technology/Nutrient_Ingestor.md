@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nutrient_Ingestor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20250208224652_2.jpg","color":"blue","category":"Exosuit","type":"Feeding Technology","release":"Worlds Part II"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":30},{"name":"Lubricant","qty":1},{"name":"Microprocessor","qty":2}],"outputs":[{"name":"Nutrient Ingestor","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Nutrient Ingestor","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":15},{"name":"Lubricant","qty":1},{"name":"Microprocessor","qty":1}]}]}
 ---
 

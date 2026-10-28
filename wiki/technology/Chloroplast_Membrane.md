@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chloroplast_Membrane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.STEM2.png","category":"Starship","subcategory":"Launch system","type":"Neural assembly recharger","release":"Echoes","desc":"Recharges Neural Assembly during daylight"},"recipes":[{"type":"repair","inputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Chloroplast Membrane","qty":1}],"outputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}]}]}
 ---
 

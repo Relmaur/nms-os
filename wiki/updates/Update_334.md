@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.34"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-expeditions-book-cover-opt.png","date":"5 April 2021","platform":"All","link":"Expeditions Patch 3.34","release":"Expeditions","previous":"3.33","next":"3.35"},"recipes":[]}
 ---
 

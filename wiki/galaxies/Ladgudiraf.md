@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ladgudiraf"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ladgudiraf","image":"20190912214921_1.jpg","color":"Light Green","type":"Empty","order":"52","previous":"Zalienkosm","next":"Mushonponte","release":"Waypoint"},"recipes":[]}
 ---
 

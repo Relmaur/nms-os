@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dimonimba"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dimonimba","image":"20191028092346_1.jpg","color":"Aquamarine","type":"Harsh","order":"83","previous":"Hakapanasy","next":"Cajaccari","release":"Waypoint"},"recipes":[]}
 ---
 

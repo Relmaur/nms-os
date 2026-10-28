@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Holographic_Globe_Gadget"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.TOYSPHERE.png","category":"Base Building","color":"blue","type":"Interior Decorations","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":30},{"name":"Platinum","qty":30}],"outputs":[{"name":"Holographic Globe Gadget","qty":1}],"blueprint":true}]}
 ---
 

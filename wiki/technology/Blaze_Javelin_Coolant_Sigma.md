@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Coolant_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Blaze_javelin_upgrade.png","category":"Multi-tool","subcategory":"Blaze Javelin","level":"1","upgradeicon":"time","type":"Blaze Javelin Companion Unit","desc":"Reduces time between shots when using the multi-tool's Blaze Javelin weapon mode by a small amount.","stats":"Heat Dispersion = (-10%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":50},{"name":"Heridium","qty":20}],"outputs":[{"name":"Blaze Javelin Coolant Sigma","qty":1}]}]}
 ---
 

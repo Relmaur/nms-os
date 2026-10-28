@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulsing_Heart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.HEART.png","category":"Propulsion","subcategory":"Interplanetary","type":"Starship Flight Booster","desc":"Spaceflight propulsion, boosts and on-demand Pulse Jumps through local system.","recharge":"Silver, Carbon or Viscous Fluids","release":"Endurance"},"recipes":[{"type":"repair","inputs":[{"name":"Bloody Organ","qty":1},{"name":"Runaway Mould","qty":20}],"outputs":[]}]}
 ---
 

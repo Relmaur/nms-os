@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sentinel_Boundary_Map"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sentinel Boundary Map","image":"PRODUCT.STARCHART.HIVE.png","color":"purple","category":"Curiosity","type":"Anomalous Planetary Location Data","value":"3,200.0","release":"Singularity"},"value":3200,"recipes":[]}
 ---
 

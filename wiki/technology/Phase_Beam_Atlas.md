@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phase_Beam_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"phase_beam.png","category":"Weapon","subcategory":"Laser","type":"Spacecraft Laser Device","desc":"One of the two primary ship weapons","stats":"Damage = 200.0","recharge":"Isotope","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":30},{"name":"Heridium","qty":30},{"name":"Thamium9","qty":30}],"outputs":[{"name":"Phase Beam (Atlas)","qty":1}]}]}
 ---
 

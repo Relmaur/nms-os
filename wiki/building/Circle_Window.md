@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Circle_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBEWINDOWOVAL.png","category":"Base Building","color":"blue","type":"Construction item","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":5},{"name":"Glass","qty":1}],"outputs":[{"name":"Circle Window","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Circle Window","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":5},{"name":"Glass","qty":1}]}]}
 ---
 

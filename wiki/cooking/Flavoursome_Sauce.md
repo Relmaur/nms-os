@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flavoursome_Sauce"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Green","category":"Consumable","type":"Edible Product","value":"7,200","release":"WorldsTwo"},"value":7200,"recipes":[{"type":"cook","inputs":[{"name":"Root Juice","qty":1},{"name":"Steamed Vegetables","qty":1}],"outputs":[{"name":"Flavoursome Sauce","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Steamed Vegetables","qty":1},{"name":"Steamed Vegetables","qty":1}],"outputs":[{"name":"Flavoursome Sauce","qty":1}],"seconds":2.5,"label":"Liquidise"}]}
 ---
 

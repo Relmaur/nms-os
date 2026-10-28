@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Trident_Key_(Damaged_Component)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Trident Key","image":"PRODUCT.TRIDENTKEY.png","category":"Artifact","color":"blue","type":"Offering to the Sea","release":"Abyss"},"recipes":[{"type":"repair","inputs":[{"name":"Trident Key","qty":1}],"outputs":[]}]}
 ---
 

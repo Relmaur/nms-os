@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ancestral_Memories"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.TIMEMILK.png","category":"Special","type":"Recessive Creature Genes","rarity":"Common","value":"1,616.0","release":"Outlaws"},"value":1616,"recipes":[]}
 ---
 

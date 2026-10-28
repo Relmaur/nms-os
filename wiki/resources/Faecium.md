@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Faecium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.PLANT.POOP.png","color":"Brown","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Common","used":"Building, Crafting, Upgrading, Cooking","symbol":"Fa","value":"30","release":"WorldsTwo"},"value":30,"recipes":[{"type":"refine","inputs":[{"name":"Mordite","qty":3}],"outputs":[{"name":"Faecium","qty":1}],"seconds":0.24,"label":"Assisted Decomposition"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Faecium","qty":1}],"seconds":0.08,"label":"Assisted Decomposition"},{"type":"refine","inputs":[{"name":"Faecium","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Faecium","qty":3}],"seconds":0.36,"label":"Oxygenate Microbes"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":1},{"name":"Sulphurine","qty":1}],"outputs":[{"name":"Faecium","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Mordite","qty":1},{"name":"Carbon","qty":2}],"outputs":[{"name":"Faecium","qty":3}],"seconds":0.36,"label":"Runaway Decomposition"},{"type":"refine","inputs":[{"name":"Mordite","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Faecium","qty":4}],"seconds":0.36,"label":"Runaway Decomposition"},{"type":"refine","inputs":[{"name":"Mordite","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Faecium","qty":1}],"seconds":0.36,"label":"Organic Expansion"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Robotic_Companion"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.ROBOTTOY.png","category":"Base Building","color":"blue","type":"Exotic Collectibles","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":30},{"name":"Platinum","qty":30}],"outputs":[{"name":"Robotic Companion","qty":1}],"blueprint":true}]}
 ---
 

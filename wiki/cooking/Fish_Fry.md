@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fish_Fry"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.PRAWN.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"28,000","release":"Aquarius"},"value":28000,"recipes":[{"type":"cook","inputs":[{"name":"Tiny Scuttlefish","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Venemous Triggerfin","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Spotted Protofin","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Oilfin","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Pyrefin","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Rimescale Snapper","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Common Shimmertail","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Fool's Goldfish","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Fragile Icthyoscale","qty":1}],"outputs":[{"name":"Fish Fry","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

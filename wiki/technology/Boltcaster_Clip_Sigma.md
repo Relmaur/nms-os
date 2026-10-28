@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_Clip_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Weapon","subcategory":"Projectile","level":"1","upgradeicon":"clip","type":"Companion Unit","desc":"Increases the boltcaster's clip size","stats":"Clip Size = +25%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Titanium","qty":20},{"name":"Microdensity Fabric","qty":2}],"outputs":[{"name":"Boltcaster Clip Sigma","qty":1}]}]}
 ---
 

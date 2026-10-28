@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Silver"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.ASTEROID.1.png","color":"Grey","category":"Exotic","type":"Valuable Asteroid Mineral","rarity":"Common","used":"Building, Charging, Upgrading, Refining","symbol":"Ag","value":"186.0","release":"Endurance"},"value":186,"recipes":[{"type":"refine","inputs":[{"name":"Herox","qty":1}],"outputs":[{"name":"Silver","qty":250}],"seconds":1,"label":"Extreme Alloy Separation"},{"type":"refine","inputs":[{"name":"Aronium","qty":1}],"outputs":[{"name":"Silver","qty":250}],"seconds":1.2,"label":"Extreme Alloy Separation"},{"type":"refine","inputs":[{"name":"Dirty Bronze","qty":1}],"outputs":[{"name":"Silver","qty":250}],"seconds":1.2,"label":"Extreme Alloy Separation"},{"type":"refine","inputs":[{"name":"Comet Dust","qty":5}],"outputs":[{"name":"Silver","qty":1}],"seconds":0.36,"label":"Crystal Processing"}]}
 ---
 

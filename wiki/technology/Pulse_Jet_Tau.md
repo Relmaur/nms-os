@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Jet_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"Blue","level":"2","upgradeicon":"speed","category":"Ship","subcategory":"Utilities","type":"Pulse Engine Companion Unit","desc":"Upgrade to the Pulse Jet Engine","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nickel","qty":100},{"name":"Thamium9","qty":50},{"name":"Neutrino Module","qty":2}],"outputs":[{"name":"Pulse Jet Tau","qty":1}]}]}
 ---
 

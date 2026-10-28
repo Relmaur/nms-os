@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Marine_Shelter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.WATERBUBBLE.png","category":"Base Building","color":"Blue","type":"Deep Water Survival Module","value":"10","release":"Origins"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Living Pearl","qty":5},{"name":"Glass","qty":1},{"name":"Oxygen","qty":25}],"outputs":[{"name":"Marine Shelter","qty":1}],"blueprint":true}]}
 ---
 

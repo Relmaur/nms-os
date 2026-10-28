@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vy'keen_Tablet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TREASUREPROD.STRANGEBOOK.png","category":"Curiosity","type":"Communion of Hirk","value":"1,250","release":"Companions"},"value":1250,"recipes":[]}
 ---
 

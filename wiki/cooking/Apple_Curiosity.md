@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/'Apple'_Curiosity"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"78,000","release":"Swarm"},"value":78000,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"'Apple' Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"'Apple' Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"'Apple' Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

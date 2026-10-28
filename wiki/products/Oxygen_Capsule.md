@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Capsule"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.gel2.png","category":"Consumable","type":"Portable Life Support Power","value":"350.0","release":"Origins"},"value":350,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Oxygen","qty":25},{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Oxygen Capsule","qty":1}]}]}
 ---
 

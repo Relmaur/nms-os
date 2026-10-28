@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Briney_Delight"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"80,200.0","release":"NextGen"},"value":80200,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Briney Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

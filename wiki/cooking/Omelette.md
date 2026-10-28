@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Omelette"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.OMLETTE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"18,000","release":"Origins"},"value":18000,"recipes":[{"type":"cook","inputs":[{"name":"Creature Egg","qty":1},{"name":"Tangy Cheese","qty":1}],"outputs":[{"name":"Omelette","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Tall Eggs","qty":1},{"name":"Tangy Cheese","qty":1}],"outputs":[{"name":"Omelette","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Giant Egg","qty":1},{"name":"Tangy Cheese","qty":1}],"outputs":[{"name":"Omelette","qty":1}],"seconds":2.5,"label":"Bind Proteins"}]}
 ---
 

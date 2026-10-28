@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wall_Flag_3"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.WALLFLAG3.png","category":"Base Building","color":"blue","type":"Decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Carbon","qty":5}],"outputs":[{"name":"Wall Flag 3","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sputtering_Starship_Trail"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sputtering Starship Trail","image":"SPECIAL1.SHIPTRAIL.PIRATE.png","category":"Starship Exhaust Override","release":"Adrift"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Sputtering Starship Trail","qty":1}],"blueprint":true}]}
 ---
 

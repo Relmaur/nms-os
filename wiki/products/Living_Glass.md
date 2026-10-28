@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Glass"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech Living Glass Icon 13.png","category":"Tradeable","color":"grey","type":"Advanced Agricultural Product","value":"566,000.0","release":"Outlaws"},"value":566000,"recipes":[{"type":"craft","inputs":[{"name":"Lubricant","qty":1},{"name":"Glass","qty":5}],"outputs":[{"name":"Living Glass","qty":1}],"blueprint":true}]}
 ---
 

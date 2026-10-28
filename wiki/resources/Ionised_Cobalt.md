@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ionised_Cobalt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.CAVE.2.png","category":"Earth","type":"Processed Subterranean Mineral","rarity":"Rare","color":"blue","used":"Building, Crafting, Charging, Upgrading, Refining","symbol":"Co+","value":"162.0","release":"Waypoint"},"value":162,"recipes":[{"type":"refine","inputs":[{"name":"Cobalt","qty":2}],"outputs":[{"name":"Ionised Cobalt","qty":1}],"seconds":0.36,"label":"Ionise Mineral"},{"type":"refine","inputs":[{"name":"Ionised Cobalt","qty":1},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Ionised Cobalt","qty":6}],"seconds":0.36,"label":"Efficient Cobalt Ionisation"},{"type":"refine","inputs":[{"name":"Cobalt","qty":2},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Ionised Cobalt","qty":5}],"seconds":0.36,"label":"Efficient Cobalt Ionisation"},{"type":"refine","inputs":[{"name":"Marrow Bulb","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":2}],"seconds":0.36,"label":"Pugneum Washing"},{"type":"refine","inputs":[{"name":"Marrow Bulb","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":2}],"seconds":0.36,"label":"Bonded Cobalt Extraction"},{"type":"refine","inputs":[{"name":"Cobalt","qty":1},{"name":"Marrow Bulb","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":2}],"seconds":0.36,"label":"Ionise Bulbs"},{"type":"refine","inputs":[{"name":"Ionised Cobalt","qty":1},{"name":"Marrow Bulb","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":2}],"seconds":0.36,"label":"Ionise Bulbs"}]}
 ---
 

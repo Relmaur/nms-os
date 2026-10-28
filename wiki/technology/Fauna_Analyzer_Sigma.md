@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fauna_Analyzer_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Fauna Analyzer Sigma","image":"Render.binoculars.png","category":"Multi-tool","subcategory":"Scanner","level":"1","upgradeicon":"scan","type":"Binocular Tagging Device","desc":"Used to improve detection of fauna","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":30},{"name":"Platinum","qty":15}],"outputs":[{"name":"Fauna Analyzer Sigma","qty":1}]}]}
 ---
 

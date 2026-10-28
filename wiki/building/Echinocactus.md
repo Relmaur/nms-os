@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Echinocactus"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Cucrassula_Icon.png","category":"Base Building","color":"yellow","type":"Plantable Seed","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Cactus Flesh","qty":50},{"name":"Pyrite","qty":25}],"outputs":[{"name":"Echinocactus","qty":1}],"blueprint":true}]}
 ---
 

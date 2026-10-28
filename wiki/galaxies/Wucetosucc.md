@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wucetosucc"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Wucetosucc","image":"20190807192001_1.jpg","color":"Turquoise","type":"Norm","order":"44","previous":"Oniijialdu","next":"Ebyeloof","release":"Waypoint"},"recipes":[]}
 ---
 

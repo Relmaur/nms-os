@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Deflector_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectrads.png","color":"blue","level":"3","upgradeicon":"protection","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provide user with increased protection from radiation damage.","stats":"Radiation Protection = 490.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Microdensity Fabric","qty":2},{"name":"Electron Vapour","qty":1},{"name":"Gravitino Ball","qty":1}],"outputs":[{"name":"Radiation Deflector Theta","qty":1}]}]}
 ---
 

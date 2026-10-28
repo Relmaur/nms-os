@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Insulating_Gel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech_Insulating_Gel_Icon.png","category":"Technology","type":"Component","desc":"Shields circuitry from degredation","value":"44,000","release":"Atlas Rises"},"value":44000,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Cactus Flesh","qty":20},{"name":"Fungal Mould","qty":20}],"outputs":[{"name":"Insulating Gel","qty":1}]}]}
 ---
 

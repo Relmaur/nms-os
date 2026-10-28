@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Elkowaldb"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Elkowaldb","image":"20191012161340_1.jpg","color":"Maya Blue","type":"Empty","order":"67","previous":"Ibtrevskip","next":"Heholhofsko","release":"Waypoint"},"recipes":[]}
 ---
 

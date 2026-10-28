@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shielding_Plate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.shielding2.png","color":"red","category":"Consumable","type":"Defensive Energy Source","value":"687.5","desc":"Increased capacity energy storage unit. Promotes efficient energy storage within exosuit and starship inventories. Used in Hazard Protection and Shield systems.","release":"Atlas Rises"},"value":687.5,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":100},{"name":"Platinum","qty":20}],"outputs":[{"name":"Shielding Plate","qty":1}]}]}
 ---
 

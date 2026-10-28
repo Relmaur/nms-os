@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Medi-Pod"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"big_wall_med0.png","category":"Corvette Building","type":"Corvette Interior Furnishing","release":"Voyagers"},"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":50},{"name":"Hermetic Seal","qty":3},{"name":"Amino Chamber","qty":1}],"outputs":[{"name":"Medi-Pod","qty":1}]}]}
 ---
 

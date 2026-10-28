@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/X-Shaped_Glass_Tunnel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.CORRIDORX.png","category":"Base Building","type":"Aquatic Construction Module","value":"3","release":"NextGen"},"value":3,"recipes":[{"type":"craft","inputs":[{"name":"Glass","qty":1},{"name":"Crystal Sulphide","qty":2},{"name":"Ferrite Dust","qty":25}],"outputs":[{"name":"X-Shaped Glass Tunnel","qty":1}],"blueprint":true}]}
 ---
 

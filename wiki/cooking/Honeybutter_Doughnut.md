@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Honeybutter_Doughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"105,000","release":"WorldsOne"},"value":105000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Sweetened Butter","qty":1}],"outputs":[{"name":"Honeybutter Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Sweetened Proto-Butter","qty":1}],"outputs":[{"name":"Honeybutter Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Honey Butter","qty":1}],"outputs":[{"name":"Honeybutter Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Honied Proto-Butter","qty":1}],"outputs":[{"name":"Honeybutter Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

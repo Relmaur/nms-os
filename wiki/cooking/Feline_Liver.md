@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Feline_Liver"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.SACK.png","color":"Red","category":"Consumable","type":"Raw Ingredient","value":"1,400","release":"WorldsTwo"},"value":1400,"recipes":[]}
 ---
 

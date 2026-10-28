@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Drift_Suspension"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.TRACTION.png","color":"blue","category":"Vehicle","subcategory":"Handling","level":"A","type":"Exocraft Handling Modification","stats":"+200% Forwards Grip, -34% Angular Grip","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Paraffinium","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Drift Suspension","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Drift Suspension","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Paraffinium","qty":25}]}]}
 ---
 

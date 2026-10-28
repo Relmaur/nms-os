@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vy'keen_Effigy"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.effigy.png","category":"Curiosity","color":"purple","type":"Medium value curiosity","value":"24,750.0","release":"SentinelUp"},"value":24750,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frozen_Tubers"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.COLDWILD.png","color":"Green","category":"Flora","type":"Raw Ingredient","used":"Cooking","value":"800","release":"WorldsTwo"},"value":800,"recipes":[]}
 ---
 

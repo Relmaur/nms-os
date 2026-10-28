@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jam_Doughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"70,000.0","release":"Frontiers"},"value":70000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Ever-burning Jam","qty":1}],"outputs":[{"name":"Jam Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Grahj'am","qty":1}],"outputs":[{"name":"Jam Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Cactus Jelly","qty":1}],"outputs":[{"name":"Jam Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Furball Jelly","qty":1}],"outputs":[{"name":"Jam Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

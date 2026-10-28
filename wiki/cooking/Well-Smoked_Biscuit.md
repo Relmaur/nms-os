@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Well-Smoked_Biscuit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000.0","release":"Omega"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Well-Smoked Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Well-Smoked Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 

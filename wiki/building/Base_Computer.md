@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Base_Computer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BASECOREFLAG.png","category":"Base Building","type":"Site Evaluation Device","desc":"Portable Land Registration Service","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":30}],"outputs":[{"name":"Base Computer","qty":1}],"blueprint":true}]}
 ---
 

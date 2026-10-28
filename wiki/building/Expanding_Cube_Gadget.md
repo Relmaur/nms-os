@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Expanding_Cube_Gadget"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.TOYCUBE.png","category":"Base Building","color":"blue","type":"Interior Decorations","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":30},{"name":"Platinum","qty":30}],"outputs":[{"name":"Expanding Cube Gadget","qty":1}],"blueprint":true}]}
 ---
 

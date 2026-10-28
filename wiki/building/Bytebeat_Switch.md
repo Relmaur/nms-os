@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bytebeat_Switch"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.SWITCH BYTEBEAT.png","category":"Base Building","color":"blue","type":"ByteBeat Extension","value":"1","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25},{"name":"Ionised Cobalt","qty":15}],"outputs":[{"name":"Bytebeat Switch","qty":1}],"blueprint":true}]}
 ---
 

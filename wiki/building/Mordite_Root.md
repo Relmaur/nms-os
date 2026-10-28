@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mordite_Root"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Carrion_Root_Icon.png","category":"Base Building","color":"yellow","value":"1","type":"Plantable Seed","release":"NextGen"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Mordite","qty":40}],"outputs":[{"name":"Mordite Root","qty":1}],"blueprint":true}]}
 ---
 

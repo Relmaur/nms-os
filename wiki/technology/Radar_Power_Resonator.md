@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radar_Power_Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Radar Power Resonator","image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Exocraft","subcategory":"Communications","upgradeicon":"scan","stats":"+100% Scan","desc":"Exocraft Signal Detection Upgrade","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":150},{"name":"Ion Battery","qty":2},{"name":"Gold","qty":50}],"outputs":[{"name":"Radar Power Resonator","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Radar Power Resonator","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":75},{"name":"Ion Battery","qty":1},{"name":"Gold","qty":25}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tuychelisaor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Tuychelisaor","image":"20191114185547_1.jpg","color":"Light Coral","type":"Norm","order":"101","previous":"Akvasanta","next":"Rivskimbe","release":"Waypoint"},"recipes":[]}
 ---
 

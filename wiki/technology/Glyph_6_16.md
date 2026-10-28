@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glyph_6_%2F_16"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PORTALSYMBOLALT.5.png","category":"Ancient Technology","recharge":"50 Di-hydrogen,, 50 Deuterium,, 50 Cobalt,, 13 Ionised Cobalt,, 50 Salt","release":"Visions"},"recipes":[]}
 ---
 

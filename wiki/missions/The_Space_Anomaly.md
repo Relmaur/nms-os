@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Space_Anomaly"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Primary","origin":"Space","requires":"Appearance of the Space Anomaly in Alone Amidst the Stars","desc":"Beyond the System?, Mission associated with the Space Anomaly"},"recipes":[]}
 ---
 

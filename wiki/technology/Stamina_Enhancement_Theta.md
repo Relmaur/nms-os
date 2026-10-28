@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stamina_Enhancement_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.stamina.png","color":"blue","category":"Exosuit","subcategory":"Stamina","level":"3","upgradeicon":"speed","type":"Exhaustion Suppression System","desc":"Allows for longer periods of running","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":150},{"name":"Heridium","qty":150},{"name":"Plutonium","qty":50}],"outputs":[{"name":"Stamina Enhancement Theta","qty":1}]}]}
 ---
 

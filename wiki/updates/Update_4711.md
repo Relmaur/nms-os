@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.71.1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"adrift-book-cover.png","date":"31 May, 2024","platform":"PC, Mac","link":"Adrift Patch 4.71.1","release":"Adrift","previous":"4.71","next":"4.72"},"recipes":[]}
 ---
 

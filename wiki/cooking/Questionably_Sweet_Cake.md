@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Questionably_Sweet_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"73,600.0","release":"WorldsOne"},"value":73600,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Questionably Sweet Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Questionably Sweet Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Questionably Sweet Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Questionably Sweet Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boealalosnj"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Boealalosnj","image":"20191106222244_1.jpg","color":"Manhattan Orange","type":"Norm","order":"93","previous":"Yudukagath","next":"Yaevarcko","release":"Waypoint"},"recipes":[]}
 ---
 

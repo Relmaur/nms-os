@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lavascale_Trout"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SMALL.1.png","color":"green","category":"Fish","type":"Common Fish","value":"2,000","used":"Cooking","release":"Aquarius"},"value":2000,"recipes":[]}
 ---
 

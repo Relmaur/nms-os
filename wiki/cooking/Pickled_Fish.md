@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pickled_Fish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.TROUT.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"28,000","release":"Aquarius"},"value":28000,"recipes":[{"type":"cook","inputs":[{"name":"Needlefish","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Bulging Snapper","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Nucleic Skipper","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Lamptip Ray","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frostscale Trout","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Warty Frogfish","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Wispscale Darter","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Bladdersac","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Hexscale Minnow","qty":1}],"outputs":[{"name":"Pickled Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

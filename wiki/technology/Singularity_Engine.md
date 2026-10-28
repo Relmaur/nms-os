@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Singularity_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTER.MEGAWARP.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","type":"Wormhole Propulsion","recharge":"Di-hydrogen, Deuterium, Cobalt, Ionised Cobalt, Salt","release":"Orbital"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Hypercore","qty":1},{"name":"Crystal Sulphide","qty":3},{"name":"Ionised Cobalt","qty":120}],"outputs":[{"name":"Singularity Engine","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Singularity Engine","qty":1}],"outputs":[{"name":"Warp Hypercore","qty":1},{"name":"Crystal Sulphide","qty":2},{"name":"Ionised Cobalt","qty":60}]}]}
 ---
 

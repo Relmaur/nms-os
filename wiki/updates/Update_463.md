@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.63"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"orbital-book-cover.png","date":"29 March, 2024","datemac":"1 April, 2024","datexbox":"2 April, 2024","platform":"PC, PS, Mac, XB","link":"Orbital Patch 4.63","release":"Orbital","previous":"4.62","next":"4.64"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hicanpaav"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hicanpaav","image":"20191111153440_1.jpg","color":"Electric Blue","type":"Lush","order":"99","previous":"Apmaneessu","next":"Akvasanta","release":"Waypoint"},"recipes":[]}
 ---
 

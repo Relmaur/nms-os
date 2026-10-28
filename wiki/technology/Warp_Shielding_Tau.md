@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Shielding_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTAU.png","color":"green","category":"Freighter","subcategory":"Hyperdrive","level":"B","type":"Hyperdrive Upgrade: Green Systems","stats":"Hyperdrive Range: 50 ly","release":"Visions"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Antimatter Housing","qty":2},{"name":"Chloride Lattice","qty":2},{"name":"Emeril","qty":250}],"outputs":[{"name":"Warp Shielding Tau","qty":1}]}]}
 ---
 

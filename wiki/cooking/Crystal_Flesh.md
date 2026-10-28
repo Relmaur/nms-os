@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crystal_Flesh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.SACK.png","color":"Red","category":"Consumable","type":"Raw Ingredient","value":"1,400.0","release":"Companions"},"value":1400,"recipes":[]}
 ---
 

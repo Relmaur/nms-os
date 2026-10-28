@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frostwort"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Skywort_Icon.png","category":"Base Building","color":"yellow","value":"1","type":"Plantable Seed","release":"Frontiers"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Frost Crystal","qty":50},{"name":"Dioxite","qty":25}],"outputs":[{"name":"Frostwort","qty":1}],"blueprint":true}]}
 ---
 

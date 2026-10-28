@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Proteinous_Doughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Red","category":"Consumable","type":"Edible Product","value":"65,000","release":"WorldsTwo"},"value":65000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Meaty Chunks","qty":1}],"outputs":[{"name":"Proteinous Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

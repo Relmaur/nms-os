@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Defence_Systems_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELDMOD.png","category":"Exosuit","subcategory":"Defence Systems","type":"Generated Upgrade","release":"Outlaws"},"recipes":[{"type":"repair","inputs":[{"name":"Sodium","qty":50},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Defence Systems Upgrade","qty":1}],"outputs":[{"name":"Sodium","qty":50},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

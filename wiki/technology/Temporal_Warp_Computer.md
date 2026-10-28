@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Temporal_Warp_Computer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTHETA.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"A","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 50 ly","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Hypercore","qty":1},{"name":"Magnetic Resonator","qty":2},{"name":"Indium","qty":250}],"outputs":[{"name":"Temporal Warp Computer","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Temporal Warp Computer","qty":1}],"outputs":[{"name":"Warp Hypercore","qty":1},{"name":"Magnetic Resonator","qty":1},{"name":"Indium","qty":125}]}]}
 ---
 

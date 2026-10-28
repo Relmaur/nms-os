@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Clarified_Oil"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.COOKINGGREASE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"30,000.0","release":"NextGen"},"value":30000,"recipes":[{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Churned Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Proto-Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Churned Butter","qty":1},{"name":"Bone Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Bone Butter","qty":1},{"name":"Bone Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Bone Butter","qty":1},{"name":"Proto-Butter","qty":1}],"outputs":[{"name":"Clarified Oil","qty":1}],"seconds":2.5,"label":"Nutrient Refining"}]}
 ---
 

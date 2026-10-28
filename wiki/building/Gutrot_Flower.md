@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gutrot_Flower"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsFarming Coprite Orb Icon.png","category":"Base Building","color":"yellow","value":"1","type":"Plantable Seed","release":"ExoMech"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Faecium","qty":40}],"outputs":[{"name":"Gutrot Flower","qty":1}],"blueprint":true}]}
 ---
 

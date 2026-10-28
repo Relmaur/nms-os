@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.45"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SwarmCover.png","date":"16 June, 2026","platform":"PC, Mac","link":"The Swarm 6.45","release":"Swarm","previous":"6.44","next":"6.45.1"},"recipes":[]}
 ---
 

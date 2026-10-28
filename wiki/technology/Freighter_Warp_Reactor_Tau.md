@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Warp_Reactor_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTAU.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"B","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 300 ly","release":"Visions"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Emeril","qty":250},{"name":"Sodium Diode","qty":1},{"name":"Antimatter Housing","qty":5}],"outputs":[{"name":"Freighter Warp Reactor Tau","qty":1}]}]}
 ---
 

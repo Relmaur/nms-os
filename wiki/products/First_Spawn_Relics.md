@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/First_Spawn_Relics"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"First Spawn Relics","image":"PRODUCT.SMUGGLING8.png","category":"Tradeable","value":"98,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":98000,"recipes":[]}
 ---
 

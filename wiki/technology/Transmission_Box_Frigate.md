@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Transmission_Box_(Frigate)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Transmission Box","image":"TRADEPROD.COMPONENT4.png","category":"Frigate","color":"blue","type":"Damaged Component","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Tritium","qty":15}],"outputs":[]}]}
 ---
 

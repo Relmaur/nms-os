@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Uliciawai"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Uliciawai","image":"20200325204831_1.jpg","color":"Mint Green","type":"Norm","order":"253","previous":"Haffneyrin","next":"Tuhgrespod","release":"Interceptor"},"recipes":[]}
 ---
 

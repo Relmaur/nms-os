@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Starship_AI_Valves"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Starship AI Valves","image":"TRADEPROD.EXOTICS5.png","color":"Grey","category":"Tradeable","value":"12,000,000.0","type":"Starship Subcomponent","release":"Adrift"},"value":12000000,"recipes":[]}
 ---
 

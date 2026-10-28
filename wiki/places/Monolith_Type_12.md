@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Monolith_Type_12"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Monolith Type 12","image":"Monolith Type 12.jpg","category":"Interaction Location","type":"Interaction Location","desc":"Interaction Location","release":"Frontiers"},"recipes":[]}
 ---
 

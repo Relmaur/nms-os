@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Apmaneessu"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Apmaneessu","image":"20191111091812_1.jpg","color":"Maya Blue","type":"Norm","order":"98","previous":"Smoduraykl","next":"Hicanpaav","release":"Waypoint"},"recipes":[]}
 ---
 

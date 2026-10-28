@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Coolant_Network"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectheat.png","upgradeicon":"protection","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Hazard Protection Unit","desc":"Provides protection from heat damage on scorched worlds.","stats":"Heat Resistant +21%","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Phosphorus","qty":150},{"name":"Silver","qty":60},{"name":"Copper","qty":75}],"outputs":[{"name":"Coolant Network","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Phosphorus","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":38}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Coolant Network","qty":1}],"outputs":[{"name":"Phosphorus","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":37}]}]}
 ---
 

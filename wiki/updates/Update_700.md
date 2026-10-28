@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_7.00"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"CosmosCover.webp","date":"09 September, 2026","platform":"PC, Mac, PS, XB, NS","link":"Cosmos 7.00","release":"Cosmos","previous":"6.45.1","next":"7.01"},"recipes":[]}
 ---
 

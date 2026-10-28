@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ammonium_Salt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ammonium Salt","image":"NmsCommodity_AmmoniumSalt_icon.png","category":"Trade Commodity","type":"Enhanced Gas Product","desc":"Enhanced gas product","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nitrogen","qty":250},{"name":"Carbon","qty":25}],"outputs":[{"name":"Ammonium Salt","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sloping_Metal_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.WALLDIAG METAL.png","category":"Base Building","type":"Metal Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Sloping Metal Panel","qty":1}],"blueprint":true}]}
 ---
 

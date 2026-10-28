@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.WATER.1.png","color":"Green","category":"Earth","type":"Aquatic Mineral Extract","rarity":"Common","used":"Building, Crafting, Charging","symbol":"NaCl","value":"101","release":"WorldsTwo"},"value":101,"recipes":[{"type":"refine","inputs":[{"name":"Chlorine","qty":1}],"outputs":[{"name":"Salt","qty":2}],"seconds":0.24,"label":"Salt Production"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Salt","qty":1}],"seconds":0.08,"label":"Rapid Formation / Evaporation"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phase_Coolant_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","type":"Phase Beam Companion Unit","subcategory":"Weapons","level":"2","upgradeicon":"time","desc":"Reduces Phase Beam cool-down times","stats":"Heat Dispersion = +100%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Heridium","qty":150},{"name":"Thamium9","qty":200},{"name":"Platinum","qty":50}],"outputs":[{"name":"Phase Coolant Tau","qty":1}]}]}
 ---
 

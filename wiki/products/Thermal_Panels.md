@@ -10,7 +10,7 @@ version: "Crossplay"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermal_Panels"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.TECH1.png","category":"Tradeable","value":"100,000.0","type":"Starship Subcomponent","release":"Crossplay"},"value":100000,"recipes":[]}
 ---
 

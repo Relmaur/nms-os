@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Noise_Box"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.NOISEBOX.png","category":"Base Building","color":"Blue","value":"10","type":"Audio Device","release":"Origins","power":"1kP"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":2},{"name":"Ion Battery","qty":2},{"name":"Phosphorus","qty":40}],"outputs":[{"name":"Noise Box","qty":1}],"blueprint":true}]}
 ---
 

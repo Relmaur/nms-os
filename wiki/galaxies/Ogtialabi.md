@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ogtialabi"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ogtialabi","image":"Ogtialabi-Voyagers-arr.jpg","color":"Pale Green","type":"Harsh","order":"15","previous":"Odiwagiri","next":"Muhacksonto","release":"Voyagers"},"recipes":[]}
 ---
 

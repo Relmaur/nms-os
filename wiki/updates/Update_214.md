@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.14"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"10 Oct 2019","platform":"PS4, PC, Xbox","release":"Beyond","previous":"2.13","next":"2.15"},"recipes":[]}
 ---
 

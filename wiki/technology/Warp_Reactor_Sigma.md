@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Reactor_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.hyperdrive.png","color":"blue","category":"Starship","subcategory":"Hyperdrive","type":"Companion Unit","level":"1","desc":"Increases length of Hyperdrive operation.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Dynamic Resonator","qty":1},{"name":"Iridium","qty":200},{"name":"Frost Crystal","qty":1000}],"outputs":[{"name":"Warp Reactor Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ewcomechio"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ewcomechio","image":"20200313225052_1.jpg","color":"Maya Blue","type":"Norm","order":"236","previous":"Yagrovoisi","next":"Inunnunnoda","release":"Fractal"},"recipes":[]}
 ---
 

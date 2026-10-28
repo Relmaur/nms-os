@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ikbaksmit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ikbaksmit","image":"20200109223831_1.jpg","color":"Pink","type":"Harsh","order":"163","previous":"Pasycihelwhee","next":"Telicianses","release":"Waypoint"},"recipes":[]}
 ---
 

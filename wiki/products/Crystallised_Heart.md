@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crystallised_Heart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SPIDERCRYSTAL.PNG","color":"purple","type":"Corrupted Aeronic Core","category":"Component","used":"Crafting, Upgrading","value":"37,000.0","release":"Singularity"},"value":37000,"recipes":[]}
 ---
 

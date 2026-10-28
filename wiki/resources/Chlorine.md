@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chlorine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.WATER.2.png","color":"Green","category":"Earth","type":"Processed Aquatic Mineral","rarity":"Rare","used":"Crafting, Charging, Upgrading","symbol":"Cl","value":"205.0","release":"Waypoint"},"value":205,"recipes":[{"type":"refine","inputs":[{"name":"Salt","qty":2}],"outputs":[{"name":"Chlorine","qty":1}],"seconds":0.36,"label":"Concentrate Salt"},{"type":"refine","inputs":[{"name":"Salt","qty":2},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Chlorine","qty":5}],"seconds":0.36,"label":"Efficient Salt Evaporation"},{"type":"refine","inputs":[{"name":"Chlorine","qty":1},{"name":"Oxygen","qty":2}],"outputs":[{"name":"Chlorine","qty":6}],"seconds":0.36,"label":"Chlorine Expansion"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Bonded Chlorine Extraction"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Pugneum Washing"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Salt","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Dissolve Natural Salts"},{"type":"refine","inputs":[{"name":"Kelp Sac","qty":1},{"name":"Chlorine","qty":1}],"outputs":[{"name":"Chlorine","qty":2}],"seconds":0.36,"label":"Dissolve Natural Salts"}]}
 ---
 

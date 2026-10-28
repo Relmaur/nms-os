@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/A_Trace_of_Metal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"A Trace of Metal","image":"nmsMission_TraceOfMetal.jpg","type":"Secondary","origin":"Planetary Settlement","implemented":"Waypoint","desc":"Create sentinel companion and upgrade the Minotaur"},"recipes":[]}
 ---
 

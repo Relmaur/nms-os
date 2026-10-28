@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fusion_Engine_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ENGINEMOD.png","category":"Exocraft","subcategory":"Fusion Engine","type":"Generated Upgrade","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Fusion Engine Upgrade","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

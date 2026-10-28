@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Doshawchuc"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Doshawchuc","image":"20191021135849_1.jpg","color":"Cornflower Blue","type":"Norm","order":"74","previous":"Nuybeliaure","next":"Ruckinarkh","release":"Waypoint"},"recipes":[]}
 ---
 

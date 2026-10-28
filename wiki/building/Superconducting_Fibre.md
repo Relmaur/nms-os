@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Superconducting_Fibre"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Superconducting Fiber","image":"TRADEPROD.ALLOY5.png","color":"White","category":"Tradeable","type":"Trade Goods (Construction)","value":"50,000","release":"Beacon"},"value":50000,"recipes":[]}
 ---
 

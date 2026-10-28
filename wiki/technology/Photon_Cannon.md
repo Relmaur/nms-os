@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Photon_Cannon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPPROJECTILE1.png","color":"blue","category":"Starship","subcategory":"Weapons","type":"Starship Projectile Weapon","release":"Outlaws"},"recipes":[{"type":"repair","inputs":[{"name":"Pure Ferrite","qty":50},{"name":"Sodium Nitrate","qty":30}],"outputs":[]}]}
 ---
 

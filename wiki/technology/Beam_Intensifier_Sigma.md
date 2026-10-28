@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Intensifier_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","color":"blue","category":"Multi-tool","subcategory":"Laser","level":"1","upgradeicon":"generic","type":"Companion Unit","desc":"Mining Beam laser is strengthened to speed up terrain destruction.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Heridium","qty":100},{"name":"Plutonium","qty":25}],"outputs":[{"name":"Beam Intensifier Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Solar_Ray"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SUNLASER.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","type":"Alchemical Laser","recharge":"Catalytic elements","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Cobalt","qty":50}],"outputs":[{"name":"Solar Ray","qty":1}]},{"type":"repair","inputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Cobalt","qty":25}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Solar Ray","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Cobalt","qty":25}]}]}
 ---
 

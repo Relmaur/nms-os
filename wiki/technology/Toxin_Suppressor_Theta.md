@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxin_Suppressor_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protecttoxic.png","level":"3","upgradeicon":"protection","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provides increased protection from toxic rain damage.","stats":"Toxic Protection = 490.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Microdensity Fabric","qty":2},{"name":"Electron Vapour","qty":1},{"name":"Gravitino Ball","qty":1}],"outputs":[{"name":"Toxin Suppressor Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dozivadido"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dozivadido","image":"20191222155428_1.jpg","color":"Aquamarine","type":"Norm","order":"138","previous":"Urckiansi","next":"Emiekereks","release":"Waypoint"},"recipes":[]}
 ---
 

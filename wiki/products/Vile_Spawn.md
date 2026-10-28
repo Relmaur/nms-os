@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vile_Spawn"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Vile Spawn","image":"WORMSPAWN.png","color":"Grey","category":"Curiosity","type":"Hungering Embryo","value":"16.0","release":"Waypoint"},"value":16,"recipes":[]}
 ---
 

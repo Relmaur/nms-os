@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nudquathsenfe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nudquathsenfe","image":"20191121174639_1.jpg","color":"Manhattan Orange","type":"Lush","order":"110","previous":"Irceauffey","next":"Getaizakaal","release":"Waypoint"},"recipes":[]}
 ---
 

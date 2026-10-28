@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Memories_Of_Atlantid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.2024.purplepacket.png","category":"Curiosity","color":"purple","type":"Forgotten Void Data","value":"1,919","release":"WorldsTwo"},"value":1919,"recipes":[{"type":"craft","inputs":[{"name":"Echo Seed","qty":3},{"name":"Quantum Computer","qty":1}],"outputs":[{"name":"Memories Of Atlantid","qty":1}],"blueprint":true}]}
 ---
 

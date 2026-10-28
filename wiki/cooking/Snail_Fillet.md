@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Snail_Fillet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Ash Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Breach Crawler","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Evaporating Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Singing Sea-Snail","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Nautilia","qty":1}],"outputs":[{"name":"Snail Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

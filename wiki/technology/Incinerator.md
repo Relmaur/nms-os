@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Incinerator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ANMS_Incinerator.png","color":"blue","category":"Multi-Tool","subcategory":"Weapons","type":"Short-Range Fire Delivery Unit","release":"Orbital"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":1},{"name":"Deuterium","qty":200}],"outputs":[{"name":"Incinerator","qty":1}]},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1},{"name":"Deuterium","qty":100}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Incinerator","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1},{"name":"Deuterium","qty":100}]}]}
 ---
 

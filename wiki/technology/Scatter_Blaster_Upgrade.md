@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SCATTERBLASTERMOD.png","category":"Multi-tool","subcategory":"Weapon","type":"Generated Upgrade","release":"Endurance"},"recipes":[{"type":"repair","inputs":[{"name":"Magnetised Ferrite","qty":125},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Scatter Blaster Upgrade","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":125},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cuboid_Room_Foundation_Strut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.cubefound1.png","category":"Base Building","type":"Cuboid Rooms","color":"Blue","complexity":"5","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":50}],"outputs":[{"name":"Cuboid Room Foundation Strut","qty":1}]}]}
 ---
 

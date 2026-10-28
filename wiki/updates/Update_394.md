@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.94"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-endurance-book-cover-op.png","dateps":"20 July 2022","datepc":"20 July 2022","datexbox":"21 July 2022","platform":"All platforms","link":"Endurance Update","release":"Endurance","previous":"3.93","next":"3.95"},"recipes":[]}
 ---
 

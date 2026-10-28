@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alien_Trader_Special_Offer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Alien Trader Special Offer","image":"Trader Offer.jpg","system_types":"Inhabited","frequency":"4","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Trade","ramifications":"None","rewards":"Rare artifact for purchase / barter","release":"Relics"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Buried_Mineral_Formation"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Buried Mineral Formation","image":"Buried Mineral Formation.jpg","category":"Resource Node","release":"WorldsOne"},"recipes":[]}
 ---
 

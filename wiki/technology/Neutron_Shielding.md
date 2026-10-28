@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neutron_Shielding"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTRADS.png","color":"blue","category":"Vehicle","type":"Exocraft Hazard Protection Upgrade","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":50},{"name":"Deuterium","qty":95},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Neutron Shielding","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Neutron Shielding","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":25},{"name":"Deuterium","qty":47}]}]}
 ---
 

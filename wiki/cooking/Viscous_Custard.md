@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Viscous_Custard"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"32,000","release":"Swarm"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Creature Egg","qty":1},{"name":"Cream","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Viscous Custard","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Tall Eggs","qty":1},{"name":"Cream","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Viscous Custard","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Giant Egg","qty":1},{"name":"Cream","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Viscous Custard","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

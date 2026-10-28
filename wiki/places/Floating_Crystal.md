@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Floating_Crystal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Floating Crystals.jpg","category":"Resource Node","desc":"Floating Crystals are nodes of base resources in a supercondensed form.","release":"Origins"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Parasitic_Omelette"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.OMLETTE.png","color":"Green","category":"Consumable","type":"Edible Product","value":"102,000.0","release":"NextGen"},"value":102000,"recipes":[{"type":"cook","inputs":[{"name":"Larval Core","qty":1},{"name":"ProtoCheese","qty":1}],"outputs":[{"name":"Parasitic Omelette","qty":1}],"seconds":2.5,"label":"Bind Proteins"}]}
 ---
 

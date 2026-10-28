@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Saline_Carapace"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOEXOTIC.png","desc":"Allows aquatic landing","color":"blue","category":"Starship","subcategory":"Launch Thruster","type":"Aquatic Landing System","release":"WorldsOne"},"recipes":[{"type":"dismantle","inputs":[{"name":"Saline Carapace","qty":1}],"outputs":[{"name":"Hadal Core","qty":1},{"name":"Hypnotic Eye","qty":1}]}]}
 ---
 

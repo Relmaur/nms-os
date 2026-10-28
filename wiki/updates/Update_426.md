@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.26"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"No-Mans-Sky-Mac-Screen-1.png","date":"2 June, 2023","platform":"PC","link":"Patch 4.26","release":"Interceptor","previous":"4.25","next":"4.30"},"recipes":[]}
 ---
 

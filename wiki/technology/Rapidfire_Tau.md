@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rapidfire_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","category":"Weapon","subcategory":"Projectile","level":"2","upgradeicon":"speed","type":"Companion Unit","desc":"Increases the boltcaster's rate-of-fire","stats":"Fire Rate = +29% Recoil = +39%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Titanium","qty":200},{"name":"Platinum","qty":100},{"name":"Aluminium","qty":100}],"outputs":[{"name":"Rapidfire Tau","qty":1}]}]}
 ---
 

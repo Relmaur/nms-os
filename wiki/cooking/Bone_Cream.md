@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bone_Cream"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CREAM.png","color":"Brown","category":"Consumable","type":"Edible Product","used":"Cooking","value":"32,000.0","release":"Origins"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Bone Milk","qty":1}],"outputs":[{"name":"Bone Cream","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Reality_De-Threader"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTHETA.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"A","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 800 ly","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Indium","qty":250},{"name":"Magnetic Resonator","qty":1},{"name":"Antimatter Housing","qty":6}],"outputs":[{"name":"Reality De-Threader","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Reality De-Threader","qty":1}],"outputs":[{"name":"Indium","qty":125},{"name":"Magnetic Resonator","qty":1},{"name":"Antimatter Housing","qty":3}]}]}
 ---
 

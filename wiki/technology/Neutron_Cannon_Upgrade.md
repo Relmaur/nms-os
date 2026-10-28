@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neutron_Cannon_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CANNON.png","category":"Multi-tool","subcategory":"Neutron Cannon","type":"Generated Upgrade","release":"Omega"},"recipes":[{"type":"repair","inputs":[{"name":"Di-hydrogen","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Neutron Cannon Upgrade","qty":1}],"outputs":[{"name":"Di-hydrogen","qty":75},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

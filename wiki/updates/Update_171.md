@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.71"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"2 November 2018","platform":"PS4/PC/Xbox","link":"Update 1.71 on nomanssky.com","release":"Abyss","previous":"1.70","next":"1.75"},"recipes":[]}
 ---
 

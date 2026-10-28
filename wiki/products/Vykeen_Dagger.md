@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vy'keen_Dagger"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.vykeendagger.png","category":"Curiosity","color":"Purple","type":"Trade commodity","value":"11,688.0","release":"Waypoint"},"value":11688,"recipes":[]}
 ---
 

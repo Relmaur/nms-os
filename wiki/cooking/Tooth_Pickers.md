@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tooth_Pickers"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"35,000.0","release":"Omega"},"value":35000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Flesh","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Cactus Jelly","qty":1}],"outputs":[{"name":"Tooth Pickers","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 

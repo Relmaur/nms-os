@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nautilon_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLEGARAGEH.png","category":"Base Building","color":"blue","type":"Submarine Docking Bay","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Crystal Sulphide","qty":4},{"name":"Salt","qty":100}],"outputs":[{"name":"Nautilon Chamber","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Nautilon Chamber","qty":1}],"outputs":[{"name":"Metal Plating","qty":5},{"name":"Crystal Sulphide","qty":4},{"name":"Salt","qty":100}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/ShieldBoost_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELDMOD.png","category":"Exosuit","level":"3","subcategory":"Utilities","type":"Shield Kinetics Companion Unit","desc":"Improve shield duration and charge capacity","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Chrysonite","qty":300},{"name":"Microdensity Fabric","qty":2}],"outputs":[{"name":"ShieldBoost Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Kelp_Rice"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.WATERWILD.png","color":"Green","category":"Consumable","type":"Raw Ingredient","value":"1,200.0","release":"WorldsOne"},"value":1200,"recipes":[{"type":"cook","inputs":[{"name":"Kelp Sac","qty":1}],"outputs":[{"name":"Kelp Rice","qty":1}],"seconds":2.5,"label":"Extract Nutrients"}]}
 ---
 

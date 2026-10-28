@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salvage_Crate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.ABAND.CRATEM.png","category":"Base Building","type":"Salvaged Base Part","color":"Blue","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5}],"outputs":[{"name":"Salvage Crate","qty":1}],"blueprint":true}]}
 ---
 

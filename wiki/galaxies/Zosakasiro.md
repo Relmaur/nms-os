@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zosakasiro"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zosakasiro","image":"20191218224149_1.jpg","color":"Medium Orchid","type":"Norm","order":"134","previous":"Gaiteseling","next":"Drajayanes","release":"Waypoint"},"recipes":[]}
 ---
 

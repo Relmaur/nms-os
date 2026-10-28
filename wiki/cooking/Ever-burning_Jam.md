@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ever-burning_Jam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.JAM.png","color":"Red","category":"Consumable","type":"Edible Product","value":"3,400.0","release":"Origins"},"value":3400,"recipes":[{"type":"cook","inputs":[{"name":"Fireberry","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Ever-burning Jam","qty":1}],"seconds":2.5,"label":"Preserve Fruit"}]}
 ---
 

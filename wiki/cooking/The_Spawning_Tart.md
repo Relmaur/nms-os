@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Spawning_Tart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.TARTEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"160,000.0","release":"NextGen"},"value":160000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"The Spawning Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

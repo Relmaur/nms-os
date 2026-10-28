@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Damage_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"1","upgradeicon":"damage","type":"Pulse Spitter Companion Unit","desc":"Increases damage done by the Multi-tool's Pulse Spitter.","stats":"Damage = 2.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":50},{"name":"Iron","qty":50},{"name":"Platinum","qty":100}],"outputs":[{"name":"Pulse Spitter Damage Sigma","qty":1}]}]}
 ---
 

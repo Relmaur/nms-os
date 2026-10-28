@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Plasma_Core_Casing_V1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"category":"Weapon","desc":"Increase plasma core strength for beam weapons","release":"Pre-release"},"recipes":[{"type":"craft","inputs":[{"name":"Cb","qty":100}],"outputs":[{"name":"Plasma Core Casing V1","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Igneous_Crystal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.LAVAPLANT01.png","category":"Customisation Part","type":"Organic decoration","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":40}],"outputs":[{"name":"Igneous Crystal","qty":1}],"blueprint":true}]}
 ---
 

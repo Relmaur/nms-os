@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Opulent_Tapestry"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BAZAAR.DRAPE0.png","category":"Base Building","type":"Component","color":"Blue","complexity":"2","release":"Interceptor"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25}],"outputs":[{"name":"Opulent Tapestry","qty":1}],"blueprint":true}]}
 ---
 

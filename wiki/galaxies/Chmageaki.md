@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chmageaki"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Chmageaki","image":"20200229235438_1.jpg","color":"Magenta","type":"Lush","order":"219","previous":"Noggalterpor","next":"Veticueca","release":"Waypoint"},"recipes":[]}
 ---
 

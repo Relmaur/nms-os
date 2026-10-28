@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Reload_Accelerant_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"2","upgradeicon":"speed","type":"Companion Unit","desc":"Defensive weapon upgrade.","stats":"Reload Time = (-19%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Chrysonite","qty":50},{"name":"Zinc","qty":100},{"name":"Plutonium","qty":50}],"outputs":[{"name":"Reload Accelerant Tau","qty":1}]}]}
 ---
 

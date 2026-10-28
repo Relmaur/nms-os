@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Destablised_Sodium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DESTABILISEDSODIUM.png","category":"Curiosity","color":"orange","type":"Concentrated Sodium Deposit","value":"12,300.0","release":"Origins"},"value":12300,"recipes":[]}
 ---
 

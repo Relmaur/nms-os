@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Irregular_Alloy_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FIBREGLASS.BASIC_WALLB_WINDOW1.png","category":"Base Building","type":"Alloy Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25},{"name":"Glass","qty":1}],"outputs":[{"name":"Irregular Alloy Window","qty":1}],"blueprint":true}]}
 ---
 

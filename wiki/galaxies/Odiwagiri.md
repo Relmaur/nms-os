@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Odiwagiri"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Odiwagiri","image":"No Man's Sky_20190119034247.png","color":"Dark-Green","type":"Norm","order":"14","previous":"Ontiniangp","next":"Ogtialabi","release":"Swarm"},"recipes":[]}
 ---
 

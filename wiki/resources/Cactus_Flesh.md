@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cactus_Flesh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.PLANT.DUSTY.png","color":"Green","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Rare","used":"Building, Crafting, Cooking","symbol":"Cc","value":"28","release":"WorldsTwo"},"value":28,"recipes":[{"type":"refine","inputs":[{"name":"Cactus Flesh","qty":1},{"name":"Pyrite","qty":1}],"outputs":[{"name":"Cactus Flesh","qty":2}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Pyrite","qty":2},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Cactus Flesh","qty":1}],"seconds":0.36,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Pyrite","qty":1},{"name":"Sulphurine","qty":1}],"outputs":[{"name":"Cactus Flesh","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Pyrite","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Cactus Flesh","qty":1}],"seconds":0.36,"label":"Organic Expansion"}]}
 ---
 

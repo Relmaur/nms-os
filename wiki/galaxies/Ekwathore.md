@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ekwathore"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ekwathore","image":"No Man's Sky_20190305050232.png","color":"Pale Yellow","type":"Harsh","order":"23","previous":"Zukasizawa","next":"Yeberhahne","release":"Waypoint"},"recipes":[]}
 ---
 

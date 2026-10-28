@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Reload_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"1","upgradeicon":"time","type":"Pulse Spitter Companion Unit","desc":"Increases reload speed for the Multi-tool's Pulse Spitter weapon mode by a small amount.","stats":"Reload Time = (-10%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":100},{"name":"Titanium","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Pulse Spitter Reload Sigma","qty":1}]}]}
 ---
 

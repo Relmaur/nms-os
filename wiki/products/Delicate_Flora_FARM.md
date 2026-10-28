@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Delicate_Flora_(FARM)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Cloned Tramfruit Cuttings","image":"DECORATION.PLANTPOT3.png","category":"Artifact","color":"yellow","type":"Delicate Flora","value":"1,374,512.1","used":"Trading, Trading (High Value)","release":"Echoes"},"value":1374512.1,"recipes":[]}
 ---
 

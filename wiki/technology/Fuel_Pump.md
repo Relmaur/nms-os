@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fuel_Pump"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.FUEL1.png","category":"Point of Interest","color":"blue","type":"Damaged Component","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Ionised Cobalt","qty":50},{"name":"Pure Ferrite","qty":10}],"outputs":[]}]}
 ---
 

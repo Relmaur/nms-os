@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Elder_Galaxy"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Elder Galaxy","color":"White-Gold","release":"Atlas Rises"},"recipes":[]}
 ---
 

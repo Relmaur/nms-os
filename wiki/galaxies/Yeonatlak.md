@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Yeonatlak"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Yeonatlak","image":"20200203112231_1.jpg","color":"Medium Orchid","type":"Norm","order":"189","previous":"Beiraghedwe","next":"Cugnatachh","release":"Waypoint"},"recipes":[]}
 ---
 

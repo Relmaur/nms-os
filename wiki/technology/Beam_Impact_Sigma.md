@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Impact_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","subcategory":"Weapon","level":"1","upgradeicon":"damage","type":"Companion Unit","desc":"Strengthens Starship weapons.","stats":"Damage = +40.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Beam Impact Sigma","qty":1}]}]}
 ---
 

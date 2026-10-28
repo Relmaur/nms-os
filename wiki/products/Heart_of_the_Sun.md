@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Heart_of_the_Sun"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ATLASSEED.10.png","category":"Curiosity","color":"grey","type":"Unique valuable curiosity","value":"1,000.0","release":"Visions"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Modified Quanta","qty":1},{"name":"Gold","qty":100}],"outputs":[{"name":"Heart of the Sun","qty":1}],"blueprint":true}]}
 ---
 

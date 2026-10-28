@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shattered_Bulwark"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ShatteredBulwarkIcon.png","category":"Starship","color":"red","type":"Damaged Starship Component","release":"ExoMech"},"recipes":[{"type":"repair","inputs":[{"name":"Platinum","qty":125}],"outputs":[]}]}
 ---
 

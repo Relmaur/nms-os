@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/United_Federation_of_Travelers_Decal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.DECAL10.png","category":"Base Building","type":"Component","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"United Federation of Travelers Decal","qty":1}],"blueprint":true}]}
 ---
 

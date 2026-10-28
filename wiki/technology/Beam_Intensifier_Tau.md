@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Intensifier_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","color":"blue","category":"Multi-tool","subcategory":"Mining Beam","level":"2","upgradeicon":"generic","type":"Companion Unit","desc":"Mining Beam laser is strengthened to speed up terrain destruction.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":60},{"name":"Iron","qty":200}],"outputs":[{"name":"Beam Intensifier Tau","qty":1}]}]}
 ---
 

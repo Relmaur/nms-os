@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Honey_Doughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"65,000","release":"WorldsOne"},"value":65000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Synthetic Honey","qty":1}],"outputs":[{"name":"Honey Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

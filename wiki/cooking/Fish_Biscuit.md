@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fish_Biscuit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"60,000","release":"WorldsTwo"},"value":60000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Edible Chum","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Hadal Core","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Salty Chunks","qty":1}],"outputs":[{"name":"Fish Biscuit","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Muhacksonto"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Muhacksonto","image":"No Man's Sky_20190129002849.png","color":"Pale Yellow","type":"Norm","order":"16","previous":"Ogtialabi","next":"Hitonskyer","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fleet_Command_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.FLEET.png","category":"Base Building","type":"Freighter Construction Module","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":120},{"name":"Gold","qty":40},{"name":"Tritium","qty":10}],"outputs":[{"name":"Fleet Command Room","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Fleet Command Room","qty":1}],"outputs":[{"name":"Silver","qty":120},{"name":"Gold","qty":40},{"name":"Tritium","qty":10}]}]}
 ---
 

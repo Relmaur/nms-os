@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Communications_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.MESSAGE.png","category":"Technology","type":"Communications terminal","color":"blue","desc":"Inter-player communications","release":"Companions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":20}],"outputs":[{"name":"Communications Station","qty":1}],"blueprint":true}]}
 ---
 

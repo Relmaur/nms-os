@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Golden_Jellyfish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT3.FISH.JELLY.png","color":"yellow","category":"Fish","type":"Legendary Fish","value":"100,000","release":"Aquarius"},"value":100000,"recipes":[]}
 ---
 

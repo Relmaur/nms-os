@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Emergency_Civilisation_Shelter_Pod"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Emergency Civilisation Shelter Pod","image":"Emergency Civilisation Shelter Pod.png","system_types":"Any","frequency":"2","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Use Communicator","ramifications":"None","rewards":"None","release":"Orbital"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hilbert_Dimension"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hilbert Dimension","image":"Hilbert Dimension 20180809155311.png","color":"Deep Pink","type":"Norm","order":"2","previous":"Euclid","next":"Calypso","release":"Swarm"},"recipes":[]}
 ---
 

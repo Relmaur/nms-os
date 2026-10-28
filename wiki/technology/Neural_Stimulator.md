@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neural_Stimulator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"B","type":"Exosuit Movement Upgrade","stats":"+20% Jetpack Tanks, +10% Sprint Distance, +11% Recharge Rate, +21% Sprint Recovery Time","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Condensed Carbon","qty":100}],"outputs":[{"name":"Neural Stimulator","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Condensed Carbon","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Neural Stimulator","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Condensed Carbon","qty":50}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Capilliary_Shell"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SHELLWHITE.png","category":"Base Building","color":"blue","type":"Stabilised Reality Glitch","used":"Building","value":"1,000.0","release":"Visions"},"value":1000,"recipes":[]}
 ---
 

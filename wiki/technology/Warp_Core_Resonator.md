@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Core_Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERSIGMA.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"C","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 200 ly","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Cadmium","qty":250},{"name":"Quantum Computer","qty":1},{"name":"Antimatter Housing","qty":4}],"outputs":[{"name":"Warp Core Resonator","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Warp Core Resonator","qty":1}],"outputs":[{"name":"Cadmium","qty":125},{"name":"Quantum Computer","qty":1},{"name":"Antimatter Housing","qty":2}]}]}
 ---
 

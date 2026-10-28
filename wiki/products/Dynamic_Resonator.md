@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dynamic_Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.dynamicres.png","category":"Component","value":"27500","desc":"Electromagnetic frequency oscillator.","release":"Atlas Rises"},"value":27500,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Antimatter","qty":2},{"name":"Chrysonite","qty":100},{"name":"Microdensity Fabric","qty":4}],"outputs":[{"name":"Dynamic Resonator","qty":1}]}]}
 ---
 

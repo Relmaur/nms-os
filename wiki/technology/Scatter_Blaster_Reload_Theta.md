@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Reload_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Upgrade_Icon.png","category":"Multi-tool","subcategory":"Scatter Blaster","level":"3","upgradeicon":"time","type":"Scatter Blaster Companion Unit","desc":"Increases reload speed for the Multi-tool's Scatter Blaster","stats":"Reload Time = (-39%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Calium","qty":50},{"name":"Zinc","qty":100},{"name":"Plutonium","qty":50}],"outputs":[{"name":"Scatter Blaster Reload Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fusion_Ignitor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ULTRAPROD.1.png","category":"Tradeable","color":"yellow","type":"Highly Refined Technology","value":"15,600,000","used":"Trading","release":"Frontiers"},"value":15600000,"recipes":[{"type":"craft","inputs":[{"name":"Portable Reactor","qty":1},{"name":"Quantum Processor","qty":1},{"name":"Geodesite","qty":1}],"outputs":[{"name":"Fusion Ignitor","qty":1}],"blueprint":true}]}
 ---
 

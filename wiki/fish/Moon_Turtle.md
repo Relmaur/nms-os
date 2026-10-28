@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Moon_Turtle"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.TURTLE.png","color":"purple","category":"Fish","type":"Uncommon Fish","value":"10,000","release":"Aquarius"},"value":10000,"recipes":[]}
 ---
 

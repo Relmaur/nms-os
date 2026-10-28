@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fluffy_Caramel_Delight"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"23,600.0","release":"WorldsOne"},"value":23600,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Crunchy Caramel","qty":1}],"outputs":[{"name":"Fluffy Caramel Delight","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ethiophodhe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ethiophodhe","image":"No Man's Sky_20190403234642.png","color":"Yellow","order":"40","type":"Norm","previous":"Rewmanawa","next":"Urastrykle","release":"Waypoint"},"recipes":[]}
 ---
 

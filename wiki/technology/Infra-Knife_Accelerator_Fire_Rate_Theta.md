@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator_Fire_Rate_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Infra-Knife_Accelerator_Upgrade_Icon.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"3","type":"Infra-Knife Companion Unit","desc":"Increases Infra-Knife fire rate","stats":"Fire Rate = +14%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":300},{"name":"Iron","qty":300},{"name":"Dimensional Matrix","qty":3}],"outputs":[{"name":"Infra-Knife Accelerator Fire Rate Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dirt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.MINERALS1.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Minerals)","value":"1,000.0","desc":"Several tonnes of dirt","release":"Adrift"},"value":1000,"recipes":[]}
 ---
 

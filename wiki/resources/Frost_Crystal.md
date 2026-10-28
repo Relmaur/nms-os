@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frost_Crystal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Frost Crystal","image":"SUBSTANCE.PLANT.SNOW.png","color":"Blue","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Rare","used":"Building, Crafting","symbol":"Fc","value":"12","release":"WorldsTwo"},"value":12,"recipes":[{"type":"refine","inputs":[{"name":"Frost Crystal","qty":1},{"name":"Dioxite","qty":1}],"outputs":[{"name":"Frost Crystal","qty":2}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Dioxite","qty":2},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Frost Crystal","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Dioxite","qty":1},{"name":"Radon","qty":1}],"outputs":[{"name":"Frost Crystal","qty":1}],"seconds":0.36,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Dioxite","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Frost Crystal","qty":1}],"seconds":0.36,"label":"Organic Expansion"}]}
 ---
 

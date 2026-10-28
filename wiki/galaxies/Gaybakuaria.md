@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gaybakuaria"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Gaybakuaria","image":"20200106173250_1.jpg","color":"Magenta","type":"Norm","order":"157","previous":"Puikitoac","next":"Grbodubhe","release":"Waypoint"},"recipes":[]}
 ---
 

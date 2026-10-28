@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Impact_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","subcategory":"Weapon","level":"2","upgradeicon":"damage","type":"Companion Unit","desc":"Strengthens Starship weapons.","stats":"Damage = +70.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":200},{"name":"Copper","qty":50},{"name":"Carbon","qty":50}],"outputs":[{"name":"Beam Impact Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sudzerbal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sudzerbal","image":"No Man's Sky_20190330024211.png","color":"Turquoise","type":"Lush","order":"30","previous":"Wotyarogii","next":"Maupenzhay","release":"Cosmos"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Atlantideum"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.ROBOT.2.png","color":"Purple","category":"Special","type":"Disharmonic Metal","rarity":"Rare","used":"Upgrading, Refining","symbol":"∞","value":"138.0","release":"WorldsOne"},"value":138,"recipes":[]}
 ---
 

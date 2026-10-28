@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/RangeBoost_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.scan.png","color":"blue","category":"Multi-tool","subcategory":"Scanner","level":"2","upgradeicon":"range","type":"Scanner Companion Unit","desc":"Increases the scanner's detection range","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":120},{"name":"Chrysonite","qty":120},{"name":"Plutonium","qty":200}],"outputs":[{"name":"RangeBoost Tau","qty":1}]}]}
 ---
 

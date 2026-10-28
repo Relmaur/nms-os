@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chrysonite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.tech.rare1.png","type":"Silicate","category":"Technology","rarity":"Rare","desc":"Blue crystals often found on cold planets","symbol":"Ch","value":"82.5","release":"Origins"},"value":82.5,"recipes":[]}
 ---
 

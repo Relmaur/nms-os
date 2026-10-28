@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Summoning_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLESUMMONER.png","category":"Base Building","color":"blue","type":"Vehicle Translocation Device","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Uranium","qty":100},{"name":"Tritium","qty":100},{"name":"Unstable Plasma","qty":4}],"outputs":[{"name":"Exocraft Summoning Station","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Summoning Station","qty":1}],"outputs":[{"name":"Uranium","qty":100},{"name":"Tritium","qty":100},{"name":"Unstable Plasma","qty":4}]}]}
 ---
 

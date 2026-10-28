@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infrastructure_Cylinder"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Decoration.cylindershape.png","category":"Base Building","type":"Infrastructure","complexity":"1","release":"Foundation"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":20}],"outputs":[{"name":"Infrastructure Cylinder","qty":1}]}]}
 ---
 

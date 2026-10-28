@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/TetraCobalt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.METALLIC.8.png","category":"Curiosity","color":"Yellow","type":"Concentrated Cobalt Deposit","value":"6,150.0","release":"NEXT"},"value":6150,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nectar_Sponge_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEGEK.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"79,700","release":"WorldsTwo"},"value":79700,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Syrupy Nectar","qty":1}],"outputs":[{"name":"Nectar Sponge Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Butter Syrup","qty":1}],"outputs":[{"name":"Nectar Sponge Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

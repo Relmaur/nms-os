@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hexaberry"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.GLITCHWILD.png","color":"Green","category":"Consumable","type":"Raw Ingredient","used":"Cooking","value":"1,600","release":"WorldsTwo"},"value":1600,"recipes":[]}
 ---
 

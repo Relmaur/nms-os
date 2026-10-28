@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Collecting_Fossils"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsMisc_Mission.png","type":"Secondary","origin":"Planetary","requires":"Partial completion of Awakenings","implemented":"Relics","desc":"A mission focused on learning how to display fossilised remains. Travellers recover ancient bones to construct exhibits and create museum displays at their planetary base."},"recipes":[]}
 ---
 

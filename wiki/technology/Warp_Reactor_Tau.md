@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Reactor_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.hyperdrive.png","color":"red","category":"Starship","subcategory":"Hyperdrive","type":"Companion Unit","level":"2","desc":"Increases length of Hyperdrive operation","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Dynamic Resonator","qty":2},{"name":"Nickel","qty":600},{"name":"Fungal Mould","qty":1000}],"outputs":[{"name":"Warp Reactor Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Monolith_Type_15"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Monolith Type 15","image":"Monolith Type 15.jpg","category":"Interaction Location","type":"Interaction Location","desc":"Interaction Location","release":"Frontiers"},"recipes":[]}
 ---
 

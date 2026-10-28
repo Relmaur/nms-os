@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Seared_Fillet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SALMON.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"35,400","release":"Aquarius"},"value":35400,"recipes":[{"type":"cook","inputs":[{"name":"Dragonfish","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Bleached Bonefish","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Sulphurfish","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Glacier Fish","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Iceblood Gulper","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Sunspine Basker","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Mantis Ray","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Shimmering Lashtail","qty":1}],"outputs":[{"name":"Seared Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

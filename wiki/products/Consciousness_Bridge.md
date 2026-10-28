@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Consciousness_Bridge"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOCOMP1.png","category":"Curiosity","color":"purple","type":"Reactivated Neural Ladder","value":"1616","release":"Living Ship"},"value":1616,"recipes":[{"type":"craft","inputs":[{"name":"Hexite","qty":250},{"name":"Pugneum","qty":80},{"name":"Korvax Casing","qty":1}],"outputs":[{"name":"Consciousness Bridge","qty":1}],"blueprint":true}]}
 ---
 

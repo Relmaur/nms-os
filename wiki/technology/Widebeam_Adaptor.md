@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Widebeam_Adaptor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Widebeamadaptor.png","category":"Multi-tool","subcategory":"Laser","type":"Mining Beam Companion Unit","desc":"Directed laser tool for simultaneous mining of multiple targets.","release":"Pre-release"},"recipes":[]}
 ---
 

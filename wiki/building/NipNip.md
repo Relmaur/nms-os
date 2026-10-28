@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/NipNip"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.NIPPLANT.png","category":"Base Building","color":"blue","type":"Plantable Seed","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"NipNip Buds","qty":1},{"name":"Faecium","qty":20}],"outputs":[{"name":"NipNip","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxic_Protection_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Toxic Protection Upgrade","image":"RENDER.PROTECTTOXIC.png","color":"green","category":"Exosuit","subcategory":"Hazard","type":"Generated Upgrade","recharge":"Ammonia, Ion Battery","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Ammonia","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Toxic Protection Upgrade","qty":1}],"outputs":[{"name":"Ammonia","qty":50},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

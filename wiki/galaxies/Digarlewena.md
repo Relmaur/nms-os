@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Digarlewena"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Digarlewena","image":"20200218191345_1.jpg","color":"Manhattan Orange","type":"Lush","order":"210","previous":"Iwundaracos","next":"Erquagsta","release":"Aquarius"},"recipes":[]}
 ---
 

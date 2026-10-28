@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salvaged_Scrap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Extraordinary Torquer","image":"PRODUCT.SALVAGE.RARE.png","category":"Artifact","color":"yellow","type":"Salvaged Scrap","value":"2,759,013.0","used":"Trading, Trading (High Value)","release":"Omega"},"value":2759013,"recipes":[]}
 ---
 

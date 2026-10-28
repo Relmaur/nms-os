@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sweetwater_Minnow"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"blue","category":"Fish","type":"Common Fish","value":"3000","used":"Cooking","release":"Aquarius"},"value":3000,"recipes":[]}
 ---
 

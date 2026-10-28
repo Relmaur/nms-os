@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cryogenic_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CRYOCHAMBER.png","category":"Tradeable","color":"yellow","type":"Advanced Crafted Product","value":"3,800,000.0","release":"Prisms"},"value":3800000,"recipes":[{"type":"craft","inputs":[{"name":"Living Glass","qty":1},{"name":"Cryo-Pump","qty":1}],"outputs":[{"name":"Cryogenic Chamber","qty":1}],"blueprint":true}]}
 ---
 

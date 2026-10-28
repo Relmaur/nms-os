@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ooibekuar"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ooibekuar","image":"20191221155830_1.jpg","color":"Maya Blue","type":"Norm","order":"136","previous":"Drajayanes","next":"Urckiansi","release":"Waypoint"},"recipes":[]}
 ---
 

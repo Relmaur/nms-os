@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Save_Point"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.savepoint.png","category":"Building Part","color":"blue","type":"Construction module","value":"2.0","release":"Interceptor"},"value":2,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":2},{"name":"Di-hydrogen Jelly","qty":1}],"outputs":[{"name":"Save Point","qty":1}],"blueprint":true}]}
 ---
 

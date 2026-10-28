@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Carbon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.FUEL.1.png","color":"Red","category":"Fuel","type":"Unrefined Organic Element","rarity":"Common","used":"Building, Crafting, Charging, Upgrading","symbol":"C","value":"12","release":"WorldsTwo"},"value":12,"recipes":[{"type":"refine","inputs":[{"name":"Cactus Flesh","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Burn Plantlife"},{"type":"refine","inputs":[{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Release Carbon"},{"type":"refine","inputs":[{"name":"Gamma Root","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Burn Plantlife"},{"type":"refine","inputs":[{"name":"Fungal Mould","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Burn Plantlife"},{"type":"refine","inputs":[{"name":"Oxygen","qty":1}],"outputs":[{"name":"Carbon","qty":1}],"seconds":0.08,"label":"Inefficient Burn"},{"type":"refine","inputs":[{"name":"Solanium","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Burn Plantlife"},{"type":"refine","inputs":[{"name":"Star Bulb","qty":1}],"outputs":[{"name":"Carbon","qty":2}],"seconds":0.12,"label":"Burn Plantlife"}]}
 ---
 

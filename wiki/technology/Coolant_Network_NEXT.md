@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Coolant_Network_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectheat.png","upgradeicon":"protection","color":"Blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provides protection from heat damage on scorched worlds.","release":"NEXT"},"recipes":[]}
 ---
 

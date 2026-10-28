@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Impact_Damage_Omega"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"4","upgradeicon":"damage","type":"Boltcaster Companion Unit","desc":"Defensive weapon upgrade.","stats":"Damage = +6.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":200},{"name":"Aluminium","qty":200},{"name":"Heridium","qty":400}],"outputs":[{"name":"Impact Damage Omega","qty":1}]}]}
 ---
 

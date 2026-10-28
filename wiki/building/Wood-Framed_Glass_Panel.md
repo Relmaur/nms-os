@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wood-Framed_Glass_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.GFLOOR WOOD.png","category":"Base Building","type":"Wooden Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"Wood-Framed Glass Panel","qty":1}],"blueprint":true}]}
 ---
 

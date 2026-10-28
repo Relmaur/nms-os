@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Solidified_Grease_Pie"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.VEGPIE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"54,000","release":"WorldsTwo"},"value":54000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Regis Grease","qty":1}],"outputs":[{"name":"Solidified Grease Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Clarified Oil","qty":1}],"outputs":[{"name":"Solidified Grease Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Proto-Oil","qty":1}],"outputs":[{"name":"Solidified Grease Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Nourishing Slime","qty":1}],"outputs":[{"name":"Solidified Grease Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

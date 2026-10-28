@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Supply_Pipe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.PIPELINE.png","category":"Base Building","color":"Blue","value":"1","type":"Power Distribution Module","release":"Prisms"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25},{"name":"Carbon","qty":10}],"outputs":[{"name":"Supply Pipe","qty":1}],"blueprint":true}]}
 ---
 

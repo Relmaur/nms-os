@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pressurised_Clam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.fish.clam.png","color":"green","category":"Fish","type":"Common Fish","value":"1,000.0","release":"Voyagers"},"value":1000,"recipes":[]}
 ---
 

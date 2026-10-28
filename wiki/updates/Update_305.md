@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.05"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-origins-book-cover-opt.png","date":"26 October 2020","platform":"All","link":"Origins Patch 3.05","release":"Origins","previous":"3.03","next":"3.10"},"recipes":[]}
 ---
 

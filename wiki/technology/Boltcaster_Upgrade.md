@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","category":"Multi-tool","subcategory":"Weapons","type":"Generated Upgrade","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Pugneum","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Boltcaster Upgrade","qty":1}],"outputs":[{"name":"Pugneum","qty":50},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

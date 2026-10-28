@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Concrete_Half_Ramp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.RAMPH CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":15},{"name":"Pure Ferrite","qty":5}],"outputs":[{"name":"Concrete Half Ramp","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Meaty_Chunks"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.MEAT.RAW.png","color":"Red","category":"Consumable","type":"Raw Ingredient","value":"1,000","release":"WorldsTwo"},"value":1000,"recipes":[{"type":"cook","inputs":[{"name":"Meat Flakes","qty":1}],"outputs":[{"name":"Meaty Chunks","qty":1}],"seconds":2.5,"label":"Incinerate Flesh"}]}
 ---
 

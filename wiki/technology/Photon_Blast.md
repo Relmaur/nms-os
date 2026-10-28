@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Photon_Blast"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1mod.png","category":"Starship","subcategory":"Weapons","upgradeicon":"weapon.laser","type":"Photon Cannon Companion Unit","desc":"High speed photon energy modification","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nickel","qty":100},{"name":"Platinum","qty":100}],"outputs":[{"name":"Photon Blast","qty":1}]}]}
 ---
 

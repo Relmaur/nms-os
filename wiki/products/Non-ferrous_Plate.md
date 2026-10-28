@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Non-ferrous_Plate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Non-ferrous_Plate_icon.png","category":"Technology","type":"Component","desc":"metal plating used for construction","value":"30,937.5","release":"Atlas Rises"},"value":30937.5,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Gamma Root","qty":50},{"name":"Marrow Bulb","qty":20}],"outputs":[{"name":"Non-ferrous Plate","qty":1}]}]}
 ---
 

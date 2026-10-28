@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Relic_Gate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Relic Gate","image":"nms_RelicGate.jpg","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Fly through","ramifications":"Teleports you to another system","rewards":"Long-distance travel","release":"Echoes"},"recipes":[]}
 ---
 

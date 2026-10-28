@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boiled_Flipper"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Wandering Shellback","qty":1}],"outputs":[{"name":"Boiled Flipper","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Moon Turtle","qty":1}],"outputs":[{"name":"Boiled Flipper","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Iceshell Turtle","qty":1}],"outputs":[{"name":"Boiled Flipper","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

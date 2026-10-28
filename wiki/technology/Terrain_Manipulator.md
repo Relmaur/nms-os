@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Terrain_Manipulator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.TERRAINEDITOR.png","category":"Multi-tool","subcategory":"Tool","recharge":"Ferrite elements","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen Jelly","qty":1},{"name":"Carbon Nanotubes","qty":2}],"outputs":[{"name":"Terrain Manipulator","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Di-hydrogen Jelly","qty":1},{"name":"Carbon Nanotubes","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Terrain Manipulator","qty":1}],"outputs":[{"name":"Carbon Nanotubes","qty":1}]}]}
 ---
 

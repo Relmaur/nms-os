@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Amino_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIO.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"12,300.0","release":"Endurance"},"value":12300,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Chlorine","qty":20},{"name":"Condensed Carbon","qty":25}],"outputs":[{"name":"Amino Chamber","qty":1}],"blueprint":true}]}
 ---
 

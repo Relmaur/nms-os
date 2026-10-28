@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hazard_Protection_Unit_(base_building)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hazard Protection Unit","image":"Buildable.shieldstation.png","category":"Base Building","type":"Hazard Protection Charging System","release":"Origins","power":"10 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Ionised Cobalt","qty":20},{"name":"Phosphorus","qty":50}],"outputs":[{"name":"Hazard Protection Unit (base building)","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Badesclema"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Badesclema","image":"20200309215105_1.jpg","color":"Pink","type":"Empty","order":"232","previous":"Ezdartlic","next":"Isenkeyan","release":"Fractal"},"recipes":[]}
 ---
 

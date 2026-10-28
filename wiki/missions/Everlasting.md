@@ -10,7 +10,7 @@ version: "Release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Everlasting"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Extreme Survival","desc":"Survived 32.0 Sols in extreme conditions"},"recipes":[]}
 ---
 

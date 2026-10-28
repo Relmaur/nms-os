@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rusted_Metal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.3.png","color":"Olive","category":"Special","type":"Junk","rarity":"Uncommon","value":"20.0","used":"Refining","symbol":"Jn","release":"Endurance"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Oxygen","qty":1},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Rusted Metal","qty":1}],"seconds":0.4,"label":"Oxidise Metal"},{"type":"refine","inputs":[{"name":"Oxygen","qty":1},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Rusted Metal","qty":2}],"seconds":0.4,"label":"Oxidise Metal"}]}
 ---
 

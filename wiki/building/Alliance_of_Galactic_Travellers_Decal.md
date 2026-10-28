@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alliance_of_Galactic_Travellers_Decal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"AgtOfficialLogo.png","category":"Base Building","type":"Decoration","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"Alliance of Galactic Travellers Decal","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Corrupt_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.TECH2.png","category":"Multi-Tool","color":"red","type":"Damaged Multi-Tool Component","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Phosphorus","qty":25},{"name":"Ammonia","qty":25},{"name":"Uranium","qty":25}],"outputs":[]}]}
 ---
 

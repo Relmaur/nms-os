@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Storage_Container"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsBase_Storage_Container_Icon.png","category":"Base Building","color":"Blue","type":"Containers","value":"5","desc":"Additional storage units","power":"5 kPs","release":"Echoes"},"value":5,"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":35},{"name":"Sodium","qty":20}],"outputs":[{"name":"Storage Container","qty":1}],"blueprint":true}]}
 ---
 

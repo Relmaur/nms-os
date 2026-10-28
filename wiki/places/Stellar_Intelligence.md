@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stellar_Intelligence"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Stellar Intelligence","image":"Stellar Intelligence.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Use communicator","ramifications":"None","rewards":"Possibly coordinates to an Ancient Ruin","notes":"Can be found in different colours.","release":"Orbital"},"recipes":[]}
 ---
 

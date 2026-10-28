@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Paraffinium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BIOME.LUSH.png","color":"Grey","category":"Earth","type":"Localised Earth Element","rarity":"Uncommon","used":"Building, Crafting, Charging, Upgrading","symbol":"Pf","value":"62.0","release":"Endurance"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Silver","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Paraffinium","qty":2}],"seconds":0.36,"label":"Mineral Alchemy"},{"type":"refine","inputs":[{"name":"Star Bulb","qty":2},{"name":"Salt","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Floral Titration"},{"type":"refine","inputs":[{"name":"Pyrite","qty":2},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Pyrite","qty":2},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Paraffinium","qty":1}],"seconds":0.36,"label":"Loosen Bonds"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":2}],"seconds":0.36,"label":"Loosen Bonds"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Magnetised Ferrite","qty":1}],"outputs":[{"name":"Paraffinium","qty":3}],"seconds":0.36,"label":"Loosen Bonds"}]}
 ---
 

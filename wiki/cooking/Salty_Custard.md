@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salty_Custard"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"28,000.0","release":"WorldsOne"},"value":28000,"recipes":[{"type":"cook","inputs":[{"name":"Salt","qty":1},{"name":"Cream","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Salty Custard","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Whole_Roast_Fish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.TROUT.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"39,000","release":"Aquarius"},"value":39000,"recipes":[{"type":"cook","inputs":[{"name":"Basalt-Tooth Bloater","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Polyscale Bloater","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Whiskerfin","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Greater Rocktooth","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Ray","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Sunray","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Colossal Jawfish","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ancient Irontail","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Megalodon","qty":1}],"outputs":[{"name":"Whole Roast Fish","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

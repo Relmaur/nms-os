@@ -10,7 +10,7 @@ version: "Release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wanderer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Rank.distancewalked.png","level":"8","type":"on-foot exploration","desc":"Travelled 40,000u"},"recipes":[]}
 ---
 

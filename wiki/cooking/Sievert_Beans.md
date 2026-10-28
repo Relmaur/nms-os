@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sievert_Beans"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.RADFARM.png","color":"Green","category":"Consumable","type":"Raw Ingredient","value":"300","release":"WorldsTwo"},"value":300,"recipes":[{"type":"cook","inputs":[{"name":"Gamma Root","qty":1}],"outputs":[{"name":"Sievert Beans","qty":1}],"seconds":2.5,"label":"Extract Nutrients"}]}
 ---
 

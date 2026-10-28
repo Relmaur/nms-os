@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Short-Range_Teleporter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.MINIPORTAL.png","category":"Base Building","color":"Blue","type":"Short-Distance Matter Transfer Device","value":"1","release":"Endurance"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":2},{"name":"Chromatic Metal","qty":40},{"name":"Gold","qty":30}],"outputs":[{"name":"Short-Range Teleporter","qty":1}],"blueprint":true}]}
 ---
 

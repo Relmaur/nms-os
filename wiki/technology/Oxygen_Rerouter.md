@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Rerouter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CELLMOD.png","color":"blue","category":"Exosuit","subcategory":"Life Support","level":"A","type":"Emergency Life Support System","stats":"Oxygen Rerouting: Enabled","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Quantum Computer","qty":1},{"name":"Crystal Sulphide","qty":6}],"outputs":[{"name":"Oxygen Rerouter","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Quantum Computer","qty":1},{"name":"Crystal Sulphide","qty":3}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Oxygen Rerouter","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Crystal Sulphide","qty":3}]}]}
 ---
 

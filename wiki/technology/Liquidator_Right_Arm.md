@@ -10,7 +10,7 @@ version: "5.00"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquidator_Right_Arm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"LiquidatorRight.webp","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":60},{"name":"Unstable Plasma","qty":3},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Liquidator Right Arm","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Condensed Carbon","qty":30},{"name":"Unstable Plasma","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Liquidator Right Arm","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":30},{"name":"Unstable Plasma","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

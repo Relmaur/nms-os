@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Abandoned_Starship"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Abandoned Starship","image":"20220430174740_1.jpg","system_types":"Any","alert_1":"Emergency Broadcast Detected","alert_2":"Emergency Broadcast detected in local space","interaction":"Use communicator","ramifications":"Triggers Under a Rebel Star","rewards":"None","release":"Echoes"},"recipes":[]}
 ---
 

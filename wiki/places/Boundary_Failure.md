@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boundary_Failure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Boundary Failure","image":"Boundary_Failure.jpg","category":"Interaction Location","release":"Omega"},"recipes":[]}
 ---
 

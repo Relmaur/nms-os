@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Writhing%2C_Roiling_Batter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BATTER.png","color":"Green","category":"Consumable","type":"Edible Product","used":"Crafting, Cooking","value":"100,000.0","release":"NextGen"},"value":100000,"recipes":[{"type":"cook","inputs":[{"name":"Delicate Meringue","qty":1},{"name":"Refined Flour","qty":1},{"name":"Larval Core","qty":1}],"outputs":[{"name":"Writhing, Roiling Batter","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

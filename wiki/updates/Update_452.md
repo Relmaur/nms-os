@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.52"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"omega-book-cover-v2.png","date":"27 February, 2024","dateps":"28 February, 2024","datexbox":"4 March, 2024","dateswitch":"4 March, 2024","platform":"All","link":"Omega Patch 4.52","release":"Omega","previous":"4.51","next":"4.53"},"recipes":[]}
 ---
 

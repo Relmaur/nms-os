@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.61"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-desolation-book-cover-opt.jpg","date":"22 July 2020","steam":"5310820","platform":"All","link":"Desolation Patch 2.61","release":"Desolation","previous":"2.60","next":"2.61.1"},"recipes":[]}
 ---
 

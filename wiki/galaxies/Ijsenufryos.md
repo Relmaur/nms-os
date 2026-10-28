@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ijsenufryos"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ijsenufryos","image":"No Man's Sky_20190417005936.png","color":"Indigo","type":"Harsh","order":"35","previous":"Ehbogdenbu","next":"Nipikulha","release":"Waypoint"},"recipes":[]}
 ---
 

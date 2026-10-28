@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tainted_Metal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Tainted_metal.png","color":"Grey","category":"Special","type":"Salvaged Scrap","rarity":"Uncommon","used":"Refining","symbol":"Un","value":"380.0","release":"NextGen"},"value":380,"recipes":[]}
 ---
 

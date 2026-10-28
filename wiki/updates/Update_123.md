@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.23"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-pathfinder-book-cover.png","date":"17 March 2017","platform":"PS4/PC","link":"Update 1.23 on nomanssky.com","previous":"1.22","next":"1.24","release":"Pathfinder","steam":"1693527","gog":"2.12.0.15"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hardframe_Body"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.MECH.SENT.HEAD.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","stats":"Fuel Usage: -11%, Boost Tank Size: +25%","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Radiant Brain","qty":1},{"name":"Antimatter","qty":1},{"name":"Life Support Gel","qty":1}],"outputs":[{"name":"Hardframe Body","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Radiant Brain","qty":1},{"name":"Antimatter","qty":1},{"name":"Life Support Gel","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Hardframe Body","qty":1}],"outputs":[{"name":"Radiant Brain","qty":1},{"name":"Antimatter","qty":1},{"name":"Life Support Gel","qty":1}]}]}
 ---
 

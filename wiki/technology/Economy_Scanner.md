@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Economy_Scanner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPSCAN_ECON.png","category":"Starship","subcategory":"Scanner","type":"Long-range Sensor technology","release":"Remnant","desc":"Grants the ability to check a system's economy without having to visit"},"recipes":[{"type":"craft","inputs":[{"name":"Microprocessor","qty":5},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Economy Scanner","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Microprocessor","qty":3},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Economy Scanner","qty":1}],"outputs":[{"name":"Microprocessor","qty":3},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

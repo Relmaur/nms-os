@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salvaged_Upgrade_Components"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ROBOTSUITMOD.png","color":"darkblue","category":"Exosuit","type":"Procedural Upgrade","release":"WorldsOne"},"recipes":[{"type":"repair","inputs":[{"name":"Pugneum","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Salvaged Upgrade Components","qty":1}],"outputs":[{"name":"Pugneum","qty":50},{"name":"Wiring Loom","qty":1},{"name":"Ion Battery","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermic_Layer_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectcold.png","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"User is guarded from extreme cold damage on frozen worlds.","release":"NEXT"},"recipes":[]}
 ---
 

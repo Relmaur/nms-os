@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gamma_Weed"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.RADIOPLANT.png","category":"Base Building","color":"yellow","type":"Plantable Seed","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Gamma Root","qty":50},{"name":"Uranium","qty":25}],"outputs":[{"name":"Gamma Weed","qty":1}],"blueprint":true}]}
 ---
 

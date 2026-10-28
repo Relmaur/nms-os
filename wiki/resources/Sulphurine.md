@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sulphurine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"GAS.3.png","color":"Green","category":"Earth","type":"Compressed Atmospheric Gas","rarity":"Common","used":"Crafting, Charging","symbol":"Su","value":"20.0","release":"Aquarius"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Nitrogen","qty":3}],"outputs":[{"name":"Sulphurine","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Sulphurine","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Sulphurine","qty":1}],"seconds":0.36,"label":"Gas Catalysation"}]}
 ---
 

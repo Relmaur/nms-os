@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Structural_Gantry_Link"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Big con2 3.png","category":"Corvette Building","type":"Corvette Construction Module","release":"Breach"},"recipes":[]}
 ---
 

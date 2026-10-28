@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Deflector_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectrads.png","color":"blue","level":"1","upgradeicon":"protection","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"User is shielded from radiation damage.","stats":"Radiation Protection = 75.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Carbon","qty":100}],"outputs":[{"name":"Radiation Deflector Sigma","qty":1}]}]}
 ---
 

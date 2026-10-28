@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Concrete_Power_Door"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.WALL_CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25}],"outputs":[{"name":"Concrete Power Door","qty":1}],"blueprint":true}]}
 ---
 

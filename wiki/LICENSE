@@ -1,0 +1,11 @@
+The articles in this folder, and the data derived from them (index.json,
+offline-bundle.js, game-data.json, facts.json, aliases.json), come from the
+No Man's Sky Wiki (https://nomanssky.fandom.com) and are licensed by the
+wiki's contributors under Creative Commons Attribution-NonCommercial-ShareAlike
+3.0 Unported (CC BY-NC-SA 3.0): https://creativecommons.org/licenses/by-nc-sa/3.0/
+
+Each article names the page and revision it was rendered from. The articles in
+custom/ are ATLAS's own. The code of ATLAS is MIT-licensed (see ../LICENSE);
+that licence does not cover this folder.
+
+ATLAS is a fan project, not affiliated with Hello Games.

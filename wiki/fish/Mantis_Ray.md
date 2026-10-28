@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mantis_Ray"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT5.FISH.RAY.png","color":"blue","category":"Fish","type":"Uncommon Fish","value":"10,000","release":"Xeno Arena"},"value":10000,"recipes":[]}
 ---
 

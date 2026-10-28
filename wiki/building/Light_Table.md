@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Light_Table"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.LIGHTTABLE.png","category":"Base Building","color":"blue","type":"Decoration","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Sodium","qty":10},{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Light Table","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Light Table","qty":1}],"outputs":[{"name":"Sodium","qty":10},{"name":"Ferrite Dust","qty":10}]}]}
 ---
 

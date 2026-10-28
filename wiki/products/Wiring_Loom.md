@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wiring_Loom"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.TECHMODULE.png","category":"Consumable","color":"Blue","type":"Universal Technology Platform","value":"25,000.0","used":"Crafting, Upgrading","release":"Outlaws"},"value":25000,"recipes":[]}
 ---
 

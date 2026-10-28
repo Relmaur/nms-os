@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cuboid_Room_Flooring"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.cuberoomfloor.png","category":"Base Building","color":"blue","type":"Construction item","release":"Abyss"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":80}],"outputs":[{"name":"Cuboid Room Flooring","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Cuboid Room Flooring","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":80}]}]}
 ---
 

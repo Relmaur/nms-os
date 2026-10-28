@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sac_Venom"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.sacvenom.png","color":"Grey","category":"Tradeable","type":"Trade commodity","value":"60,800","release":"Outlaws"},"value":60800,"recipes":[]}
 ---
 

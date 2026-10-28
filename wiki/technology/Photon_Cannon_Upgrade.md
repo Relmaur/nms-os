@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Photon_Cannon_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPPROJECTILE1MOD.png","category":"Starship","subcategory":"Weapons","type":"Generated Upgrade","release":"Companions"},"recipes":[{"type":"repair","inputs":[{"name":"Cadmium","qty":125},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Photon Cannon Upgrade","qty":1}],"outputs":[{"name":"Cadmium","qty":125},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

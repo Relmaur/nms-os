@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aediabiel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Aediabiel","image":"20191118091828_1.jpg","color":"Maya Blue","type":"Norm","order":"105","previous":"Kissonlin","next":"Ulosaginyik","release":"Waypoint"},"recipes":[]}
 ---
 

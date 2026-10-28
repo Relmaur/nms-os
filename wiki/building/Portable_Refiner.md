@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Portable_Refiner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.REFINER1.png","category":"Base Building","color":"blue","type":"Automated Refinery Unit","value":"10.0","release":"Origins"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Oxygen","qty":30}],"outputs":[{"name":"Portable Refiner","qty":1}],"blueprint":true}]}
 ---
 

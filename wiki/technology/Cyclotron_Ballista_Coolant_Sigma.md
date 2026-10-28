@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cyclotron_Ballista_Coolant_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.IONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"1","upgradeicon":"time","type":"Cyclotron Ballista Companion Unit","desc":"Reduces time between shots when using the Starship's Cyclotron Ballista weapon mode by a small amount.","stats":"Heat Dispersion = 10%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":30},{"name":"Chrysonite","qty":30},{"name":"Iron","qty":50}],"outputs":[{"name":"Cyclotron Ballista Coolant Sigma","qty":1}]}]}
 ---
 

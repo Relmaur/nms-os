@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.70"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Beacon-book-cover-opt.png","date":"4 June, 2025","platform":"All","link":"Beacon Update","release":"Beacon","previous":"5.64","next":"5.71"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Release"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Focus_V2"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Icon_nmsTech_Beam_Focus_V2.png","color":"blue","category":"Multi-tool","subcategory":"Laser","type":"Companion Unit","desc":"Lv. 2 - Slightly increases speed of element extraction.","release":"Release"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Chrysonite","qty":100}],"outputs":[{"name":"Beam Focus V2","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/'Keen_Poster"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WALL.POSTER15.png","category":"Base Building","type":"Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25}],"outputs":[{"name":"'Keen Poster","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Simple_Desk"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SIMPLEDESK.png","category":"Base Building","color":"blue","type":"Decoration","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":10}],"outputs":[{"name":"Simple Desk","qty":1}],"blueprint":true}]}
 ---
 

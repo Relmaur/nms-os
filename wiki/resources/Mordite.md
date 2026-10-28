@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mordite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.CREATURE.1.png","color":"Purple","category":"Earth","type":"Harvested Substance","rarity":"Common","used":"Building, Crafting, Charging, Upgrading, Refining","symbol":"Mo","value":"40","release":"WorldsTwo"},"value":40,"recipes":[{"type":"refine","inputs":[{"name":"Faecium","qty":3}],"outputs":[{"name":"Mordite","qty":2}],"seconds":0.72,"label":"Organic Reassembly"},{"type":"refine","inputs":[{"name":"Carbon","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Mordite","qty":1}],"seconds":0.36,"label":"Anomaly / Organic Hybridisation"},{"type":"refine","inputs":[{"name":"Condensed Carbon","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Mordite","qty":2}],"seconds":0.36,"label":"Anomaly / Organic Hybridisation"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Mordite","qty":1}],"seconds":0.08,"label":"Organic Reassembly"}]}
 ---
 

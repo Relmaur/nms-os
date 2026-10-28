@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Amino_Hub_Decal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Aminohubogo.png","category":"Base Building","type":"Decoration","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"Amino Hub Decal","qty":1}],"blueprint":true}]}
 ---
 

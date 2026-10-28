@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Extruded_Stone_Large_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"STONE.BASIC_CHEV_WALL_WINDOW1.png","category":"Base Building","type":"Stone Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":25},{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Extruded Stone Large Window","qty":1}],"blueprint":true}]}
 ---
 

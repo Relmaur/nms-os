@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ricochet_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.ricochet.png","color":"blue","category":"Weapon","subcategory":"Projectile","level":"2","type":"Boltcaster Companion Unit","desc":"Boltcaster shots are granted deflective properties.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Platinum","qty":300},{"name":"Zinc","qty":150},{"name":"Microdensity Fabric","qty":1}],"outputs":[{"name":"Ricochet Tau","qty":1}]}]}
 ---
 

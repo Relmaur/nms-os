@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Emeril"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.GREEN.2.png","color":"Green","type":"Refined Stellar Metal: Green","rarity":"Rare","value":"114.0","symbol":"Em","release":"Waypoint"},"value":114,"recipes":[{"type":"refine","inputs":[{"name":"Emeril","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Emeril","qty":2}],"seconds":0.36,"label":"Chromatic Expansion"}]}
 ---
 

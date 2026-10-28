@@ -10,7 +10,7 @@ version: "Crossplay"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Weapon_Rack"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.WEAPONRACK.png","category":"Base Building","color":"blue","type":"Decoration","release":"Worlds Part II"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Cobalt","qty":5}],"outputs":[{"name":"Weapon Rack","qty":1}]},{"type":"dismantle","inputs":[{"name":"Weapon Rack","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":5},{"name":"Cobalt","qty":5}]}]}
 ---
 

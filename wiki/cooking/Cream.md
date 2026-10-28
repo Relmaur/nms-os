@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cream"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CREAM.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"5,400","release":"WorldsTwo"},"value":5400,"recipes":[{"type":"cook","inputs":[{"name":"Fresh Milk","qty":1}],"outputs":[{"name":"Cream","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Wild Milk","qty":1}],"outputs":[{"name":"Cream","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

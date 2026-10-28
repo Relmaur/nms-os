@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Corpinyaya"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Corpinyaya","image":"20190929222610_1.jpg","color":"Maya Blue","type":"Norm","order":"60","previous":"Ploehrliou","next":"Leckandmeram","release":"Waypoint"},"recipes":[]}
 ---
 

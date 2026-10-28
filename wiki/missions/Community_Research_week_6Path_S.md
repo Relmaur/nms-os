@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Community_Research_(week_6)%2FPath_S"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","series":"Community Research","prevmission":"Community Research (week 5)","nextmission":"Community Research (week 7)","requires":"N/A","implemented":"NEXT 1.65","desc":"Help Specialist Polo - Week 6 of 8"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neural_Shielding"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.STEM1.png","category":"Starship","subcategory":"Scan deflector","type":"Hostile cargo scan deflector","release":"Endurance","desc":"Blocks hostile cargo probes"},"recipes":[{"type":"repair","inputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Neural Shielding","qty":1}],"outputs":[{"name":"Processed Meat","qty":8},{"name":"Runaway Mould","qty":20}]}]}
 ---
 

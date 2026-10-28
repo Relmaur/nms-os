@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermic_Layer_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectcold.png","color":"blue","level":"3","upgradeicon":"protection","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Further extended shielding from extreme cold damage on frozen worlds.","stats":"Cold Protection = 490.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Microdensity Fabric","qty":2},{"name":"Electron Vapour","qty":1},{"name":"Gravitino Ball","qty":1}],"outputs":[{"name":"Thermic Layer Theta","qty":1}]}]}
 ---
 

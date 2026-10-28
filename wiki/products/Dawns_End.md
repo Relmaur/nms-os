@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dawn's_End"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ATLASSEED.5.png","category":"Curiosity","color":"grey","type":"Unique valuable curiosity","value":"1,000.0","release":"NEXT"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Dark Matter","qty":1},{"name":"Chromatic Metal","qty":25}],"outputs":[{"name":"Dawn's End","qty":1}],"blueprint":true}]}
 ---
 

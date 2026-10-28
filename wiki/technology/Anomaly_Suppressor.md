@@ -10,7 +10,7 @@ version: "TheCursed"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomaly_Suppressor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"purple","category":"Exosuit","subcategory":"Hazard","type":"Automated Breach Integrity Device","desc":"Protects the user from any boundary failure","recharge":"Elixir of Glass"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/P-Field_Compressor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CANNONMOD.png","color":"Blue","category":"Multi-tool","subcategory":"Weapons","level":"A","type":"Neutron Cannon Upgrade","stats":"+2.0 Ion Spheres Created +27% Ion Sphere Speed -11% Charging speed","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":120},{"name":"Microprocessor","qty":3},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"P-Field Compressor","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Gold","qty":60},{"name":"Microprocessor","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"P-Field Compressor","qty":1}],"outputs":[{"name":"Gold","qty":120},{"name":"Microprocessor","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

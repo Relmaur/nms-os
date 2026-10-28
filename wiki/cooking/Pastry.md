@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pastry"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGH.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"24,000","release":"Swarm"},"value":24000,"recipes":[{"type":"cook","inputs":[{"name":"Refined Flour","qty":1},{"name":"Churned Butter","qty":1}],"outputs":[{"name":"Pastry","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Refined Flour","qty":1},{"name":"Proto-Butter","qty":1}],"outputs":[{"name":"Pastry","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Refined Flour","qty":1},{"name":"Bone Butter","qty":1}],"outputs":[{"name":"Pastry","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

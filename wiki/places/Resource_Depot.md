@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Resource_Depot"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Resource Depot","image":"Buildings.depot.png","type":"Resource Depot","desc":"5 silos containing different materials","release":"Echoes"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ancient_Skeleton"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Exceptional Skeleton","image":"PRODUCT.BONES.RARE.png","category":"Artifact","color":"Yellow","type":"Ancient Skeleton","value":"1,227,996.4","used":"Trading, Trading (High Value)","release":"Echoes"},"value":1227996.4,"recipes":[]}
 ---
 

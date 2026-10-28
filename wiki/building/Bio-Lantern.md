@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bio-Lantern"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.FLYJAR.png","category":"Base Building","type":"Decoration","desc":"Organic Lighting","complexity":"1","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Glass","qty":1}],"outputs":[{"name":"Bio-Lantern","qty":1}],"blueprint":true}]}
 ---
 

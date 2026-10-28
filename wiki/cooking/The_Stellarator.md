@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Stellarator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"DarkBlue","category":"Consumable","type":"Edible Product","value":"100,000","release":"WorldsTwo"},"value":100000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Stellar Custard","qty":1}],"outputs":[{"name":"The Stellarator","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

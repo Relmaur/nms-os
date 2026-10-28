@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rocket_Launcher"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Rocket Launcher.png","color":"purple","category":"Starship","subcategory":"Weapons","type":"Long Range Starship Weapon","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Copper","qty":200},{"name":"Condensed Carbon","qty":100}],"outputs":[{"name":"Rocket Launcher","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Copper","qty":100},{"name":"Condensed Carbon","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Rocket Launcher","qty":1}],"outputs":[{"name":"Copper","qty":100},{"name":"Condensed Carbon","qty":50}]}]}
 ---
 

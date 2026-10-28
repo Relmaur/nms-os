@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enzyme_Fluid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.FLUID.png","color":"Green","category":"Consumable","type":"Herbivore Bait","value":"800.0","release":"Origins"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Pulpy Roots","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Non-Toxic Mushroom","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Solartillo","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Fungal Mould","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Cactus Nectar","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Frozen Tubers","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Impulse Beans","qty":1},{"name":"Faecium","qty":1}],"outputs":[{"name":"Enzyme Fluid","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grenade_Propulsion"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","color":"blue","category":"Weapon","subcategory":"Grenade","level":"1","type":"Companion Unit","desc":"Increase the speed of projectile grenades","stats":"Projectile Velocity = +5.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":10},{"name":"Platinum","qty":20},{"name":"Chrysonite","qty":15}],"outputs":[{"name":"Grenade Propulsion","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.36"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"Experimental","platforms":"PS4 and PC","release":"Atlas Rises","previous":"1.35","next":"1.37"},"recipes":[]}
 ---
 

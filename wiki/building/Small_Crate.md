@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Crate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.AMCRATE.png","category":"Base Building","type":"Decoration","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":10}],"outputs":[{"name":"Small Crate","qty":1}],"blueprint":true}]}
 ---
 

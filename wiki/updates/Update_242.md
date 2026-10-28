@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.42"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-exo-mech-book-cover-opt.png","datepc":"16 April 2020","platform":"All","link":"Exo Mech Patch 2.42","release":"ExoMech","previous":"2.41","next":"2.43"},"recipes":[]}
 ---
 

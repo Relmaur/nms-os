@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Aquarium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.AQUARIUM.png","category":"Base Building","color":"blue","type":"Exotic Collectibles","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Glass","qty":2},{"name":"Living Pearl","qty":1}],"outputs":[{"name":"Small Aquarium","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lusontrygiamh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Lusontrygiamh","image":"No Man's Sky_20190403220128.png","color":"Sea-Green","order":"38","type":"Norm","previous":"Autsurabin","next":"Rewmanawa","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Syrupy_Viscera"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Syrupy Viscera","image":"PRODUCT.REFINED.EVILSTEW.png","color":"brown","category":"Consumable","type":"Edible Product","value":"32,000","release":"WorldsTwo"},"value":32000,"recipes":[{"type":"cook","inputs":[{"name":"Nightmare Sausage","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Syrupy Viscera","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

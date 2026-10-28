@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pehneldept"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Pehneldept","image":"20200225212326_1.jpg","color":"Mint Green","type":"Harsh","order":"215","previous":"Kuolungau","next":"Yevettiiqidcon","release":"Waypoint"},"recipes":[]}
 ---
 

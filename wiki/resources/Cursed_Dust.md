@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cursed_Dust"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Cursed Dust","image":"SUBSTANCE.WORMDUST.png","color":"purple","rarity":"Rare","type":"Ashes of Despair","category":"Special","used":"Upgrading","symbol":"?","value":"959","release":"Breach"},"value":959,"recipes":[]}
 ---
 

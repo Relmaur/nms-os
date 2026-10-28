@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_SM"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"C","type":"Boltcaster Companion Unit","stats":"+1% Damage, +21% Fire Rate, +8.0 Clip Size","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":50}],"outputs":[{"name":"Boltcaster SM","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Pure Ferrite","qty":25}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Boltcaster SM","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":25}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Advanced_Launch_System"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ENGINE.png","color":"darkblue","category":"Starship","type":"Bespoke Landing Gear","release":"Echoes"},"recipes":[{"type":"repair","inputs":[{"name":"Storm Crystal","qty":3},{"name":"Quantum Computer","qty":1}],"outputs":[]}]}
 ---
 

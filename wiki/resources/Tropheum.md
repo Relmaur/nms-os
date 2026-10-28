@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tropheum"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.neutral.rare6.png","type":"Neutral","rarity":"Rare","symbol":"Tr","value":"137.5","release":"Atlas Rises"},"value":137.5,"recipes":[]}
 ---
 

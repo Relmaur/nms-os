@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dough"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGH.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"3,200","release":"WorldsTwo"},"value":3200,"recipes":[{"type":"cook","inputs":[{"name":"Refined Flour","qty":1},{"name":"Wild Yeast","qty":1}],"outputs":[{"name":"Dough","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rubble_of_the_First_Spawn"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Rubble of the First Spawn","image":"Rubble of the First Spawn.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"None known","ramifications":"None known","rewards":"None known","release":"WorldsOne"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Efficient_Thrusters"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.LANDINGGEARMOD.png","color":"blue","category":"Starship","subcategory":"Launch Thruster","level":"B","type":"Starship Launch System Upgrade","stats":"-20% Launch Cost","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen Jelly","qty":1},{"name":"Tritium","qty":100},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Efficient Thrusters","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Di-hydrogen Jelly","qty":1},{"name":"Tritium","qty":100},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Efficient Thrusters","qty":1}],"outputs":[{"name":"Tritium","qty":50},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

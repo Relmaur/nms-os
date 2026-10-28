@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tangy_Organ_Surprise"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"36,000.0","release":"Omega"},"value":36000,"recipes":[{"type":"cook","inputs":[{"name":"Stewed Organs","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Crystalline Soup","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Chewy 'Dumpling' Stew","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Gelatinous Goop","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Tangy Organ Surprise","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 

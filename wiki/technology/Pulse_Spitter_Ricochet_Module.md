@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Ricochet_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSESPITTERMOD.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"A","type":"Pulse Spitter Upgrade","stats":"+31% Accuracy","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Pulse Spitter Ricochet Module","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Pulse Spitter Ricochet Module","qty":1}],"outputs":[{"name":"Solar Mirror","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

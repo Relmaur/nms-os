@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Short_Circuit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.FUEL2.png","category":"Multi-Tool","color":"red","type":"Damaged Multi-Tool Component","release":"Abyss"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":200}],"outputs":[]}]}
 ---
 

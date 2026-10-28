@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hydroponic_Tray"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.PLANTER.png","category":"Base Building","type":"Farming","color":"Blue","desc":"Used for growing indoor crops","complexity":"5","release":"Frontiers","power":"5 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":30},{"name":"Metal Plating","qty":2},{"name":"Carbon","qty":20}],"outputs":[{"name":"Hydroponic Tray","qty":1}],"blueprint":true}]}
 ---
 

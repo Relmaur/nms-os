@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.20"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"interceptor-book-cover.png","date":"5 April, 2023","platform":"All","link":"Interceptor Update","release":"Interceptor","previous":"4.15","next":"4.20.1"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Starship_Repair%3A_Critical_Maintenance"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_NotAvailable.png","type":"Secondary","series":"Artemis Path","prevmission":"N/A","nextmission":"Alone Amidst the Stars","origin":"Crashed Radiant Pillar BC1","requires":"N/A","implemented":"Atlas Rises","desc":"Introduction to technology repairs and starship maintenance"},"recipes":[]}
 ---
 

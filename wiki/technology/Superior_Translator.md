@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Superior_Translator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"AUTOTRANSLATOR.png","color":"blue","category":"Exosuit","type":"Automatic Language Parser","stats":"Words Translated 2.0","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Quantum Computer","qty":1},{"name":"Chromatic Metal","qty":50}],"outputs":[{"name":"Superior Translator","qty":1}],"blueprint":true}]}
 ---
 

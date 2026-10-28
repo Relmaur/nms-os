@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gaseous_Sentience"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Gaseous Sentience","image":"Gaseous Sentience.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Use communicator","ramifications":"None","rewards":"100-300 Nanites","notes":"Encountered in different colors.","release":"WorldsOne"},"recipes":[]}
 ---
 

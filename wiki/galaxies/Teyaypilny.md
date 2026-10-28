@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Teyaypilny"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Teyaypilny","image":"20190812132034_1.jpg","color":"Magenta","type":"Lush","order":"50","previous":"Agnusopwit","next":"Zalienkosm","release":"Waypoint"},"recipes":[]}
 ---
 

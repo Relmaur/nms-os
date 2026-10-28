@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Shielding_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERSIGMA.png","color":"red","category":"Freighter","subcategory":"Hyperdrive","level":"C","type":"Hyperdrive Upgrade: Red Systems","stats":"Hyperdrive Range: 50 ly","release":"Visions"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Antimatter Housing","qty":2},{"name":"Superoxide Crystal","qty":2},{"name":"Cadmium","qty":250}],"outputs":[{"name":"Warp Shielding Sigma","qty":1}]}]}
 ---
 

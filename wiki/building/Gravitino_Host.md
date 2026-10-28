@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gravitino_Host"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Gravitino_Orb_Icon.png","category":"Base Building","color":"yellow","type":"Plantable Seed","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":25},{"name":"Silver","qty":120},{"name":"Magnetised Ferrite","qty":25}],"outputs":[{"name":"Gravitino Host","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_Radar_Array"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Minotaur Radar Array","image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Scan Attachment","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":75},{"name":"Gold","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Minotaur Radar Array","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Minotaur Radar Array","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":37},{"name":"Gold","qty":25}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Forged_Passport"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Forged Passport","image":"REPTOKEN.png","color":"darkblue","category":"Curiosity","value":"256,000.0","type":"Overwritten Digital Record","release":"Outlaws"},"value":256000,"recipes":[]}
 ---
 

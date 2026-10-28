@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Squared_Standing_Light"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.LIGHT001.png","category":"Base Building","type":"Component","complexity":"5a","value":"1","release":"Waypoint","power":"1 kPs"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Sodium","qty":5}],"outputs":[{"name":"Squared Standing Light","qty":1}],"blueprint":true}]}
 ---
 

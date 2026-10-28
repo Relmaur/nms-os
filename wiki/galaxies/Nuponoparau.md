@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nuponoparau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nuponoparau","image":"20191023075024_1.jpg","color":"Light Green","type":"Norm","order":"77","previous":"Thorettac","next":"Moglaschil","release":"Waypoint"},"recipes":[]}
 ---
 

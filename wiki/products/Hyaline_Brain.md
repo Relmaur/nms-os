@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hyaline_Brain"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SENTINELSHIPBRAIN.png","color":"purple","type":"Sentience Vessel","category":"Component","value":"35,000.0","release":"Orbital"},"value":35000,"recipes":[]}
 ---
 

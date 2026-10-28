@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glowing_Mineral"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.WATERPROD.png","category":"Curiosity","color":"Darkblue","type":"Mineral Deposit","value":"3,280,0","release":"NextGen"},"value":32800,"recipes":[]}
 ---
 

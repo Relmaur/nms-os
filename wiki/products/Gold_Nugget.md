@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gold_Nugget"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.GEODE.ASTEROID.png","color":"Darkblue","category":"Curiosity","type":"Valuable Ore","value":"3,280.0","release":"Origins"},"value":3280,"recipes":[]}
 ---
 

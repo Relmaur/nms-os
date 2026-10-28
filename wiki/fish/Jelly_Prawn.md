@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jelly_Prawn"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.fish.prawn.png","color":"green","category":"Fish","type":"Common Fish","value":"2,000.0","release":"Voyagers"},"value":2000,"recipes":[]}
 ---
 

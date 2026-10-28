@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Personal_Refiner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PERSONALREFINER.png","category":"Exosuit","type":"Exosuit Upgrade","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Oxygen","qty":150}],"outputs":[{"name":"Personal Refiner","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":75}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Personal Refiner","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":75}]}]}
 ---
 

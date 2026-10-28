@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Drundemiso"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Drundemiso","image":"20200211190022_1.jpg","color":"Pale Green","type":"Norm","order":"200","previous":"Horeroedsh","next":"Ityanianat","release":"Waypoint"},"recipes":[]}
 ---
 

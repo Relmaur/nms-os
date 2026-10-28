@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Large_Timber_Triple_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TIMBER.BASIC_WALLB_WINDOW3.png","category":"Base Building","type":"Timber Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25},{"name":"Glass","qty":1}],"outputs":[{"name":"Large Timber Triple Window","qty":1}],"blueprint":true}]}
 ---
 

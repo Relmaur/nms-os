@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Antimatter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.antimatter.png","category":"Component","color":"red","type":"Crafted Technology Component","used":"Building, Crafting, Upgrading","value":"5,233.0","release":"SentinelUp"},"value":5233,"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":25},{"name":"Condensed Carbon","qty":20}],"outputs":[{"name":"Antimatter","qty":1}],"blueprint":true}]}
 ---
 

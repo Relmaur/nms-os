@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gas_Extractor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.GASEXTRACTOR.png","category":"Base Building","color":"Blue","value":"1","type":"Power Distribution Module","power":"50","release":"Relics"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Chromatic Metal","qty":100}],"outputs":[{"name":"Gas Extractor","qty":1}],"blueprint":true}]}
 ---
 

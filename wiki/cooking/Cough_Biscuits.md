@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cough_Biscuits"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.BISCUIT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"40,000","release":"Xeno Arena"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Glass Grains","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Leopard-Fruit","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Furball Jelly","qty":1}],"outputs":[{"name":"Cough Biscuits","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 

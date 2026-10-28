@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Teleportation_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"category":"Technology","type":"Terminal","desc":"Enables direct teleportation to known locations","complexity":"10","release":"Echoes"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cheese-and-Flesh_Stew"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.MEATSTEW.png","color":"Red","category":"Consumable","type":"Edible Product","value":"36,000","release":"WorldsTwo"},"value":36000,"recipes":[{"type":"cook","inputs":[{"name":"Mystery Meat Stew","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Cheese-and-Flesh Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Well-Stirred Stew","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Cheese-and-Flesh Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"},{"type":"cook","inputs":[{"name":"Soiled Soup","qty":1},{"name":"Partially-Liquid Cheese","qty":1}],"outputs":[{"name":"Cheese-and-Flesh Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.07"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-release-book-cover-by-qjimbo.png","dateps":"27 Aug 2016","datepc":"2 Sep 2016","platforms":"PS4, PC","link":"Update 1.07 on nomanssky.com","previous":"1.06","next":"1.08","release":"Initial Release","steam":"1314359","gog":"2.4.0.6"},"recipes":[]}
 ---
 

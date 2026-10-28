@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.03"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Voyagers-book-cover.png","date":"3 September, 2025","dateps":"4 September, 2025","datexbox":"4 September, 2025","platform":"PC, Mac, PS, XB","link":"Voyagers Patch 6.03","release":"Voyagers","previous":"6.02","next":"6.04"},"recipes":[]}
 ---
 

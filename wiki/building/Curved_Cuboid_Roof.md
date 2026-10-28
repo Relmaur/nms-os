@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Curved_Cuboid_Roof"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBECURVEROOF.png","category":"Base Building","type":"Construction module","color":"Blue","power":"5kP","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":75},{"name":"Glass","qty":1}],"outputs":[{"name":"Curved Cuboid Roof","qty":1}],"blueprint":true}]}
 ---
 

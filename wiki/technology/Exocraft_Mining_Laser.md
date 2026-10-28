@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Mining_Laser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLE LASER.png","color":"blue","category":"Vehicle","type":"Exocraft Mining Attachment","recharge":"Carbon, Condensed Carbon, Oxygen","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Chromatic Metal","qty":100},{"name":"Life Support Gel","qty":2}],"outputs":[{"name":"Exocraft Mining Laser","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Mining Laser","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":12},{"name":"Chromatic Metal","qty":50},{"name":"Life Support Gel","qty":1}]}]}
 ---
 

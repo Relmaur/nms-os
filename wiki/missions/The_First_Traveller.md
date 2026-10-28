@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_First_Traveller"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"A Leap in the Dark","nextmission":"Patterns in Time","origin":"Artemis's Traveller Grave","requires":"N/A","implemented":"Atlas Rises","desc":"Null, the Stranger, Fourth mission of the Artemis Path proper"},"recipes":[]}
 ---
 

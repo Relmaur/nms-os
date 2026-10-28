@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Odvinsko-Iayi_V7.28"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Odvinsko-Iayi v7.28","color":"blue","category":"Multi-tool","subcategory":"Weapon","type":"24 slots provided","release":"Pre-release"},"recipes":[]}
 ---
 

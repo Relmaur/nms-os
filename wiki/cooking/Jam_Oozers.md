@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jam_Oozers"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"81,900.0","release":"Prisms"},"value":81900,"recipes":[{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Jam Oozers","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Jam Oozers","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Jam Oozers","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Jam Oozers","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

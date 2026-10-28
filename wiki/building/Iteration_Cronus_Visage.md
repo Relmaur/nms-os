@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iteration%3A_Cronus_Visage"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.EXOTICHEAD4.png","category":"Customisation Part","type":"Anomalous Face Transformation","release":"Beyond"},"recipes":[]}
 ---
 

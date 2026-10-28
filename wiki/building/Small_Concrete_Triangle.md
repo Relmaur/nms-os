@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Concrete_Triangle"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.TRIFLOORQ_CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":5}],"outputs":[{"name":"Small Concrete Triangle","qty":1}],"blueprint":true}]}
 ---
 

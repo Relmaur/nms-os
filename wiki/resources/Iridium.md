@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iridium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.neutral.common3.png","type":"Neutral","rarity":"Uncommon","desc":"A soft, white and lustrous transition metal","symbol":"Ir","value":"96.0","release":"Atlas Rises"},"value":96,"recipes":[]}
 ---
 

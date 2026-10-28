@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Life_Support_Gel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.gel2.png","category":"Consumable","type":"Portable Life Support Power","value":"200","release":"WorldsTwo"},"value":200,"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen Jelly","qty":1},{"name":"Carbon","qty":20}],"outputs":[{"name":"Life Support Gel","qty":1}]},{"type":"refine","inputs":[{"name":"Oxygen","qty":10},{"name":"Condensed Carbon","qty":10},{"name":"Di-hydrogen","qty":10}],"outputs":[{"name":"Life Support Gel","qty":1}],"seconds":45,"label":"Advanced Oxygen Capture"}]}
 ---
 

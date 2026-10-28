@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cargo_Scan_Deflector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CARGOSHIELD.png","color":"blue","category":"Starship","subcategory":"Interplanetary","type":"Anti-Probe Countermeasures","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Counterfeit Circuits","qty":2},{"name":"Solar Mirror","qty":2},{"name":"Platinum","qty":220}],"outputs":[{"name":"Cargo Scan Deflector","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Counterfeit Circuits","qty":1},{"name":"Solar Mirror","qty":1},{"name":"Platinum","qty":110}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Cargo Scan Deflector","qty":1}],"outputs":[{"name":"Counterfeit Circuits","qty":1},{"name":"Solar Mirror","qty":1},{"name":"Platinum","qty":110}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ricochet_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.ricochet.png","color":"blue","category":"Weapon","subcategory":"Projectile","level":"3","type":"Boltcaster Companion Unit","desc":"Boltcaster shots are granted deflective properties.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Gold","qty":100},{"name":"Plutonium","qty":100},{"name":"Platinum","qty":100}],"outputs":[{"name":"Ricochet Theta","qty":1}]}]}
 ---
 

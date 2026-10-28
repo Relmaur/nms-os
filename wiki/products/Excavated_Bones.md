@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Excavated_Bones"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Bizarre Skeleton","image":"PRODUCT.BONES.RARE.png","category":"Artifact","color":"yellow","type":"Excavated Bones","value":"1,952,544.8","used":"Trading, Trading (High Value)","release":"Singularity"},"value":1952544.8,"recipes":[]}
 ---
 

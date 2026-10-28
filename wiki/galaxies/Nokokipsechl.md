@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nokokipsechl"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nokokipsechl","image":"20191001214251_1.jpg","color":"Red","type":"Harsh","order":"63","previous":"Quulngais","next":"Rinblodesa","release":"Waypoint"},"recipes":[]}
 ---
 

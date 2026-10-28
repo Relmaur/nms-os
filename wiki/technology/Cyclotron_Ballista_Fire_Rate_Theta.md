@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cyclotron_Ballista_Fire_Rate_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.IONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"3","type":"Cyclotron Ballista Companion Unit","desc":"Increases rate of fire of the Starship's Cyclotron Ballista weapon mode by a large amount.","stats":"Fire Rate = +20%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":300},{"name":"Iron","qty":300},{"name":"Dimensional Matrix","qty":3}],"outputs":[{"name":"Cyclotron Ballista Fire Rate Theta","qty":1}]}]}
 ---
 

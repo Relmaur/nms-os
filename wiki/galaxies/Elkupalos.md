@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Elkupalos"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Elkupalos","image":"No Man's Sky_20190103011352.png","color":"Indigo","type":"Norm","order":"11","previous":"Eissentam","next":"Aptarkaba","release":"Swarm"},"recipes":[]}
 ---
 

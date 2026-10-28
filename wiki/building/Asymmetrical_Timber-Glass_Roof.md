@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Asymmetrical_Timber-Glass_Roof"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TIMBER.BASIC_ROOF_TOP1.png","category":"Base Building","type":"Timber Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon,10,Glass","qty":1}],"outputs":[{"name":"Asymmetrical Timber-Glass Roof","qty":1}],"blueprint":true}]}
 ---
 

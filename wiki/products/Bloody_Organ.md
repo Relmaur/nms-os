@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bloody_Organ"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.ORGAN.png","color":"Red","category":"Consumable","type":"Carnivore Bait","value":"800.0","release":"Origins"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Feline Liver","qty":1},{"name":"Mordite","qty":1}],"outputs":[{"name":"Bloody Organ","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Offal Sac","qty":1},{"name":"Mordite","qty":1}],"outputs":[{"name":"Bloody Organ","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hazard_Protection"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectgeneric.png","color":"blue","category":"Exosuit","subcategory":"Hazard","type":"Exosuit Environmental Shielding","desc":"Basic shielding of user from environmental hazards.","recharge":"Sodium-related products","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Ferrite Dust","qty":50}],"outputs":[]}]}
 ---
 

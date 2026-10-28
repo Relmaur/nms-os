@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rocket_Boots"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"A","type":"Exosuit Upgrade","stats":"Advanced Jump System: Enabled","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Tritium","qty":100},{"name":"Hydraulic Wiring","qty":1}],"outputs":[{"name":"Rocket Boots","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Tritium","qty":50},{"name":"Hydraulic Wiring","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Rocket Boots","qty":1}],"outputs":[{"name":"Tritium","qty":50}]}]}
 ---
 

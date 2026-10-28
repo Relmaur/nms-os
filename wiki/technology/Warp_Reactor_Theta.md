@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Reactor_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.hyperdrive.png","category":"Starship","subcategory":"Hyperdrive","type":"Hyperdrive Companion Unit","level":"3","desc":"Increases length of Hyperdrive operation.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Dynamic Resonator","qty":3},{"name":"Gold","qty":1000},{"name":"Solanium","qty":1000}],"outputs":[{"name":"Warp Reactor Theta","qty":1}]}]}
 ---
 

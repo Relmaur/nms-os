@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crolium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.metallic.4.png","category":"Component","type":"Neutral Metal Alloy","value":"35,378.8","desc":"A highly resistant and durable alloy.","release":"Pathfinder"},"value":35378.8,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":100},{"name":"Chrysonite","qty":80}],"outputs":[{"name":"Crolium","qty":1}]}]}
 ---
 

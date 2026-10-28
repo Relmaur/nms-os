@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Calypso"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Calypso","image":"No Man's Sky_20190118020544.png","color":"Medium Orchid","type":"Harsh","order":"3","previous":"Hilbert Dimension","next":"Hesperius Dimension","release":"Swarm"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Brined_Flesh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.TROUT.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"35,400","release":"Aquarius"},"value":35400,"recipes":[{"type":"cook","inputs":[{"name":"Whispering Bonefish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Shrieking Venttail","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Radiant Sunfish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Magma Shark","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frostbite Ray","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Marrow Shark","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Twilight Cavefish","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ossified Deinosuchus","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Witchfin","qty":1}],"outputs":[{"name":"Brined Flesh","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

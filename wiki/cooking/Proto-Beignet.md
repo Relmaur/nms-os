@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Proto-Beignet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"72,000.0","release":"WorldsOne"},"value":72000,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Oil","qty":1},{"name":"Dough","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Proto-Beignet","qty":1}],"seconds":2.5,"label":"Accelerated Fry"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_Ricochet_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"A","type":"Boltcaster Upgrade","stats":"Ricochet Module: Enabled","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Glass","qty":4},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Boltcaster Ricochet Module","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Glass","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Boltcaster Ricochet Module","qty":1}],"outputs":[{"name":"Glass","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

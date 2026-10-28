@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Snatreetze"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Snatreetze","image":"20200217134242_1.jpg","color":"Mint Green","type":"Norm","order":"208","previous":"Tweretnort","next":"Iwundaracos","release":"Aquarius"},"recipes":[]}
 ---
 

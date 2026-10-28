@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Curved_Desk"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Decoration.curveddesk.png","color":"Blue","category":"Base Building","type":"Component","complexity":"2","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Condensed Carbon","qty":10}],"outputs":[{"name":"Curved Desk","qty":1}],"blueprint":true}]}
 ---
 

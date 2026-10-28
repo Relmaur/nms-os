@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Livestock_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CREATUREFARMER.png","category":"Base Building","color":"blue","type":"Automatic Harvesting Robot","release":"Expeditions","power":"20 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":4},{"name":"Poly Fibre","qty":2},{"name":"Faecium","qty":50}],"outputs":[{"name":"Livestock Unit","qty":1}],"blueprint":true}]}
 ---
 

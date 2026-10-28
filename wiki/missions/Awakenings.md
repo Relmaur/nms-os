@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Awakenings"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_Awakenings.jpg","type":"Primary","series":"Artemis Path","prevmission":"N/A","nextmission":"Alone Amidst the Stars","origin":"N/A (when starting a new game)","requires":"N/A","implemented":"Atlas Rises","desc":"Find Us, Hear Us, First story mission and introduction to the game's mechanics"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Command"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","origin":"Freighter","requires":"Ownership of a freighter","implemented":"Expeditions","desc":"Freighter tutorial which guides the player through their first frigate expedition."},"recipes":[]}
 ---
 

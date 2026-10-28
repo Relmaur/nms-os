@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Viewing_Sphere"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VIEWSPHERE.png","category":"Base Building","type":"Construction module","complexity":"??","release":"Beyond","power":"1 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":10},{"name":"Glass","qty":3}],"outputs":[{"name":"Viewing Sphere","qty":1}],"blueprint":true}]}
 ---
 

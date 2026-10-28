@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ariadne's_Flame"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech_Exocraft_Acceleration_Module_Icon.png","color":"blue","category":"Vehicle","type":"Exocraft Engine Upgrade","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Amino Chamber","qty":1},{"name":"Metal Plating","qty":4},{"name":"Carbon Nanotubes","qty":10}],"outputs":[{"name":"Ariadne's Flame","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Ariadne's Flame","qty":1}],"outputs":[{"name":"Metal Plating","qty":2},{"name":"Carbon Nanotubes","qty":5}]}]}
 ---
 

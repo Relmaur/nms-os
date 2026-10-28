@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_Bore"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech Exocraft Mounted Cannon Icon.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Digging Laser","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":100},{"name":"Cobalt","qty":40},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Minotaur Bore","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Minotaur Bore","qty":1}],"outputs":[{"name":"Silicate Powder","qty":100},{"name":"Cobalt","qty":40}]}]}
 ---
 

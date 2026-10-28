@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gooey_Honey_Puff"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"38,400.0","release":"NextGen"},"value":38400,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Gooey Honey Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Gooey Honey Puff","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

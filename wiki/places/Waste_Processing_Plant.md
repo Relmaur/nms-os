@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Waste_Processing_Plant"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Waste Processing Plant.jpg","release":"Remnant"},"recipes":[]}
 ---
 

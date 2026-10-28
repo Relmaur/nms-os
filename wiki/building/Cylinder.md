@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cylinder"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.CYLINDERSHAPE.png","category":"Base Building","color":"blue","type":"Construction module","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Cylinder","qty":1}],"blueprint":true}]}
 ---
 

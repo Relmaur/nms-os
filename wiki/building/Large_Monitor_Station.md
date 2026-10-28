@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Large_Monitor_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.LARGEDESK.png","category":"Base Building","color":"blue","type":"Furniture","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Condensed Carbon","qty":5}],"outputs":[{"name":"Large Monitor Station","qty":1}],"blueprint":true}]}
 ---
 

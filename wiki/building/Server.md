@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Server"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.SERVERSTACK.png","category":"Base Building","color":"blue","type":"Decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":10},{"name":"Sodium","qty":5}],"outputs":[{"name":"Server","qty":1}],"blueprint":true}]}
 ---
 

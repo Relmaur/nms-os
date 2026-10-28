@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gelatinous_Membrane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Gelatinous Membrane","image":"PRODUCT.MEAT.SAUSAGE.png","color":"Red","category":"Consumable","type":"Edible Product","used":"Cooking","value":"8,000","release":"WorldsTwo"},"value":8000,"recipes":[{"type":"cook","inputs":[{"name":"Flesh Rope","qty":1}],"outputs":[{"name":"Gelatinous Membrane","qty":1}],"seconds":2.5,"label":"Incinerate Flesh"}]}
 ---
 

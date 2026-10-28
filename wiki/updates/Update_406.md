@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.06"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-waypoint-book-cover-op.png","date":"8 November, 2022","platform":"PC, PS, XB, NS","link":"Patch 4.06","release":"Waypoint","previous":"4.05","next":"4.07"},"recipes":[]}
 ---
 

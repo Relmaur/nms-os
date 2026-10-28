@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spikey_Tart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Green","category":"Consumable","type":"Edible Product","value":"40,000.0","release":"WorldsOne"},"value":40000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Spikey Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Spikey Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Explosive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech_Explosive_Icon.png","category":"Technology","type":"Component","desc":"General purpose explosive","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Coprite","qty":40},{"name":"Solanium","qty":40}],"outputs":[{"name":"Explosive","qty":1}]}]}
 ---
 

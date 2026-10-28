@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hardframe_Left_Arm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.MECH.SENT.LARM.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","stats":"Mining Laser Power: +62%, Damage to stunned entities: +400%, Post-Impact Ignition: Enabled, Impact Fire Duration: 4 seconds","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Pugneum","qty":40},{"name":"Hydraulic Wiring","qty":1}],"outputs":[{"name":"Hardframe Left Arm","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":25},{"name":"Pugneum","qty":20},{"name":"Hydraulic Wiring","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Hardframe Left Arm","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":25},{"name":"Pugneum","qty":20},{"name":"Hydraulic Wiring","qty":1}]}]}
 ---
 

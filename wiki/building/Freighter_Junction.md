@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Junction"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SPACE CORRIDOR T.png","category":"Base Building","type":"Freighter Interior Module","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":80},{"name":"Tritium","qty":10}],"outputs":[{"name":"Freighter Junction","qty":1}],"blueprint":true}]}
 ---
 

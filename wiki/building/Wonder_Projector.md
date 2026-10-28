@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wonder_Projector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.HOLODISCO0.png","category":"Base Building","color":"blue","type":"Interior Decorations","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Magnetised Ferrite","qty":25},{"name":"Antimatter","qty":1}],"outputs":[{"name":"Wonder Projector","qty":1}],"blueprint":true}]}
 ---
 

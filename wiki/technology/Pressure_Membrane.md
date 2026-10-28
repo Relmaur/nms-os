@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pressure_Membrane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20250208224645_2.jpg","color":"blue","category":"Exosuit","type":"Aquatic Technology","release":"Worlds Part II"},"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":150},{"name":"Hermetic Seal","qty":3},{"name":"Hydrothermal Fuel Cell","qty":2}],"outputs":[{"name":"Pressure Membrane","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Pressure Membrane","qty":1}],"outputs":[{"name":"Oxygen","qty":75},{"name":"Hermetic Seal","qty":2},{"name":"Hydrothermal Fuel Cell","qty":1}]}]}
 ---
 

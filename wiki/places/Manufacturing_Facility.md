@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Manufacturing_Facility"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Manufacturing Facility","image":"ManufacturingFacility.jpg","category":"Inhabited Outpost","type":"Puzzle location","release":"Prisms"},"recipes":[]}
 ---
 

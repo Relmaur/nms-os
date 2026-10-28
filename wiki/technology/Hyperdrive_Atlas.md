@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hyperdrive_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.hyperdrive.png","color":"blue","category":"Starship","type":"Lightspeed Warp Drive","desc":"FTL propulsion drive for warp speed","recharge":"Warp Cell","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Dynamic Resonator","qty":1},{"name":"Heridium","qty":200}],"outputs":[{"name":"Hyperdrive (Atlas)","qty":1}]}]}
 ---
 

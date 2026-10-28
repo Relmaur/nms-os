@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jetpack"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.jetpack.png","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Aerial Propulsion Booster","desc":"Used as a flight pack to temporarily render the user airborne.","release":"Desolation"},"recipes":[{"type":"repair","inputs":[{"name":"Ferrite Dust","qty":100},{"name":"Cobalt","qty":50}],"outputs":[]}]}
 ---
 

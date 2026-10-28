@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nanotube_Crate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nanotube Crate","image":"TRADEPROD.ALLOY1.png","color":"grey","category":"Tradeable","type":"Trade Goods (Construction)","value":"1,000.0","release":"Adrift"},"value":1000,"recipes":[]}
 ---
 

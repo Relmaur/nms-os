@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chromatic_Warp_Shielding"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTAU.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"B","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 50 ly","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Hypercore","qty":1},{"name":"Solar Mirror","qty":2},{"name":"Emeril","qty":250}],"outputs":[{"name":"Chromatic Warp Shielding","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Chromatic Warp Shielding","qty":1}],"outputs":[{"name":"Warp Hypercore","qty":1},{"name":"Solar Mirror","qty":1},{"name":"Emeril","qty":125}]}]}
 ---
 

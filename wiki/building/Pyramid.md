@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pyramid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.PYRAMID.png","category":"Base Building","color":"blue","value":"1","type":"Construction module","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Pyramid","qty":1}],"blueprint":true}]}
 ---
 

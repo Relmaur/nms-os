@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Eissentam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Eissentam","image":"No Man's Sky_20181210034201.png","color":"Orange","type":"Lush","order":"10","previous":"Eltiensleen","next":"Elkupalos","release":"Waypoint"},"recipes":[]}
 ---
 

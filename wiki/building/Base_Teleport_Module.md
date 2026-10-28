@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Base_Teleport_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.teleporter.png","category":"Base Building","type":"Long-Distance Matter Transfer Device","desc":"Instant method of moving great distances","power":"20 kPs","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":4},{"name":"Carbon Nanotubes","qty":2},{"name":"Sodium","qty":40}],"outputs":[{"name":"Base Teleport Module","qty":1}],"blueprint":true}]}
 ---
 

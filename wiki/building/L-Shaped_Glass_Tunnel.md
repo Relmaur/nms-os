@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/L-Shaped_Glass_Tunnel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.CORRIDORL.png","category":"Base Building","type":"Aquatic Construction Module","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Glass","qty":1},{"name":"Crystal Sulphide","qty":2},{"name":"Ferrite Dust","qty":25}],"outputs":[{"name":"L-Shaped Glass Tunnel","qty":1}],"blueprint":true}]}
 ---
 

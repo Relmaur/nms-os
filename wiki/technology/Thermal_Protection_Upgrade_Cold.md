@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermal_Protection_Upgrade_(Cold)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTCOLD.png","category":"Exosuit","subcategory":"Thermal Protection","type":"Generated Upgrade","recharge":"Dioxite, Ion Battery, Advanced Ion Battery","release":"Beyond"},"recipes":[{"type":"repair","inputs":[{"name":"Dioxite","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Thermal Protection Upgrade (Cold)","qty":1}],"outputs":[{"name":"Dioxite","qty":50},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

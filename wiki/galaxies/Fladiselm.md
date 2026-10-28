@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fladiselm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Fladiselm","image":"20190921202817_1.jpg","color":"Manhattan Orange","type":"Harsh","order":"55","previous":"Amsentisz","next":"Laanawemb","release":"Waypoint"},"recipes":[]}
 ---
 

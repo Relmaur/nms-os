@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Caustic_Urchin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT4.FISH.STARFISH.png","color":"blue","category":"Fish","type":"Uncommon Fish","value":"3,000.0","release":"Aquarius"},"value":3000,"recipes":[]}
 ---
 

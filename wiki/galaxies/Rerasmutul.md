@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rerasmutul"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Rerasmutul","image":"No Man's Sky 20210406041757.png","color":"Pale Red","type":"Norm","order":"18","previous":"Hitonskyer","next":"Isdoraijung","release":"Waypoint"},"recipes":[]}
 ---
 

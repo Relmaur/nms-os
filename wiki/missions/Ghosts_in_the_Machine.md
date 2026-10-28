@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ghosts_in_the_Machine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"Alone Amidst the Stars","nextmission":"A Leap in the Dark","origin":"Space","requires":"N/A","implemented":"Atlas Rises","desc":"Apollo, the Adventurer, Second mission of the Artemis Path proper"},"recipes":[]}
 ---
 

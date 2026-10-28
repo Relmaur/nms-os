@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Summoning_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20250208224635_2.jpg","color":"blue","category":"Exosuit","type":"Exocraft Technology","release":"Worlds Part II"},"recipes":[{"type":"craft","inputs":[{"name":"Activated Quartzite","qty":140},{"name":"Quantum Computer","qty":3},{"name":"Crystallised Helium","qty":90}],"outputs":[{"name":"Exocraft Summoning Unit","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Summoning Unit","qty":1}],"outputs":[{"name":"Activated Quartzite","qty":70},{"name":"Quantum Computer","qty":2},{"name":"Crystallised Helium","qty":45}]}]}
 ---
 

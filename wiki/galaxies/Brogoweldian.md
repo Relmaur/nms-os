@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Brogoweldian"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Brogoweldian","image":"No Man's Sky_20190403200938.png","color":"Light Fuchsia","type":"Norm","order":"33","previous":"Sugueziume","next":"Ehbogdenbu","release":"Waypoint"},"recipes":[]}
 ---
 

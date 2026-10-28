@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquid_Explosive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPROD.7.png","category":"Component","color":"grey","type":"Advanced Agricultural Product","value":"800,500.0","release":"Prisms"},"value":800500,"recipes":[{"type":"craft","inputs":[{"name":"Acid","qty":1},{"name":"Unstable Gel","qty":1}],"outputs":[{"name":"Liquid Explosive","qty":1}],"blueprint":true}]}
 ---
 

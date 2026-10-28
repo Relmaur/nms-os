@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Appearance_Modifier_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.DRESS.png","category":"Base Building","type":"Freighter Construction Module","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":60},{"name":"Carbon Nanotubes","qty":4},{"name":"Solar Mirror","qty":1}],"outputs":[{"name":"Appearance Modifier Room","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Appearance Modifier Room","qty":1}],"outputs":[{"name":"Silver","qty":60},{"name":"Carbon Nanotubes","qty":4},{"name":"Solar Mirror","qty":1}]}]}
 ---
 

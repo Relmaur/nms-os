@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Standing_Planter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.standplanter.png","category":"Base Building","color":"Blue","type":"Farming tech","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":25},{"name":"Metal Plating","qty":2}],"outputs":[{"name":"Standing Planter","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Standing Planter","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":20},{"name":"Metal Plating","qty":2}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thnistner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Thnistner","image":"20191207171805_1.jpg","color":"Aquamarine","type":"Norm","order":"121","previous":"Saffneckm","next":"Dotusingg","release":"Waypoint"},"recipes":[]}
 ---
 

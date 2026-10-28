@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deuterium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.LAUNCHSUB.2.png","color":"Blue","category":"Earth","type":"High Energy Substance","rarity":"Common","used":"Charging, Upgrading","symbol":"D","value":"34.0","release":"Adrift"},"value":34,"recipes":[{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Tritium","qty":1}],"outputs":[{"name":"Deuterium","qty":1}],"seconds":0.24,"label":"Di-hydrogen Cycling"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":1},{"name":"Silicate Powder","qty":1}],"outputs":[{"name":"Deuterium","qty":1}],"seconds":0.24,"label":"Di-hydrogen Cycling"}]}
 ---
 

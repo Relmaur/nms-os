@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Eltiensleen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Eltiensleen","image":"No Man's Sky_20190502011634.png","color":"Yellow","type":"Norm","order":"9","previous":"Kikolgallr","next":"Eissentam","release":"Swarm"},"recipes":[]}
 ---
 

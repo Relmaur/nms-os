@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Terrifying_Sample"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Deathly Remains","image":"PRODUCT.HORRIFICARTIFACT.png","category":"Artifact","color":"Purple","type":"Terrifying Sample","value":"1,379,958.6","used":"Trading, Trading (High Value)","release":"WorldsOne"},"value":1379958.6,"recipes":[]}
 ---
 

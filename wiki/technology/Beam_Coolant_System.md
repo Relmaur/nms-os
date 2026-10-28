@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Coolant_System"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech_Beam_Coolant_System.png","category":"Multi-tool","subcategory":"Laser","type":"Mining Beam Companion","desc":"Shorten Mining Beam cool-down periods","release":"Atlas Rises"},"recipes":[]}
 ---
 

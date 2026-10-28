@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Optical_Solvent"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Optical Solvent","image":"TRADEPROD.ALLOY3.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Construction)","value":"15,000.0","desc":"Several bottles of optical solvent","release":"Adrift"},"value":15000,"recipes":[]}
 ---
 

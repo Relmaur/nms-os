@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Memory_Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ROGUEFINDER.png","category":"Curiosity","color":"purple","type":"Loop Manifestation Technology","value":"16","used":"Expedition","release":"Outlaws"},"value":16,"recipes":[{"type":"craft","inputs":[{"name":"Ancestral Memories","qty":16},{"name":"Gold","qty":40},{"name":"Chromatic Metal","qty":30}],"outputs":[{"name":"Memory Resonator","qty":1}],"blueprint":true}]}
 ---
 

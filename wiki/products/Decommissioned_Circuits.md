@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Decommissioned_Circuits"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Decommissioned Circuits","image":"TRADEPROD.TECH1.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Technology)","value":"1,000.0","release":"Adrift"},"value":1000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mealworms"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISHBAIT.1.png","color":"Darkblue","category":"Consumable","type":"Fishing Bait","value":"16.0","release":"Aquarius"},"value":16,"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":120}],"outputs":[{"name":"Mealworms","qty":30}]}]}
 ---
 

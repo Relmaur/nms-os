@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Positron_Ejector_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"3","type":"Positron Ejector Companion Unit","desc":"Increases damage done by the Starship's Positron Ejector weapon mode by a large amount.","stats":"Damage = +10.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Omegon","qty":100},{"name":"Vortex Cube","qty":3},{"name":"Carbon","qty":50}],"outputs":[{"name":"Positron Ejector Damage Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Titanium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.commodity.rare1.png","type":"Oxide","rarity":"Rare","symbol":"Ti","value":"61.9","release":"Atlas Rises"},"value":61.9,"recipes":[]}
 ---
 

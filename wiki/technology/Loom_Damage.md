@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Loom_Damage"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.FARM5.png","category":"Multi-Tool","color":"red","type":"Damaged Multi-Tool Component","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Pyrite","qty":25},{"name":"Dioxite","qty":25},{"name":"Paraffinium","qty":25}],"outputs":[]}]}
 ---
 

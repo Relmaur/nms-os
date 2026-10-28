@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Instability_Drive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"blue","category":"Starship","subcategory":"Interplanetary","level":"A","type":"Pulse Engine Upgrade","release":"Synthesis"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Cell","qty":1},{"name":"Tritium Hypercluster","qty":3},{"name":"Chromatic Metal","qty":100}],"outputs":[{"name":"Instability Drive","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Warp Cell","qty":1},{"name":"Tritium Hypercluster","qty":2},{"name":"Chromatic Metal","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Instability Drive","qty":1}],"outputs":[{"name":"Tritium Hypercluster","qty":1},{"name":"Chromatic Metal","qty":50}]}]}
 ---
 

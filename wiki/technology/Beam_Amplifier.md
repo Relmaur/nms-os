@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Amplifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser2.png","category":"Multi-tool","subcategory":"Laser","type":"Mining Extractoion Beam Enhancement","desc":"Strengthening and improving Mining Beam's capabilities","release":"Pre-release"},"recipes":[]}
 ---
 

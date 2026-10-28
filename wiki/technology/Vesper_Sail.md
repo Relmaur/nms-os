@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vesper_Sail"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SOLARSAIL.png","category":"Starship","type":"Advanced Engine Technology","desc":"High-performance solar sail","release":"Outlaws"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Humboldt_Drive_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SUBMARINEENGINEMOD.png","category":"Exocraft","subcategory":"Humboldt Drive","type":"Generated Upgrade","release":"Outlaws"},"recipes":[{"type":"dismantle","inputs":[{"name":"Humboldt Drive Upgrade","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

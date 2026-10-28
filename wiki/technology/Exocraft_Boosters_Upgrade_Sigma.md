@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Boosters_Upgrade_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech Exocraft Acceleration Module Upgrade Icon.png","category":"Exocraft","subcategory":"Utilities","level":"1","upgradeicon":"speed","type":"Exocraft Engine Upgrade","desc":"Increases efficiency of exocraft engine","release":"Waypoint"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carite Sheet","qty":2},{"name":"Heridium","qty":50}],"outputs":[{"name":"Exocraft Boosters Upgrade Sigma","qty":1}]}]}
 ---
 

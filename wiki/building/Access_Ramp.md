@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Access_Ramp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.RAMP.png","category":"Base Building","type":"Construction item","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":50},{"name":"Carbon","qty":50}],"outputs":[{"name":"Access Ramp","qty":1}],"blueprint":true}]}
 ---
 

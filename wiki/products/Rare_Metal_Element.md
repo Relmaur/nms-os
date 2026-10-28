@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rare_Metal_Element"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"Yellow","image":"PRODUCT.RAREMETALELEMENT.png","category":"Curiosity","type":"Concentrated Metal Deposit","value":"4,200.0","release":"Origins"},"value":4200,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Under_a_Rebel_Star"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Under a Rebel Star","image":"20220430174803_1.jpg","type":"Secondary","origin":"Space Encounter","implemented":"Outlaws","desc":"Against the red machine"},"recipes":[]}
 ---
 

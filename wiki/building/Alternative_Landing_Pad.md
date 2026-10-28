@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alternative_Landing_Pad"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BAZAAR.LANDINGZONE.png","category":"Base Building","color":"blue","type":"Construction module","release":"Singularity"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":10},{"name":"Ion Battery","qty":2},{"name":"Microprocessor","qty":2}],"outputs":[{"name":"Alternative Landing Pad","qty":1}],"blueprint":true}]}
 ---
 

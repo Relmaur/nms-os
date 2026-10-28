@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Holographic_Comms_Tower"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Holographic Comms Tower","image":"NMS Lush Holoterminus.PNG","category":"Communication","type":"Planetary","release":"Adrift","desc":"Used to communicate with other travellers"},"recipes":[]}
 ---
 

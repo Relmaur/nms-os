@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Magnetic_Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.MAGNET.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"6,150.0","release":"Prisms"},"value":6150,"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":40},{"name":"Ionised Cobalt","qty":40}],"outputs":[{"name":"Magnetic Resonator","qty":1}],"blueprint":true}]}
 ---
 

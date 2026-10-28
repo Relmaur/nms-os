@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cyclotron_Ballista_Damage_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.IONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"1","upgradeicon":"damage","type":"Cyclotron Ballista Companion Unit","desc":"Increases damage done by the Starship's Cyclotron Ballista weapon mode by a small amount.","stats":"Damage = +5","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Cyclotron Ballista Damage Sigma","qty":1}]}]}
 ---
 

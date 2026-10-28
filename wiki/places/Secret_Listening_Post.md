@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Secret_Listening_Post"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Secret Listening Post","image":"listening6.jpg","system_types":"Inhabited","frequency":"2","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Use communicator","ramifications":"None, allows you to intercept messages between Aliens","rewards":"none","release":"Orbital"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stone_Support_Pillar"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"STONE.BASIC_WALL_SUPPORT.png","category":"Base Building","type":"Stone Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25}],"outputs":[{"name":"Stone Support Pillar","qty":1}],"blueprint":true}]}
 ---
 

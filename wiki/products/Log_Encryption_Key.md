@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Log_Encryption_Key"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.LOGKEY.png","category":"Curiosity","type":"Incomplete Data Sequence","value":"1,500","release":"Waypoint"},"value":1500,"recipes":[]}
 ---
 

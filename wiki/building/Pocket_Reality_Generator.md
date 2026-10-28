@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pocket_Reality_Generator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.TOYCORE.png","category":"Base Building","color":"blue","type":"Exotic Collectibles","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":2},{"name":"Chromatic Metal","qty":100},{"name":"Platinum","qty":25}],"outputs":[{"name":"Pocket Reality Generator","qty":1}],"blueprint":true}]}
 ---
 

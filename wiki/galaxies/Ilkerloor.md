@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ilkerloor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ilkerloor","image":"20190923095715_1.jpg","color":"Magenta","type":"Norm","order":"57","previous":"Laanawemb","next":"Davanossi","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aeron_Shield"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ROBOTSHIP.SHIELD.png","category":"Starship","color":"darkblue","subcategory":"Shield","type":"Radiant Defensive Barrier","recharge":"Sodium, Sodium Nitrate, Radiant Shard","release":"Echoes"},"recipes":[{"type":"repair","inputs":[{"name":"Inverted Mirror","qty":2},{"name":"Radiant Shard","qty":2}],"outputs":[]}]}
 ---
 

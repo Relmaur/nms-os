@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dayzhenyov-kosh_v2.1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dayzhenyov-kosh v2.1","color":"blue","category":"Multi-tool","subcategory":"Weapon","release":"Foundation"},"recipes":[]}
 ---
 

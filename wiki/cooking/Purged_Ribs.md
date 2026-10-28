@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Purged_Ribs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Purged Ribs","image":"PRODUCT.REFINED.MEAT.png","color":"Green","type":"Edible Product","category":"Consumable","value":"9,200","release":"WorldsTwo"},"value":9200,"recipes":[{"type":"cook","inputs":[{"name":"Rancid Flesh","qty":1}],"outputs":[{"name":"Purged Ribs","qty":1}],"seconds":2.5,"label":"Purge By Fire"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"GAS.2.png","color":"Purple","category":"Earth","type":"Compressed Atmospheric Gas","rarity":"Uncommon","used":"Crafting, Charging","symbol":"Rn","value":"20.0","release":"WorldsOne"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Sulphurine","qty":3}],"outputs":[{"name":"Radon","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Radon","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Sulphurine","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Radon","qty":1}],"seconds":0.36,"label":"Gas Catalysation"}]}
 ---
 

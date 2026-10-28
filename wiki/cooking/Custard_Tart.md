@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Custard_Tart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"78,000.0","release":"Prisms"},"value":78000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Custard Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Custard Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Custard Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

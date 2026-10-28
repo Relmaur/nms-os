@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exosuit_Upgrade_Chart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Exosuit Upgrade Chart","image":"PRODUCT.STARCHART.DROPPOD.png","color":"grey","category":"Constructed Technology","type":"Encrypted Navigation Data","value":"85,000.0","release":"WorldsOne"},"value":85000,"recipes":[]}
 ---
 

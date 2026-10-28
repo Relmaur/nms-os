@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jelmandan"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Jelmandan","image":"20191209143431_1.jpg","color":"Peach-Orange","type":"Norm","order":"124","previous":"Luleukous","next":"Otimanaso","release":"Waypoint"},"recipes":[]}
 ---
 

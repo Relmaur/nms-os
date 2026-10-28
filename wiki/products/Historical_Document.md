@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Historical_Document"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Lewd Legal Documents","image":"TREASUREPROD.STRANGEBOOK.png","category":"Artifact","color":"yellow","type":"Historical Document","value":"2,296,996.0","used":"Trading, Trading (High Value)","release":"Relics"},"value":2296996,"recipes":[]}
 ---
 

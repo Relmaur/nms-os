@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hardframe_Legs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.MECH.SENT.LEGS.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","stats":"Fuel Usage: -11%, Boost Tank Size: +25%","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":120},{"name":"Hardframe Engine","qty":1}],"outputs":[{"name":"Hardframe Legs","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Pugneum","qty":60},{"name":"Hardframe Engine","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Hardframe Legs","qty":1}],"outputs":[{"name":"Pugneum","qty":60},{"name":"Hardframe Engine","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nonlinear_Optics_(Infra-Knife_Accelerator)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nonlinear Optics","image":"RENDER.PHOTONACCELMOD.png","category":"Starship","color":"red","subcategory":"Weapons","level":"B","type":"Photon Cannon Upgrade","stats":"Total Cannon Count: 3","release":"Beyond"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Destablised Sodium","qty":3},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Nonlinear Optics (Infra-Knife Accelerator)","qty":1}]}]}
 ---
 

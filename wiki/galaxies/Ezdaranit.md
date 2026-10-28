@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ezdaranit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ezdaranit","image":"20200115172353_1.jpg","color":"Pale Green","type":"Lush","order":"170","previous":"Hilfsesorbs","next":"Wiensanshe","release":"Waypoint"},"recipes":[]}
 ---
 

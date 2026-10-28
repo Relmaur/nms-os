@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cargo_Bulkhead"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CARGOTOKEN.png","category":"Curiosity","color":"darkblue","type":"Auto-Expanding Freighter Module","value":"105,000.0","release":"Voyagers"},"value":105000,"recipes":[]}
 ---
 

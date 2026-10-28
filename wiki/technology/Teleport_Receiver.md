@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Teleport_Receiver"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPTELEPORT.png","color":"Blue","category":"Ship","type":"Ship-Mounted Teleportation Device","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":1},{"name":"Wiring Loom","qty":3}],"outputs":[{"name":"Teleport Receiver","qty":1}]},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Teleport Receiver","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1}]}]}
 ---
 

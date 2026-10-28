@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Large_Rocket_Tubes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ROCKETMOD.png","category":"Starship","color":"purple","subcategory":"Weapons","level":"B","type":"Rocket Launcher Upgrade","stats":"+20% Heat Recovery","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Unstable Plasma","qty":4}],"outputs":[{"name":"Large Rocket Tubes","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1},{"name":"Unstable Plasma","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Large Rocket Tubes","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1},{"name":"Unstable Plasma","qty":2}]}]}
 ---
 

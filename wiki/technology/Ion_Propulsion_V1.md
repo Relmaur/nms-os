@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ion_Propulsion_V1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"category":"Ship","subcategory":"Hyperdrive","desc":"Ship drive using ionized xenon gas for propusion","release":"Pre-release"},"recipes":[]}
 ---
 

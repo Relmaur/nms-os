@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deepwater_Angler"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Deepwater Angler","image":"PRODUCT5.FISH.XL.3.png","color":"purple","category":"Fish","type":"Rare Fish","value":"20,000","release":"Voyagers"},"value":20000,"recipes":[]}
 ---
 

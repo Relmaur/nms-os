@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bifredait"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Bifredait","image":"20200201100228_1.jpg","color":"Pink","type":"Empty","order":"187","previous":"Irroswitzs","next":"Beiraghedwe","release":"Waypoint"},"recipes":[]}
 ---
 

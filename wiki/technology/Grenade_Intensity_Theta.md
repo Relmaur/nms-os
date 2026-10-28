@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grenade_Intensity_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Grenade","level":"3","upgradeicon":"damage","type":"Plasma Launcher Companion Unit","desc":"Grenades cause heightened damage.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Neutrino Module","qty":4},{"name":"Aluminium","qty":200},{"name":"Nickel","qty":200}],"outputs":[{"name":"Grenade Intensity Theta","qty":1}]}]}
 ---
 

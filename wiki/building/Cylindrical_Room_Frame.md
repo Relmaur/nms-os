@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cylindrical_Room_Frame"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.mainroomframe.png","category":"Base Building","type":"Structure","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":100}],"outputs":[{"name":"Cylindrical Room Frame","qty":1}],"blueprint":true}]}
 ---
 

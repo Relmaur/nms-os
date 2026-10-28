@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cajaccari"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Cajaccari","image":"20191029070835_1.jpg","color":"Mint Green","type":"Norm","order":"84","previous":"Dimonimba","next":"Olonerovo","release":"Waypoint"},"recipes":[]}
 ---
 

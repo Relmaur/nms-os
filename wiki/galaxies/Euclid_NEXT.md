@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Euclid_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Euclid","image":"No Man's Sky_20190619021225.png","color":"White","type":"Norm","order":"1","previous":"Iousongola","next":"Hilbert Dimension","release":"NEXT"},"recipes":[]}
 ---
 

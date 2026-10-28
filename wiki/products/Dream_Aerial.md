@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dream_Aerial"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.WHALEBEACON.png","color":"Purple","category":"Curiosity","type":"Subconscious Access Device","value":"16","release":"Cosmos"},"value":16,"recipes":[{"type":"craft","inputs":[{"name":"Living Glass","qty":3},{"name":"Solar Mirror","qty":1}],"outputs":[{"name":"Dream Aerial","qty":1}],"blueprint":true}]}
 ---
 

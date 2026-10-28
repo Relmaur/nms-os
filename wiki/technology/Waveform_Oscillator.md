@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Waveform_Oscillator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BLAZEJAVELINMOD.png","color":"red","category":"Multi-tool","subcategory":"Weapons","level":"S","type":"Blaze Javelin Upgrade","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":125},{"name":"Ionised Cobalt","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Waveform Oscillator","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":64},{"name":"Ionised Cobalt","qty":37},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Waveform Oscillator","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":64},{"name":"Ionised Cobalt","qty":37},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

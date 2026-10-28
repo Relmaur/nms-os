@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Eajerandal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Eajerandal","image":"No Man's Sky_20190319021045.png","color":"Purple","type":"Empty","order":"27","previous":"Sivarates","next":"Aldukesci","release":"Waypoint"},"recipes":[]}
 ---
 

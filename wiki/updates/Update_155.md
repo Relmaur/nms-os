@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.55"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"10 August 2018","platform":"PS4/PC/Xbox","link":"Update 1.55 on nomanssky.com","release":"NEXT","previous":"1.54","next":"1.57"},"recipes":[]}
 ---
 

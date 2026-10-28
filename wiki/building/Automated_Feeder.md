@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Automated_Feeder"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CREATUREFEEDER.png","category":"Base Building","color":"blue","type":"Agricultural Robot","power":"20 kPs","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":4},{"name":"Amino Chamber","qty":1},{"name":"Creature Pellets","qty":10}],"outputs":[{"name":"Automated Feeder","qty":1}],"blueprint":true}]}
 ---
 

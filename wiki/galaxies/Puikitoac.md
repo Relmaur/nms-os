@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Puikitoac"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Puikitoac","image":"20200105231053_1.jpg","color":"Pink","type":"Norm","order":"156","previous":"Halsebenk","next":"Gaybakuaria","release":"Waypoint"},"recipes":[]}
 ---
 

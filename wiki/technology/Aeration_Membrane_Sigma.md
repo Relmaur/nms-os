@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aeration_Membrane_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.helmet.png","color":"blue","category":"Exosuit","subcategory":"Life Support","type":"Companion Unit","desc":"Extends duration of underwater exploration.","stats":"Oxygen Tank = 38.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Carbon","qty":100}],"outputs":[{"name":"Aeration Membrane Sigma","qty":1}]}]}
 ---
 

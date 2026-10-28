@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Child_of_Aquarius"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.JELLY.png","color":"blue","category":"Fish","type":"Precious Spawn","value":"500","release":"Xeno Arena"},"value":500,"recipes":[]}
 ---
 

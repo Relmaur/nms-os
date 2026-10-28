@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Delicate_Legs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.OCTOPUS.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Spiny Starfish","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Caustic Urchin","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Shalebound Starfish","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Anemone Anomaly","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Pulp Urchin","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Golden Urchin","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ocean's Star","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Emeril Sunstar","qty":1}],"outputs":[{"name":"Delicate Legs","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

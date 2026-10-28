@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blown_Transistor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPROD.4.png","category":"Multi-Tool","color":"red","type":"Damaged Multi-Tool Component","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1}],"outputs":[]}]}
 ---
 

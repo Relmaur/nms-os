@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Harmonic_Interface"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Harmonic Interface body.png","category":"Point of Interest","type":"Interface","desc":"Used to buy, craft, and locate unique items.","release":"WorldsOne"},"recipes":[]}
 ---
 

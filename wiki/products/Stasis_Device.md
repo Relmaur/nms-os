@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stasis_Device"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ULTRAPROD.2.png","category":"Tradeable","color":"Grey","type":"Highly Refined Technology","value":"15,600,000","used":"Trading","release":"WorldsOne"},"value":15600000,"recipes":[{"type":"craft","inputs":[{"name":"Quantum Processor","qty":1},{"name":"Cryogenic Chamber","qty":1},{"name":"Iridesite","qty":1}],"outputs":[{"name":"Stasis Device","qty":1}],"blueprint":true}]}
 ---
 

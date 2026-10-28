@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shell_Greaser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon Scatter Blaster Upgrade Icon.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","level":"C","type":"Scatter Blaster Upgrade","stats":"-15% Reload Time","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Shell Greaser","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Shell Greaser","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

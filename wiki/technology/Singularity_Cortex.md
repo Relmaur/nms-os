@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Singularity_Cortex"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.EYECLUSTER.png","category":"Starship","type":"Lightspeed Warp Drive","desc":"FTL propulsion drive for warp speed","recharge":"Chromatic Metal","release":"Echoes"},"recipes":[{"type":"repair","inputs":[{"name":"Larval Core","qty":2},{"name":"Viscous Fluids","qty":20}],"outputs":[]}]}
 ---
 

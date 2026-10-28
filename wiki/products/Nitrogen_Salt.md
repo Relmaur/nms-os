@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nitrogen_Salt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Reaction.3.png","color":"Grey","category":"Tradeable","type":"Enhanced Gas Product","value":"50,000","release":"Prisms"},"value":50000,"recipes":[{"type":"craft","inputs":[{"name":"Nitrogen","qty":250},{"name":"Condensed Carbon","qty":50}],"outputs":[{"name":"Nitrogen Salt","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Nitrogen","qty":100},{"name":"Carbon","qty":20},{"name":"Chlorine","qty":5}],"outputs":[{"name":"Nitrogen Salt","qty":1}],"seconds":45,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":100},{"name":"Carbon","qty":20},{"name":"Salt","qty":10}],"outputs":[{"name":"Nitrogen Salt","qty":1}],"seconds":45,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":100},{"name":"Condensed Carbon","qty":10},{"name":"Chlorine","qty":5}],"outputs":[{"name":"Nitrogen Salt","qty":1}],"seconds":10,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":100},{"name":"Condensed Carbon","qty":10},{"name":"Salt","qty":10}],"outputs":[{"name":"Nitrogen Salt","qty":1}],"seconds":45,"label":"High-Speed Sublimation"}]}
 ---
 

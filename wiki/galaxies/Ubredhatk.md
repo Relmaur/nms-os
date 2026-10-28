@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ubredhatk"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ubredhatk","image":"20191128210522_1.jpg","color":"Canary Yellow","type":"Norm","order":"116","previous":"Luyugoslasr","next":"Cidoniana","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Whitebait"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.PRAWN.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"28,000","release":"Aquarius"},"value":28000,"recipes":[{"type":"cook","inputs":[{"name":"Pondskipper","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Waspfish","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Field's Dartfish","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Common Sunfish","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Ice Darter","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Shadowfin","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Sweetwater Minnow","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Lesser Dustfin","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Vectorfin","qty":1}],"outputs":[{"name":"Whitebait","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

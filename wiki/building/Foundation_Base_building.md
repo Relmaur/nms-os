@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Foundation_(Base_building)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Foundation","image":"Buildable.foundation.png","category":"Base Building","type":"Base","complexity":"5","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":100}],"outputs":[{"name":"Foundation (Base building)","qty":1}],"blueprint":true}]}
 ---
 

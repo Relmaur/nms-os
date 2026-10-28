@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wideshot_Adaptor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shotgun1.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"5","type":"Companion Unit","desc":"Defensive weapon upgrade.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":40},{"name":"Heridium","qty":100},{"name":"Iron","qty":50}],"outputs":[{"name":"Wideshot Adaptor","qty":1}]}]}
 ---
 

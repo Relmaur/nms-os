@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Primordial_Sponge"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"180,700","release":"WorldsOne"},"value":180700,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Sweetened Mucous","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Primordial Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Sweetened Mucous","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Primordial Sponge","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

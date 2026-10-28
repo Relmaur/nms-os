@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stone_Roof_Corner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"STONE.BASIC_ROOF_CORNER.png","category":"Base Building","type":"Stone Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":10},{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Stone Roof Corner","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Geodesite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.METALLIC.7.png","color":"yellow","category":"Tradeable","type":"Enriched Alloy Metal","value":"150,000.0","release":"Frontiers"},"value":150000,"recipes":[{"type":"craft","inputs":[{"name":"Dirty Bronze","qty":1},{"name":"Herox","qty":1},{"name":"Lemmium","qty":1}],"outputs":[{"name":"Geodesite","qty":1}],"blueprint":true}]}
 ---
 

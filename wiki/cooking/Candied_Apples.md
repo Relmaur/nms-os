@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Candied_'Apples'"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"78,000","release":"WorldsTwo"},"value":78000,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"Candied 'Apples'","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Candied 'Apples'","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Candied 'Apples'","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

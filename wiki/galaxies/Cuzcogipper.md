@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cuzcogipper"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Cuzcogipper","image":"20200305074441_1.jpg","color":"Pink","type":"Norm","order":"225","previous":"Kisvarcini","next":"Pamanhermonsu","release":"Fractal"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Curved_Cuboid_Wall"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBECURVEWALL.png","category":"Base Building","type":"Construction module","color":"Blue","release":"Origins","power":"5 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":75}],"outputs":[{"name":"Curved Cuboid Wall","qty":1}],"blueprint":true}]}
 ---
 

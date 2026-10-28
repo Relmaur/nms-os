@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Launch_Thruster_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.landinggear.png","category":"Starship","subcategory":"Launch Thruster","type":"Generated Upgrade","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Di-hydrogen","qty":75},{"name":"Silver","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Launch Thruster Upgrade","qty":1}],"outputs":[{"name":"Di-hydrogen","qty":75},{"name":"Silver","qty":75},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

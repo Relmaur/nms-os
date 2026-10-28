@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pilot_signature"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PilotSigIcon.png","category":"Curiosity","color":"purple","type":"Unfragmented Traveller Identification","value":"1600.0","release":"Swarm","mode":"Expedition 22 : Swarm"},"value":1600,"recipes":[]}
 ---
 

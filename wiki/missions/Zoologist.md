@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zoologist"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RANK.CREATURES.png","level":"9","type":"Planetary Zoology","desc":"Discovered all species on 9 planets","release":"Visions"},"recipes":[]}
 ---
 

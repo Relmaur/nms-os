@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Void_Mote"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Void Mote","image":"SUBSTANCE.BUISCRAP.png","type":"Essence of Atlantid","desc":"Used as currency with the Autophage.","category":"Special","rarity":"Uncommon","value":"380","symbol":"V","release":"WorldsOne"},"value":380,"recipes":[]}
 ---
 

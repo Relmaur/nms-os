@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Xobeurindj"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Xobeurindj","image":"No Man's Sky_20190501234936.png","color":"Indigo","order":"42","type":"Norm","previous":"Urastrykle","next":"Oniijialdu","release":"Waypoint"},"recipes":[]}
 ---
 

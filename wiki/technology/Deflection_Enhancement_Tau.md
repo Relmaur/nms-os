@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deflection_Enhancement_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELD.png","color":"blue","category":"Starship","subcategory":"Health","level":"2","upgradeicon":"armour","type":"Deflector Shield Companion Unit","desc":"Starship energy shield is strengthened. Provides added protection from laser fire, in-flight projectiles and accidental space debris interaction.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Titanium","qty":200},{"name":"Heridium","qty":250},{"name":"Iron","qty":300}],"outputs":[{"name":"Deflection Enhancement Tau","qty":1}]}]}
 ---
 

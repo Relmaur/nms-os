@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Counterfeit_Circuits"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Counterfeit Circuits","image":"PRODUCT.SMUGGLING6.png","category":"Tradeable","value":"68,000.0","type":"Smuggled Goods","release":"Singularity"},"value":68000,"recipes":[]}
 ---
 

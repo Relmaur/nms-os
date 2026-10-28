@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Perpetual_Jam_Fluffer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEFLUFFY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"34,100.0","release":"Prisms"},"value":34100,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Perpetual Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Anomalous Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Perpetual Jam Fluffer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

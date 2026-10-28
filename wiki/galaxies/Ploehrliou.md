@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ploehrliou"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ploehrliou","image":"20190928233429_1.jpg","color":"Medium Slate Blue","type":"Lush","order":"59","previous":"Davanossi","next":"Corpinyaya","release":"Waypoint"},"recipes":[]}
 ---
 

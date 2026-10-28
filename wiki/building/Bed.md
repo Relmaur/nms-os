@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bed"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BED.png","category":"Base Building","color":"blue","type":"Furniture","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":10}],"outputs":[{"name":"Bed","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Bed","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":10}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mining_Beam_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Mining Beam Upgrade","image":"RENDER.LASER1MOD.png","category":"Multi-tool","subcategory":"Weapons","type":"Generated Upgrade","release":"Orbital"},"recipes":[{"type":"repair","inputs":[{"name":"Condensed Carbon","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Mining Beam Upgrade","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":75},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

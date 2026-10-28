@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nonlinear_Optics"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPPROJECTILE1MOD.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"C","type":"Photon Cannon Upgrade","stats":"+21% Heat Dispersion","release":"Beyond"},"recipes":[{"type":"craft","inputs":[{"name":"Hermetic Seal","qty":2},{"name":"Wiring Loom","qty":1},{"name":"Tritium","qty":100}],"outputs":[{"name":"Nonlinear Optics","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Hermetic Seal","qty":1},{"name":"Tritium","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Nonlinear Optics","qty":1}],"outputs":[{"name":"Hermetic Seal","qty":1},{"name":"Tritium","qty":50}]}]}
 ---
 

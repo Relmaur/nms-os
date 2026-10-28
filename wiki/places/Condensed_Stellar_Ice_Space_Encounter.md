@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Condensed_Stellar_Ice_(Space_Encounter)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Condensed Stellar Ice","image":"condensed_stellar_ice.jpg","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Fire to Destroy","ramifications":"Destroying will drop various items","rewards":"Quicksilver, Nanites, Uranium, Condensed Carbon, Di-hydrogen, Dioxite","release":"Echoes"},"recipes":[]}
 ---
 

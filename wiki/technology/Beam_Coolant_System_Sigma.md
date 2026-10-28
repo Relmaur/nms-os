@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Coolant_System_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","category":"Multi-tool","subcategory":"Mining Beam","level":"1","upgradeicon":"generic","type":"Mining Beam Companion Unit","desc":"Mining Beam is modified to extend time between cool-down periods.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":50},{"name":"Heridium","qty":20}],"outputs":[{"name":"Beam Coolant System Sigma","qty":1}]}]}
 ---
 

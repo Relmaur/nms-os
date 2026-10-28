@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oeileutasc"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Oeileutasc","image":"20200318224004_1.jpg","color":"Electric Blue","type":"Norm","order":"244","previous":"Zeziceloh","next":"Zicniijinis","release":"Interceptor"},"recipes":[]}
 ---
 

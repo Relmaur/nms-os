@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Custard_Doughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"105,000","release":"Prisms"},"value":105000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Custard Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"},{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Custard Doughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Impossible_Membrane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOCOMP3.png","category":"Curiosity","color":"purple","type":"Auto-Regenerating Lifeform","value":"1616","release":"Living Ship"},"value":1616,"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Hypnotic Eye","qty":1},{"name":"Living Water","qty":150}],"outputs":[{"name":"Impossible Membrane","qty":1}],"blueprint":true}]}
 ---
 

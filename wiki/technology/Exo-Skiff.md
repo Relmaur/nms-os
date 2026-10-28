@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exo-Skiff"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECH.FISHSKIFF.png","color":"blue","category":"Exosuit","type":"Deployable Fishing Platform","release":"Voyagers"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":120},{"name":"Salt","qty":30},{"name":"Crystal Sulphide","qty":2}],"outputs":[{"name":"Exo-Skiff","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exo-Skiff","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":60},{"name":"Salt","qty":15},{"name":"Crystal Sulphide","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Extra-Fluffy_Batter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BATTER.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"14,000","release":"WorldsTwo"},"value":14000,"recipes":[{"type":"cook","inputs":[{"name":"Delicate Meringue","qty":1},{"name":"Refined Flour","qty":1},{"name":"Creature Egg","qty":1}],"outputs":[{"name":"Extra-Fluffy Batter","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Delicate Meringue","qty":1},{"name":"Refined Flour","qty":1},{"name":"Tall Eggs","qty":1}],"outputs":[{"name":"Extra-Fluffy Batter","qty":1}],"seconds":2.5,"label":"Component Churn"},{"type":"cook","inputs":[{"name":"Delicate Meringue","qty":1},{"name":"Refined Flour","qty":1},{"name":"Giant Egg","qty":1}],"outputs":[{"name":"Extra-Fluffy Batter","qty":1}],"seconds":2.5,"label":"Component Churn"}]}
 ---
 

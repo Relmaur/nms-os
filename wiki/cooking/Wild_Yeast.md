@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wild_Yeast"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.POOPWILD.png","color":"Green","category":"Consumable","type":"Raw Ingredient","value":"600","release":"WorldsTwo"},"value":600,"recipes":[{"type":"cook","inputs":[{"name":"Wild Yeast","qty":1}],"outputs":[{"name":"Wild Yeast","qty":1}],"seconds":2.5,"label":"Fermentation"},{"type":"cook","inputs":[{"name":"Faecium","qty":1}],"outputs":[{"name":"Wild Yeast","qty":1}],"seconds":2.5,"label":"Fermentation"}]}
 ---
 

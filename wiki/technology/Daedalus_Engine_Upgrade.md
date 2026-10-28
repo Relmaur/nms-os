@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Daedalus_Engine_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.ENGINEMOD.png","category":"Exocraft","subcategory":"Daedalus Engine","type":"Generated Upgrade","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Daedalus Engine Upgrade","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

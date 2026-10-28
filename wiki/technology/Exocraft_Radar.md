@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Radar"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Exocraft Radar","image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Exocraft","subcategory":"Communications","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Microprocessor","qty":1}],"outputs":[{"name":"Exocraft Radar","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Radar","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":25}]}]}
 ---
 

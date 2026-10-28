@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fuel_Oxidiser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"blue","image":"PRODUCT.FRIGBOOST.SPEED.png","category":"Consumable","type":"Consumable Frigate Upgrade","value":"75,000.0","release":"Origins"},"value":75000,"recipes":[{"type":"craft","inputs":[{"name":"Quad Servo","qty":2},{"name":"Gold","qty":50}],"outputs":[{"name":"Fuel Oxidiser","qty":1}],"blueprint":true}]}
 ---
 

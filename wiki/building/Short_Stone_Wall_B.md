@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Short_Stone_Wall_B"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"STONE.BASIC_WALL_SMALL_HALF1.png","category":"Base Building","type":"Stone Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":25}],"outputs":[{"name":"Short Stone Wall B","qty":1}],"blueprint":true}]}
 ---
 

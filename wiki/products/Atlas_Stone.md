@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Atlas_Stone"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.atlasstone.png","category":"Curiosity","type":"Very high value curiosity","value":"68,750.0","release":"Abyss"},"value":68750,"recipes":[]}
 ---
 

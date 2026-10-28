@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Runaway_Mould"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.2.png","color":"Olive","category":"Special","type":"Junk","rarity":"Common","value":"20.0","used":"Upgrading, Refining","symbol":"Jn","release":"Interceptor"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Living Slime","qty":1}],"outputs":[{"name":"Runaway Mould","qty":1}],"seconds":0.6,"label":"Recycle Waste Materials"},{"type":"refine","inputs":[{"name":"Atlantideum","qty":1},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Runaway Mould","qty":3}],"seconds":0.24,"label":"Reality Pollution"}]}
 ---
 

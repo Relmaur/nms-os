@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Boosters_Upgrade_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech Exocraft Acceleration Module Upgrade Icon.png","category":"Exocraft","subcategory":"Utilities","level":"2","upgradeicon":"speed","type":"Exocraft Engine Upgrade","desc":"Increases efficiency of exocraft engine","release":"Waypoint"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carite Sheet","qty":3},{"name":"Zinc","qty":40}],"outputs":[{"name":"Exocraft Boosters Upgrade Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Voltaic_Cell"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPRODBASIC.2.png","category":"Technology","type":"Component","desc":"Compact power source","value":"1547.0","release":"Atlas Rises"},"value":1547,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Marrow Bulb","qty":50}],"outputs":[{"name":"Voltaic Cell","qty":1}]}]}
 ---
 

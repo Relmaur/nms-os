@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Drewweste"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Drewweste","image":"20200101140956_1.jpg","color":"Canary Yellow","type":"Empty","order":"147","previous":"Enlaythie","next":"Akbulkabi","release":"Waypoint"},"recipes":[]}
 ---
 

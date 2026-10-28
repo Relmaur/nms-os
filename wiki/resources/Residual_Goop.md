@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Residual_Goop"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.1.png","color":"Olive","category":"Special","type":"Junk","rarity":"Common","value":"20.0","used":"Refining","symbol":"Jn","release":"Outlaws"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Cursed Dust","qty":2}],"outputs":[{"name":"Residual Goop","qty":1}],"seconds":0.04,"label":"Doom Cycling"}]}
 ---
 

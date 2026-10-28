@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cadmium_Drive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.CADMIUMDRIVE.png","color":"blue","category":"Starship","subcategory":"Hyperdrive","level":"B","type":"Hyperdrive Upgrade: Red Systems","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":250},{"name":"Wiring Loom","qty":3}],"outputs":[{"name":"Cadmium Drive","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":125},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Cadmium Drive","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":125},{"name":"Wiring Loom","qty":2}]}]}
 ---
 

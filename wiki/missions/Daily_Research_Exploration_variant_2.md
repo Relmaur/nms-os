@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Daily_Research%3A_Exploration_(variant_2)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Daily Research: Exploration","image":"NmsMisc_Mission.png","type":"Secondary","series":"Daily Research","requires":"Community Research (mission 9)","implemented":"Visions 1.77","desc":"Find undiscovered systems for the Space Anomaly"},"recipes":[]}
 ---
 

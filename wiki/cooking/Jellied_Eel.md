@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jellied_Eel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.OCTOPUS.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"52,500","release":"Aquarius"},"value":52500,"recipes":[{"type":"cook","inputs":[{"name":"Jellymeat","qty":1},{"name":"Fleshy Cylinder","qty":1}],"outputs":[{"name":"Jellied Eel","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

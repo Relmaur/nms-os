@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Blaze_javelin_upgrade.png","category":"Multi-tool","subcategory":"Blaze Javelin","level":"3","upgradeicon":"damage","type":"Blaze Javelin Companion Unit","desc":"Increases damage done by the multi-tool's Blaze Javelin weapon mode by a large amount.","stats":"Damage = 4.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Heridium","qty":400},{"name":"Iron","qty":200},{"name":"Radnox","qty":20}],"outputs":[{"name":"Blaze Javelin Damage Theta","qty":1}]}]}
 ---
 

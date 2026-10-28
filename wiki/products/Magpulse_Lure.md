@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Magpulse_Lure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISHBAIT.STORM.png","color":"Darkblue","category":"Consumable","type":"Fishing Bait","value":"550.0","release":"Aquarius"},"value":550,"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Metal Plating","qty":1},{"name":"Tritium","qty":90}],"outputs":[{"name":"Magpulse Lure","qty":30}]}]}
 ---
 

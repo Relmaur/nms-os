@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Atmospheric_Control_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FLEET.EXPLORATION.png","color":"blue","category":"Freighter","subcategory":"Life Support","release":"Singularity"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":60},{"name":"Gold","qty":30},{"name":"Wiring Loom","qty":1}],"outputs":[]}]}
 ---
 

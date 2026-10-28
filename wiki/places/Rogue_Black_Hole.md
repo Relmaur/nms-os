@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rogue_Black_Hole"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Black Hole","image":"Rogue Black Hole.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Fly through","ramifications":"Teleports you to other system and breaks upgrades","rewards":"Long-distance travel","release":"ExoMech"},"recipes":[]}
 ---
 

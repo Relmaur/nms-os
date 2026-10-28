@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Haunted_Chocolate_Dreams"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"148,000.0","release":"NextGen"},"value":148000,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Bittersweet Cocoa","qty":1}],"outputs":[{"name":"Haunted Chocolate Dreams","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

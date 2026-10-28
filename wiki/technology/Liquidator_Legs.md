@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquidator_Legs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Liquidator_Legs_.webp","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","stats":"Fuel Usage: -11%, Boost Tank Size: +25%","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Quad Servo","qty":1},{"name":"Hydraulic Wiring","qty":2}],"outputs":[{"name":"Liquidator Legs","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Quad Servo","qty":1},{"name":"Hydraulic Wiring","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Liquidator Legs","qty":1}],"outputs":[{"name":"Quad Servo","qty":1},{"name":"Hydraulic Wiring","qty":1}]}]}
 ---
 

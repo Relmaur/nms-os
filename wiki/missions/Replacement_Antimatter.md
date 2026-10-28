@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Replacement_Antimatter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","requires":"Inability to warp after receiving Antimatter in Awakenings","desc":"A failsafe mission designed to get the player back on track during Awakenings"},"recipes":[]}
 ---
 

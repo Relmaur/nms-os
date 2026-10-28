@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Noggalterpor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Noggalterpor","image":"20200229120558_1.jpg","color":"Pink","type":"Norm","order":"218","previous":"Sahliacabru","next":"Chmageaki","release":"Waypoint"},"recipes":[]}
 ---
 

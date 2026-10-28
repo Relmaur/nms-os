@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Getaizakaal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Getaizakaal","image":"20191122223332_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"111","previous":"Nudquathsenfe","next":"Hansolmien","release":"Waypoint"},"recipes":[]}
 ---
 

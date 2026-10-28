@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.00"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Voyagers-book-cover.png","date":"27 August, 2025","dateswitch":"16 September, 2025","platform":"Pc, Mac, PS5, XB, NS","link":"Voyagers Update","release":"Voyagers","previous":"5.75","next":"6.01"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Helqvishap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Helqvishap","image":"Helqvishap--4.png","color":"White","order":"-4","previous":"Enyokudohkiw","next":"Usgraikik","release":"Atlas Rises"},"recipes":[]}
 ---
 

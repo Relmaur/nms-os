@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Milekistri"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Milekistri","image":"20190810140707_1.jpg","color":"Yellow","type":"Empty","order":"47","previous":"Odyavanta","next":"Waferganh","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Artemis'_Translator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ARTEMISTRANSLATOR.png","color":"blue","category":"Exosuit","type":"Automatic Language Parser","desc":"Words Translated 1.0","release":"Synthesis"},"recipes":[{"type":"craft","inputs":[{"name":"Microprocessor","qty":1},{"name":"Copper","qty":100}],"outputs":[{"name":"Artemis' Translator","qty":1}],"blueprint":true}]}
 ---
 

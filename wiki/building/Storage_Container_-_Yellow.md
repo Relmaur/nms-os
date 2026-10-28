@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Storage_Container_-_Yellow"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.STORAGE.png","category":"Base Building","type":"Decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Ion Battery","qty":1}],"outputs":[{"name":"Storage Container - Yellow","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Output_Screen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.WALLSCREEN.png","category":"Point of Interest","color":"blue","type":"Damaged Component","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":8}],"outputs":[]}]}
 ---
 

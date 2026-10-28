@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hardframe_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.MECHCORE.png","category":"Component","color":"purple","type":"Anomalous Material","used":"Upgrading","value":"28,000.0","release":"SentinelUp"},"value":28000,"recipes":[]}
 ---
 

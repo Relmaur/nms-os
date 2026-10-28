@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Impulse_Beans"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.LUSHWILD.png","category":"Consumable","type":"Raw Ingredient","used":"Charging, Cooking","value":"800.0","release":"SentinelUp"},"value":800,"recipes":[]}
 ---
 

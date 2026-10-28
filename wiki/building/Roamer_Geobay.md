@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Roamer_Geobay"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLEGARAGE.png","category":"Technology","type":"Construction module","color":"blue","desc":"Parking facility for Roamer Exocraft","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Ion Battery","qty":2},{"name":"Paraffinium","qty":100}],"outputs":[{"name":"Roamer Geobay","qty":1}],"blueprint":true}]}
 ---
 

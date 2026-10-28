@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Damage_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"2","upgradeicon":"damage","type":"Pulse Spitter Companion Unit","desc":"Increases Pulse Spitter weapon mode by a moderate amount.","stats":"Damage = 3.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":200},{"name":"Radnox","qty":80},{"name":"Platinum","qty":200}],"outputs":[{"name":"Pulse Spitter Damage Tau","qty":1}]}]}
 ---
 

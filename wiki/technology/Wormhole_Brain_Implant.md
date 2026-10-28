@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wormhole_Brain_Implant"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.STEM3.png","category":"Starship","subcategory":"Scanner","type":"Long-range Sensor technology","release":"Endurance","desc":"Grants the remote ability to check a system's economy and conflict"},"recipes":[]}
 ---
 

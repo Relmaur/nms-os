@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.20"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-synthesis-book-cover.png","date":"28 November 2019","platform":"PS4/PC/Xbox","link":"Update 2.20 on nomanssky.com","release":"Synthesis","previous":"2.16","next":"2.22"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Space_Rescue"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Space Rescue","type":"Secondary","prevmission":"N / A","nextmission":"Freighter Command","origin":"When a distress signal of a freighter is received","implemented":"Outlaws","desc":"Align with this mission will led you to a distress signal"},"recipes":[]}
 ---
 

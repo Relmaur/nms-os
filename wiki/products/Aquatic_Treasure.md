@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aquatic_Treasure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Drowned Shark's Teeth","image":"TREASUREPROD.WATERLOOT.png","category":"Artifact","color":"yellow","type":"Aquatic Treasure","value":"1,363,235","used":"Trading, Trading (High Value)","release":"Singularity"},"value":1363235,"recipes":[]}
 ---
 

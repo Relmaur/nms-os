@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zavainlani"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zavainlani","image":"20200102212355_1.jpg","color":"Magenta","type":"Lush","order":"150","previous":"Homskiw","next":"Jewijkmas","release":"Waypoint"},"recipes":[]}
 ---
 

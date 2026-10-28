@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_Clip_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Weapon","subcategory":"Projectile","level":"3","upgradeicon":"clip","type":"Companion Unit","desc":"Increases the boltcaster's clip size","stats":"Clip Size = +75%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Zinc","qty":50},{"name":"Nickel","qty":150}],"outputs":[{"name":"Boltcaster Clip Theta","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hazard_Containment_Field"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hazard Containment Field","image":"Mugang - Hazard Containment.png","system_types":"Any","frequency":"Very Low","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Fire to Destroy","ramifications":"None Documented","rewards":"Terrifying Sample, Biological Sample, Magnetised Ferrite","release":"WorldsOne"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.50"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-next-book-cover.png","date":"24 July 2018","platform":"PS4/PC/Xbox","link":"Update 1.50 on nomanssky.com","release":"NEXT","previous":"1.38","next":"1.51"},"recipes":[]}
 ---
 

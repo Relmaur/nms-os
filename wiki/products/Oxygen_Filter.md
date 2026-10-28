@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Filter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.OXYCRAFT.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"615.0","release":"Origins"},"value":615,"recipes":[]}
 ---
 

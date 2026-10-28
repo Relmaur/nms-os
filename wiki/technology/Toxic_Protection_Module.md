@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxic_Protection_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Toxic Protection Module","image":"PROCTECH.C.TOXIC.png","color":"green","category":"Exosuit","subcategory":"Hazard","type":"Generated Upgrade","release":"Origins"},"recipes":[]}
 ---
 

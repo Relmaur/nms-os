@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_Laser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLE LASER.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Mining Utility","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":80},{"name":"Di-hydrogen","qty":65},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Minotaur Laser","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Minotaur Laser","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Di-hydrogen","qty":32}]}]}
 ---
 

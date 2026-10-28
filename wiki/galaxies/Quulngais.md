@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Quulngais"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Quulngais","image":"20190930195800_1.jpg","color":"Mandys Pink","type":"Norm","order":"62","previous":"Leckandmeram","next":"Nokokipsechl","release":"Waypoint"},"recipes":[]}
 ---
 

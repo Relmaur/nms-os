@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iridesite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.IRIDISITE.png","color":"yellow","category":"Tradeable","type":"Enriched Alloy Metal","value":"150,000.0","release":"Prisms"},"value":150000,"recipes":[{"type":"craft","inputs":[{"name":"Aronium","qty":1},{"name":"Magno-Gold","qty":1},{"name":"Grantine","qty":1}],"outputs":[{"name":"Iridesite","qty":1}],"blueprint":true}]}
 ---
 

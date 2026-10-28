@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Psychonic_Egg"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOCOMP2.png","category":"Curiosity","type":"Living Curiosity","value":"126,000","release":"Interceptor"},"value":126000,"recipes":[]}
 ---
 

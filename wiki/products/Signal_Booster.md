@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Signal_Booster"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SIGNAL.png","category":"Technology","color":"Blue","type":"Environmental scanner","value":"1.0","release":"Remnant"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Carbon Nanotubes","qty":1},{"name":"Sodium","qty":15}],"outputs":[{"name":"Signal Booster","qty":1}]}]}
 ---
 

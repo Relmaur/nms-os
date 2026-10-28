@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Analysis_Visor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BINOCULARS NEXT.png","color":"blue","category":"Multi-tool","subcategory":"Scanner","type":"Binocular Tagging Device","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon Nanotubes","qty":1}],"outputs":[{"name":"Analysis Visor","qty":1}]},{"type":"repair","inputs":[{"name":"Carbon Nanotubes","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Analysis Visor","qty":1}],"outputs":[{"name":"Carbon Nanotubes","qty":1}]}]}
 ---
 

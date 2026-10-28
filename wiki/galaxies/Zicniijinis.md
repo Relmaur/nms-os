@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zicniijinis"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zicniijinis","image":"20200320184856_1.jpg","color":"Aquamarine","type":"Norm","order":"245","previous":"Oeileutasc","next":"Dugnowarilda","release":"Interceptor"},"recipes":[]}
 ---
 

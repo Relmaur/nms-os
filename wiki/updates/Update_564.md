@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.64"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Relics-book-cover-opt.png","date":"10 April, 2025","platform":"PC, PS5","link":"Relics Patch 5.64","release":"Relics","previous":"5.63","next":"5.70"},"recipes":[]}
 ---
 

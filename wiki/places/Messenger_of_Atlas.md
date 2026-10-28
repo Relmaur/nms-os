@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Messenger_of_Atlas"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Messenger of Atlas","image":"Messenger of Atlas.png","system_types":"Any","frequency":"Low","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Use communicator","ramifications":"None whether accepting or rejecting the message of Atlas.","rewards":"Gives an Atlas word","notes":"Encountered having different shapes.","release":"WorldsOne"},"recipes":[]}
 ---
 

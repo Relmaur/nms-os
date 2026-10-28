@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Recoil_Stabiliser_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"1","type":"Boltcaster Companion Unit","desc":"Defensive weapon upgrade.","stats":"Recoil = (-19%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":100},{"name":"Titanium","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Recoil Stabiliser Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ion_Sphere"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ion Sphere","image":"TRADEPROD.COMMODITY4.png","category":"Tradeable","type":"Trade Goods","value":"30,000.0","release":"Adrift"},"value":30000,"recipes":[]}
 ---
 

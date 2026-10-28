@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Itlhotagra"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Itlhotagra","image":"20200103223947_1.jpg","color":"Aquamarine","type":"Empty","order":"152","previous":"Jewijkmas","next":"Podalicess","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hypnotic_Eye"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.EYEBALL.png","category":"Tradeable","color":"Grey","type":"Horrific Sample","value":"57,000","release":"WorldsTwo"},"value":57000,"recipes":[]}
 ---
 

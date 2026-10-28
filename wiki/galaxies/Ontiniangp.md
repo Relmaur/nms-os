@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ontiniangp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ontiniangp","image":"No Man's Sky_20190115033911.png","color":"Cyan","order":"13","type":"Norm","previous":"Aptarkaba","next":"Odiwagiri","release":"Waypoint"},"recipes":[]}
 ---
 

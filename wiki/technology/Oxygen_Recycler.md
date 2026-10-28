@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Recycler"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CELLMOD.png","color":"blue","category":"Exosuit","subcategory":"Life Support","level":"C","type":"Life Support Upgrade","stats":"+10% Life Support Tanks","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":60}],"outputs":[{"name":"Oxygen Recycler","qty":1}]},{"type":"repair","inputs":[{"name":"Oxygen","qty":30}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Oxygen Recycler","qty":1}],"outputs":[{"name":"Oxygen","qty":30}]}]}
 ---
 

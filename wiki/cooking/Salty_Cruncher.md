@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salty_Cruncher"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"Brown","category":"Consumable","image":"PRODUCT.REFINED.BISCUIT.png","type":"Edible Product","value":"33,000.0","release":"WorldsOne"},"value":33000,"recipes":[{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Salt","qty":1}],"outputs":[{"name":"Salty Cruncher","qty":1}],"seconds":2.5,"label":"Dough Augmentation"},{"type":"cook","inputs":[{"name":"Sugar Dough","qty":1},{"name":"Kelp Sac","qty":1}],"outputs":[{"name":"Salty Cruncher","qty":1}],"seconds":2.5,"label":"Dough Augmentation"}]}
 ---
 

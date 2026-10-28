@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nutrient_Processor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.COOKER.png","category":"Base Building","color":"blue","value":"10.0","type":"Portable Sustenance Unit","release":"Fractal"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":2},{"name":"Hermetic Seal","qty":1},{"name":"Sodium","qty":25}],"outputs":[{"name":"Nutrient Processor","qty":1}],"blueprint":true}]}
 ---
 

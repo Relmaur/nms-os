@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fishy_Slab"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.TUNA.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"39,000","release":"Aquarius"},"value":39000,"recipes":[{"type":"cook","inputs":[{"name":"Stonescale Shark","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Helion Bass","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Black-Eyed Shark","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Cave Prowler","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"The Lunker","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Blind Titancore","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Helix Sawfish","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Translucent Gulper","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"The Maw of Titan","qty":1}],"outputs":[{"name":"Fishy Slab","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

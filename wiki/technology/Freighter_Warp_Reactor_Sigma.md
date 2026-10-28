@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Warp_Reactor_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERSIGMA.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"C","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 200 ly","release":"NextGen"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Cadmium","qty":250},{"name":"Oxygen Filter","qty":1},{"name":"Antimatter Housing","qty":4}],"outputs":[{"name":"Freighter Warp Reactor Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rycempler"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Rycempler","image":"20200107114954_1.jpg","color":"Medium Slate Blue","type":"Lush","order":"159","previous":"Grbodubhe","next":"Indjalala","release":"Waypoint"},"recipes":[]}
 ---
 

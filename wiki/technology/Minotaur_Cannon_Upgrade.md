@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minotaur_Cannon_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLE_GUNMOD.png","category":"Exocraft","subcategory":"Minotaur Cannon","type":"Generated Upgrade","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Minotaur Cannon Upgrade","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

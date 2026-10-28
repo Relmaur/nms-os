@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Prismatic_Feathers"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Prismatic Feathers","image":"PRODUCT.SMUGGLING4.png","category":"Tradeable","value":"32,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":32000,"recipes":[]}
 ---
 

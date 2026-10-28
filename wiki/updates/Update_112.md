@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.12"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-foundation-book-cover.png","date":"07 December 2016","platform":"PS4/PC","link":"Update 1.12 on nomanssky.com","previous":"1.10","next":"1.13","release":"Foundation","steam":"1492442","gog":"2.8.0.10"},"recipes":[]}
 ---
 

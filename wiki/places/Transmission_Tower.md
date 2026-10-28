@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Transmission_Tower"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Transmission Tower","image":"Anms_transmissionTower.jpg","category":"Shelter","type":"Puzzle location","release":"Prisms"},"recipes":[]}
 ---
 

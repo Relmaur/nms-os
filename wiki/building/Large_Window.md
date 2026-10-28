@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Large_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBEWINDOW.png","category":"Base Building","color":"blue","type":"Construction item","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":10},{"name":"Glass","qty":1}],"outputs":[{"name":"Large Window","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Large Window","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":10},{"name":"Glass","qty":1}]}]}
 ---
 

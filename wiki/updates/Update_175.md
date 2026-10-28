@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.75"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-visions-book-cover.png","date":"22 November 2018","platform":"PS4/PC/Xbox","link":"Update 1.75 on nomanssky.com","release":"Visions","previous":"1.71","next":"1.76"},"recipes":[]}
 ---
 

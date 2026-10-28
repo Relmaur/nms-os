@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Double_Cultivation_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.PLANT0.png","category":"Base Building","type":"Agriculture","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":60},{"name":"Oxygen","qty":35},{"name":"Faecium","qty":25}],"outputs":[{"name":"Double Cultivation Chamber","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Double Cultivation Chamber","qty":1}],"outputs":[{"name":"Silver","qty":60},{"name":"Oxygen","qty":35},{"name":"Faecium","qty":25}]}]}
 ---
 

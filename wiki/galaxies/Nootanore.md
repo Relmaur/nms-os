@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nootanore"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nootanore","image":"20200302092705_1.jpg","color":"Mint Green","type":"Norm","order":"222","previous":"Vittesbursul","next":"Innebdjerah","release":"Fractal"},"recipes":[]}
 ---
 

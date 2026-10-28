@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Activated_Indium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.EXBLUE.2.png","color":"Blue","type":"Refined Stellar Metal: Blue","rarity":"Rare","symbol":"In+","value":"165","release":"WorldsTwo"},"value":165,"recipes":[]}
 ---
 

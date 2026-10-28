@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flora_Containment_2"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Flora Containment 2","image":"DECORATION.PLANTPOT2.png","category":"Base Building","color":"blue","type":"Decoration","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":15}],"outputs":[{"name":"Flora Containment 2","qty":1}]},{"type":"dismantle","inputs":[{"name":"Flora Containment 2","qty":1}],"outputs":[{"name":"Carbon","qty":15}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Planetary_Chart_(inhabited_outpost)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.STARCHART.BUILDING.png","category":"Curiosity","type":"Cartographic Data","value":"3,200.0","release":"Echoes"},"value":3200,"recipes":[]}
 ---
 

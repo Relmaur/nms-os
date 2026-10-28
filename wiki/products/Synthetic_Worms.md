@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Synthetic_Worms"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BAIT.WORMS.png","color":"Red","category":"Consumable","type":"Carnivore Bait","value":"800.0","release":"Origins"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Carbon Nanotubes","qty":1},{"name":"Mordite","qty":1}],"outputs":[{"name":"Synthetic Worms","qty":1}],"seconds":5,"label":"Prepare Bait","obsolete":true},{"type":"cook","inputs":[{"name":"Leg Meat","qty":1},{"name":"Mordite","qty":1}],"outputs":[{"name":"Synthetic Worms","qty":1}],"seconds":3,"label":"Prepare Bait","obsolete":true}]}
 ---
 

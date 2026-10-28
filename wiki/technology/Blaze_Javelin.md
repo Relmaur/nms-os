@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"blaze_javelin.png","category":"Multi-tool","subcategory":"Energy Beam","type":"Weapon","desc":"The Blaze Javelin delivers instantaneous damage on targets","stats":"Damage = ~1200 (full charge) Mining Power = ~240 (full charge)","recharge":"Carbon, Condensed Carbon","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":200},{"name":"Condensed Carbon","qty":150},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Blaze Javelin","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Condensed Carbon","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Blaze Javelin","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":100},{"name":"Condensed Carbon","qty":75}]}]}
 ---
 

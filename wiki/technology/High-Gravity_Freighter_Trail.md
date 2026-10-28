@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/High-Gravity_Freighter_Trail"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"High-Gravity Freighter Trail","image":"NMS-High-Gravity_Freighter_Trail.png","category":"Freighter","type":"Freighter Engine Flare Override","desc":"Changes the colour of the Freighter's engine flare.","release":"Polestar"},"recipes":[]}
 ---
 

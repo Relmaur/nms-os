@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Yudukagath"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Yudukagath","image":"20191105224251_1.jpg","color":"Yellow","type":"Empty","order":"92","previous":"Iaereznika","next":"Boealalosnj","release":"Waypoint"},"recipes":[]}
 ---
 

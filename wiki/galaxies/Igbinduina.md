@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Igbinduina"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Igbinduina","image":"20200123194939_1.jpg","color":"Canary Yellow","type":"Norm","order":"178","previous":"Hapirajua","next":"Wepaitvas","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Raised_Small_Paving"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.PAVINGTALL.png","category":"Base Building","color":"blue","type":"Construction item","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":25}],"outputs":[{"name":"Raised Small Paving","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Raised Small Paving","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":25}]}]}
 ---
 

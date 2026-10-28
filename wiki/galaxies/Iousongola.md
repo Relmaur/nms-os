@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iousongola"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Iousongola","image":"20200327220321_1.jpg","color":"Manhattan Orange","type":"Harsh","order":"255","previous":"Tuhgrespod","next":"Euclid","release":"Interceptor"},"recipes":[]}
 ---
 

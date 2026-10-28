@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Amplified_Cartridges"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSESPITTERMOD.png","color":"green","category":"Multi-tool","subcategory":"Weapons","level":"C","type":"Pulse Spitter Upgrade","stats":"+20.0 Clip Size","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Amplified Cartridges","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Amplified Cartridges","qty":1}],"outputs":[{"name":"Solar Mirror","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

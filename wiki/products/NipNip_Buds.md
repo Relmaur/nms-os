@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/NipNip_Buds"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.NIPBUD.png","category":"Curiosity","color":"grey","type":"Medicinal Substance","value":"47,284","used":"Building","release":"Echoes"},"value":47284,"recipes":[]}
 ---
 

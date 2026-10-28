@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Remembrance"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.atlasstone.png","category":"Exosuit","subcategory":"Health","type":"A relic of another place","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Heart of the Sun","qty":1},{"name":"Platinum","qty":16}],"outputs":[{"name":"Remembrance","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Remembrance","qty":1}],"outputs":[{"name":"Platinum","qty":8},{"name":"Heart of the Sun","qty":1}]}]}
 ---
 

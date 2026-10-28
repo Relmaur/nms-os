@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cake_of_Burning_Dread"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"176,900.0","release":"Prisms"},"value":176900,"recipes":[{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Ever-burning Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Cake of Burning Dread","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Ever-burning Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Cake of Burning Dread","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

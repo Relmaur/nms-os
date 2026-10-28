@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jettisoned_Storage_Silo"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Jettisoned Storage Silo","image":"Jettisoned Storage Silo.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Shoot down","ramifications":"None","rewards":"Resource (varies per encounter)","release":"ExoMech"},"recipes":[]}
 ---
 

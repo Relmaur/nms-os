@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONACCELMOD.png","category":"Starship","subcategory":"Weapons","type":"Generated Upgrade"},"recipes":[{"type":"repair","inputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Infra-Knife Accelerator Upgrade","qty":1}],"outputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

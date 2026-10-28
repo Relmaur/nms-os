@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Deflector_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectrads.png","color":"blue","upgradeicon":"protection","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"User is shielded from radiation damage.","release":"NEXT"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Reinforced_Piping"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Reinforced Piping","image":"TRADEPROD.TECH3.png","category":"Tradeable","value":"50,000.0","type":"Starship Subcomponent","release":"Desolation"},"value":50000,"recipes":[]}
 ---
 

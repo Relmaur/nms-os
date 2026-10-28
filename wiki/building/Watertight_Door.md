@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Watertight_Door"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.DOOR.png","category":"Base Building","type":"Aquatic Construction Module","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25},{"name":"Crystal Sulphide","qty":1}],"outputs":[{"name":"Watertight Door","qty":1}],"blueprint":true}]}
 ---
 

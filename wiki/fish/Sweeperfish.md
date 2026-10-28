@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sweeperfish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.MEDIUM.3.png","color":"green","category":"Fish","type":"Common Fish","value":"2,000","release":"Xeno Arena"},"value":2000,"recipes":[]}
 ---
 

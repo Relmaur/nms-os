@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Plasma_Launcher_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Weapons","type":"Generated Upgrade","release":"Aquarius"},"recipes":[{"type":"repair","inputs":[{"name":"Unstable Plasma","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Plasma Launcher Upgrade","qty":1}],"outputs":[{"name":"Unstable Plasma","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

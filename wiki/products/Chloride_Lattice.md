@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chloride_Lattice"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.WATERPROD.png","category":"Curiosity","type":"Concentrated Chlorine Deposit","value":"6,150.0","release":"Origins"},"value":6150,"recipes":[]}
 ---
 

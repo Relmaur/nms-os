@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Unstable_Plasma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.plasma1.png","category":"Consumable","type":"Plasma Launcher Recharge","value":"5,750.0","used":"Charging, Upgrading","release":"Endurance"},"value":5750,"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":50},{"name":"Metal Plating","qty":1}],"outputs":[{"name":"Unstable Plasma","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Oxygen","qty":10},{"name":"Carbon","qty":20},{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Unstable Plasma","qty":1}],"seconds":45,"label":"Plasma Pressurisation"},{"type":"refine","inputs":[{"name":"Oxygen","qty":10},{"name":"Carbon","qty":20},{"name":"Pure Ferrite","qty":20}],"outputs":[{"name":"Unstable Plasma","qty":1}],"seconds":45,"label":"Plasma Pressurisation"},{"type":"refine","inputs":[{"name":"Oxygen","qty":10},{"name":"Condensed Carbon","qty":10},{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Unstable Plasma","qty":1}],"seconds":45,"label":"Plasma Pressurisation"},{"type":"refine","inputs":[{"name":"Oxygen","qty":10},{"name":"Condensed Carbon","qty":10},{"name":"Pure Ferrite","qty":20}],"outputs":[{"name":"Unstable Plasma","qty":1}],"seconds":45,"label":"Plasma Pressurisation"}]}
 ---
 

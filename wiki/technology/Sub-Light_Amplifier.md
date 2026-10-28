@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sub-Light_Amplifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"blue","category":"Starship","subcategory":"Interplanetary","level":"S","type":"Pulse Engine Upgrade","release":"Interceptor"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":3},{"name":"Platinum","qty":100},{"name":"Tritium","qty":200}],"outputs":[{"name":"Sub-Light Amplifier","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Platinum","qty":50},{"name":"Tritium","qty":100}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Sub-Light Amplifier","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Platinum","qty":50},{"name":"Tritium","qty":100}]}]}
 ---
 

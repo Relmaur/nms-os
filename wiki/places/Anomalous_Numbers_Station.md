@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomalous_Numbers_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Anomalous Numbers Station","image":"Anomalous Numbers Station-01.jpg","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Communicate","ramifications":"Gives 5 sets of 2-3 digits (847 ... 471 ... 73 ... etc)","rewards":"Anomalous Timepiece","release":"WorldsOne"},"recipes":[]}
 ---
 

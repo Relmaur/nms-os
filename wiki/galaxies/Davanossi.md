@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Davanossi"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Davanossi","image":"20190924232937_1.jpg","color":"Medium Orchid","type":"Norm","order":"58","previous":"Ilkerloor","next":"Ploehrliou","release":"Waypoint"},"recipes":[]}
 ---
 

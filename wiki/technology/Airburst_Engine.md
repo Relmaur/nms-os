@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Airburst_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"S","type":"Exosuit Upgrade","stats":"Airborne Recharging: Enabled","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":150},{"name":"Phosphorus","qty":150},{"name":"Oxygen","qty":150}],"outputs":[{"name":"Airburst Engine","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":75},{"name":"Phosphorus","qty":75},{"name":"Oxygen","qty":75}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Airburst Engine","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":75},{"name":"Phosphorus","qty":75},{"name":"Oxygen","qty":75}]}]}
 ---
 

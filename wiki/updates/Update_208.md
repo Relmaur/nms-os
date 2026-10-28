@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.08"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"21 August 2019","platform":"PS4/Xbox","link":"Update 2.08 on nomanssky.com","release":"Beyond","previous":"2.07","next":"2.08A"},"recipes":[]}
 ---
 

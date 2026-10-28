@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zeziceloh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zeziceloh","image":"20200317230216_1.jpg","color":"Maya Blue","type":"Harsh","order":"243","previous":"Rinjanagrbo","next":"Oeileutasc","release":"Interceptor"},"recipes":[]}
 ---
 

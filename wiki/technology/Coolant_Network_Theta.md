@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Coolant_Network_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectheat.png","level":"3","upgradeicon":"protection","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provides increased protection from extreme heat damage on scorched worlds.","stats":"Heat Protection = 490.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Microdensity Fabric","qty":2},{"name":"Electron Vapour","qty":1},{"name":"Gravitino Ball","qty":1}],"outputs":[{"name":"Coolant Network Theta","qty":1}]}]}
 ---
 

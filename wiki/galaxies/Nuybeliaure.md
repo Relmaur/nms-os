@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nuybeliaure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nuybeliaure","image":"Nuybeliaure-Voyagers-PC.jpg","color":"Medium Slate Blue","type":"Norm","order":"73","previous":"Bahibusey","next":"Doshawchuc","release":"Voyagers"},"recipes":[]}
 ---
 

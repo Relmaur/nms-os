@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glyph_11_%2F_16"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PORTALSYMBOLALT.A.png","category":"Ancient Technology","recharge":"25 Sodium,, 10 Sodium Nitrate","release":"Visions"},"recipes":[]}
 ---
 

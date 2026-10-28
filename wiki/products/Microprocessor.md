@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Microprocessor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.microchip.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"2,000.0","release":"Prisms"},"value":2000,"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Carbon Nanotubes","qty":1}],"outputs":[{"name":"Microprocessor","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Viscous_Fluids"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.5.png","color":"Olive","category":"Special","type":"Junk","rarity":"Rare","value":"20.0","used":"Upgrading, Refining","symbol":"Jn","release":"Origins"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Residual Goop","qty":1}],"outputs":[{"name":"Viscous Fluids","qty":1}],"seconds":0.6,"label":"Recycle Waste Materials"}]}
 ---
 

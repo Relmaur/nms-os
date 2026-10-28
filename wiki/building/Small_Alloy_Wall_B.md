@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Alloy_Wall_B"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FIBREGLASS.BASIC_WALL_SMALL1.png","category":"Base Building","type":"Alloy Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Small Alloy Wall B","qty":1}],"blueprint":true}]}
 ---
 

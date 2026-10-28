@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.12.1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-fractal-book-cover.png","date":"3 March, 2023","platform":"PC","link":"Hotfix 4.12.1","release":"Fractal","previous":"4.12","next":"4.13"},"recipes":[]}
 ---
 

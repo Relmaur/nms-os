@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Atmosphere_Harvester"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.GASHARVESTER.png","category":"Base Building","color":"blue","type":"Autonomous Gas Compressor","value":"1.0","release":"Echoes"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ammonia","qty":100},{"name":"Metal Plating","qty":2},{"name":"Hermetic Seal","qty":2}],"outputs":[{"name":"Atmosphere Harvester","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomalous_Timepiece"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.STA_26.png","category":"Base Building","color":"blue","type":"Space Station Decoration","release":"Cosmos"},"recipes":[{"type":"craft","inputs":[{"name":"Industrial Salvage","qty":3},{"name":"Fuel Rod","qty":3},{"name":"Contaminated Metal","qty":80}],"outputs":[{"name":"Anomalous Timepiece","qty":1}],"blueprint":true}]}
 ---
 

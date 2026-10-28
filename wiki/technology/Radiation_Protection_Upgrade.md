@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Protection_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTRADS.png ‎","category":"Exosuit","subcategory":"Radiation Protection","type":"Generated Upgrade","recharge":"Uranium, Ion Battery, Advanced Ion Battery","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Uranium","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Radiation Protection Upgrade","qty":1}],"outputs":[{"name":"Uranium","qty":50},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

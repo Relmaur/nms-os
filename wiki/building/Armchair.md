@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Armchair"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CHAIR002.png","category":"Base Building","color":"blue","type":"Furniture","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":15}],"outputs":[{"name":"Armchair","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Armchair","qty":1}],"outputs":[{"name":"Carbon","qty":15}]}]}
 ---
 

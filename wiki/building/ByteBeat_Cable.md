@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/ByteBeat_Cable"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.BYTEBEATLINE.png","category":"Base Building","color":"Blue","type":"ByteBeat Extension","value":"0","release":"Endurance"},"value":0,"recipes":[]}
 ---
 

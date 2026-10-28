@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gucuttarik"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Gucuttarik","image":"20191231144700_1.jpg","color":"Aquamarine","type":"Norm","order":"145","previous":"Daitibeli","next":"Enlaythie","release":"Waypoint"},"recipes":[]}
 ---
 

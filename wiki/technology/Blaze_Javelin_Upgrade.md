@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BLAZEJAVELINMOD.png","category":"Multi-tool","subcategory":"Weapon","type":"Generated Upgrade","release":"Aquarius"},"recipes":[{"type":"repair","inputs":[{"name":"Condensed Carbon","qty":75},{"name":"Gravitino Ball","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Blaze Javelin Upgrade","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":75},{"name":"Gravitino Ball","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Haz-Mat_Gauntlet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECH.POWERGLOVE.png","color":"blue","category":"Exosuit","type":"Exosuit Augmentation","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Sodium Nitrate","qty":20}],"outputs":[{"name":"Haz-Mat Gauntlet","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":25},{"name":"Sodium Nitrate","qty":10}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Haz-Mat Gauntlet","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":25},{"name":"Sodium Nitrate","qty":10}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "BEYOND"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Patterns_in_Time"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"The First Traveller","nextmission":"16 / 16","origin":"Holo-Terminus","requires":"N/A","implemented":"Atlas Rises","desc":"Uncover the Past, Fifth mission of the Artemis Path proper"},"recipes":[]}
 ---
 

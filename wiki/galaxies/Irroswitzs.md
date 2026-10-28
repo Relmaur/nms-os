@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Irroswitzs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Irroswitzs","image":"20200131180746_1.jpg","color":"Manhattan Orange","type":"Norm","order":"186","previous":"Iodhinxois","next":"Bifredait","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Corroded_Tanks"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.FUEL5.png","category":"Starship","color":"red","type":"Damaged Starship Component","release":"Expeditions"},"recipes":[{"type":"repair","inputs":[{"name":"Activated Copper","qty":75}],"outputs":[]}]}
 ---
 

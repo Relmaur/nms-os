@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/L-Shaped_Corridor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.corridor_l.png","category":"Base Building","type":"Structure","complexity":"10","release":"NEXT"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":100}],"outputs":[{"name":"L-Shaped Corridor","qty":1}],"blueprint":true}]}
 ---
 

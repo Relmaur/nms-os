@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Impact_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"3","upgradeicon":"damage","type":"Boltcaster Companion Unit","desc":"Defensive weapon upgrade.","stats":"Damage = +5.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":200},{"name":"Radnox","qty":80},{"name":"Platinum","qty":200}],"outputs":[{"name":"Impact Damage Theta","qty":1}]}]}
 ---
 

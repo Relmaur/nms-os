@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Activated_Quartzite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.expurple.2.png","color":"Purple","type":"Refined Stellar Metal: Purple","rarity":"Rare","symbol":"Qu+","value":"165","release":"WorldsTwo"},"value":165,"recipes":[{"type":"refine","inputs":[{"name":"Methane","qty":1},{"name":"Lithium","qty":1},{"name":"Quartzite","qty":1}],"outputs":[{"name":"Activated Quartzite","qty":1}],"seconds":0.36,"label":"Loosen Bonds"},{"type":"refine","inputs":[{"name":"Methane","qty":1},{"name":"Crystallised Helium","qty":1},{"name":"Quartzite","qty":1}],"outputs":[{"name":"Activated Quartzite","qty":1}],"seconds":0.36,"label":"Loosen Bonds"}]}
 ---
 

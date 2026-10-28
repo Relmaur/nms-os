@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mounted_Flamethrower"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20250208225117_2.jpg","color":"blue","category":"Exocraft","type":"Exocraft Weapon","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Phosphorus","qty":50},{"name":"Basalt","qty":50},{"name":"Methane","qty":90}],"outputs":[{"name":"Mounted Flamethrower","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Mounted Flamethrower","qty":1}],"outputs":[{"name":"Phosphorus","qty":25},{"name":"Basalt","qty":25},{"name":"Methane","qty":45}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phosphorus"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BIOME.HOT.png","color":"Red","category":"Earth","type":"Localised Earth Element","rarity":"Uncommon","used":"Building, Crafting, Charging, Upgrading","symbol":"P","value":"62.0","release":"Endurance"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Solanium","qty":2},{"name":"Salt","qty":1}],"outputs":[{"name":"Phosphorus","qty":1}],"seconds":0.36,"label":"Floral Titration"},{"type":"refine","inputs":[{"name":"Dioxite","qty":2},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Phosphorus","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Dioxite","qty":2},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Phosphorus","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Methane","qty":1},{"name":"Di-hydrogen","qty":1}],"outputs":[{"name":"Phosphorus","qty":1}],"seconds":0.16,"label":"Organic Fusion"}]}
 ---
 

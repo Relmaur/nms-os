@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ion_Battery"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.POWERCELL.png","category":"Consumable","color":"Yellow","type":"Portable Energy Storage","value":"200.0","used":"Building, Charging, Upgrading","release":"Endurance"},"value":200,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":5},{"name":"Cobalt","qty":10}],"outputs":[{"name":"Ion Battery","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":10},{"name":"Silver","qty":10},{"name":"Sodium","qty":10}],"outputs":[{"name":"Ion Battery","qty":1}],"seconds":45,"label":"Ion Capture"}]}
 ---
 

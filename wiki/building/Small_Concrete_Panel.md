@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Concrete_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.FLOORQ CONCRETE.png","category":"Base Building","type":"Concrete Construction Component","release":"Companions"},"recipes":[{"type":"craft","inputs":[{"name":"Silicate Powder","qty":5}],"outputs":[{"name":"Small Concrete Panel","qty":1}],"blueprint":true}]}
 ---
 

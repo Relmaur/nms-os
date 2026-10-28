@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fluffy_Throatripper"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"142,900.0","release":"Prisms"},"value":142900,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Cactus Nectar","qty":1}],"outputs":[{"name":"Fluffy Throatripper","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Fluffy Throatripper","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Cactus Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Fluffy Throatripper","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

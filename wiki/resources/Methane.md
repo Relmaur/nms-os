@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Methane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Gas.4.png","color":"Blue","category":"Earth","type":"Compressed Atmospheric Gas","rarity":"Uncommon","used":"Crafting","symbol":"CH4","value":"35","release":"WorldsTwo"},"value":35,"recipes":[{"type":"refine","inputs":[{"name":"Nitrogen","qty":3},{"name":"Sulphurine","qty":3},{"name":"Radon","qty":3}],"outputs":[{"name":"Methane","qty":1}],"seconds":0.16,"label":"Organic Fusion"}]}
 ---
 

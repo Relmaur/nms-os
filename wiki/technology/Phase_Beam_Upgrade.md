@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phase_Beam_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","subcategory":"Weapons","type":"Generated Upgrade","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Phase Beam Upgrade","qty":1}],"outputs":[{"name":"Silver","qty":75},{"name":"Cadmium","qty":125},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

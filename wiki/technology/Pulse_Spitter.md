@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"pulse_spitter.png","category":"Multi-tool","type":"Weapon","desc":"The Pulse Spitter releases short, rapid sequences of fire.","stats":"Damage = 34x3 Mining Power = 7x3","recharge":"Projectile Ammunition","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Deuterium","qty":200},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Pulse Spitter","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Deuterium","qty":100},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Pulse Spitter","qty":1}],"outputs":[{"name":"Deuterium","qty":100}]}]}
 ---
 

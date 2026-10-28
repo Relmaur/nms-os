@@ -10,7 +10,7 @@ version: "Relics"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vigilant_Stone"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"Grey","category":"Tradeable","type":"Unblinking Eye","value":"102,000","release":"Relics","image":"Vigilant Stone.png"},"value":102000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iced_Screams"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ICECREAM.png","category":"Consumable","type":"Edible Product","value":"90,000.0","release":"Aquarius"},"value":90000,"recipes":[{"type":"cook","inputs":[{"name":"Hypnotic Eye","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Horrifying Mush","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Hypnotic Eye","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Horrifying Mush","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Iced Screams","qty":1}],"seconds":2.5,"label":"Rapid Chilling"}]}
 ---
 

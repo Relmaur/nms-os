@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Chcehoemig"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Chcehoemig","image":"20200323190428_1.jpg","color":"Electric Blue","type":"Norm","order":"251","previous":"Nepitzaspru","next":"Haffneyrin","release":"Interceptor"},"recipes":[]}
 ---
 

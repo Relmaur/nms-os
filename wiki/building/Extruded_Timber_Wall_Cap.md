@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Extruded_Timber_Wall_Cap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TIMBER.BASIC_CHEV_WALL_CORNER_HALF.png","category":"Base Building","type":"Timber Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":10}],"outputs":[{"name":"Extruded Timber Wall Cap","qty":1}],"blueprint":true}]}
 ---
 

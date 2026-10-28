@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquid_Sun"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUB.SUNGOLD.png","category":"Special","type":"Transmuted Metal","rarity":"Common","value":"16.0","release":"Outlaws"},"value":16,"recipes":[]}
 ---
 

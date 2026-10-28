@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Leopard-Fruit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CATFRUIT.png","color":"Yellow","category":"Consumable","type":"Raw Ingredient","value":"3,200.0","release":"SentinelUp"},"value":3200,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Weapons_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.NPCWEAPON.png","category":"Technology","type":"Terminal","desc":"Research station for armourers","release":"Orbital"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Pugneum","qty":25}],"outputs":[{"name":"Weapons Terminal","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Weapons Terminal","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":20},{"name":"Pugneum","qty":12}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crashed_Ship"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Crashed Ship","image":"Crashed Ship Location.jpg","category":"Abandoned Starship","release":"Expeditions","desc":"Crashed starship found on a planet."},"recipes":[]}
 ---
 

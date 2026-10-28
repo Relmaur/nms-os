@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salvaged_Glass"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SENTINELLOOT.png","color":"Purple","category":"Component","type":"Recovered Sentinel Components","value":"3,000","release":"WorldsOne"},"value":3000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Drill_Array_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"blaze_javelin_upgrade.png","category":"Multi-tool","subcategory":"Blaze Javelin","level":"3","upgradeicon":"mine","type":"Blaze Javelin Companion Unit","desc":"Improves the multi-tool's Blaze Javelin Weapon mode mining capability by a large amount.","stats":"Mining Power = 25.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":120},{"name":"Iron","qty":100},{"name":"Iridium","qty":100}],"outputs":[{"name":"Blaze Javelin Drill Array Theta","qty":1}]}]}
 ---
 

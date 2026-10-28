@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Comet_Droplets"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Comet Droplets","image":"TRADEPROD.COMMODITY3.png","color":"Grey","category":"Tradeable","type":"Trade Goods","value":"15,000.0","release":"Adrift"},"value":15000,"recipes":[]}
 ---
 

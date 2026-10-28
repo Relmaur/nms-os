@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ickjamatew"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ickjamatew","image":"No Man's Sky_20190320004520.png","color":"Turquoise","type":"Norm","order":"6","previous":"Hyades","next":"Budullangr","release":"Swarm"},"recipes":[]}
 ---
 

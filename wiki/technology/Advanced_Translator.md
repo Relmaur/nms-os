@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Advanced_Translator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"AUTOTRANSLATOR.png","color":"blue","category":"Exosuit","type":"Automatic Language Parser","stats":"Words Translated 3.0","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":3},{"name":"Convergence Cube","qty":2},{"name":"Platinum","qty":50}],"outputs":[{"name":"Advanced Translator","qty":1}],"blueprint":true}]}
 ---
 

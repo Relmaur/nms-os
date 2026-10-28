@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pie_Case"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.EMPTYPIE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"30,000","release":"Swarm"},"value":30000,"recipes":[{"type":"cook","inputs":[{"name":"Pastry","qty":1}],"outputs":[{"name":"Pie Case","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

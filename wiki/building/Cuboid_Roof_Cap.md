@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cuboid_Roof_Cap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBEROOFCAP.png","category":"Base Building","color":"blue","type":"Construction module","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":20}],"outputs":[{"name":"Cuboid Roof Cap","qty":1}],"blueprint":true}]}
 ---
 

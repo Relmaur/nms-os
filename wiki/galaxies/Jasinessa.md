@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jasinessa"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Jasinessa","image":"20191202200337_1.jpg","color":"Light Coral","type":"Norm","order":"118","previous":"Cidoniana","next":"Torweierf","release":"Waypoint"},"recipes":[]}
 ---
 

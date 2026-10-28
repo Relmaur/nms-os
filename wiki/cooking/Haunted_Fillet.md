@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Haunted_Fillet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.OCTOPUS.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"39,000.0","release":"Aquarius"},"value":39000,"recipes":[{"type":"cook","inputs":[{"name":"The Angler","qty":1}],"outputs":[{"name":"Haunted Fillet","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

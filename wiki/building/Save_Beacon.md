@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Save_Beacon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Save Beacon","image":"BUILDABLE.BEACON.png","category":"Base Building","color":"blue","type":"Portable waypoint marker","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":2},{"name":"Sodium Nitrate","qty":15}],"outputs":[{"name":"Save Beacon","qty":1}],"blueprint":true}]}
 ---
 

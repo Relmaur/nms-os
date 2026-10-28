@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aaseertush"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Aaseertush","image":"20200209235158_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"197","previous":"Sugiuniam","next":"Uglyestemaa","release":"Waypoint"},"recipes":[]}
 ---
 

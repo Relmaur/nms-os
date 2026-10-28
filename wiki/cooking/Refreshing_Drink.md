@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Refreshing_Drink"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"Grey","category":"Consumable","type":"Edible Product","value":"1,800.0","release":"WorldsOne"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Aloe Flesh","qty":1}],"outputs":[{"name":"Refreshing Drink","qty":1}],"seconds":2.5,"label":"Liquidise"}]}
 ---
 

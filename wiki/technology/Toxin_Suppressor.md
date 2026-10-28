@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxin_Suppressor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Toxin Suppressor","image":"RENDER.PROTECTTOXIC.png","color":"green","category":"Exosuit","subcategory":"Hazard","type":"Blueprint","desc":"Protection from Toxins","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Ammonia","qty":150},{"name":"Silver","qty":60},{"name":"Copper","qty":75}],"outputs":[{"name":"Toxin Suppressor","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ammonia","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":38}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Toxin Suppressor","qty":1}],"outputs":[{"name":"Ammonia","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":37}]}]}
 ---
 

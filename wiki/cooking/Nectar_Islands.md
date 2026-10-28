@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nectar_Islands"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEFLUFFY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"94,800","release":"WorldsOne"},"value":94800,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Syrupy Nectar","qty":1}],"outputs":[{"name":"Nectar Islands","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Butter Syrup","qty":1}],"outputs":[{"name":"Nectar Islands","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

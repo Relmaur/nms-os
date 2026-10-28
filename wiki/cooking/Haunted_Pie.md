@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Haunted_Pie"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.TARTEVIL.png","category":"Consumable","type":"Edible Product","value":"52,000","release":"WorldsOne"},"value":52000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Fiendish Roe","qty":1}],"outputs":[{"name":"Haunted Pie","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

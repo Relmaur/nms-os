@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Slime"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPACEGUNK.4.png","color":"Olive","category":"Special","type":"Junk","rarity":"Uncommon","value":"20.0","used":"Upgrading, Refining","symbol":"Jn","release":"Omega"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Viscous Fluids","qty":1}],"outputs":[{"name":"Living Slime","qty":1}],"seconds":0.6,"label":"Recycle Waste Materials"},{"type":"refine","inputs":[{"name":"Hypnotic Eye","qty":1}],"outputs":[{"name":"Living Slime","qty":50}],"seconds":0.24,"label":"Biological Purge"},{"type":"refine","inputs":[{"name":"Mordite","qty":5},{"name":"Atlantideum","qty":5}],"outputs":[{"name":"Living Slime","qty":1}],"seconds":14.4,"label":"Reanimation"}]}
 ---
 

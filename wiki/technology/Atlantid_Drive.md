@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Atlantid_Drive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Technology.purpledrive.png","color":"Purple","category":"Starship","subcategory":"Hyperdrive","level":"?","type":"Hyperdrive Upgrade: Purple Systems","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Indium","qty":250},{"name":"Atlantideum","qty":200},{"name":"Living Glass","qty":1}],"outputs":[{"name":"Atlantid Drive","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Indium","qty":125},{"name":"Atlantideum","qty":100},{"name":"Living Glass","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Atlantid Drive","qty":1}],"outputs":[{"name":"Indium","qty":125},{"name":"Atlantideum","qty":100},{"name":"Living Glass","qty":1}]}]}
 ---
 

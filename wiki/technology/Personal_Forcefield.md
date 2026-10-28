@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Personal_Forcefield"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELD.png","color":"blue","category":"Multi-tool","subcategory":"Shield","type":"Defensive Shield Technology","release":"NEXT"},"recipes":[{"type":"craft","inputs":[{"name":"Ion Battery","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Personal Forcefield","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Personal Forcefield","qty":1}],"outputs":[{"name":"Ion Battery","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fossil_Sample"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Preserved Gek DNA","image":"TREASUREPROD.FOSSIL.png","category":"Artifact","color":"yellow","type":"Fossil Sample","value":"2,295,346.0","used":"Trading, Trading (High Value)","release":"Singularity"},"value":2295346,"recipes":[]}
 ---
 

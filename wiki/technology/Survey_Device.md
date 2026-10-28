@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Survey_Device"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BINOCSMOD.png","color":"blue","category":"Multi-tool","subcategory":"Scanner","type":"Analysis Visor Upgrade","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":3},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Survey Device","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Survey Device","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}]}]}
 ---
 

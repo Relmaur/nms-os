@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Carrier_AI_Fragment"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Carrier AI Fragment","image":"PRODUCT.FREIGHTERCORE.png","color":"purple","category":"Component","type":"Battleship Core Remnant","value":"35,000.0","release":"WorldsOne"},"value":35000,"recipes":[]}
 ---
 

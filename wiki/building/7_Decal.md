@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/'7'_Decal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECAL.NUM7.png","category":"Base Building","type":"Component","desc":"Decoration","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"'7' Decal","qty":1}],"blueprint":true}]}
 ---
 

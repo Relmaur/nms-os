@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mining_Beam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","type":"Mineral Extraction Laser","recharge":"Carbon, Condensed Carbon, Phosphorus","release":"Omega"},"recipes":[{"type":"repair","inputs":[{"name":"Ferrite Dust","qty":30}],"outputs":[]}]}
 ---
 

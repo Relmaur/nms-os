@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Memory_Fragment"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ROGUETECH.GENERAL.png","category":"Curiosity","color":"darkblue","type":"Technology Echo","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Silver","qty":50},{"name":"Pugneum","qty":100}],"outputs":[{"name":"Memory Fragment","qty":1}],"blueprint":true}]}
 ---
 

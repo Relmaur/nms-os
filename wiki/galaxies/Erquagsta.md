@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Erquagsta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Erquagsta","image":"20200219183116_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"211","previous":"Digarlewena","next":"Logovoloin","release":"Waypoint"},"recipes":[]}
 ---
 

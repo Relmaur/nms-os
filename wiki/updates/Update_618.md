@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.18"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BreachCover.png","date":"1 December, 2025","platform":"PC","link":"Holiday Expeditions 2025 6.18","release":"Breach","previous":"6.17.2","next":"6.20"},"recipes":[]}
 ---
 

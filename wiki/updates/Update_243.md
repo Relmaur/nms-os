@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.43"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-exo-mech-book-cover-opt.png","date":"22 April 2020","platform":"All","link":"Exo Mech 11 on nomanssky.com","release":"ExoMech","previous":"2.42","next":"2.44"},"recipes":[]}
 ---
 

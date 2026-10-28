@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Activated_Copper"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.EXYELLOW.2.png","color":"Yellow","type":"Refined Stellar Metal: Yellow","rarity":"Common","symbol":"Cu+","value":"75.0","release":"Waypoint"},"value":75,"recipes":[]}
 ---
 

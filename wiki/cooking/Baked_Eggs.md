@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Baked_Eggs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.OMLETTE.png","color":"Green","category":"Consumable","type":"Edible Product","value":"2,200.0","release":"Origins"},"value":2200,"recipes":[{"type":"cook","inputs":[{"name":"Larval Core","qty":1}],"outputs":[{"name":"Baked Eggs","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Creature Egg","qty":1}],"outputs":[{"name":"Baked Eggs","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Tall Eggs","qty":1}],"outputs":[{"name":"Baked Eggs","qty":1}],"seconds":2.5,"label":"Bind Proteins"},{"type":"cook","inputs":[{"name":"Giant Egg","qty":1}],"outputs":[{"name":"Baked Eggs","qty":1}],"seconds":2.5,"label":"Bind Proteins"}]}
 ---
 

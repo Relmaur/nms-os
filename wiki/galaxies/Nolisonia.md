@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nolisonia"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nolisonia","image":"20200128222514_1.jpg","color":"Pale Green","type":"Harsh","order":"183","previous":"Ebedeagurst","next":"Ulexovitab","release":"Waypoint"},"recipes":[]}
 ---
 

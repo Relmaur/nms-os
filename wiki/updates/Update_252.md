@@ -10,7 +10,7 @@ version: "Crossplay"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.52"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsMis U45GamePass.png","dateps":"13 June 2020","datepc":"12 June 2020","datexbox":"13 June 2020","steam":"5155654","platform":"All","link":"Crossplay Patch 2.52","release":"Crossplay","previous":"2.50","next":"2.53"},"recipes":[]}
 ---
 

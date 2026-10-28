@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grbodubhe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Grbodubhe","image":"20200106225634_1.jpg","color":"Medium Orchid","type":"Norm","order":"158","previous":"Gaybakuaria","next":"Rycempler","release":"Waypoint"},"recipes":[]}
 ---
 

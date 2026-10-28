@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hapirajua"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hapirajua","image":"20200122181918_1.jpg","color":"Pale Green","type":"Norm","order":"177","previous":"Wongquarum","next":"Igbinduina","release":"Waypoint"},"recipes":[]}
 ---
 

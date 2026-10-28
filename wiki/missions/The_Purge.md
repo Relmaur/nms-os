@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Purge"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ThePurgeAtlas.jpg","type":"Primary","series":"Artemis Path","prevmission":"16 / 16","nextmission":"New Beginnings","origin":"Holo-Terminus","implemented":"Atlas Rises","desc":"Reset the Simulation, Final mission of the Artemis Path proper"},"recipes":[]}
 ---
 

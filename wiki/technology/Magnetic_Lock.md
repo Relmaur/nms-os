@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Magnetic_Lock"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MAINTTECH.TECH2.png","category":"Point of Interest","color":"blue","type":"Damaged Component","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Cobalt","qty":10}],"outputs":[]}]}
 ---
 

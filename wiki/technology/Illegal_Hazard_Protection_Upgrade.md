@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Illegal_Hazard_Protection_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTGENERICMOD.png","color":"blue","category":"Exosuit","subcategory":"Hazard","type":"Hazard Protection Upgrade","release":"Echoes"},"recipes":[{"type":"repair","inputs":[{"name":"Sodium Nitrate","qty":50},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Illegal Hazard Protection Upgrade","qty":1}],"outputs":[{"name":"Sodium Nitrate","qty":50},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

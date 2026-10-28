@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Matter_Beam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","type":"Freighter Technology","release":"Orbital"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":5},{"name":"Magnetic Resonator","qty":3},{"name":"Wiring Loom","qty":10}],"outputs":[{"name":"Matter Beam","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Matter Beam","qty":1}],"outputs":[{"name":"Antimatter","qty":3},{"name":"Magnetic Resonator","qty":2},{"name":"Wiring Loom","qty":5}]},{"type":"repair","inputs":[{"name":"Antimatter","qty":3},{"name":"Magnetic Resonator","qty":2},{"name":"Wiring Loom","qty":5}],"outputs":[]}]}
 ---
 

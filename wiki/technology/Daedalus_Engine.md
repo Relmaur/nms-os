@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Daedalus_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.engine.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Power Unit","release":"ExoMech"},"recipes":[]}
 ---
 

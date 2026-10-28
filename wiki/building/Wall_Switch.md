@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wall_Switch"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.SWITCHWALL.png","category":"Base Building","color":"Blue","type":"Power Distribution Module","value":"1","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":25},{"name":"Ionised Cobalt","qty":25}],"outputs":[{"name":"Wall Switch","qty":1}],"blueprint":true}]}
 ---
 

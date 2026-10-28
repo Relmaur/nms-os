@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wall_Screen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.WALLSCREEN.png","category":"Base Building","type":"Component","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":5},{"name":"Cobalt","qty":5}],"outputs":[{"name":"Wall Screen","qty":1}],"blueprint":true}]}
 ---
 

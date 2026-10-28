@@ -10,7 +10,7 @@ version: "Release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nomad_(Journey_Milestone)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Rank.distancewalked.png","level":"7","type":"on-foot exploration","desc":"Travelled 30,000u"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oniijialdu"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Oniijialdu","image":"20190805215909 1.jpg","color":"Sky Blue","type":"Harsh","order":"43","previous":"Xobeurindj","next":"Wucetosucc","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Refined_Flour"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.FLOUR.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"1,800","release":"WorldsTwo"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Heptaploid Wheat","qty":1}],"outputs":[{"name":"Refined Flour","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Glass Grains","qty":1}],"outputs":[{"name":"Refined Flour","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Kelp Rice","qty":1}],"outputs":[{"name":"Refined Flour","qty":1}],"seconds":2.5,"label":"Extract Nutrients"}]}
 ---
 

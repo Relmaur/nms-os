@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Light"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.light001.png","category":"Base Building","type":"Component","complexity":"5a","release":"NextGen","power":"1 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Sodium","qty":5}],"outputs":[{"name":"Light","qty":1}],"blueprint":true}]}
 ---
 

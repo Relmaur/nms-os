@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grave_of_the_Ocean_King"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Grave of the Ocean King","image":"Grave of the Ocean King.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Enter and exit","ramifications":"None","rewards":"Fossil Sample or Ancient Skeleton","release":"WorldsOne"},"recipes":[]}
 ---
 

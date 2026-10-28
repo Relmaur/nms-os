@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Megawatt_Heater"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTCOLD.png","color":"blue","category":"Vehicle","type":"Exocraft Hazard Protection Upgrade","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Phosphorus","qty":80},{"name":"Uranium","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Megawatt Heater","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Megawatt Heater","qty":1}],"outputs":[{"name":"Phosphorus","qty":40},{"name":"Uranium","qty":25}]}]}
 ---
 

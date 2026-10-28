@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flora_Analyzer_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Flora Analyzer Theta","image":"Render.binoculars.png","category":"Multi-tool","subcategory":"Scanner","level":"3","upgradeicon":"scan","type":"Binocular Tagging Device","desc":"Used to improve detection of flora","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":120},{"name":"Chrysonite","qty":120},{"name":"Plutonium","qty":200}],"outputs":[{"name":"Flora Analyzer Theta","qty":1}]}]}
 ---
 

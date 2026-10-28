@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Somnal_Dust"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.TIMEDUST.png","category":"Special","type":"Decayed Spacetime Remnant","rarity":"Common","value":"1,616.0","release":"Outlaws"},"value":1616,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enormous_Metal_Cog"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Enormous Metal Cog","image":"TRADEPROD.COMPONENT1.png","color":"grey","category":"Tradeable","type":"Trade Goods (Industrial)","value":"1,000.0","release":"Beacon"},"value":1000,"recipes":[]}
 ---
 

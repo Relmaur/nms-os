@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.97"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-endurance-book-cover-op.png","date":"27 July 2022","platform":"All platforms","link":"Polestar Expedition Update","release":"Endurance","previous":"3.96","next":"3.98"},"recipes":[]}
 ---
 

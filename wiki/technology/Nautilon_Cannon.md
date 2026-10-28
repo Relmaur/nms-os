@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nautilon_Cannon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nautilon Cannon","image":"RENDER.SUBMARINECANNON.png","color":"blue","category":"Aquatic","type":"Submarine Weapon","recharge":"Organic Elements","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Chlorine","qty":100},{"name":"Crystal Sulphide","qty":6},{"name":"Living Pearl","qty":2}],"outputs":[{"name":"Nautilon Cannon","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Nautilon Cannon","qty":1}],"outputs":[{"name":"Chlorine","qty":50},{"name":"Crystal Sulphide","qty":3},{"name":"Living Pearl","qty":1}]}]}
 ---
 

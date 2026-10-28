@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bionic_Lure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISHBAIT.3.png","color":"Darkblue","category":"Consumable","type":"Fishing Bait","value":"450.0","release":"Aquarius"},"value":450,"recipes":[{"type":"craft","inputs":[{"name":"Amino Chamber","qty":2},{"name":"Ion Battery","qty":3},{"name":"Lubricant","qty":3}],"outputs":[{"name":"Bionic Lure","qty":20}]}]}
 ---
 

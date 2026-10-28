@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Photic_Jade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ATLASSEED.6.png","category":"Curiosity","color":"grey","type":"Unique valuable curiosity","value":"1,000.0","release":"Visions"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Dawn's End","qty":1},{"name":"Copper","qty":100}],"outputs":[{"name":"Photic Jade","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enlaythie"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Enlaythie","image":"20200101010959_1.jpg","color":"Pale Green","type":"Norm","order":"146","previous":"Gucuttarik","next":"Drewweste","release":"Waypoint"},"recipes":[]}
 ---
 

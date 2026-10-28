@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSESPITTERMOD.png","category":"Multi-tool","subcategory":"Weapon","type":"Generated Upgrade","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Cobalt","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Pulse Spitter Upgrade","qty":1}],"outputs":[{"name":"Cobalt","qty":75},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

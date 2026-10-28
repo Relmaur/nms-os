@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Star_Seed"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Star Seed","image":"PRODUCT.HEXCORE.png","category":"Exosuit","subcategory":"Health","type":"Cosmic Brand","release":"Omega"},"recipes":[{"type":"craft","inputs":[{"name":"Platinum","qty":16},{"name":"Tritium","qty":16},{"name":"Gold","qty":16}],"outputs":[{"name":"Star Seed","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Platinum","qty":8},{"name":"Tritium","qty":8},{"name":"Gold","qty":8}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Star Seed","qty":1}],"outputs":[{"name":"Platinum","qty":8},{"name":"Tritium","qty":8},{"name":"Gold","qty":8}]}]}
 ---
 

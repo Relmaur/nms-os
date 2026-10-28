@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dotusingg"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dotusingg","image":"20191208144828_1.jpg","color":"Pale Green","type":"Norm","order":"122","previous":"Thnistner","next":"Luleukous","release":"Waypoint"},"recipes":[]}
 ---
 

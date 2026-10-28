@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tall_Cabinet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SIDEPANEL.png","category":"Base Building","color":"blue","type":"Decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":10}],"outputs":[{"name":"Tall Cabinet","qty":1}],"blueprint":true}]}
 ---
 

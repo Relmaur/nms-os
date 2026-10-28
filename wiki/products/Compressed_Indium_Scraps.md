@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Compressed_Indium_Scraps"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Compressed Indium Scraps","image":"TRADEPROD.ENERGY3.png","category":"Tradeable","value":"3,000,000.0","type":"Starship Subcomponent","release":"Adrift"},"value":3000000,"recipes":[]}
 ---
 

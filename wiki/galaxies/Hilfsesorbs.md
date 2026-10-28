@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hilfsesorbs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hilfsesorbs","image":"20200114092921_1.jpg","color":"Aquamarine","type":"Norm","order":"169","previous":"Twoodmand","next":"Ezdaranit","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Positron_Ejector_Fire_Rate_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"3","type":"Positron Ejector Companion Unit","desc":"Increases rate of fire by the Starship's Positron Ejector weapon mode by a large amount.","stats":"Damage = +25%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":300},{"name":"Iron","qty":300},{"name":"Dimensional Matrix","qty":3}],"outputs":[{"name":"Positron Ejector Fire Rate Theta","qty":1}]}]}
 ---
 

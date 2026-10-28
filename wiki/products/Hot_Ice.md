@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hot_Ice"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"COMPOUND.3.png","color":"Grey","category":"Tradeable","type":"Manufactured Gas Product","value":"320,000.0","release":"Prisms"},"value":320000,"recipes":[{"type":"craft","inputs":[{"name":"Enriched Carbon","qty":1},{"name":"Nitrogen Salt","qty":1}],"outputs":[{"name":"Hot Ice","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Message_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.MESSAGEMODULE.png","category":"Base Building","color":"blue","type":"Communications terminal","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Carbon Nanotubes","qty":1}],"outputs":[{"name":"Message Module","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Message Module","qty":1}],"outputs":[{"name":"Metal Plating","qty":1},{"name":"Carbon Nanotubes","qty":1}]}]}
 ---
 

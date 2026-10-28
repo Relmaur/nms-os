@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grenade_Propulsion_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","color":"blue","category":"Weapon","subcategory":"Grenade","level":"2","type":"Companion Unit","desc":"Increase the speed of projectile grenades","stats":"Projectile Velocity = +10.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":150},{"name":"Zinc","qty":20},{"name":"Chrysonite","qty":150}],"outputs":[{"name":"Grenade Propulsion Tau","qty":1}]}]}
 ---
 

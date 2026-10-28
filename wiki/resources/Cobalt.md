@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cobalt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.CAVE.1.png","category":"Earth","type":"Subterranean Mineral","rarity":"Common","color":"Blue","used":"Building, Crafting, Charging, Upgrading, Refining","symbol":"Co","value":"76.0","release":"Waypoint"},"value":76,"recipes":[{"type":"refine","inputs":[{"name":"Ionised Cobalt","qty":1}],"outputs":[{"name":"Cobalt","qty":2}],"seconds":0.12,"label":"Deionise Mineral"}]}
 ---
 

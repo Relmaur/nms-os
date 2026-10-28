@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Historiographical_Dosimeter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.MYSTERYTRACKER.png","category":"Curiosity","color":"purple","type":"Personal Reality Flux Monitor","value":"3,200.0","release":"Expeditions"},"value":3200,"recipes":[]}
 ---
 

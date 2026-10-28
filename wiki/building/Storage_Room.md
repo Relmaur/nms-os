@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Storage_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.STORE0.png","category":"Building Part","type":"Custom Freighter Module","color":"blue","desc":"Additional storage units","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":50},{"name":"Sodium","qty":20}],"outputs":[{"name":"Storage Room","qty":1}]}]}
 ---
 

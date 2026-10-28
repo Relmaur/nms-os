@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Quantum_Processor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MEGAPROD.2.png","color":"yellow","category":"Tradeable","type":"Advanced Crafted Product","value":"4,400,000.0","release":"Remnant"},"value":4400000,"recipes":[{"type":"craft","inputs":[{"name":"Circuit Board","qty":1},{"name":"Superconductor","qty":1}],"outputs":[{"name":"Quantum Processor","qty":1}],"blueprint":true}]}
 ---
 

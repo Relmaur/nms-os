@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Terumin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.metallic.7.png","category":"Component","type":"Neutral Metal Alloy","value":"39,105","release":"Foundation"},"value":39105,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Emeril","qty":40},{"name":"Gold","qty":40},{"name":"Herox","qty":1}],"outputs":[{"name":"Terumin","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Moon_Ether"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Moon Ether","image":"PRODUCT.SMUGGLING3.png","category":"Tradeable","value":"18,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":18000,"recipes":[]}
 ---
 

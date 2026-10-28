@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Meykinunukur"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Meykinunukur","image":"20191223125638_1.jpg","color":"Canary Yellow","type":"Norm","order":"140","previous":"Emiekereks","next":"Kimycuristh","release":"Waypoint"},"recipes":[]}
 ---
 

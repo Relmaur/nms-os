@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Maupenzhay"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Maupenzhay","image":"No Man's Sky_20190403192219.png","color":"Light Orange","type":"Norm","order":"31","previous":"Sudzerbal","next":"Sugueziume","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gooey_Screamer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"167,200","release":"Fractal"},"value":167200,"recipes":[{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Gooey Screamer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Sticky 'Honey'","qty":1}],"outputs":[{"name":"Gooey Screamer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Wailing Batter","qty":1},{"name":"Gooey Butter","qty":1}],"outputs":[{"name":"Gooey Screamer","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

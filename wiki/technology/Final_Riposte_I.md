@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Final_Riposte_I"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Final Riposte I","color":"blue","category":"Multi-tool","subcategory":"Weapon","type":"Crack Nose","desc":"provides 14 slots","release":"Pathfinder"},"recipes":[]}
 ---
 

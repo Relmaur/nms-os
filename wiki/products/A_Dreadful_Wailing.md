@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/A_Dreadful_Wailing"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ROGUEKEY.png","category":"Expedition tool","color":"purple","type":"Loop Artifact","value":"16","used":"Expedition","release":"Outlaws"},"value":16,"recipes":[]}
 ---
 

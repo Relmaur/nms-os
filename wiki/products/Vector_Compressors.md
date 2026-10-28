@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vector_Compressors"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Vector Compressors","image":"TRADEPROD.COMPONENT5.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Industrial)","value":"50,000.0","release":"Adrift"},"value":50000,"recipes":[]}
 ---
 

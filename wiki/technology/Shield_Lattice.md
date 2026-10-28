@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shield_Lattice"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTGENERICMOD.png","color":"blue","category":"Exosuit","subcategory":"Hazard","level":"B","type":"Hazard Protection Upgrade","stats":"+20% Hazard Protection Battery","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Sodium Nitrate","qty":60},{"name":"Antimatter","qty":1}],"outputs":[{"name":"Shield Lattice","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Sodium Nitrate","qty":60},{"name":"Antimatter","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Shield Lattice","qty":1}],"outputs":[{"name":"Sodium Nitrate","qty":30},{"name":"Antimatter","qty":1}]}]}
 ---
 

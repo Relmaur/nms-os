@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Focus_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Beam Focus Tau","image":"Render.laser1.png","category":"Multi-tool","subcategory":"Laser","level":"2","upgradeicon":"mine","type":"Mining Beam Companion Unit","desc":"Faster Mining Beam processes on resource-rich materials.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Chrysonite","qty":100}],"outputs":[{"name":"Beam Focus Tau","qty":1}]}]}
 ---
 

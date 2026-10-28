@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Venessika"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Venessika","image":"20191216122115_1.jpg","color":"Light Red","type":"Empty","order":"132","previous":"Meximicka","next":"Gaiteseling","release":"Waypoint"},"recipes":[]}
 ---
 

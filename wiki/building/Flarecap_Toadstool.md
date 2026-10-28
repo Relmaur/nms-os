@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flarecap_Toadstool"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Flarecap Toadstool","image":"SPECIAL.SWAMPPLANT01.png","category":"Customisation Part","type":"Organic decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":40}],"outputs":[{"name":"Flarecap Toadstool","qty":1}],"blueprint":true}]}
 ---
 

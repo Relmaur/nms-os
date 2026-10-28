@@ -10,7 +10,7 @@ version: "Release"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Focus_V1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1mod.png","color":"blue","category":"Multi-tool","subcategory":"Laser","level":"1","upgradeicon":"mine","type":"Companion Unit","desc":"Lv. 1 - Slightly increases speed of element extraction.","release":"Release"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":20},{"name":"Heridium","qty":20},{"name":"Plutonium","qty":25}],"outputs":[{"name":"Beam Focus V1","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gooey_ProtoDoughnut"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DOUGHNUT.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"120,000","release":"NextGen"},"value":120000,"recipes":[{"type":"cook","inputs":[{"name":"Lumpen Doughnut","qty":1},{"name":"Gooey ProtoButter","qty":1}],"outputs":[{"name":"Gooey ProtoDoughnut","qty":1}],"seconds":2.5,"label":"Nutrient Injection"}]}
 ---
 

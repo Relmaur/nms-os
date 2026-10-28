@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Night_Crystals"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ELEMENT.CRYSTAL1.png","category":"Component","type":"Technology component","value":"35,000","desc":"Naturally glowing crystalline clusters","release":"Atlas Rises"},"value":35000,"recipes":[]}
 ---
 

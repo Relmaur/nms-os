@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Kuolungau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Kuolungau","image":"20200224191512_1.jpg","color":"Pale Green","type":"Norm","order":"214","previous":"Boyaghosganh","next":"Pehneldept","release":"Waypoint"},"recipes":[]}
 ---
 

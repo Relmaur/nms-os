@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Jet_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"Blue","level":"1","upgradeicon":"speed","category":"Ship","subcategory":"Utilities","type":"Pulse Engine Companion Unit","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Chrysonite","qty":100},{"name":"Iron","qty":200},{"name":"Zinc","qty":50}],"outputs":[{"name":"Pulse Jet Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Handful_of_Cogs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.TECH2.png","category":"Tradeable","value":"10,000.0","type":"Starship Subcomponent","release":"Desolation"},"value":10000,"recipes":[]}
 ---
 

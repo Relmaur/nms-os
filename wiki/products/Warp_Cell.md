@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Warp_Cell"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.WARPCELL.png","category":"Consumable","type":"Hyperdrive Charging Unit","used":"Building, Charging, Upgrading","value":"46,750.0","release":"WorldsOne"},"value":46750,"recipes":[{"type":"craft","inputs":[{"name":"Antimatter Housing","qty":1},{"name":"Antimatter","qty":1}],"outputs":[{"name":"Warp Cell","qty":1}]},{"type":"refine","inputs":[{"name":"Carbon","qty":50},{"name":"Sodium Nitrate","qty":5},{"name":"Chromatic Metal","qty":250}],"outputs":[{"name":"Warp Cell","qty":1}],"seconds":300,"label":"Antimatter Bypass"},{"type":"refine","inputs":[{"name":"Condensed Carbon","qty":25},{"name":"Sodium","qty":10},{"name":"Chromatic Metal","qty":250}],"outputs":[{"name":"Warp Cell","qty":1}],"seconds":300,"label":"Antimatter Bypass"},{"type":"refine","inputs":[{"name":"Condensed Carbon","qty":25},{"name":"Sodium Nitrate","qty":5},{"name":"Chromatic Metal","qty":250}],"outputs":[{"name":"Warp Cell","qty":1}],"seconds":300,"label":"Antimatter Bypass"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Steamed_Vegetables"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.VEG.png","color":"Green","category":"Consumable","type":"Raw Ingredient","value":"1,800","release":"WorldsTwo"},"value":1800,"recipes":[{"type":"cook","inputs":[{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Jade Peas","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Hexaberry","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Solartillo","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Non-Toxic Mushroom","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Sievert Beans","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Marrow Flesh","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"},{"type":"cook","inputs":[{"name":"Foraged Mushrooms","qty":1}],"outputs":[{"name":"Steamed Vegetables","qty":1}],"seconds":2.5,"label":"Steam Plant Matter"}]}
 ---
 

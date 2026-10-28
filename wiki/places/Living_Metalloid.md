@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Metalloid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Living Metalloids","image":"Living_Metalloid.jpg","system_types":"Any","frequency":"Very Low","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"None","ramifications":"None documented","rewards":"Salvaged Scrap, Starship Upgrade","release":"Echoes"},"recipes":[]}
 ---
 

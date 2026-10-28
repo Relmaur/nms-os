@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Resonance_Amplifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BUILDERSSCANMOD.png","color":"blue","category":"Multi-Tool","subcategory":"Scanner","level":"A","type":"Echo Seed Detection Device","desc":"Reveals Autophage entities.","stats":"Echo Resonator: Enabled, +11% Scan Radius","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen","qty":160},{"name":"Gravitino Ball","qty":3},{"name":"Radiant Shard","qty":1}],"outputs":[{"name":"Resonance Amplifier","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Di-hydrogen","qty":80},{"name":"Gravitino Ball","qty":2},{"name":"Radiant Shard","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Resonance Amplifier","qty":1}],"outputs":[{"name":"Di-hydrogen","qty":80},{"name":"Gravitino Ball","qty":2},{"name":"Radiant Shard","qty":1}]}]}
 ---
 

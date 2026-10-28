@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Soul_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SOULENGINE.png","category":"Curiosity","type":"Advanced Crafted Product","value":"1,000.0","release":"Frontiers"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":3},{"name":"Living Pearl","qty":1},{"name":"Cadmium","qty":120}],"outputs":[{"name":"Soul Engine","qty":1}],"blueprint":true}]}
 ---
 

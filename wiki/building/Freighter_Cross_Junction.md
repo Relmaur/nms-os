@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Cross_Junction"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SPACE CORRIDOR X.png","category":"Base Building","type":"Freighter Interior Module","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":80},{"name":"Tritium","qty":10}],"outputs":[{"name":"Freighter Cross Junction","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sodium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.CATALYST.1.png","color":"Yellow","category":"Catalyst","type":"Unrefined Catalytic Element","rarity":"Uncommon","used":"Building, Charging, Upgrading, Refining","value":"41.0","symbol":"Na","release":"Waypoint"},"value":41,"recipes":[{"type":"refine","inputs":[{"name":"Sodium Nitrate","qty":1}],"outputs":[{"name":"Sodium","qty":2}],"seconds":0.24,"label":"Free Sodium"},{"type":"refine","inputs":[{"name":"Marrow Bulb","qty":1}],"outputs":[{"name":"Sodium","qty":1}],"seconds":0.24,"label":"Extract Organic Sodium"},{"type":"refine","inputs":[{"name":"Marrow Bulb","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Sodium","qty":2}],"seconds":0.36,"label":"Extract Organic Sodium"},{"type":"refine","inputs":[{"name":"Marrow Bulb","qty":1},{"name":"Condensed Carbon","qty":1}],"outputs":[{"name":"Sodium","qty":2}],"seconds":0.36,"label":"Extract Organic Sodium"}]}
 ---
 

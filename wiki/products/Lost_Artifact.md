@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lost_Artifact"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Clumsy Fermenting Machine","image":"TRADEPROD.COMPONENT4.png","category":"Artifact","color":"Yellow","type":"Lost Artifact","value":"2,296,607.5","used":"Trading, Trading (High Value)","release":"WorldsOne"},"value":2296607.5,"recipes":[]}
 ---
 

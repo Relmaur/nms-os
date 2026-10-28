@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Osmotic_Generator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SUBMARINEENGINEMOD.png","color":"blue","category":"Vehicle","type":"Humboldt Drive Upgrade","stats":"Fuel Efficiency = +20%","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":150},{"name":"Living Pearl","qty":6},{"name":"Solar Mirror","qty":2}],"outputs":[{"name":"Osmotic Generator","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Osmotic Generator","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":75},{"name":"Living Pearl","qty":3},{"name":"Solar Mirror","qty":1}]}]}
 ---
 

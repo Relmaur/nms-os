@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter_Storage_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SPACE CONTAINER.0.png","category":"Building Part","type":"Custom Freighter Module","color":"blue","desc":"Additional storage units","release":"Origins"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Sodium","qty":20}],"outputs":[{"name":"Freighter Storage Unit","qty":1}]}]}
 ---
 

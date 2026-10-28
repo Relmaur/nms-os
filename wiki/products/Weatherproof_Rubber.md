@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Weatherproof_Rubber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech Weatherproof Rubber Icon 13.png","category":"Component","type":"Advanced Agricultural Product","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Kelp Sac","qty":50}],"outputs":[{"name":"Weatherproof Rubber","qty":1}]}]}
 ---
 

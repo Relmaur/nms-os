@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator_Coolant_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Infra-Knife_Accelerator_Upgrade_Icon.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"1","type":"Infra-Knife Companion Unit","desc":"Reduces Infra-Knife cool-down times","stats":"Heat Dispersion = +4%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":30},{"name":"Chrysonite","qty":30},{"name":"Iron","qty":50}],"outputs":[{"name":"Infra-Knife Accelerator Coolant Sigma","qty":1}]}]}
 ---
 

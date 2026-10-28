@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tuhgrespod"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Tuhgrespod","image":"20200326213035_1.jpg","color":"Canary Yellow","type":"Norm","order":"254","previous":"Uliciawai","next":"Iousongola","release":"Interceptor"},"recipes":[]}
 ---
 

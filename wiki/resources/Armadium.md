@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Armadium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsResource_Armadium_Icon.png","type":"Neutral/Exotic","rarity":"Rare","symbol":"Ar","value":"27.5","release":"Atlas Rises"},"value":27.5,"recipes":[]}
 ---
 

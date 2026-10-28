@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Carbon_Nanotubes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.nanotubes.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"500","release":"WorldsTwo"},"value":500,"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":50}],"outputs":[{"name":"Carbon Nanotubes","qty":1}],"blueprint":true},{"type":"cook","inputs":[{"name":"Chewy Wires","qty":1}],"outputs":[{"name":"Carbon Nanotubes","qty":1}],"seconds":2.5,"label":"NOT RECOMMENDED"}]}
 ---
 

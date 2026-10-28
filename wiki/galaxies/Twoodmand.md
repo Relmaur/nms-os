@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Twoodmand"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Twoodmand","image":"20200113091449_1.jpg","color":"Electric Blue","type":"Norm","order":"168","previous":"Impoxectin","next":"Hilfsesorbs","release":"Waypoint"},"recipes":[]}
 ---
 

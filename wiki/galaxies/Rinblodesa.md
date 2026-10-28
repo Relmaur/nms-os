@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rinblodesa"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Rinblodesa","image":"20191004074251_1.jpg","color":"Magenta","type":"Norm","order":"64","previous":"Nokokipsechl","next":"Loydporpen","release":"Waypoint"},"recipes":[]}
 ---
 

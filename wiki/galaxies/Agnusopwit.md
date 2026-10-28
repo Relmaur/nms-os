@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Agnusopwit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Agnusopwit","image":"20190811220458 1.jpg","color":"Red","type":"Norm","order":"49","previous":"Waferganh","next":"Teyaypilny","release":"Waypoint"},"recipes":[]}
 ---
 

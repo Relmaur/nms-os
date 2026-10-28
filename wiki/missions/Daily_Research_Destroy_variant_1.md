@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Daily_Research%3A_Destroy_(variant_1)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Daily Research: Destroy","image":"NmsMisc_Mission.png","type":"Secondary","series":"Daily Research","requires":"Community Research (mission 9)","implemented":"Visions 1.77","desc":"Record destruction logs for the Space Anomaly"},"recipes":[]}
 ---
 

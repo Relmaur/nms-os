@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alloy_Half_Ramp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FIBREGLASS.BASIC_RAMP_THIN.png","category":"Base Building","type":"Alloy Construction Component","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":15},{"name":"Pure Ferrite","qty":5}],"outputs":[{"name":"Alloy Half Ramp","qty":1}],"blueprint":true}]}
 ---
 

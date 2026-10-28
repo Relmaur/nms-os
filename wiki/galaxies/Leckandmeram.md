@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Leckandmeram"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Leckandmeram","image":"20190930125441_1.jpg","color":"Canary Yellow","type":"Norm","order":"61","previous":"Corpinyaya","next":"Quulngais","release":"Waypoint"},"recipes":[]}
 ---
 

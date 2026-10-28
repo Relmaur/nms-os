@@ -10,7 +10,7 @@ version: "Companions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.20"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-companions-book-cover-opt.png","date":"17 February 2021","platform":"All","link":"Companions Update","release":"Companions","previous":"3.15","next":"3.21"},"recipes":[]}
 ---
 

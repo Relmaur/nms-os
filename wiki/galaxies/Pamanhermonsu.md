@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pamanhermonsu"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Pamanhermonsu","image":"20200305230323_1.jpg","color":"Magenta","type":"Norm","order":"226","previous":"Cuzcogipper","next":"Brotoghek","release":"Fractal"},"recipes":[]}
 ---
 

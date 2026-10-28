@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neural_Assembly"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.BRAIN.png","category":"Propulsion","subcategory":"Enhancement","type":"Vertical Take-off System","desc":"Used during initial takeoff and landings","recharge":"Oxygen, Mordite or Condensed Carbon","release":"Endurance"},"recipes":[{"type":"repair","inputs":[{"name":"Living Slime","qty":20},{"name":"Walker Brain","qty":1}],"outputs":[]}]}
 ---
 

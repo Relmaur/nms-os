@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ion_Capacitor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ion Capacitor","image":"TRADEPROD.TECH3.png","color":"Grey","category":"Tradeable","value":"15,000.0","type":"Trade Goods (Technology)","release":"Adrift"},"value":15000,"recipes":[]}
 ---
 

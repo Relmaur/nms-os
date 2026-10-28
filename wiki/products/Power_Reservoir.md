@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Power_Reservoir"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.gel3.png","color":"red","category":"Consumable","type":"Energy Recharge Cell","desc":"High capacity power gel source","value":"515.6","release":"Atlas Rises"},"value":515.6,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":100},{"name":"Carbon","qty":200}],"outputs":[{"name":"Power Reservoir","qty":1}]}]}
 ---
 

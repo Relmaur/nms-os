@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shelter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Shelter","image":"Cel-Agutissye-Xi-Major-Loc-08c.jpg","category":"Inhabited Outpost","release":"Orbital"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nasmilete"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nasmilete","image":"20191025203035_1.jpg","color":"Pink","type":"Norm","order":"80","previous":"Uiweupose","next":"Ekdaluskin","release":"Waypoint"},"recipes":[]}
 ---
 

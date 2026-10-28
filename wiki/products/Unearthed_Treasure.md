@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Unearthed_Treasure"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Trove of Legendary Potions","image":"TREASUREPROD.COINCRATE.png","category":"Artifact","color":"yellow","type":"Unearthed Treasure","value":"2,299,827.0","used":"Trading, Trading (High Value)","release":"WorldsOne"},"value":2299827,"recipes":[]}
 ---
 

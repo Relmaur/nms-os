@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Recycled_Circuitry"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Recycled Circuitry","image":"TRADEPROD.ALLOY5.png","category":"Tradeable","value":"520,000.0","type":"Starship Subcomponent","release":"Adrift"},"value":520000,"recipes":[]}
 ---
 

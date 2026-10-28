@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Interstellar_Scanner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.FREIGHTERSCANNER.png","color":"blue","category":"Freighter","subcategory":"Scanner","type":"Freighter Technology","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":160},{"name":"Magnetised Ferrite","qty":70},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Interstellar Scanner","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Interstellar Scanner","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":80},{"name":"Magnetised Ferrite","qty":35},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

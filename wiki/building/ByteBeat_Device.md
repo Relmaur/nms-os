@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/ByteBeat_Device"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BYTEBEAT.png","category":"Base Building","color":"Blue","type":"Audio Synthesiser","value":"10","release":"Endurance"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":3},{"name":"Gold","qty":50},{"name":"Antimatter","qty":1}],"outputs":[{"name":"ByteBeat Device","qty":1}],"blueprint":true}]}
 ---
 

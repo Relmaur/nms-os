@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flight_Assist_Override"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"blue","category":"Starship","subcategory":"Interplanetary","level":"A","type":"Pulse Engine Upgrade","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Hypercore","qty":1},{"name":"Platinum","qty":60},{"name":"Tritium","qty":200}],"outputs":[{"name":"Flight Assist Override","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Warp Hypercore","qty":1},{"name":"Platinum","qty":30},{"name":"Tritium","qty":100}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Flight Assist Override","qty":1}],"outputs":[{"name":"Warp Hypercore","qty":1},{"name":"Platinum","qty":30},{"name":"Tritium","qty":100}]}]}
 ---
 

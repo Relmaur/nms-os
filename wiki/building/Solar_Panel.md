@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Solar_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.SOLARPANEL_SMALL.png","category":"Base Building","color":"Blue","value":"1","type":"Power Distribution Module","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":1},{"name":"Chromatic Metal","qty":50},{"name":"Gold","qty":30}],"outputs":[{"name":"Solar Panel","qty":1}],"blueprint":true}]}
 ---
 

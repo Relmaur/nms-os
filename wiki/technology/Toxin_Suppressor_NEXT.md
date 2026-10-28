@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxin_Suppressor_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protecttoxic.png","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"User is guarded from toxic liquids","release":"NEXT"},"recipes":[]}
 ---
 

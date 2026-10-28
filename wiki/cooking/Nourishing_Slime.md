@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nourishing_Slime"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nourishing Slime","image":"PRODUCT.ANIMALGREASE.png","color":"Yellow","type":"Raw Ingredient","category":"Consumable","value":"1,600","release":"WorldsTwo"},"value":1600,"recipes":[{"type":"cook","inputs":[{"name":"Juicy Grub","qty":1}],"outputs":[{"name":"Nourishing Slime","qty":1}],"seconds":2.5,"label":"Liquidate"}]}
 ---
 

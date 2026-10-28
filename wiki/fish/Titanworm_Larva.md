@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Titanworm_Larva"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.XL.3.png","color":"yellow","category":"Fish","type":"Legendary Fish","value":"100,000","release":"Xeno Arena"},"value":100000,"recipes":[]}
 ---
 

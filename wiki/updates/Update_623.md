@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.23"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RemnantCover.png","date":"18 February, 2026","dateps":"19 February, 2026","datexbox":"20 February, 2026","platform":"PC, Mac, PS, XB","link":"Remnant 6.23","release":"Remnant","previous":"6.22","next":"6.24"},"recipes":[]}
 ---
 

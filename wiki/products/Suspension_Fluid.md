@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Suspension_Fluid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.element.base1.png","category":"Component","value":"1,100","desc":"Non-reactive and pressure-resistant liquid.","release":"Atlas Rises"},"value":1100,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carbon","qty":50}],"outputs":[{"name":"Suspension Fluid","qty":1}]}]}
 ---
 

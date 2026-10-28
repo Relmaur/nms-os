@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Self-Repairing_Heridium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Self-Repairing Heridium","image":"TRADEPROD.ALLOY2.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Construction)","value":"6,000.0","release":"Adrift"},"value":6000,"recipes":[]}
 ---
 

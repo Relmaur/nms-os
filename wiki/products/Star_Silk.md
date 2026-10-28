@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Star_Silk"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Star Silk","image":"TRADEPROD.COMMODITY2.png","color":"grey","category":"Tradeable","type":"Trade Goods","value":"6,000.0","release":"Beacon"},"value":6000,"recipes":[]}
 ---
 

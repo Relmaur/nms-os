@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fool's_Goldfish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SMALL.1.png","color":"green","category":"Fish","type":"Common Fish","value":"1,000","release":"Xeno Arena"},"value":1000,"recipes":[]}
 ---
 

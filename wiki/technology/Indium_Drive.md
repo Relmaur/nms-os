@@ -10,7 +10,7 @@ version: "Crossplay"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Indium_Drive"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.INDIUMDRIVE.png","color":"blue","category":"Starship","subcategory":"Hyperdrive","level":"S","type":"Hyperdrive Upgrade: Blue Systems","release":"Synthesis"},"recipes":[{"type":"craft","inputs":[{"name":"Emeril","qty":250},{"name":"Wiring Loom","qty":5}],"outputs":[{"name":"Indium Drive","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Emeril","qty":125},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Indium Drive","qty":1}],"outputs":[{"name":"Emeril","qty":125},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

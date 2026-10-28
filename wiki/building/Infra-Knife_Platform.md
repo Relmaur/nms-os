@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Platform"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Big_tur1x1_e.png","category":"Corvette Building","type":"Corvette Construction Module","release":"Breach"},"recipes":[]}
 ---
 

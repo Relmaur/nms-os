@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cannon_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"3","upgradeicon":"damage","type":"Photon Cannon Companion Unit","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Omegon","qty":100},{"name":"Gold","qty":50},{"name":"Zinc","qty":50}],"outputs":[{"name":"Cannon Damage Theta","qty":1}]}]}
 ---
 

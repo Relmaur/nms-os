@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Void_Egg"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.MYSTERYEGG.png","category":"Curiosity","color":"purple","type":"Living Curiosity","value":"3200.0","release":"Outlaws"},"value":3200,"recipes":[]}
 ---
 

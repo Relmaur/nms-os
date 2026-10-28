@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Square_Deepwater_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.MAINROOMCUBE.png","category":"Base Building","type":"Aquatic Construction Module","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":350}],"outputs":[{"name":"Square Deepwater Chamber","qty":1}],"blueprint":true}]}
 ---
 

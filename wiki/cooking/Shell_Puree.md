@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shell_Puree"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.PRAWN.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Voyagers"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Colossal Shrimp","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Geno-Prawn","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Boiled Snapper","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Frozen Isopod","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Jelly Prawn","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Metallic Shrimp","qty":1}],"outputs":[{"name":"Shell Puree","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

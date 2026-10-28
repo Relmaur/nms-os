@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dangling_Orb"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISHBAIT.DAY.png","color":"Darkblue","category":"Consumable","type":"Fishing Bait","value":"550.0","release":"Aquarius"},"value":550,"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Metal Plating","qty":1},{"name":"Sodium Nitrate","qty":65}],"outputs":[{"name":"Dangling Orb","qty":20}]}]}
 ---
 

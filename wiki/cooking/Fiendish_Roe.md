@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fiendish_Roe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.MEAT.RAW.png","category":"Consumable","type":"Raw Ingredient","value":"1,400.0","release":"SentinelUp"},"value":1400,"recipes":[]}
 ---
 

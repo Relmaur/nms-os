@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zalienkosm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zalienkosm","image":"20190812204442_1.jpg","color":"Electric Blue","type":"Norm","order":"51","previous":"Teyaypilny","next":"Ladgudiraf","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Agricultural_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.NPCFARM.png","category":"Base Building","color":"blue","type":"Specialist terminal","desc":"Research station for Farmers","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Condensed Carbon","qty":25}],"outputs":[{"name":"Agricultural Terminal","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Agricultural Terminal","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Condensed Carbon","qty":25}]}]}
 ---
 

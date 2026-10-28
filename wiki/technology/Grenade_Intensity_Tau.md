@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grenade_Intensity_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Grenade","level":"2","upgradeicon":"damage","type":"Plasma Launcher Companion Unit","desc":"Grenades cause heightened damage.","stats":"Damage = +300.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":200},{"name":"Aluminium","qty":200},{"name":"Nickel","qty":200}],"outputs":[{"name":"Grenade Intensity Tau","qty":1}]}]}
 ---
 

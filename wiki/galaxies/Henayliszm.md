@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Henayliszm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Henayliszm","image":"20191102141244_1.jpg","color":"Pink","type":"Empty","order":"87","previous":"Umlanswick","next":"Utzenmate","release":"Waypoint"},"recipes":[]}
 ---
 

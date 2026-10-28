@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Reponudrle"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Reponudrle","image":"20200316095125_1.jpg","color":"Medium Orchid","type":"Norm","order":"241","previous":"Ialmendra","next":"Rinjanagrbo","release":"Interceptor"},"recipes":[]}
 ---
 

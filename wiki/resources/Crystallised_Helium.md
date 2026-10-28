@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crystallised_Helium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.biome.gasgiant.png","color":"Blue","type":"Localised Earth Element","rarity":"Uncommon","symbol":"He","value":"82","release":"WorldsTwo"},"value":82,"recipes":[{"type":"refine","inputs":[{"name":"Lithium","qty":1},{"name":"Quartzite","qty":1}],"outputs":[{"name":"Crystallised Helium","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Lithium","qty":1},{"name":"Activated Quartzite","qty":1}],"outputs":[{"name":"Crystallised Helium","qty":2}],"seconds":0.18,"label":"Environmental Element Transfer"}]}
 ---
 

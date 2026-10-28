@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phase_Coolant_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","subcategory":"Weapons","level":"1","upgradeicon":"time","type":"Phase Beam Companion Unit","desc":"Reduces Phase Beam cool-down times","stats":"Heat Dispersion = +50%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Microdensity Fabric","qty":2},{"name":"Thamium9","qty":200},{"name":"Platinum","qty":25}],"outputs":[{"name":"Phase Coolant Sigma","qty":1}]}]}
 ---
 

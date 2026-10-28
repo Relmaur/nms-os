@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Storage_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.STORAGEPANEL.png","category":"Base Building","color":"blue","type":"Decoration","release":"Prisms"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":10}],"outputs":[{"name":"Storage Panel","qty":1}],"blueprint":true}]}
 ---
 

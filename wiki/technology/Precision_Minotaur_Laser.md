@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Precision_Minotaur_Laser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLE LASERU1.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Advanced Minotaur Mining Laser","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Gravitino Ball","qty":2},{"name":"Solar Mirror","qty":1}],"outputs":[{"name":"Precision Minotaur Laser","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Precision Minotaur Laser","qty":1}],"outputs":[{"name":"Gravitino Ball","qty":1},{"name":"Solar Mirror","qty":1}]}]}
 ---
 

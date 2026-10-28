@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.98"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-endurance-book-cover-op.png","dateps":"31 July, 2022","datepc":"2 August, 2022","datexbox":"2 August, 2022","platform":"All","link":"Patch 3.98","release":"Endurance","previous":"3.97","next":"3.99"},"recipes":[]}
 ---
 

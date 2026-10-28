@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Capacity_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Upgrade_Icon.png","category":"Multi-tool","subcategory":"Scatter Blaster","level":"1","upgradeicon":"clip","type":"Scatter Blaster Companion Unit","desc":"Increases amount of ammunition held by the Multi-tool's Scatter Blaster","stats":"Clip Size = 20%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Titanium","qty":20},{"name":"Microdensity Fabric","qty":2}],"outputs":[{"name":"Scatter Blaster Capacity Sigma","qty":1}]}]}
 ---
 

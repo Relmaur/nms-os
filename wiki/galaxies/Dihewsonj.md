@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dihewsonj"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dihewsonj","image":"20200215224236_1.jpg","color":"Maya Blue","type":"Norm","order":"205","previous":"Nupiacheh","next":"Rudrailhik","release":"Waypoint"},"recipes":[]}
 ---
 

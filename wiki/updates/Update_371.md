@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.71"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-frontiers-book-cover-op.png","date":"28 October 2021","platform":"All platforms","link":"Frontiers Patch 3.71","release":"Frontiers","previous":"3.70","next":"3.73"},"recipes":[]}
 ---
 

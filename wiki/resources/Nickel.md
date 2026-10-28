@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nickel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.neutral.common2.png","type":"Neutral","rarity":"Uncommon","value":"138.0","symbol":"Ni","release":"Atlas Rises"},"value":138,"recipes":[]}
 ---
 

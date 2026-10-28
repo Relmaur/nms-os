@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Focus_V3"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Icon_nmsTech_Beam_Focus_V3.jpg","color":"blue","category":"Multi-tool","subcategory":"Laser","type":"Companion Unit","desc":"Lv. 3 - Slightly increases speed of element extraction.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Chrysonite","qty":200},{"name":"Platinum","qty":200}],"outputs":[{"name":"Beam Focus V3","qty":1}]}]}
 ---
 

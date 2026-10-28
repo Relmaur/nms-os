@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spiced_'Apple'_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"64,300.0","release":"Prisms"},"value":64300,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Spiced 'Apple' Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

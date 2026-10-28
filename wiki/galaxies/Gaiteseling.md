@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Gaiteseling"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Gaiteseling","image":"20191217230932_1.jpg","color":"Magenta","type":"Norm","order":"133","previous":"Venessika","next":"Zosakasiro","release":"Waypoint"},"recipes":[]}
 ---
 

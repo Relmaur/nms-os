@@ -10,7 +10,7 @@ version: "Cross-Save"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neutron_Cannon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.CANNON.png","category":"Multi-tool","type":"Weapon","desc":"The Neutron Cannon is a charged energy weapon.","release":"Cross-Save"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":95},{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Neutron Cannon","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetised Ferrite","qty":47},{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Neutron Cannon","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":48},{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

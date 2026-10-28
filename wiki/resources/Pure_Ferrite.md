@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pure_Ferrite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.LAND.2.png","category":"Metal","type":"Processed Metallic Minerals","rarity":"Uncommon","color":"Grey","used":"Building, Crafting, Charging, Upgrading, Refining","symbol":"Fe+","value":"28","release":"WorldsTwo"},"value":28,"recipes":[{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":2},{"name":"Pugneum","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":3}],"seconds":0.36,"label":"Matter Expansion"},{"type":"refine","inputs":[{"name":"Magnetised Ferrite","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":2}],"seconds":0.16,"label":"Demagnetise Metal"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":1}],"seconds":0.12,"label":"Extract Metallic Elements"},{"type":"refine","inputs":[{"name":"Polished Stone","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":2}],"seconds":0.12,"label":"Recycle Stone"}]}
 ---
 

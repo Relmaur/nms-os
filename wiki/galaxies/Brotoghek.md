@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Brotoghek"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Brotoghek","image":"20200307133431_1.jpg","color":"Medium Orchid","type":"Empty","order":"227","previous":"Pamanhermonsu","next":"Mibittara","release":"Fractal"},"recipes":[]}
 ---
 

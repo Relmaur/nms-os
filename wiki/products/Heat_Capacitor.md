@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Heat_Capacitor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech Heat Capacitor Icon 13.png","category":"Component","color":"Grey","type":"Advanced Agricultural Product","value":"180,000.0","used":"Crafting, Trading","release":"Echoes"},"value":180000,"recipes":[{"type":"craft","inputs":[{"name":"Frost Crystal","qty":100},{"name":"Solanium","qty":200}],"outputs":[{"name":"Heat Capacitor","qty":1}],"blueprint":true}]}
 ---
 

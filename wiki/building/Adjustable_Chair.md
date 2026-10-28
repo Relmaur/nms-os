@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Adjustable_Chair"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CHAIR003.png","category":"Base Building","color":"blue","type":"Furniture","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":15}],"outputs":[{"name":"Adjustable Chair","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Adjustable Chair","qty":1}],"outputs":[{"name":"Carbon","qty":15}]}]}
 ---
 

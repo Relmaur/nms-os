@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ialmendra"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ialmendra","image":"20200315221655_1.jpg","color":"Canary Yellow","type":"Norm","order":"240","previous":"Yuwarugha","next":"Reponudrle","release":"Interceptor"},"recipes":[]}
 ---
 

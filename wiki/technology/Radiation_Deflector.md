@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Deflector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTRADS.png","category":"Exosuit","subcategory":"Utilities","type":"Hazard Protection Unit","desc":"User is guarded from extreme radiation damage on radioactive worlds.","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Uranium","qty":150},{"name":"Silver","qty":60},{"name":"Copper","qty":75}],"outputs":[{"name":"Radiation Deflector","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Uranium","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":38}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Radiation Deflector","qty":1}],"outputs":[{"name":"Uranium","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":37}]}]}
 ---
 

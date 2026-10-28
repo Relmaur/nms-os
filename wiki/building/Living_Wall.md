@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Wall"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"big_wall_plan0.png","category":"Corvette Building","type":"Corvette Interior Furnishing","release":"Voyagers"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":30},{"name":"Silicate Powder","qty":10},{"name":"Carbon","qty":10}],"outputs":[{"name":"Living Wall","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Banned_Weapons"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Banned Weapons","image":"PRODUCT.SMUGGLING7.png","category":"Tradeable","value":"83,000.0","type":"Smuggled Goods","release":"Echoes"},"value":83000,"recipes":[]}
 ---
 

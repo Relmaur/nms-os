@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Water"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOEXOTIC.png","category":"Curiosity","color":"grey","type":"Glassy Indeterminance","value":"1616.0","release":"Living Ship"},"value":1616,"recipes":[]}
 ---
 

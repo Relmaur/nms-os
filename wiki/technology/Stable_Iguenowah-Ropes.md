@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stable_Iguenowah-Ropes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Stable Iguenowah-Ropes","color":"blue","category":"Multi-tool","subcategory":"Weapon","type":"Crack Nose","desc":"provides 24 slots","release":"Foundation"},"recipes":[]}
 ---
 

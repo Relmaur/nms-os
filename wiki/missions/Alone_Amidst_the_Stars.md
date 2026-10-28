@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Alone_Amidst_the_Stars"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Alone Amidst the Stars","image":"nmsMisc_AloneAmidstTheStars.jpg","type":"Primary","series":"Artemis Path","prevmission":"Awakenings","nextmission":"Ghosts in the Machine","origin":"Crashed Ship","requires":"N/A","implemented":"Atlas Rises","desc":"Artemis, the Explorer, First mission of the Artemis Path proper"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deflector_Shield"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELD.png","color":"blue","category":"Starship","subcategory":"Shield","type":"Spacecraft Hull Protection","desc":"Energy shield that protects spacecraft from laser fire, in-flight projectiles and accidental space debris interaction.","recharge":"Sodium, Sodium Nitrate, Starshield Battery","release":"Interceptor"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Sodium Nitrate","qty":13}],"outputs":[]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Weapons_Research"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","origin":"Armourer","requires":"Expanding the Base","implemented":"Pathfinder","desc":"Base building related mission, gives access to combat oriented blueprints and tech"},"recipes":[]}
 ---
 

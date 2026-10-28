@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shortburst_Adaptor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"render.shortburst.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"5","upgradeicon":"damage","type":"Companion Unit","desc":"Defensive weapon upgrade.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Copper","qty":60},{"name":"Heridium","qty":100},{"name":"Zinc","qty":20}],"outputs":[{"name":"Shortburst Adaptor","qty":1}]}]}
 ---
 

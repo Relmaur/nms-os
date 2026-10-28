@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Base_Salvage_Capsule"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Base Salvage Capsule","image":"BUILDABLE.BASECAPSULE.png","category":"Base Building","type":"Autonomous Storage Device","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":50}],"outputs":[{"name":"Base Salvage Capsule","qty":1}],"blueprint":true}]}
 ---
 

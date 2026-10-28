@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Singularity_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.EYECLUSTER.MOD.png","category":"Curiosity","color":"black","type":"Living Starship Organ","value":"1616","release":"Living Ship"},"value":1616,"recipes":[]}
 ---
 

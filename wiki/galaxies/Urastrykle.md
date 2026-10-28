@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Urastrykle"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Urastrykle","image":"No Man's Sky_20190501011554.png","color":"Violet","order":"41","type":"Norm","previous":"Ethiophodhe","next":"Xobeurindj","release":"Waypoint"},"recipes":[]}
 ---
 

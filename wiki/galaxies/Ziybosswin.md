@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ziybosswin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ziybosswin","image":"20200207191850_1.jpg","color":"Pink","type":"Norm","order":"194","previous":"Evcickcandj","next":"Heperclait","release":"Waypoint"},"recipes":[]}
 ---
 

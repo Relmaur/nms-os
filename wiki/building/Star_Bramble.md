@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Star_Bramble"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Sbramble.png","category":"Base Building","color":"yellow","type":"Plantable Seed","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Star Bulb","qty":50},{"name":"Paraffinium","qty":25}],"outputs":[{"name":"Star Bramble","qty":1}],"blueprint":true}]}
 ---
 

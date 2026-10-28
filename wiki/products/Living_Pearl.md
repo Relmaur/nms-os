@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Living_Pearl"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CLAMPEARL.png","category":"Tradeable","color":"Grey","type":"Semi-Conscious Gemstone","value":"4,797.5","release":"Origins"},"value":4797.5,"recipes":[]}
 ---
 

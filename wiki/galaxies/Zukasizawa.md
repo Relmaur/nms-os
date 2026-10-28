@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zukasizawa"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zukasizawa","image":"No Man's Sky_20190227004743.png","color":"Light Green","order":"22","type":"Norm","previous":"Loychazinq","next":"Ekwathore","release":"Interceptor"},"recipes":[]}
 ---
 

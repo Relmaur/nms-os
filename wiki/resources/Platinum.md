@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Platinum"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.ASTEROID.3.png","color":"Grey","category":"Exotic","type":"Valuable Asteroid Mineral","rarity":"Rare","used":"Building, Charging, Upgrading","symbol":"Pt","value":"505.0","release":"Waypoint"},"value":505,"recipes":[{"type":"refine","inputs":[{"name":"Geodesite","qty":1}],"outputs":[{"name":"Platinum","qty":250}],"seconds":1.2,"label":"Extreme Alloy Separation"},{"type":"refine","inputs":[{"name":"Iridesite","qty":1}],"outputs":[{"name":"Platinum","qty":250}],"seconds":1.2,"label":"Extreme Alloy Separation"},{"type":"refine","inputs":[{"name":"Silver","qty":1},{"name":"Gold","qty":1}],"outputs":[{"name":"Platinum","qty":1}],"seconds":0.24,"label":"Transmutation"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Oxygen","qty":1},{"name":"Chromatic Metal","qty":250}],"outputs":[{"name":"Platinum","qty":10}],"seconds":4.8,"label":"Chromatic Alchemy"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sezviktorew"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sezviktorew","image":"20191212180329_1.jpg","color":"Blue Violet","type":"Empty","order":"127","previous":"Enjaxusanto","next":"Zikehpm","release":"Waypoint"},"recipes":[]}
 ---
 

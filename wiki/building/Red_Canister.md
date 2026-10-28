@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Red_Canister"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.CRATELCYLINDER.png","category":"Base Building","desc":"Lootable container","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Voltaic Cell","qty":10},{"name":"Glass","qty":5},{"name":"Dynamic Resonator","qty":2}],"outputs":[{"name":"Red Canister","qty":1}]}]}
 ---
 

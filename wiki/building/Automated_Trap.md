@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Automated_Trap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsMisc_NotAvailable.png","category":"Building Part","color":"Blue","type":"Self-Sustaining Auto Creel","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Salt","qty":50},{"name":"Metal Plating","qty":3},{"name":"Ion Battery","qty":1}],"outputs":[{"name":"Automated Trap","qty":1}],"blueprint":true}]}
 ---
 

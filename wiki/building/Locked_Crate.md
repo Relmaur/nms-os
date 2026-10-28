@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Locked_Crate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.LCRATE.png","category":"Base Building","type":"Fabricator","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":10}],"outputs":[{"name":"Locked Crate","qty":1}],"blueprint":true}]}
 ---
 

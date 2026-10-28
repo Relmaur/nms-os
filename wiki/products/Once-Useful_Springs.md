@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Once-Useful_Springs"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.TECH1.png","category":"Tradeable","value":"1,000.0","type":"Starship Subcomponent","release":"Desolation"},"value":1000,"recipes":[]}
 ---
 

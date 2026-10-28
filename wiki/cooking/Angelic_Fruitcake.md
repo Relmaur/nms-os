@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Angelic_Fruitcake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"31,300","release":"Swarm"},"value":31300,"recipes":[{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Crab 'Apple'","qty":1}],"outputs":[{"name":"Angelic Fruitcake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Angelic Fruitcake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Extra-Fluffy Batter","qty":1},{"name":"Wriggling Jam","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Angelic Fruitcake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

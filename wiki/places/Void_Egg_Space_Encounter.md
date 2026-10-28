@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Void_Egg_(Space_Encounter)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Void Egg","image":"Void Egg.png","system_types":"Any","frequency":"7","alert_1":"Alien Melody Detected","alert_2":"Space Melody Detected","interaction":"Shoot down","ramifications":"None","rewards":"A Living Ship upgrade","notes":"Requires flying a Living Ship to encounter","release":"WorldsTwo"},"recipes":[]}
 ---
 

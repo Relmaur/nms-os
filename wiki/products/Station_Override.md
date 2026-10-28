@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Station_Override"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Circuit_Board_icon.png","color":"Darkblue","category":"Curiosity","type":"AI Master Key","value":"256,000.0","release":"Outlaws"},"value":256000,"recipes":[]}
 ---
 

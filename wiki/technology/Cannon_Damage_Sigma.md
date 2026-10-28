@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cannon_Damage_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1.png","category":"Starship","subcategory":"Weapons","level":"1","upgradeicon":"damage","type":"Photon Cannon Companion Unit","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Thamium9","qty":50}],"outputs":[{"name":"Cannon Damage Sigma","qty":1}]}]}
 ---
 

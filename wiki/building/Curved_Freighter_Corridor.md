@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Curved_Freighter_Corridor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.space_corridor_l.png","category":"Base Building","type":"Structure","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":80},{"name":"Tritium","qty":10}],"outputs":[{"name":"Curved Freighter Corridor","qty":1}],"blueprint":true}]}
 ---
 

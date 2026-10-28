@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomalous_Jam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SAUCE.png","color":"DarkBlue","category":"Consumable","type":"Edible Product","value":"5,400","release":"Swarm"},"value":5400,"recipes":[{"type":"cook","inputs":[{"name":"Hexaberry","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Anomalous Jam","qty":1}],"seconds":2.5,"label":"Preserve Fruit"}]}
 ---
 

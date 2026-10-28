@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frigate_Fuel_(100_Tonnes)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FRIGFUEL100.png","category":"Consumable","color":"red","type":"Stabilised Di-hydrogen Fuel","value":"40,000","release":"WorldsTwo"},"value":40000,"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen","qty":100},{"name":"Tritium","qty":100}],"outputs":[{"name":"Frigate Fuel (100 Tonnes)","qty":1}],"blueprint":true}]}
 ---
 

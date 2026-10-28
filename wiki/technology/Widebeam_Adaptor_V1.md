@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Widebeam_Adaptor_V1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1mod.png","category":"Multi-tool","subcategory":"Laser","level":"1","upgradeicon":"mine","type":"Companion Unit","desc":"Level 1 - Directed laser tool for simultaneous mining of multiple targets.","release":"Pre-release"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":20},{"name":"Heridium","qty":20},{"name":"Plutonium","qty":25}],"outputs":[{"name":"Widebeam Adaptor V1","qty":1}]}]}
 ---
 

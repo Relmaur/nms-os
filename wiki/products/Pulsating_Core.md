@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulsating_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOCOMP2.png","category":"Curiosity","color":"purple","type":"Superheated Life Fragment","value":"1616","release":"Living Ship"},"value":1616,"recipes":[{"type":"craft","inputs":[{"name":"Liquid Sun","qty":250},{"name":"Gold","qty":100},{"name":"Mordite","qty":80}],"outputs":[{"name":"Pulsating Core","qty":1}],"blueprint":true}]}
 ---
 

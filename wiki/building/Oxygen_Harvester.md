@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxygen_Harvester"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.O2HARVESTER.png","category":"Base Building","color":"blue","type":"Atmosphere Processing Device","value":"10.0","release":"Expeditions"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Life Support Gel","qty":5},{"name":"Di-hydrogen Jelly","qty":3}],"outputs":[{"name":"Oxygen Harvester","qty":1}],"blueprint":true}]}
 ---
 

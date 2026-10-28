@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ebyeloof"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ebyeloof","image":"20190808081806 1.jpg","color":"Light Green","type":"Norm","order":"45","previous":"Wucetosucc","next":"Odyavanta","release":"Waypoint"},"recipes":[]}
 ---
 

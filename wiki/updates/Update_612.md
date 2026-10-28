@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.12"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BreachCover.png","date":"28 October, 2025","datexbox":"30 October, 2025","platform":"PC, PS, XB, Mac","link":"Breach Update","release":"Breach","previous":"6.11","next":"6.16"},"recipes":[]}
 ---
 

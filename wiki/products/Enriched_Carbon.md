@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enriched_Carbon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Enriched Carbon","image":"REACTION.2.png","color":"Grey","category":"Tradeable","type":"Enhanced Gas Product","value":"50,000","release":"Beacon"},"value":50000,"recipes":[{"type":"craft","inputs":[{"name":"Radon","qty":250},{"name":"Condensed Carbon","qty":50}],"outputs":[{"name":"Enriched Carbon","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Radon","qty":100},{"name":"Carbon","qty":20},{"name":"Chlorine","qty":5}],"outputs":[{"name":"Enriched Carbon","qty":1}],"seconds":45,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Radon","qty":100},{"name":"Carbon","qty":20},{"name":"Salt","qty":10}],"outputs":[{"name":"Enriched Carbon","qty":1}],"seconds":45,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Radon","qty":100},{"name":"Condensed Carbon","qty":10},{"name":"Chlorine","qty":5}],"outputs":[{"name":"Enriched Carbon","qty":1}],"seconds":45,"label":"High-Speed Sublimation"},{"type":"refine","inputs":[{"name":"Radon","qty":100},{"name":"Condensed Carbon","qty":10},{"name":"Salt","qty":10}],"outputs":[{"name":"Enriched Carbon","qty":1}],"seconds":45,"label":"High-Speed Sublimation"}]}
 ---
 

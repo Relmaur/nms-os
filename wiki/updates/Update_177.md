@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_1.77"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"13 December 2018","platform":"PS4/PC/Xbox","link":"Update 1.77 on nomanssky.com","release":"Visions","previous":"1.76","next":"Update (2019.01.09)"},"recipes":[]}
 ---
 

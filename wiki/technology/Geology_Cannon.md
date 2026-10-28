@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Geology_Cannon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.TERRAINGRENADE.png","category":"Multi-tool","subcategory":"Grenade","type":"Terrain Destruction Device","recharge":"Unstable Plasma","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Geology Cannon","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Geology Cannon","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

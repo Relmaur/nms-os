@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jetpack_Booster_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.jetpackmod.png","category":"Exosuit","subcategory":"Utilities","level":"1","upgradeicon":"jetpack","type":"Aerial Propulsion Companion Unit","desc":"Allows the Jetpack to ascend higher","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carite Sheet","qty":1},{"name":"Platinum","qty":15},{"name":"Zinc","qty":10}],"outputs":[{"name":"Jetpack Booster Sigma","qty":1}]}]}
 ---
 

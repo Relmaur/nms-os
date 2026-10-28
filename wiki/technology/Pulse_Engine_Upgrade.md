@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Engine_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVEMOD.png","category":"Starship","subcategory":"Pulse Engine","type":"Generated Upgrade","release":"Waypoint"},"recipes":[{"type":"repair","inputs":[{"name":"Deuterium","qty":75},{"name":"Cadmium","qty":75},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Pulse Engine Upgrade","qty":1}],"outputs":[{"name":"Deuterium","qty":75},{"name":"Cadmium","qty":75},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

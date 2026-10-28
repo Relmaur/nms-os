@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nitrogen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"GAS.1.png","color":"Yellow","category":"Earth","type":"Compressed Atmospheric Gas","rarity":"Rare","used":"Crafting","symbol":"N","value":"20","release":"WorldsTwo"},"value":20,"recipes":[{"type":"refine","inputs":[{"name":"Radon","qty":3}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Radon","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Radon","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Catalysation"},{"type":"refine","inputs":[{"name":"Methane","qty":3}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Methane","qty":1},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Transfer"},{"type":"refine","inputs":[{"name":"Methane","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Nitrogen","qty":1}],"seconds":0.36,"label":"Gas Catalysation"}]}
 ---
 

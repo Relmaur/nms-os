@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Di-hydrogen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.LAUNCHSUB.1.png","color":"Blue","category":"Earth","type":"High Energy Substance","rarity":"Common","used":"Building, Crafting, Charging, Upgrading","symbol":"H","value":"34.0","release":"Orbital"},"value":34,"recipes":[{"type":"refine","inputs":[{"name":"Di-hydrogen Jelly","qty":1}],"outputs":[{"name":"Di-hydrogen","qty":40}],"seconds":4,"label":"Di-hydrogen Cycling"},{"type":"refine","inputs":[{"name":"Tritium","qty":5}],"outputs":[{"name":"Di-hydrogen","qty":1}],"seconds":0.36,"label":"Tritium Cycling"}]}
 ---
 

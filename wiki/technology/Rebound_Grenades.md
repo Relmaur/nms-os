@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rebound_Grenades"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Grenade","level":"1","type":"Plasma Launcher Companion Unit","desc":"Shells rebound from planetary structures before ignition","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":10},{"name":"Platinum","qty":20},{"name":"Chrysonite","qty":15}],"outputs":[{"name":"Rebound Grenades","qty":1}]}]}
 ---
 

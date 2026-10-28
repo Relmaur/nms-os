@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Personal_Refiner_Mk_2"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Personal Refiner Mk 2","image":"RENDER.PERSONALREFINER2.png","color":"blue","category":"Exosuit","type":"Exosuit Upgrade","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":120},{"name":"Magnetic Resonator","qty":2},{"name":"Quantum Computer","qty":3}],"outputs":[{"name":"Personal Refiner Mk 2","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ionised Cobalt","qty":60},{"name":"Magnetic Resonator","qty":1},{"name":"Quantum Computer","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Personal Refiner Mk 2","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":60},{"name":"Magnetic Resonator","qty":1},{"name":"Quantum Computer","qty":2}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wriggling_Companion"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsIcon_WrigglingCompanion.jpg","category":"Customisation Part","type":"Betentacled Steward","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":30},{"name":"Platinum","qty":30}],"outputs":[{"name":"Wriggling Companion","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mounted_Cannon_Upgrade_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Mounted Cannon Upgrade Sigma","image":"NmsTech_Exocraft_Mounted_Cannon_Icon.png","category":"Exocraft","subcategory":"Weapon Upgrades","stats":"+83% Damage","type":"Mounted Cannon Upgrade","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Pugneum","qty":50},{"name":"Copper","qty":100}],"outputs":[{"name":"Mounted Cannon Upgrade Sigma","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Mounted Cannon Upgrade Sigma","qty":1}],"outputs":[{"name":"Pugneum","qty":25},{"name":"Copper","qty":50}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquidator_Body"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"LiquidatorBody.webp","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","stats":"Allows the Minotaur to assist the player in combat when not in use","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Walker Brain","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Liquidator Body","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Walker Brain","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Liquidator Body","qty":1}],"outputs":[{"name":"Walker Brain","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

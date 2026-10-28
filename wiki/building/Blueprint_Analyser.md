@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blueprint_Analyser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BLUEPRINTAN.png","category":"Base Building","color":"blue","type":"Technology Recovery Device","value":"10.0","used":"Building","release":"Visions"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":20},{"name":"Carbon Nanotubes","qty":1}],"outputs":[{"name":"Blueprint Analyser","qty":1}],"blueprint":true}]}
 ---
 

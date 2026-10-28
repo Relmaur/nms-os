@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Planetary_Settlement"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Planetary Settlement","image":"Planetary Settlement.jpg","category":"Inhabited Outpost","release":"Waypoint","desc":"Planetary Settlement"},"recipes":[]}
 ---
 

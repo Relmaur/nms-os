@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermal_Protection_Module_(Cold)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Thermal Protection Module (Cold)","image":"PROCTECH.B.COLD.png","color":"blue","category":"Exosuit","subcategory":"Hazard","type":"Generated Upgrade","release":"Waypoint"},"recipes":[]}
 ---
 

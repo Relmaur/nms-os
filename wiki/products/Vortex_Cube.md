@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vortex_Cube"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.vortexcube.png","color":"Grey","category":"Tradeable","type":"Trade commodity","value":"5,800.0","release":"Frontiers"},"value":5800,"recipes":[]}
 ---
 

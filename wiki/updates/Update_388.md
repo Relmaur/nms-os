@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.88"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-outlaws-book-cover-op.png","date":"22 April 2022","platform":"All platforms","link":"Patch 3.88","release":"Outlaws","previous":"3.87","next":"3.89"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Engine"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"blue","category":"Propulsion","subcategory":"Interplanetary","type":"Starship Flight Booster","desc":"Spaceflight propulsion, boosts and on-demand Pulse Jumps through local system.","recharge":"Tritium or Pyrite","release":"Prisms"},"recipes":[{"type":"repair","inputs":[{"name":"Hermetic Seal","qty":1},{"name":"Metal Plating","qty":1}],"outputs":[]}]}
 ---
 

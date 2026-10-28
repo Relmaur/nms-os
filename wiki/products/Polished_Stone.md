@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Polished_Stone"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.metallic.4.png","color":"Grey","category":"Curiosity","type":"Recycled Minerals","used":"Building, Charging","symbol":"R","value":"82","release":"Breach"},"value":82,"recipes":[]}
 ---
 

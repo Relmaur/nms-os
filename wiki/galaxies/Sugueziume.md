@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sugueziume"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sugueziume","image":"No Man's Sky_20190403194808.png","color":"Pale Red","type":"Empty","order":"32","previous":"Maupenzhay","next":"Brogoweldian","release":"Waypoint"},"recipes":[]}
 ---
 

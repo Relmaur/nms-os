@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fungal_Mould"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.PLANT.TOXIC.png","color":"Green","category":"Flora","type":"Harvested Agricultural Substance","rarity":"Rare","used":"Building, Crafting","symbol":"Ml","value":"16","release":"WorldsTwo"},"value":16,"recipes":[{"type":"refine","inputs":[{"name":"Fungal Mould","qty":1},{"name":"Ammonia","qty":1}],"outputs":[{"name":"Fungal Mould","qty":2}],"seconds":0.36,"label":"Organic Expansion"},{"type":"refine","inputs":[{"name":"Ammonia","qty":2},{"name":"Oxygen","qty":1}],"outputs":[{"name":"Fungal Mould","qty":1}],"seconds":0.36,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Ammonia","qty":1},{"name":"Nitrogen","qty":1}],"outputs":[{"name":"Fungal Mould","qty":1}],"seconds":0.24,"label":"Encourage Growth"},{"type":"refine","inputs":[{"name":"Ammonia","qty":1},{"name":"Methane","qty":1}],"outputs":[{"name":"Fungal Mould","qty":1}],"seconds":0.36,"label":"Organic Expansion"}]}
 ---
 

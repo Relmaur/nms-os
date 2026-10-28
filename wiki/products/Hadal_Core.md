@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hadal_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"color":"green","image":"PRODUCT.FISHCORE.png","category":"Tradeable","type":"Horrific Sample","value":"92,625.0","used":"Trading","release":"SentinelUp"},"value":92625,"recipes":[]}
 ---
 

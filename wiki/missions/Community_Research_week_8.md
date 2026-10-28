@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Community_Research_(week_8)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_CommunityResearch.jpg","type":"Secondary","series":"Community Research","prevmission":"Community Research (week 7)","nextmission":"Community Research (mission 9)","requires":"N/A","implemented":"Visions 1.75","desc":"Help Specialist Polo - Week 8 of 8"},"recipes":[]}
 ---
 

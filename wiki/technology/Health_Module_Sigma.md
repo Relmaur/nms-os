@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Health_Module_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Stamina.booster.png","category":"Exosuit","subcategory":"Health","level":"1","upgradeicon":"armour","type":"Exosuit Companion Unit","desc":"Increases user's health once primary systems have failed.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Plutonium","qty":50},{"name":"Zinc","qty":10}],"outputs":[{"name":"Health Module Sigma","qty":1}]}]}
 ---
 

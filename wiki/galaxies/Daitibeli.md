@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Daitibeli"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Daitibeli","image":"20191231001644_1.jpg","color":"Electric Blue","type":"Norm","order":"144","previous":"Isgarmeso","next":"Gucuttarik","release":"Waypoint"},"recipes":[]}
 ---
 

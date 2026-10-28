@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mind_Ark"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"MINDARC.png","category":"Curiosity","color":"blue","type":"Advanced Crafted Product","value":"1,000.0","release":"Adrift"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Soul Engine","qty":1},{"name":"Wiring Loom","qty":3},{"name":"Glass","qty":3}],"outputs":[{"name":"Mind Ark","qty":1}],"blueprint":true},{"type":"craft","inputs":[{"name":"Hypnotic Eye","qty":1},{"name":"Atlantideum","qty":99},{"name":"Activated Copper","qty":64}],"outputs":[{"name":"Mind Ark","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Meat_Flakes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.DEATHWILD.png","color":"Red","category":"Consumable","type":"Raw Ingredient","value":"800.0","release":"Waypoint"},"value":800,"recipes":[{"type":"cook","inputs":[{"name":"Mordite","qty":1}],"outputs":[{"name":"Meat Flakes","qty":1}],"seconds":2.5,"label":"Extract Nutrients"}]}
 ---
 

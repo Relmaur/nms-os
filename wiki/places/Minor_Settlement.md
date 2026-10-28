@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Minor_Settlement"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Minor Settlement","image":"Cel-Wallmath II-loc-01f.jpg","category":"Inhabited Outpost","type":"Trade Outpost","release":"Origins","desc":"Trade Outpost"},"recipes":[]}
 ---
 

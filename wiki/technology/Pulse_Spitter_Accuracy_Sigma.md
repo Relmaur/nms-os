@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Accuracy_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"1","upgradeicon":"accuracy","type":"Pulse Spitter Companion Unit","desc":"Increases accuracy of the Multi-tool's Pulse Spitter weapon.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nickel","qty":50},{"name":"Iron","qty":20}],"outputs":[{"name":"Pulse Spitter Accuracy Sigma","qty":1}]}]}
 ---
 

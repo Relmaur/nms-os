@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Accuracy_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Upgrade_Icon.png","category":"Multi-tool","subcategory":"Scatter Blaster","level":"1","upgradeicon":"accuracy","type":"Scatter Blaster Companion Unit","desc":"Increases accuracy of the Multi-tool's Scatter Blaster weapon.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":100},{"name":"Titanium","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Scatter Blaster Accuracy Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Orbital_Exocraft_Materialiser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.VEHICLE.png","category":"Base Building","color":"blue","type":"Rapid Deployment Freighter Module","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":60},{"name":"Ionised Cobalt","qty":50},{"name":"Warp Cell","qty":3}],"outputs":[{"name":"Orbital Exocraft Materialiser","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Orbital Exocraft Materialiser","qty":1}],"outputs":[{"name":"Gold","qty":150},{"name":"Ionised Cobalt","qty":50},{"name":"Warp Cell","qty":3}]}]}
 ---
 

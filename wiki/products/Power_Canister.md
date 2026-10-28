@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Power_Canister"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.gel2.png","color":"red","category":"Consumable","type":"Energy Recharge Cell","value":"343.8","desc":"Increased capacity power gel source","release":"Atlas Rises"},"value":343.8,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":75},{"name":"Carbon","qty":150}],"outputs":[{"name":"Power Canister","qty":1}]}]}
 ---
 

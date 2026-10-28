@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Appearance_Modifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.DRESSINGROOM.png","category":"Base Building","color":"blue","type":"Customise Personal Visuals","power":"50 kPs","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":10}],"outputs":[{"name":"Appearance Modifier","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Appearance Modifier","qty":1}],"outputs":[{"name":"Ferrite Dust","qty":10}]}]}
 ---
 

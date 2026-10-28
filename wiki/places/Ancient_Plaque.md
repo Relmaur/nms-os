@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ancient_Plaque"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Plaque","image":"Anms_plaque.jpg","category":"Interaction Location","type":"Interaction Location","release":"Outlaws","desc":"Interaction Location"},"recipes":[]}
 ---
 

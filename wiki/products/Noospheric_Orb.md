@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Noospheric_Orb"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"ATLASSEED.3.png","category":"Curiosity","color":"grey","type":"Unique valuable curiosity","value":"1,000.0","release":"NEXT"},"value":1000,"recipes":[{"type":"craft","inputs":[{"name":"Englobed Shade","qty":1},{"name":"Ionised Cobalt","qty":100}],"outputs":[{"name":"Noospheric Orb","qty":1}],"blueprint":true}]}
 ---
 

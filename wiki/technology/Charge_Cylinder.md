@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Charge_Cylinder"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.chargecyl.png","category":"Multi-tool","subcategory":"Power supply","type":"Energy Source","desc":"specialized power storage unit","release":"Pathfinder"},"recipes":[]}
 ---
 

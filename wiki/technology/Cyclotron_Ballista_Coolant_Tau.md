@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cyclotron_Ballista_Coolant_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.IONBLASTMOD.png","category":"Starship","subcategory":"Weapons","level":"2","upgradeicon":"time","type":"Cyclotron Ballista Companion Unit","desc":"Reduces time between shots when using the Starship's Cyclotron Ballista weapon mode by a moderate amount.","stats":"Heat Dispersion = 39%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":80},{"name":"Chrysonite","qty":70},{"name":"Iridium","qty":120}],"outputs":[{"name":"Cyclotron Ballista Coolant Tau","qty":1}]}]}
 ---
 

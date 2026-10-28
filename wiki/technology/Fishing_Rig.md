@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fishing_Rig"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.FISHLASER.png","color":"blue","category":"Multi-Tool","subcategory":"Angling Equipment","type":"Deployable Angling Device","desc":"A versatile piece of angling equipment, enabling the user to fish in a variety of water conditions.","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon Nanotubes","qty":3},{"name":"Di-hydrogen Jelly","qty":1},{"name":"Chromatic Metal","qty":60}],"outputs":[{"name":"Fishing Rig","qty":1}]},{"type":"dismantle","inputs":[{"name":"Fishing Rig","qty":1}],"outputs":[{"name":"Carbon Nanotubes","qty":2},{"name":"Di-hydrogen Jelly","qty":1},{"name":"Chromatic Metal","qty":30}]}]}
 ---
 

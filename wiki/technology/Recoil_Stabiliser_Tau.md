@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Recoil_Stabiliser_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Multi-tool","subcategory":"Projectile","level":"2","type":"Boltcaster Companion Unit","desc":"Defensive weapon upgrade.","stats":"Recoil = (-39%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":200},{"name":"Titanium","qty":100},{"name":"Chrysonite","qty":150}],"outputs":[{"name":"Recoil Stabiliser Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Advanced_Mining_Laser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"AdvMiningLaserIcon.png","color":"green","category":"Multi-tool","subcategory":"Weapons","level":"A","type":"Mining Beam Companion Unit","stats":"Advanced Mining Laser: Enabled, +15% Mining Speed","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon Nanotubes","qty":1},{"name":"Hermetic Seal","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Advanced Mining Laser","qty":1}]},{"type":"repair","inputs":[{"name":"Carbon Nanotubes","qty":1},{"name":"Hermetic Seal","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Advanced Mining Laser","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Coellosipp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Coellosipp","image":"20191109114157_1.jpg","color":"Neon Pink","type":"Harsh","order":"95","previous":"Yaevarcko","next":"Wayndohalou","release":"Waypoint"},"recipes":[]}
 ---
 

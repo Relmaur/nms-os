@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jellymeat"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SQUID.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Golden Jellyfish","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Toxic Jelly","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Many-Eyed Jellyfish","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Jelly of the Veil","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Crystal Jelly","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Mellifluous Jellyfish","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Glass Angel","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Aurora Jellyfish","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Child of Helios (Fish)","qty":1}],"outputs":[{"name":"Jellymeat","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

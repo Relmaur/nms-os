@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Circuit_Board"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPROD.9.png","category":"Tradeable","color":"Grey","type":"Advanced Agricultural Product","value":"916,250.0","used":"Crafting, Trading","release":"Prisms"},"value":916250,"recipes":[{"type":"craft","inputs":[{"name":"Heat Capacitor","qty":1},{"name":"Poly Fibre","qty":1}],"outputs":[{"name":"Circuit Board","qty":1}],"blueprint":true}]}
 ---
 

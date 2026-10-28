@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scanner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SCAN_NEXT.png","color":"blue","category":"Multi-tool","subcategory":"Scanner","type":"Topographic Survey","desc":"Used to discover resources and points of interest.","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":150}],"outputs":[{"name":"Scanner","qty":1}]},{"type":"repair","inputs":[{"name":"Ferrite Dust","qty":75}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Scanner","qty":1}],"outputs":[{"name":"Ferrite Dust","qty":75}]}]}
 ---
 

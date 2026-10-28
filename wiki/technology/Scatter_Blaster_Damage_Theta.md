@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Upgrade_Icon.png","category":"Multi-tool","subcategory":"Scatter Blaster","level":"3","upgradeicon":"damage","type":"Scatter Blaster Companion Unit","desc":"Increases damage done by the Multi-tool's Scatter Blaster weapon mode by a large amount.","stats":"Damage = 12.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":200},{"name":"Radnox","qty":80},{"name":"Platinum","qty":200}],"outputs":[{"name":"Scatter Blaster Damage Theta","qty":1}]}]}
 ---
 

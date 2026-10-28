@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ironbound_Relic"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ironbound Relic","image":"ironb1.jpg","system_types":"Any","frequency":"Low","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Fire to Destroy","ramifications":"Destroying will drop various items","rewards":"Platinum, Gold, Silver, Ancient Skeleton, Fossil Sample, Terrifying Sample","release":"Echoes"},"recipes":[]}
 ---
 

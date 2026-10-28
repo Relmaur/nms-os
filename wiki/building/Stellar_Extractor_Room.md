@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stellar_Extractor_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.EXTR.png","category":"Base Building","type":"Freighter Construction Module","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":60},{"name":"Gold","qty":45},{"name":"Magnetised Ferrite","qty":40}],"outputs":[{"name":"Stellar Extractor Room","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Stellar Extractor Room","qty":1}],"outputs":[{"name":"Silver","qty":60},{"name":"Gold","qty":45},{"name":"Magnetised Ferrite","qty":40}]}]}
 ---
 

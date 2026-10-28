@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scorched_Plating"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech Poly Fibre Icon 13.png","category":"Starship","color":"red","type":"Damaged Starship Component","release":"ExoMech"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":150},{"name":"Pugneum","qty":50},{"name":"Platinum","qty":50}],"outputs":[]}]}
 ---
 

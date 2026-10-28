@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ablative_Armour"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELDMOD.png","color":"blue","category":"Ship","subcategory":"Shield","level":"C","type":"Starship Shield Upgrade","stats":"+7% Shield Strength","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":100},{"name":"Sodium Nitrate","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Ablative Armour","qty":1}]},{"type":"repair","inputs":[{"name":"Gold","qty":50},{"name":"Sodium Nitrate","qty":25},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Ablative Armour","qty":1}],"outputs":[{"name":"Gold","qty":50},{"name":"Sodium Nitrate","qty":25}]}]}
 ---
 

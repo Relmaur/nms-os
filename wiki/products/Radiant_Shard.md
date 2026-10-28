@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiant_Shard"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DRONESHARD.png","color":"purple","type":"Glassy Reality Intrusion","category":"Component","used":"Crafting, Charging, Upgrading, Refining","value":"1,900.0","release":"Echoes"},"value":1900,"recipes":[]}
 ---
 

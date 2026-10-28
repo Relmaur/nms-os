@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Boosters"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech_Exocraft_Acceleration_Module_Icon.png","color":"blue","category":"Vehicle","type":"Exocraft Engine Upgrade","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":15},{"name":"Chromatic Metal","qty":50},{"name":"Carbon Nanotubes","qty":2}],"outputs":[{"name":"Exocraft Boosters","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Boosters","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":7},{"name":"Chromatic Metal","qty":25},{"name":"Carbon Nanotubes","qty":1}]}]}
 ---
 

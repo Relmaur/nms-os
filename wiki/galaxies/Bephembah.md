@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bephembah"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Bephembah","image":"20191214122031_1.jpg","color":"Maya Blue","type":"Norm","order":"129","previous":"Zikehpm","next":"Broomerrai","release":"Waypoint"},"recipes":[]}
 ---
 

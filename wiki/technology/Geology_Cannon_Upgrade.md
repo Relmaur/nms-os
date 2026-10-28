@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Geology_Cannon_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Weapon","type":"Generated Upgrade","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Di-hydrogen Jelly","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Geology Cannon Upgrade","qty":1}],"outputs":[{"name":"Di-hydrogen Jelly","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

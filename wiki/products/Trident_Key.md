@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Trident_Key"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.TRIDENTKEY.png","category":"Curiosity","type":"Aquatic Relic","value":"1,000.0","release":"Abyss"},"value":1000,"recipes":[]}
 ---
 

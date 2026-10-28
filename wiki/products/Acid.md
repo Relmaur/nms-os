@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Acid"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsTech Acid Icon 13.png","category":"Tradeable","type":"Advanced Agricultural Product","value":"188,000.0","release":"Omega"},"value":188000,"recipes":[{"type":"craft","inputs":[{"name":"Mordite","qty":25},{"name":"Fungal Mould","qty":600}],"outputs":[{"name":"Acid","qty":1}],"blueprint":true}]}
 ---
 

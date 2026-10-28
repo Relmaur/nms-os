@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lantern"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SMALLLIGHT.png","category":"Base Building","type":"Component","power":"1 kPs","complexity":"5a","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Sodium","qty":5}],"outputs":[{"name":"Lantern","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Portal_(Desolation)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Portal","image":"Portal Gate.jpg","category":"Transportation Point","release":"Desolation"},"recipes":[]}
 ---
 

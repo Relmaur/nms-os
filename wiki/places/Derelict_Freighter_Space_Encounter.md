@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Derelict_Freighter_(Space_Encounter)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Derelict Freighter","image":"Derelict Freighter Ship.jpg","system_types":"Any","frequency":"4","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Fire upon cargo pods","ramifications":"Destroying pods has a small chance to attract pirates","rewards":"Chromatic Metal, Gold","release":"Orbital"},"recipes":[]}
 ---
 

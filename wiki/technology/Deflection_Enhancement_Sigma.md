@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deflection_Enhancement_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELD.png","color":"blue","category":"Starship","subcategory":"Health","level":"1","upgradeicon":"armour","type":"Deflector Shield Companion Unit","desc":"Starship energy shield is strengthened. Provides added protection from laser fire, in-flight projectiles and accidental space debris interaction.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carite Sheet","qty":6},{"name":"Heridium","qty":500}],"outputs":[{"name":"Deflection Enhancement Sigma","qty":1}]}]}
 ---
 

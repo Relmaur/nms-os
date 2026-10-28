@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Geobay"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.VEHICLEGARAGEL.png","category":"Technology","type":"Exocraft","color":"blue","desc":"Parking facility for Exocraft","release":"Origins"},"recipes":[]}
 ---
 

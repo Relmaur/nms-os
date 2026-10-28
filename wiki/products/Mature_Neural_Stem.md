@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mature_Neural_Stem"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.BRAIN.MOD.png","category":"Curiosity","color":"black","type":"Living Starship Organ","value":"1616","release":"Expeditions"},"value":1616,"recipes":[]}
 ---
 

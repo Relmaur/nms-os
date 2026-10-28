@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Appalling_Banner"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsIcon_WarningDecal.jpg","category":"Customisation Part","type":"Bespoke Personal Identification","release":"Origins"},"recipes":[]}
 ---
 

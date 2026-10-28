@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Copper_wire"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Copper_Wire_icon.png","category":"Technology","type":"Component","desc":"Wiring product used in construction","value":"2,887.5","release":"Atlas Rises"},"value":2887.5,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Rigogen","qty":20}],"outputs":[{"name":"Copper wire","qty":1}]}]}
 ---
 

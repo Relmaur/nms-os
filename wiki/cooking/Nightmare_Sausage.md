@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nightmare_Sausage"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nightmare Sausage","image":"PRODUCT.MEAT.OFFAL.png","color":"red","type":"Edible Product","value":"16,000","category":"Consumable","release":"WorldsTwo"},"value":16000,"recipes":[{"type":"cook","inputs":[{"name":"Gelatinous Membrane","qty":1},{"name":"Larval Core","qty":1}],"outputs":[{"name":"Nightmare Sausage","qty":1}],"seconds":2.5,"label":"Preserve Flesh"},{"type":"cook","inputs":[{"name":"Gelatinous Membrane","qty":1},{"name":"Hypnotic Eye","qty":1}],"outputs":[{"name":"Nightmare Sausage","qty":1}],"seconds":2.5,"label":"Preserve Flesh"},{"type":"cook","inputs":[{"name":"Gelatinous Membrane","qty":1},{"name":"Hadal Core","qty":1}],"outputs":[{"name":"Nightmare Sausage","qty":1}],"seconds":2.5,"label":"Preserve Flesh"}]}
 ---
 

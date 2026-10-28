@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Peeled_Claws"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Mud Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Starshell Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Giant Hairy Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Silicate Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Screaming Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Atlantidian Crab","qty":1}],"outputs":[{"name":"Peeled Claws","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

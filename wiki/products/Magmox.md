@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Magmox"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.metallic.5.png","category":"Component","type":"Neutral Metal Alloy","value":"30030","release":"Pathfinder"},"value":30030,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carbon","qty":30},{"name":"Thamium9","qty":300},{"name":"Plutonium","qty":300}],"outputs":[{"name":"Magmox","qty":1}]}]}
 ---
 

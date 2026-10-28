@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sulfur"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsResource_Sulphur.jpg","type":"Oxide","rarity":"Common","desc":"Abundant yellow non-metal element","symbol":"S","release":"Pre-release"},"recipes":[]}
 ---
 

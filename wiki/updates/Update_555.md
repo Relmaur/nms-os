@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.55"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"worlds-part-ii-book-cover.png","date":"12 February, 2025","datepc":"12 February, 2025","platform":"PC","link":"Worlds Part II Patch 5.55","release":"WorldsTwo","previous":"5.54","next":"5.55.1"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Kisvarcini"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Kisvarcini","image":"20200303214919_1.jpg","color":"Manhattan Orange","type":"Norm","order":"224","previous":"Innebdjerah","next":"Cuzcogipper","release":"Fractal"},"recipes":[]}
 ---
 

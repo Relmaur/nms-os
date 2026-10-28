@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Reload_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"3","upgradeicon":"time","type":"Pulse Spitter Companion Unit","desc":"Increases reload speed for the Multi-tool's Pulse Spitter.","stats":"Reload Time = (-30%)","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Heridium","qty":250},{"name":"Zinc","qty":100},{"name":"Platinum","qty":150}],"outputs":[{"name":"Pulse Spitter Reload Theta","qty":1}]}]}
 ---
 

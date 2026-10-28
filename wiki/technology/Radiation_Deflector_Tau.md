@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Deflector_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protectrads.png","color":"blue","level":"2","upgradeicon":"protection","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provdes user with increased protection from radiation damage.","stats":"Radiation Protection = 225.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":50},{"name":"Carbon","qty":100},{"name":"Microdensity Fabric","qty":1}],"outputs":[{"name":"Radiation Deflector Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grahj'am"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.JAM.png","color":"Red","category":"Consumable","type":"Edible Product","value":"3,400.0","release":"Origins"},"value":3400,"recipes":[{"type":"cook","inputs":[{"name":"Grahberry","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Grahj'am","qty":1}],"seconds":2.5,"label":"Preserve Fruit"}]}
 ---
 

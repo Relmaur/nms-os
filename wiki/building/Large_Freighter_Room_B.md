@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Large_Freighter_Room_B"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Large Freighter Room B","image":"BUILDABLE.SPACE CUBEROOMB.png","category":"Base Building","type":"Freighter Interior Module","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":120},{"name":"Tritium","qty":20}],"outputs":[{"name":"Large Freighter Room B","qty":1}],"blueprint":true}]}
 ---
 

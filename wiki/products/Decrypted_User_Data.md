@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Decrypted_User_Data"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Decrypted User Data","image":"TRADEPROD.COMMODITY1.png","category":"Tradeable","type":"Trade Goods","value":"1,000.0","release":"Adrift"},"value":1000,"recipes":[]}
 ---
 

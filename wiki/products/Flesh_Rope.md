@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Flesh_Rope"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Flesh Rope","image":"WORMCORE.png","color":"Purple","category":"Curiosity","type":"Intestinal Fragment","value":"16,016","release":"WorldsTwo"},"value":16016,"recipes":[]}
 ---
 

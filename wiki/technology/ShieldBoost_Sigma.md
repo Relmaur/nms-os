@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/ShieldBoost_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELDMOD.png","category":"Exosuit","level":"1","subcategory":"Utilities","type":"Shield Kinetics Companion Unit","desc":"Improve shield duration and charge capacity","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":15},{"name":"Platinum","qty":15},{"name":"Thamium9","qty":15}],"outputs":[{"name":"ShieldBoost Sigma","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Thermal_Buffer"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTHEAT.png","color":"blue","category":"Vehicle","type":"Exocraft Hazard Protection Upgrade","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Dioxite","qty":80},{"name":"Hermetic Seal","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Thermal Buffer","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Thermal Buffer","qty":1}],"outputs":[{"name":"Dioxite","qty":40},{"name":"Hermetic Seal","qty":1}]}]}
 ---
 

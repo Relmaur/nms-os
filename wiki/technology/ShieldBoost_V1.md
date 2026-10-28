@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/ShieldBoost_V1"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsMisc_NotAvailable.png","category":"Exosuit","level":"1","subcategory":"Utilities","type":"Shield Kinetics Companion Unit","desc":"Automated enhancement of Shield Kinetics","release":"Pre-release"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Silicon","qty":200}],"outputs":[{"name":"ShieldBoost V1","qty":1}]}]}
 ---
 

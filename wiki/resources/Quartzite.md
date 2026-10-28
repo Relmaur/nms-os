@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Quartzite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.purple.2.png","color":"Purple","type":"Refined Stellar Material: Purple","rarity":"Rare","symbol":"Qu","value":"132","release":"WorldsTwo"},"value":132,"recipes":[{"type":"refine","inputs":[{"name":"Activated Quartzite","qty":1},{"name":"Carbon","qty":1}],"outputs":[{"name":"Quartzite","qty":1}],"seconds":0.1,"label":"Chromatic Alchemy"},{"type":"refine","inputs":[{"name":"Quartzite","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Quartzite","qty":2}],"seconds":0.18,"label":"Chromatic Expansion"}]}
 ---
 

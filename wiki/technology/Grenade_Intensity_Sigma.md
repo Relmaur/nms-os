@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grenade_Intensity_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.grenademod.png","category":"Multi-tool","subcategory":"Grenade","level":"1","upgradeicon":"damage","type":"Plasma Launcher Companion Unit","desc":"Grenades cause heightened damage.","stats":"Damage = +150.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":150},{"name":"Zinc","qty":20},{"name":"Heridium","qty":200}],"outputs":[{"name":"Grenade Intensity Sigma","qty":1}]}]}
 ---
 

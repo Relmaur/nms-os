@@ -10,7 +10,7 @@ version: "Beacon"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Vile_cortex"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Vile_cortex.png","color":"purple","type":"Glorious Trophy","category":"Tradeable","value":"122,000.0","release":"Beacon"},"value":122000,"recipes":[]}
 ---
 

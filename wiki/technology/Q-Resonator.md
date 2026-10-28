@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Q-Resonator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Q-Resonator","image":"RENDER.PHOTONACCEL.png","category":"Starship","color":"blue","subcategory":"Weapons","level":"B","type":"Infra-Knife Upgrade","stats":"Total Cannon Count: 3","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Hydraulic Wiring","qty":3},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Q-Resonator","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Hydraulic Wiring","qty":2},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Q-Resonator","qty":1}],"outputs":[{"name":"Hydraulic Wiring","qty":1},{"name":"Quantum Computer","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

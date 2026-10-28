@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salt-Laced_Honey_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"92,300.0","release":"WorldsOne"},"value":92300,"recipes":[{"type":"cook","inputs":[{"name":"Thick, Sweet Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Salt-Laced Honey Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

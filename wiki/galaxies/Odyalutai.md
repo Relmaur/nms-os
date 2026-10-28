@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Odyalutai"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Odyalutai","image":"Odyalutai-256.png","color":"Magenta","order":"256","previous":"N/A","next":"Hilbert Dimension","release":"Voyagers"},"recipes":[]}
 ---
 

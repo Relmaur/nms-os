@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ancient_Lock"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.vortexcube.png","category":"Artifact","color":"blue","type":"Heavy Locking Mechanism","release":"Abyss"},"recipes":[{"type":"repair","inputs":[{"name":"Ancient Key","qty":1}],"outputs":[]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Archive_Bypass_Implant"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Archive Bypass Implant","color":"blue","image":"TECH.WORMREADER.png","category":"Consumable","type":"Subcutaneous Access Circuit","used":"Colossal Archive","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Cyto-Phosphate","qty":90},{"name":"Hadal Core","qty":3}],"outputs":[{"name":"Archive Bypass Implant","qty":1}],"blueprint":true}]}
 ---
 

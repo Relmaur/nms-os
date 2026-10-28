@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Combat_Scope"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BINOCSMOD.png","color":"blue","category":"Multi-tool","subcategory":"Precision","desc":"Weapon Precision Enhancement","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Ion Battery","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Combat Scope","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Combat Scope","qty":1}],"outputs":[{"name":"Ion Battery","qty":1}]}]}
 ---
 

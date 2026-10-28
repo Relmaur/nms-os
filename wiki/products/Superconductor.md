@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Superconductor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"COMPOUND.5.png","color":"grey","category":"Tradeable","type":"Manufactured Gas Product","value":"1,500,000.0","release":"Prisms"},"value":1500000,"recipes":[{"type":"craft","inputs":[{"name":"Enriched Carbon","qty":1},{"name":"Semiconductor","qty":1}],"outputs":[{"name":"Superconductor","qty":1}],"blueprint":true}]}
 ---
 

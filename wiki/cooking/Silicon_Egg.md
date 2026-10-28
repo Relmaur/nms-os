@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Silicon_Egg"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.PLANT.STELLARWILD.png","color":"DarkBlue","category":"Consumable","type":"Raw Ingredient","value":"500","release":"WorldsTwo"},"value":500,"recipes":[{"type":"cook","inputs":[{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Silicon Egg","qty":1}],"seconds":2.5,"label":"Chromatic Yolk Formation"}]}
 ---
 

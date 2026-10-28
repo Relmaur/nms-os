@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Suspicious_Packet_(Goods)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Suspicious Packet (Goods)","image":"PRODUCT.SCRAP.GOODS.png","color":"darkblue","category":"Curiosity","type":"Contraband","rarity":"Rare","used":"Upgrading","release":"Aquarius"},"recipes":[]}
 ---
 

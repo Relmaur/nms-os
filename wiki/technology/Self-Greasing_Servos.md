@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Self-Greasing_Servos"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.engine.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Motor Efficiency Upgrade","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":40},{"name":"Acid","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Self-Greasing Servos","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Self-Greasing Servos","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":20}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oxycen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Oxycen","image":"nmsMisc_NotAvailable.png","type":"Gas","rarity":"Common","desc":"Common breathable gas and is most likely based off of, and has the same properties as, oxygen.","release":"Pre-release"},"recipes":[]}
 ---
 

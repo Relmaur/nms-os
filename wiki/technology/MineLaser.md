@@ -10,7 +10,7 @@ version: "Pre-release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/MineLaser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.lasercool1.png","category":"Weapon","subcategory":"Laser","type":"Mineral Extraction Beam","desc":"Directed laser tool for mining.","release":"Pre-release"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Silicon","qty":200},{"name":"Sulfur","qty":100}],"outputs":[{"name":"MineLaser","qty":1}]}]}
 ---
 

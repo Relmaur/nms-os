@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Advanced_Cooling_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1mod.png","color":"blue","level":"1","upgradeicon":"time","type":"Photon Cannon Companion Unit","desc":"Reduces cool-down time for the Photon cannon","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Thamium9","qty":30},{"name":"Chrysonite","qty":30},{"name":"Iron","qty":50}],"outputs":[{"name":"Advanced Cooling Sigma","qty":1}]}]}
 ---
 

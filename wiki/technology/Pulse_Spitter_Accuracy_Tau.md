@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pulse_Spitter_Accuracy_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Pulse_spitter_upgrade.png","category":"Multi-tool","subcategory":"Pulse Spitter","level":"2","upgradeicon":"accuracy","type":"Pulse Spitter Companion Unit","desc":"Increases accuracy of the Multi-tool's Pulse Spitter weapon mode","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Titanium","qty":200},{"name":"Platinum","qty":100},{"name":"Aluminium","qty":100}],"outputs":[{"name":"Pulse Spitter Accuracy Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Wriggling_Jam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.JAM.png","color":"Red","category":"Consumable","type":"Edible Product","value":"9,000","release":"WorldsTwo"},"value":9000,"recipes":[{"type":"cook","inputs":[{"name":"Crab 'Apple'","qty":1},{"name":"Processed Sugar","qty":1}],"outputs":[{"name":"Wriggling Jam","qty":1}],"seconds":2.5,"label":"Preserve Fruit"}]}
 ---
 

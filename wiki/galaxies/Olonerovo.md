@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Olonerovo"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Olonerovo","image":"20191030080048_1.jpg","color":"Yellow","type":"Norm","order":"85","previous":"Cajaccari","next":"Umlanswick","release":"Waypoint"},"recipes":[]}
 ---
 

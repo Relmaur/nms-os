@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Loydporpen"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Loydporpen","image":"20191008224845_1.jpg","color":"Medium Orchid","type":"Norm","order":"65","previous":"Rinblodesa","next":"Ibtrevskip","release":"Waypoint"},"recipes":[]}
 ---
 

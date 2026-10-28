@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Silicate_Powder"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.SAND.1.png","category":"Metal","type":"Abundant Mineral","rarity":"Common","color":"Grey","used":"Building, Charging","symbol":"Si","value":"2.0","release":"Origins"},"value":2,"recipes":[]}
 ---
 

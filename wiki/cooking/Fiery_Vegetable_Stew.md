@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fiery_Vegetable_Stew"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.VEGSTEW.png","color":"Green","category":"Consumable","type":"Edible Product","value":"18,800.0","release":"Omega"},"value":18800,"recipes":[{"type":"cook","inputs":[{"name":"Fibrous Stew","qty":1},{"name":"Scorching Sauce","qty":1}],"outputs":[{"name":"Fiery Vegetable Stew","qty":1}],"seconds":2.5,"label":"Combine and Reduce"}]}
 ---
 

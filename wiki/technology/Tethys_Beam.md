@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Tethys_Beam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.VEHICLE LASER.png","color":"blue","category":"Aquatic","type":"Submarine Mining Laser","recharge":"Organic Elements","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Chlorine","qty":100},{"name":"Living Pearl","qty":10}],"outputs":[{"name":"Tethys Beam","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Tethys Beam","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Chlorine","qty":50},{"name":"Living Pearl","qty":5}]}]}
 ---
 

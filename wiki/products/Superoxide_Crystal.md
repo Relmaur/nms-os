@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Superoxide_Crystal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.SUPEROXIDE.png","category":"Curiosity","color":"Yellow","type":"Concentrated Oxygen Deposit","value":"5,100.0","release":"Origins"},"value":5100,"recipes":[]}
 ---
 

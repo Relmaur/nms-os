@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.38"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NMS-Singularity-Screen-3.jpg","date":"20 July, 2023","datemac":"21 July, 2023","dateswitch":"27 July, 2023","platform":"All","link":"Patch 4.38","release":"Singularity","previous":"4.37.1","next":"4.40"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sponge_of_Ambrosia"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKEBLOB.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"97,200","release":"WorldsTwo"},"value":97200,"recipes":[{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Sponge of Ambrosia","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Syrupy Batter","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Sponge of Ambrosia","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

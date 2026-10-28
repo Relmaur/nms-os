@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Luleukous"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Luleukous","image":"20191208223701_1.jpg","color":"Canary Yellow","type":"Harsh","order":"123","previous":"Dotusingg","next":"Jelmandan","release":"Waypoint"},"recipes":[]}
 ---
 

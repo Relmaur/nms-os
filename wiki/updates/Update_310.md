@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.10"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-nextgen-book-cover-opt.png","dateps":"12 November 2020","datepc":"10 November 2020","datexbox":"10 November 2020","platform":"All","link":"Next Generation: Introducing Update 3.10","release":"NextGen","previous":"3.05","next":"3.12"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nozoryenki"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nozoryenki","image":"20200204194202_1.jpg","color":"Mint Green","type":"Norm","order":"191","previous":"Cugnatachh","next":"Ebralduri","release":"Waypoint"},"recipes":[]}
 ---
 

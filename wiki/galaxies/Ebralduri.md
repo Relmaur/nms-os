@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ebralduri"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ebralduri","image":"20200205195920_1.jpg","color":"Canary Yellow","type":"Empty","order":"192","previous":"Nozoryenki","next":"Evcickcandj","release":"Waypoint"},"recipes":[]}
 ---
 

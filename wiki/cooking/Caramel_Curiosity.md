@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Caramel_Curiosity"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"64,900","release":"WorldsTwo"},"value":64900,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Crunchy Caramel","qty":1}],"outputs":[{"name":"Caramel Curiosity","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

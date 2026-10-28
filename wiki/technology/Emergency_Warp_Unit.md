@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Emergency_Warp_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.INDIUMDRIVE.png","color":"blue","category":"Starship","subcategory":"Hyperdrive","level":"A","type":"Hyperdrive Upgrade","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Warp Cell","qty":1},{"name":"Gold","qty":220},{"name":"Microprocessor","qty":4}],"outputs":[{"name":"Emergency Warp Unit","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Warp Cell","qty":1},{"name":"Gold","qty":110},{"name":"Microprocessor","qty":2}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Emergency Warp Unit","qty":1}],"outputs":[{"name":"Gold","qty":110},{"name":"Microprocessor","qty":2}]}]}
 ---
 

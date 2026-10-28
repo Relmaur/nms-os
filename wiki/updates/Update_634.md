@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.34"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"XenoArenaCover.png","date":"21 April, 2026","platform":"PC","link":"Xeno Arena 6.34","release":"Xeno Arena","previous":"6.33","next":"6.36"},"recipes":[]}
 ---
 

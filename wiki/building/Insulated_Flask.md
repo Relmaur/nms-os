@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Insulated_Flask"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BAZAAR.MILKBOTTLE.png","category":"Base Building","type":"Component","color":"Blue","complexity":"2","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":25}],"outputs":[{"name":"Insulated Flask","qty":1}],"blueprint":true}]}
 ---
 

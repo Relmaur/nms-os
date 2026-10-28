@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator_Damage_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Infra-Knife_Accelerator_Upgrade_Icon.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"3","upgradeicon":"damage","type":"Infra-Knife Companion Unit","desc":"Increases Infra-Knife damage","stats":"Damage = +8.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Omegon","qty":100},{"name":"Vortex Cube","qty":3},{"name":"Carbon","qty":50}],"outputs":[{"name":"Infra-Knife Accelerator Damage Theta","qty":1}]}]}
 ---
 

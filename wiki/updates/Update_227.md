@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.27"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-synthesis-book-cover.png","date":"4 February 2020","platform":"PS4/PC/Xbox","link":"Synthesis Patch 2.27 on nomanssky.com","release":"Synthesis","previous":"2.26","next":"2.30"},"recipes":[]}
 ---
 

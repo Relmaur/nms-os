@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enyokudohkiw"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Enyokudohkiw","order":"-5","previous":"Loqvishess","next":"Helqvishap","release":"Atlas Rises"},"recipes":[]}
 ---
 

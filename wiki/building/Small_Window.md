@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Small_Window"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.CUBEWINDOWSMALL.png","category":"Base Building","color":"blue","type":"Construction item","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":5},{"name":"Glass","qty":1}],"outputs":[{"name":"Small Window","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Small Window","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":5},{"name":"Glass","qty":1}]}]}
 ---
 

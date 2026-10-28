@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fourier_De-Limiter"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAMMOD.png","category":"Starship","color":"green","subcategory":"Weapons","level":"B","type":"Phase Beam Upgrade","stats":"+11% Heat Dispersion","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Fourier De-Limiter","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Fourier De-Limiter","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1}]}]}
 ---
 

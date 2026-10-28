@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Drajayanes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Drajayanes","image":"20191220193321_1.jpg","color":"Medium Slate Blue","type":"Harsh","order":"135","previous":"Zosakasiro","next":"Ooibekuar","release":"Waypoint"},"recipes":[]}
 ---
 

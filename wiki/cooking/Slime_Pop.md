@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Slime_Pop"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ICECREAM.png","color":"Red","category":"Consumable","type":"Edible Product","value":"44,000","release":"WorldsTwo"},"value":44000,"recipes":[{"type":"cook","inputs":[{"name":"Viscous Custard","qty":1},{"name":"Frozen Tubers","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Viscous Custard","qty":1},{"name":"Frost Crystal","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frozen Tubers","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frost Crystal","qty":1},{"name":"Sweetened Mucous","qty":1}],"outputs":[{"name":"Slime Pop","qty":1}],"seconds":2.5,"label":"Rapid Chilling"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Science_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.NPCSCIENCE.png","category":"Technology","type":"Terminal","color":"blue","desc":"Research station for science projects","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Magnetised Ferrite","qty":25}],"outputs":[{"name":"Science Terminal","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Science Terminal","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":40},{"name":"Magnetised Ferrite","qty":25}]}]}
 ---
 

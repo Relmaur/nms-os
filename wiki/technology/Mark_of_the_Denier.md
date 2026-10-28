@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mark_of_the_Denier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Mark of the Denier","image":"PRODUCT.HERETICCORE.png","color":"blue","desc":"Opposite of Star Seed","category":"Exosuit","subcategory":"Health","type":"Cosmic Brand","recharge":"Nanite Cluster","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Tritium","qty":16},{"name":"Gold","qty":16},{"name":"Platinum","qty":16}],"outputs":[{"name":"Mark of the Denier","qty":1}],"blueprint":true}]}
 ---
 

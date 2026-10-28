@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dyson_Pump"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.IONBLASTMOD.png","category":"Starship","color":"purple","subcategory":"Weapons","level":"B","type":"Starship Cyclotron Upgrade","stats":"+11% Heat Dispersion","release":"Interceptor"},"recipes":[{"type":"craft","inputs":[{"name":"Amino Chamber","qty":3},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Dyson Pump","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Amino Chamber","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Dyson Pump","qty":1}],"outputs":[{"name":"Amino Chamber","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

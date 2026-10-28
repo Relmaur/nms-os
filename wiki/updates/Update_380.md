@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_3.80"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-sentinel-book-cover-op.png","date":"16 February 2022","platform":"All platforms","link":"Sentinel Update","release":"SentinelUp","previous":"3.75","next":"3.81"},"recipes":[]}
 ---
 

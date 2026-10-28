@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mineral_Processing_Rig"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"20250208225101_2.jpg","color":"blue","category":"Exocraft","subcategory":"Colossus","type":"Colossus Large Refiner","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":100},{"name":"Hydraulic Wiring","qty":2},{"name":"Microprocessor","qty":4}],"outputs":[{"name":"Mineral Processing Rig","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Mineral Processing Rig","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Hydraulic Wiring","qty":1},{"name":"Microprocessor","qty":2}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cyto-Phosphate"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.WATER.PLANT.png","category":"Earth","color":"Green","type":"Organic Compound","rarity":"Rare","used":"Building, Crafting, Charging, Upgrading, Refining","symbol":"Cy","value":"201.0","release":"Origins"},"value":201,"recipes":[]}
 ---
 

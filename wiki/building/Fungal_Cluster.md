@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fungal_Cluster"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.toxicplant.png","category":"Base Building","color":"yellow","value":"1","type":"Plantable Seed","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Fungal Mould","qty":50},{"name":"Ammonia","qty":25}],"outputs":[{"name":"Fungal Cluster","qty":1}],"blueprint":true}]}
 ---
 

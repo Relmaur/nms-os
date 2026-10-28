@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Anomaly_Detector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.LOCATOR.POI.png","category":"Curiosity","color":"darkblue","type":"Anomalous Homing Device","value":"3,280","release":"WorldsOne"},"value":3280,"recipes":[]}
 ---
 

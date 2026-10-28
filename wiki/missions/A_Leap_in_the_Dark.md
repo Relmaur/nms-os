@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/A_Leap_in_the_Dark"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Primary","series":"Artemis Path","prevmission":"Ghosts in the Machine","nextmission":"The First Traveller","origin":"Korvax Manufacturing Facility","requires":"N/A","implemented":"Atlas Rises","desc":"Activate a Portal, Third mission of the Artemis Path proper"},"recipes":[]}
 ---
 

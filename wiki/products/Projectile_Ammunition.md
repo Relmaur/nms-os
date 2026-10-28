@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Projectile_Ammunition"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Projectile Ammunition","color":"grey","image":"PRODUCT.AMMO.png","category":"Consumable","type":"Universal Ammo Module","value":"1.0","release":"Aquarius"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Ferrite Dust","qty":50}],"outputs":[{"name":"Projectile Ammunition","qty":1250}]}]}
 ---
 

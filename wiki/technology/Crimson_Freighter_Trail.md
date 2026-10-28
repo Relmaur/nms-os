@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crimson_Freighter_Trail"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Crimson Freighter Trail","image":"SPECIAL1.FREIGHTJETS.RED.png","category":"Freighter","type":"Freighter Engine Flare Override","desc":"Changes the colour of the engines of your freighter.","release":"Singularity"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fragment_Supercharger"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLASTMOD.png","color":"yellow","category":"Starship","subcategory":"Weapons","level":"B","type":"Starship Positron Ejector Upgrade","stats":"+20% Accuracy, +25% Range","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetic Resonator","qty":3},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Fragment Supercharger","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetic Resonator","qty":2},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Fragment Supercharger","qty":1}],"outputs":[{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

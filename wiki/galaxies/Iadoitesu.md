@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iadoitesu"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Iadoitesu","image":"20200311203104_1.jpg","color":"Medium Orchid","type":"Norm","order":"234","previous":"Isenkeyan","next":"Yagrovoisi","release":"Fractal"},"recipes":[]}
 ---
 

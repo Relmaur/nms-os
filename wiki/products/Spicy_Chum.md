@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spicy_Chum"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISHBAIT.2.png","color":"Darkblue","category":"Consumable","type":"Fishing Bait","value":"160","release":"Aquarius"},"value":160,"recipes":[{"type":"craft","inputs":[{"name":"Mordite","qty":80},{"name":"Phosphorus","qty":25},{"name":"Di-hydrogen","qty":90}],"outputs":[{"name":"Spicy Chum","qty":30}]}]}
 ---
 

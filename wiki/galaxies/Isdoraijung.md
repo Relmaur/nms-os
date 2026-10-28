@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Isdoraijung"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Isdoraijung","image":"No Man's Sky_20190206034021.png","color":"Fuchsia","type":"Lush","order":"19","previous":"Rerasmutul","next":"Doctinawyra","release":"Waypoint"},"recipes":[]}
 ---
 

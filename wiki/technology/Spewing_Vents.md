@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spewing_Vents"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.LUMPS.png","category":"Starship","subcategory":"Weapons","type":"Spacecraft Projectile Weapon","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Sac Venom","qty":5},{"name":"Living Slime","qty":40}],"outputs":[{"name":"Spewing Vents","qty":1}]},{"type":"repair","inputs":[{"name":"Sac Venom","qty":3},{"name":"Living Slime","qty":20}],"outputs":[]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bio-Dome"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.BIODOME.png","category":"Base Building","color":"blue","type":"Construction module","release":"Waypoint","power":"50 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":25},{"name":"Glass","qty":5}],"outputs":[{"name":"Bio-Dome","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Waferganh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Waferganh","image":"20190810213252_1.jpg","color":"Light Orange","type":"Norm","order":"48","previous":"Milekistri","next":"Agnusopwit","release":"Waypoint"},"recipes":[]}
 ---
 

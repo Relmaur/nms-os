@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hyperdrive_Upgrade"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.HYPERDRIVEMOD.png","category":"Starship","subcategory":"Hyperdrive","type":"Generated Upgrade","release":"Singularity"},"recipes":[{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":75},{"name":"Magnetised Ferrite","qty":13},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Hyperdrive Upgrade","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":75},{"name":"Magnetised Ferrite","qty":12},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

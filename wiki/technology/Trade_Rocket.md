@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Trade_Rocket"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECH.SUITROCKET.png","category":"Exosuit","type":"Exosuit Upgrade","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Wiring Loom","qty":2},{"name":"Tritium","qty":120},{"name":"Di-hydrogen","qty":90}],"outputs":[{"name":"Trade Rocket","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Wiring Loom","qty":1},{"name":"Tritium","qty":60},{"name":"Di-hydrogen","qty":45}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Trade Rocket","qty":1}],"outputs":[{"name":"Wiring Loom","qty":1},{"name":"Tritium","qty":60},{"name":"Di-hydrogen","qty":45}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shielding_Shard"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.shielding1.png","color":"red","category":"Consumable","type":"Defensive Energy Battery","value":"344.0","desc":"Hazard Protection and Shield energy storage unit.","release":"Atlas Rises"},"value":344,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Platinum","qty":20}],"outputs":[{"name":"Shielding Shard","qty":1}]}]}
 ---
 

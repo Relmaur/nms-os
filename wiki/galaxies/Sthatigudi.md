@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sthatigudi"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sthatigudi","image":"20200126233838_1.jpg","color":"Pink","type":"Norm","order":"180","previous":"Wepaitvas","next":"Yekathsebehn","release":"Companions"},"recipes":[]}
 ---
 

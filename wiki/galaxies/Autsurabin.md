@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Autsurabin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Autsurabin","image":"No Man's Sky_20190403213526.png","color":"Turquoise","order":"37","type":"Norm","previous":"Nipikulha","next":"Lusontrygiamh","release":"Swarm"},"recipes":[]}
 ---
 

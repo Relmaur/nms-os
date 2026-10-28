@@ -10,7 +10,7 @@ version: "Visions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shelf_Panel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SHELFPANEL.png","category":"Base Building","color":"blue","type":"Decoration","release":"Visions"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":10}],"outputs":[{"name":"Shelf Panel","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Shelf Panel","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":10}]}]}
 ---
 

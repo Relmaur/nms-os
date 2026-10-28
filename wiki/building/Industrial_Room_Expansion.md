@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Industrial_Room_(Expansion)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.IND.png","category":"Base Building","type":"Agriculture","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":40},{"name":"Oxygen","qty":30}],"outputs":[{"name":"Industrial Room (Expansion)","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Industrial Room (Expansion)","qty":1}],"outputs":[{"name":"Silver","qty":40},{"name":"Oxygen","qty":30}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grafted_Eyes"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.EYE.png","category":"Starship","subcategory":"Weapons","type":"Spacecraft Laser Device","release":"NextGen"},"recipes":[{"type":"repair","inputs":[{"name":"Hypnotic Eye","qty":2},{"name":"Viscous Fluids","qty":20}],"outputs":[]}]}
 ---
 

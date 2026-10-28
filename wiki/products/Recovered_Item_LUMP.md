@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Recovered_Item_(LUMP)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TREASURE.LUMP.png","color":"Blue","category":"Procedural","type":"Recovered Item","value":"250-1,250","release":"WorldsOne"},"recipes":[]}
 ---
 

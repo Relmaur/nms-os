@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ulosaginyik"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ulosaginyik","image":"20191118163518_1.jpg","color":"Electric Blue","type":"Norm","order":"106","previous":"Aediabiel","next":"Roclaytonycar","release":"Waypoint"},"recipes":[]}
 ---
 

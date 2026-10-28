@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dredging_Laser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.submarinecannonmod.png","color":"blue","category":"Aquatic","subcategory":"Nautilon","type":"Nautilon Terrain Manipulator","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":80},{"name":"Lithium","qty":90},{"name":"Crystal Sulphide","qty":4}],"outputs":[{"name":"Dredging Laser","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Dredging Laser","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":40},{"name":"Lithium","qty":45},{"name":"Crystal Sulphide","qty":2}]}]}
 ---
 

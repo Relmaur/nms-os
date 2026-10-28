@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Launch_Auto-Charger"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.LANDINGGEARMOD.png","color":"blue","category":"Starship","subcategory":"Launch Thruster","level":"S","type":"Starship Launch System Upgrade","stats":"Automatic Recharging: Enabled","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Antimatter","qty":5},{"name":"Magnetic Resonator","qty":2},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Launch Auto-Charger","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Antimatter","qty":3},{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Launch Auto-Charger","qty":1}],"outputs":[{"name":"Antimatter","qty":3},{"name":"Magnetic Resonator","qty":1},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Traditional_Cake"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"68,100.0","release":"Prisms"},"value":68100,"recipes":[{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Grahj'am","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Cake Batter","qty":1},{"name":"Furball Jelly","qty":1},{"name":"Bone Cream","qty":1}],"outputs":[{"name":"Traditional Cake","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

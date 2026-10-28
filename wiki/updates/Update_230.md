@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.30"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Nms-living-ship-book-cover-opt.png","date":"19 February 2020","platform":"PS4/PC/Xbox","link":"Update 2.30 on nomanssky.com","release":"Living Ship","previous":"2.27","next":"2.31"},"recipes":[]}
 ---
 

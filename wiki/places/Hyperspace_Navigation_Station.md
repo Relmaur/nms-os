@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hyperspace_Navigation_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Hyperspace Navigation Station","image":"Hyperspace Navigation Station.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Use communicator","ramifications":"None","rewards":"Unknown","notes":"Gives a string of 16 hexadecimal digits which represent the system's Universal Address.","release":"Living Ship"},"recipes":[]}
 ---
 

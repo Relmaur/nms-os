@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Neutrino_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Neutrino Module","image":"Product.neutrino.png","color":"Green","category":"Curiosity","type":"Trade commodity","value":"13,750.0","desc":"A valuable computer part","release":"Atlas Rises"},"value":13750,"recipes":[]}
 ---
 

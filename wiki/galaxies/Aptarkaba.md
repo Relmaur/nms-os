@@ -10,7 +10,7 @@ version: "Swarm"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aptarkaba"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Aptarkaba","image":"No Man's Sky_20190112013853.png","color":"Sky Blue","type":"Empty","order":"12","previous":"Elkupalos","next":"Ontiniangp","release":"Swarm"},"recipes":[]}
 ---
 

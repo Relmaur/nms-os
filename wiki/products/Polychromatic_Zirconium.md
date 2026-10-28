@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Polychromatic_Zirconium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.MINERALS4.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Minerals)","value":"30,000.0","release":"Adrift"},"value":30000,"recipes":[]}
 ---
 

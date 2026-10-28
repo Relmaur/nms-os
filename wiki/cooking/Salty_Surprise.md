@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Salty_Surprise"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKE.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"92,300.0","release":"WorldsOne"},"value":92300,"recipes":[{"type":"cook","inputs":[{"name":"Proto-Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Salty Surprise","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dioxite"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BIOME.COLD.png","color":"Blue","category":"Earth","type":"Localized Earth Element","rarity":"Uncommon","used":"Building, Crafting, Charging, Upgrading","symbol":"CO2","value":"62.0","release":"Omega"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Condensed Carbon","qty":1},{"name":"Sodium Nitrate","qty":1}],"outputs":[{"name":"Dioxite","qty":2}],"seconds":0.36,"label":"Advanced Carbon Processing"},{"type":"refine","inputs":[{"name":"Carbon","qty":1},{"name":"Sodium Nitrate","qty":1}],"outputs":[{"name":"Dioxite","qty":1}],"seconds":0.36,"label":"Advanced Carbon Processing"},{"type":"refine","inputs":[{"name":"Frost Crystal","qty":2},{"name":"Salt","qty":1}],"outputs":[{"name":"Dioxite","qty":1}],"seconds":0.36,"label":"Floral Titration"},{"type":"refine","inputs":[{"name":"Ammonia","qty":2},{"name":"Ferrite Dust","qty":1}],"outputs":[{"name":"Dioxite","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Ammonia","qty":2},{"name":"Pure Ferrite","qty":1}],"outputs":[{"name":"Dioxite","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"}]}
 ---
 

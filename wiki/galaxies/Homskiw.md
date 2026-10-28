@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Homskiw"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Homskiw","image":"20200102161636_1.jpg","color":"Pink","type":"Norm","order":"149","previous":"Akbulkabi","next":"Zavainlani","release":"Waypoint"},"recipes":[]}
 ---
 

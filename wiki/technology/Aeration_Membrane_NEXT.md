@@ -10,7 +10,7 @@ version: "NEXT"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aeration_Membrane_(NEXT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.helmet.png","color":"blue","category":"Exosuit","subcategory":"Life Support","type":"Companion Unit","desc":"Extends duration of underwater exploration.","release":"NEXT"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Amsentisz"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Amsentisz","image":"20190915102939_1.jpg","color":"Canary Yellow","type":"Norm","order":"54","previous":"Mushonponte","next":"Fladiselm","release":"Waypoint"},"recipes":[]}
 ---
 

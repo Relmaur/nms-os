@@ -10,7 +10,7 @@ version: "Interceptor"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pugneum"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.ROBOT.1.png","color":"Purple","category":"Special","type":"Anomalous Material","rarity":"Rare","symbol":"Pg","used":"Building, Crafting, Charging, Upgrading","value":"138.0","release":"Interceptor"},"value":138,"recipes":[{"type":"refine","inputs":[{"name":"Atlantideum","qty":1}],"outputs":[{"name":"Pugneum","qty":2}],"seconds":0.12,"label":"Restore Harmony"}]}
 ---
 

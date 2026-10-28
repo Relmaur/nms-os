@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Forbidden_Multi-Tool_Module"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SENTINELGUNMOD.png","color":"darkblue","category":"Multi-Tool","type":"Procedural Upgrade","release":"Aquarius"},"recipes":[{"type":"repair","inputs":[{"name":"Pugneum","qty":75},{"name":"Chromatic Metal","qty":75}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Forbidden Multi-Tool Module","qty":1}],"outputs":[{"name":"Pugneum","qty":75},{"name":"Chromatic Metal","qty":75}]}]}
 ---
 

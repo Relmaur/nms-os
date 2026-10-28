@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Boltcaster_Clip_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.projectile1mod.png","color":"blue","category":"Weapon","subcategory":"Projectile","level":"2","upgradeicon":"clip","type":"Companion Unit","desc":"Increases the boltcaster's clip size","stats":"Clip Size = +50%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Zinc","qty":20},{"name":"Nickel","qty":10}],"outputs":[{"name":"Boltcaster Clip Tau","qty":1}]}]}
 ---
 

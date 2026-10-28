@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Phase_Beam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHASEBEAM.png","category":"Starship","color":"blue","subcategory":"Weapons","type":"Starship Energy Weapon","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Tritium","qty":100},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Phase Beam","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Tritium","qty":50},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Phase Beam","qty":1}],"outputs":[{"name":"Tritium","qty":50}]}]}
 ---
 

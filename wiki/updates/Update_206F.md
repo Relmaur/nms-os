@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_2.06F"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"date":"19 August 2019","platform":"PC","link":"Update 2.06F on nomanssky.com","release":"Beyond","previous":"2.06E","next":"2.06G"},"recipes":[]}
 ---
 

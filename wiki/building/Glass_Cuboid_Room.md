@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Glass_Cuboid_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.cubeglass.png","category":"Base Building","color":"Blue","type":"Structure","complexity":"15","release":"NextGen"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":75},{"name":"Glass","qty":2}],"outputs":[{"name":"Glass Cuboid Room","qty":1}],"blueprint":true}]}
 ---
 

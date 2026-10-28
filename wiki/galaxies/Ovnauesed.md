@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ovna'uesed"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ovna'uesed","image":"20191017211655_1.jpg","color":"Orchid","type":"Norm","order":"71","previous":"Husalvangewi","next":"Bahibusey","release":"Waypoint"},"recipes":[]}
 ---
 

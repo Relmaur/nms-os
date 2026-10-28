@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Aeration_Membrane"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.helmet.png","color":"blue","category":"Exosuit","subcategory":"Life Support","type":"Aquatic Respiration Aid","desc":"Extends duration of underwater exploration.","release":"Expeditions"},"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":150},{"name":"Silver","qty":60},{"name":"Copper","qty":75}],"outputs":[{"name":"Aeration Membrane","qty":1}]},{"type":"repair","inputs":[{"name":"Oxygen","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":35}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Aeration Membrane","qty":1}],"outputs":[{"name":"Oxygen","qty":75},{"name":"Silver","qty":30},{"name":"Copper","qty":35}]}]}
 ---
 

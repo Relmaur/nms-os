@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Oyleyzhan"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Oyleyzhan","image":"20200110230209_1.jpg","color":"Magenta","type":"Norm","order":"165","previous":"Telicianses","next":"Uagerosat","release":"Waypoint"},"recipes":[]}
 ---
 

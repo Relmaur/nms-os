@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hardframe_Right_Arm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.MECH.SENT.RARM.png","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Ionised Cobalt","qty":30},{"name":"Pugneum","qty":40},{"name":"Hydraulic Wiring","qty":1}],"outputs":[{"name":"Hardframe Right Arm","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ionised Cobalt","qty":15},{"name":"Pugneum","qty":20},{"name":"Hydraulic Wiring","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Hardframe Right Arm","qty":1}],"outputs":[{"name":"Ionised Cobalt","qty":15},{"name":"Pugneum","qty":20},{"name":"Hydraulic Wiring","qty":1}]}]}
 ---
 

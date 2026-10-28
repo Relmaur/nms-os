@@ -10,7 +10,7 @@ version: "Remnant"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Myth_Beacon"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Myth Beacon","image":"NmsCuriosity_MythBeacon_Icon.jpg","category":"Curiosity","color":"purple","type":"Experimental Summoning Technology","value":"80.0","release":"Remnant"},"value":80,"recipes":[]}
 ---
 

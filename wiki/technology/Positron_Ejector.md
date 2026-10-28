@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Positron_Ejector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLAST.png","color":"brown","category":"Starship","subcategory":"Weapons","type":"Close Range Starship Weapon","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Uranium","qty":200},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Positron Ejector","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Uranium","qty":100},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Positron Ejector","qty":1}],"outputs":[{"name":"Uranium","qty":100},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

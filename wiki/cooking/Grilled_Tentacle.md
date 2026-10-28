@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Grilled_Tentacle"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.OCTOPUS.COOKED.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"33,100","release":"Aquarius"},"value":33100,"recipes":[{"type":"cook","inputs":[{"name":"Green-Ring Octopus","qty":1}],"outputs":[{"name":"Grilled Tentacle","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Bleached Octopus","qty":1}],"outputs":[{"name":"Grilled Tentacle","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Hypnotic Octopus","qty":1}],"outputs":[{"name":"Grilled Tentacle","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Candelabra Octopus","qty":1}],"outputs":[{"name":"Grilled Tentacle","qty":1}],"seconds":2.5,"label":"Seafood Assembly"},{"type":"cook","inputs":[{"name":"Wrackjaw","qty":1}],"outputs":[{"name":"Grilled Tentacle","qty":1}],"seconds":2.5,"label":"Seafood Assembly"}]}
 ---
 

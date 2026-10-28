@@ -10,7 +10,7 @@ version: "Cross-Save"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.26"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"No-Mans-Sky-PS5-Pro-Screen.png","date":"15 November, 2024","platform":"PC, Mac, PS, XB","link":"Cross-Save Update 5.26","release":"Cross-Save","previous":"5.25","next":"5.27"},"recipes":[]}
 ---
 

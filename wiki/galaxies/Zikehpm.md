@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Zikehpm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Zikehpm","image":"20191213181227_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"128","previous":"Sezviktorew","next":"Bephembah","release":"Waypoint"},"recipes":[]}
 ---
 

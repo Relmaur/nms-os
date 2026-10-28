@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Antimatter_Housing"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.amhousing.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"6,500.0","release":"Frontiers"},"value":6500,"recipes":[{"type":"craft","inputs":[{"name":"Oxygen","qty":30},{"name":"Ferrite Dust","qty":50}],"outputs":[{"name":"Antimatter Housing","qty":1}],"blueprint":true}]}
 ---
 

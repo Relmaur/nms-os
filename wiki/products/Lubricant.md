@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lubricant"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FARMPROD.2.png","category":"Tradeable","type":"Advanced Agricultural Product","value":"110,000.0","release":"Prisms"},"value":110000,"recipes":[{"type":"craft","inputs":[{"name":"Faecium","qty":50},{"name":"Gamma Root","qty":400}],"outputs":[{"name":"Lubricant","qty":1}],"blueprint":true}]}
 ---
 

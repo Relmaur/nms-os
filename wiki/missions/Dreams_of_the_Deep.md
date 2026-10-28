@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dreams_of_the_Deep"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"type":"Secondary","origin":"Holo-Terminus","requires":"Pioneer OR completion of 16 / 16","implemented":"Abyss","desc":"Underwater exploration quest"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Larval_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FIENDCORE.png","category":"Curiosity","color":"Grey","type":"Monstrosity","value":"69,875.0","release":"Frontiers"},"value":69875,"recipes":[]}
 ---
 

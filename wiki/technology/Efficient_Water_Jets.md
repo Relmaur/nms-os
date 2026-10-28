@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Efficient_Water_Jets"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.JETPACKMOD.png","color":"blue","category":"Exosuit","subcategory":"Movement","level":"A","type":"Jetpack Upgrade Unit","stats":"Efficient Waterjets: Enabled","release":"Desolation"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Oxygen","qty":100},{"name":"Living Pearl","qty":6}],"outputs":[{"name":"Efficient Water Jets","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":50},{"name":"Living Pearl","qty":3}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Efficient Water Jets","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Oxygen","qty":50},{"name":"Living Pearl","qty":3}]}]}
 ---
 

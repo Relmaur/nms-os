@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Divergence_Cube"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CURIO.1.png","category":"Curiosity","type":"Anomalous Data Unit","value":"3015","release":"Living Ship"},"value":3015,"recipes":[]}
 ---
 

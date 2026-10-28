@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Twilight_Cavefish"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.XL.3.png","color":"green","category":"Fish","type":"Common Fish","value":"3,000","release":"Xeno Arena"},"value":3000,"recipes":[]}
 ---
 

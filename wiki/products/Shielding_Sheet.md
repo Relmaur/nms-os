@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shielding_Sheet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.shielding3.png","color":"red","category":"Consumable","type":"Defensive Energy Source","value":"1031.3","desc":"High capacity energy storage unit.","release":"Pathfinder"},"value":1031.3,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":150},{"name":"Platinum","qty":20}],"outputs":[{"name":"Shielding Sheet","qty":1}]}]}
 ---
 

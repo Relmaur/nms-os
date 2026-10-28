@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Waveform_Recycler"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SCANMOD.png","color":"blue","category":"Multi-tool","subcategory":"Scanner","level":"B","type":"MultiTool Upgrade","stats":"-20% Recharge Time, +11% Scan Radius","release":"Frontiers"},"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":100},{"name":"Ion Battery","qty":1}],"outputs":[{"name":"Waveform Recycler","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Magnetised Ferrite","qty":50},{"name":"Ion Battery","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Waveform Recycler","qty":1}],"outputs":[{"name":"Magnetised Ferrite","qty":50}]}]}
 ---
 

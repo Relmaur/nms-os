@@ -10,7 +10,7 @@ version: "Abyss"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radiation_Leak"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsTech Acid Icon 13.png","category":"Starship","color":"red","type":"Damaged Starship Component","release":"Abyss"},"recipes":[{"type":"repair","inputs":[{"name":"Paraffinium","qty":410},{"name":"Pugneum","qty":25}],"outputs":[]}]}
 ---
 

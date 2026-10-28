@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jellyfish_Tank_Helmet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.S17.FISHBOWLJAR01.png","category":"Customisation Part","type":"Unlockable Helmet","release":"Xeno Arena"},"recipes":[]}
 ---
 

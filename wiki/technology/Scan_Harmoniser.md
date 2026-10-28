@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scan_Harmoniser"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.BUILDERSSCANMOD.png","color":"blue","category":"Multi-Tool","subcategory":"Scanner","level":"A","type":"Multi-Tool Upgrade","desc":"Reveals Autophage entities.","stats":"Echo Resonator: Enabled, +11% Scan Radius","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":100}],"outputs":[{"name":"Scan Harmoniser","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Scan Harmoniser","qty":1}],"outputs":[{"name":"Radiant Shard","qty":1},{"name":"Microprocessor","qty":1},{"name":"Runaway Mould","qty":50}]}]}
 ---
 

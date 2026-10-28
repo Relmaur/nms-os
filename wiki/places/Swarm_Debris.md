@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Swarm_Debris"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Swarm Debris","image":"Swarm Debris.png","type":"Buried scrap","release":"Cosmos","desc":"The buried, ruined remnants of crashed swarmer ships."},"recipes":[]}
 ---
 

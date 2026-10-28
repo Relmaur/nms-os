@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Yilsrussimil"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Yilsrussimil","image":"Yilsrussimil-257.png","color":"Magenta","order":"257","previous":"Odyalutai","next":"Calypso","release":"Echoes"},"recipes":[]}
 ---
 

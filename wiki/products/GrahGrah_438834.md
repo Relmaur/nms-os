@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/GrahGrah"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"GrahGrah","image":"PRODUCT.SMUGGLING5.png","category":"Tradeable","value":"58,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":58000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Nupiacheh"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Nupiacheh","image":"20200215143956_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"204","previous":"Dokiessmat","next":"Dihewsonj","release":"Waypoint"},"recipes":[]}
 ---
 

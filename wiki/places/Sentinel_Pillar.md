@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sentinel_Pillar"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sentinel Pillar","image":"Lejo Tau Sentinel Pillar.png","category":"Inhabited Outpost","type":"Anomalous Planetary Location","desc":"Sentinel Stronghold","release":"Waypoint"},"recipes":[]}
 ---
 

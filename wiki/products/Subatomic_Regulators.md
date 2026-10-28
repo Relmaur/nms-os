@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Subatomic_Regulators"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.COMMODITY1.png","category":"Tradeable","value":"940,000.0","type":"Starship Subcomponent","release":"Adrift"},"value":940000,"recipes":[]}
 ---
 

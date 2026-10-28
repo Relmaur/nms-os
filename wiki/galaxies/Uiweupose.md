@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Uiweupose"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Uiweupose","image":"20191025080315_1.jpg","color":"Manhattan Orange","type":"Lush","order":"79","previous":"Moglaschil","next":"Nasmilete","release":"Waypoint"},"recipes":[]}
 ---
 

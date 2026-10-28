@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Dokiessmat"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Dokiessmat","image":"20200214180859_1.jpg","color":"Medium Orchid","type":"Harsh","order":"203","previous":"Purneyrine","next":"Nupiacheh","release":"Waypoint"},"recipes":[]}
 ---
 

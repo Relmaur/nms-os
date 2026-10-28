@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deflector_Shield_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.SHIELD.png","category":"Starship","subcategory":"Health","type":"Spacecraft Hull Protection","desc":"Energy shield that protects spacecraft from laser fire, in-flight projectiles and accidental space debris interaction.","recharge":"Oxide elements, any Shielding object","release":"Atlas Rises"},"recipes":[{"type":"repair","inputs":[{"name":"Carite Sheet","qty":3},{"name":"Heridium","qty":250}],"outputs":[]}]}
 ---
 

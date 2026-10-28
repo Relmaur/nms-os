@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jewijkmas"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Jewijkmas","image":"20200103100053_1.jpg","color":"Electric Blue","type":"Norm","order":"151","previous":"Zavainlani","next":"Itlhotagra","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Electron_Vapour"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.element.gel2.png","category":"Component","type":"Technology component","desc":"Captured cloud of ionised electrons.","value":"4,950","release":"Atlas Rises"},"value":4950,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Suspension Fluid","qty":1},{"name":"Plutonium","qty":100}],"outputs":[{"name":"Electron Vapour","qty":1}]}]}
 ---
 

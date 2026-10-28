@@ -10,7 +10,7 @@ version: "Orbital"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Plasmic_Accident"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Plasmic Accident","image":"Plasmic_Accident.jpg","alert_1":"Object of Interest Detected","alert_2":"Space Signal Detected","interaction":"Fire to Destroy","ramifications":"Terrifying Sample causes encounter to stalk player","rewards":"Mordite and Terrifying Sample","release":"Orbital"},"recipes":[]}
 ---
 

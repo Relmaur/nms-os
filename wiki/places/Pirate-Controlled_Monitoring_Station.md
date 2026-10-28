@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Pirate-Controlled_Monitoring_Station"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Pirate-Controlled Monitoring Station","image":"Pirate-Controlled Monitoring Station.png","system_types":"Any","frequency":"1","alert_1":"Anomaly Detected","alert_2":"Rare Deep Space Object Detected","interaction":"Shoot down","ramifications":"Triggers pirates once destroyed","rewards":"Increased standing after defeating pirates","release":"ExoMech"},"recipes":[]}
 ---
 

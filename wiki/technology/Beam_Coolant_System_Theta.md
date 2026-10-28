@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Coolant_System_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.laser1.png","category":"Multi-tool","subcategory":"Mining Beam","level":"3","upgradeicon":"generic","type":"Mining Beam Companion Unit","desc":"Attains longest span of uninterrupted element extraction possible for all current Mining Beam technologies.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Aluminium","qty":200},{"name":"Heridium","qty":100}],"outputs":[{"name":"Beam Coolant System Theta","qty":1}]}]}
 ---
 

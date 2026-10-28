@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Di-hydrogen_Jelly"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.JELLY.png","category":"Component","color":"red","type":"Portable Life Support Power","value":"200.0","release":"Fractal"},"value":200,"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen","qty":40}],"outputs":[{"name":"Di-hydrogen Jelly","qty":1}],"blueprint":true},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":30}],"outputs":[{"name":"Di-hydrogen Jelly","qty":1}],"seconds":60,"label":"Condense Di-hydrogen"}]}
 ---
 

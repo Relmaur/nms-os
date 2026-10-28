@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Spark_Canister"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Spark Canister","image":"TRADEPROD.ENERGY1.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Energy Source)","value":"1,000.0","release":"Adrift"},"value":1000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Iaereznika"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Iaereznika","image":"20191105074728_1.jpg","color":"Mint Green","type":"Norm","order":"91","previous":"Paholiang","next":"Yudukagath","release":"Waypoint"},"recipes":[]}
 ---
 

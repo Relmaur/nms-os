@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Complete_Casting_XIII"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Complete Casting XIII","color":"blue","category":"Multi-tool","subcategory":"Weapon","type":"Crystal nose","desc":"Basic brown with blue crystals","release":"Foundation"},"recipes":[]}
 ---
 

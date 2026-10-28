@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Liquidator_Left_Arm"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"LiquidatorLeft.webp","color":"blue","category":"Vehicle","subcategory":"Minotaur","type":"Minotaur Limb Replacement","release":"WorldsOne"},"recipes":[{"type":"craft","inputs":[{"name":"Ion Battery","qty":2},{"name":"Metal Plating","qty":5}],"outputs":[{"name":"Liquidator Left Arm","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Ion Battery","qty":1},{"name":"Metal Plating","qty":3}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Liquidator Left Arm","qty":1}],"outputs":[{"name":"Ion Battery","qty":1},{"name":"Metal Plating","qty":3}]}]}
 ---
 

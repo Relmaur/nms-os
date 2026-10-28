@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crunchy_Caramel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.HONEY.png","color":"Brown","category":"Consumable","type":"Edible Product","value":"5,400","release":"WorldsTwo"},"value":5400,"recipes":[{"type":"cook","inputs":[{"name":"Processed Sugar","qty":1},{"name":"Salt","qty":1}],"outputs":[{"name":"Crunchy Caramel","qty":1}],"seconds":2.5,"label":"Nutrient Refining"},{"type":"cook","inputs":[{"name":"Root Juice","qty":1}],"outputs":[{"name":"Crunchy Caramel","qty":1}],"seconds":2.5,"label":"Nutrient Refining"}]}
 ---
 

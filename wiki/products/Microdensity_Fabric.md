@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Microdensity_Fabric"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Product.fabric1.png","category":"Component","type":"Technology component","value":"1,650","desc":"Versatile conductive material.","release":"Atlas Rises"},"value":1650,"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iron","qty":50},{"name":"Platinum","qty":10}],"outputs":[{"name":"Microdensity Fabric","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Isgarmeso"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Isgarmeso","image":"20191230154028_1.jpg","color":"Maya Blue","type":"Harsh","order":"143","previous":"Roansfien","next":"Daitibeli","release":"Waypoint"},"recipes":[]}
 ---
 

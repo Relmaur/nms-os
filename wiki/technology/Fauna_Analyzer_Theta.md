@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fauna_Analyzer_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Fauna Analyzer Theta","image":"Render.binoculars.png","category":"Multi-tool","subcategory":"Scanner","level":"3","upgradeicon":"scan","type":"Binocular Tagging Device","desc":"Used to improve detection of fauna","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":120},{"name":"Chrysonite","qty":120},{"name":"Plutonium","qty":200}],"outputs":[{"name":"Fauna Analyzer Theta","qty":1}]}]}
 ---
 

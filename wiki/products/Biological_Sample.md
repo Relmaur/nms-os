@@ -10,7 +10,7 @@ version: "Voyagers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Biological_Sample"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Celestial Flowers","image":"TREASUREPROD.WEIRDSEEDS.png","category":"Artifact","color":"Yellow","type":"Biological Sample","value":"2,299,696","used":"Trading, Trading (High Value)","release":"Voyagers"},"value":2299696,"recipes":[]}
 ---
 

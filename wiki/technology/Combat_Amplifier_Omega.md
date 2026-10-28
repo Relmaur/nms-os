@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Combat_Amplifier_Omega"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Combat Amplifier Omega","image":"Render.laser1mod.png","color":"blue","category":"Multi-tool","subcategory":"Mining Beam","level":"4","upgradeicon":"damage","type":"Companion Unit","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Heridium","qty":400},{"name":"Iron","qty":200},{"name":"Gold","qty":100}],"outputs":[{"name":"Combat Amplifier Omega","qty":1}]}]}
 ---
 

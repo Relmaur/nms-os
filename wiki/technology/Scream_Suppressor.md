@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scream_Suppressor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BIOTECH.SCALES.png","category":"Starship","subcategory":"Shield","type":"Spacecraft Hull Protection","desc":"Prevents fear of pain from traumatizing the rest of the ship's body.","recharge":"Pugneum, Mordite, Di-hydrogen"},"recipes":[{"type":"craft","inputs":[{"name":"Hadal Core","qty":2},{"name":"Runaway Mould","qty":40}],"outputs":[{"name":"Scream Suppressor","qty":1}],"blueprint":true}]}
 ---
 

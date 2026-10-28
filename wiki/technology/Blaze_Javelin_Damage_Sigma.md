@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Damage_Sigma"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Blaze_javelin_upgrade.png","category":"Multi-tool","subcategory":"Blaze Javelin","level":"1","upgradeicon":"damage","type":"Blaze Javelin Companion Unit","desc":"Increases damage done by the multi-tool's Blaze Javelin weapon mode by a small amount.","stats":"Damage = 2.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Titanium","qty":30},{"name":"Carbon","qty":30}],"outputs":[{"name":"Blaze Javelin Damage Sigma","qty":1}]}]}
 ---
 

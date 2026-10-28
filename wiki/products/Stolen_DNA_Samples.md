@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Stolen_DNA_Samples"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Stolen DNA Samples","image":"PRODUCT.SMUGGLING2.png","category":"Tradeable","value":"9,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":9000,"recipes":[]}
 ---
 

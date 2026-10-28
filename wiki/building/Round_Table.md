@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Round_Table"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.TABLE001.png","category":"Base Building","color":"blue","type":"Furniture","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":10}],"outputs":[{"name":"Round Table","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Round Table","qty":1}],"outputs":[{"name":"Condensed Carbon","qty":10}]}]}
 ---
 

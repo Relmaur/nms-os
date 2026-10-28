@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Photonix_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PULSEDRIVE.png","color":"Blue","category":"Ship","subcategory":"Utilities","level":"A","type":"Pulse Engine Companion Unit","stats":"+15% Pulse Drive Efficiency, +15% Boost, +11% Maneuverability","release":"Omega"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":100},{"name":"Condensed Carbon","qty":100}],"outputs":[{"name":"Photonix Core","qty":1}]},{"type":"repair","inputs":[{"name":"Pure Ferrite","qty":50},{"name":"Condensed Carbon","qty":50}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Photonix Core","qty":1}],"outputs":[{"name":"Pure Ferrite","qty":50},{"name":"Condensed Carbon","qty":50}]}]}
 ---
 

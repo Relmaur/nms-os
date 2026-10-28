@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bahibusey"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Bahibusey","image":"20191018080420_1.jpg","color":"Medium Orchid","type":"Empty","order":"72","previous":"Ovna'uesed","next":"Nuybeliaure","release":"Waypoint"},"recipes":[]}
 ---
 

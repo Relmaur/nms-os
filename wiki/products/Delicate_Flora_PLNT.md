@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Delicate_Flora_(PLNT)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Creakdew Nuts","image":"DECORATION.PLANTPOT3.png","category":"Artifact","color":"yellow","type":"Delicate Flora","value":"2,298,409","used":"Trading, Trading (High Value)","release":"Singularity"},"value":2298409,"recipes":[]}
 ---
 

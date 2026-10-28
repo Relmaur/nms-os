@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Polyphonic_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"STAFFTECH.png","color":"blue","category":"Multi-Tool","subcategory":"Scanner","level":"S","type":"Autophage Resonance Key","desc":"Reveals Autophage camps, NPCs, and sentience echoes.","stats":"Echo Resonator: Enabled, +11% Scan Radius","recharge":"Atlantideum","release":"Echoes"},"recipes":[{"type":"craft","inputs":[{"name":"Atlantideum","qty":190},{"name":"Quantum Computer","qty":1},{"name":"Living Glass","qty":1}],"outputs":[{"name":"Polyphonic Core","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Atlantideum","qty":95},{"name":"Quantum Computer","qty":1},{"name":"Living Glass","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Polyphonic Core","qty":1}],"outputs":[{"name":"Atlantideum","qty":95},{"name":"Quantum Computer","qty":1},{"name":"Living Glass","qty":1}]}]}
 ---
 

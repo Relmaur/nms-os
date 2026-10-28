@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Lost_Angler's_Rig"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL1.EXPEDITION.S15FISHLASER.png","color":"blue","category":"Multi-Tool","subcategory":"Angling Equipment","type":"Unique Angling Device","desc":"A versatile piece of angling equipment, enabling the user to fish in a variety of water conditions.","release":"Aquarius"},"recipes":[{"type":"craft","inputs":[{"name":"Hydraulic Wiring","qty":2},{"name":"Salt","qty":60},{"name":"Silver","qty":90}],"outputs":[{"name":"Lost Angler's Rig","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Lost Angler's Rig","qty":1}],"outputs":[{"name":"Hydraulic Wiring","qty":1},{"name":"Salt","qty":30},{"name":"Silver","qty":45}]}]}
 ---
 

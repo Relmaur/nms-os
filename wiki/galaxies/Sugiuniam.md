@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sugiuniam"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Sugiuniam","image":"20200209122130_1.jpg","color":"Medium Orchid","type":"Norm","order":"196","previous":"Heperclait","next":"Aaseertush","release":"Waypoint"},"recipes":[]}
 ---
 

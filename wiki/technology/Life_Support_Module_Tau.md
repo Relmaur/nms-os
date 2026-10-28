@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Life_Support_Module_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.cell.png","color":"blue","category":"Exosuit","subcategory":"Utilities","level":"2","upgradeicon":"energy","type":"Companion Unit","desc":"Increases the capacity of a user's Life Support systems","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Platinum","qty":150}],"outputs":[{"name":"Life Support Module Tau","qty":1}]}]}
 ---
 

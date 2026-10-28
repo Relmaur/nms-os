@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Biological_Room_(Expansion)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.BIO.png","category":"Base Building","type":"Agriculture","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":40},{"name":"Oxygen","qty":30}],"outputs":[{"name":"Biological Room (Expansion)","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Biological Room (Expansion)","qty":1}],"outputs":[{"name":"Silver","qty":40},{"name":"Oxygen","qty":30}]}]}
 ---
 

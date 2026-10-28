@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Seeds_of_Glass"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.BIOCOMP4.png","category":"Curiosity","color":"purple","type":"Frozen Archive","value":"1616","release":"Omega"},"value":1616,"recipes":[{"type":"craft","inputs":[{"name":"Magnetised Ferrite","qty":100},{"name":"Fragmented Qualia","qty":100}],"outputs":[{"name":"Seeds of Glass","qty":1}],"blueprint":true}]}
 ---
 

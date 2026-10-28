@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sea's_Bounty"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.FISH.SCALLOP.png","color":"Blue","category":"Consumable","type":"Edible Product","value":"71,450","release":"Aquarius"},"value":71450,"recipes":[{"type":"cook","inputs":[{"name":"Jellymeat","qty":1},{"name":"Fleshy Cylinder","qty":1},{"name":"Assorted Roe","qty":1}],"outputs":[{"name":"Sea's Bounty","qty":1}],"seconds":2.5,"label":"Sea's Bounty"}]}
 ---
 

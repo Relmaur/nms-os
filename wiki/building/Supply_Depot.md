@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Supply_Depot"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"UTILITY.SILO_SMALL.png","category":"Base Building","color":"Blue","value":"1","type":"Substance Distribution Module","release":"Singularity"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":10}],"outputs":[{"name":"Supply Depot","qty":1}],"blueprint":true}]}
 ---
 

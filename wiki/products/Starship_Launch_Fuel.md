@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Starship_Launch_Fuel"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Starship Launch Fuel","color":"red","image":"Product.launchfuel.png","category":"Consumable","type":"Stabilised Di-hydrogen Fuel","value":"450","release":"WorldsTwo"},"value":450,"recipes":[{"type":"craft","inputs":[{"name":"Di-hydrogen","qty":40},{"name":"Metal Plating","qty":1}],"outputs":[{"name":"Starship Launch Fuel","qty":1}]},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":10},{"name":"Ferrite Dust","qty":20},{"name":"Sodium Nitrate","qty":5}],"outputs":[{"name":"Starship Launch Fuel","qty":1}],"seconds":45,"label":"Di-hydrogen Capture"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":10},{"name":"Pure Ferrite","qty":20},{"name":"Sodium","qty":10}],"outputs":[{"name":"Starship Launch Fuel","qty":1}],"seconds":45,"label":"Di-hydrogen Capture"},{"type":"refine","inputs":[{"name":"Di-hydrogen","qty":10},{"name":"Magnetised Ferrite","qty":10},{"name":"Sodium Nitrate","qty":5}],"outputs":[{"name":"Starship Launch Fuel","qty":1}],"seconds":45,"label":"Di-hydrogen Capture"}]}
 ---
 

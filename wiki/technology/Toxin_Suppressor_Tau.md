@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Toxin_Suppressor_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.protecttoxic.png","level":"2","upgradeicon":"protection","color":"blue","category":"Exosuit","subcategory":"Utilities","type":"Companion Unit","desc":"Provides increased protection from toxic rain damage.","stats":"Toxic Protection = 225.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Zinc","qty":50},{"name":"Carbon","qty":100},{"name":"Microdensity Fabric","qty":1}],"outputs":[{"name":"Toxin Suppressor Tau","qty":1}]}]}
 ---
 

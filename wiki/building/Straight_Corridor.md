@@ -10,7 +10,7 @@ version: "Beyond"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Straight_Corridor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.corridor.png","category":"Base Building","type":"Structure","complexity":"20","release":"Beyond","power":"1 kPs"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":100}],"outputs":[{"name":"Straight Corridor","qty":1}],"blueprint":true}]}
 ---
 

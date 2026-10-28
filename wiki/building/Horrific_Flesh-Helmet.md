@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Horrific_Flesh-Helmet"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.SPOOKYHEAD.png","category":"Customisation Part","type":"Anomalous Face Transformation","release":"Prisms"},"recipes":[]}
 ---
 

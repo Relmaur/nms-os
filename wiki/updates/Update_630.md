@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_6.30"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"XenoArenaCover.png","date":"08 April, 2026","platform":"PC","link":"Xeno Arena Update","release":"Cosmos","previous":"6.24","next":"6.31"},"recipes":[]}
 ---
 

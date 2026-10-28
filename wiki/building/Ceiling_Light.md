@@ -10,7 +10,7 @@ version: "Living Ship"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ceiling_Light"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"DECORATION.CEILINGLIGHT.png","category":"Base Building","type":"Decoration","value":"1","release":"Living Ship","power":"1 kPs"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":5},{"name":"Sodium","qty":15}],"outputs":[{"name":"Ceiling Light","qty":1}],"blueprint":true}]}
 ---
 

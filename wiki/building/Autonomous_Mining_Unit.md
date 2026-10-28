@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Autonomous_Mining_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.HARVESTER.png","category":"Base Building","color":"blue","type":"Portable mining device","value":"1.0","release":"Echoes"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Uranium","qty":100},{"name":"Metal Plating","qty":2},{"name":"Ion Battery","qty":1}],"outputs":[{"name":"Autonomous Mining Unit","qty":1}]}]}
 ---
 

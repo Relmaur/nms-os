@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Innebdjerah"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Innebdjerah","image":"20200302204144_1.jpg","color":"Canary Yellow","type":"Harsh","order":"223","previous":"Nootanore","next":"Kisvarcini","release":"Fractal"},"recipes":[]}
 ---
 

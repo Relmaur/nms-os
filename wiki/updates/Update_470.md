@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.70"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"adrift-book-cover.png","date":"29 May, 2024","dateswitch":"4 June, 2024","platform":"PC, PS, Mac, XB, NS","link":"Expedition Thirteen: Adrift","release":"Adrift","previous":"4.65","next":"4.71"},"recipes":[]}
 ---
 

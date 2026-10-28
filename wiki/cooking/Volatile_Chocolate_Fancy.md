@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Volatile_Chocolate_Fancy"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.CUPCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"123,700.0","release":"NextGen"},"value":123700,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Bittersweet Cocoa","qty":1}],"outputs":[{"name":"Volatile Chocolate Fancy","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

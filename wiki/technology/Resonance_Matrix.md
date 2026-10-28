@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Resonance_Matrix"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Technology.freighterpurple.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"?","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 50 ly","release":"WorldsTwo"},"recipes":[{"type":"craft","inputs":[{"name":"Crystallised Heart","qty":1},{"name":"Atlantideum","qty":160},{"name":"Quartzite","qty":250}],"outputs":[{"name":"Resonance Matrix","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Resonance Matrix","qty":1}],"outputs":[{"name":"Crystallised Heart","qty":1},{"name":"Atlantideum","qty":80},{"name":"Quartzite","qty":125}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hydraulic_Wiring"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.HYDRALIC.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"3,600.0","release":"Prisms"},"value":3600,"recipes":[{"type":"craft","inputs":[{"name":"Carbon Nanotubes","qty":2},{"name":"Salt","qty":20},{"name":"Di-hydrogen","qty":40}],"outputs":[{"name":"Hydraulic Wiring","qty":1}],"blueprint":true}]}
 ---
 

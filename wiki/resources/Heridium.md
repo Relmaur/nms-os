@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Heridium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.tech.common1.png","color":"Blue","category":"Technology","type":"Silicate","rarity":"Common","value":"27.5","symbol":"Hr","release":"Atlas Rises"},"value":27.5,"recipes":[]}
 ---
 

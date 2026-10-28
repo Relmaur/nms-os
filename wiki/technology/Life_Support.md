@@ -10,7 +10,7 @@ version: "Frontiers"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Life_Support"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.cell.png","color":"blue","category":"Exosuit","subcategory":"Core Systems","type":"Suit Survival Power Pack","desc":"Provides basic life support from environmental hazards.","recharge":"Isotope","release":"Frontiers"},"recipes":[{"type":"repair","inputs":[{"name":"Ferrite Dust","qty":50}],"outputs":[]}]}
 ---
 

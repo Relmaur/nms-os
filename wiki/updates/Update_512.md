@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.12"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"aquarius-book-cover.png","date":"17 September, 2024","platform":"PC, Mac, PS, XB, NS","link":"Aquarius Patch 5.12","release":"Aquarius","previous":"5.11","next":"5.20"},"recipes":[]}
 ---
 

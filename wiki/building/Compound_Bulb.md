@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Compound_Bulb"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.INFESTEDPLANT03.png","category":"Base Building","type":"Organic decoration","value":"500","release":"NextGen"},"value":500,"recipes":[{"type":"craft","inputs":[{"name":"Carbon","qty":40}],"outputs":[{"name":"Compound Bulb","qty":1}],"blueprint":true}]}
 ---
 

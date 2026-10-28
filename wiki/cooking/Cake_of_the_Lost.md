@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cake_of_the_Lost"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.CCAKEEVIL.png","color":"Green","category":"Consumable","type":"Edible Product","value":"199,200.0","release":"Prisms"},"value":199200,"recipes":[{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Viscous Custard","qty":1}],"outputs":[{"name":"Cake of the Lost","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Salty Custard","qty":1}],"outputs":[{"name":"Cake of the Lost","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Monstrous Custard","qty":1}],"outputs":[{"name":"Cake of the Lost","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Stellar Custard","qty":1}],"outputs":[{"name":"Cake of the Lost","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Writhing, Roiling Batter","qty":1},{"name":"Very Thick Custard","qty":1}],"outputs":[{"name":"Cake of the Lost","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

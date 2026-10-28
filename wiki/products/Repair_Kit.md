@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Repair_Kit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REPAIRKIT.png","category":"Consumable","color":"Darkblue","type":"Automatic Patching Unit","value":"450.0","release":"WorldsOne"},"value":450,"recipes":[]}
 ---
 

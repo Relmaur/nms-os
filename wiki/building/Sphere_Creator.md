@@ -10,7 +10,7 @@ version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Sphere_Creator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.SPAWNER BALL.png","category":"Base Building","color":"Blue","value":"10","type":"Technology module","release":"Cosmos"},"value":10,"recipes":[{"type":"craft","inputs":[{"name":"Metal Plating","qty":5},{"name":"Ion Battery","qty":4},{"name":"Paraffinium","qty":100}],"outputs":[{"name":"Sphere Creator","qty":1}],"blueprint":true}]}
 ---
 

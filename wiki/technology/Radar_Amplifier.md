@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Radar_Amplifier"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Radar Amplifier","image":"RENDER.SHIPTELEPORT.png","color":"blue","category":"Exocraft","subcategory":"Communications","upgradeicon":"scan","stats":"+100% Scan","desc":"Exocraft Signal Detection Upgrade","release":"Waypoint"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":100},{"name":"Ion Battery","qty":2},{"name":"Microprocessor","qty":2}],"outputs":[{"name":"Radar Amplifier","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Radar Amplifier","qty":1}],"outputs":[{"name":"Chromatic Metal","qty":50},{"name":"Ion Battery","qty":1},{"name":"Microprocessor","qty":1}]}]}
 ---
 

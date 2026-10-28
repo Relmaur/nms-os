@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Inverted_Mirror"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.DRONESALVAGE.png","color":"purple","type":"Burning Glassy Remnant","category":"Component","value":"17,000.0","release":"WorldsOne"},"value":17000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cloaking_Device"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.STEALTH.png","color":"blue","category":"Multi-tool","subcategory":"Weapons","type":"Active Camouflage Unit","release":"SentinelUp"},"recipes":[{"type":"craft","inputs":[{"name":"Solar Mirror","qty":2},{"name":"Ion Battery","qty":3},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Cloaking Device","qty":1}]},{"type":"repair","inputs":[{"name":"Solar Mirror","qty":1},{"name":"Ion Battery","qty":1},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Cloaking Device","qty":1}],"outputs":[{"name":"Solar Mirror","qty":1},{"name":"Ion Battery","qty":2},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

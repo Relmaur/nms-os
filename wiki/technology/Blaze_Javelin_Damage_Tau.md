@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_Damage_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Blaze_javelin_upgrade.png","category":"Multi-tool","subcategory":"Blaze Javelin","level":"2","upgradeicon":"damage","type":"Blaze Javelin Companion Unit","desc":"Increases damage done by the multi-tool's Blaze Javelin weapon mode by a moderate amount.","stats":"Damage = 3.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Platinum","qty":100},{"name":"Titanium","qty":50},{"name":"Chrysonite","qty":50}],"outputs":[{"name":"Blaze Javelin Damage Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ammonia"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BIOME.TOXIC.png","color":"Green","category":"Earth","type":"Localised Earth Element","rarity":"Uncommon","used":"Building, Crafting, Charging, Upgrading","symbol":"NH3","value":"62.0","release":"Endurance"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Fungal Mould","qty":2},{"name":"Salt","qty":1}],"outputs":[{"name":"Ammonia","qty":1}],"seconds":0.36,"label":"Floral Titration"},{"type":"refine","inputs":[{"name":"Nitrogen","qty":1},{"name":"Di-hydrogen","qty":1}],"outputs":[{"name":"Ammonia","qty":1}],"seconds":0.16,"label":"Organic Fusion"},{"type":"refine","inputs":[{"name":"Ferrite Dust","qty":1},{"name":"Paraffinium","qty":2}],"outputs":[{"name":"Ammonia","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"},{"type":"refine","inputs":[{"name":"Pure Ferrite","qty":1},{"name":"Paraffinium","qty":2}],"outputs":[{"name":"Ammonia","qty":1}],"seconds":0.36,"label":"Environmental Element Transfer"}]}
 ---
 

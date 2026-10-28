@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Plasmatic_Warp_Injector"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TECHNOLOGY.FREIGHTERTAU.png","color":"blue","category":"Freighter","subcategory":"Hyperdrive","level":"B","type":"Hyperdrive Companion Unit","stats":"Hyperdrive Range: 300 ly","release":"Origins"},"recipes":[{"type":"craft","inputs":[{"name":"Emeril","qty":250},{"name":"Solar Mirror","qty":1},{"name":"Antimatter Housing","qty":5}],"outputs":[{"name":"Plasmatic Warp Injector","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Plasmatic Warp Injector","qty":1}],"outputs":[{"name":"Emeril","qty":125},{"name":"Solar Mirror","qty":1},{"name":"Antimatter Housing","qty":2}]}]}
 ---
 

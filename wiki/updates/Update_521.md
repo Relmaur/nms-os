@@ -10,7 +10,7 @@ version: "TheCursed"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.21"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"The-cursed-book-cover.png","date":"25 October, 2024","dateswitch":"30 October, 2024","platform":"PC, Mac, PS, NS","link":"The Cursed Patch 5.21","release":"TheCursed","previous":"5.20","next":"5.22"},"recipes":[]}
 ---
 

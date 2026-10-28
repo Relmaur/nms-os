@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Mibittara"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Mibittara","image":"20200307215908_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"228","previous":"Brotoghek","next":"Huruahili","release":"Fractal"},"recipes":[]}
 ---
 

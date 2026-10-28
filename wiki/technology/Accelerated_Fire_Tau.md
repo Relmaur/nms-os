@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Accelerated_Fire_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Render.shipprojectile1mod.png","color":"blue","category":"Starship","subcategory":"Weapons","level":"2","upgradeicon":"speed","type":"Photon Cannon Companion Unit","desc":"Increases the photon cannon's rate of fire","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nickel","qty":100},{"name":"Platinum","qty":100}],"outputs":[{"name":"Accelerated Fire Tau","qty":1}]}]}
 ---
 

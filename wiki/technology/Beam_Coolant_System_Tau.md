@@ -10,7 +10,7 @@ version: "Pathfinder"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Beam_Coolant_System_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Beam Coolant System Tau","image":"Render.laser1.png","color":"blue","category":"Multi-tool","subcategory":"Mining Beam","level":"2","upgradeicon":"generic","type":"Companion Unit","desc":"Further lengthens the time between Mining Beam cool-down periods.","release":"Pathfinder"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Iridium","qty":200},{"name":"Heridium","qty":100}],"outputs":[{"name":"Beam Coolant System Tau","qty":1}]}]}
 ---
 

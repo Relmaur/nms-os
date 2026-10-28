@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Antimatter_Reactor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.ANTIMATTER.png","category":"Base Building","type":"Baryogenesis Unit","release":"Omega"},"recipes":[{"type":"craft","inputs":[{"name":"Storm Crystal","qty":5},{"name":"Antimatter","qty":2},{"name":"Metal Plating","qty":2}],"outputs":[{"name":"Antimatter Reactor","qty":1}],"blueprint":true}]}
 ---
 

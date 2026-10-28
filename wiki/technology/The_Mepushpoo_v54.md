@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Mepushpoo_v5.4"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"The Mepushpoo v5.4","color":"blue","category":"Multi-tool","subcategory":"Weapon","release":"Foundation"},"recipes":[]}
 ---
 

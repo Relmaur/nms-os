@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Positron_Ejector_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONBLAST.png","category":"Starship","subcategory":"Weapons","type":"Weapon","desc":"Shots are granted a wide cone of destruction.","recharge":"Isotope","stats":"Damage = 120.0","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Nickel","qty":100},{"name":"Platinum","qty":100}],"outputs":[{"name":"Positron Ejector (Atlas)","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Breach"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Odyavanta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Odyavanta","image":"20190809202506_1.jpg","color":"Lime Green","type":"Norm","order":"46","previous":"Ebyeloof","next":"Milekistri","release":"Breach"},"recipes":[]}
 ---
 

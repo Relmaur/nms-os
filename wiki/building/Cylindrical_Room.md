@@ -10,7 +10,7 @@ version: "Synthesis"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cylindrical_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.room_small.png","category":"Base Building","type":"Structure","complexity":"40","power":"10 kPs","release":"Synthesis"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":250}],"outputs":[{"name":"Cylindrical Room","qty":1}],"blueprint":true}]}
 ---
 

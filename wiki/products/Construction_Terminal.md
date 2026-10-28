@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Construction_Terminal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"BUILDABLE.NPCBUILDER.png","category":"Technology","color":"blue","type":"Terminal","desc":"Research station for building projects","release":"Outlaws"},"recipes":[{"type":"craft","inputs":[{"name":"Chromatic Metal","qty":40},{"name":"Pure Ferrite","qty":25}],"outputs":[{"name":"Construction Terminal","qty":1}],"blueprint":true}]}
 ---
 

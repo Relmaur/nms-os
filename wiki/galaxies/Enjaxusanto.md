@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Enjaxusanto"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Enjaxusanto","image":"20191211074309_1.jpg","color":"Fuchsia Pink","type":"Norm","order":"126","previous":"Otimanaso","next":"Sezviktorew","release":"Waypoint"},"recipes":[]}
 ---
 

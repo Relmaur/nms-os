@@ -10,7 +10,7 @@ version: "Expeditions"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Frameshift_Catapult"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SPECIAL.MYSTERYTRACKER.png","category":"Starship","type":"Lightspeed Warp Drive","desc":"FTL propulsion drive for warp speed","recharge":"Warp Cell, Warp Hypercore","release":"Expeditions"},"recipes":[{"type":"repair","inputs":[{"name":"Ionised Cobalt","qty":63},{"name":"Larval Core","qty":3},{"name":"Gravitino Ball","qty":3}],"outputs":[]}]}
 ---
 

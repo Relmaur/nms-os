@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infra-Knife_Accelerator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PHOTONACCEL.png","color":"red","category":"Starship","subcategory":"Weapons","type":"Rapid Fire Starship Weapon","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Phosphorus","qty":200},{"name":"Wiring Loom","qty":2}],"outputs":[{"name":"Infra-Knife Accelerator","qty":1}],"blueprint":true},{"type":"repair","inputs":[{"name":"Phosphorus","qty":100},{"name":"Wiring Loom","qty":1}],"outputs":[]},{"type":"dismantle","inputs":[{"name":"Infra-Knife Accelerator","qty":1}],"outputs":[{"name":"Phosphorus","qty":100},{"name":"Wiring Loom","qty":1}]}]}
 ---
 

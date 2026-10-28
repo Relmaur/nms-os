@@ -10,7 +10,7 @@ version: "Release"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/The_Selmikka-Tosu_v6.28"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"The Selmikka-Tosu v6.28","color":"blue","category":"Multi-tool","subcategory":"Weapon","release":"Release"},"recipes":[]}
 ---
 

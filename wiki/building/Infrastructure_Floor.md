@@ -10,7 +10,7 @@ version: "Foundation"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Infrastructure_Floor"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Decoration.roomfloor.png","category":"Base Building","type":"Infrastructure","complexity":"2","release":"Foundation"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Carbon","qty":20}],"outputs":[{"name":"Infrastructure Floor","qty":1}]}]}
 ---
 

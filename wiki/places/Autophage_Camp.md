@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Autophage_Camp"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Autophage Camp Large.jpg","category":"Point of Interest","type":"Planetary","desc":"A primary location where some Autophage reside.","release":"WorldsOne"},"recipes":[]}
 ---
 

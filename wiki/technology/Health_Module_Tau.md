@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Health_Module_Tau"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Stamina.booster.png","category":"Exosuit","subcategory":"Health","level":"2","upgradeicon":"armour","type":"Exosuit Companion Unit","desc":"Increases user's health once primary systems have failed.","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Aluminium","qty":150},{"name":"Carbon","qty":250},{"name":"Thamium9","qty":50}],"outputs":[{"name":"Health Module Tau","qty":1}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Xeno Arena"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Golden_Urchin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT3.FISH.STARFISH.png","color":"purple","category":"Fish","type":"Rare Fish","value":"10,000","release":"Xeno Arena"},"value":10000,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Ibtrevskip"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Ibtrevskip","image":"20191010172503_1.jpg","color":"Medium Slate Blue","type":"Norm","order":"66","previous":"Loydporpen","next":"Elkowaldb","release":"Waypoint"},"recipes":[]}
 ---
 

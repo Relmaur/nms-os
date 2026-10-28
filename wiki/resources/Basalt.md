@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Basalt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BIOME.LAVA.png","color":"Black","category":"Unknown","type":"Localised Earth Element","rarity":"Unknown","used":"Charging, Crafting","symbol":"B","value":"62.0","release":"Echoes"},"value":62,"recipes":[{"type":"refine","inputs":[{"name":"Pyrite","qty":1},{"name":"Magnetised Ferrite","qty":1}],"outputs":[{"name":"Basalt","qty":1}],"seconds":0.36,"label":"Volcanic Transmutation"},{"type":"refine","inputs":[{"name":"Phosphorus","qty":1},{"name":"Magnetised Ferrite","qty":1}],"outputs":[{"name":"Basalt","qty":2}],"seconds":0.36,"label":"Volcanic Transmutation"}]}
 ---
 

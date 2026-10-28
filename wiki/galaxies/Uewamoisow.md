@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Uewamoisow"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Uewamoisow","image":"Uewamoisow--1.png","color":"Purple","order":"-1","previous":"Hiteshamij","next":"Pequibanu","release":"Atlas Rises"},"recipes":[]}
 ---
 

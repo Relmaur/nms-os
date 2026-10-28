@@ -10,7 +10,7 @@ version: "Aquarius"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jelly_of_the_Veil"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT5.FISH.JELLY.png","color":"yellow","category":"Fish","type":"Legendary Fish","value":"150,000.0","release":"Aquarius"},"value":150000,"recipes":[]}
 ---
 

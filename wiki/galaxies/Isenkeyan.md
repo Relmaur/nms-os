@@ -10,7 +10,7 @@ version: "Fractal"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Isenkeyan"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Isenkeyan","image":"20200310210639_1.jpg","color":"Magenta","type":"Norm","order":"233","previous":"Badesclema","next":"Iadoitesu","release":"Fractal"},"recipes":[]}
 ---
 

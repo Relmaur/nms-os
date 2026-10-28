@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Holo-Door"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Buildable.holodoor.png","category":"Base Building","type":"Component","power":"1kps","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Gold","qty":40},{"name":"Pure Ferrite","qty":40},{"name":"Silicate Powder","qty":40}],"outputs":[{"name":"Holo-Door","qty":1}],"blueprint":true}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blaze_Javelin_(Atlas)"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"blaze_javelin.png","category":"Multi-tool","subcategory":"Energy Beam","type":"Weapon","desc":"The Blaze Javelin delivers instantaneous damage on targets","stats":"Damage = 5.0 Mining Power = 13.0","recharge":"Isotope","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Aluminium","qty":100},{"name":"Copper","qty":50},{"name":"Iron","qty":200}],"outputs":[{"name":"Blaze Javelin (Atlas)","qty":1}]}]}
 ---
 

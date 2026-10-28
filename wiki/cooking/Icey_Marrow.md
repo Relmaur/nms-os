@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Icey_Marrow"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.ICECREAM.png","category":"Consumable","type":"Edible Product","value":"56,000.0","release":"WorldsOne"},"value":56000,"recipes":[{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frozen Tubers","qty":1}],"outputs":[{"name":"Icey Marrow","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"},{"type":"cook","inputs":[{"name":"Very Thick Custard","qty":1},{"name":"Frost Crystal","qty":1}],"outputs":[{"name":"Icey Marrow","qty":1}],"seconds":2.5,"label":"Assemble Baked Product"}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Outlaws"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Blood_Salt"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Blood Salt","image":"PRODUCT.SMUGGLING1.png","category":"Tradeable","value":"2,000.0","type":"Smuggled Goods","release":"Outlaws"},"value":2000,"recipes":[]}
 ---
 

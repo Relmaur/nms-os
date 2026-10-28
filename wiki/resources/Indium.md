@@ -10,7 +10,7 @@ version: "WorldsTwo"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Indium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"SUBSTANCE.BLUE.2.png","color":"Blue","type":"Refined Stellar Metal: Blue","rarity":"Rare","symbol":"In","value":"132","release":"WorldsTwo"},"value":132,"recipes":[{"type":"refine","inputs":[{"name":"Indium","qty":1},{"name":"Chromatic Metal","qty":1}],"outputs":[{"name":"Indium","qty":2}],"seconds":0.36,"label":"Chromatic Expansion"}]}
 ---
 

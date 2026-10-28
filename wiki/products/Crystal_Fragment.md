@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Crystal_Fragment"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.GEODE.CRYSTAL.png","category":"Curiosity","color":"darkblue","type":"Concentrated Element Shard","value":"3,280.0","release":"NextGen"},"value":3280,"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Venom_Urchin"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Bloodsbane_Icon.png","category":"Base Building","color":"yellow","value":"1","type":"Plantable Seed","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Emeril","qty":100},{"name":"Gold","qty":50}],"outputs":[{"name":"Venom Urchin","qty":1}],"blueprint":true}]}
 ---
 

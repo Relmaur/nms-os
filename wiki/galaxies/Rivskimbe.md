@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Rivskimbe"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Rivskimbe","image":"20191115201531_1.jpg","color":"Magenta","type":"Norm","order":"102","previous":"Tuychelisaor","next":"Daksanquix","release":"Waypoint"},"recipes":[]}
 ---
 

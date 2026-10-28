@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Hermetic_Seal"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Tradeprod.commodity5.png","category":"Component","color":"yellow","type":"Crafted Technology Component","value":"800.0","release":"Origins"},"value":800,"recipes":[{"type":"craft","inputs":[{"name":"Condensed Carbon","qty":30}],"outputs":[{"name":"Hermetic Seal","qty":1}],"blueprint":true}]}
 ---
 

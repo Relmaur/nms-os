@@ -10,7 +10,7 @@ version: "Atlas Rises"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Scatter_Blaster_Capacity_Theta"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"NmsWeapon_Scatter_Blaster_Upgrade_Icon.png","category":"Multi-tool","subcategory":"Scatter Blaster","level":"3","upgradeicon":"clip","type":"Scatter Blaster Companion Unit","stats":"Clip Size = 39%","release":"Atlas Rises"},"recipes":[{"type":"craft","obsolete":true,"inputs":[{"name":"Plutonium","qty":50},{"name":"Zinc","qty":50},{"name":"Nickel","qty":150}],"outputs":[{"name":"Scatter Blaster Capacity Theta","qty":1}]}]}
 ---
 

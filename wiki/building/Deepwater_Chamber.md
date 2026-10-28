@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deepwater_Chamber"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"WATER.MAINROOM.png","category":"Base Building","type":"Aquatic Construction Module","release":"Singularity"},"recipes":[{"type":"craft","inputs":[{"name":"Pure Ferrite","qty":180}],"outputs":[{"name":"Deepwater Chamber","qty":1}],"blueprint":true}]}
 ---
 

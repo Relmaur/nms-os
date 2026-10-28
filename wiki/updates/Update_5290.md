@@ -10,7 +10,7 @@ version: "Cross-Save"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_5.29.0"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"No-Mans-Sky-PS5-Pro-Screen.png","date":"27 November, 2024","platform":"All","link":"Holiday 2024 Expeditions","release":"Cross-Save","previous":"5.28","next":"5.29"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Adrift"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Welding_Soap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Welding Soap","image":"TRADEPROD.TECH2.png","color":"Grey","category":"Tradeable","type":"Trade Goods (Technology)","value":"6,000.0","release":"Adrift"},"value":6000,"recipes":[]}
 ---
 

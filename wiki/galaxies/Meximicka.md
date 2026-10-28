@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Meximicka"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Meximicka","image":"20191215131423_1.jpg","color":"Manhattan Orange","type":"Norm","order":"131","previous":"Broomerrai","next":"Venessika","release":"Waypoint"},"recipes":[]}
 ---
 

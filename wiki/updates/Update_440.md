@@ -10,7 +10,7 @@ version: "Echoes"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_4.40"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nms-echoes-book-cover.png","date":"24 August, 2023","dateswitch":"6 September, 2023","platform":"PC, PS, XB, Mac, Switch","link":"Echoes Update","release":"Echoes","previous":"4.38","next":"4.41"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Prisms"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Cryo-Pump"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Cryo-Pump","image":"COMPOUND.6.png","color":"Grey","category":"Tradeable","type":"Manufactured Gas Product","value":"1,500,000.0","desc":"Found only in Blueprint form","release":"Prisms"},"value":1500000,"recipes":[{"type":"craft","inputs":[{"name":"Hot Ice","qty":1},{"name":"Thermic Condensate","qty":1}],"outputs":[{"name":"Cryo-Pump","qty":1}],"blueprint":true}]}
 ---
 

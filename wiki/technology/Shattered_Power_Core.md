@@ -10,7 +10,7 @@ version: "SentinelUp"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Shattered_Power_Core"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"TRADEPROD.ALLOY4.png","category":"Drop Pod","color":"blue","type":"Damaged Component","release":"SentinelUp"},"recipes":[{"type":"repair","inputs":[{"name":"Antimatter Housing","qty":1}],"outputs":[]}]}
 ---
 

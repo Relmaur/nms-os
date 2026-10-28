@@ -10,7 +10,7 @@ version: "ExoMech"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Air_Filtration_Unit"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"RENDER.PROTECTTOXIC.png","color":"blue","category":"Vehicle","type":"Exocraft Hazard Protection Upgrade","release":"ExoMech"},"recipes":[{"type":"craft","inputs":[{"name":"Copper","qty":160},{"name":"Carbon Nanotubes","qty":5},{"name":"Wiring Loom","qty":1}],"outputs":[{"name":"Air Filtration Unit","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Air Filtration Unit","qty":1}],"outputs":[{"name":"Copper","qty":80},{"name":"Carbon Nanotubes","qty":2}]}]}
 ---
 

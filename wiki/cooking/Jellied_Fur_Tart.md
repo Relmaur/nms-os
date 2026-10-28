@@ -10,7 +10,7 @@ version: "NextGen"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Jellied_Fur_Tart"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.REFINED.TART.png","color":"Red","category":"Consumable","type":"Edible Product","value":"54,000.0","release":"NextGen"},"value":54000,"recipes":[{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Leopard-Fruit","qty":1}],"outputs":[{"name":"Jellied Fur Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"},{"type":"cook","inputs":[{"name":"Pie Case","qty":1},{"name":"Furball Jelly","qty":1}],"outputs":[{"name":"Jellied Fur Tart","qty":1}],"seconds":2.5,"label":"Assemble Pie"}]}
 ---
 

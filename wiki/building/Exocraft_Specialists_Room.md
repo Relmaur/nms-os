@@ -10,7 +10,7 @@ version: "Endurance"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Exocraft_Specialist's_Room"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"FREIGHTERBASE_ROOM.NPCVEH.png","category":"Base Building","type":"Freighter Construction Module","release":"Endurance"},"recipes":[{"type":"craft","inputs":[{"name":"Silver","qty":50},{"name":"Di-hydrogen","qty":25},{"name":"Chromatic Metal","qty":20}],"outputs":[{"name":"Exocraft Specialist's Room","qty":1}],"blueprint":true},{"type":"dismantle","inputs":[{"name":"Exocraft Specialist's Room","qty":1}],"outputs":[{"name":"Silver","qty":50},{"name":"Di-hydrogen","qty":25},{"name":"Chromatic Metal","qty":20}]}]}
 ---
 

@@ -10,7 +10,7 @@ version: "Origins"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Albumen_Pearl_Orb"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"nmsFarming_Albumen_Pearl_Orb_Icon.png","category":"Base Building","color":"yellow","value":"1","type":"Orb Plant","release":"Origins"},"value":1,"recipes":[{"type":"craft","inputs":[{"name":"Indium","qty":60},{"name":"Paraffinium","qty":20}],"outputs":[{"name":"Albumen Pearl Orb","qty":1}],"blueprint":true}]}
 ---
 

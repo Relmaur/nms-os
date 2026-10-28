@@ -10,7 +10,7 @@ version: "Omega"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Fragile_Neural_Stem"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"PRODUCT.STEM1.png","category":"Curiosity","color":"black","type":"Fragment of Life","value":"1616","release":"Omega"},"value":1616,"recipes":[]}
 ---
 

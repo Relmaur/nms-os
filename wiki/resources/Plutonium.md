@@ -10,7 +10,7 @@ version: "Desolation"
 obsolete: true
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Plutonium"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Substance.fuel.rare1.png","type":"Isotope","rarity":"Rare","value":"41.0","desc":"The most popularly used power element throughout the Outer Rim for transit through space.","symbol":"Pu","release":"Desolation"},"value":41,"recipes":[]}
 ---
 

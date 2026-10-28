@@ -10,7 +10,7 @@ version: "WorldsOne"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Harmonic_Scrap"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"image":"Harmonic scraps.png","category":"Point of Interest","type":"Planetary","desc":"Wreckage of an unbuild Autophage."},"recipes":[]}
 ---
 

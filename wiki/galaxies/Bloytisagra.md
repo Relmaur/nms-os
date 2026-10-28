@@ -10,7 +10,7 @@ version: "Waypoint"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Bloytisagra"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Bloytisagra","image":"20191124104931_1.jpg","color":"Turquoise Blue","type":"Norm","order":"113","previous":"Hansolmien","next":"Ladsenlay","release":"Waypoint"},"recipes":[]}
 ---
 

@@ -10,7 +10,7 @@ version: "Singularity"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Echo_Locator"
-license: "CC BY-SA 3.0 (No Man's Sky Wiki contributors)"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
 data: {"fields":{"name":"Echo Locator","image":"PRODUCT.STARCHART.ROBOTCAMP.png","color":"purple","category":"Curiosity","type":"Harmonic Location Tracker","value":"3,200","release":"Singularity"},"value":3200,"recipes":[]}
 ---
 
