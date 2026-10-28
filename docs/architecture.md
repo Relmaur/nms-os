@@ -49,6 +49,7 @@ nms-os/                          pnpm workspace
 │   ├── public/                  Copied into the build as-is: icons, manifest, nms_state.json, wiki → ../../../wiki
 │   └── vite.config.ts           Two pages, relative base (the site lives under /nms-os/), PWA plugin
 ├── apps/sync/                   @atlas/sync: the relay, a Cloudflare Worker + D1: sync vaults (handler.ts) and timer pushes with a minute cron (push.ts); tested without Cloudflare; wrangler.toml; migrations/
+├── apps/mcp/                    @atlas/mcp: the local, read-only MCP server for AI assistants (ADR-0008, docs/mcp.md): wiki.ts (the mirror's indexes), log.ts (sync code or exported file), tools.ts
 ├── wiki/<category>/*.md         Mirrored wiki pages (committed) + aliases.json; derived indexes are git-ignored
 ├── tests/e2e/                   Playwright on the built app: desktop, phone, offline
 ├── docs/                        This documentation, ADRs, STATE.md, process

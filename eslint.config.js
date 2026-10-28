@@ -49,7 +49,7 @@ export default [
   },
   {
     // Tests index fixtures they just wrote and read raw JSON files; a wrong guess fails the test anyway.
-    files: ['packages/*/test/**/*.ts'],
+    files: ['packages/*/test/**/*.ts', 'apps/mcp/test/**/*.ts'],
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',

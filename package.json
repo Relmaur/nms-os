@@ -1,6 +1,6 @@
 {
   "name": "nms-os",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "private": true,
   "description": "ATLAS // MASTER OS — local-first No Man's Sky companion with an offline mirror of the wiki's game data",
   "type": "module",
@@ -16,7 +16,8 @@
     "sync:wiki": "node packages/wiki/src/sync.ts",
     "verify:wiki": "node packages/wiki/src/sync.ts --verify",
     "index:wiki": "node packages/wiki/src/sync.ts --index-only",
-    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web && tsc -p apps/web/src/sw && tsc -p apps/sync",
+    "mcp": "node apps/mcp/src/main.ts",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web && tsc -p apps/web/src/sw && tsc -p apps/sync && tsc -p apps/mcp",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

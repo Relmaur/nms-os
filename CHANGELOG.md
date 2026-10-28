@@ -6,6 +6,11 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.17.0] - 2026-10-27
+### Added
+- **ATLAS for AI assistants:** a small MCP server (`apps/mcp`, `pnpm mcp`) that an AI client such as Claude Desktop or Claude Code runs on your computer. It answers from the Codex (search, articles, the recipe planner, item values, the wiki's slot rules, each with its wiki link) and from your own log (systems, outlaw stations, ships, notes, timers). It connects with your sync code, opening the encrypted copy on your computer, or reads an exported file. It only reads. Setup and privacy notes: `docs/mcp.md`.
+- More → Sync says, under the code, that an assistant can read your log through it.
+
 ## [3.16.0] - 2026-10-27
 ### Added
 - **Mechanics in the Codex:** eight game-mechanics pages from the wiki (Inventory, Supercharged Slot, Starship, Multi-Tool, Exosuit, Exocraft, Freighter, Starship Outfitting Terminal), checked by revision like every other page.

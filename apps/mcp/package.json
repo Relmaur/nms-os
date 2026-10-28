@@ -1,0 +1,18 @@
+{
+  "name": "@atlas/mcp",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A local, read-only MCP server: the Codex, the calculators and the player's own log for any MCP client (ADR-0008). Node runs the .ts directly.",
+  "type": "module",
+  "bin": {
+    "atlas-mcp": "./src/main.ts"
+  },
+  "scripts": {
+    "start": "node src/main.ts"
+  },
+  "dependencies": {
+    "@atlas/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "zod": "^4.6.7"
+  }
+}

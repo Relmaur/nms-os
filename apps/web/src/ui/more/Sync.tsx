@@ -425,6 +425,18 @@ function CodeCard() {
           <i className="ph-bold ph-copy" aria-hidden="true" /> Copy code
         </button>
       </div>
+      <p className="text-xs text-slate-400">
+        AI assistants can read this log too, through{' '}
+        <a
+          href="https://github.com/Relmaur/nms-os/blob/main/docs/mcp.md"
+          target="_blank"
+          rel="noopener"
+          className="text-cyan-300 hover:text-cyan-200 underline"
+        >
+          ATLAS’s MCP server
+        </a>{' '}
+        on your computer, with this code. It only reads, but what it reads goes to the assistant you connect it to.
+      </p>
     </div>
   );
 }

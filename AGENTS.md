@@ -1,6 +1,6 @@
 # AGENTS.md — ATLAS // MASTER OS
 
-Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems log, Outlaw Run, calculators on a verified wiki mirror, the Codex, a six-book guide, and opt-in encrypted sync through a small Cloudflare Worker (`apps/sync`). Installable PWA on GitHub Pages: https://relmaur.github.io/nms-os/
+Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems log, Outlaw Run, calculators on a verified wiki mirror, the Codex, a six-book guide, opt-in encrypted sync through a small Cloudflare Worker (`apps/sync`), and a local, read-only MCP server for AI assistants (`apps/mcp`). Installable PWA on GitHub Pages: https://relmaur.github.io/nms-os/
 
 ## Read first
 - `docs/STATE.md`: current work, blockers, open decisions, next steps. Update it before ending any non-trivial task.
@@ -11,6 +11,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
   - `docs/wiki-mirror.md`: mirror scope, sync/verify, frontmatter.
   - `docs/calculators.md`: what calculators may compute.
   - `docs/deploy.md`: navigation, PWA, service worker, CI/CD.
+  - `docs/mcp.md`: the MCP server for AI assistants.
   - `docs/adr/`: decisions and their trade-offs.
 
 ## Invariants
@@ -18,7 +19,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 - **`packages/core` stays pure:** no DOM, no Node APIs. The web app, the wiki scripts and a future API all import it.
 - **Parse, don't cast:** data from outside the code (files, storage, network) goes through a Zod schema before use.
 - **Relative paths everywhere**, since the site lives under `/nms-os/`.
-- **User data stays on the device** (`localStorage` key `nms_master_os_state`). Nothing is sent anywhere except by an explicit Export (ADR-0002), the opt-in sync copy, encrypted on the device with a key the relay never sees (ADR-0005), and, with "Alerts when the app is asleep" on, a push address plus running timers' ids and end times (ADR-0006). Any other change is a Data Privacy gate.
+- **User data stays on the device** (`localStorage` key `nms_master_os_state`). Nothing is sent anywhere except by an explicit Export (ADR-0002), the opt-in sync copy, encrypted on the device with a key the relay never sees (ADR-0005), with "Alerts when the app is asleep" on, a push address plus running timers' ids and end times (ADR-0006), and, when the player sets up the MCP server on their computer, tool answers from their log to the AI client they chose (ADR-0008; it only reads). Any other change is a Data Privacy gate.
 - **State compatibility:** every saved or exported `nms_state.json` must keep loading. Shape changes are additive, with a migration in the state module, or a MAJOR release.
 - **Game facts come only from the wiki mirror** (`wiki/game-data.json`), never hand-typed. Anything the wiki can't know is a labelled user input (ADR-0003).
 - **Never hand-edit mirrored files** in `wiki/<category>/`: the sync overwrites them. Never delete them; the sync flags removals. Your own articles go in `wiki/custom/`.
@@ -30,6 +31,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 | `pnpm install` | Install (Node ≥ 24; pnpm via corepack, version pinned in `package.json`) |
 | `pnpm dev` | Vite dev server for the app (`pnpm start` is an alias) |
 | `pnpm build` / `pnpm preview` | Build `apps/web/dist` / serve the build |
+| `pnpm mcp` | Start the MCP server over stdio (normally the AI client starts it; `docs/mcp.md`) |
 | `pnpm index:wiki` | Rebuild derived wiki files from the committed archive (run after a fresh clone) |
 | `pnpm sync:wiki` | Sync the mirror from the live wiki, record verification, reindex |
 | `pnpm verify:wiki` | Dry run: does the archive match the wiki? Exit 1 if not |
