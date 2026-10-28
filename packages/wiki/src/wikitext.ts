@@ -25,7 +25,8 @@ export interface Page {
 }
 
 export const WIKI_BASE = 'https://nomanssky.fandom.com';
-export const LICENSE = "CC BY-SA 3.0 (No Man's Sky Wiki contributors)";
+// The wiki's own copyright page (Project:Copyrights): CC BY-NC-SA 3.0 Unported. Every article carries it.
+export const LICENSE = "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)";
 
 // Infobox template -> kind, in priority order (a page's kind is the first of these it embeds).
 export const SCOPE: Record<string, string> = {

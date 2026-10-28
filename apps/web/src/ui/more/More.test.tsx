@@ -63,3 +63,12 @@ test('Support opens the Ko-fi page in a new tab', () => {
   expect(link.getAttribute('target')).toBe('_blank');
   expect(link.getAttribute('rel')).toContain('noopener');
 });
+
+test('About says ATLAS is fan-made and links to the issues for feedback', () => {
+  render(<More />);
+  const link = screen.getByRole('link', { name: /Feedback and source code/ });
+  expect(link.getAttribute('href')).toBe('https://github.com/Relmaur/nms-os/issues');
+  expect(link.getAttribute('target')).toBe('_blank');
+  expect(document.body.textContent).toContain('not affiliated with Hello Games');
+  expect(document.body.textContent).toContain('CC BY-NC-SA 3.0');
+});

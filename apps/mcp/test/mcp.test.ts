@@ -114,7 +114,7 @@ test('game answers come from the wiki mirror, with their Codex page and revision
   expect((await call('read_article', { title: 'supercharged slot' })).json).toMatchObject({
     title: 'Supercharged Slot',
     body: expect.stringContaining('1 supercharged slot in Class C, 2 in Class B'),
-    license: expect.stringContaining('CC BY-SA 3.0')
+    license: expect.stringContaining('CC BY-NC-SA 3.0')
   });
   const byLink = await call('read_article', {
     title: 'https://relmaur.github.io/nms-os/wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md'

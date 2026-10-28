@@ -37,7 +37,9 @@ import { FACTS, checkFacts, type FactPage } from './facts.ts';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
 const WIKI_API = `${WIKI_BASE}/api.php`;
-const USER_AGENT = 'nms-os-sync-wiki/3.0 (personal offline companion app)';
+// Says who's asking and how to reach them, as MediaWiki's API etiquette asks.
+const USER_AGENT =
+  "ATLAS-wiki-sync/1.0 (fan-made No Man's Sky companion; +https://relmaur.github.io/nms-os/; contact: https://github.com/Relmaur/nms-os/issues)";
 const BATCH = 50; // pages per revisions request (the API maximum for content)
 const REQUEST_DELAY_MS = 250;
 const REQUEST_TIMEOUT_MS = 30000; // a stalled connection must reach the retry/unreachable path, not hang the CI job

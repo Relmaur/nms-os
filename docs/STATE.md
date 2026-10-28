@@ -52,9 +52,10 @@ None.
 ## Open decisions
 - **Refining time unit:** the wiki's refining `seconds` is read as per unit made (as the Codex shows it, and the data fits: higher-yield recipes have lower times), so 300 Chromatic Metal by Stellar Fusion (30 per batch, 4.8 s) times 24 minutes. Worth timing one multi-output run in-game to confirm.
 - **Outlaw restock timer default (24 h)** is a guess; the in-game restock time is unknown.
-- **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is CC BY-SA 3.0, which allows this with attribution.
+- **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is **CC BY-NC-SA 3.0** (NonCommercial; the wiki's `Project:Copyrights` page, checked 2026-10-28; labelled CC BY-SA 3.0 by mistake until 3.20.0). A free, ad-free app with attribution fits it.
 
 ## Next steps
+0. **Owner (3.20.0):** republish `nms-atlas-mcp` (`apps/mcp` is 3.20.0) so the npm package carries the corrected wiki licence: `pnpm pack`, then `npm publish` of the tarball, as for 3.18.0.
 0. **3.19.0 is live (2026-10-28):** migration `0004` applied and the relay deployed by the owner; `/v1/status` reports active vaults and push devices (1 and 2, the owner's own). The milestone (50 active vaults) is set in `.github/workflows/relay-usage.yml`.
 1. **Owner check done (2026-10-27):** an iPhone and the PC synced on the live site (a system renamed on the phone showed on the PC).
 2. **Owner check:** with the app installed on the iPhone, turn on "Alerts when the app is asleep", start a 2-minute timer, lock the phone, and confirm one notification with the timer's name arrives.

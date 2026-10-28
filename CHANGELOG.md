@@ -6,6 +6,16 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.20.0] - 2026-10-28
+### Added
+- **About** in More: ATLAS is fan-made and not affiliated with Hello Games, doesn't connect to the game or read your save, and where its data and code licences come from. Feedback goes to the project's GitHub issues. The desktop sidebar carries the fan-made line too.
+- **Fix this on the wiki** under every Codex article: corrections go to the wiki's edit page, where every reader gets them, and reach ATLAS with the next sync.
+- The Codex has the new Cosmos resource Comet Dust.
+
+### Fixed
+- **The wiki's licence is CC BY-NC-SA 3.0** (Attribution-NonCommercial-ShareAlike), as the wiki's own copyright page states. ATLAS said CC BY-SA 3.0 in every article, the Codex footer, the MCP server's answers and the licence files. `wiki/LICENSE` now says the wiki folder is under the wiki's licence, separate from the MIT code.
+- The wiki sync names itself and gives a contact address when it talks to the wiki.
+
 ## [3.19.0] - 2026-10-28
 ### Added
 - The sync relay's public usage summary also counts the vaults and push devices used in the last 30 days (migration `0004`), and the daily usage check opens one issue when active vaults reach a milestone, with the MCP package's npm downloads alongside. Aggregate numbers only, as before.

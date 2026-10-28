@@ -1,6 +1,6 @@
 {
   "name": "nms-atlas-mcp",
-  "version": "3.18.1",
+  "version": "3.20.0",
   "description": "ATLAS for AI assistants: a local, read-only MCP server for No Man's Sky. Answers from a verified mirror of the No Man's Sky Wiki (recipes, values, game rules) and, if you connect it, your own ATLAS log.",
   "type": "module",
   "license": "MIT",

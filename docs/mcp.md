@@ -39,7 +39,7 @@ The package's page (`apps/mcp/README.md`) has the short version: add `npx -y nms
 ## Tools
 | Tool | Answers from |
 |---|---|
-| `search_codex`, `read_article` | The wiki mirror (CC BY-SA 3.0), with the Codex link, wiki URL and revision |
+| `search_codex`, `read_article` | The wiki mirror (CC BY-NC-SA 3.0), with the Codex link, wiki URL and revision |
 | `plan_recipe` | The recipe planner's build order: what to gather, then each crafting round |
 | `item_value` | Base values from the wiki's infoboxes |
 | `best_crafts` | What to craft for money: value gained over the raw materials' own value, at the wiki's base values |

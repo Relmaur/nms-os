@@ -101,6 +101,7 @@ export function Sidebar() {
           )}
         </ul>
       </div>
+      <p className="px-3 text-xs text-slate-400">Fan-made. Not affiliated with Hello Games.</p>
     </nav>
   );
 }

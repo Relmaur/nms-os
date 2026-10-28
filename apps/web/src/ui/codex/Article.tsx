@@ -203,7 +203,16 @@ export function Article({ index, path, q }: { index: CodexIndex; path: string; q
             >
               {`No Man's Sky Wiki, revision ${String(revision(entry))}`}
             </a>{' '}
-            · CC BY-SA 3.0 · rendered from the page source
+            · CC BY-NC-SA 3.0 · rendered from the page source ·{' '}
+            {/* Corrections belong on the wiki, where every reader gets them; the next sync brings them here. */}
+            <a
+              href={`${text(entry.url) ?? ''}?action=edit`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2"
+            >
+              Fix this on the wiki
+            </a>
           </p>
         ) : null}
       </article>

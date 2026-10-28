@@ -12,6 +12,8 @@ const entries = [
     category: 'resources',
     path: 'wiki/resources/Oxygen.md',
     source: 'wiki',
+    url: 'https://nomanssky.fandom.com/wiki/Oxygen',
+    revId: 42,
     summary: 'A gas.',
     // Under happy-dom, DOMPurify drops the tags of a document's first element (browsers don't), so the fixture
     // opens with a paragraph to keep both headings.
@@ -82,4 +84,15 @@ test('an unknown article says so', () => {
   render(<Codex />);
   at('#/a/wiki%2Fnope.md');
   expect(screen.getByRole('heading', { name: 'Article not found' })).toBeTruthy();
+});
+
+test('a wiki article credits its revision and licence, and sends corrections to the wiki', () => {
+  render(<Codex />);
+  at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);
+  const source = screen.getByRole('link', { name: /revision 42/ });
+  expect(source.getAttribute('href')).toBe('https://nomanssky.fandom.com/wiki/Oxygen?oldid=42');
+  expect(source.parentElement?.textContent).toContain('CC BY-NC-SA 3.0');
+  const fix = screen.getByRole('link', { name: 'Fix this on the wiki' });
+  expect(fix.getAttribute('href')).toBe('https://nomanssky.fandom.com/wiki/Oxygen?action=edit');
+  expect(fix.getAttribute('target')).toBe('_blank');
 });

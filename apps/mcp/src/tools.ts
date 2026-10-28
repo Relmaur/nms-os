@@ -85,7 +85,7 @@ export function createServer({ loadWiki, loadLog, logSetupError, now = Date.now 
     {
       instructions:
         "ATLAS is a No Man's Sky companion. Game answers come from its verified mirror of the No Man's Sky Wiki " +
-        '(CC BY-SA 3.0): cite the Codex or wiki link each tool returns, and say when the wiki has nothing. Player ' +
+        '(CC BY-NC-SA 3.0): cite the Codex or wiki link each tool returns, and say when the wiki has nothing. Player ' +
         'answers come from the player’s own ATLAS log (systems, outlaw stations, ships, notes, timers). Everything is ' +
         'read-only: to change the log, the player uses the app.'
     }
@@ -166,7 +166,7 @@ export function createServer({ loadWiki, loadLog, logSetupError, now = Date.now 
         version: entry.version,
         obsolete: entry.obsolete || undefined,
         removedFromWiki: entry.removed || undefined,
-        license: entry.source === 'wiki' ? "CC BY-SA 3.0, No Man's Sky Wiki contributors" : undefined,
+        license: entry.source === 'wiki' ? "CC BY-NC-SA 3.0, No Man's Sky Wiki contributors" : undefined,
         body: body.length > MAX_BODY ? `${body.slice(0, MAX_BODY)}\n\n[…cut: open the Codex link for the rest]` : body
       });
     }

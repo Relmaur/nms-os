@@ -1,4 +1,4 @@
-// wikitext.ts against real page sources (tests/fixtures/wikitext/, CC BY-SA 3.0).
+// wikitext.ts against real page sources (tests/fixtures/wikitext/, CC BY-NC-SA 3.0).
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';

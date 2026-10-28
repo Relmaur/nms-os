@@ -10,7 +10,7 @@ import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device
 import { useWikiCount } from '../shell/wiki-index.ts';
 import { useSyncStatus } from '../../app/sync.ts';
 import { Sync } from './Sync.tsx';
-import { KOFI_URL } from '../../app/support.ts';
+import { FEEDBACK_URL, KOFI_URL } from '../../app/support.ts';
 import { usePushStatus } from '../../app/push.ts';
 import { AlertsSwitch } from '../session/AlertsSwitch.tsx';
 
@@ -205,6 +205,21 @@ export function More() {
           </li>
         </Group>
       )}
+
+      <Group title="About">
+        <li>
+          <a href={FEEDBACK_URL} target="_blank" rel="noopener" className="list-row">
+            <Tile icon="ph-chat-circle-text text-sky-300" />
+            <Text title="Feedback and source code">Report a bug or ask a question on GitHub</Text>
+            <i className="ph-bold ph-arrow-square-out text-slate-500" aria-hidden="true" />
+          </a>
+        </li>
+      </Group>
+      <p className="px-1 text-xs text-slate-400">
+        ATLAS is a fan-made companion for No Man’s Sky, not affiliated with Hello Games. It doesn’t connect to the game
+        or read your save. Game data comes from the No Man’s Sky Wiki and its contributors (CC BY-NC-SA 3.0); the code
+        is MIT-licensed.
+      </p>
     </>
   );
 }

@@ -20,7 +20,7 @@ The owner wanted players to be able to ask an AI about the game and about their 
 - **Publishing:** repo only for now. Publishing it to npm is a separate, outward-facing step that needs the owner's yes.
 
 ## Published package (3.18.0)
-- **Name:** `nms-atlas-mcp` on npm (`atlas-mcp` was taken). MIT, like the repo (root `LICENSE`, owner's choice); the wiki text it serves stays CC BY-SA 3.0.
+- **Name:** `nms-atlas-mcp` on npm (`atlas-mcp` was taken). MIT, like the repo (root `LICENSE`, owner's choice); the wiki text it serves stays CC BY-NC-SA 3.0 (corrected in 3.20.0: earlier versions said CC BY-SA 3.0).
 - **Bundled:** Node won't strip TypeScript types inside `node_modules`, so `vite build` (the web app's bundler) makes one `dist/main.js` with `@atlas/core` inlined, unminified so a player can read what runs. The SDK and Zod are its only dependencies. A test builds the bundle and drives it over stdio.
 - **Game data from the live site:** a package can't carry the repo's mirror and stay current, so it downloads the four wiki indexes from `https://relmaur.github.io/nms-os/wiki/` on first run and keeps them in the system's cache folder (`wiki-remote.ts`).
   - It checks the site at most once a day, with conditional requests (an unchanged file costs a 304). The check runs in the background, so a new copy is used on the next run.
