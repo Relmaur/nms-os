@@ -1,5 +1,5 @@
 # The relay (ADR-0005 sync, ADR-0006 push), deployed from a developer machine with `wrangler deploy` to
-# atlas-sync.atlas-companion.workers.dev.
+# atlas-sync.nms-os.workers.dev.
 # Setup and secrets: docs/deploy.md.
 name = "atlas-sync"
 main = "src/index.ts"

@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.17.1] - 2026-10-27
+### Changed
+- The sync server moved to `atlas-sync.nms-os.workers.dev`. Your sync code, synced log and alerts carry over; each device syncs again once it has opened this version.
+
 ## [3.17.0] - 2026-10-27
 ### Added
 - **ATLAS for AI assistants:** a small MCP server (`apps/mcp`, `pnpm mcp`) that an AI client such as Claude Desktop or Claude Code runs on your computer. It answers from the Codex (search, articles, the recipe planner, item values, the wiki's slot rules, each with its wiki link) and from your own log (systems, outlaw stations, ships, notes, timers). It connects with your sync code, opening the encrypted copy on your computer, or reads an exported file. It only reads. Setup and privacy notes: `docs/mcp.md`.

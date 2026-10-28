@@ -218,7 +218,7 @@ test('with a sync code, the copy is fetched with GET only, opened locally, check
   const relay = await fakeRelay(code);
   let now = NOW;
   const source = logSourceFromEnv({ ATLAS_SYNC_CODE: `https://relmaur.github.io/nms-os/#pair=${code}` });
-  expect(source).toEqual({ kind: 'sync', code, url: 'https://atlas-sync.atlas-companion.workers.dev' });
+  expect(source).toEqual({ kind: 'sync', code, url: 'https://atlas-sync.nms-os.workers.dev' });
   if (!source) throw new Error('no source');
   const load = makeLogLoader(source, { fetcher: relay.fetcher, now: () => now });
   const state: AppState = await load();
@@ -229,7 +229,7 @@ test('with a sync code, the copy is fetched with GET only, opened locally, check
   expect(relay.requests).toEqual([
     {
       method: 'GET',
-      url: `https://atlas-sync.atlas-companion.workers.dev/v1/vaults/${relay.keys.vaultId}`,
+      url: `https://atlas-sync.nms-os.workers.dev/v1/vaults/${relay.keys.vaultId}`,
       auth: `Bearer ${relay.keys.token}`
     },
     expect.objectContaining({ method: 'GET' })

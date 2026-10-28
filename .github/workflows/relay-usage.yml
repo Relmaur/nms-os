@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      RELAY: https://atlas-sync.atlas-companion.workers.dev
+      RELAY: https://atlas-sync.nms-os.workers.dev
       THRESHOLD: 60
       TITLE: 'Sync relay: time to upgrade?'
       GH_TOKEN: ${{ github.token }}
