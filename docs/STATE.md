@@ -20,7 +20,8 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 **After the roadmap (owner, 2026-10-27; plan `mighty-plotting-quasar`, second version):**
 - Dependabot #1–#3 applied in one commit (CI green; the PRs closed themselves).
 - **3.17.1:** the relay moved to `atlas-sync.nms-os.workers.dev`. The owner renames the workers.dev subdomain, then the commit is pushed straight away.
-- **3.18.0:** Best crafts (Calculators, and the MCP `best_crafts` tool), the first recommendation. The MCP server is packaged for npm as `nms-atlas-mcp` (MIT, data downloaded from the live site and cached). Publishing waits for the owner's `npm login`.
+- **3.18.0:** Best crafts (Calculators, and the MCP `best_crafts` tool), the first recommendation. The MCP server is packaged for npm as `nms-atlas-mcp` (MIT, data downloaded from the live site and cached). Published to npm by the owner (passkey 2FA; `pnpm pack`, then `npm publish` of the tarball, so `workspace:*` is rewritten). Checked with `npx -y nms-atlas-mcp` from an empty folder.
+- **3.18.1:** republished so the package's maintainer list carries the owner's new npm email. 3.18.0 and the `0.0.0-stage` placeholder keep the old one in their version records; only unpublishing them (within 72 h of 2026-10-28 03:02 UTC) would remove it, and the owner chose nothing destructive.
 - The owner's five notes are in `~/Documents/ATLAS notes/`, for Notes → Import .md.
 
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.nms-os.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).

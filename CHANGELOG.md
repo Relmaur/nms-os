@@ -6,6 +6,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.18.1] - 2026-10-27
+### Changed
+- `nms-atlas-mcp` republished so the npm package lists the maintainer's current account details; no code changes. `docs/mcp.md` lists the `best_crafts` tool.
+
 ## [3.18.0] - 2026-10-27
 ### Added
 - **ATLAS's MCP server on npm** as `nms-atlas-mcp`: add `npx -y nms-atlas-mcp` to Claude Desktop or Claude Code, with no need to clone the repo. It downloads the wiki data from ATLAS's site on first run, keeps it in your cache folder, and checks for a newer copy once a day.
