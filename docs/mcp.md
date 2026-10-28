@@ -5,7 +5,7 @@ ATLAS ships a small **MCP server** (`apps/mcp`): an AI assistant that speaks the
 It runs on your computer, only reads, and never changes your log.
 
 ## Set up
-1. Clone the repo, then `pnpm install` and `pnpm index:wiki` (Node 24 or newer).
+1. Clone the repo, then `pnpm install` and `pnpm index:wiki` (Node 24 or newer). After a `git pull` that brings new wiki pages, run `pnpm index:wiki` again: the files the server reads are derived, not committed.
 2. Choose how it reads your log:
    - **Sync code (recommended):** in the app, More → Sync → Show the code, then copy it. The server fetches your encrypted copy and opens it on your computer, just as a paired device does.
    - **Exported file:** More → Your data → Export, and point `ATLAS_STATE_FILE` at the file. Nothing is fetched, but answers only change when you export again.
@@ -23,6 +23,8 @@ It runs on your computer, only reads, and never changes your log.
      }
    }
    ```
+
+   Use the **full path to Node 24** as the command if you use nvm or have an older Node installed too: desktop apps start with the system's path, where `node` may be an older version that can't run the server. In a terminal where `node --version` says v24, `which node` prints the path.
 
    For Claude Code: `claude mcp add atlas -e ATLAS_SYNC_CODE=… -- node /path/to/nms-os/apps/mcp/src/main.ts`.
 4. Restart the client and ask, for example: "Which of my outlaw stations are ready?", "What do I need to craft 3 Warp Cells?", "Does my Multi-Tool's layout match the wiki's rules?"
