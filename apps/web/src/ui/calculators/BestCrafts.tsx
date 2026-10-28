@@ -133,7 +133,8 @@ export function BestCrafts({ catalog }: { catalog: Catalog }) {
                 )}
                 <span className="text-slate-400">
                   {' '}
-                  · {craft.steps} step{craft.steps === 1 ? '' : 's'}
+                  ·{' '}
+                  <span className="whitespace-nowrap">{`${String(craft.steps)} step${craft.steps === 1 ? '' : 's'}`}</span>
                 </span>
               </p>
               <p className="text-xs text-slate-400">
