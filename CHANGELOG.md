@@ -6,6 +6,12 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 
+## [3.18.0] - 2026-10-27
+### Added
+- **ATLAS's MCP server on npm** as `nms-atlas-mcp`: add `npx -y nms-atlas-mcp` to Claude Desktop or Claude Code, with no need to clone the repo. It downloads the wiki data from ATLAS's site on first run, keeps it in your cache folder, and checks for a newer copy once a day.
+- **Best crafts** in Calculators, the first recommendation: what to craft for money, ranked by the value an item gains over what its raw materials would sell for, at the wiki's base values. Sort by total gain or gain per crafting step, filter by category and length, and send any pick to the recipe planner. The MCP server answers the same question (`best_crafts`).
+- The code is now MIT-licensed (`LICENSE`). The wiki text stays CC BY-SA 3.0, from the No Man's Sky Wiki contributors.
+
 ## [3.17.1] - 2026-10-27
 ### Changed
 - The sync server moved to `atlas-sync.nms-os.workers.dev`. Your sync code, synced log and alerts carry over; each device syncs again once it has opened this version.

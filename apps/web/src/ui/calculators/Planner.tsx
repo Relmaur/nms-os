@@ -21,6 +21,7 @@ import {
 import type { GameItem } from '@atlas/core/game-data';
 import { showToast } from '../../app/ui.ts';
 import { readProgress, writeProgress, type PlanSettings } from './progress.ts';
+import { usePlanRequest } from './tool-store.ts';
 
 const PRESETS = ['Stasis Device', 'Fusion Ignitor', 'Circuit Board', 'Living Glass', 'Anomalous Doughnut'];
 const DEFAULT_PLAN: PlanSettings = { item: 'Stasis Device', qty: 1, choices: {} };
@@ -104,6 +105,14 @@ export function Planner({ catalog, onSummary }: { catalog: Catalog; onSummary?: 
     setQuery(item.title);
     if (item.title !== settings.item) replan({ item: item.title, qty: settings.qty, choices: {} });
   };
+  // An item handed over by Best crafts ("Plan it"): planned as if picked here.
+  const request = usePlanRequest();
+  const handled = useRef(request?.nonce ?? 0);
+  useEffect(() => {
+    if (!request || request.nonce === handled.current) return;
+    handled.current = request.nonce;
+    pickItem(request.title);
+  });
   const setQty = (value: number) => {
     const qty = Math.max(1, Math.min(MAX_QTY, Math.round(value) || 1));
     if (qty !== settings.qty) replan({ ...settings, qty });

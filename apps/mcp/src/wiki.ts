@@ -9,6 +9,9 @@ import { prepare, type Entry, type PreparedEntry } from '@atlas/core/search';
 import { parseBundle } from '@atlas/core/wiki-files';
 import { FactsFileSchema, type FactsFile } from '@atlas/core/facts';
 
+// The repo's own mirror, for a server run from source in a clone (`pnpm mcp`). The bundle the npm package ships is
+// .js, so it never looks here: three folders up from an installed package is someone else's project.
+export const RUNNING_FROM_SOURCE = import.meta.url.endsWith('.ts');
 export const DEFAULT_WIKI_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../wiki');
 
 export interface Wiki {
@@ -23,22 +26,41 @@ export interface Wiki {
 
 export class WikiMissing extends Error {}
 
-const read = (dir: string, file: string) =>
-  fs.readFile(path.join(dir, file), 'utf8').catch(() => {
-    throw new WikiMissing(`${file} is missing from ${dir}: run \`pnpm index:wiki\` in the ATLAS repo first.`);
-  });
+// The four files the Codex and the calculators read. Only the bundle and the dataset are required.
+export const WIKI_FILES = ['offline-bundle.js', 'game-data.json', 'facts.json', 'verification.json'] as const;
+export type WikiFile = (typeof WIKI_FILES)[number];
+export type WikiTexts = Record<'offline-bundle.js' | 'game-data.json', string> &
+  Partial<Record<'facts.json' | 'verification.json', string>>;
 
 export async function loadWiki(dir = DEFAULT_WIKI_DIR): Promise<Wiki> {
+  const texts: Partial<Record<WikiFile, string>> = {};
+  for (const file of WIKI_FILES) {
+    const text = await fs.readFile(path.join(dir, file), 'utf8').catch(() => undefined);
+    if (text !== undefined) texts[file] = text;
+  }
+  const bundle = texts['offline-bundle.js'];
+  const data = texts['game-data.json'];
+  if (bundle === undefined || data === undefined)
+    throw new WikiMissing(`The wiki indexes are missing from ${dir}: run \`pnpm index:wiki\` in the ATLAS repo first.`);
+  return parseWiki({ ...texts, 'offline-bundle.js': bundle, 'game-data.json': data });
+}
+
+// Throws on anything that isn't what `pnpm index:wiki` writes, so a bad download never replaces a good copy.
+export function parseWiki(texts: WikiTexts): Wiki {
   // offline-bundle.js is `window.WIKI_OFFLINE_BUNDLE = {…};`: a script for the browser, JSON inside.
-  const script = await read(dir, 'offline-bundle.js');
+  const script = texts['offline-bundle.js'];
   const parsed = parseBundle(JSON.parse(script.slice(script.indexOf('{'), script.lastIndexOf('}') + 1)));
-  if (!parsed) throw new WikiMissing(`offline-bundle.js in ${dir} isn't a Codex bundle: rerun \`pnpm index:wiki\`.`);
-  const data = GameDataSchema.parse(JSON.parse(await read(dir, 'game-data.json')));
-  const facts = FactsFileSchema.safeParse(JSON.parse(await read(dir, 'facts.json').catch(() => 'null'))).data ?? null;
-  const verification = await fs
-    .readFile(path.join(dir, 'verification.json'), 'utf8')
-    .then(text => JSON.parse(text) as unknown)
-    .catch(() => null);
+  if (!parsed) throw new WikiMissing('offline-bundle.js isn’t a Codex bundle.');
+  const data = GameDataSchema.parse(JSON.parse(texts['game-data.json']));
+  const json = (text: string | undefined): unknown => {
+    try {
+      return text === undefined ? null : JSON.parse(text);
+    } catch {
+      return null;
+    }
+  };
+  const facts = FactsFileSchema.safeParse(json(texts['facts.json'])).data ?? null;
+  const verification = json(texts['verification.json']);
   const checkedAt =
     verification && typeof verification === 'object' && 'checkedAt' in verification
       ? String(verification.checkedAt)

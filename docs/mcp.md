@@ -1,10 +1,12 @@
 # ATLAS for AI assistants (MCP)
 
-ATLAS ships a small **MCP server** (`apps/mcp`): an AI assistant that speaks the Model Context Protocol (Claude Desktop, Claude Code, and others) can use it to answer questions about No Man's Sky from ATLAS's verified wiki mirror, and about **your own log**: your systems, outlaw stations, ships, notes and timers. Decision and privacy notes: ADR-0008.
+ATLAS ships a small **MCP server**, published on npm as [`nms-atlas-mcp`](https://www.npmjs.com/package/nms-atlas-mcp) (source: `apps/mcp`): an AI assistant that speaks the Model Context Protocol (Claude Desktop, Claude Code, and others) can use it to answer questions about No Man's Sky from ATLAS's verified wiki mirror, and about **your own log**: your systems, outlaw stations, ships, notes and timers. Decision and privacy notes: ADR-0008.
 
 It runs on your computer, only reads, and never changes your log.
 
 ## Set up
+The package's page (`apps/mcp/README.md`) has the short version: add `npx -y nms-atlas-mcp` to your client, with Node 20 or newer. It downloads the wiki data from ATLAS's site on first run (about 10 MB, kept in your cache folder and checked for updates once a day). The steps below run it from a clone of the repo instead, which uses the repo's own mirror.
+
 1. Clone the repo, then `pnpm install` and `pnpm index:wiki` (Node 24 or newer). After a `git pull` that brings new wiki pages, run `pnpm index:wiki` again: the files the server reads are derived, not committed.
 2. Choose how it reads your log:
    - **Sync code (recommended):** in the app, More → Sync → Show the code, then copy it. The server fetches your encrypted copy and opens it on your computer, just as a paired device does.
@@ -53,6 +55,7 @@ It runs on your computer, only reads, and never changes your log.
 | `ATLAS_SYNC_CODE` | Your sync code (or the pairing link). Takes precedence over the file. |
 | `ATLAS_STATE_FILE` | Path to an exported `nms_state.json`. |
 | `ATLAS_SYNC_URL` | Another relay (https; `http://localhost` for development). Default: ATLAS's own. |
-| `ATLAS_WIKI_DIR` | Another wiki folder. Default: the repo's `wiki/`. |
+| `ATLAS_WIKI_DIR` | Another wiki folder. Default: the repo's `wiki/` when run from a clone, otherwise the live site's copy, downloaded. |
+| `ATLAS_CACHE_DIR` | Where the downloaded copy is kept. Default: the system's cache folder (`nms-atlas-mcp`). |
 
 A synced copy is fetched at most once a minute; changes made in the app show up after the next sync plus that minute.

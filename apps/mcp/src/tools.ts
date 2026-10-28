@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { CATEGORIES, search } from '@atlas/core/search';
 import { buildPlan, findItem } from '@atlas/core/planner';
 import { haulValue } from '@atlas/core/calc';
+import { rankCrafts, sortCrafts, type RankedCraft } from '@atlas/core/profit';
 import { outlawSummary } from '@atlas/core/outlaw';
 import { lastVisit, searchSystems, systemTags, tagSlug, type System } from '@atlas/core/systems-model';
 import { searchNotes, noteExcerpt, byNewest, PIN_PLACES } from '@atlas/core/notes';
@@ -15,6 +16,7 @@ import type { AppState } from '@atlas/core/state';
 import type { GameItem } from '@atlas/core/game-data';
 import { findArticle, type Wiki } from './wiki.ts';
 import { LogError } from './log.ts';
+import pkg from '../package.json' with { type: 'json' };
 
 export const SITE = 'https://relmaur.github.io/nms-os/';
 const MAX_BODY = 30_000; // characters of an article; the longest patch notes run past 100k
@@ -36,7 +38,9 @@ const pinLabel = (key: string) => PIN_PLACES.find(place => place.key === key)?.l
 const iso = (ms: number) => new Date(ms).toISOString();
 
 export interface Deps {
-  wiki: Wiki;
+  // The game data, loaded when a tool first needs it, so the server answers the client's handshake at once even
+  // while a first download runs. A failed load is retried by the next call.
+  loadWiki: () => Promise<Wiki>;
   loadLog: (() => Promise<AppState>) | null; // null: the player hasn't connected a log
   logSetupError?: string; // why the configured log can't be used
   now?: () => number;
@@ -60,9 +64,24 @@ function systemSummary(system: System) {
   };
 }
 
-export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: Deps): McpServer {
+export function createServer({ loadWiki, loadLog, logSetupError, now = Date.now }: Deps): McpServer {
+  let wikiError = 'The game data isn’t loaded.';
+  let loading: Promise<Wiki> | null = null;
+  const gameData = async (): Promise<Wiki | null> => {
+    loading ??= loadWiki().catch((err: unknown) => {
+      loading = null; // try again on the next call
+      throw err;
+    });
+    try {
+      return await loading;
+    } catch (err) {
+      wikiError = err instanceof Error ? err.message : String(err);
+      return null;
+    }
+  };
+  const noWiki = () => fail(wikiError);
   const server = new McpServer(
-    { name: 'atlas', version: '3.17.0' },
+    { name: 'atlas', version: pkg.version },
     {
       instructions:
         "ATLAS is a No Man's Sky companion. Game answers come from its verified mirror of the No Man's Sky Wiki " +
@@ -79,7 +98,7 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
       if (logSetupError) return fail(logSetupError);
       if (!loadLog) return fail(NO_LOG);
       try {
-        return reply(run(await loadLog(), args));
+        return reply(await run(await loadLog(), args));
       } catch (err) {
         return fail(err instanceof LogError ? err.message : 'The ATLAS log couldn’t be read.');
       }
@@ -100,7 +119,9 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
       },
       annotations: READ_ONLY
     },
-    ({ query, category, limit }) => {
+    async ({ query, category, limit }) => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
       const results = search(wiki.articles, query, { category: category ?? 'all' }).slice(0, limit);
       return reply({
         results: results.map(({ entry }) => ({
@@ -124,7 +145,9 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
       inputSchema: { title: z.string().min(1).max(300) },
       annotations: READ_ONLY
     },
-    ({ title }) => {
+    async ({ title }) => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
       // A Codex link ("…#/a/wiki%2F…") names its path encoded; anything else is a title as typed ("100%" too).
       const link = /#\/a\/(.+)$/.exec(title)?.[1];
       let name = title;
@@ -159,7 +182,9 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
       inputSchema: { item: z.string().min(1).max(120), quantity: z.int().min(1).max(10_000).default(1) },
       annotations: READ_ONLY
     },
-    ({ item: name, quantity }) => {
+    async ({ item: name, quantity }) => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
       const item = findItem(wiki.catalog, name);
       if (!item) return fail(`“${name}” isn’t an item in the wiki mirror. Try search_codex.`);
       const plan = buildPlan(wiki.catalog, item.title, quantity);
@@ -200,7 +225,9 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
       },
       annotations: READ_ONLY
     },
-    ({ items }) => {
+    async ({ items }) => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
       const rows = items.map(({ name, quantity }) => {
         const item = findItem(wiki.catalog, name);
         return { name, quantity, item, value: item?.value };
@@ -219,6 +246,52 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
     }
   );
 
+  let ranked: ReturnType<typeof rankCrafts> | null = null; // ranked once, on first use
+  server.registerTool(
+    'best_crafts',
+    {
+      title: 'Best crafts for money',
+      description:
+        'What to craft or cook for money: items ranked by the value they gain over what their raw materials would ' +
+        'sell for, at the wiki’s base values, through the recipe planner’s build order. Use plan_recipe for one ' +
+        'item’s full build order.',
+      inputSchema: {
+        sort: z.enum(['gain', 'per-step']).default('gain'),
+        category: z.enum(['products', 'cooking']).optional(),
+        maxSteps: z.int().min(1).max(30).optional(),
+        limit: z.int().min(1).max(50).default(10)
+      },
+      annotations: READ_ONLY
+    },
+    async ({ sort, category, maxSteps, limit }) => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
+      ranked ??= rankCrafts(wiki.catalog);
+      const row = (craft: RankedCraft) => ({
+        item: craft.item.title,
+        makes: craft.makes,
+        sellsFor: craft.value,
+        rawMaterialsWorth: craft.rawValue,
+        gain: craft.gain,
+        multiplier: craft.multiplier === null ? null : Number(craft.multiplier.toFixed(1)),
+        steps: craft.steps,
+        needsBlueprints: craft.blueprint || undefined,
+        source: itemSource(craft.item)
+      });
+      const crafts = sortCrafts(ranked.crafts, {
+        sort,
+        ...(category ? { category } : {}),
+        ...(maxSteps ? { maxSteps } : {})
+      });
+      return reply({
+        crafts: crafts.slice(0, limit).map(row),
+        ranked: crafts.length,
+        leftOut: ranked.skipped,
+        note: 'Base values from the wiki; trade terminals pay more or less by the system’s economy. Gain is value over selling the raw materials instead.'
+      });
+    }
+  );
+
   server.registerTool(
     'cited_facts',
     {
@@ -228,8 +301,10 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
         'supercharged slots per class, technology grid sizes, the Exosuit’s fixed slots.',
       annotations: READ_ONLY
     },
-    () =>
-      reply({
+    async () => {
+      const wiki = await gameData();
+      if (!wiki) return noWiki();
+      return reply({
         facts: Object.entries(wiki.facts?.facts ?? {}).map(([id, fact]) => ({
           id,
           value: fact.value,
@@ -239,7 +314,8 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
           wiki: fact.url,
           revision: fact.revId
         }))
-      })
+      });
+    }
   );
 
   // ── The player's own log ──
@@ -324,39 +400,42 @@ export function createServer({ wiki, loadLog, logSetupError, now = Date.now }: D
         'the wiki’s rules for that kind and class, with anything the marks disagree with.',
       annotations: READ_ONLY
     },
-    withLog(state => ({
-      gear: state.gear.map(item => {
-        const rules = slotRules(wiki.facts, item.kind, item.class);
-        const warnings = slotWarnings(rules, item.superchargedSlots);
-        return {
-          name: item.name,
-          kind: item.kind,
-          class: item.class || undefined,
-          type: item.type || undefined,
-          role: item.role || undefined,
-          superchargedSlots: item.superchargedSlots.map(slot => ({ slot, holds: item.slotLabels[slot] })),
-          notes: item.notes || undefined,
-          wikiRules: {
-            superchargedSlots: rules.supercharged,
-            fixedSlots: rules.fixed ?? undefined,
-            techGrid: rules.sources.length ? { columns: rules.columns, maxRows: rules.maxRows } : undefined,
-            sources: [...new Map(rules.sources.map(fact => [fact.path, fact])).values()].map(fact => ({
-              page: fact.page,
-              codex: codexUrl(fact.path)
-            }))
-          },
-          ...(warnings.tooMany || warnings.outside.length || warnings.offPreset.length
-            ? {
-                disagreesWithWiki: {
-                  moreSuperchargedThanClassHas: warnings.tooMany || undefined,
-                  outsideLargestGrid: warnings.outside.length ? warnings.outside : undefined,
-                  notAFixedSlot: warnings.offPreset.length ? warnings.offPreset : undefined
+    withLog(async state => {
+      const facts = (await gameData())?.facts ?? null; // without the game data, the gear is listed without rules
+      return {
+        gear: state.gear.map(item => {
+          const rules = slotRules(facts, item.kind, item.class);
+          const warnings = slotWarnings(rules, item.superchargedSlots);
+          return {
+            name: item.name,
+            kind: item.kind,
+            class: item.class || undefined,
+            type: item.type || undefined,
+            role: item.role || undefined,
+            superchargedSlots: item.superchargedSlots.map(slot => ({ slot, holds: item.slotLabels[slot] })),
+            notes: item.notes || undefined,
+            wikiRules: {
+              superchargedSlots: rules.supercharged,
+              fixedSlots: rules.fixed ?? undefined,
+              techGrid: rules.sources.length ? { columns: rules.columns, maxRows: rules.maxRows } : undefined,
+              sources: [...new Map(rules.sources.map(fact => [fact.path, fact])).values()].map(fact => ({
+                page: fact.page,
+                codex: codexUrl(fact.path)
+              }))
+            },
+            ...(warnings.tooMany || warnings.outside.length || warnings.offPreset.length
+              ? {
+                  disagreesWithWiki: {
+                    moreSuperchargedThanClassHas: warnings.tooMany || undefined,
+                    outsideLargestGrid: warnings.outside.length ? warnings.outside : undefined,
+                    notAFixedSlot: warnings.offPreset.length ? warnings.offPreset : undefined
+                  }
                 }
-              }
-            : {})
-        };
-      })
-    }))
+              : {})
+          };
+        })
+      };
+    })
   );
 
   server.registerTool(

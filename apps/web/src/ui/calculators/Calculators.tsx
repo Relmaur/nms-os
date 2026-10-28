@@ -1,5 +1,5 @@
-// Calculators: a dock switches between the recipe planner (first, and the default) and the small tools: a haul's base
-// value, mineral extractors and Harmonic Camp registers.
+// Calculators: a dock switches between the recipe planner (first, and the default) and the small tools: the best
+// crafts for money, a haul's base value, mineral extractors and Harmonic Camp registers.
 // Recipes and values come from the wiki mirror; anything the wiki can't know is an input the player sets.
 import { useMemo, useState, type SubmitEvent } from 'react';
 import { evaluateRegister, extractorYield, formatQty, formatUnits, haulValue } from '@atlas/core/calc';
@@ -7,6 +7,7 @@ import { findItem, type Catalog } from '@atlas/core/planner';
 import { showToast } from '../../app/ui.ts';
 import { useGameData, type GameDataState } from './game-data.ts';
 import { Planner } from './Planner.tsx';
+import { BestCrafts } from './BestCrafts.tsx';
 import { panelId, tabId, ToolDock } from './ToolDock.tsx';
 import { useTool, type Tool } from './tool-store.ts';
 
@@ -51,6 +52,15 @@ export function Calculators() {
             <Planner catalog={data.catalog} onSummary={setSummary} />
           ) : (
             <p className="pt-4 sm:pt-5 text-sm text-slate-400">
+              {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
+            </p>
+          )}
+        </div>
+        <div {...panel('profit')} className="max-w-3xl">
+          {data.status === 'ready' ? (
+            <BestCrafts catalog={data.catalog} />
+          ) : (
+            <p className="text-sm text-slate-400">
               {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
             </p>
           )}

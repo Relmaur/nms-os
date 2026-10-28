@@ -60,6 +60,19 @@ test('base value and extractor yield use wiki values', async ({ page }) => {
   await expect(page.locator('#mineResult')).toContainText('1,000 Gold per hour, worth 353,000 Units');
 });
 
+test('Best crafts ranks the real mirror and hands a pick to the planner', async ({ page }) => {
+  await page.goto('./#calculators');
+  await page.getByRole('tab', { name: 'Best crafts' }).click();
+  const rows = page.locator('#craftList [data-craft]');
+  await expect(rows.first()).toHaveAttribute('data-craft', /^(Stasis Device|Fusion Ignitor)$/);
+  await expect(rows).toHaveCount(15);
+  await page.getByRole('button', { name: 'Show more' }).click();
+  await expect(rows).toHaveCount(30);
+  await page.locator('#craftList').getByRole('button', { name: 'Plan it: Quantum Processor' }).click();
+  await expect(page.getByRole('tab', { name: /^Recipe planner/ })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#calcPlanSummary')).toContainText('Quantum Processor');
+});
+
 test('Harmonic Camp registers evaluate the expressions', async ({ page }) => {
   await page.goto('./#calculators');
   await page.getByRole('tab', { name: 'Registers' }).click();

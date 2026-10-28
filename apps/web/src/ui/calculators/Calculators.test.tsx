@@ -185,7 +185,7 @@ test('arrow keys, Home and End move along the dock', async () => {
   render(<Calculators />);
   screen.getByRole('tab', { name: /^Recipe planner/ }).focus();
   await userEvent.keyboard('{ArrowRight}');
-  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Base value' }));
+  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Best crafts' }));
   await userEvent.keyboard('{End}');
   expect(screen.getByRole('tab', { name: 'Registers' }).getAttribute('aria-selected')).toBe('true');
   await userEvent.keyboard('{ArrowRight}'); // wraps round to the planner
@@ -205,4 +205,22 @@ test('switching tools keeps what was typed in each', async () => {
   await userEvent.click(screen.getByRole('tab', { name: /^Recipe planner/ }));
   await userEvent.click(screen.getByRole('tab', { name: 'Registers' }));
   expect(document.getElementById('calcAns2')?.textContent).toBe('42');
+});
+
+test('Best crafts ranks by value gained, filters, and hands a pick to the planner', async () => {
+  render(<Calculators />);
+  await userEvent.click(screen.getByRole('tab', { name: 'Best crafts' }));
+  const list = () =>
+    [...document.querySelectorAll('#craftList [data-craft]')].map(row => row.getAttribute('data-craft'));
+  expect(list().length).toBeGreaterThan(0);
+  const first = document.querySelector('#craftList [data-craft]');
+  expect(first?.textContent).toMatch(/\+[\d.,]+[KM]?/); // a gain, signed
+  await userEvent.selectOptions(screen.getByLabelText('Length'), 'Up to 3 steps');
+  expect(list()).not.toContain('Stasis Device'); // a long chain
+  await userEvent.selectOptions(screen.getByLabelText('Length'), 'Any length');
+  await userEvent.click(screen.getByRole('button', { name: 'Most gained' }));
+  const top = list().find(title => title !== 'Stasis Device') ?? '';
+  await userEvent.click(screen.getByRole('button', { name: `Plan it: ${top}` }));
+  expect(screen.getByRole('tab', { name: /^Recipe planner/ }).getAttribute('aria-selected')).toBe('true');
+  expect(screen.getByRole('heading', { name: top })).toBeTruthy();
 });

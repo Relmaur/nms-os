@@ -1,18 +1,44 @@
 {
-  "name": "@atlas/mcp",
-  "version": "0.0.0",
-  "private": true,
-  "description": "A local, read-only MCP server: the Codex, the calculators and the player's own log for any MCP client (ADR-0008). Node runs the .ts directly.",
+  "name": "nms-atlas-mcp",
+  "version": "3.18.0",
+  "description": "ATLAS for AI assistants: a local, read-only MCP server for No Man's Sky. Answers from a verified mirror of the No Man's Sky Wiki (recipes, values, game rules) and, if you connect it, your own ATLAS log.",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Relmaur/nms-os.git",
+    "directory": "apps/mcp"
+  },
+  "homepage": "https://github.com/Relmaur/nms-os/blob/main/docs/mcp.md",
+  "keywords": [
+    "no-mans-sky",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "nms"
+  ],
   "bin": {
-    "atlas-mcp": "./src/main.ts"
+    "nms-atlas-mcp": "dist/main.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
-    "start": "node src/main.ts"
+    "start": "node src/main.ts",
+    "build": "vite build",
+    "prepack": "vite build"
   },
   "dependencies": {
-    "@atlas/core": "workspace:*",
     "@modelcontextprotocol/sdk": "1.32.1",
     "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@atlas/core": "workspace:*",
+    "vite": "^8.3.5"
   }
 }

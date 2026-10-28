@@ -19,6 +19,20 @@ The owner wanted players to be able to ask an AI about the game and about their 
 - **Without a log** the game tools still work, and the player tools say how to connect one. A malformed code is reported, not silently ignored.
 - **Publishing:** repo only for now. Publishing it to npm is a separate, outward-facing step that needs the owner's yes.
 
+## Published package (3.18.0)
+- **Name:** `nms-atlas-mcp` on npm (`atlas-mcp` was taken). MIT, like the repo (root `LICENSE`, owner's choice); the wiki text it serves stays CC BY-SA 3.0.
+- **Bundled:** Node won't strip TypeScript types inside `node_modules`, so `vite build` (the web app's bundler) makes one `dist/main.js` with `@atlas/core` inlined, unminified so a player can read what runs. The SDK and Zod are its only dependencies. A test builds the bundle and drives it over stdio.
+- **Game data from the live site:** a package can't carry the repo's mirror and stay current, so it downloads the four wiki indexes from `https://relmaur.github.io/nms-os/wiki/` on first run and keeps them in the system's cache folder (`wiki-remote.ts`).
+  - It checks the site at most once a day, with conditional requests (an unchanged file costs a 304). The check runs in the background, so a new copy is used on the next run.
+  - A download replaces the cache only if the whole set parses with the app's schemas, and each file goes through a temporary name, so a broken or interrupted download never replaces a good copy.
+  - With no cache and no network the game tools say so; the player tools still work.
+  - These requests carry nothing about the player. GitHub sees the computer's IP address, as with any visit to the site.
+- **Run from a clone,** the server uses the repo's own `wiki/` as before; `ATLAS_WIKI_DIR` picks any folder.
+- **Publishing** is done by the owner's npm account: `npm login`, then `pnpm publish` from `apps/mcp` (pnpm, so the workspace version specs are rewritten). The build runs first (`prepack`).
+- **Started before its data is ready:** the server answers the client's handshake at once and loads the game data on the first tool call that needs it, so a first download on a slow line never trips the client's start-up timeout. A failed load is retried by the next call.
+- **The cache stays consistent:** files and the note of their validators are both written through temporary names, and the note records each file's length. A file the note doesn't match is downloaded whole rather than revalidated, so two clients refreshing at once can't leave the cache trusting a file it wasn't written with. Downloads are capped by the bytes actually received.
+- **The site's data format is now a public interface:** an installed package parses the live site's `game-data.json` and bundle with the schemas it shipped with. A future change those schemas can't read would leave a new installation of an old version without game data (an existing cache keeps working). Change those formats additively, or publish a new version first.
+
 ## Privacy (the gate's checklist)
 - **New destination:** when the AI calls a player tool, the parts of the log that tool returns go to the player's AI client and, through it, to that client's model provider. The player turns this on by configuring the server; nothing in ATLAS sends it on its own.
 - **The sync code in a config file:** it is as powerful as on a paired device (read and change the whole log, through the relay). `docs/mcp.md` says so, and offers `ATLAS_STATE_FILE` for players who'd rather not put the code in a file. More → Sync says, under the code, that an assistant can read the log through the MCP server.
@@ -32,5 +46,4 @@ The owner wanted players to be able to ask an AI about the game and about their 
 - **Accepted limits:**
   - The app refuses a format-1 copy once it has seen a format-2 one (a replayed old copy); that needs state the server doesn't keep between runs. Every copy written since 3.15 is format 2, so a relay replaying a pre-3.15 copy could still show the server an old log (read-only, and it's the player's own old data).
   - Answers are only as current as the copy: a device's unsynced changes, and the last minute of syncs, aren't seen.
-  - The server needs a clone of the repo with `pnpm index:wiki` run (until it's published).
   - The model's own words aren't ATLAS's: the instructions ask it to cite the links the tools return, but a client can still paraphrase wrongly.

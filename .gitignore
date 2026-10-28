@@ -13,6 +13,7 @@ test-results/
 playwright-report/
 apps/web/dist/
 apps/web/dev-dist/
+apps/mcp/dist/
 
 # Impeccable decision-page logs (the surface briefs in .impeccable/surfaces are kept)
 **/.impeccable/questions/
@@ -22,3 +23,4 @@ apps/web/dev-dist/
 
 # Wrangler secrets for local development (apps/sync); never committed
 .dev.vars*
+apps/mcp/.bundle-test-*/

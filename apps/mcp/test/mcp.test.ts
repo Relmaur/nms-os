@@ -57,7 +57,12 @@ beforeAll(async () => {
 });
 
 async function connect(deps: Partial<Deps> = {}) {
-  const server = createServer({ wiki, loadLog: () => Promise.resolve(buildState(LOG)), now: () => NOW, ...deps });
+  const server = createServer({
+    loadWiki: () => Promise.resolve(wiki),
+    loadLog: () => Promise.resolve(buildState(LOG)),
+    now: () => NOW,
+    ...deps
+  });
   const client = new Client({ name: 'test', version: '1' });
   const [a, b] = InMemoryTransport.createLinkedPair();
   await Promise.all([server.connect(a), client.connect(b)]);
@@ -76,6 +81,7 @@ test('every tool is listed, read-only', async () => {
   const { client } = await connect();
   const { tools } = await client.listTools();
   expect(tools.map(tool => tool.name).sort()).toEqual([
+    'best_crafts',
     'cited_facts',
     'get_system',
     'item_value',
@@ -127,6 +133,16 @@ test('game answers come from the wiki mirror, with their Codex page and revision
   expect(gold.items[0]?.total).toBe((gold.items[0]?.unitValue ?? 0) * 10);
   expect(value.json).toMatchObject({ items: [{}, { unitValue: null, problem: 'not in the wiki mirror' }] });
 
+  expect((await call('best_crafts', { limit: 2 })).json).toMatchObject({
+    crafts: [
+      { item: expect.stringMatching(/^(Stasis Device|Fusion Ignitor)$/), gain: expect.any(Number) },
+      { item: expect.stringMatching(/^(Stasis Device|Fusion Ignitor)$/) }
+    ]
+  });
+  expect((await call('best_crafts', { maxSteps: 3, limit: 50 })).json).toMatchObject({
+    crafts: expect.not.arrayContaining([expect.objectContaining({ item: 'Stasis Device' })])
+  });
+
   expect((await call('cited_facts')).json).toMatchObject({
     facts: expect.arrayContaining([
       expect.objectContaining({ id: 'supercharged-per-class', value: { C: 1, B: 2, A: 3, S: 4 } })
@@ -175,6 +191,17 @@ test('player answers come from the log, computed as the app computes them', asyn
     running: [{ label: '250 Chromatic Metal', kind: 'refine', endsAt: hoursAgo(-0.5), minutesLeft: 30 }],
     done: [{ label: 'Frostwort', kind: 'crop', endedAt: hoursAgo(1) }]
   });
+});
+
+test('game data that fails to load is reported, and the next call tries again', async () => {
+  let attempts = 0;
+  const { call } = await connect({
+    loadWiki: () =>
+      ++attempts === 1 ? Promise.reject(new Error('The game data couldn’t be downloaded')) : Promise.resolve(wiki)
+  });
+  expect((await call('search_codex', { query: 'gold' })).error).toContain('couldn’t be downloaded');
+  expect((await call('list_gear')).json).toMatchObject({ gear: [{ name: 'Pistol' }, { name: 'Suit' }] }); // rules or not, the log answers
+  expect((await call('search_codex', { query: 'gold', limit: 1 })).error).toBeNull();
 });
 
 test('without a log, or with a broken setting, player tools say why and game tools still work', async () => {

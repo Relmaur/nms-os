@@ -1,10 +1,11 @@
 // The calculators' switcher: the recipe planner as the wide lead cell, carrying the plan in progress so the way back
-// to it is always in view, then the three small tools. ARIA tabs: arrow keys, Home and End move between them.
+// to it is always in view, then the four small tools (Best crafts first: it hands its picks to the planner). ARIA tabs: arrow keys, Home and End move between them.
 import type { KeyboardEvent } from 'react';
 import { setTool, TOOLS, useTool, type Tool } from './tool-store.ts';
 
 // [name, icon, hue]
 const SMALL: Record<Exclude<Tool, 'planner'>, readonly [string, string, string]> = {
+  profit: ['Best crafts', 'ph-trend-up', 'text-cyan-300'],
   value: ['Base value', 'ph-coins', 'text-amber-300'],
   extractors: ['Extractors', 'ph-mountains', 'text-emerald-300'],
   registers: ['Registers', 'ph-terminal-window', 'text-purple-300']
@@ -69,11 +70,11 @@ export function ToolDock({ summary }: { summary: string }) {
       role="tablist"
       aria-label="Calculators"
       onKeyDown={onKeyDown}
-      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-3 sm:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))] gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
+      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-4 sm:grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
     >
       <button
         {...tab('planner')}
-        className={`${cell(current === 'planner')} col-span-3 sm:col-span-1 h-12 sm:h-14 flex items-center gap-3 px-3 text-left`}
+        className={`${cell(current === 'planner')} col-span-4 sm:col-span-1 h-12 sm:h-14 flex items-center gap-3 px-3 text-left`}
       >
         <span
           className={`flex w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-lg items-center justify-center ${current === 'planner' ? 'bg-cyan-400/15 text-cyan-200' : 'bg-slate-800 text-cyan-300'}`}
@@ -98,10 +99,10 @@ export function ToolDock({ summary }: { summary: string }) {
           <button
             key={tool}
             {...tab(tool)}
-            className={`${cell(current === tool)} h-11 sm:h-14 flex items-center justify-center gap-1.5 sm:gap-2 px-1.5 sm:px-3`}
+            className={`${cell(current === tool)} h-14 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-1 sm:px-3`}
           >
             <i className={`ph-bold ${icon} text-base ${hue}`} aria-hidden="true" />
-            <span className="text-xs sm:text-sm font-medium truncate">{name}</span>
+            <span className="max-w-full text-[11px] sm:text-sm leading-4 font-medium truncate">{name}</span>
           </button>
         );
       })}

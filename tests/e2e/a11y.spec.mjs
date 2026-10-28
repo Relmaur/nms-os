@@ -38,6 +38,11 @@ const showRecap = async page => {
   await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
 };
 
+const openBestCrafts = async page => {
+  await page.getByRole('tab', { name: 'Best crafts' }).click();
+  await page.locator('#craftList [data-craft] >> nth=0').waitFor();
+};
+
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
@@ -61,6 +66,13 @@ for (const [name, path, ready, region, setup] of [
   ['Note editor', './#notes', '#noteEditor', '#noteEditor', openNoteEditor],
   ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
+  [
+    'Calculators, Best crafts',
+    './#calculators',
+    '#craftList [data-craft] >> nth=0',
+    '#sec-calculators',
+    openBestCrafts
+  ],
   ['Codex', './wiki/', '#browseBody', '#codexRoot'],
   ['Codex results', './wiki/#/?q=oxygen', '#browseBody .result >> nth=0', '#codexRoot'],
   ['Codex quick look', './wiki/#/?q=oxygen', '#peekBody h2 >> nth=0', '#codexRoot', openPeek],
