@@ -17,6 +17,12 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - **3.16.0 shipped:** eight mechanics pages mirrored by title (Codex "Mechanics"), six cited facts in `wiki/facts.json` (quote checked on every sync and verify; ADR-0003 section), the slot picker following them, and an Exosuit kind (ADR-0007 section). It deviates from the plan in one way: the facts went in their own small `facts.json` instead of `game-data.json` (2.3 MB), so the gear editor doesn't load the whole dataset. Book III's rules 1 and 2 now follow the wiki. The converter fix re-rendered 135 articles.
 - **3.17.0 shipped:** the local, read-only MCP server (`apps/mcp`, ADR-0008, `docs/mcp.md`): 12 tools on `@atlas/core`, reading the log with the sync code (GET only, opened locally) or an exported file. It's tested end to end with an in-memory client, over stdio, and against the relay Worker run locally. Not published to npm: that needs the owner's yes. **Owner check done (2026-10-27):** Claude Desktop on the Mac answered from the synced log through the server. Desktop apps need Node 24's full path as the command (`docs/mcp.md`): the system `node` on the owner's Mac is v18.
 
+**After the roadmap (owner, 2026-10-27; plan `mighty-plotting-quasar`, second version):**
+- Dependabot #1–#3 applied in one commit (CI green; the PRs closed themselves).
+- **3.17.1:** the relay moved to `atlas-sync.nms-os.workers.dev`. The owner renames the workers.dev subdomain, then the commit is pushed straight away.
+- **3.18.0:** Best crafts (Calculators, and the MCP `best_crafts` tool), the first recommendation. The MCP server is packaged for npm as `nms-atlas-mcp` (MIT, data downloaded from the live site and cached). Publishing waits for the owner's `npm login`.
+- The owner's five notes are in `~/Documents/ATLAS notes/`, for Notes → Import .md.
+
 **Sync shipped in 3.10.0** (ADR-0005; the owner approved the design and its Data Privacy gate on 2026-10-27). The relay runs at `https://atlas-sync.nms-os.workers.dev` on the owner's Cloudflare account. It's deployed from a developer machine with `wrangler deploy` in `apps/sync` (`docs/deploy.md`).
 
 More's Support row links to the owner's Ko-fi page (3.11.0).
