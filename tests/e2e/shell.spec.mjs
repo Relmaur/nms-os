@@ -15,8 +15,8 @@ test('on a phone, the search opens full screen, finds a system and opens it', as
     .locator('#globalSearchResults')
     .getByRole('option', { name: /Ekwa Nexus/ })
     .click();
-  await expect(page).toHaveURL(/#systems$/);
-  await expect(page.locator('#systemPanelTitle')).toHaveText('Ekwa Nexus');
+  await expect(page).toHaveURL(/#system\/sys-ekwa$/);
+  await expect(page.locator('#systemTitle')).toHaveText('Ekwa Nexus');
   await expect(input).toBeHidden();
 });
 

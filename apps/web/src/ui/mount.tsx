@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { Home } from './home/Home.tsx';
 import { Systems } from './systems/Systems.tsx';
 import { SystemPanel } from './systems/SystemPanel.tsx';
+import { SystemDetails } from './systems/SystemDetails.tsx';
 import { Outlaw } from './outlaw/Outlaw.tsx';
 import { Calculators } from './calculators/Calculators.tsx';
 import { Guides } from './guides/Guides.tsx';
@@ -41,6 +42,7 @@ const FRAME: [string, ReactNode][] = [
 const SCREENS: [string, ReactNode][] = [
   ['homeRoot', <Home />],
   ['systemsRoot', <Systems />],
+  ['systemDetailRoot', <SystemDetails />],
   ['outlawRoot', <Outlaw />],
   ['calculatorsRoot', <Calculators />],
   ['systemPanelRoot', <SystemPanel />],

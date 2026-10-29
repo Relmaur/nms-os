@@ -30,6 +30,10 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
   - Warp back lists systems with their star.
   - On phones Home has its own header: the wordmark, sync's state when sync is on, timers and Settings.
   - The outlaw stations move to Runs, the fleet to Log › Fleet, and Keep screen on stays in Settings. Notes pinned to Home still show.
+- **A system has its own screen** (`#system/<id>`, so a system can be linked and Back returns where you were). Its orbit diagram leads, with planets numbered and your base labelled; then "You are here", what the game shows (with "Not logged" where you haven't), the portal address (Add opens the editor; Copy once logged), the planets, the journal (your notes and every visit) and **Log a visit** with **Share**.
+  - Planets are added and edited there: "+ Add planet" ends the list and a tap on a planet opens it in a sheet, with tap-to-arm Delete.
+  - Your rating moves to the editor ("Your rating"); the screen shows it.
+  - Following the new design (owner, 2026-10-28), the screen no longer edits notes inline (the editor does), shows tags, takes a note or packet run with a visit, deletes visits, or deletes the system. These wait for a later design round.
 - **Systems is redesigned.**
   - A system with its star or planets logged draws its orbit strip; one without stays a compact card with its notes. The system you're in says "You are here".
   - Under the title: systems, planets, visits and the galaxy ("2 systems · 5 planets · 1 visit · Euclid").

@@ -77,8 +77,7 @@ test('an old Logbook save migrates into Systems', async ({ page }) => {
   await expect(page.locator('#systemList')).toContainText('Old Camp');
   // Migration runs in memory on every load; the stored copy drops the legacy key on the next save.
   await page.locator('#systemList').getByText('Old Camp').click();
-  await page.locator('#visitNote').fill('Back again');
-  await page.locator('#visitNote').press('Enter');
+  await page.getByRole('button', { name: 'Log a visit' }).click();
   await expect(page.locator('#toastMessage')).toHaveText('Logged a visit to Old Camp.');
   const state = await storedState(page);
   expect(state.logbook).toBeUndefined();

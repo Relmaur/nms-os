@@ -518,18 +518,18 @@ label,
     linear-gradient(90deg, var(--color-orbit-grid) 1px, transparent 1px);
   background-size: 22px 22px;
 }
-/* Below lg, rebuilt screens (Home, Systems) draw their own header, so the app's is hidden there; it comes back while
+/* Below lg, rebuilt screens (Home, Systems, System detail) draw their own header, so the app's is hidden there; it comes back while
    the search is open, since the search lives in it. */
 @media (max-width: 1023px) {
-  body:is([data-section='home'], [data-section='systems']):not(.search-open) .app-header {
+  body:is([data-section='home'], [data-section='systems'], [data-section='system']):not(.search-open) .app-header {
     display: none;
   }
   /* Home shows timers as cards, so the session bar appears there (and on Systems) only while a session is live
      ("tap the bar to stop"), sticking at the top since the header is hidden. */
-  body:is([data-section='home'], [data-section='systems']) #sessionBarRoot {
+  body:is([data-section='home'], [data-section='systems'], [data-section='system']) #sessionBarRoot {
     top: calc(env(safe-area-inset-top) + 0.5rem);
   }
-  body:is([data-section='home'], [data-section='systems']) #sessionBarRoot:not(:has([data-live='true'])) {
+  body:is([data-section='home'], [data-section='systems'], [data-section='system']) #sessionBarRoot:not(:has([data-live='true'])) {
     display: none;
   }
 }

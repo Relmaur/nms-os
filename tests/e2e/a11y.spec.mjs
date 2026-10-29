@@ -3,11 +3,11 @@
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect, holdToStartSession } from './fixtures.mjs';
 
-const openPanel = page => page.locator('#systemList').getByText('Ekwa Nexus').click();
 const openEditor = async page => {
-  await openPanel(page);
+  await page.locator('#systemList').getByText('Ekwa Nexus').click();
   await page.getByRole('button', { name: 'Edit system' }).click();
 };
+const openPlanet = page => page.getByRole('button', { name: /^Add planet/ }).click();
 
 const tickHalf = async page => {
   const tiles = await page.locator('#planHold label').all();
@@ -53,7 +53,8 @@ for (const [name, path, ready, region, setup] of [
   ['Session recap', './', '#homeNow', '#sessionSheet', showRecap],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
-  ['System panel', './#systems', '#systemNotes', '#systemPanel', openPanel],
+  ['System detail', './#system/sys-ekwa', '#systemTitle', '#sec-system'],
+  ['Planet sheet', './#system/sys-ekwa', '#systemTitle', '#planetSheet', openPlanet],
   ['System editor', './#systems', '#systemEditor', '#systemPanel', openEditor],
   ['Calculators', './#calculators', '#planHold', '#sec-calculators'],
   ['Guides', './#guides', '#guidesList a >> nth=0', '#sec-guides'],

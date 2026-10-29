@@ -1,426 +1,424 @@
-// A system in the panel: quick visit logging, rating, tags, notes (autosaved), facts, planets, the visit journal.
-import { useCallback, useEffect, useRef, useState, type SubmitEvent, type ReactNode } from 'react';
-import { formatAgo, formatDate } from '@atlas/core/format';
-import { systemMeta } from '@atlas/core/systems-list';
-import {
-  CONFLICT_LEVELS,
-  OUTLAW_TAG,
-  RACES,
-  STAR_CLASSES,
-  outlawStatus,
-  type Planet,
-  type System
-} from '@atlas/core/systems-model';
-import { appState, onAdopt, persistState } from '../../app/store.ts';
-import {
-  deletePlanet,
-  deleteSystem,
-  deleteVisit,
-  logVisit,
-  saveNotes,
-  savePlanet,
-  setRating,
-  toggleFavorite
-} from '../actions.ts';
+// System detail (design 03): a system's own screen at #system/<id>. Its orbit diagram (XL, the side view) leads,
+// then what the game shows, the portal address, the planets, the journal (your notes and visits), and Log a visit.
+// The rest is edited in the editor sheet (06). Planets are added and edited here, in a sheet of their own: the
+// design has no other place for them, and the orbit diagram draws from them.
+import { useCallback, useEffect, useRef, useState, type ReactNode, type SubmitEvent } from 'react';
+import { biomeFamily } from '@atlas/core/facts';
+import { homeSummary } from '@atlas/core/home';
+import { systemOrbit } from '@atlas/core/orbit';
+import { CONFLICT_LEVELS, RACES, STAR_CLASSES, lastVisit, type Planet, type System } from '@atlas/core/systems-model';
+import { showToast } from '../../app/ui.ts';
+import { deletePlanet, logVisit, savePlanet, toggleFavorite } from '../actions.ts';
+import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
-import { GlyphChip, MetaLine, OutlawPill, StarDot, TagChip, WealthStars } from '../parts/SystemBits.tsx';
-import { closeSystemPanel, dismissSystemPanel, filterByTag, openSystemEditor } from './panel-store.ts';
-import { SheetGrab } from '../parts/Sheet.tsx';
+import { loadFacts, useFacts } from '../gear/facts-store.ts';
+import { goBack, useSectionParam } from '../shell/section-store.ts';
+import { Button } from '../parts/Button.tsx';
+import { ArmButton } from '../parts/Gesture.tsx';
+import { SheetGrab, useSheetDrag, useSheetOpen } from '../parts/Sheet.tsx';
+import { OrbitDiagram, PlanetMarker } from '../parts/StarChart.tsx';
+import { openSystemEditor } from './panel-store.ts';
 
-const ICON_BUTTON = 'w-9 h-9 rounded-xl flex items-center justify-center';
-const ARMED = 'px-2 text-xs font-semibold text-rose-200 bg-rose-500/15 border border-rose-500/50';
+const HERO_BUTTON =
+  'w-10 h-10 rounded-control bg-[rgba(5,8,17,0.7)] border border-hairline grid place-items-center text-ink hover:border-control-edge transition-colors duration-[var(--duration-micro)]';
+const LABEL = 'text-label uppercase text-ink-label';
+const SECTION_TITLE = 'font-display text-sm font-bold tracking-[0.04em] text-ink-bright';
 
-// Deletes take two taps: the first arms the button ("Delete?") for a few seconds.
-function useArmedDelete(): [string | null, (key: string) => boolean] {
-  const [armed, setArmed] = useState<string | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(
-    () => () => {
-      clearTimeout(timer.current);
-    },
-    []
-  );
-  const confirm = useCallback(
-    (key: string) => {
-      clearTimeout(timer.current);
-      if (armed === key) {
-        setArmed(null);
-        return true;
-      }
-      setArmed(key);
-      timer.current = setTimeout(() => {
-        setArmed(null);
-      }, 4000);
-      return false;
-    },
-    [armed]
-  );
-  return [armed, confirm];
-}
-
-export function SystemDetails({ system, open }: { system: System; open: boolean }) {
+export function SystemDetails() {
+  const state = useAppState();
   const now = useNow();
-  const [armed, confirmDelete] = useArmedDelete();
-  const [editingPlanet, setEditingPlanet] = useState<string | null>(null); // a planet id, or 'new'
-  const outlaw = system.tags.includes(OUTLAW_TAG);
-  const status = outlaw ? outlawStatus(system, appState.outlaw.restockHours, now) : null;
-  const meta = systemMeta(system);
-  const facts: [string, ReactNode][] = [
-    ['Galaxy', system.galaxy],
-    ['Region', system.region],
-    ['Portal glyphs', system.glyphs ? <GlyphChip glyphs={system.glyphs} /> : null],
-    [
-      'Star',
-      system.star ? (
-        <span className="inline-flex items-center gap-2">
-          <StarDot system={system} />
-          {STAR_CLASSES[system.star].label}
-        </span>
-      ) : null
-    ],
-    ['Dominant race', system.race ? RACES[system.race] : null],
-    [
-      'Economy',
-      system.economy || system.wealth ? (
-        <>
-          {system.economy}
-          {system.economy && system.wealth ? ' ' : null}
-          <WealthStars wealth={system.wealth} />
-        </>
-      ) : null
-    ],
-    ['Conflict', system.conflict ? CONFLICT_LEVELS[system.conflict] : null],
-    ['First logged', formatDate(system.createdAt)]
-  ];
-  const shownFacts = facts.filter(([, value]) => value !== null && value !== '');
-
-  const logFromPanel = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const note = form.querySelector<HTMLInputElement>('#visitNote')?.value.trim() ?? '';
-    const packetRun = form.querySelector<HTMLInputElement>('#visitPackets')?.checked ?? false;
-    form.reset();
-    logVisit(system.id, { note, packetRun });
+  const id = useSectionParam();
+  const facts = useFacts();
+  // The planet stays set while the sheet slides closed, so its title doesn't flip mid-animation.
+  const [planetSheet, setPlanetSheet] = useState({ open: false, planetId: null as string | null, session: 0 });
+  const closePlanet = useCallback(() => {
+    setPlanetSheet(sheet => ({ ...sheet, open: false }));
+  }, []);
+  useEffect(() => {
+    void loadFacts(); // biome families, for the planets' colours
+  }, []);
+  const system = state.systems.find(item => item.id === id);
+  if (!system) {
+    return (
+      <div className="flex flex-col items-start gap-section pt-[env(safe-area-inset-top)]">
+        <h1 className="font-display text-screen-title text-ink-bright">System not found</h1>
+        <p className="text-sub text-ink-muted">It may have been deleted, or the link is from another device’s log.</p>
+        <Button
+          onClick={() => {
+            location.hash = '#systems';
+          }}
+        >
+          All systems
+        </Button>
+      </div>
+    );
+  }
+  const current = homeSummary(state, now).current;
+  const here = current?.id === system.id && lastVisit(system) !== undefined;
+  const orbit = systemOrbit(system, biome => biomeFamily(facts, biome));
+  const place = [system.region, system.galaxy].filter(Boolean).join(' · ');
+  const openPlanet = (planetId: string | null) => {
+    setPlanetSheet(sheet => ({ open: true, planetId, session: sheet.session + 1 }));
   };
 
   return (
-    <>
-      <div
-        data-sheet-grab
-        className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4 space-y-3"
+    <div className="flex flex-col gap-section max-w-2xl">
+      <section
+        aria-label="Orbit diagram"
+        className="relative h-[300px] -mx-4 -mt-5 sm:-mx-6 sm:-mt-6 lg:mx-0 lg:mt-0 lg:rounded-hero overflow-hidden bg-[linear-gradient(180deg,var(--color-panel)_0%,var(--color-void)_100%)]"
       >
-        <SheetGrab onClose={dismissSystemPanel} />
-        <div className="flex items-start gap-3">
-          <span className="mt-2">
-            <StarDot system={system} size="w-3.5 h-3.5" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <h2 id="systemPanelTitle" className="font-display font-bold text-xl text-white leading-snug break-words">
-              {system.name}
-            </h2>
-            <p className="text-xs text-slate-400 mt-1">{meta.length ? <MetaLine parts={meta} /> : 'No details yet'}</p>
-          </div>
+        <div className="absolute inset-0 hero-grid" aria-hidden="true" />
+        <div className="absolute inset-0">
+          <OrbitDiagram
+            name={system.name}
+            seed={orbit.seed}
+            star={system.star}
+            planets={orbit.planets}
+            width={390}
+            height={300}
+            size="XL"
+            labels
+            numerals
+            insetTop={72} // the back, favourite and edit buttons sit over the top of the frame
+            grid={false}
+          />
+        </div>
+        <div className="absolute inset-x-0 top-0 px-4 pt-header-top lg:pt-4 flex justify-between">
           <button
             type="button"
             onClick={() => {
-              toggleFavorite(system.id);
+              goBack('systems');
             }}
-            aria-pressed={system.favorite}
-            aria-label={system.favorite ? 'Remove from favourites' : 'Add to favourites'}
-            className={`${ICON_BUTTON} ${system.favorite ? 'text-amber-300' : 'text-slate-400 hover:text-white'} hover:bg-slate-900`}
+            aria-label="Back"
+            className={HERO_BUTTON}
           >
-            <i className={`${system.favorite ? 'ph-fill' : 'ph-bold'} ph-star text-lg`} />
+            <i className="ph-bold ph-caret-left text-lg" aria-hidden="true" />
           </button>
-          {'share' in navigator ? (
+          <span className="flex gap-2">
             <button
               type="button"
               onClick={() => {
-                shareSystem(system);
+                toggleFavorite(system.id);
               }}
-              aria-label="Share system"
-              className={`${ICON_BUTTON} text-slate-400 hover:text-white hover:bg-slate-900`}
+              aria-pressed={system.favorite}
+              aria-label="Favourite"
+              className={`${HERO_BUTTON} ${system.favorite ? 'text-units-amber-text' : 'text-ink-muted'}`}
             >
-              <i className="ph-bold ph-share-network text-lg" />
+              <i className={`${system.favorite ? 'ph-fill' : 'ph-bold'} ph-star text-lg`} aria-hidden="true" />
             </button>
-          ) : null}
-          <button
-            type="button"
-            onClick={() => {
-              openSystemEditor(system.id);
-            }}
-            aria-label="Edit system"
-            className={`${ICON_BUTTON} text-slate-400 hover:text-white hover:bg-slate-900`}
-          >
-            <i className="ph-bold ph-pencil-simple text-lg" />
-          </button>
-          <button
-            type="button"
-            onClick={closeSystemPanel}
-            aria-label="Close"
-            className="hidden md:flex w-9 h-9 -mr-1.5 rounded-xl items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
-          >
-            <i className="ph-bold ph-x text-lg" />
-          </button>
-        </div>
-        <form onSubmit={logFromPanel} className="flex flex-wrap items-center gap-2">
-          <input
-            id="visitNote"
-            type="text"
-            maxLength={300}
-            placeholder="Visit note (optional)"
-            aria-label="Visit note (optional)"
-            className="flex-1 min-w-[10rem] h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base sm:text-sm text-white"
-          />
-          {outlaw ? (
-            <label className="flex items-center gap-2 h-10 px-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200">
-              <input id="visitPackets" type="checkbox" defaultChecked className="accent-emerald-400" />
-              Packet run
-            </label>
-          ) : null}
-          <button
-            type="submit"
-            className="h-10 px-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold flex items-center gap-1.5"
-          >
-            <i className="ph-bold ph-map-pin" />
-            Log visit
-          </button>
-        </form>
-      </div>
-
-      <div className="px-5 py-5 space-y-8">
-        {status ? (
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300">
-            <OutlawPill status={status} />
-            <span>
-              {status.tone === 'wait' ? 'Contraband Agent restocking.' : 'Contraband Agent should be stocked.'}
-            </span>
-          </div>
-        ) : null}
-
-        <section className="space-y-2">
-          <div className="flex items-center justify-between">
-            <h3 className="panel-heading">Your rating</h3>
-            <span className="flex">
-              {[1, 2, 3, 4, 5].map(n => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => {
-                    setRating(system.id, n);
-                  }}
-                  aria-label={`Rate ${n} of 5`}
-                  className={`w-8 h-8 flex items-center justify-center ${n <= system.rating ? 'text-amber-300' : 'text-slate-600 hover:text-slate-400'}`}
-                >
-                  <i className={`${n <= system.rating ? 'ph-fill' : 'ph-bold'} ph-star`} />
-                </button>
-              ))}
-            </span>
-          </div>
-          {system.tags.length ? (
-            <div className="flex flex-wrap gap-1.5">
-              {system.tags.map(tag => (
-                <TagChip
-                  key={tag}
-                  tag={tag}
-                  onClick={() => {
-                    filterByTag(tag);
-                  }}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs text-slate-400">No tags yet. Use edit to add some.</p>
-          )}
-        </section>
-
-        <Notes system={system} open={open} />
-
-        {shownFacts.length ? (
-          <section className="space-y-2">
-            <h3 className="panel-heading">System</h3>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-              {shownFacts.map(([label, value]) => (
-                <div key={label} className="contents">
-                  <dt className="text-slate-400">{label}</dt>
-                  <dd className="text-slate-100 min-w-0">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        ) : null}
-
-        <section className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="panel-heading">
-              Planets <span className="font-mono font-normal text-slate-400">{system.planets.length}</span>
-            </h3>
-            {editingPlanet === 'new' ? null : (
-              <button
-                type="button"
-                onClick={() => {
-                  setEditingPlanet('new');
-                }}
-                className="text-xs font-medium text-emerald-300 hover:text-emerald-200 flex items-center gap-1"
-              >
-                <i className="ph-bold ph-plus" />
-                Add planet
-              </button>
-            )}
-          </div>
-          {editingPlanet === 'new' ? (
-            <PlanetForm
-              systemId={system.id}
-              onDone={() => {
-                setEditingPlanet(null);
+            <button
+              type="button"
+              onClick={() => {
+                openSystemEditor(system.id);
               }}
-            />
-          ) : null}
-          <ul className="space-y-2">
-            {system.planets.map(planet =>
-              editingPlanet === planet.id ? (
-                <li key={planet.id}>
-                  <PlanetForm
-                    systemId={system.id}
-                    planet={planet}
-                    onDone={() => {
-                      setEditingPlanet(null);
-                    }}
-                  />
-                </li>
-              ) : (
-                <li key={planet.id} className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="min-w-0">
-                      <strong className="text-sm text-white">{planet.name}</strong>{' '}
-                      {planet.biome ? <span className="text-xs text-slate-400">{planet.biome}</span> : null}
-                    </p>
-                    <span className="flex shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setEditingPlanet(planet.id);
-                        }}
-                        aria-label={`Edit ${planet.name}`}
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800"
-                      >
-                        <i className="ph-bold ph-pencil-simple" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (confirmDelete(`planet:${planet.id}`)) deletePlanet(system.id, planet.id);
-                        }}
-                        aria-label={`Delete ${planet.name}`}
-                        className={`h-8 ${armed === `planet:${planet.id}` ? ARMED : 'w-8 text-slate-400 hover:text-rose-300 hover:bg-slate-800'} rounded-lg flex items-center justify-center gap-1`}
-                      >
-                        <i className="ph-bold ph-trash" />
-                        {armed === `planet:${planet.id}` ? 'Delete?' : null}
-                      </button>
-                    </span>
-                  </div>
-                  {planet.tags.length ? (
-                    <div className="flex flex-wrap gap-1">
-                      {planet.tags.map(tag => (
-                        <TagChip key={tag} tag={tag} />
-                      ))}
-                    </div>
-                  ) : null}
-                  {planet.notes ? <p className="text-xs text-slate-300 whitespace-pre-line">{planet.notes}</p> : null}
-                </li>
-              )
-            )}
-          </ul>
-          {!system.planets.length && editingPlanet !== 'new' ? (
-            <p className="text-xs text-slate-400">
-              No planets logged. Add the ones with bases, hotspots, crash sites or anything else worth finding again.
-            </p>
-          ) : null}
-        </section>
+              aria-label="Edit system"
+              className={HERO_BUTTON}
+            >
+              <i className="ph-bold ph-pencil-simple text-lg" aria-hidden="true" />
+            </button>
+          </span>
+        </div>
+      </section>
 
-        <section className="space-y-3">
-          <h3 className="panel-heading">
-            Visit journal <span className="font-mono font-normal text-slate-400">{system.visits.length}</span>
-          </h3>
-          {system.visits.length ? (
-            <ol className="space-y-2">
-              {system.visits
-                .map((visit, index) => ({ visit, index }))
-                .reverse()
-                .map(({ visit, index }) => {
-                  const key = `visit:${system.id}:${index}`;
-                  return (
-                    <li
-                      key={`${visit.at}-${index}`}
-                      className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800"
-                    >
-                      <i className="ph-bold ph-map-pin text-emerald-300 mt-0.5" />
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs text-slate-400">
-                          <time dateTime={visit.at}>{formatDate(visit.at)}</time>
-                          {` · ${formatAgo(visit.at, now)}${visit.packets ? ' · ' : ''}`}
-                          {visit.packets ? (
-                            <>
-                              <span className="text-emerald-300">{visit.packets} packets</span>
-                            </>
-                          ) : null}
-                        </p>
-                        {visit.note ? (
-                          <p className="text-sm text-slate-200 mt-0.5 whitespace-pre-line">{visit.note}</p>
-                        ) : null}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (confirmDelete(key)) deleteVisit(system.id, index);
-                        }}
-                        aria-label="Delete this visit"
-                        className={`h-8 ${armed === key ? ARMED : 'w-8 text-slate-500 hover:text-rose-300 hover:bg-slate-800'} rounded-lg flex items-center justify-center gap-1 shrink-0`}
-                      >
-                        <i className="ph-bold ph-x" />
-                        {armed === key ? 'Delete?' : null}
-                      </button>
-                    </li>
-                  );
-                })}
-            </ol>
-          ) : (
-            <p className="text-xs text-slate-400">
-              No visits yet. “Log visit” records today’s date and an optional note.
-            </p>
-          )}
-        </section>
+      <header className="relative -mt-[42px] flex flex-col gap-title-sub">
+        {here && (
+          <span className="self-start h-6 px-2.5 rounded-full bg-units-amber-tint text-units-amber-text text-[11px] font-bold tracking-[0.12em] uppercase inline-flex items-center">
+            You are here
+          </span>
+        )}
+        <h1 id="systemTitle" className="font-display text-[28px] font-extrabold leading-[1.1] text-ink-bright break-words">
+          {system.name}
+        </h1>
+        {place && <p className="text-sub text-ink-muted">{place}</p>}
+      </header>
 
-        <section className="pt-4 border-t border-slate-800">
-          <button
-            type="button"
-            onClick={() => {
-              if (!confirmDelete(`system:${system.id}`)) return;
-              closeSystemPanel();
-              deleteSystem(system.id);
-            }}
-            className={`h-9 px-3 rounded-lg border ${armed === `system:${system.id}` ? 'bg-rose-500/15 border-rose-500/60 text-rose-200 font-semibold' : 'border-slate-700 text-slate-400 hover:text-rose-300 hover:border-rose-500/40'} text-xs flex items-center gap-2`}
-          >
-            <i className="ph-bold ph-trash" />
-            {armed === `system:${system.id}` ? 'Click again to delete this system' : 'Delete system'}
-          </button>
-        </section>
+      <Facts system={system} />
+      <PortalAddress system={system} />
+
+      <section aria-labelledby="planetsTitle" className="flex flex-col gap-2">
+        <h2 id="planetsTitle" className={SECTION_TITLE}>
+          Planets · {system.planets.length}
+        </h2>
+        <ul className="rounded-card bg-panel border border-hairline divide-y divide-hairline overflow-hidden">
+          {system.planets.map(planet => (
+            <li key={planet.id}>
+              <PlanetRow
+                planet={planet}
+                family={biomeFamily(facts, planet.biome)}
+                onOpen={() => {
+                  openPlanet(planet.id);
+                }}
+              />
+            </li>
+          ))}
+          <li>
+            <button
+              type="button"
+              onClick={() => {
+                openPlanet(null);
+              }}
+              className="w-full min-h-14 px-3.5 flex items-center gap-3 text-left text-sub text-ink-muted hover:text-ink hover:bg-slate-ground transition-colors duration-[var(--duration-micro)]"
+            >
+              <span className="w-10 h-10 rounded-full border border-dashed border-grab grid place-items-center shrink-0">
+                <i className="ph-bold ph-plus" aria-hidden="true" />
+              </span>
+              {system.planets.length ? 'Add planet' : 'Add planet: the ones with bases, hotspots or crash sites'}
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <Journal system={system} />
+
+      <div className="grid grid-cols-[2fr_1fr] gap-2">
+        <Button
+          variant="primary"
+          icon="ph-check"
+          onClick={() => {
+            logVisit(system.id);
+          }}
+        >
+          Log a visit
+        </Button>
+        <Button
+          size="L"
+          onClick={() => {
+            shareSystem(system);
+          }}
+        >
+          Share
+        </Button>
       </div>
-    </>
+
+      <PlanetSheet
+        system={system}
+        open={planetSheet.open}
+        planet={system.planets.find(planet => planet.id === planetSheet.planetId)}
+        session={planetSheet.session}
+        onClose={closePlanet}
+      />
+    </div>
   );
 }
 
+const missing = <span className="text-ink-muted">Not logged</span>;
+const stars = (n: number, of: number) => (
+  <>
+    <span aria-hidden="true">
+      {'★'.repeat(n)}
+      <span className="text-control-edge">{'★'.repeat(of - n)}</span>
+    </span>
+    <span className="sr-only">
+      {n} of {of}
+    </span>
+  </>
+);
+
+// What the game shows, two to a row; anything not logged says so instead of being left out.
+function Facts({ system }: { system: System }) {
+  const cells: [string, ReactNode, string?][] = [
+    [
+      'Star',
+      system.star ? (
+        <span className="inline-flex items-center gap-1.5">
+          <span
+            className="w-2 h-2 rounded-full"
+            style={{ background: `var(--color-star-${system.star})` }}
+            aria-hidden="true"
+          />
+          {STAR_CLASSES[system.star].label}
+        </span>
+      ) : (
+        missing
+      )
+    ],
+    ['Race', system.race ? RACES[system.race] : missing],
+    ['Economy', system.economy || missing],
+    ['Wealth', system.wealth ? stars(system.wealth, 3) : missing, system.wealth ? 'text-units-amber-text' : ''],
+    ['Conflict', system.conflict ? CONFLICT_LEVELS[system.conflict] : missing],
+    ['Your rating', system.rating ? stars(system.rating, 5) : missing, system.rating ? 'text-units-amber-text' : '']
+  ];
+  return (
+    <dl className="grid grid-cols-2 gap-px rounded-card overflow-hidden bg-hairline border border-hairline">
+      {cells.map(([label, value, tone]) => (
+        <div key={label} className="bg-panel px-3 py-2.5 min-w-0">
+          <dt className={LABEL}>{label}</dt>
+          <dd className={`mt-[3px] text-row break-words ${tone || 'text-ink-bright'}`}>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+// Twelve slots for the address the portal dials; empty until logged, with Add opening the editor.
+function PortalAddress({ system }: { system: System }) {
+  const glyphs = system.glyphs;
+  return (
+    <section
+      aria-labelledby="portalTitle"
+      className={`rounded-card px-3.5 py-3 flex items-center justify-between gap-2.5 border ${glyphs ? 'border-hairline bg-panel' : 'border-dashed border-control-edge'}`}
+    >
+      <div className="flex flex-col gap-[7px] min-w-0">
+        <h2 id="portalTitle" className={LABEL}>
+          Portal address
+        </h2>
+        <div className="flex gap-[3px]" aria-hidden={!glyphs}>
+          {Array.from({ length: 12 }, (_, i) => (
+            <span
+              key={i}
+              className="w-[14px] h-5 rounded-[4px] bg-slate-ground border border-hairline grid place-items-center font-mono text-[11px] text-quantity-cyan"
+            >
+              {glyphs[i] ?? ''}
+            </span>
+          ))}
+        </div>
+        {!glyphs && <span className="sr-only">Not logged</span>}
+      </div>
+      {glyphs ? (
+        <Button
+          variant="jump"
+          size="S"
+          onClick={() => {
+            copyText(glyphs, `Copied the portal address ${glyphs}.`);
+          }}
+        >
+          Copy
+        </Button>
+      ) : (
+        <Button
+          variant="jump"
+          size="S"
+          onClick={() => {
+            openSystemEditor(system.id);
+          }}
+        >
+          Add
+        </Button>
+      )}
+    </section>
+  );
+}
+
+function PlanetRow({ planet, family, onOpen }: { planet: Planet; family: string | null; onOpen: () => void }) {
+  const base = planet.tags.includes('base');
+  const note = planet.notes.split('\n').find(line => line.trim());
+  const sub = [planet.biome, note ? `“${note.trim()}”` : ''].filter(Boolean).join(' · ');
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="w-full px-3.5 py-3 flex items-center gap-3 text-left hover:bg-slate-ground transition-colors duration-[var(--duration-micro)]"
+    >
+      <span className="w-10 h-10 grid place-items-center shrink-0">
+        <PlanetMarker family={family} size={base ? 26 : 20} base={base} />
+      </span>
+      <span className="flex-1 min-w-0">
+        <span className="block text-row font-semibold text-ink-bright break-words">{planet.name}</span>
+        {sub && <span className="block text-caption text-ink-muted line-clamp-2">{sub}</span>}
+      </span>
+      {base && (
+        <span className="h-[22px] px-2 rounded-full bg-scanner-cyan-tint text-quantity-cyan text-pill uppercase inline-flex items-center shrink-0">
+          Base
+        </span>
+      )}
+    </button>
+  );
+}
+
+const visitDay = (iso: string) => {
+  const at = new Date(iso);
+  return `${at.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })} · ${at.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}`;
+};
+
+// Your notes, then every visit, newest first.
+function Journal({ system }: { system: System }) {
+  const visits = [...system.visits].reverse();
+  const notes = system.notes.trim();
+  return (
+    <section aria-labelledby="journalTitle" className="flex flex-col gap-2">
+      <h2 id="journalTitle" className={SECTION_TITLE}>
+        Journal
+      </h2>
+      <div className="rounded-card bg-panel border border-hairline p-3.5 flex flex-col gap-2.5">
+        {notes ? (
+          <p className="text-row text-ink whitespace-pre-line break-words">{notes}</p>
+        ) : (
+          <p className="text-sub text-ink-muted">No notes yet. Edit the system to add some.</p>
+        )}
+        <ol className="flex flex-col gap-2 pt-2.5 border-t border-hairline">
+          {visits.length ? (
+            visits.map((visit, i) => (
+              <li key={`${visit.at}-${String(i)}`} className="flex items-baseline gap-2.5 flex-wrap">
+                <span
+                  className={`w-2 h-2 rounded-full self-center ${i ? 'bg-control-edge' : 'bg-scanner-cyan-glow'}`}
+                  aria-hidden="true"
+                />
+                <time dateTime={visit.at} className="font-mono text-caption text-ink-soft">
+                  {visitDay(visit.at)}
+                </time>
+                <span className="text-caption text-ink-muted">
+                  Visited{visit.packets ? ` · ${String(visit.packets)} packets` : ''}
+                </span>
+                {visit.note && <span className="basis-full pl-[18px] text-caption text-ink-soft">{visit.note}</span>}
+              </li>
+            ))
+          ) : (
+            <li className="text-caption text-ink-muted">No visits yet. Log a visit when you’re here.</li>
+          )}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+// Falls back to the clipboard where the share sheet isn't available (most desktops); the design's share sheet (23)
+// replaces this.
 function shareSystem(system: System) {
   const text = [
     system.name,
     [system.region, system.galaxy].filter(Boolean).join(' · '),
-    system.glyphs ? `Portal glyphs: ${system.glyphs}` : ''
+    system.glyphs ? `Portal address: ${system.glyphs}` : ''
   ]
     .filter(Boolean)
     .join('\n');
-  navigator.share({ title: system.name, text }).catch(() => undefined); // dismissing the share sheet rejects
+  if ('share' in navigator) navigator.share({ title: system.name, text }).catch(() => undefined); // dismissing rejects
+  else copyText(text, `Copied ${system.name} to share.`);
 }
 
-function PlanetForm({ systemId, planet, onDone }: { systemId: string; planet?: Planet; onDone: () => void }) {
+function copyText(text: string, done: string) {
+  ('clipboard' in navigator ? navigator.clipboard.writeText(text) : Promise.reject(new Error('no clipboard')))
+    .then(() => {
+      showToast(done);
+    })
+    .catch(() => {
+      showToast(text);
+    });
+}
+
+const SHEET_LAYOUT = '(min-width: 0px)';
+const FIELD =
+  'w-full h-12 rounded-control border border-control-edge bg-slate-ground px-3.5 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:border-scanner-cyan-edge-strong focus:outline-hidden';
+
+// Adds or edits one planet: a bottom sheet on phones, a side panel from md up, like the editor.
+function PlanetSheet({
+  system,
+  planet,
+  open,
+  session,
+  onClose
+}: {
+  system: System;
+  planet: Planet | undefined;
+  open: boolean;
+  session: number;
+  /** Stable (useCallback): the sheet's open effect depends on it. */
+  onClose: () => void;
+}) {
+  const sheet = useRef<HTMLDivElement>(null);
+  const title = useRef<HTMLHeadingElement>(null);
+  useSheetDrag(sheet, onClose);
+  useSheetOpen(open, onClose, { layout: SHEET_LAYOUT, focus: title });
+
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -429,147 +427,103 @@ function PlanetForm({ systemId, planet, onDone }: { systemId: string; planet?: P
       return typeof value === 'string' ? value : '';
     };
     if (!field('name').trim()) return;
-    onDone();
-    savePlanet(systemId, planet?.id ?? null, {
+    savePlanet(system.id, planet?.id ?? null, {
       name: field('name'),
       biome: field('biome'),
       tags: field('tags'),
       notes: field('notes')
     });
-  };
-  const input = 'h-10 bg-slate-950 border border-slate-700 rounded-lg px-3 text-base sm:text-sm text-white';
-  return (
-    <form onSubmit={submit} className="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 space-y-2.5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <input
-          name="name"
-          required
-          maxLength={80}
-          defaultValue={planet?.name ?? ''}
-          placeholder="Planet name *"
-          aria-label="Planet name"
-          autoFocus
-          className={input}
-        />
-        <input
-          name="biome"
-          list="biomeOptions"
-          maxLength={40}
-          defaultValue={planet?.biome ?? ''}
-          placeholder="Biome (e.g. Paradise)"
-          aria-label="Biome"
-          className={input}
-        />
-      </div>
-      <input
-        name="tags"
-        maxLength={200}
-        defaultValue={planet?.tags.join(', ') ?? ''}
-        placeholder="Tags, comma separated (e.g. base, oxygen-hotspot)"
-        aria-label="Planet tags"
-        className={`w-full ${input}`}
-      />
-      <textarea
-        name="notes"
-        rows={2}
-        maxLength={1000}
-        defaultValue={planet?.notes ?? ''}
-        placeholder="Notes"
-        aria-label="Planet notes"
-        className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-base sm:text-sm text-white"
-      />
-      <div className="flex justify-end gap-2">
-        <button
-          type="button"
-          onClick={onDone}
-          className="h-9 px-3 rounded-lg border border-slate-700 text-xs text-slate-300 hover:bg-slate-800"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="h-9 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold"
-        >
-          {planet ? 'Save planet' : 'Add planet'}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-// Notes typed but not yet saved. Kept outside React so the hook below can carry them into another tab's copy
-// when that copy is adopted mid-typing: writing a stale textarea later would overwrite newer notes instead.
-let pending: { systemId: string; text: string } | null = null;
-
-onAdopt(() => {
-  if (!pending) return;
-  const system = appState.systems.find(item => item.id === pending?.systemId);
-  if (system && system.notes !== pending.text) {
-    system.notes = pending.text;
-    persistState();
-  }
-  pending = null;
-});
-
-// Saves the typed notes, if any: true once stored, false if storage failed, null when nothing was typed.
-function savePending(): boolean | null {
-  const typed = pending;
-  pending = null;
-  if (!typed || typed.text === appState.systems.find(item => item.id === typed.systemId)?.notes) return null;
-  return saveNotes(typed.systemId, typed.text);
-}
-
-// The notes show what's stored until the person types; their draft autosaves 800 ms after the last keystroke,
-// on blur, and when the panel closes or moves to another system.
-function Notes({ system, open }: { system: System; open: boolean }) {
-  const [draft, setDraft] = useState<string | null>(null);
-  const [status, setStatus] = useState('');
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-
-  const flush = () => {
-    clearTimeout(timer.current);
-    setDraft(null);
-    const saved = savePending();
-    if (saved !== null) setStatus(saved ? 'Saved' : 'Not saved');
+    onClose();
   };
 
-  useEffect(() => {
-    if (!open) savePending();
-  }, [open]);
-  useEffect(
-    () => () => {
-      clearTimeout(timer.current);
-      savePending();
-    },
-    []
-  );
-
   return (
-    <section className="space-y-2">
-      <div className="flex items-center justify-between">
-        <h3 className="panel-heading">
-          <label htmlFor="systemNotes">Notes</label>
-        </h3>
-        <span id="notesStatus" className="text-[11px] text-slate-400">
-          {status}
-        </span>
-      </div>
-      <textarea
-        id="systemNotes"
-        rows={5}
-        value={draft ?? system.notes}
-        onChange={event => {
-          const text = event.target.value;
-          pending = { systemId: system.id, text };
-          setDraft(text);
-          setStatus('Editing…');
-          clearTimeout(timer.current);
-          timer.current = setTimeout(flush, 800);
-        }}
-        onBlur={flush}
-        placeholder="Anything worth remembering: what's here, what to do next time, who to talk to…"
-        className="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-base sm:text-sm leading-relaxed text-white focus:outline-hidden resize-y"
+    <>
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 z-[55] bg-scrim backdrop-blur-[2px] transition-opacity duration-200 ${open ? '' : 'opacity-0 pointer-events-none'}`}
       />
-    </section>
+      <div
+        ref={sheet}
+        id="planetSheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="planetSheetTitle"
+        aria-hidden={!open}
+        inert={!open}
+        className={`fixed z-[56] flex flex-col bg-slate-deep border-control-edge transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] inset-x-0 bottom-0 max-h-[92dvh] rounded-t-sheet border-t ${open ? '' : 'translate-y-full'} md:inset-x-auto md:right-0 md:top-0 md:bottom-0 md:max-h-none md:w-[min(28rem,92vw)] md:rounded-none md:border-t-0 md:border-l md:translate-y-0 ${open ? '' : 'md:translate-x-full'}`}
+      >
+        <form
+          key={session}
+          onSubmit={submit}
+          className="flex-1 overflow-y-auto overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] md:pb-6 flex flex-col gap-4"
+        >
+          <div data-sheet-grab className="sticky top-0 z-10 -mx-5 px-5 pt-3 md:pt-5 pb-1 bg-slate-deep">
+            <SheetGrab onClose={onClose} label="Close planet" />
+            <h2
+              ref={title}
+              id="planetSheetTitle"
+              tabIndex={-1}
+              className="font-display text-lg font-bold text-ink-bright focus:outline-hidden"
+            >
+              {planet ? 'Edit planet' : 'Add planet'}
+            </h2>
+            <p className="text-sub text-ink-muted mt-1">{system.name}</p>
+          </div>
+          <label className="flex flex-col gap-1.5 text-caption text-ink-muted">
+            Name
+            <input name="name" required maxLength={80} defaultValue={planet?.name ?? ''} className={FIELD} />
+          </label>
+          <label className="flex flex-col gap-1.5 text-caption text-ink-muted">
+            Biome
+            <input
+              name="biome"
+              list="biomeOptions"
+              maxLength={40}
+              defaultValue={planet?.biome ?? ''}
+              placeholder="e.g. Frozen"
+              className={FIELD}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5 text-caption text-ink-muted">
+            Tags
+            <input
+              name="tags"
+              maxLength={200}
+              defaultValue={planet?.tags.join(', ') ?? ''}
+              placeholder="base, oxygen-hotspot"
+              className={FIELD}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5 text-caption text-ink-muted">
+            Notes
+            <textarea
+              name="notes"
+              rows={3}
+              maxLength={1000}
+              defaultValue={planet?.notes ?? ''}
+              className={`${FIELD} h-auto py-3 leading-relaxed resize-y`}
+            />
+          </label>
+          <div className="grid grid-cols-[1fr_2fr] gap-2 mt-1">
+            <Button size="L" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit">
+              {planet ? 'Save planet' : 'Add planet'}
+            </Button>
+          </div>
+          {planet && (
+            <ArmButton
+              label="Delete planet"
+              armedLabel="Tap again to delete"
+              onConfirm={() => {
+                deletePlanet(system.id, planet.id);
+                onClose();
+              }}
+            />
+          )}
+        </form>
+      </div>
+    </>
   );
 }

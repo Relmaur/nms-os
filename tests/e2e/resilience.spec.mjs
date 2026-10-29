@@ -80,9 +80,10 @@ test('a second tab picks up the first tab’s save instead of overwriting it', a
   await other.close();
 });
 
-test('a failed notes autosave says "Not saved" and raises the banner', async ({ page }) => {
+test('a failed planet save raises the banner and keeps the planet on screen', async ({ page }) => {
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Ekwa Nexus').click();
+  await expect(page.locator('#systemTitle')).toHaveText('Ekwa Nexus');
   await page.evaluate(() => {
     const original = Storage.prototype.setItem;
     Storage.prototype.setItem = function (key, value) {
@@ -90,9 +91,12 @@ test('a failed notes autosave says "Not saved" and raises the banner', async ({ 
       return original.call(this, key, value);
     };
   });
-  await page.locator('#systemNotes').fill('Notes that cannot be stored');
-  await expect(page.locator('#notesStatus')).toHaveText('Not saved');
+  await page.getByRole('button', { name: /^Add planet/ }).click();
+  const sheet = page.locator('#planetSheet');
+  await sheet.getByRole('textbox', { name: 'Name' }).fill('Verdant IV');
+  await sheet.getByRole('button', { name: 'Add planet' }).click();
   await expect(page.locator('#storageBannerText')).toContainText('Not saved on this device');
+  await expect(page.locator('#sec-system')).toContainText('Verdant IV'); // kept in memory, offered for export
 });
 
 test('an unreadable copy is never overwritten when there is no room to keep it aside', async ({ page }) => {
@@ -139,44 +143,14 @@ test('a stored id crafted to inject script is refused, not run', async ({ page }
   expect(await page.evaluate(() => window.__pwned)).toBeUndefined();
 });
 
-test('notes being typed survive another tab’s save', async ({ page }) => {
+test('an open system follows another tab’s save', async ({ page }) => {
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Ekwa Nexus').click();
+  const visits = (await storedState(page)).systems.find(system => system.id === 'sys-ekwa').visits.length;
   const other = await page.context().newPage();
   await other.goto('./');
-  await page.locator('#systemNotes').fill('');
-  await page.locator('#systemNotes').pressSequentially('Typed in tab A'); // the other tab saves within the 800 ms autosave delay
   await other.locator('#homeNow').getByRole('button', { name: 'Log visit' }).click();
   await expect(page.locator('#toastMessage')).toHaveText('Updated with changes from another tab.');
-  await expect(page.locator('#systemNotes')).toHaveValue('Typed in tab A');
-  const ekwa = (await storedState(page)).systems.find(system => system.id === 'sys-ekwa');
-  expect(ekwa.notes).toBe('Typed in tab A');
-  expect(ekwa.visits).toHaveLength(2); // the other tab's visit is kept too
-  await other.close();
-});
-
-test('two tabs with the same notes open settle on the newest text', async ({ page }) => {
-  await page.goto('./#systems');
-  await page.locator('#systemList').getByText('Ekwa Nexus').click();
-  await page.locator('#systemNotes').fill('A text');
-  await expect(page.locator('#notesStatus')).toHaveText('Saved');
-  await page.locator('#visitNote').click(); // tab A moves on; its notes panel stays open
-
-  const other = await page.context().newPage();
-  await other.goto('./#systems');
-  await other.locator('#systemList').getByText('Ekwa Nexus').click();
-  await page.evaluate(() => {
-    window.__storageEvents = 0;
-    addEventListener('storage', () => {
-      window.__storageEvents += 1;
-    });
-  });
-  await other.locator('#systemNotes').fill('B newer text');
-  await expect(other.locator('#notesStatus')).toHaveText('Saved');
-  await page.waitForTimeout(1500);
-
-  expect(await page.evaluate(() => window.__storageEvents)).toBeLessThanOrEqual(2); // no write-back loop
-  expect((await storedState(page)).systems.find(system => system.id === 'sys-ekwa').notes).toBe('B newer text');
-  await expect(page.locator('#systemNotes')).toHaveValue('B newer text');
+  await expect(page.getByRole('region', { name: 'Journal' }).locator('li')).toHaveCount(visits + 1);
   await other.close();
 });

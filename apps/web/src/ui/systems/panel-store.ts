@@ -1,5 +1,5 @@
-// Screen state that several screens share: which system the detail panel shows (Home, Systems, Outlaw Run and the
-// header search all open it) and the Systems filter (a tag tapped in the panel filters the list). It isn't saved:
+// Screen state that several screens share: the system editor's panel (Home, Systems, System detail and the header
+// search open it) and the Systems filter (a tag tapped in the panel filters the list). It isn't saved:
 // unlike the app state, it lasts only while the page is open.
 import { useSyncExternalStore } from 'react';
 import { DEFAULT_FILTER, type SystemFilter } from '@atlas/core/systems-list';
@@ -47,10 +47,12 @@ export function takeReturnFocus(): HTMLElement | null {
   return element;
 }
 
+// System detail is a screen of its own (design 03): opening a system navigates to #system/<id>, so Back returns to
+// where the player was. The panel is only the editor now.
 export function openSystem(id: string): void {
   if (!findSystem(id)) return;
-  rememberOpener();
-  setPanel({ open: true, mode: 'view', systemId: id, preset: {}, session: panel.session + 1 });
+  closeSystemPanel();
+  location.hash = `#system/${encodeURIComponent(id)}`;
 }
 
 export function openSystemEditor(id: string | null = null, preset: EditorPreset = {}): void {

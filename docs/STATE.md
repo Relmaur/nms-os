@@ -53,7 +53,12 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - **02 Systems is rebuilt** (`ui/systems/Systems.tsx`; `filterChips` and `systemsLine` in `@atlas/core/systems-list`). Its phone header rules share Home's (`theme.css`).
   - Interim: Sort is a chip at the end of the rail (the design has no place for it); the Log segment still has three segments until Map.
 
-**Next:** 03 System detail, 06 System editor (Location block), 04 Timers & Session.
+- **03 System detail is rebuilt** as its own section (`#system/<id>`, `section-store` params and `goBack()`; `ui/systems/SystemDetails.tsx`). The system panel is now only the editor. Planets are added and edited on System detail in a sheet (owner: "add it as your best judgment"); rating moved to the editor. `orbitLayout` gained `insetTop` so planets clear the hero's buttons (reference vectors unchanged).
+  - Strictly per the design (owner, 2026-10-28), these have no home now: inline notes (edited in the editor), tags on the screen, visit note and packet run, deleting a visit, **deleting a system**, the outlaw restock line. Deleting a system matters most: raise it with the next design round.
+  - Interim: Share copies a text summary where the share sheet isn't available, until 23 Share sheet.
+  - Flaky, seen once: `player.spec` "the slot picker states the wiki's rule" (passed on rerun ×3).
+
+**Next:** 06 System editor (Location block), 04 Timers & Session.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

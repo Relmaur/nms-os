@@ -34,10 +34,7 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
   const set = (changes: Partial<Draft>) => {
     setDraft(current => ({ ...current, ...changes }));
   };
-  const cancel = () => {
-    if (existing) openSystem(existing.id);
-    else closeSystemPanel();
-  };
+  const cancel = closeSystemPanel;
 
   // A swipe or a tap on the bar leaves only when nothing would be lost; Cancel stays the way to discard.
   const [original] = useState(() => JSON.stringify({ draft, tags }));
@@ -82,7 +79,9 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
     }
     const system = normalizeSystem({ ...draft, glyphs, tags: allTags, galaxy: draft.galaxy.trim() || 'Euclid' });
     saveSystem(system, { arrived: isNew && arrived });
-    openSystem(system.id);
+    // A new system opens on its own screen; an edited one is already showing under the sheet.
+    if (isNew) openSystem(system.id);
+    else closeSystemPanel();
   };
 
   const text = (field: TextField) => ({
@@ -203,6 +202,22 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
             ]}
           />
         </div>
+        {/* System detail (03) shows the rating; this is where it's set, as in the editor's design (06). */}
+        <Segmented
+          label="Your rating"
+          value={String(draft.rating)}
+          onChange={rating => {
+            set({ rating: Number(rating) });
+          }}
+          options={[
+            ['0', 'None'],
+            ...[1, 2, 3, 4, 5].map((n): Option => [
+              String(n),
+              String(n),
+              <i key="star" className="ph-fill ph-star text-amber-300 mr-1" aria-hidden="true" />
+            ])
+          ]}
+        />
         <div className="space-y-1.5">
           <p className="field-label">
             <label htmlFor="tagInput">Tags</label>

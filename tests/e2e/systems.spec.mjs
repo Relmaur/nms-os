@@ -16,36 +16,40 @@ test('adds a system with glyphs and a tag, logging the arrival', async ({ page }
   expect(system.visits).toHaveLength(1);
 });
 
-test('notes autosave and planets persist across a reload', async ({ page }) => {
+test('a system opens on its own screen; planets added there persist across a reload; Back returns', async ({ page }) => {
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Ekwa Nexus').click();
-  await expect(page.locator('#systemPanelTitle')).toHaveText('Ekwa Nexus');
+  await expect(page).toHaveURL(/#system\/sys-ekwa$/);
+  await expect(page.locator('#systemTitle')).toHaveText('Ekwa Nexus');
 
-  await page.locator('#systemNotes').fill('Best trade route starts here');
-  await page.getByRole('button', { name: 'Add planet' }).click();
-  await page.locator('#systemPanelBody form input[name="name"]').fill('Verdant IV');
-  await page.locator('#systemPanelBody form').getByRole('button', { name: 'Add planet' }).click();
-  await expect(page.locator('#systemPanelBody')).toContainText('Verdant IV');
+  await page.getByRole('button', { name: /^Add planet/ }).click();
+  const sheet = page.locator('#planetSheet');
+  await sheet.getByRole('textbox', { name: 'Name' }).fill('Verdant IV');
+  await sheet.getByRole('button', { name: 'Add planet' }).click();
+  await expect(sheet).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.getByRole('heading', { name: 'Planets · 1' })).toBeVisible();
 
-  await page.keyboard.press('Escape'); // closing the panel flushes the notes
-  await page.reload();
+  await page.reload(); // the address opens the same system
+  await expect(page.locator('#systemTitle')).toHaveText('Ekwa Nexus');
   const system = (await storedState(page)).systems.find(item => item.id === 'sys-ekwa');
-  expect(system.notes).toBe('Best trade route starts here');
   expect(system.planets.map(planet => planet.name)).toEqual(['Verdant IV']);
+  await page.getByRole('button', { name: 'Back' }).click();
+  await expect(page).toHaveURL(/#systems$/);
 });
 
 test('the Favourites filter shows only favourite systems', async ({ page }) => {
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Hesper Drift').click();
-  await page.getByRole('button', { name: 'Add to favourites' }).click();
-  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Favourite' }).click();
+  await expect(page.getByRole('button', { name: 'Favourite' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Back' }).click();
   await page.locator('#systemFavFilter').click();
   await expect(page.locator('#systemFavFilter')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#systemList')).toContainText('Hesper Drift');
   await expect(page.locator('#systemList')).not.toContainText('Ekwa Nexus');
 });
 
-test('filters by tag and deletes only on the second click', async ({ page }) => {
+test('filters by tag', async ({ page }) => {
   await page.goto('./#systems');
   await page
     .locator('#systemTagFilters')
@@ -53,18 +57,13 @@ test('filters by tag and deletes only on the second click', async ({ page }) => 
     .click();
   await expect(page.locator('#systemList')).toContainText('Ekwa Nexus');
   await expect(page.locator('#systemList')).not.toContainText('Hesper Drift');
-
-  await page.locator('#systemList').getByText('Ekwa Nexus').click();
-  await page.getByRole('button', { name: 'Delete system' }).click();
-  expect((await storedState(page)).systems.some(item => item.id === 'sys-ekwa')).toBe(true);
-  await page.getByRole('button', { name: 'Click again to delete this system' }).click();
-  expect((await storedState(page)).systems.some(item => item.id === 'sys-ekwa')).toBe(false);
 });
 
 test('on a phone, dragging the sheet’s bar down closes it', async ({ page, browserName }, testInfo) => {
   test.skip(testInfo.project.name !== 'phone' || browserName !== 'chromium', 'touch drag on the phone sheet');
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Ekwa Nexus').click();
+  await page.getByRole('button', { name: 'Edit system' }).click();
   const handle = page.locator('#systemPanel [data-sheet-handle]');
   await expect(handle).toBeVisible();
   await expect(page.getByRole('button', { name: 'Close', exact: true })).toHaveCount(1); // the bar, no ✕

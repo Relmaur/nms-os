@@ -1,18 +1,10 @@
-// The system panel: a side panel from md up, a bottom sheet below. Shows a system (SystemDetails) or the editor.
+// The system editor's panel: a side panel from md up, a bottom sheet below. (A system's own screen is SystemDetails.)
 // It stays mounted so it can slide in and out; while closed it is inert and hidden from assistive tech.
 import { useEffect, useRef } from 'react';
 import { BIOMES, ECONOMIES } from '@atlas/core/systems-model';
-import {
-  closeSystemPanel,
-  dismissSystemPanel,
-  findSystem,
-  openSystem,
-  takeReturnFocus,
-  usePanel
-} from './panel-store.ts';
+import { closeSystemPanel, dismissSystemPanel, findSystem, takeReturnFocus, usePanel } from './panel-store.ts';
 import { useSheetDrag } from '../parts/Sheet.tsx';
 import { useAppState } from '../useAppState.ts';
-import { SystemDetails } from './SystemDetails.tsx';
 import { SystemEditor } from './SystemEditor.tsx';
 
 export function SystemPanel() {
@@ -38,19 +30,17 @@ export function SystemPanel() {
     };
   }, [panel.open]);
 
-  // Esc leaves the editor for the system's view, or closes the panel.
+  // Esc closes the editor (Cancel's shortcut: it doesn't ask).
   useEffect(() => {
     if (!panel.open) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
-      if (panel.mode === 'edit' && panel.systemId) openSystem(panel.systemId);
-      else closeSystemPanel();
+      if (event.key === 'Escape') closeSystemPanel();
     };
     document.addEventListener('keydown', onKey);
     return () => {
       document.removeEventListener('keydown', onKey);
     };
-  }, [panel.open, panel.mode, panel.systemId]);
+  }, [panel.open]);
 
   useSheetDrag(sheet, dismissSystemPanel);
 
@@ -77,11 +67,7 @@ export function SystemPanel() {
           className="flex-1 overflow-y-auto overscroll-contain rounded-t-3xl md:rounded-none"
         >
           <div id="systemPanelBody" className="min-h-full flex flex-col">
-            {panel.mode === 'edit' ? (
-              <SystemEditor key={panel.session} existing={system} preset={panel.preset} />
-            ) : system ? (
-              <SystemDetails key={panel.session} system={system} open={panel.open} />
-            ) : null}
+            {panel.mode === 'edit' && <SystemEditor key={panel.session} existing={system} preset={panel.preset} />}
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ export function onSection(key: string, run: () => void): void {
 }
 
 let current = '';
+let param = ''; // what follows the section in the hash: #system/<id> opens System detail for <id>
 const listeners = new Set<() => void>();
 function subscribe(listener: () => void): () => void {
   listeners.add(listener);
@@ -17,14 +18,32 @@ function subscribe(listener: () => void): () => void {
 export function useSection(): string {
   return useSyncExternalStore(subscribe, () => current);
 }
+export function useSectionParam(): string {
+  return useSyncExternalStore(subscribe, () => param);
+}
+
+// Back from a screen opened inside the app goes where the player came from; opened from a link or a reload (nothing of
+// ours to go back to), it goes to `fallback`.
+let navigated = false;
+export function goBack(fallback: string): void {
+  if (navigated) history.back();
+  else location.hash = `#${fallback}`;
+}
 
 // Old and shortcut addresses: the Logbook was folded into Systems; #new-system (a home-screen shortcut) opens Home
 // with the editor, and #search (the Codex page's search key) opens Home with the search; anything unknown opens Home.
+// A screen for one thing carries its id after a slash (#system/<id>); without one it falls back to its list.
 const SHORTCUTS = new Set(['new-system', 'search']);
-function resolve(key: string): { section: string; shortcut: string } {
-  if (key === 'logbook') return { section: 'systems', shortcut: '' };
-  if (SHORTCUTS.has(key)) return { section: 'home', shortcut: key };
-  return { section: document.getElementById(`sec-${key}`) ? key : 'home', shortcut: '' };
+const PARAM_SECTIONS: Record<string, string> = { system: 'systems' };
+function resolve(key: string): { section: string; shortcut: string; param: string } {
+  const [head = '', ...rest] = key.split('/');
+  if (head in PARAM_SECTIONS) {
+    const id = decodeURIComponent(rest.join('/'));
+    return id ? { section: head, shortcut: '', param: id } : { section: PARAM_SECTIONS[head] ?? 'home', shortcut: '', param: '' };
+  }
+  if (key === 'logbook') return { section: 'systems', shortcut: '', param: '' };
+  if (SHORTCUTS.has(key)) return { section: 'home', shortcut: key, param: '' };
+  return { section: document.getElementById(`sec-${key}`) ? key : 'home', shortcut: '', param: '' };
 }
 
 // Resolves once the section is on screen (after the view transition's swap), so a caller can scroll within it.
@@ -33,7 +52,7 @@ export function showSection(key: string): Promise<void> {
     location.href = 'wiki/'; // the Codex is its own page
     return Promise.resolve();
   }
-  const { section, shortcut } = resolve(key);
+  const { section, shortcut, param: next } = resolve(key);
   const swap = () => {
     document.body.dataset.section = section; // for styles that differ by screen (theme.css: Home's header)
     document.querySelectorAll('.book-section').forEach(element => {
@@ -41,7 +60,7 @@ export function showSection(key: string): Promise<void> {
     });
     window.scrollTo({ top: 0 });
   };
-  const animate = current !== '' && current !== section && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animate = current !== '' && (current !== section || param !== next) && !matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Switching again mid-animation skips the transition, which rejects its promises; the DOM still updates, so the
   // rejection is expected and must not surface as an uncaught error.
   let shown = Promise.resolve();
@@ -51,10 +70,12 @@ export function showSection(key: string): Promise<void> {
     shown = transition.updateCallbackDone.catch(() => undefined);
   } else swap();
   current = section;
+  param = next;
   listeners.forEach(listener => {
     listener();
   });
-  if (location.hash !== `#${section}`) history.replaceState(null, '', `#${section}`);
+  const hash = `#${section}${next ? `/${encodeURIComponent(next)}` : ''}`;
+  if (location.hash !== hash) history.replaceState(null, '', hash);
   if (shortcut) hooks.get(shortcut)?.();
   hooks.get(section)?.();
   return shown;
@@ -63,6 +84,7 @@ export function showSection(key: string): Promise<void> {
 // Back/forward and home-screen shortcuts (./#calculators) change only the hash.
 export function startSections(): void {
   window.addEventListener('hashchange', () => {
+    navigated = true;
     void showSection(location.hash.slice(1) || 'home');
   });
   void showSection(location.hash.slice(1) || 'home');

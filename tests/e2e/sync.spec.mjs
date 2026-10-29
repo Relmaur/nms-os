@@ -80,14 +80,10 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
   // Each logs something; after syncing both have both.
   await other.goto('./#systems');
   await other.locator('#systemList').getByText('Ekwa Nexus').click();
-  await other
-    .getByRole('button', { name: /Log visit/ })
-    .first()
-    .click();
+  await other.getByRole('button', { name: 'Log a visit' }).click();
   await expect
     .poll(async () => (await storedState(other)).systems.find(s => s.id === 'sys-ekwa').visits.length)
     .toBe(2);
-  await other.keyboard.press('Escape'); // close the system panel
   await other.goto('./#more');
   await other.getByRole('button', { name: 'Sync now' }).click();
   await expect(syncStatus(other)).toContainText('Synced');

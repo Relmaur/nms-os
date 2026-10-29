@@ -111,7 +111,7 @@ test('the sort is kept when filters are cleared', async () => {
 test('a card opens the system; Log system and the dashed button open the editor', async () => {
   render(<Systems />);
   await userEvent.click(screen.getByRole('button', { name: 'Ekwa Nexus' }));
-  expect(getPanel()).toMatchObject({ open: true, mode: 'view', systemId: 'sys-a' });
+  expect(location.hash).toBe('#system/sys-a');
   await userEvent.click(screen.getByRole('button', { name: 'Log system' }));
   expect(getPanel()).toMatchObject({ open: true, mode: 'edit', systemId: null });
   await userEvent.click(screen.getByRole('button', { name: 'Warped somewhere new? Log it here' }));

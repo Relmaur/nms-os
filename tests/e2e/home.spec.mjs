@@ -64,10 +64,11 @@ test('no section scrolls sideways', async ({ page }) => {
     'book3',
     'book4',
     'book5',
-    'book6'
+    'book6',
+    'system/sys-ekwa'
   ]) {
     await page.goto(`./#${section}`);
-    await expect(page.locator(`#sec-${section}`)).toBeVisible();
+    await expect(page.locator(`#sec-${section.split('/')[0]}`)).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
 });

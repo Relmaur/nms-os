@@ -14,6 +14,7 @@ const TAB_OF: Record<string, string> = {
   home: 'home',
   more: 'home',
   systems: 'log',
+  system: 'log',
   gear: 'log',
   notes: 'log',
   outlaw: 'runs',

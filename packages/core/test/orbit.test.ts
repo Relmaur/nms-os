@@ -152,3 +152,15 @@ test('the diagram says what is logged, and says what is not', () => {
   expect(orbitSentence('Quiet', 'Red', [])).toBe('Quiet: a red star with no planets logged.');
   expect(orbitSentence('Lone', 'Blue', [p('Hjalmar', 'frozen', 1)])).toBe('Lone: a blue star with 1 planet.');
 });
+
+test('an inset at the top keeps every planet below the controls drawn over the frame', () => {
+  const planets = Array.from({ length: 6 }, (_, i) => ({ name: `P${String(i)}`, family: null, size: 1, base: false }));
+  for (const seed of ['a', 'b', 'c', 'd', 'e']) {
+    const free = orbitLayout(['Euclid', seed], planets, { width: 390, height: 300, size: 'XL' });
+    const inset = orbitLayout(['Euclid', seed], planets, { width: 390, height: 300, size: 'XL', insetTop: 72 });
+    inset.planets.forEach((planet, i) => {
+      expect(planet.y - planet.r).toBeGreaterThanOrEqual(72);
+      if ((free.planets[i]?.y ?? 0) >= 150) expect(planet.y).toBe(free.planets[i]?.y); // downward swings are unchanged
+    });
+  }
+});

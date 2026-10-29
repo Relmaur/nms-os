@@ -32,6 +32,8 @@ export interface OrbitOptions {
   labels?: boolean;
   /** Roman numerals beside each planet (XL only). */
   numerals?: boolean;
+  /** Height at the top that controls sit over (System detail's back and edit buttons): planets swing up less. */
+  insetTop?: number;
 }
 
 export interface OrbitLayout {
@@ -94,7 +96,9 @@ export function orbitLayout(seedParts: [string, string], planets: OrbitPlanet[],
     if (size !== 'M') {
       // Keep every planet inside the frame: the usable angle shrinks as the orbit grows.
       const limit = Math.asin(Math.min(1, (H / 2 - pr * 1.8 - 8) / r));
-      const angle = (angles[i] ?? 0) * limit * 0.85;
+      const up = Math.asin(Math.min(1, Math.max(0, H / 2 - (options.insetTop ?? 0) - pr * 1.8 - 8) / r));
+      const swing = angles[i] ?? 0;
+      const angle = swing * (swing < 0 ? Math.min(limit, up) : limit) * 0.85;
       x = cx + r * Math.cos(angle);
       y = cy + r * Math.sin(angle);
     }
