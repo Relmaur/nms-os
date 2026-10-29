@@ -4,8 +4,8 @@ category: "places"
 kind: "encounter"
 summary: "Asteroid Larvae is a space encounter."
 pageId: 183857
-revId: 1338368
-revTimestamp: "2026-10-15T03:28:20Z"
+revId: 1341975
+revTimestamp: "2026-10-29T00:56:51Z"
 version: "WorldsOne"
 obsolete: false
 status: "current"
@@ -69,6 +69,7 @@ The following systems have regularly encountered Asteroid Larvae.
 | Ambatairo |   | Euclid | Between station and Mutandis Sigma |
 | Eldritch Worlds |   | Euclid | near the earth like planet |
 | Nupowen | 0459:0077:0251:007A | Euclid | Close to Nupowen Station Omega, opposite side to Gobrin XIV planet |
+| Onagatag | 0E66:00E5:0812:00F5 | Euclid | Outer ring, close to (in between) planets Sophia Kiha and Lutim Beta. |
 
 ## Additional Information
 

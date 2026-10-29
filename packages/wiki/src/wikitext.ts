@@ -52,7 +52,8 @@ export const MECHANICS = [
   'Exosuit',
   'Exocraft',
   'Freighter',
-  'Starship Outfitting Terminal'
+  'Starship Outfitting Terminal',
+  'Biome' // the biome families the planet marker colours (facts.ts)
 ];
 export const FOLDERS = [
   'resources',

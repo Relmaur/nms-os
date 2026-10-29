@@ -11,6 +11,11 @@ export const TechMaxSchema = z.object({
   slots: z.partialRecord(z.enum(['C', 'B', 'A', 'S', 'any']), z.int().positive())
 });
 const SlotListSchema = z.array(z.string().regex(/^R\d{1,2}C\d{1,2}$/));
+// The planet marker's colour families. A biome joins one only where the wiki says what it's like (its hazard, or
+// that it's Earth-like or exotic); every other biome draws slate.
+export const BIOME_FAMILIES = ['toxic', 'hot', 'radioactive', 'frozen', 'exotic', 'lush'] as const;
+export type BiomeFamily = (typeof BIOME_FAMILIES)[number];
+const BiomeFamilySchema = z.object({ biome: z.string(), family: z.enum(BIOME_FAMILIES) });
 
 // The shape of each fact's value, by id. A fact the sync defines must match its schema here (a unit test checks).
 export const FACT_VALUES = {
@@ -19,7 +24,14 @@ export const FACT_VALUES = {
   'exosuit-supercharged-slots': SlotListSchema,
   'multitool-tech-max': TechMaxSchema,
   'starship-tech-max': TechMaxSchema,
-  'exosuit-tech-max': TechMaxSchema
+  'exosuit-tech-max': TechMaxSchema,
+  'biome-lush': BiomeFamilySchema,
+  'biome-scorched': BiomeFamilySchema,
+  'biome-volcanic': BiomeFamilySchema,
+  'biome-frozen': BiomeFamilySchema,
+  'biome-toxic': BiomeFamilySchema,
+  'biome-irradiated': BiomeFamilySchema,
+  'biome-exotic': BiomeFamilySchema
 } as const;
 export type FactId = keyof typeof FACT_VALUES;
 export type FactValue<Id extends FactId> = z.infer<(typeof FACT_VALUES)[Id]>;
@@ -50,4 +62,25 @@ export function getFact<Id extends FactId>(
   const parsed = FACT_VALUES[id].safeParse(fact.value);
   // The schema for `id` produces FactValue<id>; TypeScript can't narrow the union of schemas by a generic key.
   return parsed.success ? { fact, value: parsed.data as FactValue<Id> } : null;
+}
+
+const BIOME_FACTS = [
+  'biome-lush',
+  'biome-scorched',
+  'biome-volcanic',
+  'biome-frozen',
+  'biome-toxic',
+  'biome-irradiated',
+  'biome-exotic'
+] as const;
+
+/** A biome's colour family ("Scorched" → "hot"), from the cited facts; null when the wiki gives it none. */
+export function biomeFamily(file: FactsFile | null, biome: string): BiomeFamily | null {
+  const wanted = biome.trim().toLowerCase();
+  if (!wanted) return null;
+  for (const id of BIOME_FACTS) {
+    const value = getFact(file, id)?.value;
+    if (value?.biome.toLowerCase() === wanted) return value.family;
+  }
+  return null;
 }

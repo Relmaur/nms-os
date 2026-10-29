@@ -45,6 +45,42 @@ export const FACTS = {
     // The page writes the Exosuit's grids as "rows x columns" ("120 (12x10)"); its supercharged slots reach column 9.
     quote: 'This inventory begins with 10 Technology slots installed. The maximum number of inventory slots for this category is 60 (6x10)',
     value: { columns: 10, slots: { any: 60 } }
+  },
+  // Biome families for the planet marker: each quote is from its biome's own section of the Biome page.
+  'biome-lush': {
+    page: 'Biome',
+    quote: 'These are essentially the Earth-like planets',
+    value: { biome: 'Lush', family: 'lush' }
+  },
+  'biome-scorched': {
+    page: 'Biome',
+    quote: 'high temperatures has caused the flora to adapt in bizarre ways',
+    value: { biome: 'Scorched', family: 'hot' }
+  },
+  'biome-volcanic': {
+    page: 'Biome',
+    quote: 'Temperatures are high just like on scorched worlds',
+    value: { biome: 'Volcanic', family: 'hot' }
+  },
+  'biome-frozen': {
+    page: 'Biome',
+    quote: 'Hazard protection is always on due to frigid temperatures',
+    value: { biome: 'Frozen', family: 'frozen' }
+  },
+  'biome-toxic': {
+    page: 'Biome',
+    quote: 'Hazard protection is always on due to high amounts of toxic substances',
+    value: { biome: 'Toxic', family: 'toxic' }
+  },
+  'biome-irradiated': {
+    page: 'Biome',
+    quote: 'Hazard protection is always on due to high amounts of radiation',
+    value: { biome: 'Irradiated', family: 'radioactive' }
+  },
+  'biome-exotic': {
+    page: 'Biome',
+    quote: 'Exotic worlds are characterized by having various mysterious objects not found in any other biomes',
+    value: { biome: 'Exotic', family: 'exotic' }
   }
 } satisfies { [Id in FactId]: FactSource<Id> };
 
