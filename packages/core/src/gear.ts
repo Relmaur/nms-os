@@ -149,7 +149,7 @@ export function gearFromFleet(fleet: unknown): GearItem[] {
   );
 }
 
-// Home's order: flagships first, then the other starships, then Multi-Tools; newest last within each.
+// Fleet's order: flagships first, then the other starships, then Multi-Tools; newest last within each.
 export function gearOrder(items: GearItem[]): GearItem[] {
   const rank = (item: GearItem) => (/flagship/i.test(item.role) ? 0 : item.kind === 'starship' ? 1 : 2);
   return items

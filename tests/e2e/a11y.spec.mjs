@@ -1,7 +1,7 @@
 // Accessibility (axe) on every screen and the page frame: any violation in the gated region fails. An entry without a
 // region reports only (violations attached and summarised as an annotation); none is left.
 import AxeBuilder from '@axe-core/playwright';
-import { test, expect } from './fixtures.mjs';
+import { test, expect, holdToStartSession } from './fixtures.mjs';
 
 const openPanel = page => page.locator('#systemList').getByText('Ekwa Nexus').click();
 const openEditor = async page => {
@@ -25,7 +25,7 @@ const openGearEditor = page => page.locator('#sec-gear').getByRole('button', { n
 const openNoteEditor = page => page.locator('#sec-notes').getByRole('button', { name: 'New note' }).click();
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 const openSession = async page => {
-  await page.locator('#startSession').click();
+  await holdToStartSession(page);
   await page.locator('#sessionBar').click();
   await page
     .locator('#sessionSheet')
@@ -33,7 +33,7 @@ const openSession = async page => {
     .click();
 };
 const showRecap = async page => {
-  await page.locator('#startSession').click();
+  await holdToStartSession(page);
   await page.locator('#sessionBar').click();
   await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
 };

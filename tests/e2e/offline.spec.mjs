@@ -1,6 +1,6 @@
 // Runs only in the `offline` project, the one place the service worker is allowed (playwright.config.ts).
 // Install once online, then cut the network: every screen, the wiki dataset and an article read earlier still work.
-import { test, expect } from './fixtures.mjs';
+import { test, expect, holdToStartSession } from './fixtures.mjs';
 
 const OXYGEN = './wiki/#/a/' + encodeURIComponent('wiki/resources/Oxygen.md');
 
@@ -20,7 +20,7 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   await expect(page.locator('#planResult [data-raw="Radon"]')).toHaveAttribute('data-qty', '500');
   // The refiner timer's recipes come from the cached wiki dataset too.
   await page.goto('./#home');
-  await page.locator('#startSession').click();
+  await holdToStartSession(page);
   await page.locator('#sessionBar').click();
   await page.locator('#sessionSheet').getByLabel('What it makes').fill('Enriched Carbon');
   await page

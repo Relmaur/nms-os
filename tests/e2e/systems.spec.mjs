@@ -2,7 +2,7 @@ import { test, expect, storedState } from './fixtures.mjs';
 
 test('adds a system with glyphs and a tag, logging the arrival', async ({ page }) => {
   await page.goto('./#systems');
-  await page.locator('#sec-systems').getByRole('button', { name: 'Add system' }).click();
+  await page.locator('#sec-systems').getByRole('button', { name: 'Log system' }).click();
   await page.locator('#sysName').fill('Test Prime');
   await page.locator('#systemEditor input[name="glyphs"]').fill('1a2b3c4d5e6f');
   await page.locator('#tagInput').fill('mining');

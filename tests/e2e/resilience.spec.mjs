@@ -115,7 +115,7 @@ test('an unreadable copy is never overwritten when there is no room to keep it a
   await expect(page.locator('#storageBannerText')).toContainText('no room to keep a copy aside');
   await page
     .locator('#homeNow')
-    .getByRole('button', { name: /Log visit|Warped somewhere new/ })
+    .getByRole('button', { name: /Log visit|log a new system/ })
     .first()
     .click();
   expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);

@@ -1,356 +1,301 @@
-// Home: what you need mid-session. The current system with one-tap logging, the warp-back list, the next outlaw
-// stations, your fleet and the notes you pinned here. The layout and classes match the vanilla screen this replaced, so tests and looks hold.
-import { formatAgo, formatDuration } from '@atlas/core/format';
-import { homeSummary, type HomeSummary } from '@atlas/core/home';
-import { lastVisit, type System } from '@atlas/core/systems-model';
-import { gearOrder, type GearItem, type GearKind } from '@atlas/core/gear';
+// Home (design 01): what you need mid-session. The current system as a hero with its orbit diagram, logging a new
+// system with a slide, your timers, starting a session with a hold, and the systems to warp back to. The outlaw
+// stations moved to Runs, the fleet to Log › Fleet, and Keep screen on to Settings.
+import { useEffect } from 'react';
+import { biomeFamily } from '@atlas/core/facts';
+import { formatClock, formatCountdown } from '@atlas/core/format';
+import { heroPlace, heroStatus, homeSummary, homeTimers, warpBackLine } from '@atlas/core/home';
+import { systemOrbit } from '@atlas/core/orbit';
 import { notesPinnedTo } from '@atlas/core/notes';
+import type { System } from '@atlas/core/systems-model';
+import type { Timer, TimerKind, TimerStatus } from '@atlas/core/timers';
 import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
-import { logPacketRun, logVisit } from '../actions.ts';
+import { logVisit, startSession } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
-import { GlyphChip, StarDot, TagChip } from '../parts/SystemBits.tsx';
-import { toggleKeepAwake, useDevice } from '../more/device-store.ts';
-import { startSession } from '../actions.ts';
-import { openGearEditor } from '../parts/editor-store.ts';
-import { KINDS } from '../gear/kinds.ts';
+import { useClock } from '../session/useClock.ts';
+import { openSessionSheet } from '../session/sheet-store.ts';
+import { loadFacts, useFacts } from '../gear/facts-store.ts';
+import { useSyncAttention, useSyncStatus } from '../../app/sync.ts';
+import { Button } from '../parts/Button.tsx';
+import { HoldToActivate, SlideToActivate } from '../parts/Gesture.tsx';
+import { OrbitDiagram, StarMark } from '../parts/StarChart.tsx';
+import { TimerRing } from '../parts/TimerRing.tsx';
 import { PinnedNotes } from '../notes/PinnedNotes.tsx';
+import { SessionButton } from '../shell/Header.tsx';
 
-const ROW = 'flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-xl hover:bg-slate-900/70';
+const KIND_LABEL: Record<TimerKind, string> = { refine: 'Refiner', crop: 'Crops', custom: 'Timer' };
+const HOUR = 3_600_000;
 
 export function Home() {
   const state = useAppState();
-  const now = useNow();
+  const minute = useNow();
+  const timers = homeTimers(state.timers, minute);
+  // Seconds matter under an hour (a refiner nearly done reads 0:12), and for a live session's clock.
+  const now = useClock(state.session !== null || timers.some(({ status }) => !status.done && status.remaining < HOUR));
   const summary = homeSummary(state, now);
-  const device = useDevice();
+  useEffect(() => {
+    void loadFacts(); // biome families, for the planets' colours
+  }, []);
   return (
-    <>
-      <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
-        <div className="min-w-0">
-          <h1 className="font-display text-2xl font-bold text-white">Home</h1>
-          {state.meta.currentPhase && (
-            <p id="homePhase" className="text-sm text-slate-400 mt-1">
-              {state.meta.currentPhase}
-            </p>
-          )}
-        </div>
-        {/* Its own line on phones, so Keep screen on stays put when Start session goes. */}
-        <div className="basis-full sm:basis-auto flex flex-wrap items-center gap-2">
-          {state.session === null && (
-            <button type="button" id="startSession" onClick={startSession} className="wake-chip session-start">
-              <i className="ph-fill ph-play" aria-hidden="true" />
-              <span>Start session</span>
-            </button>
-          )}
-          {device.wakeSupported && (
-            <button
-              type="button"
-              role="switch"
-              aria-checked={device.awake}
-              onClick={toggleKeepAwake}
-              className="wake-chip"
-            >
-              <i className="ph-bold ph-sun-dim" aria-hidden="true" />
-              <span>Keep screen on</span>
-            </button>
-          )}
-        </div>
-      </div>
-      <div id="homeNow">
-        <CurrentSystem system={summary.current} now={now} />
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-        <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-          <CardHeader icon="ph-skull text-red-300" title="Outlaw run" href="#outlaw" link="Full list →" />
-          <div id="homeOutlaw">
-            <OutlawCard card={summary.outlaw} now={now} />
-          </div>
-        </div>
-        <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-4">
-          <CardHeader
-            icon="ph-clock-counter-clockwise text-purple-300"
-            title="Warp back"
-            href="#systems"
-            link="All systems →"
-          />
-          <ul id="homeRecent" className="space-y-1">
-            <WarpBack systems={summary.recent} now={now} />
-          </ul>
-        </div>
-      </div>
-      <div className="hud-card rounded-2xl p-4 sm:p-5 space-y-3">
-        <CardHeader icon="ph-rocket text-cyan-300" title="Active fleet" href="#gear" link="All gear →" />
-        <div id="fleetCardBody" className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-3 text-xs">
-          <Fleet gear={state.gear} />
-        </div>
-      </div>
+    <div className="flex flex-col gap-section max-w-2xl">
+      <HomeHeader />
+      <Hero system={summary.current} now={now} />
+      {timers.length > 0 && <Timers timers={homeTimers(state.timers, now)} />}
+      <HoldToActivate
+        id="startSession"
+        label="Hold to start session"
+        hint="Counts systems, visits and timers until you stop"
+        onActivate={startSession}
+        done={
+          state.session
+            ? {
+                label: 'Session live',
+                hint: (
+                  <>
+                    <span className="font-mono tabular-nums">
+                      {formatClock(now - Date.parse(state.session.startedAt))}
+                    </span>{' '}
+                    · tap the bar to stop
+                  </>
+                )
+              }
+            : undefined
+        }
+      />
+      <WarpBack systems={summary.recent} now={now} />
       {notesPinnedTo(state.notes, 'home').length > 0 && <PinnedNotes place="home" label="Home" hint="" />}
+    </div>
+  );
+}
+
+// Below lg, Home has its own header (the app's is hidden here): the wordmark, sync's state, the timers (until Search's
+// quick actions can start one) and Settings. From lg the sidebar and the app header carry them.
+function HomeHeader() {
+  return (
+    <header className="lg:hidden flex items-center justify-between gap-3 pt-[env(safe-area-inset-top)] mb-2">
+      <span className="flex items-center gap-2.5">
+        <i className="ph-bold ph-diamond text-[22px] text-scanner-cyan-glow" aria-hidden="true" />
+        <span className="font-display text-wordmark text-ink-bright">
+          ATLAS<span className="text-scanner-cyan-pale">:OS</span>
+        </span>
+      </span>
+      <span className="flex items-center gap-2">
+        <SyncPill />
+        <SessionButton
+          id="homeSessionButton"
+          className="w-10 h-10 rounded-[10px] border border-hairline bg-panel text-ink-soft hover:border-control-edge"
+        />
+        <a
+          href="#more"
+          aria-label="Settings"
+          title="Settings"
+          className="w-10 h-10 rounded-[10px] border border-hairline bg-panel text-ink-soft grid place-items-center hover:border-control-edge transition-colors duration-[var(--duration-micro)]"
+        >
+          <i className="ph-bold ph-gear-six text-lg" aria-hidden="true" />
+        </a>
+      </span>
+    </header>
+  );
+}
+
+// Sync's state at a glance, only once sync is on (it's opt-in; nothing to say otherwise). A problem only the player
+// can fix links to Settings, where sync explains it.
+function SyncPill() {
+  const status = useSyncStatus();
+  const attention = useSyncAttention();
+  if (!status.enabled) return null;
+  const [label, tone, dot] = attention
+    ? ['Sync needs you', 'bg-units-amber-tint text-units-amber-text', 'bg-units-amber-text']
+    : status.busy
+      ? ['Syncing', 'bg-scanner-cyan-tint text-quantity-cyan', 'bg-scanner-cyan-glow']
+      : status.problem === 'offline'
+        ? ['Offline', 'bg-slate-ground text-ink-muted', 'bg-ink-muted']
+        : ['Synced', 'bg-ready-emerald-tint text-ready-emerald-pale', 'bg-ready-emerald-lit'];
+  const pill = `inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full text-[11px] font-semibold tracking-[0.08em] uppercase ${tone}`;
+  const content = (
+    <>
+      <span className={`w-1.5 h-1.5 rounded-full ${dot}`} aria-hidden="true" />
+      {label}
     </>
   );
-}
-
-function CardHeader({ icon, title, href, link }: { icon: string; title: string; href: string; link: string }) {
-  return (
-    <div className="flex items-center justify-between gap-3">
-      <h2 className="font-display font-bold text-base text-white flex items-center gap-2">
-        <i className={`ph-bold ${icon}`} />
-        {title}
-      </h2>
-      <a href={href} className="text-xs font-medium text-emerald-300 hover:text-emerald-200">
-        {link}
-      </a>
-    </div>
+  return attention ? (
+    <a href="#more" className={pill}>
+      {content}
+    </a>
+  ) : (
+    <span role="status" className={pill}>
+      {content}
+    </span>
   );
 }
 
-function NewSystemButton() {
-  return (
-    <button
-      type="button"
-      onClick={() => {
+function Hero({ system, now }: { system: System | undefined; now: number }) {
+  const facts = useFacts();
+  const slide = (
+    <SlideToActivate
+      label="Warped somewhere new"
+      action="log a new system"
+      onActivate={() => {
         openSystemEditor();
       }}
-      className="h-12 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-semibold text-sm flex items-center justify-center gap-2 transition"
-    >
-      <i className="ph-bold ph-plus" />
-      Warped somewhere new
-    </button>
+    />
+  );
+  if (!system) {
+    return (
+      <section id="homeNow" className="hero-card flex flex-col gap-card-row p-card">
+        <h1 className="font-display text-hero text-ink-bright">Log your first system</h1>
+        <p className="text-sub text-ink-soft max-w-prose">
+          Warp somewhere, then slide to add it with its glyphs and what’s worth coming back for. It becomes your current
+          system, one tap to log again.
+        </p>
+        <div className="mt-1">{slide}</div>
+      </section>
+    );
+  }
+  const orbit = systemOrbit(system, biome => biomeFamily(facts, biome));
+  const note = system.notes.split('\n').find(line => line.trim());
+  return (
+    <section id="homeNow" aria-labelledby="homeSystemName" className="hero-card overflow-hidden">
+      <div className="h-[150px] hero-grid">
+        <OrbitDiagram
+          name={system.name}
+          seed={orbit.seed}
+          star={system.star}
+          planets={orbit.planets}
+          width={356}
+          height={150}
+          size="L"
+          starX={28}
+          grid={false}
+        />
+      </div>
+      <div className="px-card pt-1 pb-card flex flex-col gap-card-row">
+        <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-units-amber-text">
+          {heroStatus(system, now)}
+        </p>
+        <h1 id="homeSystemName" className="font-display text-hero text-ink-bright break-words">
+          {system.name}
+        </h1>
+        {(heroPlace(system) || system.wealth > 0) && (
+          <p className="text-sub text-ink-muted">
+            {heroPlace(system)}
+            {system.wealth > 0 && (
+              <>
+                <span aria-hidden="true"> {'★'.repeat(system.wealth)}</span>
+                <span className="sr-only">, wealth {system.wealth} of 3</span>
+              </>
+            )}
+          </p>
+        )}
+        {note && <p className="text-sub text-ink-soft italic line-clamp-2">“{note.trim()}”</p>}
+        <div className="mt-1">{slide}</div>
+        <div className="grid grid-cols-2 gap-2">
+          <Button
+            onClick={() => {
+              logVisit(system.id);
+            }}
+          >
+            Log visit
+          </Button>
+          <Button
+            onClick={() => {
+              openSystem(system.id);
+            }}
+          >
+            Open system
+          </Button>
+        </div>
+      </div>
+    </section>
   );
 }
 
-function CurrentSystem({ system, now }: { system: System | undefined; now: number }) {
-  if (!system) {
-    return (
-      <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
-        <div className="space-y-1.5">
-          <h2 className="font-display text-lg font-bold text-white">Log your first system</h2>
-          <p className="text-sm text-slate-300 max-w-prose">
-            Warp somewhere, then add it here with its glyphs and what’s worth coming back for. It becomes your current
-            system, one tap to log again.
-          </p>
-        </div>
-        <div className="grid sm:flex">
-          <NewSystemButton />
-        </div>
-      </div>
-    );
-  }
-  const last = lastVisit(system);
-  const where = [
-    last ? `Here ${formatAgo(last.at, now)}` : `Added ${formatAgo(system.createdAt, now)}`,
-    system.region,
-    system.galaxy
-  ]
-    .filter(Boolean)
-    .join(' · ');
-  const note = system.notes.split('\n').find(line => line.trim());
+// Up to two timers, the soonest running first; either opens the Session sheet, where timers are added and dismissed.
+function Timers({ timers }: { timers: { timer: Timer; status: TimerStatus }[] }) {
   return (
-    <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
-      <button
-        type="button"
-        onClick={() => {
-          openSystem(system.id);
-        }}
-        className="group flex items-start gap-3 max-w-full text-left"
-      >
-        <span className="flex mt-2.5">
-          <StarDot system={system} size="w-3.5 h-3.5" />
-        </span>
-        <span className="min-w-0">
-          <span className="block font-display text-xl sm:text-2xl font-bold text-white leading-snug break-words group-hover:underline underline-offset-4 decoration-slate-600">
-            {system.name}
+    <section aria-label="Timers" className="grid grid-cols-2 gap-2.5">
+      {timers.map(({ timer, status }) => (
+        <button
+          key={timer.id}
+          type="button"
+          onClick={openSessionSheet}
+          className={`rounded-card p-3.5 border flex items-center gap-3 text-left min-w-0 ${
+            status.done
+              ? 'bg-ready-emerald-wash border-ready-emerald-edge-soft'
+              : 'bg-panel-glass border-hairline hover:border-control-edge'
+          }`}
+        >
+          <TimerRing progress={status.progress} done={status.done} />
+          <span className="min-w-0 flex flex-col gap-0.5">
+            {status.done ? (
+              <span className="font-display font-bold text-sm text-ready-emerald-pale">Ready</span>
+            ) : (
+              <span className="font-mono tabular-nums text-[17px] font-medium text-ink-bright">
+                {formatCountdown(status.remaining)}
+              </span>
+            )}
+            <span
+              className={`text-[11px] leading-[1.3] line-clamp-2 ${status.done ? 'text-ready-emerald-text' : 'text-ink-muted'}`}
+            >
+              {KIND_LABEL[timer.kind]} · {timer.label}
+            </span>
           </span>
-          <span className="block text-sm text-slate-400 mt-1">{where}</span>
-        </span>
-      </button>
-      {system.tags.length || system.glyphs ? (
-        <div className="flex flex-wrap items-center gap-1.5">
-          <GlyphChip glyphs={system.glyphs} />
-          {system.tags.slice(0, 5).map(tag => (
-            <TagChip key={tag} tag={tag} />
-          ))}
-        </div>
-      ) : null}
-      {note ? <p className="text-sm text-slate-300 line-clamp-2 max-w-prose">{note}</p> : null}
-      <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 pt-1">
-        <div className="col-span-2 grid sm:contents">
-          <NewSystemButton />
-        </div>
-        <button
-          type="button"
-          onClick={() => {
-            logVisit(system.id);
-          }}
-          className="h-11 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-400/60 text-sm font-medium text-slate-100 flex items-center justify-center gap-2 transition"
-        >
-          <i className="ph-bold ph-map-pin" />
-          Log visit
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            openSystem(system.id);
-          }}
-          className="h-11 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm font-medium text-slate-100 flex items-center justify-center gap-2 transition"
-        >
-          <i className="ph-bold ph-note-pencil" />
-          Details
-        </button>
-      </div>
-    </div>
+      ))}
+    </section>
   );
 }
 
 function WarpBack({ systems, now }: { systems: System[]; now: number }) {
-  if (!systems.length) {
-    return <li className="text-sm text-slate-400">Systems you log land here, so warping back is one tap.</li>;
-  }
-  return systems.map(system => {
-    const last = lastVisit(system);
-    const meta = [last ? formatAgo(last.at, now) : 'Never visited', system.region].filter(Boolean).join(' · ');
-    return (
-      <li key={system.id} className={ROW}>
-        <button
-          type="button"
-          onClick={() => {
-            openSystem(system.id);
-          }}
-          className="flex items-center gap-3 min-w-0 flex-1 text-left py-1"
-        >
-          <StarDot system={system} />
-          <span className="min-w-0">
-            <span className="block text-sm text-white truncate">{system.name}</span>
-            <span className="block text-xs text-slate-400 truncate">{meta}</span>
-          </span>
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            logVisit(system.id);
-          }}
-          aria-label={`I’m here: ${system.name}`}
-          className="shrink-0 h-9 px-3 rounded-lg border border-slate-700 hover:border-emerald-400/60 hover:text-emerald-200 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition"
-        >
-          <i className="ph-bold ph-map-pin" />
-          I’m here
-        </button>
-      </li>
-    );
-  });
-}
-
-function OutlawCard({ card, now }: { card: HomeSummary['outlaw']; now: number }) {
-  if (!card.total) {
-    return (
-      <>
-        <p className="text-sm text-slate-300">
-          Tag systems with outlaw stations to plan Suspicious Packet runs and see which have restocked.
-        </p>
-        <button
-          type="button"
-          onClick={() => {
-            openSystemEditor(null, { tags: ['outlaw'], conflict: 'pirate' });
-          }}
-          className="mt-3 h-10 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-sm text-slate-100 flex items-center gap-2"
-        >
-          <i className="ph-bold ph-plus" />
-          Add outlaw system
-        </button>
-      </>
-    );
-  }
   return (
-    <>
-      <p className="text-sm text-slate-300">
-        <strong className={card.ready ? 'text-emerald-300' : 'text-amber-300'}>
-          {card.ready} of {card.total} ready
-        </strong>
-        {card.ready ? ` · next run ~${card.runNanites.toLocaleString()} Nanites` : null}
-      </p>
-      {card.next.length ? (
-        <ul className="mt-3 space-y-1">
-          {card.next.map(({ system }) => (
-            <li key={system.id} className={ROW}>
+    <section
+      aria-labelledby="warpBackTitle"
+      className="rounded-card bg-panel-glass border border-hairline px-4 py-3.5 flex flex-col gap-2.5"
+    >
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 id="warpBackTitle" className="font-display font-bold text-[13px] tracking-[0.04em] text-ink-bright">
+          Warp back
+        </h2>
+        <a href="#systems" className="text-caption text-scanner-cyan-pale hover:text-quantity-cyan">
+          All systems
+        </a>
+      </div>
+      <ul id="homeRecent" className="flex flex-col gap-2.5">
+        {systems.length ? (
+          systems.map(system => (
+            <li key={system.id} className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => {
                   openSystem(system.id);
                 }}
-                className="min-w-0 flex-1 text-left py-1"
+                className="flex items-center gap-3 min-w-0 flex-1 text-left"
               >
-                <span className="block text-sm text-white truncate">{system.name}</span>
-                <span className="block text-xs text-slate-400 truncate">
-                  {[system.region, system.galaxy].filter(Boolean).join(' · ') || 'No region logged'}
+                <span className="w-[30px] h-[30px] grid place-items-center shrink-0">
+                  <StarMark colour={system.star} r={system.star ? 4 : 13} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-row font-semibold text-ink-bright truncate">{system.name}</span>
+                  <span className="block text-caption text-ink-muted truncate">{warpBackLine(system, now)}</span>
                 </span>
               </button>
-              <button
-                type="button"
+              <Button
+                size="S"
                 onClick={() => {
-                  logPacketRun(system.id);
+                  logVisit(system.id);
                 }}
-                className="shrink-0 h-9 px-3 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/25 text-xs font-semibold flex items-center gap-1.5"
+                className="shrink-0"
               >
-                <i className="ph-bold ph-check" />
-                Visited
-              </button>
+                <span aria-hidden="true">I’m here</span>
+                <span className="sr-only">I’m here: {system.name}</span>
+              </Button>
             </li>
-          ))}
-        </ul>
-      ) : card.soonest ? (
-        <p className="mt-2 text-sm text-slate-400">
-          All restocking. {card.soonest.system.name} is ready in {formatDuration(card.soonest.status.readyAt - now)}.
-        </p>
-      ) : null}
-    </>
+          ))
+        ) : (
+          <li className="text-caption text-ink-muted">Systems you log land here, so warping back is one tap.</li>
+        )}
+      </ul>
+    </section>
   );
-}
-
-// Flagships first; each shows its class and role, and opens in the editor.
-const KIND_COLOR: Record<GearKind, string> = {
-  starship: 'text-purple-300',
-  multitool: 'text-cyan-300',
-  exosuit: 'text-emerald-300'
-};
-
-function Fleet({ gear }: { gear: GearItem[] }) {
-  if (!gear.length)
-    return (
-      <div className="sm:col-span-2 xl:col-span-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-slate-400">Add your ship and Multi-Tools: their slots and layouts stay at hand.</p>
-        <button
-          type="button"
-          onClick={() => {
-            openGearEditor();
-          }}
-          className="h-9 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold flex items-center gap-1.5"
-        >
-          <i className="ph-bold ph-plus" aria-hidden="true" />
-          Add your ship
-        </button>
-      </div>
-    );
-  return gearOrder(gear).map(item => (
-    <button
-      key={item.id}
-      type="button"
-      onClick={() => {
-        openGearEditor(item.id);
-      }}
-      title={item.type || undefined}
-      className="text-left -mx-2 px-2 py-1 rounded-lg hover:bg-slate-900/70"
-    >
-      <span className="block text-[11px] text-slate-400">{item.role || KINDS[item.kind].label}</span>
-      <span
-        className={`block font-mono leading-snug ${/flagship/i.test(item.role) ? 'text-white font-semibold' : KIND_COLOR[item.kind]}`}
-      >
-        {item.name}
-        {item.class ? (
-          <>
-            {' '}
-            <span className="text-slate-400">{item.class}</span>
-          </>
-        ) : null}
-      </span>
-    </button>
-  ));
 }

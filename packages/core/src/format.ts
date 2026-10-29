@@ -26,3 +26,10 @@ export function formatCountdown(ms: number): string {
   if (hours) return `${String(hours)}h ${String(minutes).padStart(2, '0')}m`;
   return `${String(minutes)}:${String(seconds).padStart(2, '0')}`;
 }
+
+// A running clock for elapsed time, to the second: 00:00:01, 01:24:09.
+export function formatClock(ms: number): string {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const pad = (value: number) => String(value).padStart(2, '0');
+  return `${pad(Math.floor(total / 3600))}:${pad(Math.floor((total % 3600) / 60))}:${pad(total % 60)}`;
+}

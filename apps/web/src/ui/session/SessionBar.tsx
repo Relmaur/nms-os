@@ -38,6 +38,7 @@ export function SessionBar() {
       onClick={openSessionSheet}
       aria-haspopup="dialog"
       aria-controls="sessionSheet"
+      data-live={session ? 'true' : 'false'}
       className={`session-bar ${done.length ? 'is-done' : ''} group w-full mb-5 flex items-center gap-3 h-12 pl-3.5 pr-2.5 rounded-xl text-left`}
     >
       <span className={`session-dot ${session ? 'is-live' : ''}`} aria-hidden="true" />

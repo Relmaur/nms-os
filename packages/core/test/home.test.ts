@@ -1,6 +1,9 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { homeSummary } from '../src/home.ts';
+import { heroPlace, heroStatus, homeSummary, homeTimers, warpBackLine } from '../src/home.ts';
+import { formatClock } from '../src/format.ts';
+import { systemOrbit } from '../src/orbit.ts';
+import type { Timer } from '../src/timers.ts';
 import { normalizeSystem, HOUR_MS } from '../src/systems-model.ts';
 import type { OutlawSettings } from '../src/state.ts';
 
@@ -60,4 +63,84 @@ test('when every station is restocking, the soonest one is named with its countd
   assert.ok(card.soonest);
   assert.equal(card.soonest.system.name, 'Sooner');
   assert.equal(card.soonest.status.label, 'Ready in 14h');
+});
+
+test("the hero's status line says you're here only for a visit, and its place line follows the game's order", () => {
+  const visited = normalizeSystem({ name: 'A', visits: [{ at: ago(26) }], createdAt: ago(100) });
+  assert.equal(heroStatus(visited, now), 'You are here · 26h ago');
+  assert.equal(heroStatus(normalizeSystem({ name: 'B', createdAt: ago(2) }), now), 'Logged 2h ago');
+  const full = normalizeSystem({
+    name: 'C',
+    region: 'Aeushne Sector',
+    galaxy: 'Euclid',
+    race: 'korvax',
+    economy: 'Technology'
+  });
+  assert.equal(heroPlace(full), 'Aeushne Sector · Euclid · Korvax · Technology');
+  assert.equal(heroPlace(normalizeSystem({ name: 'D' })), 'Euclid'); // the galaxy defaults to Euclid
+  const camp = normalizeSystem({ name: 'E', galaxy: 'Euclid', tags: ['harmonic-camp', 'base'] });
+  assert.equal(warpBackLine(camp, now), 'Euclid · harmonic-camp · never visited');
+});
+
+test('Home shows the soonest running timer and the newest finished one, then fills from either', () => {
+  const timer = (id: string, startedHoursAgo: number, endsInHours: number): Timer => ({
+    id,
+    kind: 'custom',
+    label: id,
+    startedAt: ago(startedHoursAgo),
+    endsAt: ago(-endsInHours),
+    alerted: false
+  });
+  const rows = homeTimers(
+    [timer('later', 1, 5), timer('soon', 1, 0.5), timer('old-done', 5, -3), timer('done', 2, -1)],
+    now
+  );
+  assert.deepEqual(
+    rows.map(row => row.timer.id),
+    ['soon', 'done']
+  );
+  assert.deepEqual(
+    homeTimers([timer('later', 1, 5), timer('soon', 1, 0.5)], now).map(row => row.timer.id),
+    ['soon', 'later']
+  );
+  assert.deepEqual(
+    homeTimers([timer('old-done', 5, -3), timer('done', 2, -1)], now).map(row => row.timer.id),
+    ['done', 'old-done']
+  );
+  assert.deepEqual(
+    homeTimers([timer('later', 1, 5), timer('old-done', 5, -3), timer('done', 2, -1)], now).map(row => [
+      row.timer.id,
+      row.status.done
+    ]),
+    [
+      ['later', false],
+      ['done', true]
+    ]
+  );
+  assert.deepEqual(homeTimers([], now), []);
+});
+
+test('a running session reads as a clock', () => {
+  assert.equal(formatClock(1000), '00:00:01');
+  assert.equal(formatClock((1 * 3600 + 24 * 60 + 9) * 1000), '01:24:09');
+  assert.equal(formatClock(-5), '00:00:00');
+});
+
+test("a system's orbit: seeded by galaxy and address (or its id), bases ringed, families from the wiki", () => {
+  const system = normalizeSystem({
+    id: 'sys-1',
+    name: 'A',
+    galaxy: 'Euclid',
+    planets: [
+      { id: 'p1', name: 'Hjalmar', biome: 'Frozen', tags: ['base'] },
+      { id: 'p2', name: 'Dune', biome: 'Barren', tags: [] }
+    ]
+  });
+  const orbit = systemOrbit(system, biome => (biome === 'Frozen' ? 'frozen' : null));
+  assert.deepEqual(orbit.seed, ['Euclid', 'sys-1']);
+  assert.deepEqual(orbit.planets, [
+    { name: 'Hjalmar', family: 'frozen', size: 1, base: true },
+    { name: 'Dune', family: null, size: 1, base: false }
+  ]);
+  assert.deepEqual(systemOrbit({ ...system, glyphs: '0123456789AB' }, () => null).seed, ['Euclid', '0123456789AB']);
 });

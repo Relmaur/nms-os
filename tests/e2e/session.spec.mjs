@@ -1,9 +1,9 @@
-import { test, expect, storedState } from './fixtures.mjs';
+import { test, expect, storedState, holdToStartSession } from './fixtures.mjs';
 
 test('a session with a one-minute timer: the bar counts down, then announces it once', async ({ page }) => {
   await page.clock.install();
   await page.goto('./');
-  await page.locator('#startSession').click();
+  await holdToStartSession(page, { fakeClock: true });
   await page.locator('#sessionBar').click(); // starting shows the bar; the bar opens the sheet
   const sheet = page.locator('#sessionSheet');
   await expect(sheet).toHaveAttribute('aria-hidden', 'false');
@@ -25,7 +25,7 @@ test('a session with a one-minute timer: the bar counts down, then announces it 
 
 test('timers and the session survive a reload and end in a recap', async ({ page }) => {
   await page.goto('./');
-  await page.locator('#startSession').click();
+  await holdToStartSession(page);
   await page.locator('#sessionBar').click();
   const sheet = page.locator('#sessionSheet');
   await sheet.getByRole('button', { name: /Crop/ }).click();

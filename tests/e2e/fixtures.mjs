@@ -120,3 +120,17 @@ export async function expectNoHorizontalOverflow(page) {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow, 'horizontal overflow in px').toBeLessThanOrEqual(0);
 }
+
+// Home's Start session is hold to activate: press, wait until the session is live, let go. A tap does nothing.
+// With Playwright's fake clock installed, pass `{ fakeClock: true }` and the hold's 600ms is run on it.
+export async function holdToStartSession(page, { fakeClock = false } = {}) {
+  // hover() waits until the button itself takes the pointer: not under the tab bar, nor a screen's view transition.
+  await page.locator('#startSession').hover();
+  await page.mouse.down();
+  if (fakeClock) await page.clock.runFor(700);
+  await expect(page.locator('#sessionBar')).toBeVisible();
+  await page.mouse.up();
+}
+
+// The Session and timers button that's on screen: the app header's, or Home's own on a phone.
+export const sessionButton = page => page.locator('#sessionButton:visible, #homeSessionButton:visible');

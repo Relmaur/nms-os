@@ -1,12 +1,31 @@
-import { test, expect, storedState, expectNoHorizontalOverflow } from './fixtures.mjs';
+import { test, expect, storedState, expectNoHorizontalOverflow, holdToStartSession } from './fixtures.mjs';
 
-test('Home shows the current system, warp-back list and outlaw run', async ({ page }) => {
+test('Home shows the current system, its orbits and the warp-back list', async ({ page }) => {
   await page.goto('./');
   await expect(page.locator('#homeNow')).toContainText('Ekwa Nexus');
   await expect(page.locator('#homeNow')).toContainText('S-class hauler spawns here');
+  await expect(page.locator('#homeNow').getByRole('img', { name: /^Ekwa Nexus: a .* star/ })).toBeVisible();
   await expect(page.locator('#homeRecent')).toContainText('Hesper Drift');
-  await expect(page.locator('#homeOutlaw')).toContainText('1 of 1 ready');
-  await expect(page.locator('#homePhase')).toHaveText('Phase 3: Test run');
+});
+
+test('a tap on Start session does nothing; holding it starts one', async ({ page }) => {
+  await page.goto('./');
+  await page.locator('#startSession').click();
+  await expect(page.locator('#sessionBar')).toBeHidden();
+  await holdToStartSession(page);
+  await expect(page.getByRole('button', { name: /^Session live/ })).toBeVisible();
+  expect((await storedState(page)).session).not.toBeNull();
+});
+
+test('on a phone, Home has its own header with Settings, and the app header steps aside', async ({
+  page
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'from lg the sidebar and app header carry them');
+  await page.goto('./');
+  await expect(page.locator('#headerRoot')).toBeHidden();
+  await page.locator('#sec-home').getByRole('link', { name: 'Settings' }).click();
+  await expect(page.locator('#sec-more')).toBeVisible();
+  await expect(page.locator('#headerRoot')).toBeVisible();
 });
 
 test('Log visit records a visit on the current system', async ({ page }) => {
