@@ -3,9 +3,11 @@ import assert from 'node:assert/strict';
 import {
   DEFAULT_FILTER,
   filterActive,
+  filterChips,
   filterSystems,
   parseOutlawList,
   systemMeta,
+  systemsLine,
   systemsSummary,
   tagCounts,
   tagSuggestions,
@@ -90,7 +92,47 @@ test('tag counts include planet tags, most used first', () => {
 });
 
 test('summary counts systems, planets and visits', () => {
-  assert.deepEqual(systemsSummary(systems), { systems: 3, planets: 1, visits: 2 });
+  assert.deepEqual(systemsSummary(systems), { systems: 3, planets: 1, visits: 2, galaxies: ['Euclid'] });
+});
+
+test('the Systems line names one galaxy and counts several', () => {
+  assert.equal(systemsLine(systems), '3 systems · 1 planet · 2 visits · Euclid');
+  assert.equal(
+    systemsLine([...systems, normalizeSystem({ name: 'Far', galaxy: 'Hilbert Dimension' })]),
+    '4 systems · 1 planet · 2 visits · 2 galaxies'
+  );
+  assert.equal(systemsLine([]), '0 systems · 0 planets · 0 visits');
+});
+
+test('chips: only what the log has, counts on stars and favourites, one star at a time, tags combine', () => {
+  const log = [
+    normalizeSystem({ name: 'A', star: 'yellow', favorite: true, race: 'korvax', tags: ['base'] }),
+    normalizeSystem({ name: 'B', star: 'yellow', conflict: 'pirate', tags: ['outlaw', 'base'] }),
+    normalizeSystem({ name: 'C', star: 'red' })
+  ];
+  const chips = filterChips(log, DEFAULT_FILTER);
+  assert.deepEqual(
+    chips.map(chip => [chip.label, chip.count, chip.on]),
+    [
+      ['All', 3, true],
+      ['Yellow', 2, false],
+      ['Red', 1, false],
+      ['Favourites', 1, false],
+      ['base', null, false],
+      ['outlaw', null, false],
+      ['Korvax', null, false],
+      ['Pirate (outlaw)', null, false]
+    ]
+  );
+  assert.deepEqual(chips.find(chip => chip.id === 'star-yellow')?.next, { star: 'yellow' });
+  const filtered: SystemFilter = { ...DEFAULT_FILTER, q: 'x', sort: 'name', star: 'yellow', tags: ['base'] };
+  const on = filterChips(log, filtered);
+  const all = on[0];
+  assert.ok(all);
+  assert.equal(all.on, false);
+  assert.deepEqual(on.find(chip => chip.id === 'star-yellow')?.next, { star: '' }); // tapping it again clears it
+  assert.deepEqual(on.find(chip => chip.id === 'tag-outlaw')?.next, { tags: ['base', 'outlaw'] });
+  assert.deepEqual(all.next, { tags: [], star: '', race: '', conflict: '', favorites: false }); // keeps q and sort
 });
 
 test('meta parts: race and conflict as labels, economy carries its wealth, pirates aren’t "conflict"', () => {

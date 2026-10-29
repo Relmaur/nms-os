@@ -7,6 +7,46 @@ _Last updated: 2026-10-28_
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
+**The app is now ATLAS:OS, and the repo runs on build prompt v2.0** (`docs/process/build-prompt.md`; owner, 2026-10-28). The docs use the new name. The public rename waits for the owner's yes (Public surface gate): the repo, the URL, `nms-atlas-mcp`, the PWA manifest and the in-app title. The redesign runs in this order: tokens and `apps/web/DESIGN.md`, the shell (a four-tab bar plus a search key), shared components, then the core-loop screens.
+
+**Redesign step 0 done (tokens and docs, 2026-10-28, unreleased):** `apps/web/src/tokens.css` holds every value of the new look as `@theme static` tokens (CSS variables and utilities); `DESIGN.md` and `PRODUCT.md` describe ATLAS:OS and the new design; Orbitron 800 is bundled. No screen uses the tokens yet, so nothing looks different. Choices made in this step:
+- Tokens are written in CSS (`@theme`), not a DTCG JSON file with a generator: Tailwind already makes the variables and utilities from that one source. A DTCG export can be generated from it if the design system ever needs one.
+- Values follow the round's screens where they differ from the older design-system notes: 12/14/18px radii for controls, primary buttons and cards, and a 10px label at 0.16em.
+- The active tab's icon has no glow: the design decisions say the live-run dot is the only glow in the bar (the screen files draw one).
+- Destructive actions are rose (`danger-rose-*`), as the screens draw them; crimson stays the outlaw mark.
+- Star and biome data colours join the tokens with the StarMark and PlanetMarker components (step 2).
+
+**Design round 3 (2026-10-28) is the current round:** rebuild 01, 02, 03, 04, 05, 06, 11, 13, 16, 27, 28; new 05b, 05c, 29–34. It confirms Log as Systems · Map · Fleet · Notes. Built in the build order: shell, components, then screens.
+
+**Redesign step 1, the shell, first increment done (unreleased):**
+- The tab bar is the floating pill with four tabs and the search key (`TabBar.tsx`, `theme.css`; the Codex page's static copy matches). `tabOf()` files every section under a tab: More → Home, Systems/Fleet/Notes → Log, Outlaw/Calculators → Runs, Guides/books → Codex.
+- `LogSegment` tops Systems, Fleet and Notes. Map joins it when the Map screens are built (step 5).
+- Settings: a gear in the header below lg, until Home's own header (01) carries it.
+- The in-app name and the PWA manifest are ATLAS:OS (owner, 2026-10-28). The manifest `id` is unchanged, so installs update in place. The repo, the `/nms-os/` URL and `nms-atlas-mcp` wait for a rename plan.
+- Interim, until their screens are rebuilt: the Runs tab opens Outlaw stations (28 Runs isn't built); its live dot means "a station is ready"; the phone header stays (it holds the session button, which Home's hold-to-start and 04 replace); sheets keep their old shadow and 300ms exit; the search overlay covers the bar, so the key's lit state waits for 19 Search.
+
+**Live testing while building (owner's request, 2026-10-28):** `pnpm --filter @atlas/web exec vite --host --port 5173` serves the working tree on the home Wi-Fi; the owner opens `http://<the Mac's LAN address>:5173/` on the phone, and it reloads on every save. It's its own origin, so it starts with an empty log: bring data in with More → Import (one-way). Pairing sync there would write test edits back to the real log.
+
+**Redesign step 2, shared components (unreleased):**
+- Buttons (`ui/parts/Button.tsx`) and gesture buttons (`ui/parts/Gesture.tsx`) follow the c04 study's behaviour: slide completes past 85% and springs back in 220ms; hold fills over 600ms and rewinds in 150ms; arm gives a 3s window. Keyboard and assistive-tech clicks (`detail === 0`) act once, so a stray tap never fires a slide or a hold.
+- The star chart: `@atlas/core/seed` (a synchronous sha-256 plus mulberry32, matching the design's reference) and `@atlas/core/orbit` (the side-view layout for XL, L and M) are tested against vectors taken by running the design's reference Python. `ui/parts/StarChart.tsx` draws StarMark, PlanetMarker and OrbitDiagram, with ±3° Kepler drift and corona breathing, both still under reduced motion.
+- Star and biome data colours are tokens now (`star-*`, `biome-*`).
+- The dev gallery shows every component in its states: `http://<the Mac's LAN address>:5173/dev/components.html`.
+
+- **Biome families come from the wiki** (owner, 2026-10-28): the Biome page is mirrored by title; seven cited facts (`biome-*`) map Lush → lush, Scorched and Volcanic → hot, Frozen, Toxic, Irradiated → radioactive, Exotic. Barren, Dead, Marsh, Waterworld, Gas Giant, Infested and Paradise have no family and draw slate. Mega Exotic is left out: the page calls it "a class of their own".
+
+**Redesign step 3, core-loop screens (unreleased):**
+- **01 Home is rebuilt** (`ui/home/Home.tsx`, logic in `@atlas/core/home`: `heroStatus`, `heroPlace`, `warpBackLine`, `homeTimers`; `systemOrbit` in `@atlas/core/orbit`).
+- `TimerRing` is in `ui/parts/`, for 04 to reuse.
+- Below lg, Home hides the app header (`body[data-section]`, set by `showSection`) and draws its own. The session bar shows there only while a session is live.
+- Home's own header has a timer button too, until Search's quick actions (19) can start a timer: without it a phone couldn't open the timers from Home.
+- Browser tests start a session with `holdToStartSession()` (fixtures), since a tap no longer does.
+
+- **02 Systems is rebuilt** (`ui/systems/Systems.tsx`; `filterChips` and `systemsLine` in `@atlas/core/systems-list`). Its phone header rules share Home's (`theme.css`).
+  - Interim: Sort is a chip at the end of the rail (the design has no place for it); the Log segment still has three segments until Map.
+
+**Next:** 03 System detail, 06 System editor (Location block), 04 Timers & Session.
+
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.
 - Players keep their own ships & Multi-Tools (`gear`) and Markdown notes (`notes`, pinnable to Home or a book).
@@ -50,6 +90,12 @@ Next: the recommendations engine on `wiki/game-data.json`.
 None.
 
 ## Open decisions
+- **Systems without a portal address** seed their orbit angles from the system's id instead of galaxy + address, so they don't all draw alike. The layout then changes once an address is logged. Recommendation: keep it.
+- **Wide screens (1024px and up):** the screens are drawn at 390px only. Recommendation: ask the designer for a desktop frame; until then keep the four-tab pill centred at a max width, with content capped as today. Owner's call.
+- **Delete `docs/process/prompt-graph.xml`?** `build-prompt.md` v2.0 supersedes it and nothing points at it any more. Deleting a committed file is a Destructive gate. Recommendation: delete it in the build prompt commit; the owner's kit keeps the old version.
+- **Public rename to ATLAS:OS:** done in the app and the PWA manifest (owner, 2026-10-28). Still open: the repo, the Pages URL (a bookmarked-URL break, so a MAJOR release unless the old path redirects), and the npm package. Owner's call; a plan comes before any change.
+- **Relay rate limits fail open:** if a `[[ratelimits]]` binding is missing, `apps/sync/src/index.ts` allows every request without a warning. Production has all three bindings. Recommendation: log one `[atlas]` warning when a binding is missing. Not fixed in the docs-only task.
+- **MCP answers aren't redacted:** the player's notes and system names go to their AI client in full, by design (ADR-0008, `docs/mcp.md`). Recommendation: keep it, since the player chose the client. Revisit if ATLAS ever calls a model itself.
 - **Refining time unit:** the wiki's refining `seconds` is read as per unit made (as the Codex shows it, and the data fits: higher-yield recipes have lower times), so 300 Chromatic Metal by Stellar Fusion (30 per batch, 4.8 s) times 24 minutes. Worth timing one multi-output run in-game to confirm.
 - **Outlaw restock timer default (24 h)** is a guess; the in-game restock time is unknown.
 - **SaaS / hosted version:** set aside in favour of a free app with Ko-fi donations (owner, 2026-10-27). Sync went the account-free, encrypted way (ADR-0005). Hello Games publishes no fan-content policy that we found: keep the app clearly unofficial and never sell game content. The wiki text is **CC BY-NC-SA 3.0** (NonCommercial; the wiki's `Project:Copyrights` page, checked 2026-10-28; labelled CC BY-SA 3.0 by mistake until 3.20.0). A free, ad-free app with attribution fits it.

@@ -5,6 +5,7 @@ import {
   OUTLAW_TAG,
   RACES,
   SORTS,
+  STAR_CLASSES,
   SUGGESTED_TAGS,
   lastVisit,
   normalizeGlyphs,
@@ -89,12 +90,109 @@ export function tagSuggestions(systems: System[], exclude: string[], query: stri
   return [...new Set([...used, ...SUGGESTED_TAGS])].filter(tag => !exclude.includes(tag) && tag.includes(query));
 }
 
-export function systemsSummary(systems: System[]): { systems: number; planets: number; visits: number } {
+export function systemsSummary(systems: System[]): {
+  systems: number;
+  planets: number;
+  visits: number;
+  galaxies: string[];
+} {
   return {
     systems: systems.length,
     planets: systems.reduce((sum, system) => sum + system.planets.length, 0),
-    visits: systems.reduce((sum, system) => sum + system.visits.length, 0)
+    visits: systems.reduce((sum, system) => sum + system.visits.length, 0),
+    galaxies: [...new Set(systems.map(system => system.galaxy).filter(Boolean))]
   };
+}
+
+const plural = (n: number, one: string, many = `${one}s`) => `${String(n)} ${n === 1 ? one : many}`;
+
+// The line under the Systems title: "2 systems · 5 planets · 1 visit · Euclid". One galaxy is named; more are counted.
+export function systemsLine(systems: System[]): string {
+  const { planets, visits, galaxies } = systemsSummary(systems);
+  const where = galaxies.length === 1 ? galaxies[0] : galaxies.length ? plural(galaxies.length, 'galaxy', 'galaxies') : '';
+  return [plural(systems.length, 'system'), plural(planets, 'planet'), plural(visits, 'visit'), where]
+    .filter(Boolean)
+    .join(' · ');
+}
+
+// The Systems screen's chip rail (design 02): All, then each star colour, Favourites, every tag, each race and
+// conflict level, only those the log actually has. Star colours and Favourites carry counts. Star, race and conflict
+// pick one at a time (a system has one of each); tags combine. All clears the chips but keeps the search and sort.
+export interface FilterChip {
+  id: string;
+  label: string;
+  count: number | null;
+  /** Star chips draw the star's colour beside the label. */
+  star?: StarClass;
+  on: boolean;
+  /** What tapping it sets on the filter. */
+  next: Partial<SystemFilter>;
+}
+
+export function filterChips(systems: System[], filter: SystemFilter): FilterChip[] {
+  const count = (keep: (system: System) => boolean) => systems.filter(keep).length;
+  const chipped = Boolean(filter.tags.length || filter.star || filter.race || filter.conflict || filter.favorites);
+  const chips: FilterChip[] = [
+    {
+      id: 'all',
+      label: 'All',
+      count: systems.length,
+      on: !chipped,
+      next: { tags: [], star: '', race: '', conflict: '', favorites: false }
+    }
+  ];
+  (Object.keys(STAR_CLASSES) as StarClass[]).forEach(star => {
+    const n = count(system => system.star === star);
+    if (n)
+      chips.push({
+        id: `star-${star}`,
+        label: STAR_CLASSES[star].label,
+        count: n,
+        star,
+        on: filter.star === star,
+        next: { star: filter.star === star ? '' : star }
+      });
+  });
+  const favorites = count(system => system.favorite);
+  if (favorites)
+    chips.push({
+      id: 'favorites',
+      label: 'Favourites',
+      count: favorites,
+      on: filter.favorites,
+      next: { favorites: !filter.favorites }
+    });
+  tagCounts(systems).forEach(([tag]) => {
+    const on = filter.tags.includes(tag);
+    chips.push({
+      id: `tag-${tag}`,
+      label: tag,
+      count: null,
+      on,
+      next: { tags: on ? filter.tags.filter(item => item !== tag) : [...filter.tags, tag] }
+    });
+  });
+  (Object.keys(RACES) as Race[]).forEach(race => {
+    if (count(system => system.race === race))
+      chips.push({
+        id: `race-${race}`,
+        label: RACES[race],
+        count: null,
+        on: filter.race === race,
+        next: { race: filter.race === race ? '' : race }
+      });
+  });
+  (Object.keys(CONFLICT_LEVELS) as ConflictLevel[]).forEach(conflict => {
+    if (count(system => system.conflict === conflict))
+      chips.push({
+        id: `conflict-${conflict}`,
+        label: conflict === 'pirate' ? CONFLICT_LEVELS.pirate : `${CONFLICT_LEVELS[conflict]} conflict`,
+        count: null,
+        on: filter.conflict === conflict,
+        next: { conflict: filter.conflict === conflict ? '' : conflict }
+      });
+  });
+  return chips;
 }
 
 // The one-line summary under a system's name, as parts; the economy part carries the wealth for its stars.

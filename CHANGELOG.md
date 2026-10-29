@@ -1,10 +1,41 @@
 # Changelog
 
-All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/). For this app, a MAJOR bump means a saved or exported `nms_state.json`, a bookmarked URL, or a supported way of running the app stops working.
+All notable changes to ATLAS:OS (called ATLAS // MASTER OS up to 3.20.0). The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/). For this app, a MAJOR bump means a saved or exported `nms_state.json`, a bookmarked URL, or a supported way of running the app stops working.
 
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Added
+- **A new tab bar** on phones and tablets: a floating glass bar with four tabs, Home · Log · Runs · Codex, and a round search key beside it. Runs lights a dot when an outlaw station is ready. The Codex page has the same bar, and its search key opens the app's search.
+- **Log's segmented control** (Systems · Fleet · Notes) at the top of each of the three.
+- A Settings gear in the header below desktop width (More had a tab of its own).
+- `#search` opens the app with the search up.
+- **The redesign's shared components**, not on any screen yet:
+  - tap buttons: primary, secondary, jump, ghost and danger in three sizes, with loading and disabled states;
+  - gesture buttons: slide to activate, hold to activate (600ms), and tap to arm with a 3-second window. Each works from the keyboard and with a screen reader;
+  - the star mark, the planet marker, and the orbit diagram in three sizes, with a sentence for screen readers. Planets sit at angles seeded from the galaxy and portal address, so a system draws the same on every device.
+- The Codex mirrors the wiki's **Biome** page. Seven cited facts from it give planets their colour family (Scorched and Volcanic are hot; Frozen, Toxic, Irradiated, Exotic and Lush have their own), each with the sentence that says so. Biomes the page gives no family, such as Barren or Gas Giant, draw slate.
+- The wiki sync picked up Update 7.10 and three changed pages.
+- A dev-only component gallery (`apps/web/dev/components.html`, served by `pnpm dev`, never built).
+
+### Changed
+- **Home is redesigned.**
+  - The current system leads, with its orbit diagram, where you are ("You are here · 26h ago"), its place and your first note line.
+  - **Warped somewhere new** is a slide, so a stray thumb mid-game can't open it.
+  - Your timers show as cards: the soonest running and the newest finished.
+  - **Start session** is a hold (600ms), like the game's own hold to interact.
+  - Warp back lists systems with their star.
+  - On phones Home has its own header: the wordmark, sync's state when sync is on, timers and Settings.
+  - The outlaw stations move to Runs, the fleet to Log › Fleet, and Keep screen on stays in Settings. Notes pinned to Home still show.
+- **Systems is redesigned.**
+  - A system with its star or planets logged draws its orbit strip; one without stays a compact card with its notes. The system you're in says "You are here".
+  - Under the title: systems, planets, visits and the galaxy ("2 systems · 5 planets · 1 visit · Euclid").
+  - The filters are one row of chips: All, each star colour and Favourites with counts, every tag, each race and conflict level the log has. Sort is the last chip.
+  - **Add system** is now **Log system**; a dashed "Warped somewhere new? Log it here" closes the list.
+  - On phones Systems has no app header, like Home.
+- **The app is called ATLAS:OS** inside the app and as an installed app (the manifest's name and short name; installs update in place). The address and the npm package keep their names for now.
+- The app is now called ATLAS:OS in the project docs. The development protocol is `docs/process/build-prompt.md` v2.0, with two new policy gates: public surface and firewall. `docs/process/applicability.md` now matches the code: what sync, push alerts and the MCP server send, how long the relay keeps it, and the relay's abuse controls. Docs only.
+- **Design tokens for the redesign** (`apps/web/src/tokens.css`): the new look's colours, type, radii, rhythm, state glows and motion, each a CSS variable and a Tailwind utility. `apps/web/DESIGN.md` describes the new design (tint-and-edge buttons, a four-tab bar with a search key, gesture buttons in three places, glow only as state). Orbitron 800 is bundled for the new titles. No screen changes yet: each moves to the tokens as it is rebuilt.
 
 ## [3.20.0] - 2026-10-28
 ### Added
