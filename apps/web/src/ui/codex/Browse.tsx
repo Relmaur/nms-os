@@ -239,36 +239,45 @@ function Empty() {
         <h1 className="font-display font-bold text-lg text-white">The Codex is empty</h1>
         <p className="text-sm text-slate-300 max-w-md mx-auto">
           Run <code className="text-emerald-300">pnpm index:wiki</code> to index the committed archive (or{' '}
-          <code className="text-emerald-300">pnpm sync:wiki</code> to refresh it from the wiki), then reload this page.
+          <code className="text-emerald-300">pnpm sync:wiki --from-dump &lt;file&gt;</code> to refresh it from a wiki
+          dump), then reload this page.
         </p>
       </div>
     </div>
   );
 }
 
-// What the last sync or verify established about the archive.
+// What the last sync or verify established about the archive. Since ADR-0009 it's checked against a database dump of
+// the wiki, so the dump's date is how fresh the copy is.
 function VerificationPanel({ v }: { v: Verification | null }) {
   const checked = v ? formatDate(v.checkedAt) : '';
+  const copy = v?.dumpDate
+    ? new Date(v.dumpDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })
+    : '';
   let tone = 'border-slate-700';
   let icon = 'ph-question text-slate-400';
   let headline = 'Not verified on this copy';
   let detail: ReactNode = (
     <>
-      Run <code className="text-emerald-300">pnpm verify:wiki</code> to compare the archive with the live wiki.
+      Run <code className="text-emerald-300">pnpm verify:wiki --from-dump &lt;file&gt;</code> to compare the archive
+      with a wiki dump.
     </>
   );
   if (v?.status === 'match') {
     tone = 'border-emerald-500/40';
     icon = 'ph-seal-check text-emerald-300';
-    headline = `Matches the wiki: ${(v.matched ?? 0).toLocaleString()} of ${(v.pages ?? 0).toLocaleString()} pages at their latest revision`;
-    detail = `Checked ${checked}, ${new Date(v.checkedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}. Wiki revisions never change once saved, so a matching revision id means an identical page.`;
+    headline = copy
+      ? `Wiki copy from ${copy}: ${(v.matched ?? 0).toLocaleString()} of ${(v.pages ?? 0).toLocaleString()} pages match it`
+      : `Matches the wiki: ${(v.matched ?? 0).toLocaleString()} of ${(v.pages ?? 0).toLocaleString()} pages at their latest revision`;
+    detail = `Checked ${checked}, ${new Date(v.checkedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}${copy ? ` against the wiki's database dump` : ''}. Wiki revisions never change once saved, so a matching revision id means an identical page. Edits made on the wiki since arrive with the next dump.`;
   } else if (v?.status === 'differs') {
     tone = 'border-amber-500/40';
     icon = 'ph-warning text-amber-300';
-    headline = `${((v.pages ?? 0) - (v.matched ?? 0)).toLocaleString()} pages behind the wiki`;
+    headline = `${((v.pages ?? 0) - (v.matched ?? 0)).toLocaleString()} pages behind the wiki${copy ? ` copy from ${copy}` : ''}`;
     detail = (
       <>
-        Checked {checked}. Run <code className="text-emerald-300">pnpm sync:wiki</code> to catch up.
+        Checked {checked}. Run <code className="text-emerald-300">pnpm sync:wiki --from-dump &lt;file&gt;</code> to
+        catch up.
       </>
     );
   } else if (v?.status === 'unreachable') {

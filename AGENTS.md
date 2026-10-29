@@ -33,8 +33,8 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 | `pnpm build` / `pnpm preview` | Build `apps/web/dist` / serve the build |
 | `pnpm mcp` | Start the MCP server over stdio (normally the AI client starts it; `docs/mcp.md`) |
 | `pnpm index:wiki` | Rebuild derived wiki files from the committed archive (run after a fresh clone) |
-| `pnpm sync:wiki` | Sync the mirror from the live wiki, record verification, reindex |
-| `pnpm verify:wiki` | Dry run: does the archive match the wiki? Exit 1 if not |
+| `pnpm sync:wiki --from-dump <file>` | Sync the mirror from a wiki database dump (kept outside the repo; ADR-0009), record verification, reindex |
+| `pnpm verify:wiki --from-dump <file>` | Dry run: does the archive match the dump? Exit 1 if not |
 | `pnpm typecheck` | `tsc` for packages, scripts, tests, the web app and the service worker |
 | `pnpm lint` / `pnpm format` | ESLint (typescript-eslint strict, type-checked) / Prettier |
 | `pnpm test` | Unit tests (Vitest) |

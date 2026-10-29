@@ -6,6 +6,9 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **The wiki mirror is refreshed from Fandom's database dumps** (ADR-0009): `pnpm sync:wiki --from-dump <file>` reads the dump's XML (plain or gzipped) with the same scope, exclusions and rendering, and `pnpm verify:wiki --from-dump <file>` compares the archive with it. The dump stays outside the repo.
+- `pnpm sync:wiki --discover <dump> --out <report.md>`: a scope report of every infobox and large category in the dump, with a proposed verdict (game, community, mixed), for widening the mirror. It writes nothing in `wiki/`.
+- The Codex says which copy of the wiki it holds: "Wiki copy from 29 Oct 2026" beside each article's source and on its landing. "Fix this on the wiki" still opens the live page.
 - **A new tab bar** on phones and tablets: a floating glass bar with four tabs, Home · Log · Runs · Codex, and a round search key beside it. Runs lights a dot when an outlaw station is ready. The Codex page has the same bar, and its search key opens the app's search.
 - **Log's segmented control** (Systems · Fleet · Notes) at the top of each of the three.
 - A Settings gear in the header below desktop width (More had a tab of its own).

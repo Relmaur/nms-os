@@ -19,7 +19,22 @@ const text = (value: unknown): string | undefined => (typeof value === 'string' 
 const revision = (entry: PreparedEntry) => (typeof entry.revId === 'number' ? entry.revId : undefined);
 const permalink = (entry: PreparedEntry) => `${text(entry.url) ?? ''}?oldid=${String(revision(entry))}`;
 
-export function Article({ index, path, q }: { index: CodexIndex; path: string; q: string }) {
+// "29 Oct 2026": the day the dump was taken, in the reader's own order.
+const copyDay = (iso: string) =>
+  new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+
+export function Article({
+  index,
+  path,
+  q,
+  copyDate
+}: {
+  index: CodexIndex;
+  path: string;
+  q: string;
+  /** The wiki dump the archive was taken from (verification.json's dumpDate), when known. */
+  copyDate?: string | undefined;
+}) {
   const entry = index.byPath.get(path);
   const href = (target: string) => `#/a/${encodeURIComponent(target)}${q ? `?q=${encodeURIComponent(q)}` : ''}`;
   const rendered = useMemo(
@@ -204,6 +219,7 @@ export function Article({ index, path, q }: { index: CodexIndex; path: string; q
               {`No Man's Sky Wiki, revision ${String(revision(entry))}`}
             </a>{' '}
             · CC BY-NC-SA 3.0 · rendered from the page source ·{' '}
+            {copyDate ? `Wiki copy from ${copyDay(copyDate)} · ` : null}
             {/* Corrections belong on the wiki, where every reader gets them; the next sync brings them here. */}
             <a
               href={`${text(entry.url) ?? ''}?action=edit`}

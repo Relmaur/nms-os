@@ -1,16 +1,20 @@
 // Mirrors the game-data pages of the No Man's Sky wiki into wiki/<category>/<slug>.md and rebuilds the Codex indexes.
+// The source is always a database dump of the wiki, never the API: Fandom asked that tools wait for a new dump
+// (Special:Statistics) instead of calling it (ADR-0009). The dump lives outside the repo; it holds the whole wiki.
 //
-//   pnpm sync:wiki     sync every in-scope page from the live wiki, record the verification, reindex
-//   pnpm verify:wiki   dry run: report how the archive differs from the live wiki (exit 1 if it does)
-//   pnpm index:wiki    reindex the committed archive only (no network)
+//   pnpm sync:wiki --from-dump <file>          sync every in-scope page from the dump, record the verification, reindex
+//   pnpm verify:wiki --from-dump <file>        dry run: report how the archive differs from the dump (exit 1 if it does)
+//   pnpm index:wiki                            reindex the committed archive only
+//   pnpm sync:wiki --discover <file> --out <report.md>
+//                                              the scope report for widening the mirror (writes nothing in wiki/)
 //
 // Scope: main-namespace pages that use one of the game-data infoboxes in SCOPE, plus the game-mechanics pages named in
 // MECHANICS (for the rules facts.ts cites). Player discoveries (planets, creatures, bases, player-found ships and
 // multi-tools) and community pages are out of scope.
 // Every article is rendered from the page's wikitext at a recorded revision id. MediaWiki revisions are immutable,
-// so an archived revId equal to the live revId means the copy matches the wiki's source exactly.
+// so an archived revId equal to the dump's revId means the copy matches the wiki's source at the dump's date.
 //
-// Node 24+ runs this file as-is (type stripping); its only dependency is Zod, for the response schemas.
+// Node 24+ runs this file as-is (type stripping); its only dependency is Zod.
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -19,8 +23,6 @@ import { z } from 'zod';
 import {
   WIKI_BASE,
   LICENSE,
-  SCOPE,
-  MECHANICS,
   FOLDERS,
   slugify,
   toFrontmatter,
@@ -31,27 +33,14 @@ import {
   type ArticleMeta,
   type Page
 } from './wikitext.ts';
-import { InvalidResponse, readEmbeddedIn, readRevisions, readTitles } from './api-schema.ts';
+import { InvalidDump, followRedirect, scanDump } from './dump.ts';
+import { discover, reportMarkdown } from './discover.ts';
 import { FACTS, checkFacts, type FactPage } from './facts.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
-const WIKI_API = `${WIKI_BASE}/api.php`;
-// Says who's asking and how to reach them, as MediaWiki's API etiquette asks.
-const USER_AGENT =
-  "ATLAS-wiki-sync/1.0 (fan-made No Man's Sky companion; +https://relmaur.github.io/nms-os/; contact: https://github.com/Relmaur/nms-os/issues)";
-const BATCH = 50; // pages per revisions request (the API maximum for content)
-const REQUEST_DELAY_MS = 250;
-const REQUEST_TIMEOUT_MS = 30000; // a stalled connection must reach the retry/unreachable path, not hang the CI job
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const describe = (err: unknown) => (err instanceof Error ? err.message : String(err));
 
-type Params = Record<string, string | number>;
-interface ScopePage {
-  pageId: number;
-  title: string;
-  kind: string;
-}
 interface ArchiveEntry {
   file: string;
   text: string;
@@ -62,105 +51,12 @@ interface FileWrite {
   text: string;
 }
 
-const ApiFailure = z.looseObject({ error: z.looseObject({ code: z.string(), info: z.string() }) });
-const Continuation = z.looseObject({ continue: z.record(z.string(), z.union([z.string(), z.number()])).optional() });
-const Redirects = z.looseObject({
-  query: z.looseObject({
-    normalized: z.array(z.looseObject({ from: z.string(), to: z.string() })).optional(),
-    redirects: z.array(z.looseObject({ from: z.string(), to: z.string() })).optional()
-  })
-});
 const Aliases = z.record(z.string(), z.string());
 const CustomMeta = z.looseObject({
   title: z.coerce.string().optional().catch(undefined),
   summary: z.coerce.string().optional().catch(undefined),
   data: ArticleMetaSchema.shape.data.catch(undefined)
 });
-
-// ---------------------------------------------------------------------------
-// MediaWiki API
-// ---------------------------------------------------------------------------
-async function api(params: Params, attempt = 1): Promise<unknown> {
-  const url = new URL(WIKI_API);
-  const query: Params = { format: 'json', formatversion: '2', ...params };
-  for (const [key, value] of Object.entries(query)) {
-    url.searchParams.set(key, String(value));
-  }
-  try {
-    const res = await fetch(url, {
-      headers: { 'User-Agent': USER_AGENT },
-      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url.href}`);
-    const data: unknown = await res.json();
-    const failure = ApiFailure.safeParse(data);
-    if (failure.success) throw new Error(`${failure.data.error.code}: ${failure.data.error.info}`);
-    return data;
-  } catch (err) {
-    if (attempt >= 4) throw err;
-    await sleep(1000 * 2 ** attempt);
-    return api(params, attempt + 1);
-  }
-}
-
-// pageId -> { pageId, title, kind } for every page embedding an in-scope infobox.
-async function fetchScope(): Promise<Map<number, ScopePage>> {
-  const pages = new Map<number, ScopePage>();
-  for (const [template, kind] of Object.entries(SCOPE)) {
-    let cont: Params | null = {};
-    while (cont) {
-      const data = await api({
-        action: 'query',
-        list: 'embeddedin',
-        eititle: `Template:${template}`,
-        einamespace: 0,
-        eilimit: 500,
-        ...cont
-      });
-      for (const page of readEmbeddedIn(data, template)) {
-        if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind });
-      }
-      cont = Continuation.parse(data).continue ?? null;
-      await sleep(REQUEST_DELAY_MS);
-    }
-  }
-  const { pages: mechanics, missing } = readTitles(await api({ action: 'query', titles: MECHANICS.join('|') }));
-  for (const page of mechanics) {
-    if (!pages.has(page.pageid)) pages.set(page.pageid, { pageId: page.pageid, title: page.title, kind: 'mechanic' });
-  }
-  // A renamed or deleted mechanics page: its archived copy is marked removed, and the facts citing it go stale.
-  if (missing.length) console.warn(`⚠️  Mechanics pages not on the wiki: ${missing.join(', ')}`);
-  return pages;
-}
-
-async function fetchRevisions(scope: Map<number, ScopePage>): Promise<Page[]> {
-  const ids = [...scope.keys()].sort((a, b) => a - b);
-  const pages: Page[] = [];
-  for (let i = 0; i < ids.length; i += BATCH) {
-    const data = await api({
-      action: 'query',
-      prop: 'revisions',
-      rvprop: 'ids|timestamp|content',
-      rvslots: 'main',
-      pageids: ids.slice(i, i + BATCH).join('|')
-    });
-    for (const page of readRevisions(data)) {
-      pages.push({
-        pageId: page.pageid,
-        kind: scope.get(page.pageid)?.kind ?? '',
-        title: page.title,
-        revId: page.revid,
-        revTimestamp: page.timestamp,
-        content: page.content
-      });
-    }
-    if (process.stdout.isTTY)
-      process.stdout.write(`\r📥 Fetched ${Math.min(i + BATCH, ids.length)}/${ids.length} pages`);
-    await sleep(REQUEST_DELAY_MS);
-  }
-  console.log(`${process.stdout.isTTY ? '\n' : ''}📥 Fetched ${pages.length} pages.`);
-  return pages;
-}
 
 // ---------------------------------------------------------------------------
 // Archive
@@ -186,7 +82,7 @@ async function readArchive(): Promise<Map<number, ArchiveEntry>> {
   return byPageId;
 }
 
-// Compares the live wiki with the archive and returns what a sync would change.
+// Compares the dump with the archive and returns what a sync would change.
 function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
   const writes: FileWrite[] = [];
   const deletes: string[] = [];
@@ -234,22 +130,16 @@ function plan(livePages: Page[], archive: Map<number, ArchiveEntry>) {
   return { writes, deletes, excluded, outdated, missing, removed, titles, unknownNames, factPages };
 }
 
-// Recipe ingredients named by an old title (e.g. "Rigogen") reach their page through a wiki redirect.
-// Returns { aliases: { oldName: currentTitle }, unlinked: [names with no in-scope page] }.
-async function resolveAliases(
+// Recipe ingredients named by an old title (e.g. "Rigogen") reach their page through a wiki redirect in the dump.
+function resolveAliases(
   names: string[],
-  titles: Set<string>
-): Promise<{ aliases: Record<string, string>; unlinked: string[] }> {
+  titles: Set<string>,
+  redirects: Map<string, string>
+): { aliases: Record<string, string>; unlinked: string[] } {
   const aliases: Record<string, string> = {};
-  for (let i = 0; i < names.length; i += BATCH) {
-    const { query } = Redirects.parse(
-      await api({ action: 'query', redirects: 1, titles: names.slice(i, i + BATCH).join('|') })
-    );
-    const normalized = new Map((query.normalized ?? []).map(entry => [entry.to, entry.from]));
-    for (const redirect of query.redirects ?? []) {
-      if (titles.has(redirect.to.toLowerCase())) aliases[normalized.get(redirect.from) ?? redirect.from] = redirect.to;
-    }
-    await sleep(REQUEST_DELAY_MS);
+  for (const name of names) {
+    const target = followRedirect(redirects, name);
+    if (target && titles.has(target.toLowerCase())) aliases[name] = target;
   }
   const sorted = Object.fromEntries(Object.entries(aliases).sort(([a], [b]) => a.localeCompare(b)));
   return { aliases: sorted, unlinked: names.filter(name => !(name in sorted)) };
@@ -259,34 +149,31 @@ async function writeVerification(report: object): Promise<void> {
   await fs.writeFile(path.join(WIKI_DIR, 'verification.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
-async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
+async function sync({ dump, dryRun }: { dump: string; dryRun: boolean }): Promise<boolean> {
   const checkedAt = new Date().toISOString();
-  let livePages: Page[];
+  const dumpName = path.basename(dump);
+  let scan: Awaited<ReturnType<typeof scanDump>>;
   try {
-    const scope = await fetchScope();
-    console.log(`🔎 ${scope.size} wiki pages in scope (game-data infoboxes and mechanics pages).`);
-    livePages = await fetchRevisions(scope);
+    scan = await scanDump(dump);
   } catch (err) {
-    // Nothing has been written yet: the committed archive stays as it was, and the Codex shows why it wasn't checked.
-    if (err instanceof InvalidResponse) {
-      console.error(`❌ The wiki returned data the mirror can't validate: ${err.message}. Nothing was written.`);
-      await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'invalid-response', reason: err.message });
-    } else {
-      console.warn(`⚠️  Wiki unreachable (${describe(err)}); the archive was not checked.`);
-      await writeVerification({ checkedAt, wiki: WIKI_BASE, status: 'unreachable' });
-    }
+    // Nothing has been written: the committed archive and its verification stay as they were.
+    console.error(
+      err instanceof InvalidDump
+        ? `❌ The dump can't be used: ${err.message}. Nothing was written.`
+        : `❌ Couldn't read the dump (${describe(err)}). Nothing was written.`
+    );
     return false;
   }
+  const livePages = scan.pages;
+  console.log(`🔎 ${livePages.length} pages in scope in ${dumpName} (game-data infoboxes and mechanics pages).`);
+  // A renamed or deleted mechanics page: its archived copy is marked removed, and the facts citing it go stale.
+  if (scan.mechanicsMissing.length) console.warn(`⚠️  Mechanics pages not in the dump: ${scan.mechanicsMissing.join(', ')}`);
 
   const changes = plan(livePages, await readArchive());
   const { stale: staleFacts } = checkFacts(changes.factPages);
   for (const fact of staleFacts) console.warn(`⚠️  Cited fact ${fact.id} (${fact.page}): ${fact.reason}. Update packages/wiki/src/facts.ts.`);
   const committedAliases = await fs.readFile(path.join(WIKI_DIR, 'aliases.json'), 'utf8').catch(() => '');
-  const { aliases, unlinked } = await resolveAliases(changes.unknownNames, changes.titles).catch((err: unknown) => {
-    // Keep the committed map if the wiki drops mid-sync; renamed ingredients then resolve as they did before.
-    console.warn(`⚠️  Couldn't refresh redirect aliases (${describe(err)}); keeping the committed aliases.json.`);
-    return { aliases: Aliases.parse(JSON.parse(committedAliases || '{}')), unlinked: changes.unknownNames };
-  });
+  const { aliases, unlinked } = resolveAliases(changes.unknownNames, changes.titles, scan.redirects);
   const aliasesText = `${JSON.stringify(aliases, null, 2)}\n`;
   const aliasesChanged = committedAliases !== aliasesText;
   const differences = changes.writes.length + changes.deletes.length + (aliasesChanged ? 1 : 0);
@@ -317,6 +204,9 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   const report = {
     checkedAt,
     wiki: WIKI_BASE,
+    source: 'dump',
+    dump: dumpName,
+    dumpDate: scan.latest,
     status: dryRun && differences ? 'differs' : 'match',
     pages,
     matched: dryRun ? pages - changes.outdated.length - changes.missing.length : pages,
@@ -342,11 +232,11 @@ async function sync({ dryRun }: { dryRun: boolean }): Promise<boolean> {
   await writeVerification(report);
 
   if (dryRun) {
-    if (staleFacts.length) console.log(`❌ ${staleFacts.length} cited fact(s) no longer match the wiki.`);
+    if (staleFacts.length) console.log(`❌ ${staleFacts.length} cited fact(s) no longer match the dump.`);
     console.log(
       differences
-        ? `❌ The archive differs from the wiki: ${changes.outdated.length} outdated, ${changes.missing.length} missing, ${changes.removed.length} removed upstream, ${differences} file(s) to rewrite. Run npm run sync:wiki.`
-        : `✅ The archive matches the wiki: ${report.matched}/${pages} pages at their latest revision.`
+        ? `❌ The archive differs from the dump: ${changes.outdated.length} outdated, ${changes.missing.length} missing, ${changes.removed.length} removed upstream, ${differences} file(s) to rewrite. Run pnpm sync:wiki --from-dump ${dump}.`
+        : `✅ The archive matches the dump: ${report.matched}/${pages} pages at their revision in ${dumpName}.`
     );
     return !differences && !staleFacts.length;
   }
@@ -453,14 +343,44 @@ async function buildIndexes(): Promise<void> {
   );
 }
 
+// The value after a flag (`--from-dump file`), or null.
+function option(args: string[], flag: string): string | null {
+  const at = args.indexOf(flag);
+  const value = at === -1 ? undefined : args[at + 1];
+  return value && !value.startsWith('--') ? value : null;
+}
+
 async function run(): Promise<void> {
   const args = process.argv.slice(2);
   await fs.mkdir(WIKI_DIR, { recursive: true });
-  if (args.includes('--verify')) {
-    process.exitCode = (await sync({ dryRun: true })) ? 0 : 1;
+  const discoverFrom = option(args, '--discover');
+  if (discoverFrom) {
+    const out = option(args, '--out');
+    if (!out) throw new Error('--discover needs --out <report.md>: the report is planning, kept outside wiki/');
+    const report = await discover(discoverFrom);
+    await fs.writeFile(out, reportMarkdown(report, path.basename(discoverFrom)), 'utf8');
+    console.log(
+      `🧭 ${report.articles} articles: ${report.infoboxes.length} infoboxes and ${report.categories.length} large categories without one. Report: ${out}`
+    );
     return;
   }
-  if (!args.includes('--index-only')) await sync({ dryRun: false });
+  if (args.includes('--index-only')) {
+    await buildIndexes();
+    return;
+  }
+  const dump = option(args, '--from-dump');
+  if (!dump) {
+    console.error(
+      '❌ The wiki is refreshed from a database dump only (ADR-0009): pnpm sync:wiki --from-dump <file>. Download the dump from the wiki\'s Special:Statistics and keep it outside the repo.'
+    );
+    process.exitCode = 1;
+    return;
+  }
+  if (args.includes('--verify')) {
+    process.exitCode = (await sync({ dump, dryRun: true })) ? 0 : 1;
+    return;
+  }
+  if (!(await sync({ dump, dryRun: false }))) process.exitCode = 1;
   await buildIndexes();
 }
 

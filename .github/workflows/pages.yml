@@ -1,6 +1,7 @@
-# Syncs the wiki mirror, type-checks, lints and unit-tests, then builds ATLAS // MASTER OS with Vite and deploys it to
-# GitHub Pages. Each job gets only the permissions it needs: the build (which runs pnpm and every dependency's code)
-# can read the repo and nothing more; a separate job that runs no project code commits the synced wiki pages back.
+# Indexes the committed wiki mirror, type-checks, lints and unit-tests, then builds ATLAS:OS with Vite and deploys it
+# to GitHub Pages. The build (which runs pnpm and every dependency's code) can read the repo and nothing more.
+# CI never contacts the wiki: the mirror is refreshed by hand from Fandom's database dumps (ADR-0009), and the
+# synced pages and wiki/verification.json arrive in a commit like any other change.
 # Actions are pinned by commit (Dependabot proposes updates, .github/dependabot.yml).
 # One-time setup: repo Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
@@ -8,8 +9,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: '17 6 * * 1' # weekly wiki refresh, Mondays 06:17 UTC
   workflow_dispatch:
 
 permissions: {}
@@ -39,21 +38,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Mirrors the wiki's game-data pages over the committed archive (only pages with a new revision change)
-      # and writes wiki/verification.json, which the Codex shows. If the wiki is unreachable, slow or answers
-      # something unexpected, the committed archive ships as-is and the Codex says it couldn't be checked.
-      - name: Sync and verify the wiki mirror
-        id: sync
-        run: pnpm sync:wiki
-        timeout-minutes: 15
-        continue-on-error: true
-      # A sync that crashed or timed out never reached its indexing step: build the indexes (index.json,
-      # game-data.json, facts.json, the Codex bundle) from the committed archive instead.
-      - name: Index the committed archive
-        if: steps.sync.outcome != 'success'
+      # Builds the derived indexes (index.json, game-data.json, facts.json, the Codex bundle) from the committed
+      # archive. No network: the archive only changes through a dump sync committed to the repo.
+      - name: Index the wiki archive
         run: pnpm index:wiki
 
-      # Gate: nothing is committed back or deployed unless types, lint and unit tests pass on the synced data.
+      # Gate: nothing is deployed unless types, lint and unit tests pass.
       # Browser tests (pnpm test:e2e) run locally as part of pnpm check, not in CI, to keep runs short.
       - name: Type check
         run: pnpm typecheck
@@ -62,15 +52,6 @@ jobs:
       - name: Unit tests
         run: pnpm test
 
-      # Handed to the commit job, which pushes it without running any of this job's code.
-      - name: Keep the synced wiki mirror
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: wiki
-          path: wiki
-          retention-days: 1
-
       # The service worker's precache revisions come from file contents, so every deploy updates installed apps.
       - name: Build the site
         run: pnpm build
@@ -78,35 +59,6 @@ jobs:
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: apps/web/dist
-
-  # Keeps the repo's archive in step with the wiki without anyone running the sync locally. Pushes made with
-  # GITHUB_TOKEN don't trigger another workflow run, so this can't loop.
-  commit-wiki:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: wiki
-          path: wiki
-      - name: Commit wiki changes back to main
-        run: |
-          git add wiki
-          if git diff --cached --quiet; then echo "The wiki mirror is unchanged."; exit 0; fi
-          pages=$(git diff --cached --name-only -- '*.md' | wc -l | tr -d ' ')
-          list=$(git diff --cached --name-only -- '*.md' | sed 's#^wiki/##; s#\.md$##' | head -100)
-          git -c user.name="github-actions[bot]" -c user.email="41898099+github-actions[bot]@users.noreply.github.com" \
-            commit -q -m "Sync wiki mirror: ${pages} page(s) changed on the wiki" -m "${list}"
-          for attempt in 1 2 3; do
-            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
-            sleep 10
-          done
-          echo "::error::Could not push the wiki sync commit." && exit 1
 
   deploy:
     needs: build

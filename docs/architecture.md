@@ -21,9 +21,10 @@ nms-os/                          pnpm workspace
 │   │   ├── src/sync.ts / sync-crypto.ts   Three-way merge of two copies; the sync code, key derivation and sealing (Web Crypto)
 │   │   └── test/                Vitest
 │   └── wiki/                    @atlas/wiki: the mirror's sync, parser and API schema; Node runs the .ts directly
-│       ├── src/sync.ts          Orchestration: sync, verify, index (pnpm sync:wiki | verify:wiki | index:wiki)
+│       ├── src/sync.ts          Orchestration: sync, verify, index, discover (pnpm sync:wiki | verify:wiki | index:wiki)
+│       ├── src/dump.ts          Streams a MediaWiki XML dump: pages, revisions, redirects, the scope rule
+│       ├── src/discover.ts      The scope report for widening the mirror (read-only)
 │       ├── src/wikitext.ts      Wikitext → Markdown + structured data; article frontmatter schema
-│       ├── src/api-schema.ts    Zod guard for MediaWiki API responses
 │       └── test/                Vitest, on real page fixtures (tests/fixtures/wikitext/)
 ├── apps/web/                    @atlas/web: the PWA
 │   ├── index.html               Main app: Home, Systems, Outlaw Run, Calculators, Guides (6 books), More
@@ -88,6 +89,6 @@ nms-os/                          pnpm workspace
 - Fonts (Inter, Orbitron, JetBrains Mono) and Phosphor icons are bundled from npm; nothing loads from a CDN.
 
 ## External boundaries
-- **Wiki API** (`nomanssky.fandom.com/api.php`): read-only, called only by the wiki sync in CI or locally. Never from the browser.
+- **Wiki content** comes only from Fandom's database dumps of the wiki, read by the sync on the owner's machine (ADR-0009). Nothing calls the wiki's API: not CI, not the browser.
 - **No CDNs at run time.** Every library is bundled and pinned by `pnpm-lock.yaml`.
 - **No backend, no telemetry, no third-party data sharing.** Export/Import is the only way user data leaves a device (ADR-0002).

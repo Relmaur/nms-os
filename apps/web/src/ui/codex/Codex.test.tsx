@@ -86,6 +86,37 @@ test('an unknown article says so', () => {
   expect(screen.getByRole('heading', { name: 'Article not found' })).toBeTruthy();
 });
 
+test('the Codex says which dump of the wiki it was copied from, on articles and the landing', () => {
+  act(() => {
+    setCodexForTests({
+      status: 'ready',
+      index: makeIndex(entries, {}),
+      verification: {
+        status: 'match',
+        checkedAt: '2026-10-29T12:00:00Z',
+        pages: 2,
+        matched: 2,
+        source: 'dump',
+        dumpDate: '2026-10-29T08:00:00Z'
+      }
+    });
+  });
+  render(<Codex />);
+  const day = new Date('2026-10-29T08:00:00Z').toLocaleDateString(undefined, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
+  expect(document.body.textContent).toContain(`Wiki copy from ${day}: 2 of 2 pages match it`);
+  at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);
+  const source = screen.getByRole('link', { name: /revision 42/ });
+  expect(source.parentElement?.textContent).toContain(`Wiki copy from ${day}`);
+  // Corrections still go to the live page.
+  expect(screen.getByRole('link', { name: 'Fix this on the wiki' }).getAttribute('href')).toBe(
+    'https://nomanssky.fandom.com/wiki/Oxygen?action=edit'
+  );
+});
+
 test('a wiki article credits its revision and licence, and sends corrections to the wiki', () => {
   render(<Codex />);
   at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);

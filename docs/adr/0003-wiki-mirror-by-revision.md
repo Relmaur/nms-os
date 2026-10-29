@@ -7,7 +7,7 @@ Deterministic tools (calculators, recommendations) need game data that is comple
 
 ## Decision
 - **Scope:** main-namespace pages embedding a game-data infobox (Resource, Product, Technology, Technology NEXT, POI, Space Encounter, Mission, Milestone, Galaxy, Update), minus player-found multi-tools. No community prose, no hand-written content.
-- **Provenance:** each article is rendered from the page's wikitext at a recorded `revId`. MediaWiki revisions are immutable, so `archived revId == live revId` proves a byte-identical source. `npm run verify:wiki` is a dry-run sync; the weekly CI run syncs, verifies and commits changed pages.
+- **Provenance:** each article is rendered from the page's wikitext at a recorded `revId`. MediaWiki revisions are immutable, so `archived revId == live revId` proves a byte-identical source. `npm run verify:wiki` is a dry-run sync. Since ADR-0009 the source is a database dump of the wiki, synced by hand; the weekly CI sync is retired.
 - **Structure:** infobox fields and recipe templates are stored as data in each file's frontmatter and compiled into `wiki/game-data.json`.
 - **No silent loss:** obsolete pages are flagged; pages that leave the wiki are kept and marked removed. Renamed items resolve through the wiki's redirects (`wiki/aliases.json`).
 
@@ -24,7 +24,7 @@ Some rules the tools need are stated only in prose: how many supercharged slots 
 
 - **Scope:** a short, named list of mechanics pages (`MECHANICS` in `packages/wiki/src/wikitext.ts`: Inventory, Supercharged Slot, Starship, Multi-Tool, Exosuit, Exocraft, Freighter, Starship Outfitting Terminal) is mirrored by title with kind `mechanic`, in the Codex's Mechanics category. Same revision check, same converter. The list grows only when a tool needs a page.
 - **A fact is data plus its sentence.** `packages/wiki/src/facts.ts` holds `{ page, quote, value }` for each fact; `@atlas/core/facts` (`FACT_VALUES`) gives each value's shape. The quote must appear word for word in the archived page (bold, links and line breaks aside).
-- **Checked every run:** sync and verify check each quote against the live page; a quote that's gone makes the fact stale, is listed in `verification.json` (`staleFacts`), and fails `verify:wiki`. `pnpm index:wiki` writes only facts whose quote is in the archive to `wiki/facts.json`; the app applies nothing else.
+- **Checked every run:** sync and verify check each quote against the page (from the dump, since ADR-0009); a quote that's gone makes the fact stale, is listed in `verification.json` (`staleFacts`), and fails `verify:wiki`. `pnpm index:wiki` writes only facts whose quote is in the archive to `wiki/facts.json`; the app applies nothing else.
 - **Shown with its source:** the app states a rule only together with a link to the Codex page it comes from, and a mark that disagrees gets a warning, never a block. The wiki can be wrong; the player's own screen wins.
 - **Rejected: typing the numbers into the app.** It's quicker, but it would be a hand-typed game fact with nothing to tell us when the wiki changes.
 - **Rejected: parsing the numbers out of the prose automatically.** Sentences like "45 (10x4 + 5) for an A-class multi-tool" have no stable shape; a person reads the page once, and the quote check catches every later edit.

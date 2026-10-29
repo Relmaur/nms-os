@@ -3,8 +3,6 @@ wiki/index.json
 wiki/offline-bundle.js
 wiki/game-data.json
 wiki/facts.json
-# Written by every sync or verify (`npm run verify:wiki`); CI publishes a fresh one with each deploy.
-wiki/verification.json
 
 node_modules/
 .DS_Store

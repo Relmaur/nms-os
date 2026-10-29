@@ -123,7 +123,13 @@ export function Codex() {
         {data.status !== 'ready' ? (
           <p className="text-sm text-slate-400 py-8">Loading the Codex…</p>
         ) : route.view === 'article' ? (
-          <Article key={route.path} index={data.index} path={route.path} q={params.q} />
+          <Article
+            key={route.path}
+            index={data.index}
+            path={route.path}
+            q={params.q}
+            copyDate={data.verification?.dumpDate}
+          />
         ) : (
           <Browse
             params={params}

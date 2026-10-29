@@ -47,7 +47,11 @@ export const VerificationSchema = z
     matched: z.number().optional(),
     obsolete: z.number().optional(),
     excluded: z.number().optional(),
-    removed: z.array(z.unknown()).optional()
+    removed: z.array(z.unknown()).optional(),
+    // Since ADR-0009 the archive is checked against a database dump: its file name and newest revision's date.
+    source: z.string().optional().catch(undefined),
+    dump: z.string().optional().catch(undefined),
+    dumpDate: z.string().optional().catch(undefined)
   })
   .loose();
 export type Verification = z.infer<typeof VerificationSchema>;
