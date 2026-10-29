@@ -10,6 +10,7 @@ import { startDevice } from '../ui/more/device-store.ts';
 import { openSystemEditor } from '../ui/systems/panel-store.ts';
 import { onSection, startSections } from '../ui/shell/section-store.ts';
 import { reportStorage } from '../ui/shell/StorageBanner.tsx';
+import { openSearch } from '../ui/shell/Search.tsx';
 import { setWikiEntries } from '../ui/shell/wiki-index.ts';
 import { startTimerRunner } from '../ui/session/timer-runner.ts';
 import { startSync, takePairingLink } from './sync.ts';
@@ -26,6 +27,7 @@ onSection('calculators', () => void loadGameData());
 onSection('new-system', () => {
   openSystemEditor();
 });
+onSection('search', openSearch);
 mountFrame();
 void WikiSearch.load('wiki/').then(setWikiEntries);
 

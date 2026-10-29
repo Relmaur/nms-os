@@ -1,6 +1,6 @@
 // The header search: your systems, gear and notes, Codex articles and the books, in one list driven from the keyboard (arrows,
 // Enter, Esc; / or ⌘K to start). From md it drops down under the field; on a phone it is a full-screen overlay
-// opened from the header's search button.
+// opened from the tab bar's search key.
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { search } from '@atlas/core/search';
 import { searchSystems, type System } from '@atlas/core/systems-model';
@@ -39,7 +39,7 @@ interface Results {
 }
 const EMPTY: Results = { query: '', tokens: [], hits: [], systemCount: 0, gearCount: 0, noteCount: 0, wikiCount: 0 };
 
-// The phone's full-screen search, opened from the header's button. Its look lives in theme.css on body.search-open
+// The phone's full-screen search, opened from the tab bar's search key. Its look lives in theme.css on body.search-open
 // (the header's backdrop-filter must go there, or it would become the fixed overlay's containing block). The class
 // is set and the field focused within the tap itself, so iOS raises the keyboard.
 let overlay = false;

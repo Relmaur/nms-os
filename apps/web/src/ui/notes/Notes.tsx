@@ -6,6 +6,7 @@ import { useAppState } from '../useAppState.ts';
 import { importNoteFiles } from '../actions.ts';
 import { openNoteEditor } from '../parts/editor-store.ts';
 import { NoteCard } from './NoteCard.tsx';
+import { LogSegment } from '../parts/LogSegment.tsx';
 
 export function Notes() {
   const { notes } = useAppState();
@@ -13,6 +14,7 @@ export function Notes() {
   const shown = query.trim() ? searchNotes(notes, query) : [...notes].sort(byNewest);
   return (
     <>
+      <LogSegment />
       <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">

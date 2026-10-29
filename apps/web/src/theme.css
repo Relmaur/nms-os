@@ -1,4 +1,4 @@
-/* Shared styles for every ATLAS // MASTER OS page. */
+/* Shared styles for every ATLAS:OS page. */
 body {
   background-color: #050811;
   background-image:
@@ -427,82 +427,184 @@ label,
 [role='switch'] {
   touch-action: manipulation;
 }
-.tab-bar {
+/* The floating tab bar and search key (DESIGN.md, Navigation): glass pills inset from the screen edges, the bar
+   leaving room on the right for the key. Below lg only; the sidebar takes over from there. */
+.tab-bar,
+.search-key {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
   z-index: 45;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: rgba(5, 8, 17, 0.92);
-  border-top: 1px solid #1e293b;
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  backdrop-filter: blur(16px) saturate(1.4);
+  bottom: var(--spacing-tabbar-inset);
+  height: var(--spacing-tabbar);
+  border-radius: 9999px;
+  background: var(--color-nav-glass);
+  border: 1px solid var(--color-nav-edge);
+  -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(140%);
+  backdrop-filter: blur(var(--blur-nav)) saturate(140%);
   user-select: none;
   -webkit-user-select: none;
 }
+.tab-bar {
+  left: max(var(--spacing-gutter), env(safe-area-inset-left));
+  right: calc(max(var(--spacing-gutter), env(safe-area-inset-right)) + var(--spacing-tabbar) + 8px);
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+}
+.search-key {
+  right: max(var(--spacing-gutter), env(safe-area-inset-right));
+  width: var(--spacing-tabbar);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--color-ink);
+  font-size: 22px;
+  cursor: pointer;
+}
 .tab-item {
+  height: 100%;
+  border-radius: 9999px;
+  border: 1px solid transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.1875rem;
-  height: 3.5rem;
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: #8b9ab0;
-  transition: color 150ms ease;
+  gap: 4px;
+  color: var(--color-ink-label);
+  font-size: var(--text-tab);
+  line-height: var(--text-tab--line-height);
+  font-weight: var(--text-tab--font-weight);
+  letter-spacing: var(--text-tab--letter-spacing);
+  transition:
+    color var(--duration-micro),
+    background-color var(--duration-micro),
+    border-color var(--duration-micro);
 }
-.tab-item i {
-  font-size: 1.375rem;
-  line-height: 1;
+/* A 20×20 box with no line height, so every label sits at the same height whatever the icon (round 3's fix). */
+.tab-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  font-size: 20px;
 }
-.tab-item:active i {
+.tab-item:active .tab-icon,
+.search-key:active i {
   transform: scale(0.9);
 }
-.tab-item i {
-  transition: transform 120ms ease;
+.tab-icon,
+.search-key i {
+  transition: transform var(--duration-micro) ease;
 }
 .tab-item[aria-current='page'] {
-  color: #67e8f9;
+  color: var(--color-quantity-cyan);
+  background: var(--color-scanner-cyan-tint);
+  border-color: var(--color-scanner-cyan-edge);
 }
-/* Something in More needs the person (sync can't continue on its own). */
+.tab-item[aria-current='page'] .tab-icon {
+  color: var(--color-scanner-cyan-glow);
+}
+/* Home's current-system card (design 01): lit from above, with the chart grid behind its orbit diagram. */
+.hero-card {
+  border-radius: var(--radius-hero);
+  background: linear-gradient(170deg, var(--color-hero-top), var(--color-hero-bottom));
+  border: 1px solid var(--color-hero-edge);
+}
+.hero-grid {
+  background-image:
+    linear-gradient(var(--color-orbit-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-orbit-grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+/* Below lg, rebuilt screens (Home, Systems) draw their own header, so the app's is hidden there; it comes back while
+   the search is open, since the search lives in it. */
+@media (max-width: 1023px) {
+  body:is([data-section='home'], [data-section='systems']):not(.search-open) .app-header {
+    display: none;
+  }
+  /* Home shows timers as cards, so the session bar appears there (and on Systems) only while a session is live
+     ("tap the bar to stop"), sticking at the top since the header is hidden. */
+  body:is([data-section='home'], [data-section='systems']) #sessionBarRoot {
+    top: calc(env(safe-area-inset-top) + 0.5rem);
+  }
+  body:is([data-section='home'], [data-section='systems']) #sessionBarRoot:not(:has([data-live='true'])) {
+    display: none;
+  }
+}
+/* The orbit diagram (StarChart.tsx): planets drift ±3° along their arcs, the star's corona breathes. Under reduced
+   motion both stop at their seeded, resting state. */
+.orbit-drift {
+  transform-box: view-box;
+  animation: orbit-drift 30s ease-in-out infinite;
+}
+@keyframes orbit-drift {
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+.star-corona {
+  animation: star-breathe 6s ease-in-out infinite;
+}
+@keyframes star-breathe {
+  50% {
+    opacity: 0.7;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-drift,
+  .star-corona {
+    animation: none !important;
+  }
+}
+/* Tap to arm: the rose wash drains right to left over the window (Gesture.tsx); under reduced motion it stays full. */
+.arm-wash {
+  width: 100%;
+  animation: arm-drain var(--arm-window) linear forwards;
+}
+@keyframes arm-drain {
+  to {
+    width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arm-wash {
+    animation: none !important;
+  }
+}
+/* A run needs you: the bar's only glow. */
+.tab-live {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-scanner-cyan-glow);
+  box-shadow: var(--shadow-glow-live);
+}
+/* Settings needs the person (sync can't continue on its own): a plain dot, no glow. */
 .tab-alert {
   position: absolute;
-  top: -0.1rem;
-  right: -0.2rem;
-  width: 0.55rem;
-  height: 0.55rem;
+  top: -3px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
   border-radius: 9999px;
-  background: #fbbf24;
-  box-shadow: 0 0 0 2px #020617;
-}
-.tab-badge {
-  position: absolute;
-  top: -0.3rem;
-  left: 0.9rem;
-  min-width: 1.05rem;
-  height: 1.05rem;
-  padding: 0 0.25rem;
-  border-radius: 9999px;
-  background: #10b981;
-  color: #022c22;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1.05rem;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-  box-shadow: 0 0 0 2px #050811;
+  background: var(--color-units-amber-text);
+  box-shadow: 0 0 0 2px var(--color-panel);
 }
 @media (max-width: 1023px) {
+  /* content clears the bar by 24px; the toast floats 12px above it */
   main.app-main {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(var(--spacing-tabbar-inset) + var(--spacing-tabbar) + 24px);
   }
   #toastBanner {
-    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    bottom: calc(var(--spacing-tabbar-inset) + var(--spacing-tabbar) + 12px);
   }
 }
 @media (max-width: 767px) {
@@ -528,6 +630,7 @@ label,
     overscroll-behavior-y: none;
   } /* no pull-to-refresh or rubber-band behind the app */
   .tab-bar,
+  .search-key,
   .app-header {
     -webkit-touch-callout: none;
   }
@@ -622,36 +725,6 @@ label.list-row:active {
 .switch[aria-checked='true']::after {
   transform: translateX(1.25rem);
 }
-.wake-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  height: 2.25rem;
-  padding: 0 0.875rem;
-  border-radius: 9999px;
-  border: 1px solid #334155;
-  background: #0f172a;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: #cbd5e1;
-  transition:
-    border-color 150ms ease,
-    background-color 150ms ease,
-    color 150ms ease;
-}
-.wake-chip:hover {
-  border-color: #64748b;
-  color: #fff;
-}
-.wake-chip[aria-checked='true'] {
-  border-color: rgba(251, 191, 36, 0.6);
-  background: rgba(245, 158, 11, 0.12);
-  color: #fde68a;
-}
-.wake-chip.hidden {
-  display: none;
-}
-
 /* Calculators: the planner's capstone lights once when the plan is complete (the one authored moment on the screen). */
 @keyframes capstone-bloom {
   from {
@@ -819,15 +892,6 @@ label.list-row:active {
   .timer-track > span {
     transition: none;
   }
-}
-/* Home's Start session: the wake chip's shape, in the emerald that means "go". */
-.wake-chip.session-start {
-  border-color: rgba(52, 211, 153, 0.5);
-  background: rgba(16, 185, 129, 0.12);
-  color: #a7f3d0;
-}
-.wake-chip.session-start:hover {
-  background: rgba(16, 185, 129, 0.2);
 }
 /* A timer waiting to be dismissed lights the bar: an emerald edge and the capstone's settled glow, blooming once. */
 .session-bar.is-done {

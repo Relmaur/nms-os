@@ -5,10 +5,9 @@ import { test, expect, storedState } from './fixtures.mjs';
 test.describe('a new player', () => {
   test.use({ seed: null });
 
-  test('starts with an empty fleet, no phase and nothing personal in the guides', async ({ page }) => {
-    await page.goto('./');
-    await expect(page.locator('#fleetCardBody')).toContainText('Add your ship and Multi-Tools');
-    await expect(page.locator('#homePhase')).toHaveCount(0);
+  test('starts with an empty fleet and nothing personal in the guides', async ({ page }) => {
+    await page.goto('./#gear');
+    await expect(page.locator('#sec-gear')).not.toContainText('Kestrel IV');
     for (const book of ['book2', 'book3', 'book5']) {
       await page.goto(`./#${book}`);
       await expect(page.locator(`#sec-${book}`)).toBeVisible();
@@ -46,7 +45,7 @@ test.describe('a note synced from a paired device', () => {
   });
 });
 
-test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools', async ({ page }) => {
+test('a ship added in Fleet shows its supercharged slots and is saved', async ({ page }) => {
   await page.goto('./#gear');
   await page.locator('#sec-gear').getByRole('button', { name: 'Add starship' }).click();
   await page.locator('#gearName').fill('Vela Run');
@@ -58,9 +57,6 @@ test('a ship added from Home shows in the fleet card and in Ships & Multi-Tools'
   await expect(page.locator('#toastMessage')).toHaveText('Added Vela Run.');
   const card = page.locator('#sec-gear [data-gear]').filter({ hasText: 'Vela Run' });
   await expect(card.getByRole('list', { name: 'Supercharged slots' })).toHaveText(/R1C1\s*R1C2\s*Pulse Drive upgrade/);
-  await page.goto('./');
-  await expect(page.locator('#fleetCardBody')).toContainText('Kestrel IV');
-  await expect(page.locator('#fleetCardBody')).toContainText('Vela Run');
   const saved = (await storedState(page)).gear.find(item => item.name === 'Vela Run');
   expect(saved.superchargedSlots).toEqual(['R1C1', 'R1C2']);
 });
@@ -122,7 +118,7 @@ test('a new note from a book starts pinned there; the header search finds it', a
   await expect(card.locator('img')).toHaveCount(0);
   expect((await storedState(page)).notes.find(note => note.title === 'Outlaw loop timing').pins).toEqual(['book2']);
 
-  if (testInfo.project.name === 'phone') await page.getByRole('button', { name: 'Search', exact: true }).click();
+  if (testInfo.project.name === 'phone') await page.getByRole('button', { name: 'Search and quick actions' }).click();
   await page.locator('#globalSearchInput').fill('loop timing');
   await page
     .locator('#globalSearchResults')

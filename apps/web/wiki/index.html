@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Wiki Codex · ATLAS // MASTER OS</title>
+    <title>Wiki Codex · ATLAS:OS</title>
     <!-- Installable app (PWA) — same manifest and service worker as the main page -->
     <meta name="theme-color" content="#050811">
     <link rel="manifest" href="../manifest.webmanifest">
@@ -25,14 +25,16 @@
     <!-- Rendered by React (src/ui/codex/Codex.tsx): header search, browse, article, quick look, New article -->
     <div id="codexRoot"></div>
 
-    <!-- Same bottom tab bar as the main app (below lg) -->
-    <nav aria-label="Primary" class="tab-bar lg:hidden">
-        <a href="../#home" class="tab-item"><i class="ph-bold ph-house"></i><span>Home</span></a>
-        <a href="../#systems" class="tab-item"><i class="ph-bold ph-planet"></i><span>Systems</span></a>
-        <a href="../#outlaw" class="tab-item"><i class="ph-bold ph-skull"></i><span>Outlaw</span></a>
-        <a href="#/" aria-current="page" class="tab-item"><i class="ph-fill ph-books"></i><span>Codex</span></a>
-        <a href="../#more" class="tab-item"><i class="ph-bold ph-dots-three-circle"></i><span>More</span></a>
-    </nav>
+    <!-- Same tab bar and search key as the main app (below lg; src/ui/shell/TabBar.tsx) -->
+    <div class="lg:hidden">
+        <nav aria-label="Primary" class="tab-bar">
+            <a href="../#home" data-tab="home" class="tab-item"><span class="tab-icon"><i class="ph-bold ph-house" aria-hidden="true"></i></span><span>Home</span></a>
+            <a href="../#systems" data-tab="log" class="tab-item"><span class="tab-icon"><i class="ph-bold ph-planet" aria-hidden="true"></i></span><span>Log</span></a>
+            <a href="../#outlaw" data-tab="runs" class="tab-item"><span class="tab-icon"><i class="ph-bold ph-path" aria-hidden="true"></i></span><span>Runs</span></a>
+            <a href="#/" data-tab="codex" aria-current="page" class="tab-item"><span class="tab-icon"><i class="ph-bold ph-book-open" aria-hidden="true"></i></span><span>Codex</span></a>
+        </nav>
+        <a href="../#search" aria-label="Search and quick actions" class="search-key"><i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i></a>
+    </div>
 
     <script type="module" src="../src/ui/codex/main.tsx"></script>
 </body>

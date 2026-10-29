@@ -1,7 +1,7 @@
 // "Alerts when the app is asleep" (ADR-0006): the switch sends the relay only timer ids and end times, keeps the
 // notification's words on the device for the service worker, and keeps the relay's schedule in step with the timers.
 // The browser's push service is stubbed (Playwright blocks service workers here); the relay is answered by the test.
-import { test, expect } from './fixtures.mjs';
+import { test, expect, sessionButton } from './fixtures.mjs';
 
 const RELAY_PUSH = /^https:\/\/atlas-sync\.example\.workers\.dev\/v1\/push\//;
 const SUBSCRIPTION = {
@@ -43,7 +43,7 @@ test('the alerts switch keeps the relay’s schedule in step, with names kept on
   });
 
   await page.goto('./');
-  await page.locator('#sessionButton').click();
+  await sessionButton(page).click();
   const sheet = page.locator('#sessionSheet');
   const toggle = sheet.getByRole('switch', { name: 'Alerts when the app is asleep' });
   await toggle.click();

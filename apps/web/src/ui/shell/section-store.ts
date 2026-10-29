@@ -19,11 +19,12 @@ export function useSection(): string {
 }
 
 // Old and shortcut addresses: the Logbook was folded into Systems; #new-system (a home-screen shortcut) opens Home
-// with the editor; anything unknown opens Home.
-function resolve(key: string): { section: string; newSystem: boolean } {
-  if (key === 'logbook') return { section: 'systems', newSystem: false };
-  if (key === 'new-system') return { section: 'home', newSystem: true };
-  return { section: document.getElementById(`sec-${key}`) ? key : 'home', newSystem: false };
+// with the editor, and #search (the Codex page's search key) opens Home with the search; anything unknown opens Home.
+const SHORTCUTS = new Set(['new-system', 'search']);
+function resolve(key: string): { section: string; shortcut: string } {
+  if (key === 'logbook') return { section: 'systems', shortcut: '' };
+  if (SHORTCUTS.has(key)) return { section: 'home', shortcut: key };
+  return { section: document.getElementById(`sec-${key}`) ? key : 'home', shortcut: '' };
 }
 
 // Resolves once the section is on screen (after the view transition's swap), so a caller can scroll within it.
@@ -32,8 +33,9 @@ export function showSection(key: string): Promise<void> {
     location.href = 'wiki/'; // the Codex is its own page
     return Promise.resolve();
   }
-  const { section, newSystem } = resolve(key);
+  const { section, shortcut } = resolve(key);
   const swap = () => {
+    document.body.dataset.section = section; // for styles that differ by screen (theme.css: Home's header)
     document.querySelectorAll('.book-section').forEach(element => {
       element.classList.toggle('hidden', element.id !== `sec-${section}`);
     });
@@ -53,7 +55,7 @@ export function showSection(key: string): Promise<void> {
     listener();
   });
   if (location.hash !== `#${section}`) history.replaceState(null, '', `#${section}`);
-  if (newSystem) hooks.get('new-system')?.();
+  if (shortcut) hooks.get(shortcut)?.();
   hooks.get(section)?.();
   return shown;
 }

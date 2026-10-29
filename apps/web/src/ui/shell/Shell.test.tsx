@@ -6,7 +6,7 @@ import { loadAppState, setAppState } from '../../app/store.ts';
 import { openSystem } from '../systems/panel-store.ts';
 import { Search } from './Search.tsx';
 import { Sidebar } from './Sidebar.tsx';
-import { TabBar } from './TabBar.tsx';
+import { TabBar, tabOf } from './TabBar.tsx';
 import { StorageBanner, reportStorage } from './StorageBanner.tsx';
 import { showSection } from './section-store.ts';
 import { setWikiEntries } from './wiki-index.ts';
@@ -31,7 +31,7 @@ beforeEach(async () => {
     setAppState(state);
   });
   document.body.innerHTML = '';
-  for (const key of ['home', 'systems', 'outlaw', 'more', 'book1']) {
+  for (const key of ['home', 'systems', 'gear', 'outlaw', 'more', 'book1']) {
     const section = document.createElement('section');
     section.id = `sec-${key}`;
     section.className = 'book-section';
@@ -82,15 +82,43 @@ test('the sidebar and tab bar mark the open section and count the log', () => {
     void showSection('book1');
   });
   expect(document.getElementById('nav-guides')?.getAttribute('aria-current')).toBe('page'); // a book is in Guides
-  expect(screen.getByRole('link', { name: /More/ }).getAttribute('aria-current')).toBe('page');
+  expect(screen.getByRole('link', { name: 'Codex' }).getAttribute('aria-current')).toBe('page'); // and in the Codex tab
   expect(document.getElementById('sidebarSystemsCount')?.textContent).toBe('2');
   expect(document.getElementById('sidebarOutlawCount')?.textContent).toBe('1/1');
-  expect(document.getElementById('tabOutlawBadge')?.textContent).toBe('1');
+  // A ready station lights the Runs tab's live dot, and its name says how many.
+  const runs = screen.getByRole('link', { name: /^Runs/ });
+  expect(runs.textContent).toContain('1 station ready');
+  expect(runs.querySelector('.tab-live')).not.toBeNull();
   act(() => {
-    void showSection('systems');
+    void showSection('gear');
   });
-  expect(document.getElementById('nav-systems')?.getAttribute('aria-current')).toBe('page');
-  expect(screen.getByRole('link', { name: 'Systems' }).getAttribute('aria-current')).toBe('page');
+  expect(screen.getByRole('link', { name: 'Log' }).getAttribute('aria-current')).toBe('page'); // Fleet is in Log
+  act(() => {
+    void showSection('more');
+  });
+  expect(screen.getByRole('link', { name: /^Home/ }).getAttribute('aria-current')).toBe('page'); // Settings is Home's
+});
+
+test('tabOf files every section under one of the four tabs', () => {
+  expect(['home', 'more'].map(tabOf)).toEqual(['home', 'home']);
+  expect(['systems', 'gear', 'notes'].map(tabOf)).toEqual(['log', 'log', 'log']);
+  expect(['outlaw', 'calculators'].map(tabOf)).toEqual(['runs', 'runs']);
+  expect(['guides', 'book3'].map(tabOf)).toEqual(['codex', 'codex']);
+  expect(tabOf('nowhere')).toBe('home');
+});
+
+test('the search key opens the search', async () => {
+  render(
+    <>
+      <Search />
+      <TabBar />
+    </>
+  );
+  await userEvent.click(screen.getByRole('button', { name: 'Search and quick actions' }));
+  expect(document.body.classList.contains('search-open')).toBe(true);
+  expect(document.activeElement?.id).toBe('globalSearchInput');
+  await userEvent.keyboard('{Escape}'); // leave the page as the other tests expect it
+  expect(document.body.classList.contains('search-open')).toBe(false);
 });
 
 test('a failed save raises the banner with an export, and it can be dismissed', async () => {

@@ -4,17 +4,19 @@ import { useAppState } from '../useAppState.ts';
 import { openGearEditor } from '../parts/editor-store.ts';
 import { GearCard } from './GearCard.tsx';
 import { KINDS } from './kinds.ts';
+import { LogSegment } from '../parts/LogSegment.tsx';
 
 export function Gear() {
   const gear = gearOrder(useAppState().gear);
   return (
     <>
+      <LogSegment />
       <div className="hud-card rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
             <h1 className="font-display text-2xl font-bold text-white">Ships & Multi-Tools</h1>
             <p className="text-sm text-slate-300 mt-1.5">
-              Your gear, with its class, supercharged slots and layout notes. The ones you mark Flagship lead on Home.
+              Your gear, with its class, supercharged slots and layout notes. The ones you mark Flagship lead the list.
             </p>
           </div>
         </div>

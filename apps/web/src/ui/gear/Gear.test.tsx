@@ -5,7 +5,6 @@ import { buildState } from '@atlas/core/state';
 import { appState, setAppState } from '../../app/store.ts';
 import { closeEditor } from '../parts/editor-store.ts';
 import { PlayerEditors } from '../PlayerEditors.tsx';
-import { Home } from '../home/Home.tsx';
 import { Gear } from './Gear.tsx';
 import { setFactsForTests } from './facts-store.ts';
 
@@ -38,16 +37,15 @@ beforeEach(() => {
   });
 });
 
-test('a new player’s Home invites them to add a ship; it then leads the fleet card', async () => {
+test('a new player adds their ship from Fleet, with its supercharged slots', async () => {
   render(
     <>
-      <Home />
+      <Gear />
       <PlayerEditors />
     </>
   );
-  const card = document.getElementById('fleetCardBody')!;
-  expect(card.textContent).toContain('Add your ship and Multi-Tools');
-  await userEvent.click(within(card).getByRole('button', { name: 'Add your ship' }));
+  const section = screen.getByRole('region', { name: /Starships/ });
+  await userEvent.click(within(section).getByRole('button', { name: 'Add starship' }));
   await userEvent.type(screen.getByLabelText(/Name/), 'Kestrel');
   await userEvent.type(screen.getByLabelText('Role'), 'Flagship');
   await userEvent.click(screen.getByRole('button', { name: 'Row 2, column 3' }));
@@ -61,8 +59,7 @@ test('a new player’s Home invites them to add a ship; it then leads the fleet 
   expect(appState.gear).toMatchObject([
     { name: 'Kestrel', role: 'Flagship', superchargedSlots: ['R2C2', 'R2C3'], slotLabels: { R2C3: 'Infra-Knife' } }
   ]);
-  expect(card.textContent).toContain('Flagship');
-  expect(card.textContent).toContain('Kestrel');
+  expect(section.textContent).toContain('Kestrel');
 });
 
 test('a migrated fleet shows by kind; the picker opens on its slots and moves by arrow keys', async () => {

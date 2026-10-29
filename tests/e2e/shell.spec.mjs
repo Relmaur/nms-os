@@ -1,9 +1,12 @@
 import { test, expect } from './fixtures.mjs';
 
 test('on a phone, the search opens full screen, finds a system and opens it', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'phone', 'the phone opens search from a button; desktop types in the header');
+  test.skip(
+    testInfo.project.name !== 'phone',
+    'the phone opens search from the search key; desktop types in the header'
+  );
   await page.goto('./');
-  await page.getByRole('button', { name: 'Search', exact: true }).click();
+  await page.getByRole('button', { name: 'Search and quick actions' }).click();
   const input = page.locator('#globalSearchInput');
   await expect(input).toBeVisible();
   await expect(input).toBeFocused();
@@ -28,11 +31,45 @@ test('/ starts a search, and Escape leaves it', async ({ page }, testInfo) => {
   await expect(page.locator('#globalSearchResults')).toBeHidden();
 });
 
-test('the tab bar counts ready outlaw stations and marks where you are', async ({ page }, testInfo) => {
+test('the tab bar lights Runs for ready outlaw stations and marks where you are', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'phone', 'the tab bar shows below lg');
   await page.goto('./#guides');
-  await expect(page.locator('#tabOutlawBadge')).toHaveText('1');
-  await expect(page.locator('#tabBar [data-tab="more"]')).toHaveAttribute('aria-current', 'page');
+  await expect(page.locator('#tabBar [data-tab="runs"]')).toContainText('1 station ready');
+  await expect(page.locator('#tabBar [data-tab="runs"] .tab-live')).toBeVisible();
+  await expect(page.locator('#tabBar [data-tab="codex"]')).toHaveAttribute('aria-current', 'page');
+  // Fleet and Notes sit behind Log's segmented control; Settings behind the header's gear.
+  await page.locator('#tabBar [data-tab="log"]').click();
+  await page.getByRole('navigation', { name: 'Log sections' }).getByRole('link', { name: 'Fleet' }).click();
+  await expect(page).toHaveURL(/#gear$/);
+  await expect(page.locator('#tabBar [data-tab="log"]')).toHaveAttribute('aria-current', 'page');
+  await page.getByRole('link', { name: 'Settings' }).click();
+  await expect(page.locator('#sec-more')).toBeVisible();
+  await expect(page.locator('#tabBar [data-tab="home"]')).toHaveAttribute('aria-current', 'page');
+});
+
+test('the tab bar sits inside the screen, with every label at the same height', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'the tab bar shows below lg');
+  await page.goto('./');
+  const width = page.viewportSize()?.width ?? 0;
+  const bar = await page.locator('#tabBar').boundingBox();
+  const key = await page.getByRole('button', { name: 'Search and quick actions' }).boundingBox();
+  expect(bar?.height).toBe(64);
+  expect(bar?.x).toBe(16);
+  expect(key?.width).toBe(64);
+  expect(Math.round((key?.x ?? 0) + (key?.width ?? 0))).toBe(width - 16);
+  const labelTops = await page
+    .locator('#tabBar .tab-item > span:not(.tab-icon):not(.sr-only)')
+    .evaluateAll(labels => labels.map(label => Math.round(label.getBoundingClientRect().top)));
+  expect(new Set(labelTops).size).toBe(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test("the Codex page's search key opens the app's search", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'the tab bar shows below lg');
+  await page.goto('./wiki/');
+  await page.getByRole('link', { name: 'Search and quick actions' }).click();
+  await expect(page).toHaveURL(/#home$/);
+  await expect(page.locator('#globalSearchInput')).toBeVisible();
 });
 
 test('old and shortcut addresses still land', async ({ page }) => {
