@@ -4,6 +4,7 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/preflight.css' layer(base);
 @import 'tailwindcss/utilities.css';
+@import './tokens.css';
 /* Class names also live in @atlas/core (Codex badges); Tailwind only scans this app by default. */
 @source '../../../packages/core/src';
 

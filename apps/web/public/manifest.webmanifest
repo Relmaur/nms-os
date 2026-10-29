@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "ATLAS // MASTER OS",
-  "short_name": "Atlas OS",
+  "name": "ATLAS:OS",
+  "short_name": "ATLAS:OS",
   "description": "Local-first No Man's Sky companion: systems log, outlaw runs, calculators, an offline wiki Codex and the six-book guide.",
   "start_url": "./",
   "scope": "./",

@@ -10,7 +10,7 @@ web
 No Man's Sky players, on a phone propped beside the PC, glancing at the app mid-session between in-game actions. It began as the owner's own companion and is being shared with the NMS community (3.14.0): the app itself is general, and each player's own ships, notes and progress live in their log. Installed as a PWA; must work offline.
 
 ## Product Purpose
-ATLAS // MASTER OS is a local-first No Man's Sky companion: a log of visited systems, an Outlaw Run planner for Suspicious Packet loops, calculators over a verified wiki mirror, a Codex of wiki articles, a six-book guide, and the player's own ships, Multi-Tools and notes (pinnable to Home or a book). Success is answering an in-game question in a glance and a tap, without alt-tabbing or losing place in the game.
+ATLAS:OS (formerly ATLAS // MASTER OS) is a local-first No Man's Sky companion: a log of visited systems, an Outlaw Run planner for Suspicious Packet loops, calculators over a verified wiki mirror, a Codex of wiki articles, a six-book guide, and the player's own ships, Multi-Tools and notes (pinnable to Home or a book). Success is answering an in-game question in a glance and a tap, without alt-tabbing or losing place in the game.
 
 ## Positioning
 Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/game-data.json`), never hand-typed and never community-crafted data; anything the wiki can't know is a labelled player input. User data never leaves the device except by explicit Export, or the opt-in sync copy, which is encrypted on the device and unreadable to the relay (ADR-0005).
@@ -29,7 +29,7 @@ Every game fact comes from a verified mirror of the No Man's Sky wiki (`wiki/gam
 - Planner ticks persist on this device only (owner's decision, 2026-10-27): not in `nms_state.json` or exports.
 
 ## Brand Commitments
-Name "ATLAS // MASTER OS" with the planet mark; the existing dark HUD look (Orbitron display, Inter body, JetBrains Mono numbers; emerald and cyan accents) is the incumbent visual authority.
+Name "ATLAS:OS": ATLAS in white, ":OS" in cyan. The in-app title, the URL, the npm package and the PWA identity keep the old name until the owner approves the public rename. The look is the dark console in `DESIGN.md`: Orbitron titles, Inter body, JetBrains Mono numbers, tint-and-edge accents in emerald and cyan, glow only as state. Fan-made and unofficial: "Fan-made. Not affiliated with Hello Games." wherever the app meets people, and no game art.
 
 ## Evidence on Hand
 - Wiki mirror: `wiki/` (about 3,160 verified articles) and `wiki/game-data.json` (recipes, values).

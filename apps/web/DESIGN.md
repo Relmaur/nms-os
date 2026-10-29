@@ -1,319 +1,401 @@
 ---
-name: ATLAS // MASTER OS
-description: A dark HUD companion for No Man's Sky, read at a glance on a phone beside the game.
+name: ATLAS:OS
+description: A companion for No Man's Sky, read at a glance on a phone beside the game. Fan-made; not affiliated with Hello Games.
 colors:
   void: "#050811"
-  hud-panel: "#0b1325"
-  hud-panel-glass: "rgba(11, 19, 37, 0.85)"
-  hud-edge: "rgba(56, 189, 248, 0.16)"
+  panel: "#0b1325"
+  panel-glass: "rgba(11, 19, 37, 0.88)"
+  nav-glass: "rgba(11, 19, 37, 0.78)"
   slate-ground: "#0f172a"
   slate-deep: "#020617"
+  scrim: "rgba(2, 6, 23, 0.62)"
+  chart-grid: "rgba(148, 163, 184, 0.05)"
   hairline: "#1e293b"
   control-edge: "#334155"
   control-edge-hover: "#64748b"
+  nav-edge: "rgba(148, 163, 184, 0.18)"
+  grab: "#475569"
   ink-bright: "#ffffff"
   ink: "#e2e8f0"
   ink-soft: "#cbd5e1"
   ink-muted: "#94a3b8"
   ink-label: "#8b9ab0"
+  ink-disabled: "#64748b"
   scanner-cyan: "#06b6d4"
   scanner-cyan-glow: "#22d3ee"
   scanner-cyan-pale: "#67e8f9"
+  scanner-cyan-text: "#cffafe"
+  scanner-cyan-ink: "#042f3a"
+  scanner-cyan-tint: "rgba(34, 211, 238, 0.12)"
+  scanner-cyan-edge: "rgba(34, 211, 238, 0.35)"
+  scanner-cyan-edge-strong: "rgba(34, 211, 238, 0.55)"
   quantity-cyan: "#a5f3fc"
   ready-emerald: "#10b981"
   ready-emerald-lit: "#34d399"
   ready-emerald-pale: "#6ee7b7"
+  ready-emerald-text: "#a7f3d0"
+  ready-emerald-bright: "#d1fae5"
   ready-emerald-ink: "#022c22"
+  ready-emerald-tint: "rgba(16, 185, 129, 0.12)"
+  ready-emerald-tint-hover: "rgba(16, 185, 129, 0.18)"
+  ready-emerald-tint-pressed: "rgba(16, 185, 129, 0.22)"
+  ready-emerald-edge: "rgba(52, 211, 153, 0.5)"
+  ready-emerald-edge-hover: "rgba(52, 211, 153, 0.7)"
   units-amber: "#f59e0b"
   units-amber-pale: "#fde68a"
   units-amber-text: "#fcd34d"
+  units-amber-tint: "rgba(245, 158, 11, 0.12)"
+  units-amber-edge: "rgba(251, 191, 36, 0.45)"
   exotic-purple: "#a855f7"
   exotic-purple-pale: "#c084fc"
+  exotic-purple-text: "#e9d5ff"
+  exotic-purple-tint: "rgba(168, 85, 247, 0.12)"
+  exotic-purple-edge: "rgba(192, 132, 252, 0.5)"
+  danger-rose: "#f43f5e"
+  danger-rose-pale: "#fda4af"
+  danger-rose-text: "#fecdd3"
+  danger-rose-bright: "#fff1f2"
+  danger-rose-tint: "rgba(244, 63, 94, 0.12)"
+  danger-rose-edge: "rgba(251, 113, 133, 0.5)"
+  danger-rose-edge-armed: "rgba(251, 113, 133, 0.8)"
   outlaw-crimson: "#ef4444"
 typography:
-  display:
+  hero:
     fontFamily: "Orbitron, sans-serif"
-    fontSize: "1.5rem"
-    fontWeight: 700
-    lineHeight: "2rem"
-  capstone:
+    fontSize: "27px"
+    fontWeight: 800
+    lineHeight: 1.1
+  screen-title:
     fontFamily: "Orbitron, sans-serif"
-    fontSize: "1.5rem"
+    fontSize: "26px"
+    fontWeight: 800
+    lineHeight: 1.15
+  card-title:
+    fontFamily: "Orbitron, sans-serif"
+    fontSize: "15px"
     fontWeight: 700
     lineHeight: 1.25
-  title:
+  wordmark:
     fontFamily: "Orbitron, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 700
-    lineHeight: "1.5rem"
-  round-label:
-    fontFamily: "Orbitron, sans-serif"
-    fontSize: "0.875rem"
-    fontWeight: 700
-    lineHeight: "1.25rem"
-    letterSpacing: "0.025em"
-  body:
+    fontSize: "15px"
+    fontWeight: 800
+    lineHeight: 1
+    letterSpacing: "0.18em"
+  sub:
     fontFamily: "Inter, sans-serif"
-    fontSize: "0.875rem"
+    fontSize: "13px"
     fontWeight: 400
-    lineHeight: "1.25rem"
-  body-small:
+    lineHeight: 1.45
+  row:
     fontFamily: "Inter, sans-serif"
-    fontSize: "0.75rem"
+    fontSize: "14px"
     fontWeight: 400
-    lineHeight: "1rem"
+    lineHeight: 1.4
+  caption:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1.4
   label:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "10px"
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "0.16em"
+  button:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.01em"
+  control:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "13px"
+    fontWeight: 600
+    lineHeight: 1
+  pill:
     fontFamily: "Inter, sans-serif"
     fontSize: "11px"
     fontWeight: 600
-    letterSpacing: "0.14em"
+    lineHeight: 1
+    letterSpacing: "0.04em"
+  tab:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "10px"
+    fontWeight: 600
+    lineHeight: "10px"
+    letterSpacing: "0.04em"
   numeric:
     fontFamily: "JetBrains Mono, monospace"
-    fontSize: "0.875rem"
-    fontWeight: 400
+    fontSize: "14px"
+    fontWeight: 600
     fontFeature: "tnum"
 rounded:
-  sm: "6px"
-  md: "8px"
-  seg: "10px"
-  lg: "12px"
-  xl: "16px"
+  chip: "6px"
+  slot: "8px"
+  segment: "9px"
+  control: "12px"
+  button: "14px"
+  card: "18px"
+  sheet: "24px"
   full: "9999px"
 spacing:
-  xs: "6px"
-  sm: "12px"
-  md: "16px"
-  lg: "20px"
-  xl: "24px"
-  2xl: "32px"
+  gutter: "16px"
+  header-top: "max(20px, env(safe-area-inset-top))"
+  title-sub: "6px"
+  back-title: "16px"
+  header-content: "24px"
+  section: "16px"
+  card: "16px"
+  card-row: "12px"
+  tabbar: "64px"
+  tabbar-inset: "max(16px, env(safe-area-inset-bottom))"
+  tabbar-clear: "104px"
 components:
-  hud-card:
-    backgroundColor: "{colors.hud-panel-glass}"
-    rounded: "{rounded.xl}"
+  card:
+    backgroundColor: "{colors.panel-glass}"
+    rounded: "{rounded.card}"
     padding: "16px"
+  list-row:
+    textColor: "{colors.ink}"
+    padding: "10px 16px"
+    height: "52px"
   button-primary:
-    backgroundColor: "{colors.ready-emerald}"
-    textColor: "{colors.slate-deep}"
-    rounded: "{rounded.lg}"
-    padding: "0 20px"
+    backgroundColor: "{colors.ready-emerald-tint}"
+    textColor: "{colors.ready-emerald-text}"
+    rounded: "{rounded.button}"
+    padding: "0 18px"
     height: "48px"
   button-primary-hover:
-    backgroundColor: "{colors.ready-emerald-lit}"
+    backgroundColor: "{colors.ready-emerald-tint-hover}"
+  button-primary-pressed:
+    backgroundColor: "{colors.ready-emerald-tint-pressed}"
+  button-primary-disabled:
+    backgroundColor: "{colors.slate-ground}"
+    textColor: "{colors.ink-disabled}"
   button-secondary:
     backgroundColor: "{colors.slate-ground}"
-    textColor: "{colors.ink-soft}"
-    rounded: "{rounded.lg}"
-    padding: "0 16px"
-    height: "40px"
-  button-jump:
-    backgroundColor: "rgba(34, 211, 238, 0.1)"
-    textColor: "#cffafe"
-    rounded: "{rounded.lg}"
-    padding: "0 16px"
-    height: "40px"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    padding: "0 14px"
+    height: "42px"
+  button-icon:
+    backgroundColor: "{colors.slate-ground}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    size: "42px"
+  button-arm:
+    backgroundColor: "{colors.slate-ground}"
+    textColor: "{colors.danger-rose-text}"
+    rounded: "{rounded.button}"
+    height: "48px"
+  button-arm-armed:
+    backgroundColor: "{colors.danger-rose-tint}"
+    textColor: "{colors.danger-rose-bright}"
+  slide-to-activate:
+    backgroundColor: "rgba(16, 185, 129, 0.1)"
+    textColor: "{colors.ready-emerald-text}"
+    rounded: "{rounded.full}"
+    height: "60px"
+  hold-to-activate:
+    backgroundColor: "rgba(34, 211, 238, 0.08)"
+    textColor: "{colors.scanner-cyan-text}"
+    rounded: "{rounded.full}"
+    height: "60px"
   field-input:
     backgroundColor: "{colors.slate-ground}"
     textColor: "{colors.ink-bright}"
-    rounded: "{rounded.lg}"
-    padding: "8px 12px"
-    height: "40px"
-  seg:
-    backgroundColor: "{colors.slate-ground}"
-    textColor: "{colors.ink-soft}"
-    rounded: "{rounded.seg}"
+    rounded: "{rounded.control}"
     padding: "0 12px"
-    height: "36px"
-  seg-on:
-    backgroundColor: "rgba(16, 185, 129, 0.15)"
-    textColor: "#d1fae5"
-  tag-filter:
+    height: "44px"
+  segment-track:
+    backgroundColor: "{colors.slate-ground}"
+    rounded: "{rounded.control}"
+    padding: "4px"
+  segment:
+    textColor: "{colors.ink-soft}"
+    rounded: "{rounded.segment}"
+    height: "34px"
+  segment-on:
+    backgroundColor: "rgba(16, 185, 129, 0.18)"
+    textColor: "{colors.ready-emerald-bright}"
+  chip:
     backgroundColor: "{colors.slate-ground}"
     textColor: "{colors.ink-soft}"
     rounded: "{rounded.full}"
-    padding: "0 10px"
-    height: "30px"
-  tag-filter-on:
-    backgroundColor: "rgba(16, 185, 129, 0.15)"
-    textColor: "#a7f3d0"
-  tick-target:
-    backgroundColor: "{colors.slate-deep}"
-    textColor: "#475569"
-    rounded: "{rounded.lg}"
-    size: "44px"
-  tick-target-ready:
-    backgroundColor: "rgba(52, 211, 153, 0.1)"
-    textColor: "{colors.ready-emerald-pale}"
-  tick-target-done:
-    backgroundColor: "{colors.ready-emerald-lit}"
-    textColor: "{colors.ready-emerald-ink}"
-  hold-slot:
-    backgroundColor: "{colors.slate-deep}"
+    padding: "0 13px"
+    height: "34px"
+  chip-on:
+    backgroundColor: "{colors.scanner-cyan-tint}"
+    textColor: "{colors.scanner-cyan-text}"
+  status-pill:
+    rounded: "{rounded.full}"
+    padding: "0 9px"
+    height: "24px"
+  tab-bar:
+    backgroundColor: "{colors.nav-glass}"
+    rounded: "{rounded.full}"
+    padding: "6px"
+    height: "64px"
+  tab-active:
+    backgroundColor: "{colors.scanner-cyan-tint}"
+    textColor: "{colors.quantity-cyan}"
+  search-key:
+    backgroundColor: "{colors.nav-glass}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "8px"
-  hold-slot-gathered:
-    backgroundColor: "rgba(16, 185, 129, 0.1)"
-    textColor: "{colors.ink-muted}"
-  capstone:
-    backgroundColor: "{colors.hud-panel}"
-    textColor: "{colors.ink-bright}"
-    rounded: "{rounded.xl}"
-    padding: "20px"
-  capstone-lit:
-    backgroundColor: "rgba(2, 44, 34, 0.4)"
-  nav-item:
-    textColor: "{colors.ink-muted}"
-    rounded: "{rounded.lg}"
-    padding: "6px 10px"
-    height: "44px"
-  nav-item-active:
-    backgroundColor: "rgba(6, 182, 212, 0.1)"
-    textColor: "{colors.ink-bright}"
+    rounded: "{rounded.full}"
+    size: "64px"
+  log-segment-on:
+    backgroundColor: "{colors.scanner-cyan-tint}"
+    textColor: "{colors.scanner-cyan-text}"
+  sheet:
+    backgroundColor: "{colors.slate-deep}"
+    rounded: "{rounded.sheet}"
 ---
 
-# Design System: ATLAS // MASTER OS
+# Design System: ATLAS:OS
+
+## Status
+
+The app is being rebuilt to this design, in order: tokens, the shell (navigation, rhythm, sheets), shared components, the core-loop screens, then the rest. The tokens ship in `src/tokens.css`, the one source for every value here: Tailwind v4 turns each into a CSS variable and a utility (`bg-void`, `text-ink-muted`, `rounded-card`, `text-screen-title`, `pt-header-top`). Never hand-copy a hex into a component.
+
+Screens that haven't been rebuilt yet still use Tailwind's default palette and the older look. Their signature parts are recorded under "Today's screens" below until each is rebuilt.
 
 ## Overview
 
 **Creative North Star: "The Ship's Console"**
 
-ATLAS is a starship's instrument panel brought to a phone propped beside the PC. A near-black void ground, washed with faint cyan and purple nebula light, carries translucent glass panels with a hairline cyan edge. Display type is Orbitron, used sparingly for screen titles, card titles, round labels and the planner's product; everything else is quiet Inter, and every quantity is JetBrains Mono with tabular figures, so numbers read like instrument readouts and line up column to column.
+ATLAS:OS is a starship's instrument panel on a phone propped beside the game. A near-black void ground under a faint 32px chart grid carries glass cards with a hairline edge. Orbitron sets names and titles of a few words; everything you read is quiet Inter; every number is JetBrains Mono with tabular figures, so values read like instrument readouts and line up column to column.
 
-Density is moderate and glance-first: one answer per card, detail on demand, touch targets of at least 40px (44px for anything ticked mid-session). Colour is semantic rather than decorative. Cyan means an amount or the scanner's focus, emerald means done or ready, amber means Units (money), purple belongs to exotic and register content, crimson to the planet mark and outlaw status. The accent hues appear as tinted fills at 10-15% alpha with a 30-60% alpha border, almost never as solid blocks; the one solid fill is the emerald of a completed tick or the primary action.
+The bar is a tool a player wants to thank: answer an in-game question in a glance and a tap, without losing their place in the game.
 
-The world's material is light on glass: depth comes from translucency, backdrop blur and soft coloured glow (a ready tick, a lit round node, the exotic slot, the capstone's bloom), never from hard or offset shadows.
-
-**Key Characteristics:**
-- Void ground (near-black blue) with three faint radial nebula washes, fixed to the page.
-- Glass HUD cards: 85% opaque panel, 12px backdrop blur, hairline sky-blue edge, 16px corners.
-- Orbitron for titles only; Inter for reading; JetBrains Mono tabular figures for every number.
-- Semantic accents as tinted fills plus a stronger tinted border.
-- Phosphor icons (bold weight by default) as the only icon set.
-- Light-based depth: glow and blur, no offset shadows.
+**Key characteristics:**
+- Void ground with a 32px chart grid at 5% slate.
+- Glass cards and grouped lists: 88% panel, 1px hairline edge, 18px corners, 16px padding. No drop shadows.
+- Tint and edge everywhere: states and buttons are a 12% fill with a 1px border of the same hue. There are no filled buttons.
+- A floating glass tab bar (four tabs) with a round search key beside it.
+- Glow means state, and only state.
+- Phosphor bold icons; no emoji, no text glyphs as icons, no game art.
 
 ## Colors
 
-A cold void palette lit by a few signal hues, each with a single meaning.
-
-### Primary
-- **Scanner Cyan** (scanner-cyan, with scanner-cyan-glow and scanner-cyan-pale): the instrument colour. Focus rings, selection, the `//` in the wordmark, the active nav item's tint and inset edge, the capstone's resting glow, links on hover. In its palest step (quantity-cyan) it is the colour of every amount: step quantities, recipe inputs, hold slot counts.
-
-### Secondary
-- **Ready Emerald** (ready-emerald, ready-emerald-lit, ready-emerald-pale): done, ready, on. Primary action buttons, selected segments and tags, switches, ticked steps and gathered slots, the planner spine as it fills, a round that can be crafted now, raw-material amounts in recipe lines. Text on solid emerald is ready-emerald-ink.
-
-### Tertiary
-- **Units Amber** (units-amber, units-amber-pale, units-amber-text): money and caution. Product worth and haul totals in Units, a recipe switch that costs more, the keep-awake chip when on, the "wait" outlaw pill.
-- **Exotic Purple** (exotic-purple, exotic-purple-pale): exotic tech and register answers; the supercharged-slot tile.
-- **Outlaw Crimson** (outlaw-crimson): the planet mark in the header and the outlaw tag. Never a general error colour on its own.
-
-### Neutral
-- **Void** (void): page ground, scrollbar track, tab-bar base, the ring around badges.
-- **HUD Panel** (hud-panel, hud-panel-glass): card and grouped-list surfaces; the glass variant over blur.
-- **HUD Edge** (hud-edge): the hairline sky-blue border of cards and grouped lists.
-- **Slate Ground** (slate-ground): inputs, segments, chips, secondary buttons.
-- **Slate Deep** (slate-deep): wells inside cards: tick targets at rest, the cargo hold, code blocks.
-- **Hairline** (hairline): dividers, list separators, header and tab-bar edges.
-- **Control Edge** (control-edge, control-edge-hover): borders of every control at rest and on hover.
-- **Ink** (ink-bright, ink, ink-soft, ink-muted, ink-label): headings and names in white; body text; field labels and secondary body; captions and provenance lines; uppercase group labels.
-
-Utility colours resolve through Tailwind's default palette (slate, cyan, emerald, amber, purple, red); the hex values above are the steps the system uses, and hand-authored CSS in `theme.css` uses the same hexes.
+A cold void palette lit by a few signal hues, each with one meaning.
 
 ### Named Rules
-**The One Meaning Rule.** Each accent hue carries one meaning: cyan is amount or focus, emerald is done or ready, amber is Units or caution. A new screen reuses the meaning, never the hue for decoration.
+**The One Meaning Rule.** Cyan is an amount, focus or where you are (the active tab, a selected chip). Emerald is done, ready or the primary action. Amber is Units or caution. Purple is exotic. Rose is a destructive action. Crimson is the outlaw mark only, never an error colour. A new screen reuses the meaning, never the hue for decoration.
 
-**The Tint-and-Edge Rule.** Accent states are a 10-15% alpha fill with a 30-70% alpha border of the same hue (an on segment, a ready band, a pill, the jump button). Solid accent fills are reserved for a completed tick and the primary action.
+**The Tint-and-Edge Rule.** A state or a button is a 12% fill (`*-tint`) with a 1px border at 35–55% (`*-edge`) of the same hue, and pale text in that hue (`*-text`). Hover deepens the tint to 18%, pressed to 22%. Solid colour appears only as state: the slide knob, the hold key, a switch that's on, a ticked milestone or done tick.
+
+**Data colours are a separate family.** A star's logged colour and a planet's biome family paint star and planet marks only, never controls or text. They join the tokens with the StarMark and PlanetMarker components.
+
+### Grounds and edges
+- **Void** (`void`): the page.
+- **Chart grid** (`chart-grid`): 1px lines every 32px behind each screen.
+- **Panel** (`panel`, `panel-glass`): cards, grouped lists, key–value tiles.
+- **Nav glass** (`nav-glass`, `nav-edge`): the tab bar and search key, over an 18px blur at 140% saturation.
+- **Slate ground** (`slate-ground`): fields, segment tracks, chips, secondary and icon buttons.
+- **Slate deep** (`slate-deep`): sheets and wells; **scrim** behind a sheet.
+- **Hairline** (`hairline`): card and list borders, row dividers. **Control edge** (`control-edge`, `-hover`): the border of every control.
+
+### Ink
+`ink-bright` for names and titles, `ink` for body, `ink-soft` for field labels and chips at rest, `ink-muted` for subtitles and second lines, `ink-label` for uppercase group labels and inactive tabs, `ink-disabled` for disabled controls. All pass 4.5:1 on `panel`.
 
 ## Typography
 
-**Display Font:** Orbitron (with sans-serif), weights 500, 700, 900 bundled
-**Body Font:** Inter (with sans-serif), weights 300-700 bundled
-**Label/Mono Font:** JetBrains Mono (with monospace), weights 400-600 bundled
-
-**Character:** Orbitron's squared, wide letterforms give the console voice in short bursts; Inter keeps reading calm; JetBrains Mono turns every count and value into a readout. All three are self-hosted from npm, nothing loads from a font CDN.
+**Display:** Orbitron 700 and 800. **Body:** Inter 400–700. **Numbers:** JetBrains Mono 400–600. All self-hosted from npm; nothing loads from a font CDN.
 
 ### Hierarchy
-- **Display** (Orbitron 700, 1.5rem / 2rem): screen titles (`Calculators`, `Systems`), the system name in Home's recent card.
-- **Capstone** (Orbitron 700, 1.5rem rising to 1.875rem from 640px, line-height 1.25): the planner's product name, the largest type on the Calculators screen.
-- **Title** (Orbitron 700, 1rem): card titles, always paired with a Phosphor bold icon in the card's semantic hue; the cargo hold title.
-- **Round label** (Orbitron 700, 0.875rem, tracking 0.025em): "Round N" over each crafting band.
-- **Body** (Inter 400, 0.875rem / 1.25rem): sentences, results, recipe lines (relaxed leading). Inputs render at 1rem below 640px so iOS does not zoom, 0.875rem above.
-- **Body small** (Inter 400, 0.75rem / 1rem): field labels, captions, provenance and help lines, status text.
-- **Label** (Inter 600, 11px, tracking 0.14em, uppercase): sidebar group names, grouped-list headings, the system panel's section headings. Always a real heading for the group under it.
-- **Numeric** (JetBrains Mono, tabular figures): every quantity, Units value, count badge and portal glyph string.
+- **Hero** (Orbitron 800, 27px / 1.1): the current system's name on Home, once per screen.
+- **Screen title** (Orbitron 800, 26px / 1.15): the title of every screen.
+- **Card title** (Orbitron 700, 15px / 1.25): card titles, with one bold Phosphor icon in the card's hue, 8px apart.
+- **Wordmark** (Orbitron 800, 15px, tracking 0.18em): ATLAS in `ink-bright`, `:OS` in `scanner-cyan-pale`.
+- **Sub** (Inter, 13px / 1.45, `ink-muted`): a screen's subtitle, 6px under the title.
+- **Row** (Inter, 14px): a list row; its title is 600 `ink-bright`, its second line **caption** (12px / 1.4, `ink-muted`).
+- **Label** (Inter 600, 10px, tracking 0.16em, uppercase, `ink-label`): names the group under it. Never a decorative kicker. One exception: a live status line above a hero name when it states something true and current ("YOU ARE HERE · 26H AGO"), in the status's hue.
+- **Button** (Inter 600, 15px, tracking 0.01em) for primary and gesture buttons; **control** (Inter 600, 13px) for secondary buttons, chips and segments; **pill** (Inter 600, 11px, tracking 0.04em); **tab** (Inter 600, 10px on a 10px line box).
+- **Numeric** (JetBrains Mono, tabular figures): every count, amount, time, Units value and portal address.
 
 ### Named Rules
 **The Readout Rule.** Every number a player compares is JetBrains Mono with `tabular-nums`. Inter never sets a quantity.
 
-**The Short Burst Rule.** Orbitron is for names and titles of a few words; it never sets a sentence.
+**The Short Burst Rule.** Orbitron sets names and titles of a few words, never a sentence.
+
+**Sentence case** everywhere except the label style and proper names. British spelling, as the game uses it.
 
 ## Layout
 
-The shell is a sticky 56px header (64px from 1024px) of 90% void with blur and a hairline bottom edge, holding the planet mark and the `ATLAS//MASTER_OS` wordmark. From 1024px a 288px sticky sidebar carries grouped navigation; below it, a fixed five-item tab bar with safe-area padding replaces it, and main content reserves bottom padding for it. Content is capped at 1600px; main padding is 16px on phones, 24px from 640px, 32px from 1024px. Edge-to-edge (`viewport-fit=cover`) with `env(safe-area-inset-*)` on header, body sides, tab bar and sheets.
+Phone first, at 390px; every screen still works at 1280px. A screen never scrolls sideways: only deliberate rails (filter chips) scroll, inside themselves, bleeding to the screen edge with 16px inner padding. Layouts are fluid; fixed-width roots are a bug.
 
-Screens are a vertical stack of HUD cards 24px apart; side-by-side grids appear only at `lg`/`xl` (two columns, `items-start`). Card padding is 16px on phones and 20px from 640px. Intro copy and long text sit within `max-w-3xl` / `max-w-prose`.
+### Vertical rhythm (every screen)
+- Header top: 20px, or the safe area if larger (`header-top`). Sides: 16px (`gutter`).
+- Title → subtitle: 6px (`title-sub`). Back bar → title: 16px (`back-title`).
+- Header → content: 24px (`header-content`). Section → section: 16px (`section`).
+- Section label → its group: 6px, with 24px above the label.
+- Card padding: 16px (`card`); rows inside a card: 12px apart (`card-row`).
+- Bottom padding: 104px (`tabbar-clear`), so the last content clears the tab bar by 24px.
 
-The Calculators planner is a single built-upward column inside its card: a sticky picker bar (bleeding to the card edge, 90% void with blur) under the app header, a horizontal preset rail that scrolls on phones and wraps from 640px, the capstone, the crafting rounds in reverse order (last round first) on a 36px-indented spine, and the cargo hold at the foot. Hold tiles fill an auto grid of 88px minimum (108px from 640px) with 6px gaps (8px from 640px).
-
-Breakpoints are Tailwind's: 640, 768, 1024, 1280px. Reduced motion collapses every transition and animation to zero.
-
-Implementation note (temporary, not a design rule): Tailwind v4 is compiled with Tailwind v3 compatibility shims (v3 preflight, v3's fixed text line heights, v3 `space-y-*` top-margin behaviour, and Tailwind imported after the app's CSS without cascade layers), because the remaining markup was written for v3's CDN. The fixed line heights in Typography come from that shim. The shims go once every screen is React (docs/architecture.md, Styling; ADR-0004); new screens should not depend on them.
+`box-sizing: border-box` applies to everything (Tailwind's base sets it).
 
 ## Elevation & Depth
 
-Depth is glass and light. Surfaces separate by translucency (85-92% opaque panels), backdrop blur (12px on cards, 16px with 1.4 saturation on the tab bar) and a hairline tinted edge. Shadows are soft and large, used for lift under floating things (cards, toasts, sheets, menus), or coloured glows that mean state.
-
-### Shadow Vocabulary
-- **Card lift** (`box-shadow: 0 10px 30px -5px rgba(0,0,0,0.5)`): every HUD card.
-- **Floating** (`box-shadow: 0 16px 40px -12px rgba(0,0,0,0.8)` to `0 24px 64px -12px rgba(0,0,0,0.85)`): toast, search results, the system sheet.
-- **Ready glow** (`box-shadow: 0 4px 14px -4px rgba(52,211,153,0.45)`): a tick target whose inputs are covered; a tighter `0 2px 10px -2px rgba(52,211,153,0.6)` on a ready round's diamond node.
-- **Exotic glow** (`box-shadow: 0 0 12px rgba(168,85,247,0.45)`): the supercharged slot.
-- **Star glow** (`0 2px 8px -1px <star colour>`): the star-colour dot.
-- **Capstone bloom** (animated ring from `0 0 0 0 rgba(52,211,153,0.55)` to `0 0 0 14px transparent`, settling at `0 12px 32px -8px rgba(52,211,153,0.35)`): once, when a plan completes.
+Depth is simple 1px borders and glass. No drop shadows without a reason.
 
 ### Named Rules
-**The Glow Means State Rule.** A coloured glow is never decoration: it marks something ready, lit, exotic or complete. Resting controls carry no glow.
+**The Glow Means State Rule.** A glow appears only as state, and nothing else gets a shadow:
+- **Live** (`shadow-glow-live`): the live-run dot on the Runs tab, and a live session.
+- **Done** (`shadow-glow-done`): a done tick.
+- **Supercharged** (`shadow-glow-supercharged`): a supercharged tech slot.
+- **Focus** is a 2px `scanner-cyan-glow` outline offset 2px, on every focusable element, never hidden under the tab bar or a sticky header.
 
 ## Shapes
 
-Softly rounded rectangles throughout, scaled by role: 6px for small chips and the in-slot check box, 8px for hold slots and the recipe switch, 10px for segments and nav tiles, 12px for inputs, buttons and tick targets, 16px for cards, grouped lists, the capstone and the hold, full pills for tag filters, status pills, switches and badges. Borders are 1px hairlines everywhere (1.5px only on the exotic slot). The one non-rectangular form is the planner's round node: a 13px square rotated 45° with 3px corners, a diamond on the 1px spine; the hold's landing node is a 17px circle with an up arrow.
+Radius by role: 6px chips (`chip`), 8px slots (`slot`), 9px segments inside a 12px track (`segment`), 12px fields, secondary and icon buttons and segment tracks (`control`), 14px primary and tap-to-arm buttons (`button`), 18px cards and grouped lists (`card`), 24px a sheet's top corners (`sheet`), full pills for chips, status pills, gesture buttons, the tab bar and the search key.
 
 ## Components
 
-### Buttons
-Calm, tinted, and tall enough for a thumb.
-- **Shape:** gently rounded (12px).
-- **Primary:** solid ready-emerald, slate-deep text, semibold 0.875rem, 48px tall, 20px sides; hover lightens to ready-emerald-lit, active darkens. One per view, for the main creating action (log a system).
-- **Secondary:** slate-ground with a control-edge border, 40px tall, ink text; hover brightens the border.
-- **Jump:** cyan tint (10%) with a 40% cyan edge and pale cyan text, 40px tall, trailing Phosphor arrow; hover doubles the tint. Used for in-page jumps such as "Start at the cargo hold".
-- **Quiet text actions:** 0.75rem ink-muted with a leading bold icon; hover to ink, or to rose for a destructive one (Clear all ticks).
-- **Focus:** a 2px scanner-cyan-glow outline offset 2px on every focusable element.
+### Tap buttons
+Classic tap UI everywhere except the three gesture places below.
+- **Primary:** tint and edge in emerald (`ready-emerald-tint`, `ready-emerald-edge`), `ready-emerald-text` label, button type, 48px, 14px corners, 18px sides, an optional leading icon 8px from the label. Hover and pressed deepen the tint (`-tint-hover`, `-tint-pressed`) and edge (`-edge-hover`, then `ready-emerald-lit`). Disabled is slate (`slate-ground`, `control-edge`, `ink-disabled`), not faded. Sizes: L 48px, M 42px, S 34px.
+- **Secondary:** `slate-ground`, `control-edge` border, `ink` label in the control type, 42px, 12px corners, 14px sides.
+- **Icon button:** 42×42, the secondary's surface, with an `aria-label`.
+- Transitions: background and border over 120ms.
 
-### Chips
-- **Tag filter:** 30px full pill, slate-ground, control-edge border, 0.75rem; pressed state is the emerald tint with a 60% emerald edge. Planner presets reuse it.
-- **Segment:** 36px, 10px corners; on state emerald tint. The filter variant's pressed state is amber.
-- **Status pill:** 24px full pill, tint-and-edge in cyan (new), emerald (ready) or amber (wait), with a bold Phosphor icon.
-- **Tag / glyph chip:** 24px, 6px corners, slate fill, 11px; glyphs in mono with wide tracking and a copy icon.
+### Gesture buttons
+Only where they earn it. They use the standard tint and edge: an 8–10% fill and a plain 1px border of the same hue, no gradient border, no grain.
+- **Slide to activate** ("Warped somewhere new", emerald): a 60px pill; a 48px solid emerald knob (`ready-emerald-ink` icon) travels right over a trail that deepens behind it; the label and chevrons sit to its right. Keyboard: Enter or Space activates.
+- **Hold to activate** ("Start session", cyan): a 60px pill with the label and a hint on the left and a 46px key on the right whose solid `scanner-cyan-glow` core fills a ring over 600ms; a fill sweeps behind the label. Letting go early resets it. No glow until the session is live.
+- **Tap to arm** (destructive actions, rose): a 48px button on `slate-ground` with a rose edge and `danger-rose-text`. The first tap arms it (`danger-rose-tint`, `danger-rose-edge-armed`, `danger-rose-bright` label) and a rose wash drains over 3s; a second tap within that window confirms; otherwise it disarms.
 
-### Cards / Containers
-- **Corner Style:** 16px.
-- **Background:** hud-panel-glass over 12px backdrop blur.
-- **Shadow Strategy:** card lift (see Elevation).
-- **Border:** 1px hud-edge.
-- **Internal Padding:** 16px, 20px from 640px; title row is an Orbitron title with a hue-coded bold icon, then a 0.75rem muted help line.
-- **Grouped list:** same surface as a card with hairline row separators and 60px rows, for settings-style lists.
+### Chips, pills and segments
+- **Chip:** 34px full pill, `slate-ground`, `control-edge`, `ink-soft`, control type, 13px sides; selected is cyan tint and strong edge with `scanner-cyan-text`. Chips sit in a rail 6px apart.
+- **Tag:** 24px pill, cyan tint at 10% with a 30% edge, `quantity-cyan`, 12px Inter 500.
+- **Status pill:** 24px, pill type, tint and edge in the meaning's hue (emerald, purple, amber, rose) or slate, with an optional bold icon 5px from the label.
+- **Segmented control:** a 4px-padded `slate-ground` track with a hairline edge and 12px corners; 34px segments with 9px corners and a 4px gap. The selected segment is an 18% emerald fill with a 1px inset emerald ring (`inset-shadow-segment-on`) and `ready-emerald-bright` text. The Log segment (Systems · Fleet · Notes) is navigation, so its selected segment is cyan (`scanner-cyan-tint`, `scanner-cyan-edge`, `scanner-cyan-text`) and carries `aria-current`.
 
-### Inputs / Fields
-- **Style:** label above (0.75rem ink-soft), control 6px below: slate-ground fill, control-edge border, 12px corners, 40px tall, white text, cyan caret.
-- **Focus:** border shifts to emerald (#34d399), plus the global cyan focus outline where the browser shows it.
-- **Numbers:** quantity fields are mono, centred or right-aligned. The planner's quantity sits between two 40px stepper buttons.
+### Cards and lists
+- **Card:** `panel-glass`, 1px `hairline`, 18px corners, 16px padding, children 12px apart. A card title is the card-title type with one icon.
+- **Grouped list:** the card's surface with no padding; 52px rows (10px × 16px padding, 12px gap) divided by hairlines; title and caption stacked 2px apart, a trailing `control-edge-hover` caret. Leading icons sit in a 34px tile with 10px corners.
+- **Key–value tiles:** a two-column grid, 8px apart; each tile `panel`, hairline, 12px corners, 10×12px padding; the value in mono 600 14px `ink-bright`.
+
+### Fields
+A label above (caption, `ink-soft`, 6px gap), then a 44px `slate-ground` control with a `control-edge` border and 12px corners, 12px sides, white text at 16px so iOS doesn't zoom.
 
 ### Navigation
-- **Sidebar (1024px+):** uppercase group labels; 44px rows with a 32px hue-coded icon tile, 0.8125rem medium text, mono count at the right. Hover is a slate wash; active is a 10% cyan fill with a 30% cyan inset edge and a brighter tile.
-- **Tab bar (below 1024px):** five equal cells, 56px, 22px icon over 10.5px label in ink-label; active turns scanner-cyan-pale; icons press to 0.9 scale. Emerald count badge ringed in void.
-- **Tool dock (Calculators):** ARIA tabs under the screen header that switch between the recipe planner and the small tools. The planner is the lead cell: a 36px hue icon tile (32px on phones), the Orbitron title and, below it, the plan in progress in mono quantity-cyan at 80% ("×1 Stasis Device · 3/14 gathered"). On phones it fills the first row (48px) over a 3-up row of 44px tool cells, icon and label inline, with no surrounding well; from 640px it is one row (planner 1.5fr, tools 1fr each, all 56px) in a slate-deep well with a hairline edge and 16px corners. Cells are 12px-cornered slate-ground with a control-edge border; the selected cell is a 10% cyan fill with a 50% cyan edge. Selection is navigation, so it takes the scanner cyan of the sidebar's active item, never the emerald of a selected segment (which means on, or done).
+- **Tab bar:** a floating, fully rounded glass pill (`nav-glass`, `nav-edge`, 18px blur), 64px tall with 6px padding, inset 16px from the screen's sides and bottom (or the safe area), leaving 88px on the right for the search key. Four equal tabs, 2px apart: **Home · Log · Runs · Codex**. Each tab is a 20×20 icon box (line height 0) 4px over the tab label, centred by measurement. The active tab is a cyan-tinted capsule (`scanner-cyan-tint`, `scanner-cyan-edge`) with a `quantity-cyan` label and a `scanner-cyan-glow` icon; inactive tabs are `ink-label`. The only glow in the bar is the live-run dot on Runs (8px, `shadow-glow-live`).
+- **Search key:** a 64px round key of the same glass beside the bar. It opens search with quick actions (Log this system, Start a timer, New note, Resume run). On Search it's lit: cyan tint, a 45% cyan edge, `scanner-cyan-pale` icon.
+- **Every full screen shows the bar,** with the tab of its section lit: Home (Home, first run, Settings, Timers & Session, Card viewer), Log (Systems, Fleet, Ship detail, Notes, Note editor, System detail, Frontier), Runs (Runs, a run, Recipe planner, Best crafts), Codex (Codex, article, Guides, a book).
+- **Settings** sit behind a gear in the Home header and open with a back bar.
+- **Wide screens:** the design is drawn at 390px. Until the shell is rebuilt, 1024px and up keep today's sidebar.
 
-### Sheets (phones)
-Below 768px every drawer is a bottom sheet: slate-deep, 24px top corners, a hairline control-edge top border, floating shadow, sliding up on `cubic-bezier(0.16, 1, 0.3, 1)` over 300ms behind a 60% void backdrop with a 2px blur. Its only close control is the grab bar: a 40×4 slate pill centred in a full-width 36px button at the top. Tapping it, dragging the header down (past 120px, or a quick flick) or tapping the backdrop closes the sheet; Esc does too. There is no ✕ on a phone. From 768px the same surfaces are side panels or modals with a ✕ and no bar. A sheet holding unsaved typing refuses to close by bar or swipe and says why in a toast.
+### Sheets
+A sheet rises from the bottom over a `scrim`: `slate-deep`, 24px top corners, a `control-edge` top border. Its close control is the grab bar: a 40×4 `grab` pill centred in a full-width 30px button. It enters over 300ms on `ease-entrance` (`cubic-bezier(0.16, 1, 0.3, 1)`) and leaves faster, over 200ms. Sheets cover the tab bar with their own Save/Cancel footer. A sheet holding unsaved typing refuses to close by bar or swipe and says why.
+
+### Motion
+120–200ms for micro-interactions, 250–350ms for sheets and panels, `ease-entrance` for entrances; exits are faster than entrances. Under reduced motion every animation (orbits, breathing stars, shimmer, the hold fill) settles at its end state, and nothing moves for more than 5 seconds unasked.
+
+## Today's screens (until rebuilt)
+
+These describe screens as they ship before their redesign. Each section goes when its screen is rebuilt.
 
 ### Session Bar
 While a session is on, or any timer is listed, a slim 48px bar leads every screen and sticks just under the header: quiet glass (88% void with a 12px blur), a hairline cyan edge that brightens on hover, 12px corners. Left to right: a status dot (emerald with a slow 2.4s pulse ring during a session, plain cyan for timers alone), the "Session" label over the elapsed time in mono, a hairline divider, then the soonest countdown (kind icon in cyan, the label, the time in 16px semibold mono quantity-cyan), an emerald "✓ N done" pill when finished timers wait (the bar's edge then turns emerald and it takes the capstone's glow, blooming once), this session's tallies from 640px, and a caret. The whole bar is one button opening the Session sheet. Home offers "Start session" as an emerald-tinted chip in the wake chip's shape, on its own line on phones; starting shows the bar, which opens the sheet. The header's timer button carries a dot: cyan while timers run, emerald once one is done.
@@ -342,18 +424,22 @@ Raw stock sits at the foot of the column in a slate-deep well with a 16px corner
 ## Do's and Don'ts
 
 ### Do:
-- **Do** set every quantity and value in JetBrains Mono with tabular figures, in quantity-cyan for amounts and units-amber-pale for Units.
-- **Do** build containers as HUD cards: hud-panel-glass, 12px blur, 1px hud-edge, 16px corners, card-lift shadow.
-- **Do** express states as tint-and-edge (10-15% fill, 30-70% border) in the hue that carries the meaning.
-- **Do** keep tick and tap targets at 44px (40px minimum for steppers and secondary buttons) and inputs at 1rem below 640px.
-- **Do** pair each card title (Orbitron 700, 1rem) with one bold Phosphor icon in the card's semantic hue.
-- **Do** honour reduced motion: the shared rule zeroes all transitions; signature moments (the bloom, the spine fill) must settle to their end state.
-- **Do** use the cyan focus outline (2px, offset 2px) on every focusable element, including visually hidden checkboxes via their drawn target.
+- **Do** take every value from `src/tokens.css` through its utility or variable; add a token before adding a value.
+- **Do** set every quantity, time and address in JetBrains Mono with tabular figures, in `quantity-cyan` for amounts and `units-amber-pale` for Units.
+- **Do** express states and buttons as tint and edge in the hue that carries the meaning.
+- **Do** keep anything tapped mid-session at 44px (40px minimum otherwise) and inputs at 16px on phones.
+- **Do** pair each card title with one bold Phosphor icon in the card's hue.
+- **Do** give every animation a still end state under reduced motion.
+- **Do** show the cyan focus outline (2px, offset 2px) on every focusable element, including inputs drawn as something else.
+- **Do** say "Fan-made. Not affiliated with Hello Games." wherever ATLAS:OS meets people (About, share images, cards).
+- **Do** draw only what the player logged or the wiki states.
 
 ### Don't:
-- **Don't** use an accent hue for decoration or outside its meaning (cyan for a Units value, amber for done).
-- **Don't** add hard or offset shadows; depth is blur, soft lift and state glow.
-- **Don't** set sentences or body copy in Orbitron.
-- **Don't** use text glyphs or emoji as icons; Phosphor is the icon set.
-- **Don't** put an uppercase mono label above a heading as a kicker; the uppercase label style only names the group it heads.
-- **Don't** load fonts, icons or styles from a CDN; everything is bundled.
+- **Don't** fill a button with solid colour; solid colour is state only.
+- **Don't** add drop shadows; a glow is state (live, done, supercharged), and focus is an outline.
+- **Don't** use an accent hue for decoration or outside its meaning (cyan for a Units value, amber for done, crimson for an error).
+- **Don't** set sentences in Orbitron, or put an uppercase label above a heading as a kicker.
+- **Don't** use emoji or text glyphs as icons, or any game art: no portal glyph drawings, game icons, logos, game fonts or screenshots. A portal address is 12 hex characters in mono.
+- **Don't** use gesture buttons outside Home's two (slide, hold) and destructive actions (tap to arm); the shell and settings stay classic tap UI.
+- **Don't** let a screen scroll sideways; only deliberate rails do.
+- **Don't** load fonts, icons, scripts or styles from a CDN; everything is bundled.

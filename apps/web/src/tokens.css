@@ -1,0 +1,201 @@
+/* ATLAS:OS design tokens: the one source for the redesign's values (apps/web/DESIGN.md).
+   Tailwind v4 turns each @theme entry into a CSS variable on :root and a utility (bg-void, text-ink-muted,
+   rounded-card, text-screen-title, pt-header-top, backdrop-blur-nav), so components never hand-copy a hex.
+   Names are semantic: they say what a value is for, except the data colours (star-*, biome-*), which say what
+   the player logged.
+   Screens built before the redesign still use Tailwind's default palette; they move to these names as each one is
+   rebuilt, so nothing here changes how they look today.
+   `static` keeps every token on :root even when no utility uses it yet: hand-written CSS and SVG art read them as
+   var(--color-…), which Tailwind can't see. */
+@theme static {
+  /* Grounds */
+  --color-void: #050811;
+  --color-panel: #0b1325;
+  --color-panel-glass: rgba(11, 19, 37, 0.88); /* cards and grouped lists */
+  --color-nav-glass: rgba(11, 19, 37, 0.78); /* the tab bar and search key, over an 18px blur */
+  --color-slate-ground: #0f172a; /* controls: fields, segments, chips, secondary buttons */
+  --color-slate-deep: #020617; /* sheets and wells */
+  --color-scrim: rgba(2, 6, 23, 0.62); /* behind a sheet */
+  --color-chart-grid: rgba(148, 163, 184, 0.05); /* the 32px grid behind a screen */
+  --color-hero-top: rgba(14, 24, 46, 0.96); /* the current system's card on Home, lit from above */
+  --color-hero-bottom: rgba(8, 14, 28, 0.96);
+  --color-hero-edge: rgba(56, 189, 248, 0.18);
+
+  /* Edges */
+  --color-hairline: #1e293b; /* card and list borders, row dividers */
+  --color-control-edge: #334155;
+  --color-control-edge-hover: #64748b;
+  --color-nav-edge: rgba(148, 163, 184, 0.18);
+  --color-grab: #475569; /* a sheet's grab bar */
+
+  /* Ink */
+  --color-ink-bright: #ffffff;
+  --color-ink: #e2e8f0;
+  --color-ink-soft: #cbd5e1;
+  --color-ink-muted: #94a3b8;
+  --color-ink-label: #8b9ab0;
+  --color-ink-disabled: #64748b;
+
+  /* Cyan: an amount, focus, or where you are */
+  --color-scanner-cyan: #06b6d4;
+  --color-scanner-cyan-glow: #22d3ee; /* focus ring, active icon, solid hold key */
+  --color-scanner-cyan-pale: #67e8f9; /* links, accent text */
+  --color-scanner-cyan-text: #cffafe; /* text on a cyan tint */
+  --color-scanner-cyan-ink: #042f3a; /* text on solid cyan */
+  --color-scanner-cyan-tint: rgba(34, 211, 238, 0.12);
+  --color-scanner-cyan-edge: rgba(34, 211, 238, 0.35);
+  --color-scanner-cyan-edge-strong: rgba(34, 211, 238, 0.55);
+  --color-quantity-cyan: #a5f3fc; /* every amount */
+
+  /* Emerald: done or ready; the primary action */
+  --color-ready-emerald: #10b981; /* solid only as state: slide knob, done tick, switch on */
+  --color-ready-emerald-lit: #34d399;
+  --color-ready-emerald-pale: #6ee7b7;
+  --color-ready-emerald-text: #a7f3d0; /* text on an emerald tint, the primary button's label */
+  --color-ready-emerald-bright: #d1fae5; /* the selected segment's label */
+  --color-ready-emerald-ink: #022c22; /* text on solid emerald */
+  --color-ready-emerald-tint: rgba(16, 185, 129, 0.12);
+  --color-ready-emerald-tint-hover: rgba(16, 185, 129, 0.18);
+  --color-ready-emerald-tint-pressed: rgba(16, 185, 129, 0.22);
+  --color-ready-emerald-edge: rgba(52, 211, 153, 0.5);
+  --color-ready-emerald-edge-hover: rgba(52, 211, 153, 0.7);
+  --color-ready-emerald-wash: rgba(16, 185, 129, 0.1); /* a card whose thing is ready: a done timer */
+  --color-ready-emerald-edge-soft: rgba(52, 211, 153, 0.35);
+
+  /* Amber: Units or caution */
+  --color-units-amber: #f59e0b;
+  --color-units-amber-pale: #fde68a;
+  --color-units-amber-text: #fcd34d;
+  --color-units-amber-tint: rgba(245, 158, 11, 0.12);
+  --color-units-amber-edge: rgba(251, 191, 36, 0.45);
+
+  /* Purple: exotic */
+  --color-exotic-purple: #a855f7;
+  --color-exotic-purple-pale: #c084fc;
+  --color-exotic-purple-text: #e9d5ff;
+  --color-exotic-purple-tint: rgba(168, 85, 247, 0.12);
+  --color-exotic-purple-edge: rgba(192, 132, 252, 0.5);
+
+  /* Rose: destructive actions (tap to arm) */
+  --color-danger-rose: #f43f5e;
+  --color-danger-rose-pale: #fda4af;
+  --color-danger-rose-text: #fecdd3;
+  --color-danger-rose-bright: #fff1f2; /* the armed label */
+  --color-danger-rose-tint: rgba(244, 63, 94, 0.12);
+  --color-danger-rose-edge: rgba(251, 113, 133, 0.5);
+  --color-danger-rose-edge-armed: rgba(251, 113, 133, 0.8);
+
+  /* Crimson: the outlaw mark only, never an error colour */
+  --color-outlaw-crimson: #ef4444;
+
+  /* Data colours: a star's logged colour and a planet's biome family. They paint star and planet marks only, never
+     controls or text. Stars: the disc, then its pale core. Biomes: the lit disc, then its shadowed crescent. */
+  --color-star-yellow: #fcd34d;
+  --color-star-yellow-core: #fff7d6;
+  --color-star-red: #f87171;
+  --color-star-red-core: #ffe4e1;
+  --color-star-green: #4ade80;
+  --color-star-green-core: #ecfdf5;
+  --color-star-blue: #60a5fa;
+  --color-star-blue-core: #eff6ff;
+  --color-star-purple: #c084fc;
+  --color-star-purple-core: #faf5ff;
+  --color-biome-toxic: #facc15;
+  --color-biome-toxic-shade: #854d0e;
+  --color-biome-hot: #fb923c;
+  --color-biome-hot-shade: #9a3412;
+  --color-biome-radioactive: #a3e635;
+  --color-biome-radioactive-shade: #3f6212;
+  --color-biome-frozen: #7dd3fc;
+  --color-biome-frozen-shade: #075985;
+  --color-biome-exotic: #e879f9;
+  --color-biome-exotic-shade: #86198f;
+  --color-biome-lush: #4ade80;
+  --color-biome-lush-shade: #166534;
+  --color-orbit-line: rgba(103, 232, 249, 0.16);
+  --color-orbit-line-unlogged: rgba(103, 232, 249, 0.1);
+  --color-orbit-grid: rgba(103, 232, 249, 0.05);
+
+  /* Type. Orbitron sets names and titles of a few words; Inter everything you read; JetBrains Mono every number. */
+  --text-hero: 27px; /* the current system's name on Home, once per screen */
+  --text-hero--line-height: 1.1;
+  --text-hero--font-weight: 800;
+  --text-screen-title: 26px;
+  --text-screen-title--line-height: 1.15;
+  --text-screen-title--font-weight: 800;
+  --text-card-title: 15px;
+  --text-card-title--line-height: 1.25;
+  --text-card-title--font-weight: 700;
+  --text-wordmark: 15px;
+  --text-wordmark--line-height: 1;
+  --text-wordmark--font-weight: 800;
+  --text-wordmark--letter-spacing: 0.18em;
+  --text-sub: 13px; /* a screen's subtitle */
+  --text-sub--line-height: 1.45;
+  --text-row: 14px; /* a list row's title */
+  --text-row--line-height: 1.4;
+  --text-caption: 12px; /* a row's second line, field labels */
+  --text-caption--line-height: 1.4;
+  --text-label: 10px; /* uppercase, names the group under it */
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 600;
+  --text-label--letter-spacing: 0.16em;
+  --text-button: 15px; /* the primary and gesture buttons */
+  --text-button--line-height: 1;
+  --text-button--font-weight: 600;
+  --text-button--letter-spacing: 0.01em;
+  --text-control: 13px; /* secondary buttons, chips, segments */
+  --text-control--line-height: 1;
+  --text-control--font-weight: 600;
+  --text-pill: 11px;
+  --text-pill--line-height: 1;
+  --text-pill--font-weight: 600;
+  --text-pill--letter-spacing: 0.04em;
+  --text-tab: 10px; /* the tab bar's labels; a 10px line box keeps the icon and label centred in the bar */
+  --text-tab--line-height: 10px;
+  --text-tab--font-weight: 600;
+  --text-tab--letter-spacing: 0.04em;
+
+  /* Radius by role */
+  --radius-chip: 6px;
+  --radius-slot: 8px;
+  --radius-segment: 9px; /* a segment inside its 12px track */
+  --radius-control: 12px; /* fields, secondary and icon buttons, segment tracks */
+  --radius-button: 14px; /* primary and tap-to-arm buttons */
+  --radius-card: 18px; /* cards and grouped lists */
+  --radius-hero: 22px; /* Home's current-system card */
+  --radius-sheet: 24px; /* a sheet's top corners */
+
+  /* Rhythm (brief, 2026-10-28): every screen uses these steps */
+  --spacing-gutter: 16px; /* page sides; the tab bar's side inset */
+  --spacing-header-top: max(20px, env(safe-area-inset-top));
+  --spacing-title-sub: 6px; /* title to subtitle; a section label to its group */
+  --spacing-back-title: 16px; /* back bar to title */
+  --spacing-header-content: 24px; /* header to the first section */
+  --spacing-section: 16px; /* section to section */
+  --spacing-card: 16px; /* card padding */
+  --spacing-card-row: 12px; /* rows inside a card */
+  --spacing-tabbar: 64px; /* the tab bar's height and the search key's size */
+  --spacing-tabbar-inset: max(16px, env(safe-area-inset-bottom));
+  --spacing-tabbar-clear: 104px; /* bottom padding: content clears the tab bar by 24px */
+
+  /* Depth is borders and glass. A glow appears only as state: a live session or run, a done tick, a supercharged
+     slot. Focus is an outline, not a glow. */
+  --blur-nav: 18px;
+  --shadow-glow-live: 0 0 0 2px #0b1325, 0 0 8px rgba(34, 211, 238, 0.8);
+  --shadow-glow-done: 0 0 10px rgba(16, 185, 129, 0.5);
+  --shadow-glow-supercharged: 0 0 8px rgba(192, 132, 252, 0.55);
+  --inset-shadow-segment-on: inset 0 0 0 1px rgba(52, 211, 153, 0.45);
+
+  /* Motion: 120–200ms for micro-interactions, 250–350ms for sheets; exits are faster than entrances. Under
+     reduced motion every animation settles at its end state (theme.css). */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --duration-micro: 120ms;
+  --duration-sheet-in: 300ms;
+  --duration-sheet-out: 200ms;
+  --hold-to-activate: 600ms; /* Start session */
+  --arm-window: 3s; /* tap to arm: the rose wash drains, then the button disarms */
+}

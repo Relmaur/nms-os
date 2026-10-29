@@ -1,5 +1,5 @@
 /// <reference lib="webworker" />
-// Service worker: makes ATLAS // MASTER OS installable and fully usable offline.
+// Service worker: makes ATLAS:OS installable and fully usable offline.
 // The build output (pages, modules, styles, icons, latin fonts) and the wiki indexes are precached under content-hash
 // revisions, so each deploy is one consistent version that updates in place. Data that changes between deploys is
 // fetched network-first; individual wiki articles are cached as they are read.

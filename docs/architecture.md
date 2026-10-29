@@ -1,6 +1,6 @@
 # Architecture
 
-ATLAS // MASTER OS is a static web app built by Vite: two HTML pages plus bundled modules, served from GitHub Pages and installable as a PWA. Nothing runs on a server but the opt-in sync relay, which stores only copies sealed on the device; user data lives in the browser (ADR-0002, ADR-0005). The stack and its migration plan are ADR-0004.
+ATLAS:OS is a static web app built by Vite: two HTML pages plus bundled modules, served from GitHub Pages and installable as a PWA. Nothing runs on a server but the opt-in sync relay, which stores only copies sealed on the device; user data lives in the browser (ADR-0002, ADR-0005). The stack and its migration plan are ADR-0004.
 
 ## Layout
 ```text
@@ -45,7 +45,7 @@ nms-os/                          pnpm workspace
 │   │   ├── wiki-data.js         Wiki index/bundle loading (parsed with @atlas/core/wiki-files) + drafts; exports WikiSearch
 │   │   └── pwa.js               Registers the service worker (production builds only)
 │   ├── src/sw/sw.ts             Service worker (Workbox), built to dist/sw.js
-│   ├── src/styles.css / codex.css   Each page's stylesheet: fonts.css, theme.css (+ codex-page.css), tailwind.css
+│   ├── src/styles.css / codex.css   Each page's stylesheet: fonts.css, theme.css (+ codex-page.css), tailwind.css (+ tokens.css)
 │   ├── public/                  Copied into the build as-is: icons, manifest, nms_state.json, wiki → ../../../wiki
 │   └── vite.config.ts           Two pages, relative base (the site lives under /nms-os/), PWA plugin
 ├── apps/sync/                   @atlas/sync: the relay, a Cloudflare Worker + D1: sync vaults (handler.ts) and timer pushes with a minute cron (push.ts); tested without Cloudflare; wrangler.toml; migrations/
@@ -83,6 +83,7 @@ nms-os/                          pnpm workspace
 
 ## Styling
 - Tailwind v4 is compiled at build time, with its own base styles in their cascade layer. The app's CSS (`theme.css`, `codex-page.css`) and Tailwind's utilities are unlayered, utilities last, so they resolve by specificity: a utility wins a tie with a component class, and a more specific app rule (`main.app-main`'s tab-bar padding over `py-5`) still wins.
+- Design tokens live in `apps/web/src/tokens.css` (`@theme static`, imported by `tailwind.css`): each one is a CSS variable on `:root` and a utility (`bg-void`, `rounded-card`, `text-screen-title`). `static` keeps unused tokens as variables, for hand-written CSS and SVG. `apps/web/DESIGN.md` documents them; redesigned screens use only these names.
 - `space-y-*` in v4 spaces every child but the last, hidden ones included: a container whose last child can be hidden (a closed form, inactive panels) uses explicit margins or wraps them instead.
 - Fonts (Inter, Orbitron, JetBrains Mono) and Phosphor icons are bundled from npm; nothing loads from a CDN.
 
