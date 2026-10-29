@@ -1,10 +1,10 @@
-# AGENTS.md — ATLAS // MASTER OS
+# AGENTS.md — ATLAS:OS
 
 Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems log, Outlaw Run, calculators on a verified wiki mirror, the Codex, a six-book guide, opt-in encrypted sync through a small Cloudflare Worker (`apps/sync`), and a local, read-only MCP server for AI assistants (`apps/mcp`). Installable PWA on GitHub Pages: https://relmaur.github.io/nms-os/
 
 ## Read first
 - `docs/STATE.md`: current work, blockers, open decisions, next steps. Update it before ending any non-trivial task.
-- `docs/process/prompt-graph.xml`: the development protocol (graph nodes, policy gates, done criteria). `docs/process/applicability.md` says which parts bind this project today.
+- `docs/process/build-prompt.md`: the development protocol (gates, graph, standards, building from design, policy gates, done criteria). `docs/process/applicability.md` says which parts bind this project today.
 - Load the scoped doc for the area you touch:
   - `docs/architecture.md`: layout, data flow, boundaries.
   - `docs/state-schema.md`: `nms_state.json` shape and merge rules.
@@ -55,6 +55,8 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 - **Destructive:** deleting committed files (outside the wiki sync), dropping state keys, rewriting git history.
 - **Major release:** breaking saved or exported state, bookmarked URLs, or a supported way of running the app.
 - **Data privacy:** any change to where user data is stored or sent.
+- **Public surface:** renaming the product, the npm package, the URL or the PWA identity; publishing a package.
+- **Firewall:** nothing from the owner's private notes enters the repo, commits, issues, PRs or ADRs.
 
 ## Definition of done
 `pnpm check` passes. `docs/STATE.md` is updated. `CHANGELOG.md` has an entry under `[Unreleased]` (SemVer). Any ADR needed is written. No gate is left open.
