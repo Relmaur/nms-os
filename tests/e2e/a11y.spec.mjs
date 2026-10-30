@@ -39,12 +39,27 @@ const showRecap = async page => {
   await page.locator('#sec-session').getByRole('button', { name: 'End session' }).click();
 };
 
+// The search key on a phone and tablet; from md the header's field.
+const openSearch = async page => {
+  const key = page.getByRole('button', { name: 'Search and quick actions' });
+  if (await key.isVisible()) await key.click();
+  else await page.locator('#globalSearchInput').focus();
+  await page.locator('#searchQuick').waitFor();
+};
+const searchFor = async page => {
+  await openSearch(page);
+  await page.locator('#globalSearchInput').fill('e');
+  await page.locator('#globalSearchResults [role="option"]').first().waitFor();
+};
+
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
   ['Page frame (header, sidebar, tab bar)', './', '#homeNow', 'body'],
   ['Page frame on Systems', './#systems', '#systemList', 'body'],
   ['Page frame on Outlaw Run', './#outlaw', '#outlawStationList', 'body'],
+  ['Search: quick actions', './', '#homeNow', '#globalSearch', openSearch],
+  ['Search: results', './', '#homeNow', '#globalSearch', searchFor],
   ['Session', './#session', '#timersTitle', '#sec-session'],
   ['Session live', './', '#timersTitle', '#sec-session', liveSession],
   ['Timer sheet', './', '#timersTitle', '#timerSheet', openTimerSheet],

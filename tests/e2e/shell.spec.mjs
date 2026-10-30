@@ -10,7 +10,16 @@ test('on a phone, the search opens full screen, finds a system and opens it', as
   const input = page.locator('#globalSearchInput');
   await expect(input).toBeVisible();
   await expect(input).toBeFocused();
+  // Empty, it offers the quick actions; the key stays lit above them, and a tab leaves the search.
+  await expect(page.locator('#searchQuick')).toContainText('Start a timer');
+  const key = page.getByRole('button', { name: 'Search and quick actions' });
+  await expect(key).toHaveAttribute('aria-expanded', 'true');
+  await page.locator('#tabBar [data-tab="log"]').click();
+  await expect(input).toBeHidden();
+  await expect(key).toHaveAttribute('aria-expanded', 'false');
+  await key.click();
   await input.fill('ekwa');
+  await expect(page.getByRole('button', { name: 'Systems · 1' })).toBeVisible();
   await page
     .locator('#globalSearchResults')
     .getByRole('option', { name: /Ekwa Nexus/ })

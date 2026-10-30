@@ -1,6 +1,7 @@
-// The header search: your systems, gear and notes, Codex articles and the books, in one list driven from the keyboard (arrows,
-// Enter, Esc; / or ⌘K to start). From md it drops down under the field; on a phone it is a full-screen overlay
-// opened from the tab bar's search key.
+// Search (design 19, with c07's sheet): your gear, notes and systems, Codex articles and the books, in one list driven
+// from the keyboard (arrows, Enter, Esc; / or ⌘K to start). Chips scope it to one kind, with how many each holds. An
+// empty field offers the quick actions and what was opened last. From md it drops down under the header's field; on a
+// phone it fills the screen above the tab bar, opened from the search key.
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { search } from '@atlas/core/search';
 import { searchSystems, type System } from '@atlas/core/systems-model';
@@ -10,36 +11,45 @@ import type { PreparedEntry } from '@atlas/core/search';
 import { appState } from '../../app/store.ts';
 import { Highlight, SourceBadge, categoryIcon } from '../codex/bits.tsx';
 import { StarDot } from '../parts/SystemBits.tsx';
-import { openSystem } from '../systems/panel-store.ts';
+import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
 import { findBookHits, flash, snippetAround, type BookHit } from './book-search.ts';
 import { showSection } from './section-store.ts';
 import { onWikiEntries, wikiEntries } from './wiki-index.ts';
+import { readRecent, rememberRecent, type Recent } from './search-recent.ts';
 import { KINDS } from '../gear/kinds.ts';
-import { openGear } from '../gear/fleet-bits.tsx';
-import { openNote } from '../notes/note-nav.ts';
+import { ClassPill, openGear } from '../gear/fleet-bits.tsx';
+import { newNote, openNote } from '../notes/note-nav.ts';
 
-const WIKI_LIMIT = 6;
-const BOOK_LIMIT = 6;
-const SYSTEM_LIMIT = 5;
-const OWN_LIMIT = 3; // gear, and notes, each
+// How many of each kind "All" shows; a chip scoped to one kind shows up to SCOPED.
+const LIMIT = { gear: 3, notes: 4, systems: 5, codex: 6, guides: 6 } as const;
+const SCOPED = 30;
 const PHONE = '(max-width: 767px)';
 
+type Scope = 'all' | 'gear' | 'notes' | 'systems' | 'codex' | 'guides';
+const SCOPES: [Scope, string][] = [
+  ['all', 'All'],
+  ['gear', 'Gear'],
+  ['notes', 'Notes'],
+  ['systems', 'Systems'],
+  ['codex', 'Codex'],
+  ['guides', 'Guides']
+];
 type Hit =
-  | { type: 'system'; system: System }
   | { type: 'gear'; item: GearItem }
   | { type: 'note'; note: Note }
+  | { type: 'system'; system: System }
   | { type: 'wiki'; entry: PreparedEntry }
   | { type: 'book'; book: BookHit };
 interface Results {
   query: string;
   tokens: string[];
-  hits: Hit[];
-  systemCount: number;
-  gearCount: number;
-  noteCount: number;
-  wikiCount: number;
+  gear: GearItem[];
+  notes: Note[];
+  systems: System[];
+  wiki: PreparedEntry[];
+  books: BookHit[];
 }
-const EMPTY: Results = { query: '', tokens: [], hits: [], systemCount: 0, gearCount: 0, noteCount: 0, wikiCount: 0 };
+const EMPTY: Results = { query: '', tokens: [], gear: [], notes: [], systems: [], wiki: [], books: [] };
 
 // The phone's full-screen search, opened from the tab bar's search key. Its look lives in theme.css on body.search-open
 // (the header's backdrop-filter must go there, or it would become the fixed overlay's containing block). The class
@@ -58,56 +68,153 @@ function subscribeOverlay(listener: () => void): () => void {
   overlayListeners.add(listener);
   return () => overlayListeners.delete(listener);
 }
+export const useSearchOpen = (): boolean => useSyncExternalStore(subscribeOverlay, () => overlay);
 export function openSearch(): void {
   setOverlay(true);
   document.getElementById('globalSearchInput')?.focus();
+}
+/** The search key: opens the search, or closes it when it's open. */
+export function toggleSearch(): void {
+  if (overlay) setOverlay(false);
+  else openSearch();
 }
 
 function find(query: string): Results {
   const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
   if (!tokens.length) return { ...EMPTY, query };
-  const systems = searchSystems(appState.systems, query);
-  const gear = gearOrder(appState.gear).filter(item => {
-    const hay = [item.name, item.type, item.role, item.class, item.notes].join(' ').toLowerCase();
-    return tokens.every(token => hay.includes(token));
-  });
-  const notes = searchNotes(appState.notes, query);
-  const wiki = search(wikiEntries(), query).map(result => result.entry);
-  const hits: Hit[] = [
-    ...systems.slice(0, SYSTEM_LIMIT).map(system => ({ type: 'system' as const, system })),
-    ...gear.slice(0, OWN_LIMIT).map(item => ({ type: 'gear' as const, item })),
-    ...notes.slice(0, OWN_LIMIT).map(note => ({ type: 'note' as const, note })),
-    ...wiki.slice(0, WIKI_LIMIT).map(entry => ({ type: 'wiki' as const, entry })),
-    ...findBookHits(tokens, BOOK_LIMIT).map(book => ({ type: 'book' as const, book }))
-  ];
   return {
     query,
     tokens,
-    hits,
-    systemCount: systems.length,
-    gearCount: gear.length,
-    noteCount: notes.length,
-    wikiCount: wiki.length
+    gear: gearOrder(appState.gear).filter(item => {
+      const hay = [item.name, item.type, item.role, item.class, item.notes].join(' ').toLowerCase();
+      return tokens.every(token => hay.includes(token));
+    }),
+    notes: searchNotes(appState.notes, query),
+    systems: searchSystems(appState.systems, query),
+    wiki: search(wikiEntries(), query).map(result => result.entry),
+    books: findBookHits(tokens, SCOPED)
   };
 }
 
+// The hits shown for a scope, in the design's order: gear, notes, systems, the Codex, then the books.
+function shown(results: Results, scope: Scope): Hit[] {
+  const take = <T,>(list: T[], key: Exclude<Scope, 'all'>) =>
+    scope === key ? list.slice(0, SCOPED) : scope === 'all' ? list.slice(0, LIMIT[key]) : [];
+  return [
+    ...take(results.gear, 'gear').map(item => ({ type: 'gear' as const, item })),
+    ...take(results.notes, 'notes').map(note => ({ type: 'note' as const, note })),
+    ...take(results.systems, 'systems').map(system => ({ type: 'system' as const, system })),
+    ...take(results.wiki, 'codex').map(entry => ({ type: 'wiki' as const, entry })),
+    ...take(results.books, 'guides').map(book => ({ type: 'book' as const, book }))
+  ];
+}
+const count = (results: Results, scope: Scope): number =>
+  scope === 'all'
+    ? SCOPES.slice(1).reduce((sum, [key]) => sum + count(results, key), 0)
+    : {
+        gear: results.gear,
+        notes: results.notes,
+        systems: results.systems,
+        codex: results.wiki,
+        guides: results.books
+      }[scope].length;
+
+const recentOf = (hit: Hit): Recent =>
+  hit.type === 'gear'
+    ? { type: 'gear', id: hit.item.id, title: hit.item.name }
+    : hit.type === 'note'
+      ? { type: 'note', id: hit.note.id, title: hit.note.title }
+      : hit.type === 'system'
+        ? { type: 'system', id: hit.system.id, title: hit.system.name }
+        : hit.type === 'wiki'
+          ? { type: 'wiki', id: hit.entry.path ?? '', title: hit.entry.title }
+          : { type: 'book', id: hit.book.section, title: hit.book.title };
+const RECENT_PLACE: Record<Recent['type'], string> = {
+  gear: 'Fleet',
+  note: 'Notes',
+  system: 'Systems',
+  wiki: 'Codex',
+  book: 'Guides'
+};
+const RECENT_ICON: Record<Recent['type'], string> = {
+  gear: 'ph-rocket',
+  note: 'ph-file-text',
+  system: 'ph-planet',
+  wiki: 'ph-book-open',
+  book: 'ph-book-open-text'
+};
+// A recent whose system, ship or note has since been deleted isn't offered.
+const stillThere = (recent: Recent): boolean =>
+  recent.type === 'gear'
+    ? appState.gear.some(item => item.id === recent.id)
+    : recent.type === 'note'
+      ? appState.notes.some(note => note.id === recent.id)
+      : recent.type === 'system'
+        ? appState.systems.some(system => system.id === recent.id)
+        : true;
+
+function openRecent(recent: Recent): void {
+  if (recent.type === 'gear') openGear(recent.id);
+  else if (recent.type === 'note') openNote(recent.id);
+  else if (recent.type === 'system') openSystem(recent.id);
+  else if (recent.type === 'wiki') location.assign(`wiki/#/a/${encodeURIComponent(recent.id)}`);
+  else void showSection(recent.id);
+}
+
+// What a player does most mid-session, one tap from the search key (c07).
+const ACTIONS: { label: string; icon: string; tile: string; run: () => void }[] = [
+  {
+    label: 'Log this system',
+    icon: 'ph-planet',
+    tile: 'bg-[rgba(16,185,129,0.14)] text-ready-emerald-text',
+    run: () => {
+      openSystemEditor();
+    }
+  },
+  {
+    label: 'Start a timer',
+    icon: 'ph-timer',
+    tile: 'bg-scanner-cyan-tint text-scanner-cyan-text',
+    run: () => {
+      location.hash = '#session';
+    }
+  },
+  {
+    label: 'New note',
+    icon: 'ph-note-pencil',
+    tile: 'bg-[rgba(192,132,252,0.12)] text-[#e9d5ff]',
+    run: () => {
+      newNote();
+    }
+  },
+  {
+    label: 'Resume run',
+    icon: 'ph-path',
+    tile: 'bg-[rgba(251,191,36,0.1)] text-units-amber-pale',
+    run: () => {
+      location.hash = '#outlaw';
+    }
+  }
+];
+
 export function Search() {
   const [results, setResults] = useState(EMPTY);
-  const [open, setOpen] = useState(false); // the results list
-  const phoneOverlay = useSyncExternalStore(subscribeOverlay, () => overlay);
+  const [scope, setScope] = useState<Scope>('all');
+  const [focused, setFocused] = useState(false); // the panel, from md
+  const phoneOverlay = useSearchOpen();
   const [active, setActive] = useState(-1);
   const root = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const open = focused || phoneOverlay;
 
   const run = (query: string) => {
-    const next = find(query);
-    setResults(next);
+    setResults(find(query));
     setActive(-1);
-    setOpen(next.tokens.length > 0);
+    setFocused(true);
   };
   const close = () => {
     setOverlay(false);
-    setOpen(false);
+    setFocused(false);
     input.current?.blur();
   };
 
@@ -116,25 +223,30 @@ export function Search() {
     () =>
       onWikiEntries(() => {
         setResults(current => (current.query.trim() ? find(current.query) : current));
-        setActive(-1); // the wiki group lands ahead of the books, so the old position would point elsewhere
+        setActive(-1); // the Codex group lands ahead of the books, so the old position would point elsewhere
       }),
     []
   );
 
-  // Widening the window past the phone layout leaves the overlay.
+  // Widening the window past the phone layout leaves the overlay, and so does going anywhere (a tab, Back).
   useEffect(() => {
     if (!phoneOverlay) return;
     const phone = matchMedia(PHONE);
     const leave = () => {
       if (!phone.matches) setOverlay(false);
     };
+    const away = () => {
+      setOverlay(false);
+    };
     phone.addEventListener('change', leave);
+    window.addEventListener('hashchange', away);
     return () => {
       phone.removeEventListener('change', leave);
+      window.removeEventListener('hashchange', away);
     };
   }, [phoneOverlay]);
 
-  // / or ⌘K starts a search from anywhere; a tap outside closes the list.
+  // / or ⌘K starts a search from anywhere; a tap outside closes the panel.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const el = document.activeElement;
@@ -147,7 +259,7 @@ export function Search() {
       }
     };
     const onDown = (event: PointerEvent) => {
-      if (event.target instanceof Node && !root.current?.contains(event.target)) setOpen(false);
+      if (event.target instanceof Node && !root.current?.contains(event.target)) setFocused(false);
     };
     document.addEventListener('keydown', onKey);
     document.addEventListener('pointerdown', onDown);
@@ -157,20 +269,19 @@ export function Search() {
     };
   });
 
+  const hits = shown(results, scope);
+  const { tokens } = results;
   const activate = (hit: Hit | undefined) => {
     if (!hit) return;
     const query = results.query;
     close();
-    if (hit.type === 'system') {
-      void showSection('systems');
-      openSystem(hit.system.id);
-    } else if (hit.type === 'gear') {
-      openGear(hit.item.id);
-    } else if (hit.type === 'note') {
-      openNote(hit.note.id);
-    } else if (hit.type === 'wiki') {
+    rememberRecent(recentOf(hit));
+    if (hit.type === 'system') openSystem(hit.system.id);
+    else if (hit.type === 'gear') openGear(hit.item.id);
+    else if (hit.type === 'note') openNote(hit.note.id);
+    else if (hit.type === 'wiki')
       location.assign(`wiki/#/a/${encodeURIComponent(hit.entry.path ?? '')}?q=${encodeURIComponent(query)}`);
-    } else {
+    else {
       const { el } = hit.book;
       void showSection(hit.book.section).then(() => {
         flash(el);
@@ -179,9 +290,9 @@ export function Search() {
   };
 
   const move = (step: number) => {
-    if (!results.hits.length) return;
-    const count = results.hits.length;
-    const next = active < 0 && step < 0 ? count - 1 : (active + step + count) % count; // ArrowUp from none: the last
+    if (!hits.length) return;
+    const total = hits.length;
+    const next = active < 0 && step < 0 ? total - 1 : (active + step + total) % total; // ArrowUp from none: the last
     setActive(next);
     document.getElementById(`search-hit-${String(next)}`)?.scrollIntoView({ block: 'nearest' });
   };
@@ -189,17 +300,16 @@ export function Search() {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       move(event.key === 'ArrowDown' ? 1 : -1);
-    } else if (event.key === 'Enter' && results.hits.length) {
+    } else if (event.key === 'Enter' && hits.length) {
       event.preventDefault();
-      activate(results.hits[Math.max(active, 0)]);
+      activate(hits[Math.max(active, 0)]);
     } else if (event.key === 'Escape') {
       event.preventDefault();
       close();
     }
   };
 
-  const { hits, tokens } = results;
-  const option = (i: number, tile: ReactNode, body: ReactNode) => (
+  const option = (i: number, tile: ReactNode, title: ReactNode, sub: ReactNode, end?: ReactNode) => (
     <button
       key={i}
       type="button"
@@ -212,144 +322,124 @@ export function Search() {
       className="search-hit"
     >
       {tile}
-      <span className="min-w-0 flex-1">{body}</span>
+      <span className="min-w-0 flex-1 flex flex-col gap-0.5">
+        <span className="text-[14px] font-semibold text-ink-bright truncate">{title}</span>
+        <span className="search-snippet text-caption text-ink-muted line-clamp-2">{sub}</span>
+      </span>
+      {end}
     </button>
   );
+  const tile = (icon: string, lit = false) => (
+    <span
+      aria-hidden="true"
+      className={`w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center text-[17px] border ${
+        lit
+          ? 'bg-scanner-cyan-tint border-scanner-cyan-edge text-scanner-cyan-pale'
+          : 'bg-slate-ground border-control-edge text-scanner-cyan-pale'
+      }`}
+    >
+      <i className={`ph-bold ${icon}`} />
+    </span>
+  );
+
+  // One group per kind, each a labelled run of options; the Codex says so when it has nothing for a game term.
   const groups: ReactNode[] = [];
-  hits.forEach((hit, i) => {
-    const first = i === 0 || hits[i - 1]?.type !== hit.type;
-    if (hit.type === 'system') {
-      if (first) groups.push(<Label key="systems" label="Your systems" detail={String(results.systemCount)} />);
-      const { system } = hit;
+  let group: { key: string; label: string; rows: ReactNode[] } | null = null;
+  const flush = () => {
+    if (group)
       groups.push(
-        option(
-          i,
-          <span className="nav-tile mt-0.5">
-            <StarDot system={system} />
-          </span>,
-          <>
-            <strong className="block text-sm text-white truncate">
-              <Highlight text={system.name} tokens={tokens} />
-            </strong>
-            <span className="block text-xs text-slate-400 truncate">
-              {[system.region, ...system.tags].filter(Boolean).join(' · ') || system.galaxy}
-            </span>
-          </>
-        )
+        <div key={group.key} role="group" aria-labelledby={`search-group-${group.key}`}>
+          <p id={`search-group-${group.key}`} className="search-label">
+            {group.label}
+          </p>
+          <div className="search-list">{group.rows}</div>
+        </div>
       );
-    } else if (hit.type === 'gear') {
-      if (first) groups.push(<Label key="gear" label="Your gear" detail={String(results.gearCount)} />);
+  };
+  const into = (key: string, label: string) => {
+    if (group?.key === key) return group.rows;
+    flush();
+    group = { key, label, rows: [] };
+    return group.rows;
+  };
+  hits.forEach((hit, i) => {
+    if (hit.type === 'gear') {
       const { item } = hit;
-      groups.push(
+      into('gear', 'Ships & Multi-Tools').push(
         option(
           i,
-          <span className="nav-tile text-cyan-300 mt-0.5">
-            <i className={`ph-bold ${KINDS[item.kind].icon}`} aria-hidden="true" />
-          </span>,
-          <>
-            <strong className="block text-sm text-white truncate">
-              <Highlight text={item.name} tokens={tokens} />
-            </strong>
-            <span className="block text-xs text-slate-400 truncate">
-              {[item.class, item.type, item.role].filter(Boolean).join(' · ') || KINDS[item.kind].label}
-            </span>
-          </>
+          tile(KINDS[item.kind].icon, true),
+          <Highlight text={item.name} tokens={tokens} />,
+          [item.type, item.role].filter(Boolean).join(' · ') || KINDS[item.kind].label,
+          <ClassPill value={item.class} />
         )
       );
     } else if (hit.type === 'note') {
-      if (first) groups.push(<Label key="notes" label="Your notes" detail={String(results.noteCount)} />);
       const { note } = hit;
-      groups.push(
+      into('notes', 'Notes').push(
         option(
           i,
-          <span className="nav-tile text-sky-300 mt-0.5">
-            <i className="ph-bold ph-note-pencil" aria-hidden="true" />
+          tile('ph-file-text'),
+          <Highlight text={note.title} tokens={tokens} />,
+          <Highlight text={snippetAround(noteExcerpt(note, 2000), tokens[0] ?? '')} tokens={tokens} />
+        )
+      );
+    } else if (hit.type === 'system') {
+      const { system } = hit;
+      into('systems', 'Systems').push(
+        option(
+          i,
+          <span
+            aria-hidden="true"
+            className="w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center bg-slate-ground border border-control-edge"
+          >
+            <StarDot system={system} />
           </span>,
-          <>
-            <strong className="block text-sm text-white truncate">
-              <Highlight text={note.title} tokens={tokens} />
-            </strong>
-            <span className="search-snippet block text-xs text-slate-400 leading-relaxed">
-              <Highlight text={snippetAround(noteExcerpt(note, 2000), tokens[0] ?? '')} tokens={tokens} />
-            </span>
-          </>
+          <Highlight text={system.name} tokens={tokens} />,
+          [system.region, ...system.tags].filter(Boolean).join(' · ') || system.galaxy
         )
       );
     } else if (hit.type === 'wiki') {
-      if (first)
-        groups.push(
-          <Label
-            key="wiki"
-            label="Wiki articles"
-            detail={`${String(results.wikiCount)} match${results.wikiCount === 1 ? '' : 'es'}`}
-          />
-        );
       const { entry } = hit;
-      groups.push(
+      into('codex', 'Codex').push(
         option(
           i,
-          <span className="nav-tile text-emerald-300 mt-0.5">
-            <i className={`ph-bold ${categoryIcon(entry.category)}`} aria-hidden="true" />
+          tile(categoryIcon(entry.category)),
+          <span className="flex items-center gap-2 min-w-0">
+            <span className="truncate">
+              <Highlight text={entry.title} tokens={tokens} />
+            </span>
+            <SourceBadge source={entry.source} />
           </span>,
-          <>
-            <span className="flex items-center gap-2">
-              <strong className="text-sm text-white truncate">
-                <Highlight text={entry.title} tokens={tokens} />
-              </strong>
-              <SourceBadge source={entry.source} />
-            </span>
-            <span className="block text-xs text-slate-400 truncate">
-              {entry.category} · {entry.summary ?? ''}
-            </span>
-          </>
+          `${entry.category} · ${entry.summary ?? ''}`
         )
       );
-      const lastWiki = hits[i + 1]?.type !== 'wiki';
-      if (lastWiki && results.wikiCount > WIKI_LIMIT)
-        groups.push(
-          <button
-            key="all-wiki"
-            type="button"
-            onClick={() => {
-              close();
-              location.assign(`wiki/#/?q=${encodeURIComponent(results.query)}`);
-            }}
-            className="w-full px-3 py-2 text-left text-xs font-medium text-cyan-300 hover:text-cyan-200"
-          >
-            Show all {results.wikiCount} wiki results →
-          </button>
-        );
     } else {
-      if (first) {
-        const count = hits.filter(item => item.type === 'book').length;
-        groups.push(
-          <Label key="books" label="In the manual" detail={`${String(count)}${count === BOOK_LIMIT ? '+' : ''}`} />
-        );
-      }
       const { book } = hit;
-      groups.push(
+      into('guides', 'Guides').push(
         option(
           i,
-          <span className="nav-tile text-cyan-300 mt-0.5">
-            <i className="ph-bold ph-book-open" aria-hidden="true" />
-          </span>,
-          <>
-            <span className="block text-[11px] font-medium text-cyan-300/80 truncate">{book.title}</span>
-            <span className="search-snippet block text-xs text-slate-300 leading-relaxed">
-              <Highlight text={snippetAround(book.text, tokens[0] ?? '')} tokens={tokens} />
-            </span>
-          </>
+          tile('ph-book-open-text'),
+          book.title,
+          <Highlight text={snippetAround(book.text, tokens[0] ?? '')} tokens={tokens} />
         )
       );
     }
   });
+  flush();
+
+  const typed = tokens.length > 0;
+  // The Codex shows a few; the rest wait in the Codex's own search (a button, so outside the listbox).
+  const moreCodex = hits.some(hit => hit.type === 'wiki') && results.wiki.length > LIMIT.codex && scope === 'all';
+  const noCodex = typed && scope === 'all' && hits.length > 0 && !results.wiki.length;
+  const recent = typed ? [] : readRecent().filter(stillThere);
 
   return (
     <div ref={root} id="globalSearch" className="hidden md:block relative flex-1 max-w-xl mx-auto">
       <div className="flex items-center gap-2">
         <div className="relative flex-1">
           <i
-            className="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+            className="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-scanner-cyan-pale pointer-events-none"
             aria-hidden="true"
           />
           <input
@@ -359,12 +449,12 @@ export function Search() {
             autoComplete="off"
             spellCheck={false}
             role="combobox"
-            aria-expanded={open}
+            aria-expanded={open && typed}
             aria-controls="globalSearchResults"
             aria-autocomplete="list"
             aria-activedescendant={active >= 0 ? `search-hit-${String(active)}` : undefined}
-            aria-label="Search your systems, gear, notes, the wiki and the guides"
-            placeholder="Search systems, the wiki and the guides…"
+            aria-label="Search everything"
+            placeholder="Search everything"
             onChange={event => {
               run(event.target.value);
             }}
@@ -372,39 +462,123 @@ export function Search() {
               run(event.target.value);
             }}
             onKeyDown={onKeyDown}
-            className="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-400 focus:outline-hidden transition"
+            className="w-full h-11 md:h-10 bg-slate-ground border border-control-edge hover:border-control-edge-hover focus:border-scanner-cyan-edge-strong focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)] rounded-control pl-10 pr-10 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:outline-hidden transition"
           />
-          <kbd className="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">
+          <kbd className="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-ink-muted border border-control-edge rounded px-1.5 py-0.5 pointer-events-none">
             /
           </kbd>
         </div>
-        <button type="button" onClick={close} className="md:hidden h-10 px-2 text-sm font-medium text-cyan-300">
+        <button type="button" onClick={close} className="md:hidden h-11 px-1 text-[15px] font-medium text-ink-soft">
           Cancel
         </button>
       </div>
-      <div
-        id="globalSearchResults"
-        role="listbox"
-        aria-label="Search results"
-        className={`${open ? '' : 'hidden'} absolute left-0 right-0 top-full mt-2 max-h-[72vh] overflow-y-auto overscroll-contain rounded-2xl border border-slate-700 bg-slate-950 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.75)] p-2`}
-      >
-        {hits.length ? (
-          groups
+      <div id="globalSearchPanel" className={open ? 'search-panel' : 'hidden'}>
+        {typed ? (
+          <>
+            <div role="group" aria-label="Search in" className="search-chips">
+              {SCOPES.map(([key, label]) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={scope === key}
+                  onClick={() => {
+                    setScope(key);
+                    setActive(-1);
+                    input.current?.focus();
+                  }}
+                  className="search-chip"
+                >
+                  {label} · {count(results, key)}
+                </button>
+              ))}
+            </div>
+            <div id="globalSearchResults" role="listbox" aria-label="Search results" className="flex flex-col gap-1">
+              {hits.length ? (
+                groups
+              ) : (
+                <p className="px-1 py-6 text-center text-sub text-ink-muted">
+                  {scope === 'all'
+                    ? `Nothing matches “${results.query.trim()}”. Try fewer words.`
+                    : `No ${SCOPES.find(([key]) => key === scope)?.[1] ?? ''} matches. Try All.`}
+                </p>
+              )}
+            </div>
+            {moreCodex && (
+              <button
+                type="button"
+                onClick={() => {
+                  close();
+                  location.assign(`wiki/#/?q=${encodeURIComponent(results.query)}`);
+                }}
+                className="self-start px-1 py-1 text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan"
+              >
+                Show all {results.wiki.length} in the Codex →
+              </button>
+            )}
+            {noCodex && (
+              <div className="mt-1 opacity-80">
+                <p className="search-label">Codex</p>
+                <div className="search-list flex items-center gap-3 px-4 py-3">
+                  {tile('ph-book-open')}
+                  <span className="flex flex-col gap-0.5">
+                    <span className="text-[14px] font-semibold text-ink-bright">No Codex matches</span>
+                    <span className="text-caption text-ink-muted">Try a game term, like Infra-Knife</span>
+                  </span>
+                </div>
+              </div>
+            )}
+          </>
         ) : (
-          <p className="px-3 py-6 text-center text-sm text-slate-400">
-            Nothing matches “{results.query.trim()}”. Try fewer words.
-          </p>
+          <div id="searchQuick" className="shrink-0">
+            <p className="search-label">Quick actions</p>
+            <div className="grid grid-cols-2 gap-2">
+              {ACTIONS.map(action => (
+                <button
+                  key={action.label}
+                  type="button"
+                  onClick={() => {
+                    close();
+                    action.run();
+                  }}
+                  className="flex items-center gap-2.5 min-h-[52px] px-3 rounded-control bg-panel-glass border border-hairline text-left text-[14px] font-semibold text-ink-bright hover:border-control-edge-hover"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`w-8 h-8 shrink-0 rounded-[9px] grid place-items-center ${action.tile}`}
+                  >
+                    <i className={`ph-bold ${action.icon} text-[16px]`} />
+                  </span>
+                  {action.label}
+                </button>
+              ))}
+            </div>
+            {recent.length > 0 && (
+              <>
+                <p className="search-label mt-2">Recent</p>
+                <ul className="search-list">
+                  {recent.map(item => (
+                    <li key={`${item.type}:${item.id}`}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          close();
+                          rememberRecent(item);
+                          openRecent(item);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-ground"
+                      >
+                        <i className={`ph-bold ${RECENT_ICON[item.type]} text-ink-label`} aria-hidden="true" />
+                        <span className="flex-1 min-w-0 truncate text-[14px] text-ink-bright">{item.title}</span>
+                        <span className="text-caption text-ink-label">{RECENT_PLACE[item.type]}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
         )}
       </div>
     </div>
-  );
-}
-
-function Label({ label, detail }: { label: string; detail: string }) {
-  return (
-    <p className="flex justify-between px-3 pt-3 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-      <span>{label}</span>
-      <span className="normal-case tracking-normal font-mono font-normal">{detail}</span>
-    </p>
   );
 }

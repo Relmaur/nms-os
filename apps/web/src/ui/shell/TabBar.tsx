@@ -5,7 +5,7 @@ import { rankOutlaw } from '@atlas/core/systems-model';
 import { appState, isLoaded, subscribe } from '../../app/store.ts';
 import { useOutlawReady } from './counts.ts';
 import { useSection } from './section-store.ts';
-import { openSearch } from './Search.tsx';
+import { toggleSearch, useSearchOpen } from './Search.tsx';
 import { useSyncAttention } from '../../app/sync.ts';
 
 // Which tab each section of the main page belongs to. More is Settings, reached from Home. The Runs tab opens Outlaw
@@ -35,6 +35,7 @@ export function TabBar() {
   const { ready } = useOutlawReady();
   const at = tabOf(section);
   const syncAttention = useSyncAttention();
+  const searching = useSearchOpen();
 
   // Ready stations on the installed app's icon too (where the platform supports badges). It keeps counting while the
   // app sits minimised, which is when the icon matters: on its own minute timer, since the screens' clock pauses
@@ -89,7 +90,13 @@ export function TabBar() {
         )}
         {tab('codex', 'wiki/', 'ph-book-open', 'Codex')}
       </nav>
-      <button type="button" onClick={openSearch} aria-label="Search and quick actions" className="search-key">
+      <button
+        type="button"
+        onClick={toggleSearch}
+        aria-label="Search and quick actions"
+        aria-expanded={searching}
+        className="search-key"
+      >
         <i className="ph-bold ph-magnifying-glass" aria-hidden="true" />
       </button>
     </div>

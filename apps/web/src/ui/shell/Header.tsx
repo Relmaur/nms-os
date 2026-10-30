@@ -89,7 +89,7 @@ export function Header() {
 }
 
 // Opens the Session screen (timers and the session), with a dot while something runs: cyan, or emerald once a timer is
-// done. In the app header, and in Home's own header below lg until Search's quick actions can start a timer.
+// done. In the app header, and in Home's own header below lg (design 01's Timers button).
 export function SessionButton({ id, className }: { id: string; className: string }) {
   const { session, timers } = useAppState();
   const active = session !== null || timers.length > 0;

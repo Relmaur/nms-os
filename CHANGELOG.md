@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **Search is redesigned.** The search key opens it with quick actions (log this system, start a timer, new note, resume your run) and what you opened last. Type, and chips narrow the results to gear, notes, systems, the Codex or the guides, with how many each holds.
 - **Guides are redesigned.** Each book is a path of milestones you tick, now spread across the books they belong to (your ticks keep), with the next one to tick on the Guides screen. A book opens on its milestones, a rule quoted from the wiki where it leans on one, your pinned notes, then the chapter. A milestone that names a ship or tool says when your fleet has one.
 - **The Codex is redesigned.** The landing has search, a tile per group and recently edited pages; filters wait behind a Filters chip. An article reads as cards: Quick Facts as pairs, recipes as a table, then the pages it's used in and links to. **On this page** opens from the header, and mid-scroll a bar names the section you're in, with find in the article, how much you've read, and back to top. **Pin to a note** starts a note in the app that links the page.
 - **Best crafts has its own screen** (`#crafts`): rank by profit, multiplier or fewest steps, or leave out crafts that need a crop (No farming); the top pick leads, and every row opens the recipe planner. Calculators links it and the planner, and keeps Base value, Extractors and Registers.
@@ -52,6 +53,9 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 - **The app is called ATLAS:OS** inside the app and as an installed app (the manifest's name and short name; installs update in place). The address and the npm package keep their names for now.
 - The app is now called ATLAS:OS in the project docs. The development protocol is `docs/process/build-prompt.md` v2.0, with two new policy gates: public surface and firewall. `docs/process/applicability.md` now matches the code: what sync, push alerts and the MCP server send, how long the relay keeps it, and the relay's abuse controls. Docs only.
 - **Design tokens for the redesign** (`apps/web/src/tokens.css`): the new look's colours, type, radii, rhythm, state glows and motion, each a CSS variable and a Tailwind utility. `apps/web/DESIGN.md` describes the new design (tint-and-edge buttons, a four-tab bar with a search key, gesture buttons in three places, glow only as state). Orbitron 800 is bundled for the new titles. No screen changes yet: each moves to the tokens as it is rebuilt.
+
+### Fixed
+- On a phone, the search covers the whole screen again; the page behind it showed through.
 
 ## [3.20.0] - 2026-10-28
 ### Added
