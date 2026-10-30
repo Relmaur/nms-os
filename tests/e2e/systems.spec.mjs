@@ -16,7 +16,9 @@ test('adds a system with glyphs and a tag, logging the arrival', async ({ page }
   expect(system.visits).toHaveLength(1);
 });
 
-test('a system opens on its own screen; planets added there persist across a reload; Back returns', async ({ page }) => {
+test('a system opens on its own screen; planets added there persist across a reload; Back returns', async ({
+  page
+}) => {
   await page.goto('./#systems');
   await page.locator('#systemList').getByText('Ekwa Nexus').click();
   await expect(page).toHaveURL(/#system\/sys-ekwa$/);

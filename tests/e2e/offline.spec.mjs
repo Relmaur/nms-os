@@ -16,8 +16,8 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   await expect(page.locator('#homeNow')).toContainText('Ekwa Nexus');
   await page.goto('./#systems');
   await expect(page.locator('#systemList')).toContainText('Hesper Drift');
-  await page.goto('./#calculators');
-  await expect(page.locator('#planResult [data-raw="Radon"]')).toHaveAttribute('data-qty', '500');
+  await page.goto('./#plan/Stasis%20Device');
+  await expect(page.locator('#planCargo [data-raw="Radon"]')).toHaveAttribute('data-qty', '500');
   // The refiner timer's recipes come from the cached wiki dataset too.
   await page.goto('./#home');
   await holdToStartSession(page);

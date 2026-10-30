@@ -10,9 +10,10 @@ const openEditor = async page => {
 const openPlanet = page => page.getByRole('button', { name: /^Add planet/ }).click();
 
 const tickHalf = async page => {
-  const tiles = await page.locator('#planHold label').all();
-  for (const tile of tiles.slice(0, 7)) await tile.click();
+  const boxes = await page.locator('#planCargo input[type="checkbox"]').all();
+  for (const box of boxes.slice(0, 7)) await box.check();
 };
+const openPlanPeek = page => page.getByRole('button', { name: 'Frost Crystal: open in Codex' }).click();
 
 const OXYGEN = encodeURIComponent('wiki/resources/Oxygen.md');
 const openPeek = page => page.locator('#browseBody .result button').first().click();
@@ -58,7 +59,9 @@ for (const [name, path, ready, region, setup] of [
   ['System detail', './#system/sys-ekwa', '#systemTitle', '#sec-system'],
   ['Planet sheet', './#system/sys-ekwa', '#systemTitle', '#planetSheet', openPlanet],
   ['System editor', './#systems', '#systemEditor', '#systemPanel', openEditor],
-  ['Calculators', './#calculators', '#planHold', '#sec-calculators'],
+  ['Calculators', './#calculators', '#craftList [data-craft] >> nth=0', '#sec-calculators'],
+  ['Recipe planner', './#plan/Stasis%20Device', '#planCargo', '#sec-plan'],
+  ['Recipe planner, Codex peek', './#plan/Stasis%20Device', '#peekSource', '#codexPeek', openPlanPeek],
   ['Guides', './#guides', '#guidesList a >> nth=0', '#sec-guides'],
   ['Book I (checklists)', './#book1', '#checklist-milestones input >> nth=0', '#sec-book1'],
   ['Book III (tables)', './#book3', '#sec-book3 table >> nth=0', '#sec-book3'],
@@ -69,7 +72,7 @@ for (const [name, path, ready, region, setup] of [
   ['Notes', './#notes', '#notesList [data-note] >> nth=0', '#sec-notes'],
   ['Note', './#note/note-grid', '#notePreview', '#sec-note'],
   ['Note, writing', './#note/note-grid', '#noteBody', '#sec-note', writeNote],
-  ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
+  ['Recipe planner, mid-plan', './#plan/Stasis%20Device', '#planCargo', '#sec-plan', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
   [
     'Calculators, Best crafts',

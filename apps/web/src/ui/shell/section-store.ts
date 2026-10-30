@@ -32,10 +32,10 @@ export function goBack(fallback: string): void {
 
 // Old and shortcut addresses: the Logbook was folded into Systems; #new-system (a home-screen shortcut) opens Home
 // with the editor, and #search (the Codex page's search key) opens Home with the search; anything unknown opens Home.
-// A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>, #note/<id>); without one it falls
+// A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>, #note/<id>, #plan/<item>); without one it falls
 // back to its list.
 const SHORTCUTS = new Set(['new-system', 'search']);
-const PARAM_SECTIONS: Record<string, string> = { system: 'systems', ship: 'gear', note: 'notes' };
+const PARAM_SECTIONS: Record<string, string> = { system: 'systems', ship: 'gear', note: 'notes', plan: 'calculators' };
 function resolve(key: string): { section: string; shortcut: string; param: string } {
   const [head = '', ...rest] = key.split('/');
   if (head in PARAM_SECTIONS) {

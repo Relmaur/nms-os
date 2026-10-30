@@ -8,6 +8,7 @@ import { SystemPanel } from './systems/SystemPanel.tsx';
 import { SystemDetails } from './systems/SystemDetails.tsx';
 import { Outlaw } from './outlaw/Outlaw.tsx';
 import { Calculators } from './calculators/Calculators.tsx';
+import { PlanScreen } from './calculators/Planner.tsx';
 import { Guides } from './guides/Guides.tsx';
 import { Book } from './guides/Book.tsx';
 import { More } from './more/More.tsx';
@@ -49,6 +50,7 @@ const SCREENS: [string, ReactNode][] = [
   ['sessionRoot', <Session />],
   ['outlawRoot', <Outlaw />],
   ['calculatorsRoot', <Calculators />],
+  ['planRoot', <PlanScreen />],
   ['systemPanelRoot', <SystemPanel />],
   ['guidesRoot', <Guides />],
   ...BOOKS.map(({ key }): [string, ReactNode] => [`${key}Root`, <Book book={key} />]),

@@ -1,10 +1,10 @@
 // Best crafts: what to craft for money, ranked by the value it gains over what its raw materials would sell for
-// (@atlas/core/profit, on the planner's own build order). "Plan it" hands an item to the recipe planner.
+// (@atlas/core/profit, on the planner's own build order). "Plan it" opens the recipe planner for an item.
 import { useMemo, useState } from 'react';
 import { formatUnits } from '@atlas/core/calc';
 import { rankCrafts, sortCrafts, type CraftSort } from '@atlas/core/profit';
 import type { Catalog } from '@atlas/core/planner';
-import { planItem } from './tool-store.ts';
+import { openPlan } from './plan-bits.ts';
 
 const PAGE = 15;
 const CATEGORIES: [string, string][] = [
@@ -144,7 +144,7 @@ export function BestCrafts({ catalog }: { catalog: Catalog }) {
             <button
               type="button"
               onClick={() => {
-                planItem(craft.item.title);
+                openPlan(craft.item.title);
               }}
               aria-label={`Plan it: ${craft.item.title}`}
               className="shrink-0 h-9 px-3 rounded-lg border border-slate-700 text-xs text-slate-200 hover:text-white hover:border-slate-500 flex items-center gap-1.5"

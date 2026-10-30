@@ -7,6 +7,14 @@ import { useLoaded, useOutlawReady } from './counts.ts';
 import { showSection, useSection } from './section-store.ts';
 import { useSyncAttention } from '../../app/sync.ts';
 
+const PART_OF: Record<string, string> = {
+  system: 'systems',
+  session: 'home',
+  ship: 'gear',
+  note: 'notes',
+  plan: 'calculators'
+};
+
 export function Sidebar() {
   const state = useAppState();
   const section = useSection();
@@ -14,18 +22,8 @@ export function Sidebar() {
   const wikiCount = useWikiCount();
   const loaded = useLoaded();
   const syncAttention = useSyncAttention();
-  // A book is part of Guides; one system is part of Systems.
-  const at = section.startsWith('book')
-    ? 'guides'
-    : section === 'system'
-      ? 'systems'
-      : section === 'session'
-        ? 'home'
-        : section === 'ship'
-          ? 'gear'
-          : section === 'note'
-            ? 'notes'
-            : section;
+  // A book is part of Guides; one system is part of Systems, and so on.
+  const at = section.startsWith('book') ? 'guides' : (PART_OF[section] ?? section);
   const item = (key: string, icon: string, color: string, label: string, count?: ReactNode, countId?: string) => (
     <li>
       <button

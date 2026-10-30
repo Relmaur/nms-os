@@ -1,8 +1,9 @@
-// Recipe planner, built upward: raw stock in the cargo hold at the bottom, crafting rounds stacked above it, the
-// product as the capstone. The player ticks off what they've gathered and crafted; a round lights once its inputs
-// are ticked. Every number is the wiki's recipes and base values, or arithmetic on them (docs/calculators.md).
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { formatQty, formatUnits } from '@atlas/core/calc';
+// Recipe planner (design 13), its own screen at #plan/<item>: what the item is worth, then one path in play order:
+// Gather (a cargo checklist), each crafting round, the final craft. Every item opens a Codex peek (34). Every number
+// is the wiki's recipes and base values, or arithmetic on them (docs/calculators.md). Opened from Best crafts, a
+// Codex item or Calculators; "Change item" plans another (owner, 2026-10-30: the design has no picker).
+import { useCallback, useMemo, useState } from 'react';
+import { formatQty } from '@atlas/core/calc';
 import {
   buildPlan,
   carryTicks,
@@ -11,143 +12,253 @@ import {
   planRecipes,
   rawKey,
   stepKey,
+  untick,
   type BuildPlan,
   type Catalog,
-  type PlanProgress,
-  type PlanStep,
-  type StepState,
-  untick
+  type PlanStep
 } from '@atlas/core/planner';
-import type { GameItem } from '@atlas/core/game-data';
+import { planPath, toggleRound, type PathStep } from '@atlas/core/plan-path';
 import { showToast } from '../../app/ui.ts';
+import { goBack, useSection, useSectionParam } from '../shell/section-store.ts';
+import { Button } from '../parts/Button.tsx';
+import { FIELD } from '../systems/editor-parts.tsx';
+import { useGameData } from './game-data.ts';
 import { readProgress, writeProgress, type PlanSettings } from './progress.ts';
-import { usePlanRequest } from './tool-store.ts';
+import { CodexPeek } from './CodexPeek.tsx';
+import { openPlan, rawValue, ratioText, recipeSwitch, type RecipeSwitch } from './plan-bits.ts';
 
-const PRESETS = ['Stasis Device', 'Fusion Ignitor', 'Circuit Board', 'Living Glass', 'Anomalous Doughnut'];
-const DEFAULT_PLAN: PlanSettings = { item: 'Stasis Device', qty: 1, choices: {} };
 const MAX_QTY = 9999;
+const TOP_BUTTON =
+  'w-11 h-11 rounded-control bg-slate-ground border border-control-edge grid place-items-center text-ink hover:border-control-edge-hover';
+const ITEM_NAME =
+  'text-left text-ink underline decoration-dotted decoration-scanner-cyan-pale/60 underline-offset-4 hover:text-ink-bright';
+const NODE: Record<PathStep['state'], string> = {
+  done: 'border border-ready-emerald-edge bg-ready-emerald-tint text-ready-emerald-text',
+  now: 'border-[1.5px] border-scanner-cyan-glow bg-[rgba(34,211,238,0.14)] text-[#cffafe]',
+  next: 'border border-control-edge bg-slate-ground text-ink-soft'
+};
 
-const count = (n: number, noun: string) => `${formatQty(n)} ${noun}${n === 1 ? '' : 's'}`;
-const rawValue = (plan: BuildPlan) => plan.raw.reduce((sum, entry) => sum + (entry.item?.value ?? 0) * entry.qty, 0);
-const codexHref = (item: GameItem) => `wiki/#/a/${encodeURIComponent(item.path)}`;
-
-function ItemName({ item, title, className = '' }: { item: GameItem | undefined; title: string; className?: string }) {
-  return item ? (
-    <a
-      href={codexHref(item)}
-      className={`underline decoration-slate-600 underline-offset-[3px] hover:text-cyan-200 hover:decoration-cyan-400/60 ${className}`}
-    >
-      {title}
-    </a>
-  ) : (
-    <span className={className}>{title}</span>
-  );
+export function PlanScreen() {
+  const section = useSection();
+  const title = useSectionParam();
+  const data = useGameData();
+  if (section !== 'plan') return null;
+  if (data.status !== 'ready')
+    return (
+      <p className="text-sub text-ink-muted pt-[env(safe-area-inset-top)]">
+        {data.status === 'failed'
+          ? 'The wiki data couldn’t be loaded. Check your connection, then open the planner again.'
+          : 'Loading recipes…'}
+      </p>
+    );
+  const item = findItem(data.catalog, title);
+  if (!item || !planRecipes(data.catalog, item).length)
+    return (
+      <div className="flex flex-col items-start gap-section pt-[env(safe-area-inset-top)]">
+        <h1 className="font-display text-screen-title text-ink-bright">Nothing to plan</h1>
+        <p className="text-sub text-ink-muted">
+          {item ? `${item.title} has no crafting or cooking recipe on the wiki.` : `“${title}” isn’t in the wiki data.`}
+        </p>
+        <Button
+          onClick={() => {
+            goBack('calculators');
+          }}
+        >
+          Back
+        </Button>
+      </div>
+    );
+  return <Planner key={item.title} catalog={data.catalog} item={item.title} />;
 }
 
-// The plan in a line, for the dock: what's being built and how far along it is.
-const summarize = (plan: BuildPlan, progress: PlanProgress) =>
-  `×${formatQty(plan.product.qty)} ${plan.product.title} · ${
-    progress.complete
-      ? 'done'
-      : progress.gathered < plan.raw.length
-        ? `${String(progress.gathered)}/${String(plan.raw.length)} gathered`
-        : `${String(progress.crafted)}/${String(plan.steps)} crafted`
-  }`;
-
-export function Planner({ catalog, onSummary }: { catalog: Catalog; onSummary?: (summary: string) => void }) {
-  // The saved plan comes back with its ticks; if its item has left the wiki data, the default starts fresh.
+function Planner({ catalog, item }: { catalog: Catalog; item: string }) {
+  // The saved plan comes back with its ticks when it's this item's; another item starts fresh (and replaces it).
   const [saved] = useState(() => {
     const progress = readProgress();
-    return progress && findItem(catalog, progress.item) ? progress : null;
+    if (progress?.item === item) return progress;
+    writeProgress({ item, qty: 1, choices: {} }, new Set()); // opening an item makes it the plan Calculators shows
+    return null;
   });
-  const [settings, setSettings] = useState<PlanSettings>(() =>
-    saved ? { item: saved.item, qty: saved.qty, choices: saved.choices } : DEFAULT_PLAN
-  );
+  const [settings, setSettings] = useState<PlanSettings>(() => saved ?? { item, qty: 1, choices: {} });
   const [ticked, setTicked] = useState<ReadonlySet<string>>(() => new Set(saved?.ticked ?? []));
-  const [query, setQuery] = useState(settings.item);
-  // The last recipe switch and what it did to the raw inputs' value, shown at the switched row until the next change.
-  const [switched, setSwitched] = useState<{ title: string; delta: number } | null>(null);
-
+  const [peek, setPeek] = useState<{ title: string; session: number } | null>(null);
+  const [changing, setChanging] = useState(false);
+  const closePeek = useCallback(() => {
+    setPeek(null);
+  }, []);
   const plan = useMemo(() => buildPlan(catalog, settings.item, settings.qty, settings.choices), [catalog, settings]);
-  const progress = plan ? planProgress(plan, ticked) : null;
-  const summary = plan && progress ? summarize(plan, progress) : '';
-  useEffect(() => {
-    onSummary?.(summary);
-  }, [summary, onSummary]);
 
   const save = (next: PlanSettings, nextTicked: ReadonlySet<string>) => {
-    writeProgress(next, nextTicked);
-  };
-
-  // Another amount or recipe keeps the ticks: each names an amount, so it holds wherever what was gathered or
-  // crafted still covers the new need and lapses where it doesn't (and comes back if the plan does). A different
-  // item starts fresh.
-  const replan = (next: PlanSettings) => {
-    const nextPlan = buildPlan(catalog, next.item, next.qty, next.choices);
-    const nextTicked =
-      next.item !== settings.item ? new Set<string>() : nextPlan ? carryTicks(nextPlan, ticked) : ticked;
     setSettings(next);
     setTicked(nextTicked);
-    setSwitched(null);
-    save(next, nextTicked);
+    writeProgress(next, nextTicked);
   };
-  const pickItem = (value: string) => {
-    const item = findItem(catalog, value);
-    if (!item) {
-      setQuery(settings.item);
-      return;
-    }
-    if (!planRecipes(catalog, item).length) {
-      showToast(`${item.title} has no crafting or cooking recipe on the wiki.`);
-      setQuery(settings.item);
-      return;
-    }
-    setQuery(item.title);
-    if (item.title !== settings.item) replan({ item: item.title, qty: settings.qty, choices: {} });
+  // Another amount or recipe keeps the ticks wherever what was gathered or crafted still covers the new need.
+  const replan = (next: PlanSettings) => {
+    const nextPlan = buildPlan(catalog, next.item, next.qty, next.choices);
+    save(next, nextPlan ? carryTicks(nextPlan, ticked) : ticked);
   };
-  // An item handed over by Best crafts ("Plan it"): planned as if picked here.
-  const request = usePlanRequest();
-  const handled = useRef(request?.nonce ?? 0);
-  useEffect(() => {
-    if (!request || request.nonce === handled.current) return;
-    handled.current = request.nonce;
-    pickItem(request.title);
-  });
   const setQty = (value: number) => {
     const qty = Math.max(1, Math.min(MAX_QTY, Math.round(value) || 1));
     if (qty !== settings.qty) replan({ ...settings, qty });
   };
-  // What switching a step to its next recipe would use and change, so the compare job isn't blind.
-  const preview = (step: PlanStep): SwitchPreview | null => {
-    if (!plan || step.recipes.length < 2) return null;
-    const index = (step.index + 1) % step.recipes.length;
-    const next = buildPlan(catalog, settings.item, settings.qty, { ...settings.choices, [step.title]: index });
-    const recipe = step.recipes[index];
-    if (!next || !recipe) return null;
-    return {
-      choices: { ...settings.choices, [step.title]: index },
-      // In this plan's amounts (whole batches of the other recipe), not the recipe's per-batch ones.
-      inputs: recipe.inputs
-        .map(input => {
-          const batches = Math.ceil(step.qty / (Number(recipe.outputs[0]?.qty) || 1));
-          return `${formatQty((Number(input.qty) || 1) * batches)} ${input.name}`;
-        })
-        .join(' + '),
-      delta: rawValue(next) - rawValue(plan)
-    };
-  };
-  const switchRecipe = (step: PlanStep) => {
-    const next = preview(step);
-    if (!next) return;
-    replan({ ...settings, choices: next.choices });
-    setSwitched({ title: step.title, delta: next.delta });
-  };
   const toggle = (key: string) => {
-    const next = ticked.has(key) ? untick(ticked, key) : new Set(ticked).add(key);
-    setTicked(next);
-    save(settings, next);
+    save(settings, ticked.has(key) ? untick(ticked, key) : new Set(ticked).add(key));
   };
+  if (!plan) return null;
+  const progress = planProgress(plan, ticked);
+  const path = planPath(plan, progress);
+  const open = (title: string) => {
+    setPeek(current => ({ title, session: (current?.session ?? 0) + 1 }));
+  };
+  const lit = peek?.title;
+  const step =
+    plan.rounds.flat().find(item => item.title === lit) ?? (plan.product.title === lit ? plan.product : null);
+  const switcher: RecipeSwitch | null = step
+    ? recipeSwitch(catalog, settings, plan, step, choices => {
+        replan({ ...settings, choices });
+      })
+    : null;
 
+  return (
+    <div className="flex flex-col gap-section max-w-2xl pt-[env(safe-area-inset-top)]">
+      <header className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              goBack('calculators');
+            }}
+            aria-label="Back"
+            className={TOP_BUTTON}
+          >
+            <i className="ph-bold ph-caret-left text-lg" aria-hidden="true" />
+          </button>
+          <span className="inline-flex items-center h-7 px-3 rounded-full border border-control-edge bg-slate-ground text-[12px] font-semibold text-ink-soft">
+            {path.steps.length} steps
+          </span>
+        </div>
+        <div className="flex items-center justify-between gap-3 mt-4">
+          <p className="text-label uppercase text-ink-label">Recipe planner</p>
+          <button
+            type="button"
+            aria-expanded={changing}
+            aria-controls="planChange"
+            onClick={() => {
+              setChanging(!changing);
+            }}
+            className="text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan"
+          >
+            Change item
+          </button>
+        </div>
+        <h1 id="planTitle" className="font-display text-screen-title text-ink-bright break-words">
+          {plan.product.title}
+        </h1>
+        {changing && <ChangeItem catalog={catalog} current={item} />}
+      </header>
+
+      <Worth plan={plan} qty={settings.qty} onQty={setQty} />
+
+      <section
+        aria-labelledby="planPathTitle"
+        className="rounded-card bg-panel-glass border border-hairline p-4 flex flex-col gap-3"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <h2 id="planPathTitle" className="font-display font-bold text-[15px] text-ink-bright">
+            Your path
+          </h2>
+          <span className="font-mono text-[12px] text-ink-muted">
+            {progress.complete ? 'all done' : `step ${String(path.current + 1)} of ${String(path.steps.length)}`}
+          </span>
+        </div>
+        <div
+          aria-hidden="true"
+          className="grid gap-1"
+          style={{ gridTemplateColumns: `repeat(${String(path.steps.length)}, 1fr)` }}
+        >
+          {path.steps.map((item, i) => (
+            <i
+              key={i}
+              className={`h-1 rounded-full ${i <= path.current || item.state === 'done' ? 'bg-scanner-cyan-glow' : 'bg-hairline'}`}
+            />
+          ))}
+        </div>
+        <ol id="planPath" className="flex flex-col mt-1">
+          {path.steps.map((item, i) => (
+            <li
+              key={i}
+              className="flex gap-3"
+              data-step={item.kind}
+              aria-current={item.state === 'now' ? 'step' : undefined}
+            >
+              <div className="flex flex-col items-center shrink-0">
+                <span
+                  className={`w-[30px] h-[30px] rounded-full grid place-items-center font-mono text-[12px] ${NODE[item.state]}`}
+                >
+                  {item.state === 'done' ? <i className="ph-bold ph-check" aria-label="Done" /> : i + 1}
+                </span>
+                {i < path.steps.length - 1 && <span className="flex-1 w-px bg-hairline my-1" />}
+              </div>
+              <div className="flex-1 min-w-0 pt-1 pb-[18px] flex flex-col gap-2">
+                {item.kind === 'gather' ? (
+                  <Gather
+                    plan={plan}
+                    ticked={ticked}
+                    now={item.state === 'now'}
+                    lit={lit}
+                    onToggle={toggle}
+                    onOpen={open}
+                  />
+                ) : item.kind === 'round' ? (
+                  <Round
+                    plan={plan}
+                    index={item.round}
+                    done={item.state === 'done'}
+                    lit={lit}
+                    onOpen={open}
+                    onToggle={() => {
+                      save(settings, toggleRound(plan, ticked, item.round));
+                    }}
+                  />
+                ) : (
+                  <Final
+                    plan={plan}
+                    done={item.state === 'done'}
+                    lit={lit}
+                    onOpen={open}
+                    onToggle={() => {
+                      toggle(stepKey(plan.product));
+                    }}
+                  />
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <p className="font-mono text-[11px] text-ink-label">
+        Recipes from the NMS wiki · {plan.product.title} · revision {plan.product.item?.revId} ·{' '}
+        {Object.keys(settings.choices).length ? 'your recipe choices' : 'first recipe of each item'}
+      </p>
+
+      {peek && (
+        <CodexPeek
+          key={peek.session}
+          catalog={catalog}
+          plan={plan}
+          title={peek.title}
+          switcher={switcher}
+          onClose={closePeek}
+        />
+      )}
+    </div>
+  );
+}
+
+function ChangeItem({ catalog, current }: { catalog: Catalog; current: string }) {
+  const [query, setQuery] = useState('');
   const craftable = useMemo(
     () =>
       [...catalog.byTitle.values()]
@@ -156,660 +267,347 @@ export function Planner({ catalog, onSummary }: { catalog: Catalog; onSummary?: 
         .sort((a, b) => a.localeCompare(b)),
     [catalog]
   );
-
+  const pick = (value: string) => {
+    const item = findItem(catalog, value);
+    if (!item) return;
+    if (!planRecipes(catalog, item).length) {
+      showToast(`${item.title} has no crafting or cooking recipe on the wiki.`);
+      return;
+    }
+    if (item.title !== current) openPlan(item.title);
+  };
   return (
-    <div className="space-y-5">
-      {/* The picker stays reachable while the plan scrolls; presets scroll away with the page. */}
-      <div className="sticky top-[calc(3.5rem+env(safe-area-inset-top))] lg:top-[calc(4rem+env(safe-area-inset-top))] z-20 -mx-4 sm:-mx-5 px-4 sm:px-5 py-3 rounded-t-2xl bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
-        <div className="flex items-end gap-2.5">
-          <label className="field flex-1 min-w-0">
-            Item to make
-            <input
-              id="planItem"
-              list="planItemOptions"
-              type="search"
-              autoComplete="off"
-              spellCheck={false}
-              autoCorrect="off"
-              value={query}
-              placeholder="Search craftable and cookable items"
-              className="text-ellipsis" // a long name shows it's cut off, on a phone beside the stepper
-              onChange={event => {
-                const { value } = event.target;
-                setQuery(value);
-                // A datalist pick replaces the whole value with an item's exact name: plan it at once. Typing, the
-                // clear button and autocorrect wait for Enter or leaving the field.
-                const inputType = (event.nativeEvent as InputEvent).inputType as string | undefined;
-                const exact = findItem(catalog, value)?.title === value;
-                if (exact && (!inputType || inputType === 'insertReplacementText')) pickItem(value);
-              }}
-              onKeyDown={event => {
-                if (event.key === 'Enter') pickItem(query);
-              }}
-              onBlur={() => {
-                pickItem(query);
-              }}
-            />
-          </label>
-          <QtyStepper qty={settings.qty} onChange={setQty} />
-        </div>
-        <datalist id="planItemOptions">
-          {craftable.map(title => (
-            <option key={title} value={title} />
-          ))}
-        </datalist>
-      </div>
-
-      <div
-        id="planPresets"
-        className="flex gap-1.5 overflow-x-auto sm:flex-wrap -mx-4 px-4 sm:mx-0 sm:px-0 pb-1 [scrollbar-width:none]"
-      >
-        {PRESETS.filter(title => findItem(catalog, title)).map(title => (
-          <button
-            key={title}
-            type="button"
-            aria-pressed={title === settings.item}
-            onClick={() => {
-              pickItem(title);
-            }}
-            className="tag-filter shrink-0 whitespace-nowrap"
-          >
-            {title}
-          </button>
+    <div id="planChange" className="mt-2">
+      <input
+        id="planItem"
+        list="planItemOptions"
+        type="search"
+        autoComplete="off"
+        spellCheck={false}
+        autoFocus
+        aria-label="Item to plan"
+        value={query}
+        placeholder="Search craftable and cookable items"
+        onChange={event => {
+          setQuery(event.target.value);
+          // A pick from the list is the item's exact name: plan it at once. Typing waits for Enter.
+          if (craftable.includes(event.target.value)) pick(event.target.value);
+        }}
+        onKeyDown={event => {
+          if (event.key === 'Enter') pick(query);
+        }}
+        className={FIELD}
+      />
+      <datalist id="planItemOptions">
+        {craftable.map(title => (
+          <option key={title} value={title} />
         ))}
-      </div>
-
-      <div id="planResult">
-        {plan && progress ? (
-          <>
-            <p role="status" className="sr-only">
-              {switched ? switchedText(switched.title, switched.delta) : ''}
-            </p>
-            <Capstone plan={plan} progress={progress} ticked={ticked} onToggle={toggle} />
-            <Rounds
-              key={JSON.stringify(settings)}
-              plan={plan}
-              progress={progress}
-              onToggle={toggle}
-              onSwitch={switchRecipe}
-              preview={preview}
-              switched={switched}
-            />
-            <Hold
-              plan={plan}
-              progress={progress}
-              ticked={ticked}
-              onToggle={toggle}
-              onReset={() => {
-                setTicked(new Set());
-                save(settings, new Set());
-              }}
-            />
-            <p className="text-xs text-slate-400 mt-6 max-w-prose">
-              From the wiki’s recipes for <ItemName item={plan.product.item} title={plan.product.title} /> and its
-              ingredients (wiki revision {plan.product.item?.revId}). Raw means the wiki lists no crafting or cooking
-              recipe; it may still be refinable. Ticks are kept on this device for this plan only.
-            </p>
-          </>
-        ) : (
-          <p className="text-sm text-slate-400">Pick an item to plan.</p>
-        )}
-      </div>
+      </datalist>
     </div>
   );
 }
 
-function QtyStepper({ qty, onChange }: { qty: number; onChange: (qty: number) => void }) {
+function Worth({ plan, qty, onQty }: { plan: BuildPlan; qty: number; onQty: (qty: number) => void }) {
+  const worth = (plan.product.item?.value ?? 0) * plan.product.qty;
+  const inputs = rawValue(plan);
+  const ratio = ratioText(worth, inputs);
   const [text, setText] = useState(String(qty));
   const [prev, setPrev] = useState(qty);
   if (prev !== qty) {
-    // The plan's amount changed from outside the field (the steppers): show it.
-    setPrev(qty);
+    setPrev(qty); // changed by − or +: show it
     setText(String(qty));
   }
-  const button =
-    'w-10 h-10 shrink-0 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400/60 text-slate-200 flex items-center justify-center disabled:opacity-40 disabled:hover:border-slate-700';
+  const step =
+    'w-11 h-[34px] rounded-segment grid place-items-center text-ink-soft hover:text-ink-bright disabled:opacity-40';
   return (
-    <div className="flex items-end gap-1">
-      <button
-        type="button"
-        aria-label="One fewer"
-        disabled={qty <= 1}
-        onClick={() => {
-          onChange(qty - 1);
-        }}
-        className={button}
-      >
-        <i className="ph-bold ph-minus" />
-      </button>
-      <label className="field w-16">
-        How many
-        <input
-          id="planQty"
-          type="number"
-          inputMode="numeric"
-          min={1}
-          max={MAX_QTY}
-          value={text}
-          onChange={event => {
-            setText(event.target.value);
-          }}
-          // Typed amounts apply on Enter or leaving the field, so a stray keystroke doesn't replan (and clear ticks).
-          onKeyDown={event => {
-            if (event.key === 'Enter') event.currentTarget.blur();
-          }}
-          onBlur={() => {
-            const value = Number(text);
-            if (text !== '' && value >= 1) onChange(value);
-            setText(String(Math.max(1, Math.min(MAX_QTY, Math.round(value) || qty))));
-          }}
-          className="text-center font-mono tabular-nums"
-        />
-      </label>
-      <button
-        type="button"
-        aria-label="One more"
-        disabled={qty >= MAX_QTY}
-        onClick={() => {
-          onChange(qty + 1);
-        }}
-        className={button}
-      >
-        <i className="ph-bold ph-plus" />
-      </button>
+    <section
+      aria-label="What it's worth"
+      className="rounded-card bg-panel-glass border border-[rgba(251,191,36,0.35)] p-4 flex flex-col gap-3"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-label uppercase text-ink-label">Product worth</p>
+          <p id="planWorth" className="font-mono text-[22px] font-semibold text-units-amber-text mt-1">
+            {worth ? worth.toLocaleString() : 'not on the wiki'}
+          </p>
+        </div>
+        {ratio && (
+          <span className="inline-flex items-center h-[30px] px-3 rounded-full border border-[rgba(252,211,77,0.45)] bg-[rgba(252,211,77,0.1)] font-mono text-[14px] text-units-amber-text">
+            <span className="sr-only">Worth </span>×{ratio}
+            <span className="sr-only"> its raw inputs</span>
+          </span>
+        )}
+      </div>
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-sub text-ink-muted">Raw inputs worth</span>
+        <span className="font-mono text-[14px] text-[#fde68a]">{inputs.toLocaleString()}</span>
+      </div>
+      {worth > 0 && (
+        <div aria-hidden="true" className="h-1.5 rounded-full bg-hairline overflow-hidden">
+          <span
+            className="block h-full min-w-1 bg-[#fbbf24]"
+            style={{ width: `${String(Math.min(100, (inputs / worth) * 100))}%` }}
+          />
+        </div>
+      )}
+      <div className="flex items-center justify-between gap-3">
+        <label htmlFor="planQty" className="text-sub text-ink-muted">
+          Quantity
+        </label>
+        <div className="flex gap-1 p-1 rounded-control bg-slate-ground border border-hairline">
+          <button
+            type="button"
+            aria-label="One fewer"
+            disabled={qty <= 1}
+            onClick={() => {
+              onQty(qty - 1);
+            }}
+            className={step}
+          >
+            <i className="ph-bold ph-minus" aria-hidden="true" />
+          </button>
+          <input
+            id="planQty"
+            type="number"
+            inputMode="numeric"
+            min={1}
+            max={MAX_QTY}
+            value={text}
+            onChange={event => {
+              setText(event.target.value);
+            }}
+            // A typed amount applies on Enter or leaving the field, so a stray keystroke doesn't replan.
+            onKeyDown={event => {
+              if (event.key === 'Enter') event.currentTarget.blur();
+            }}
+            onBlur={() => {
+              const value = Number(text);
+              if (text !== '' && value >= 1) onQty(value);
+              setText(String(Math.max(1, Math.min(MAX_QTY, Math.round(value) || qty))));
+            }}
+            className="w-14 h-[34px] rounded-segment bg-[rgba(16,185,129,0.18)] text-[#d1fae5] shadow-[inset_0_0_0_1px_rgba(52,211,153,0.45)] text-center font-mono text-[13px] font-semibold [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+          />
+          <button
+            type="button"
+            aria-label="One more"
+            disabled={qty >= MAX_QTY}
+            onClick={() => {
+              onQty(qty + 1);
+            }}
+            className={step}
+          >
+            <i className="ph-bold ph-plus" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const litName = (on: boolean) =>
+  on
+    ? 'text-[#cffafe] bg-[rgba(34,211,238,0.16)] rounded-md px-1.5 -mx-1.5 py-0.5 -my-0.5 no-underline shadow-[inset_0_0_0_1px_rgba(34,211,238,0.5)]'
+    : '';
+
+function StepHead({ title, meta, now }: { title: string; meta: string; now?: boolean }) {
+  return (
+    <div className="flex items-baseline justify-between gap-3">
+      <h3 className="font-display font-bold text-[14px] text-ink-bright">{title}</h3>
+      <span className={`font-mono text-[11px] ${now ? 'text-scanner-cyan-pale' : 'text-ink-muted'}`}>{meta}</span>
     </div>
   );
 }
 
-// A large tick target for gloved-hand glances: a real checkbox, drawn as an inventory slot.
-function Tick({
-  checked,
-  ready,
-  label,
-  onChange
+function Gather({
+  plan,
+  ticked,
+  now,
+  lit,
+  onToggle,
+  onOpen
 }: {
-  checked: boolean;
-  ready: boolean;
-  label: string;
-  onChange: () => void;
+  plan: BuildPlan;
+  ticked: ReadonlySet<string>;
+  now: boolean;
+  lit: string | undefined;
+  onToggle: (key: string) => void;
+  onOpen: (title: string) => void;
 }) {
+  const gathered = plan.raw.filter(entry => ticked.has(rawKey(entry.title, entry.qty))).length;
   return (
-    <label className="relative shrink-0 w-11 h-11 cursor-pointer">
-      <input type="checkbox" checked={checked} onChange={onChange} aria-label={label} className="peer sr-only" />
-      <span
-        aria-hidden="true"
-        className={`absolute inset-0 rounded-xl border flex items-center justify-center transition-colors peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cyan-300 ${
-          checked
-            ? 'bg-emerald-400 border-emerald-300 text-emerald-950'
-            : ready
-              ? 'bg-emerald-400/10 border-emerald-400/70 text-emerald-300 shadow-[0_4px_14px_-4px_rgba(52,211,153,0.45)]'
-              : 'bg-slate-950 border-slate-700 text-slate-600 hover:border-slate-500'
-        }`}
-      >
-        <i className={`ph-bold ${checked ? 'ph-check' : 'ph-hammer'} text-lg`} />
-      </span>
-    </label>
+    <>
+      <StepHead title="Gather" meta={`${String(gathered)} / ${String(plan.raw.length)}`} now={now} />
+      <p className="text-caption text-ink-muted">
+        Fill your cargo with these first. Tick them as they land; tap a name for its Codex entry.
+      </p>
+      <ul id="planCargo">
+        {plan.raw.map(entry => {
+          const key = rawKey(entry.title, entry.qty);
+          return (
+            <li
+              key={entry.title}
+              data-raw={entry.title}
+              data-qty={entry.qty}
+              className="flex items-center justify-between gap-2 py-2 border-t border-hairline first:border-t-0"
+            >
+              <span className="flex items-center gap-2.5 min-w-0 min-h-7">
+                <input
+                  type="checkbox"
+                  checked={ticked.has(key)}
+                  onChange={() => {
+                    onToggle(key);
+                  }}
+                  aria-label={`Gathered ${formatQty(entry.qty)} ${entry.title}`}
+                  className="w-5 h-5 shrink-0 accent-emerald-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    onOpen(entry.title);
+                  }}
+                  aria-label={`${entry.title}: open in Codex`}
+                  className={`text-[14px] truncate ${ITEM_NAME} ${litName(lit === entry.title)}`}
+                >
+                  {entry.title}
+                </button>
+              </span>
+              <span className="font-mono text-[13px] text-quantity-cyan shrink-0">{formatQty(entry.qty)}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 
-// A step's ingredients as one line, the way a recipe reads: "10,000 Frost Crystal + 20,000 Solanium".
-function Inputs({ step, progress }: { step: PlanStep; progress: PlanProgress }) {
-  return (
-    <p className="mt-1 text-sm leading-relaxed text-slate-300">
-      <span className="sr-only">From </span>
-      {step.inputs.map((input, i) => {
-        const have = progress.has(input);
-        return (
-          <Fragment key={`${input.title}-${String(i)}`}>
-            {i ? <span className="text-slate-500"> + </span> : null}
-            <span className={`whitespace-nowrap ${have ? 'text-emerald-100' : ''}`}>
-              <span className={`font-mono tabular-nums ${input.raw ? 'text-emerald-300' : 'text-cyan-200'}`}>
-                {formatQty(input.qty)}
-              </span>{' '}
-              {input.title}
-              {have ? (
-                <>
-                  <i className="ph-bold ph-check text-emerald-300 ml-1" aria-hidden="true" />
-                  <span className="sr-only"> (ticked)</span>
-                </>
-              ) : null}
-            </span>
-          </Fragment>
-        );
-      })}
-    </p>
-  );
-}
-
-// How a plan's steps are made, when they all share it; rows then only mention what differs.
-interface Norm {
-  type: 'craft' | 'cook' | null;
-  blueprint: boolean;
-}
-function planNorm(plan: BuildPlan): Norm {
-  const steps = [...plan.rounds.flat(), plan.product];
-  const type = steps.every(step => step.recipe.type === 'cook')
-    ? 'cook'
-    : steps.every(step => step.recipe.type === 'craft')
-      ? 'craft'
-      : null;
-  return { type, blueprint: steps.every(step => step.recipe.blueprint) };
-}
-const normText = (norm: Norm) =>
-  norm.type === 'cook'
-    ? 'All cooked in the Nutrient Processor'
-    : norm.type === 'craft'
-      ? norm.blueprint
-        ? 'All crafted from blueprints'
-        : 'All crafted'
-      : null;
-
-function StepMeta({ step, norm }: { step: PlanStep; norm: Norm }) {
-  const parts = [
-    norm.type ? '' : step.recipe.type === 'cook' ? 'Nutrient Processor' : 'Crafted',
-    !norm.blueprint && step.recipe.blueprint ? 'blueprint' : '',
-    step.makes > step.qty ? `makes ${formatQty(step.makes)}` : ''
-  ].filter(Boolean);
-  return parts.length ? <span className="text-xs text-slate-400">{parts.join(' · ')}</span> : null;
-}
-
-interface SwitchPreview {
-  choices: Record<string, number>;
-  inputs: string;
-  delta: number;
-}
-const signedUnits = (delta: number) =>
-  delta ? `${delta < 0 ? '−' : '+'}${formatUnits(Math.abs(delta))} Units` : 'same value';
-const switchedText = (title: string, delta: number) =>
-  delta ? `${title}: raw inputs ${signedUnits(delta)} with this recipe` : `${title}: no change in raw inputs' value`;
-
-function RecipeSwitch({
-  step,
-  preview,
-  onSwitch
-}: {
-  step: PlanStep;
-  preview: SwitchPreview | null;
-  onSwitch: (step: PlanStep) => void;
-}) {
-  if (!preview) return null;
+function ItemPill({ step, lit, onOpen }: { step: PlanStep; lit: boolean; onOpen: (title: string) => void }) {
+  const name = step.qty > 1 ? `${step.title} ×${formatQty(step.qty)}` : step.title;
   return (
     <button
       type="button"
-      data-title={step.title}
       onClick={() => {
-        onSwitch(step);
+        onOpen(step.title);
       }}
-      className="mt-2 w-full sm:w-auto text-left flex items-start gap-2 px-2.5 py-1.5 rounded-lg border border-slate-700 hover:border-cyan-400/60 text-xs text-slate-300 hover:text-cyan-100"
+      aria-label={`${name}: open in Codex`}
+      className={`inline-flex items-center h-7 px-2.5 rounded-full border text-[12px] font-semibold text-[#cffafe] ${
+        lit
+          ? 'border-scanner-cyan-glow bg-[rgba(34,211,238,0.18)] shadow-[0_0_0_3px_rgba(34,211,238,0.15)]'
+          : 'border-[rgba(34,211,238,0.28)] bg-[rgba(34,211,238,0.06)]'
+      }`}
     >
-      <i className="ph-bold ph-arrows-clockwise mt-0.5 text-cyan-300" aria-hidden="true" />
-      <span className="min-w-0">
-        <span className="block">
-          Recipe {step.index + 1} of {step.recipes.length} · switch to the next
-        </span>
-        <span className="block text-slate-400">
-          {preview.inputs}
-          <span
-            className={`whitespace-nowrap ${preview.delta < 0 ? 'text-emerald-300' : preview.delta > 0 ? 'text-amber-300' : ''}`}
-          >
-            {` · ${signedUnits(preview.delta)}`}
-          </span>
-        </span>
-      </span>
+      {name}
     </button>
   );
 }
 
-// "Worth 148× its raw inputs": arithmetic on the two wiki base values, for the "is it worth crafting?" glance.
-function ratioText(worth: number, inputs: number): string | null {
-  if (!worth || !inputs) return null;
-  const ratio = worth / inputs;
-  return `Worth ${ratio >= 10 ? Math.round(ratio).toLocaleString() : ratio.toFixed(1)}× its raw inputs`;
+function DoneToggle({ done, label, onToggle }: { done: boolean; label: string; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-pressed={done}
+      onClick={onToggle}
+      className={`self-start inline-flex items-center gap-1.5 h-8 px-3 rounded-full border text-[12px] font-semibold ${
+        done
+          ? 'border-ready-emerald-edge bg-ready-emerald-tint text-ready-emerald-text'
+          : 'border-control-edge bg-slate-ground text-ink-soft hover:text-ink-bright'
+      }`}
+    >
+      <i className={`ph-bold ${done ? 'ph-check' : 'ph-hammer'}`} aria-hidden="true" />
+      {label}
+    </button>
+  );
 }
 
-function Capstone({
+function Round({
   plan,
-  progress,
-  ticked,
+  index,
+  done,
+  lit,
+  onOpen,
   onToggle
 }: {
   plan: BuildPlan;
-  progress: PlanProgress;
-  ticked: ReadonlySet<string>;
-  onToggle: (key: string) => void;
+  index: number;
+  done: boolean;
+  lit: string | undefined;
+  onOpen: (title: string) => void;
+  onToggle: () => void;
+}) {
+  const round = plan.rounds[index] ?? [];
+  const verb = round.every(step => step.recipe.type === 'cook') ? 'Cook' : 'Craft';
+  return (
+    <>
+      <StepHead
+        title={`${verb} · Round ${String(index + 1)}`}
+        meta={`${String(round.length)} item${round.length === 1 ? '' : 's'}`}
+      />
+      <p className="text-caption text-ink-muted">
+        {index === 0 ? 'From what you gathered' : `Uses what you made in round ${String(index)}`}
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {round.map(step => (
+          <ItemPill key={step.title} step={step} lit={lit === step.title} onOpen={onOpen} />
+        ))}
+      </div>
+      <DoneToggle
+        done={done}
+        label={done ? `Round ${String(index + 1)} crafted` : 'Mark crafted'}
+        onToggle={onToggle}
+      />
+    </>
+  );
+}
+
+function Final({
+  plan,
+  done,
+  lit,
+  onOpen,
+  onToggle
+}: {
+  plan: BuildPlan;
+  done: boolean;
+  lit: string | undefined;
+  onOpen: (title: string) => void;
+  onToggle: () => void;
 }) {
   const { product } = plan;
-  const worth = (product.item?.value ?? 0) * product.qty;
-  const inputs = rawValue(plan);
-  const unpriced = plan.raw.filter(entry => !entry.item?.value).length;
-  const state = progress.step(product.title);
-  const started = progress.gathered > 0 || progress.crafted > 0;
-  const norm = planNorm(plan);
-  const ratio = ratioText(worth, inputs);
-  return (
-    <section
-      aria-labelledby="planProduct"
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-6 transition-colors duration-500 ${
-        progress.complete
-          ? 'capstone-lit border-emerald-400/60 bg-emerald-950/40'
-          : 'border-cyan-400/30 bg-[radial-gradient(120%_90%_at_50%_0%,rgba(34,211,238,0.14),rgba(11,19,37,0.9)_60%)]'
-      }`}
+  const name = (title: string, className = '') => (
+    <button
+      type="button"
+      onClick={() => {
+        onOpen(title);
+      }}
+      aria-label={`${title}: open in Codex`}
+      className={`${ITEM_NAME} ${className} ${litName(lit === title)}`}
     >
-      <div className="flex items-start gap-4">
-        <div className="min-w-0 flex-1">
-          <p className="font-mono tabular-nums text-cyan-200 text-lg leading-none">×{formatQty(product.qty)}</p>
-          <h3
-            id="planProduct"
-            className="font-display font-bold text-2xl sm:text-3xl text-white leading-tight mt-1.5 break-words"
-          >
-            <ItemName item={product.item} title={product.title} className="decoration-slate-700" />
-          </h3>
-          <p className="text-xs text-slate-400 mt-1">
-            {normText(norm) ?? <StepMeta step={product} norm={{ type: null, blueprint: false }} />}
-          </p>
-        </div>
-        <Tick
-          checked={ticked.has(stepKey(product))}
-          ready={state === 'ready'}
-          label={`Crafted ${formatQty(product.qty)} ${product.title}`}
-          onChange={() => {
-            onToggle(stepKey(product));
-          }}
-        />
-      </div>
-
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
-        <p className="text-sm text-slate-200">
-          {progress.complete
-            ? 'Crafted. The plan is complete.'
-            : started
-              ? `${String(progress.gathered)} of ${String(plan.raw.length)} gathered · ${String(progress.crafted)} of ${String(plan.steps)} crafted`
-              : `${count(plan.steps, 'craft')} in ${count(plan.rounds.length + 1, 'round')} · ${count(plan.raw.length, 'raw material')}`}
-        </p>
-        {progress.complete ? null : (
-          <a
-            href="#planHold"
-            onClick={event => {
-              event.preventDefault();
-              document.getElementById('planHold')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="h-10 px-4 rounded-xl bg-cyan-400/10 border border-cyan-400/40 hover:bg-cyan-400/20 text-sm font-medium text-cyan-100 inline-flex items-center gap-2"
-          >
-            {started ? 'Back to the cargo hold' : 'Start at the cargo hold'}
-            <i className="ph-bold ph-arrow-down" aria-hidden="true" />
-          </a>
-        )}
-      </div>
-
-      <Inputs step={product} progress={progress} />
-
-      <dl className="grid grid-cols-2 gap-x-4 mt-5 pt-4 border-t border-slate-700/60">
-        <div>
-          <dt className="text-xs text-slate-400">Product worth</dt>
-          <dd className="font-mono tabular-nums text-base sm:text-lg text-amber-200 mt-1 whitespace-nowrap">
-            {product.item?.value ? `${formatUnits(worth)} Units` : 'not on the wiki'}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-xs text-slate-400">Raw inputs worth</dt>
-          <dd className="font-mono tabular-nums text-base sm:text-lg text-white mt-1 whitespace-nowrap">
-            {formatUnits(inputs)} Units
-          </dd>
-        </div>
-      </dl>
-      <p className="text-xs text-slate-400 mt-2">
-        {ratio ? <span className="text-slate-200">{ratio}</span> : null}
-        {ratio ? ', at ' : 'At '}the wiki’s base values{unpriced ? ` (${String(unpriced)} raw without a value)` : ''}.
-      </p>
-    </section>
+      {title}
+    </button>
   );
-}
-
-const roundText = (state: StepState, index: number) =>
-  state === 'waiting' && index === 0 ? 'Needs the cargo hold' : ROUND_TEXT[state];
-const ROUND_TEXT: Record<StepState, string> = {
-  done: 'Crafted',
-  ready: 'Ready to craft',
-  waiting: 'Needs the round below'
-};
-
-function Rounds({
-  plan,
-  progress,
-  onToggle,
-  onSwitch,
-  preview,
-  switched
-}: {
-  plan: BuildPlan;
-  progress: PlanProgress;
-  onToggle: (key: string) => void;
-  onSwitch: (step: PlanStep) => void;
-  preview: (step: PlanStep) => SwitchPreview | null;
-  switched: { title: string; delta: number } | null;
-}) {
-  const norm = planNorm(plan);
-  // Rounds already crafted when the plan opens start folded away; one finished now stays open (folding it would
-  // pull the focused checkbox out from under the player) until they fold it.
-  const [folded, setFolded] = useState<ReadonlySet<number>>(
-    () => new Set(plan.rounds.map((_, index) => index).filter(index => progress.round(index) === 'done'))
-  );
-  if (!plan.rounds.length) return null;
   return (
-    <section aria-label="Crafting rounds, last first" className="mt-2">
-      <ol>
-        {plan.rounds
-          .map((round, index) => ({ round, index }))
-          .reverse()
-          .map(({ round, index }) => {
-            const state = progress.round(index);
-            const collapsed = state === 'done' && folded.has(index);
-            return (
-              <li key={index} className="relative pl-9 pt-6">
-                {/* The spine: dim while waiting; it fills upward, emerald, once the round can be crafted. */}
-                <span aria-hidden="true" className="absolute left-[15px] top-0 bottom-0 w-px bg-slate-800" />
-                <span
-                  aria-hidden="true"
-                  className={`absolute left-[15px] top-0 bottom-0 w-px origin-bottom bg-emerald-400/70 transition-transform duration-700 ease-out motion-reduce:transition-none ${
-                    state === 'waiting' ? 'scale-y-0' : 'scale-y-100'
-                  }`}
-                />
-                <span
-                  aria-hidden="true"
-                  className={`absolute left-[9px] top-[1.85rem] w-[13px] h-[13px] rotate-45 rounded-[3px] border ${
-                    state === 'done'
-                      ? 'bg-emerald-400 border-emerald-300'
-                      : state === 'ready'
-                        ? 'bg-slate-950 border-emerald-400 shadow-[0_2px_10px_-2px_rgba(52,211,153,0.6)]'
-                        : 'bg-slate-950 border-slate-600'
-                  }`}
-                />
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                  <h4 className="font-display font-bold text-sm text-white tracking-wide">Round {index + 1}</h4>
-                  <p
-                    className={`text-xs ${
-                      state === 'ready'
-                        ? 'px-2 py-0.5 rounded-full bg-emerald-400/15 text-emerald-200 font-medium'
-                        : state === 'done'
-                          ? 'text-emerald-300'
-                          : 'text-slate-400'
-                    }`}
-                  >
-                    {roundText(state, index)} · {round.length} {round.length === 1 ? 'craft' : 'crafts'}
-                  </p>
-                </div>
-                {state === 'done' ? (
-                  <button
-                    type="button"
-                    aria-expanded={!collapsed}
-                    aria-controls={`planRound${String(index + 1)}`}
-                    onClick={() => {
-                      const next = new Set(folded);
-                      if (collapsed) next.delete(index);
-                      else next.add(index);
-                      setFolded(next);
-                    }}
-                    className="mt-2 text-xs text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5 text-left"
-                  >
-                    <i className={`ph-bold ${collapsed ? 'ph-caret-down' : 'ph-caret-up'}`} aria-hidden="true" />
-                    {collapsed ? `Show ${round.map(step => step.title).join(', ')}` : 'Fold this round away'}
-                  </button>
-                ) : null}
-                {collapsed ? null : (
-                  // A round you can craft now is lit as a band, so it's findable on a long column without reading.
-                  <ul
-                    id={`planRound${String(index + 1)}`}
-                    className={`mt-2 divide-y divide-slate-800/70 rounded-xl transition-colors duration-500 ${
-                      state === 'ready' ? '-mx-3 px-3 bg-emerald-400/[0.06] ring-1 ring-inset ring-emerald-400/25' : ''
-                    }`}
-                  >
-                    {round.map(step => {
-                      const stepState = progress.step(step.title);
-                      return (
-                        <li key={step.title} className="flex items-start gap-3 py-3">
-                          <Tick
-                            checked={stepState === 'done'}
-                            ready={stepState === 'ready'}
-                            label={`Crafted ${formatQty(step.qty)} ${step.title}`}
-                            onChange={() => {
-                              onToggle(stepKey(step));
-                            }}
-                          />
-                          <div className="min-w-0 flex-1">
-                            <p className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                              <span className="font-mono tabular-nums text-sm text-cyan-200">
-                                {formatQty(step.qty)}×
-                              </span>
-                              <ItemName item={step.item} title={step.title} className="text-[0.9375rem] text-white" />
-                              <StepMeta step={step} norm={norm} />
-                            </p>
-                            <Inputs step={step} progress={progress} />
-                            {switched?.title === step.title ? (
-                              <p
-                                aria-hidden="true"
-                                className={`mt-2 text-xs ${switched.delta < 0 ? 'text-emerald-300' : switched.delta > 0 ? 'text-amber-300' : 'text-slate-300'}`}
-                              >
-                                <i className="ph-bold ph-check" />{' '}
-                                {switched.delta
-                                  ? `Switched: raw inputs ${signedUnits(switched.delta)}`
-                                  : 'Switched: same raw inputs value'}
-                              </p>
-                            ) : null}
-                            <RecipeSwitch step={step} preview={preview(step)} onSwitch={onSwitch} />
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </li>
-            );
-          })}
-      </ol>
-    </section>
-  );
-}
-
-function Hold({
-  plan,
-  progress,
-  ticked,
-  onToggle,
-  onReset
-}: {
-  plan: BuildPlan;
-  progress: PlanProgress;
-  ticked: ReadonlySet<string>;
-  onToggle: (key: string) => void;
-  onReset: () => void;
-}) {
-  const heading = useRef<HTMLHeadingElement>(null);
-  const any = progress.gathered > 0 || progress.crafted > 0;
-  return (
-    <section id="planHold" aria-labelledby="planHoldTitle" className="relative mt-4 pt-3 sm:pt-0 sm:pl-9 scroll-mt-40">
-      {/* The spine lands on the hold: the column grows out of it (on phones, onto the card's top edge). */}
-      <span
-        aria-hidden="true"
-        className="absolute left-[15px] -top-4 h-6 sm:h-8 w-px bg-linear-to-b from-slate-800 to-cyan-400/60"
+    <>
+      <StepHead
+        title={product.recipe.type === 'cook' ? 'Final cook' : 'Final craft'}
+        meta={`×${formatQty(product.qty)}`}
       />
-      <span
-        aria-hidden="true"
-        className="absolute z-10 left-[7px] top-[3px] sm:top-4 w-[17px] h-[17px] rounded-full border border-cyan-400/70 bg-slate-950 flex items-center justify-center"
-      >
-        <i className="ph-bold ph-arrow-up text-[10px] text-cyan-300" />
-      </span>
-      <div className="rounded-2xl border border-slate-700/80 bg-slate-950/70 p-3 pt-4 sm:p-5">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-          <h4 ref={heading} id="planHoldTitle" className="font-display font-bold text-base text-white">
-            Cargo hold
-          </h4>
-          <p className="text-xs text-slate-300">
-            <span className="font-mono tabular-nums text-emerald-300">{progress.gathered}</span> of{' '}
-            <span className="font-mono tabular-nums">{plan.raw.length}</span> gathered
-          </p>
-        </div>
-        <p className="text-xs text-slate-400 mt-1">Start here: gather these, then craft upward one round at a time.</p>
-        <ul className="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(6.75rem,1fr))] gap-1.5 sm:gap-2 mt-4">
-          {plan.raw.map(entry => {
-            const key = rawKey(entry.title, entry.qty);
-            const checked = ticked.has(key);
-            return (
-              <li key={entry.title} data-raw={entry.title} data-qty={entry.qty}>
-                <label
-                  className={`relative flex flex-col justify-between aspect-square rounded-lg border p-2 cursor-pointer transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cyan-300 ${
-                    checked
-                      ? 'border-emerald-400/70 bg-emerald-500/10'
-                      : 'border-slate-700 bg-[linear-gradient(160deg,rgba(30,41,59,0.55),rgba(2,6,23,0.9))] hover:border-slate-500'
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => {
-                      onToggle(key);
-                    }}
-                    aria-label={`Gathered ${formatQty(entry.qty)} ${entry.title}`}
-                    className="sr-only"
-                  />
-                  <span
-                    className={`text-[11px] sm:text-xs leading-tight line-clamp-2 hyphens-auto break-words ${checked ? 'text-slate-400' : 'text-slate-100'}`}
-                  >
-                    {entry.title}
-                  </span>
-                  <span className="flex items-end justify-between gap-1">
-                    <span
-                      aria-hidden="true"
-                      className={`w-5 h-5 shrink-0 rounded-md border flex items-center justify-center ${
-                        checked ? 'bg-emerald-400 border-emerald-300 text-emerald-950' : 'border-slate-600'
-                      }`}
-                    >
-                      {checked ? <i className="ph-bold ph-check text-xs" /> : null}
-                    </span>
-                    <span
-                      className={`font-mono tabular-nums text-sm sm:text-base leading-none ${checked ? 'text-emerald-300' : 'text-cyan-200'}`}
-                    >
-                      {formatQty(entry.qty)}
-                    </span>
-                  </span>
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-        {any ? (
-          <button
-            type="button"
-            onClick={() => {
-              onReset();
-              heading.current?.scrollIntoView({ block: 'nearest' });
-            }}
-            className="mt-4 text-xs text-slate-400 hover:text-rose-200 inline-flex items-center gap-1.5"
-          >
-            <i className="ph-bold ph-arrow-counter-clockwise" />
-            Clear all ticks
-          </button>
+      <div className="flex flex-col gap-1.5 p-3 rounded-[14px] border border-[rgba(251,191,36,0.35)] bg-[rgba(245,158,11,0.06)]">
+        <span className="text-[13px] text-ink-soft">
+          {product.inputs.map((input, i) => (
+            <span key={input.title}>
+              {i > 0 && ' + '}
+              {input.qty > 1 && <span className="font-mono">{formatQty(input.qty)} </span>}
+              {name(input.title)}
+            </span>
+          ))}
+        </span>
+        <b className="font-display font-bold text-[16px] text-[#fde68a]">= {name(product.title, 'text-inherit')}</b>
+        {product.item?.value ? (
+          <small className="font-mono text-[11px] text-ink-muted">
+            worth {product.item.value.toLocaleString()} each
+          </small>
         ) : null}
       </div>
-    </section>
+      <DoneToggle done={done} label={done ? 'Crafted. The plan is done' : 'Mark crafted'} onToggle={onToggle} />
+    </>
   );
 }

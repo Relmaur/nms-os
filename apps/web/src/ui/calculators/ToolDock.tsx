@@ -1,10 +1,10 @@
-// The calculators' switcher: the recipe planner as the wide lead cell, carrying the plan in progress so the way back
-// to it is always in view, then the four small tools (Best crafts first: it hands its picks to the planner). ARIA tabs: arrow keys, Home and End move between them.
+// The calculators' switcher: four tools (Best crafts first: it opens its picks in the recipe planner). ARIA tabs:
+// arrow keys, Home and End move between them. The planner is its own screen, linked above the dock.
 import type { KeyboardEvent } from 'react';
 import { setTool, TOOLS, useTool, type Tool } from './tool-store.ts';
 
 // [name, icon, hue]
-const SMALL: Record<Exclude<Tool, 'planner'>, readonly [string, string, string]> = {
+const SMALL: Record<Tool, readonly [string, string, string]> = {
   profit: ['Best crafts', 'ph-trend-up', 'text-cyan-300'],
   value: ['Base value', 'ph-coins', 'text-amber-300'],
   extractors: ['Extractors', 'ph-mountains', 'text-emerald-300'],
@@ -21,7 +21,7 @@ const cell = (on: boolean) =>
       : 'border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-500 hover:text-white'
   }`;
 
-export function ToolDock({ summary }: { summary: string }) {
+export function ToolDock() {
   const current = useTool();
   const select = (tool: Tool, focus = false) => {
     setTool(tool);
@@ -63,37 +63,15 @@ export function ToolDock({ summary }: { summary: string }) {
     }
   });
 
-  // On a phone the planner takes the whole first row, so the plan in progress reads in full; from sm up, one row.
   return (
     <div
       id="calcDock"
       role="tablist"
       aria-label="Calculators"
       onKeyDown={onKeyDown}
-      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-4 sm:grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
+      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-4 gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
     >
-      <button
-        {...tab('planner')}
-        className={`${cell(current === 'planner')} col-span-4 sm:col-span-1 h-12 sm:h-14 flex items-center gap-3 px-3 text-left`}
-      >
-        <span
-          className={`flex w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-lg items-center justify-center ${current === 'planner' ? 'bg-cyan-400/15 text-cyan-200' : 'bg-slate-800 text-cyan-300'}`}
-        >
-          <i className="ph-bold ph-stack text-lg" aria-hidden="true" />
-        </span>
-        <span className="min-w-0">
-          <span className="block font-display font-bold text-sm leading-5 text-white">Recipe planner</span>
-          {summary ? (
-            <span
-              id="calcPlanSummary"
-              className="block truncate font-mono tabular-nums text-xs leading-4 text-cyan-100/80"
-            >
-              {summary}
-            </span>
-          ) : null}
-        </span>
-      </button>
-      {(Object.keys(SMALL) as Exclude<Tool, 'planner'>[]).map(tool => {
+      {TOOLS.map(tool => {
         const [name, icon, hue] = SMALL[tool];
         return (
           <button

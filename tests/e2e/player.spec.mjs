@@ -147,7 +147,10 @@ test('Markdown files import as notes', async ({ page }) => {
 
 test('a note opens on its own screen and the toolbar formats what is selected', async ({ page }) => {
   await page.goto('./#notes');
-  await page.locator('#notesList').getByRole('link', { name: /My scanner layout/ }).click();
+  await page
+    .locator('#notesList')
+    .getByRole('link', { name: /My scanner layout/ })
+    .click();
   await expect(page).toHaveURL(/#note\/note-grid$/);
   await expect(page.locator('#notePreview table')).toContainText('Best scanner');
   await page.locator('#sec-note').getByRole('radio', { name: 'Write' }).click();

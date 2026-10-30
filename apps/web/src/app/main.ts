@@ -24,6 +24,7 @@ registerServiceWorker();
 startDevice();
 onStorageStatus(reportStorage);
 onSection('calculators', () => void loadGameData());
+onSection('plan', () => void loadGameData());
 onSection('new-system', () => {
   openSystemEditor();
 });

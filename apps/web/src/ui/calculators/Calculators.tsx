@@ -1,12 +1,16 @@
-// Calculators: a dock switches between the recipe planner (first, and the default) and the small tools: the best
-// crafts for money, a haul's base value, mineral extractors and Harmonic Camp registers.
+// Calculators: the way into the recipe planner (its own screen, #plan/<item>) with the plan in progress, then a dock
+// for the small tools: the best crafts for money, a haul's base value, mineral extractors and Harmonic Camp registers.
+// The new design has no place for these yet (owner, 2026-10-30: keep them here until a design round does).
 // Recipes and values come from the wiki mirror; anything the wiki can't know is an input the player sets.
 import { useMemo, useState, type SubmitEvent } from 'react';
+import { buildPlan } from '@atlas/core/planner';
 import { evaluateRegister, extractorYield, formatQty, formatUnits, haulValue } from '@atlas/core/calc';
 import { findItem, type Catalog } from '@atlas/core/planner';
+import { useSection } from '../shell/section-store.ts';
 import { showToast } from '../../app/ui.ts';
 import { useGameData, type GameDataState } from './game-data.ts';
-import { Planner } from './Planner.tsx';
+import { readProgress } from './progress.ts';
+import { planSummary } from './plan-bits.ts';
 import { BestCrafts } from './BestCrafts.tsx';
 import { panelId, tabId, ToolDock } from './ToolDock.tsx';
 import { useTool, type Tool } from './tool-store.ts';
@@ -17,14 +21,13 @@ const REGISTER_DEFAULTS = ['6 - 2', '2 + 8', '11 + 5'];
 export function Calculators() {
   const data = useGameData();
   const tool = useTool();
-  const [summary, setSummary] = useState('');
+  useSection(); // the plan in progress is read again whenever the page shows (the planner screen writes it)
   const catalog = data.status === 'ready' ? data.catalog : null;
   // Every tool stays mounted, so switching never loses what was typed in another.
   const panel = (id: Tool) => ({
     id: panelId(id),
     role: 'tabpanel',
-    // The planner's tab also carries the live summary; its panel is named by its own heading, which doesn't change.
-    'aria-labelledby': id === 'planner' ? 'calcPlanHeading' : tabId(id),
+    'aria-labelledby': tabId(id),
     hidden: tool !== id
   });
   return (
@@ -39,23 +42,11 @@ export function Calculators() {
         <SourceLine data={data} />
       </div>
 
-      <ToolDock summary={data.status === 'ready' ? summary : data.status === 'failed' ? '' : 'Loading recipes…'} />
+      <PlannerLink catalog={catalog} />
+      <ToolDock />
 
       {/* One wrapper, so the hidden panels never sit last in the page's space-y list (which would add a gap). */}
       <div>
-        <div {...panel('planner')} className="hud-card rounded-2xl px-4 sm:px-5 pb-4 sm:pb-5">
-          {/* The dock names the planner on screen; this heading keeps the outline (h1, h2, then the capstone's h3). */}
-          <h2 id="calcPlanHeading" className="sr-only">
-            Recipe planner
-          </h2>
-          {data.status === 'ready' ? (
-            <Planner catalog={data.catalog} onSummary={setSummary} />
-          ) : (
-            <p className="pt-4 sm:pt-5 text-sm text-slate-400">
-              {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
-            </p>
-          )}
-        </div>
         <div {...panel('profit')} className="max-w-3xl">
           {data.status === 'ready' ? (
             <BestCrafts catalog={data.catalog} />
@@ -83,6 +74,31 @@ export function Calculators() {
         </div>
       </div>
     </>
+  );
+}
+
+// The planner's card: the plan in progress (kept on this device), or Stasis Device to start with.
+function PlannerLink({ catalog }: { catalog: Catalog | null }) {
+  const saved = readProgress();
+  const title = saved?.item ?? 'Stasis Device';
+  const plan = catalog && saved ? buildPlan(catalog, saved.item, saved.qty, saved.choices) : null;
+  return (
+    <a
+      id="calcPlanner"
+      href={`#plan/${encodeURIComponent(title)}`}
+      className="max-w-3xl flex items-center gap-3 px-3 h-14 rounded-xl border border-cyan-400/50 bg-cyan-500/10 text-white hover:bg-cyan-500/15"
+    >
+      <span className="flex w-9 h-9 shrink-0 rounded-lg items-center justify-center bg-cyan-400/15 text-cyan-200">
+        <i className="ph-bold ph-stack text-lg" aria-hidden="true" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-display font-bold text-sm leading-5">Recipe planner</span>
+        <span id="calcPlanSummary" className="block truncate font-mono tabular-nums text-xs leading-4 text-cyan-100/80">
+          {plan && saved ? planSummary(plan, new Set(saved.ticked)) : `Plan ${title}`}
+        </span>
+      </span>
+      <i className="ph-bold ph-caret-right text-cyan-200" aria-hidden="true" />
+    </a>
   );
 }
 
