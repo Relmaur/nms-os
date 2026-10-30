@@ -96,7 +96,11 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - Fixed on the way: the phone overlay never covered the page, because the build kept only `-webkit-backdrop-filter: none` from the pair, so the header's blur stayed and trapped the fixed overlay inside the header.
   - Deviations: a Guides chip and group (the books' text, "In the manual" before) that the design doesn't show; the placeholder is "Search everything" (the design's sheet copy is cut off beside Cancel); Start a timer opens the Session screen, which holds + Refiner, + Crop and + Custom; Resume run opens Outlaw stations until Runs (28) lands; recents list what was opened from search only (c07's "Stasis Device · Recipe planner" would need the planner to report too); "Start a refiner timer" from a Codex article is still not built.
 
-**Next:** the rest per START-HERE: 20 Settings, 21 Sync, 22 First run, then Runs.
+- **20 Settings is rebuilt** (`ui/more/More.tsx`; the section stays `#more` so links keep working). Back to Home and the title; Your data: Sync (its state as a pill, opening `#sync`), Export your atlas, Import, Undo import, and the line on where your log lives; This device: Keep screen on, timer alerts (ADR-0006), Offline Codex (the article count, opening the Codex), App (install), Storage; Play sessions; Support (Buy me a coffee, Ko-fi); About (ATLAS:OS, local-first · open source, fan-made, the wiki's licence, feedback link). Below lg it draws its own header, like Home.
+  - **Sync has its own screen** (`#sync`, `ui/more/SyncScreen.tsx`) with today's controls under a back bar, until 21 restyles them. Pairing links (`#pair=<code>`) keep their format and now land there.
+  - Deviations: no Appearance row (the app has no appearance settings; reduced motion follows the system) and no Traveller Card row (05 isn't built); the design's chevron rows for Notifications and the device are inline switches and lines, since there are no designs for sub-screens; Import, Undo import, install, storage and Play sessions are kept; Sync's line says when it last synced, not how many devices (the relay doesn't count them); the Settings section is still `#more`.
+
+**Next:** the rest per START-HERE: 21 Sync, 22 First run, then Runs.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

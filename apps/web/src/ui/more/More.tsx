@@ -1,72 +1,130 @@
-// More: the tools and reading kept out of the tab bar, this device (keep-awake, install, storage protection), sync
-// between devices (opt-in and encrypted: ADR-0005), your data (Export and Import), and a way to support the app.
+// Settings (design 20, the section is still #more): reached from the gear in Home's header. Your data (sync, Export,
+// Import), this device (keep-awake, timer alerts, the offline Codex, install, storage protection), past play sessions,
+// a way to support the app, and what it is.
 import { useState, type ReactNode } from 'react';
-import { guideProgress } from '@atlas/core/guides';
-import { formatDuration } from '@atlas/core/format';
+import { formatAgo, formatDuration } from '@atlas/core/format';
 import { sessionRecap } from '@atlas/core/session';
 import { exportState, importState, undoImport, useImportUndo } from '../../app/backup.ts';
 import { useAppState } from '../useAppState.ts';
 import { promptInstall, toggleKeepAwake, useDevice, type Device } from './device-store.ts';
 import { useWikiCount } from '../shell/wiki-index.ts';
-import { useSyncStatus } from '../../app/sync.ts';
-import { Sync } from './Sync.tsx';
+import { SYNC_URL, useSyncAttention, useSyncStatus } from '../../app/sync.ts';
 import { FEEDBACK_URL, KOFI_URL } from '../../app/support.ts';
-import { usePushStatus } from '../../app/push.ts';
 import { AlertsSwitch } from '../session/AlertsSwitch.tsx';
+import { usePushStatus } from '../../app/push.ts';
+import { goBack } from '../shell/section-store.ts';
+
+const TOP_BUTTON =
+  'w-11 h-11 rounded-control bg-slate-ground border border-control-edge grid place-items-center text-ink hover:border-control-edge-hover';
+const ROW = 'w-full flex items-center gap-3 min-h-[60px] px-4 py-3 text-left';
+const LINK_ROW = `${ROW} hover:bg-slate-ground`;
 
 export function More() {
   const state = useAppState();
-  const { checklists } = state;
   const device = useDevice();
   const wikiCount = useWikiCount();
   const sync = useSyncStatus();
-  const push = usePushStatus();
+  const syncAttention = useSyncAttention();
   const canUndoImport = useImportUndo();
   const [confirmUndo, setConfirmUndo] = useState(false);
   return (
-    <>
-      <h1 className="font-display text-2xl font-bold text-white">More</h1>
+    <div className="flex flex-col gap-4 pt-[env(safe-area-inset-top)]">
+      <header className="flex flex-col gap-1.5">
+        <div className="lg:hidden">
+          <button
+            type="button"
+            onClick={() => {
+              goBack('home');
+            }}
+            aria-label="Back to Home"
+            className={TOP_BUTTON}
+          >
+            <i className="ph-bold ph-caret-left text-lg" aria-hidden="true" />
+          </button>
+        </div>
+        <h1 className="font-display text-screen-title text-ink-bright mt-4 lg:mt-0">Settings</h1>
+      </header>
 
-      <Group title="Your gear & notes">
+      <Group title="Your data">
+        {SYNC_URL && (
+          <li>
+            <a href="#sync" className={LINK_ROW}>
+              <Tile icon="ph-arrows-clockwise" lit />
+              <Text title="Sync">
+                {!sync.enabled
+                  ? 'Your log on your own devices, encrypted'
+                  : syncAttention
+                    ? 'Needs you: open to see why'
+                    : sync.at
+                      ? `On · synced ${formatAgo(new Date(sync.at).toISOString())}`
+                      : 'On'}
+              </Text>
+              <span
+                className={`h-6 px-2.5 rounded-full grid place-items-center border text-[11px] font-semibold ${
+                  syncAttention
+                    ? 'border-units-amber-edge bg-units-amber-tint text-units-amber-text'
+                    : sync.enabled
+                      ? 'border-ready-emerald-edge-soft bg-ready-emerald-tint text-ready-emerald-text'
+                      : 'border-control-edge bg-slate-ground text-ink-muted'
+                }`}
+              >
+                {syncAttention ? 'Check' : sync.enabled ? 'On' : 'Off'}
+              </span>
+            </a>
+          </li>
+        )}
         <li>
-          <Row href="#gear" icon="ph-rocket text-cyan-300" title="Ships & Multi-Tools">
-            {state.gear.length
-              ? `${String(state.gear.length)} saved, with supercharged slots and layouts`
-              : 'Your ships and Multi-Tools, their slots and layouts'}
-          </Row>
+          <button type="button" onClick={exportState} className={LINK_ROW}>
+            <Tile icon="ph-download-simple" />
+            <Text title="Export your atlas">One JSON file, yours to keep</Text>
+            <Chevron />
+          </button>
         </li>
         <li>
-          <Row href="#notes" icon="ph-note-pencil text-sky-300" title="Notes">
-            {state.notes.length
-              ? `${String(state.notes.length)} note${state.notes.length === 1 ? '' : 's'} · pin them to Home or a book`
-              : 'Your own findings, pinned to Home or a Guide book'}
-          </Row>
+          <label className={`${LINK_ROW} cursor-pointer focus-within:outline-2 focus-within:outline-scanner-cyan-glow`}>
+            <Tile icon="ph-upload-simple" />
+            <Text title="Import an atlas">Shows what the file holds, then replaces this device’s log</Text>
+            <input
+              type="file"
+              accept=".json,application/json"
+              onChange={event => {
+                void importState(event.target.files?.[0]);
+                event.target.value = ''; // allow re-importing the same file
+              }}
+              className="sr-only"
+            />
+          </label>
         </li>
+        {canUndoImport && (
+          <li>
+            <button
+              type="button"
+              onClick={() => {
+                if (confirmUndo) undoImport();
+                setConfirmUndo(!confirmUndo);
+              }}
+              className={LINK_ROW}
+            >
+              <Tile icon="ph-arrow-counter-clockwise" />
+              <Text title={confirmUndo ? 'Tap again to undo the import' : 'Undo import'}>
+                {confirmUndo
+                  ? 'Anything logged since the import is lost, on every synced device.'
+                  : 'Puts back the log this device had before the last import (for a day)'}
+              </Text>
+            </button>
+          </li>
+        )}
       </Group>
-
-      <Group title="Tools & reading">
-        <li>
-          <Row href="#calculators" icon="ph-calculator text-amber-300" title="Calculators">
-            Recipe planner, base values, extractors, Harmonic Camp
-          </Row>
-        </li>
-        <li>
-          <Row href="#guides" icon="ph-book-open-text text-sky-300" title="Guides">
-            Six books · {guideProgress(checklists).pct}% of checklists done
-          </Row>
-        </li>
-        <li>
-          <Row href="wiki/" icon="ph-books text-emerald-300" title="Wiki Codex">
-            {wikiCount === null ? 'Game-data pages' : `${wikiCount.toLocaleString()} game-data pages`}, matched to the
-            wiki
-          </Row>
-        </li>
-      </Group>
+      <p className="-mt-2 px-1 text-caption text-ink-muted">
+        {sync.enabled
+          ? 'Everything you log stays on this device, plus the encrypted copy sync keeps for your devices.'
+          : 'Everything you log stays on this device until you export it or turn on sync.'}
+      </p>
 
       <Group title="This device">
         {device.wakeSupported && (
-          <li className="list-row">
-            <Tile icon="ph-sun-dim text-amber-300" />
+          <li className={ROW}>
+            <Tile icon="ph-sun-dim" />
             <Text title="Keep screen on" id="wakeLabel">
               While the app is open, so it’s ready next to your screen
             </Text>
@@ -80,29 +138,31 @@ export function More() {
             />
           </li>
         )}
-        <li id="installRow" className="list-row">
-          <Tile icon="ph-device-mobile text-cyan-300" />
+        <Alerts />
+        <li>
+          <a href="wiki/" className={LINK_ROW}>
+            <Tile icon="ph-books" />
+            <Text title="Offline Codex">
+              {wikiCount === null ? 'The wiki’s game pages' : `${wikiCount.toLocaleString()} articles`} · on this device
+            </Text>
+            <Chevron />
+          </a>
+        </li>
+        <li id="installRow" className={ROW}>
+          <Tile icon="ph-device-mobile" />
           <Text title="App">{installText(device)}</Text>
           {device.installable && (
             <button
               type="button"
               onClick={() => void promptInstall()}
-              className="h-9 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-semibold"
+              className="h-9 px-3 rounded-control border border-ready-emerald-edge bg-ready-emerald-tint text-caption font-semibold text-ready-emerald-text hover:bg-ready-emerald-tint-hover"
             >
               Install
             </button>
           )}
         </li>
-        {push.support !== 'no' && (
-          <li className="list-row">
-            <Tile icon="ph-bell-ringing text-cyan-300" />
-            <div className="flex-1 min-w-0">
-              <AlertsSwitch id="morePushSwitch" />
-            </div>
-          </li>
-        )}
-        <li className="list-row">
-          <Tile icon="ph-hard-drives text-emerald-300" />
+        <li className={ROW}>
+          <Tile icon="ph-hard-drives" />
           <Text title="Storage">
             {device.persisted === null
               ? 'Checking…'
@@ -121,8 +181,8 @@ export function More() {
             .map(session => {
               const recap = sessionRecap(state, session, Date.parse(session.endedAt));
               return (
-                <li key={session.startedAt} className="list-row">
-                  <Tile icon="ph-hourglass-medium text-emerald-300" />
+                <li key={session.startedAt} className={ROW}>
+                  <Tile icon="ph-hourglass-medium" />
                   <Text
                     title={new Date(session.startedAt).toLocaleString(undefined, {
                       dateStyle: 'medium',
@@ -141,86 +201,71 @@ export function More() {
         </Group>
       )}
 
-      <Sync />
-
-      <div className="space-y-2">
-        <h2 className="list-heading">Your data</h2>
-        <ul className="list-group">
-          <li>
-            <button type="button" onClick={exportState} className="list-row">
-              <Tile icon="ph-download-simple text-emerald-300" />
-              <Text title="Export nms_state.json">Back up, or move your log to another device</Text>
-            </button>
-          </li>
-          <li>
-            <label className="list-row cursor-pointer focus-within:ring-2 focus-within:ring-cyan-400">
-              <Tile icon="ph-upload-simple text-amber-300" />
-              <Text title="Import nms_state.json">Shows what the file holds, then replaces this device’s log</Text>
-              <input
-                type="file"
-                accept=".json,application/json"
-                onChange={event => {
-                  void importState(event.target.files?.[0]);
-                  event.target.value = ''; // allow re-importing the same file
-                }}
-                className="sr-only"
-              />
-            </label>
-          </li>
-          {canUndoImport && (
-            <li>
-              <button
-                type="button"
-                onClick={() => {
-                  if (confirmUndo) undoImport();
-                  setConfirmUndo(!confirmUndo);
-                }}
-                className="list-row"
-              >
-                <Tile icon="ph-arrow-counter-clockwise text-cyan-300" />
-                <Text title={confirmUndo ? 'Tap again to undo the import' : 'Undo import'}>
-                  {confirmUndo
-                    ? 'Anything logged since the import is lost, on every synced device.'
-                    : 'Puts back the log this device had before the last import (for a day)'}
-                </Text>
-              </button>
-            </li>
-          )}
-        </ul>
-        <p className="px-1 text-xs text-slate-400">
-          {sync.enabled
-            ? 'Everything you log stays on this device, plus the encrypted copy sync keeps for your devices.'
-            : 'Everything you log stays on this device until you export it or turn on sync.'}
-        </p>
-      </div>
-
       {KOFI_URL && (
-        <Group title="Support">
-          <li>
-            <a href={KOFI_URL} target="_blank" rel="noopener" className="list-row">
-              <Tile icon="ph-coffee text-amber-300" />
-              <Text title="Support ATLAS on Ko-fi">Free, with nothing locked. A coffee helps keep sync running.</Text>
-              <i className="ph-bold ph-arrow-square-out text-slate-500" aria-hidden="true" />
-            </a>
-          </li>
-        </Group>
+        <section aria-labelledby="supportTitle" className="flex flex-col">
+          <h2 id="supportTitle" className="text-label uppercase text-ink-label px-1 pb-2">
+            Support
+          </h2>
+          <a
+            href={KOFI_URL}
+            target="_blank"
+            rel="noopener"
+            className="rounded-card bg-panel-glass border border-[rgba(251,191,36,0.3)] p-4 flex items-center gap-3 hover:border-units-amber-edge"
+          >
+            <span
+              aria-hidden="true"
+              className="w-11 h-11 shrink-0 rounded-[12px] grid place-items-center bg-units-amber-tint border border-units-amber-edge text-units-amber-text"
+            >
+              <i className="ph-bold ph-coffee text-xl" />
+            </span>
+            <span className="flex-1 min-w-0">
+              <span className="block text-[14px] font-semibold text-ink-bright">Buy me a coffee</span>
+              <span className="block text-caption text-ink-muted">
+                Free, with nothing locked. A coffee helps keep sync running.
+              </span>
+            </span>
+            <i className="ph-bold ph-arrow-square-out text-ink-label" aria-hidden="true" />
+            <span className="sr-only"> (Ko-fi, opens in a new tab)</span>
+          </a>
+        </section>
       )}
 
-      <Group title="About">
-        <li>
-          <a href={FEEDBACK_URL} target="_blank" rel="noopener" className="list-row">
-            <Tile icon="ph-chat-circle-text text-sky-300" />
-            <Text title="Feedback and source code">Report a bug or ask a question on GitHub</Text>
-            <i className="ph-bold ph-arrow-square-out text-slate-500" aria-hidden="true" />
+      <section aria-labelledby="aboutTitle" className="flex flex-col">
+        <h2 id="aboutTitle" className="text-label uppercase text-ink-label px-1 pb-2">
+          About
+        </h2>
+        <div className="rounded-card bg-panel-glass border border-hairline p-4 flex flex-col gap-1.5">
+          <p className="font-display font-bold text-[14px] text-ink-bright">ATLAS:OS</p>
+          <p className="font-mono text-caption text-ink-muted">local-first · open source</p>
+          <p className="text-caption text-ink-muted">
+            Fan-made. Not affiliated with Hello Games. It doesn’t connect to the game or read your save. Codex text from
+            the No Man’s Sky Wiki and its contributors, CC BY-NC-SA 3.0; the code is MIT-licensed.
+          </p>
+          <a
+            href={FEEDBACK_URL}
+            target="_blank"
+            rel="noopener"
+            className="self-start mt-1 inline-flex items-center gap-1.5 text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan"
+          >
+            Feedback and source code
+            <i className="ph-bold ph-arrow-square-out" aria-hidden="true" />
           </a>
-        </li>
-      </Group>
-      <p className="px-1 text-xs text-slate-400">
-        ATLAS is a fan-made companion for No Man’s Sky, not affiliated with Hello Games. It doesn’t connect to the game
-        or read your save. Game data comes from the No Man’s Sky Wiki and its contributors (CC BY-NC-SA 3.0); the code
-        is MIT-licensed.
-      </p>
-    </>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// Timer alerts while the app is asleep (ADR-0006), with their own label and privacy line.
+function Alerts() {
+  if (usePushStatus().support === 'no') return null;
+  return (
+    <li className="px-4 py-3 flex items-start gap-3">
+      <Tile icon="ph-bell-ringing" />
+      <div className="flex-1 min-w-0">
+        <AlertsSwitch id="morePushSwitch" />
+      </div>
+    </li>
   );
 }
 
@@ -232,17 +277,29 @@ function installText(device: Device): string {
 }
 
 function Group({ title, children }: { title: string; children: ReactNode }) {
+  const id = `settings-${title.toLowerCase().replace(/\W+/g, '-')}`;
   return (
-    <div className="space-y-2">
-      <h2 className="list-heading">{title}</h2>
-      <ul className="list-group">{children}</ul>
-    </div>
+    <section aria-labelledby={id} className="flex flex-col">
+      <h2 id={id} className="text-label uppercase text-ink-label px-1 pb-2">
+        {title}
+      </h2>
+      <ul className="rounded-card bg-panel-glass border border-hairline divide-y divide-hairline overflow-hidden">
+        {children}
+      </ul>
+    </section>
   );
 }
 
-function Tile({ icon }: { icon: string }) {
+function Tile({ icon, lit = false }: { icon: string; lit?: boolean }) {
   return (
-    <span className="nav-tile" aria-hidden="true">
+    <span
+      aria-hidden="true"
+      className={`w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center border text-[17px] ${
+        lit
+          ? 'bg-scanner-cyan-tint border-scanner-cyan-edge text-scanner-cyan-pale'
+          : 'bg-slate-ground border-control-edge text-ink-soft'
+      }`}
+    >
       <i className={`ph-bold ${icon}`} />
     </span>
   );
@@ -251,20 +308,12 @@ function Tile({ icon }: { icon: string }) {
 function Text({ title, id, children }: { title: string; id?: string; children: ReactNode }) {
   return (
     <span className="flex-1 min-w-0">
-      <span id={id} className="block text-sm text-white">
+      <span id={id} className="block text-[14px] font-semibold text-ink-bright">
         {title}
       </span>
-      <span className="block text-xs text-slate-400">{children}</span>
+      <span className="block text-caption text-ink-muted">{children}</span>
     </span>
   );
 }
 
-function Row({ href, icon, title, children }: { href: string; icon: string; title: string; children: ReactNode }) {
-  return (
-    <a href={href} className="list-row">
-      <Tile icon={icon} />
-      <Text title={title}>{children}</Text>
-      <i className="ph-bold ph-caret-right text-slate-500" aria-hidden="true" />
-    </a>
-  );
-}
+const Chevron = () => <i className="ph-bold ph-caret-right text-ink-label" aria-hidden="true" />;

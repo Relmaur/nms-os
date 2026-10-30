@@ -57,8 +57,7 @@ export function Sync() {
   const status = useSyncStatus();
   if (!SYNC_URL) return null; // a build without a relay (e.g. a fork): Export/Import still move the log
   return (
-    <div className="space-y-2">
-      <h2 className="list-heading">Sync</h2>
+    <div>
       <div id="syncPanel" className="list-group p-4 space-y-4">
         {status.pending && <PairPrompt replacing={status.enabled} />}
         {status.review && <Review removal={status.review} />}

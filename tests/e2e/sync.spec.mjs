@@ -49,7 +49,7 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
 }) => {
   const { vaults, handler } = relay();
   await page.route(RELAY, handler);
-  await page.goto('./#more');
+  await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
   await expect(syncStatus(page)).toContainText('Synced just now');
   expect(vaults.size).toBe(1);
@@ -71,7 +71,7 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
     sessionStorage.setItem('seeded', '1');
   }, JSON.stringify(own));
   await other.goto(`./#pair=${code}`);
-  await expect(other).toHaveURL(/#more$/); // the code never stays in the address or the history
+  await expect(other).toHaveURL(/#sync$/); // the code never stays in the address or the history
   await other.getByRole('button', { name: 'Pair', exact: true }).click();
   await expect(syncStatus(other)).toContainText('Synced');
   const names = state => state.systems.map(system => system.name).sort();
@@ -84,10 +84,10 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
   await expect
     .poll(async () => (await storedState(other)).systems.find(s => s.id === 'sys-ekwa').visits.length)
     .toBe(2);
-  await other.goto('./#more');
+  await other.goto('./#sync');
   await other.getByRole('button', { name: 'Sync now' }).click();
   await expect(syncStatus(other)).toContainText('Synced');
-  await page.goto('./#more');
+  await page.goto('./#sync');
   await page.getByRole('button', { name: 'Sync now' }).click();
   await expect(syncStatus(page)).toContainText('Synced');
   await expect.poll(async () => names(await storedState(page))).toContain('Vy’keen Outpost');
@@ -102,7 +102,7 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
 test('offline, sync says the log is safe here and nothing else changes', async ({ page, context }) => {
   const { handler } = relay();
   await page.route(RELAY, handler);
-  await page.goto('./#more');
+  await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
   await expect(syncStatus(page)).toContainText('Synced');
   await context.setOffline(true);
@@ -114,7 +114,7 @@ test('offline, sync says the log is safe here and nothing else changes', async (
 test('axe: the Sync group with sync on and the code shown', async ({ page }) => {
   const { handler } = relay();
   await page.route(RELAY, handler);
-  await page.goto('./#more');
+  await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
   await expect(syncStatus(page)).toContainText('Synced');
   await page.getByRole('button', { name: 'Pair another device' }).click();
@@ -141,7 +141,7 @@ test.describe('a full relay', () => {
         }
       });
     });
-    await page.goto('./#more');
+    await page.goto('./#sync');
     await page.getByRole('button', { name: 'Turn on sync' }).click();
     const banner = page.locator('#capacityBanner');
     await expect(banner).toContainText('free sync server is full for today');

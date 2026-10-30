@@ -497,12 +497,12 @@ export async function deleteCloudCopy(): Promise<boolean> {
 
 // ── When to sync ──
 // A pairing link (#pair=<code>, from the QR code) is taken out of the address before the sections read it, on load
-// and on a hash change in an open tab, so it doesn't stay in the tab's history; More then asks before pairing.
+// and on a hash change in an open tab, so it doesn't stay in the tab's history; the Sync screen then asks first.
 // (The browser's own history list may still note the link; it's on the device that receives the code anyway.)
 export function takePairingLink(): void {
   if (!location.hash.startsWith('#pair=')) return;
   const code = parseSyncCode(location.hash);
-  history.replaceState(null, '', `${location.pathname}${location.search}#more`);
+  history.replaceState(null, '', `${location.pathname}${location.search}#sync`);
   if (code && code !== syncCode()) setStatus({ pending: code });
 }
 

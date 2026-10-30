@@ -13,7 +13,8 @@ const PART_OF: Record<string, string> = {
   ship: 'gear',
   note: 'notes',
   plan: 'calculators',
-  crafts: 'calculators'
+  crafts: 'calculators',
+  sync: 'more'
 };
 
 export function Sidebar() {

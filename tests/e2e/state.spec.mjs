@@ -7,7 +7,7 @@ test('Export then Import round-trips the save', async ({ page }) => {
     page.waitForEvent('download'),
     page
       .locator('#sec-more')
-      .getByRole('button', { name: /Export nms_state\.json/ })
+      .getByRole('button', { name: /Export your atlas/ })
       .click()
   ]);
   expect(download.suggestedFilename()).toBe('nms_state.json');

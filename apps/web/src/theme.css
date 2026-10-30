@@ -598,7 +598,7 @@ label,
   background-size: 22px 22px;
 }
 /* Below lg, rebuilt screens (Home, Systems, System detail, Session, Fleet, Ship detail, Notes, a note, the planner,
-   Best crafts, Guides and its books) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
+   Best crafts, Guides and its books, Settings, Sync) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
    lives in it. */
 @media (max-width: 1023px) {
   body:is(
@@ -613,7 +613,9 @@ label,
       [data-section='plan'],
       [data-section='crafts'],
       [data-section='guides'],
-      [data-section^='book']
+      [data-section^='book'],
+      [data-section='more'],
+      [data-section='sync']
     ):not(.search-open)
     .app-header {
     display: none;
@@ -631,7 +633,9 @@ label,
       [data-section='plan'],
       [data-section='crafts'],
       [data-section='guides'],
-      [data-section^='book']
+      [data-section^='book'],
+      [data-section='more'],
+      [data-section='sync']
     )
     #sessionBarRoot {
     top: calc(env(safe-area-inset-top) + 0.5rem);
@@ -647,7 +651,9 @@ label,
       [data-section='plan'],
       [data-section='crafts'],
       [data-section='guides'],
-      [data-section^='book']
+      [data-section^='book'],
+      [data-section='more'],
+      [data-section='sync']
     )
     #sessionBarRoot:not(:has([data-live='true'])) {
     display: none;

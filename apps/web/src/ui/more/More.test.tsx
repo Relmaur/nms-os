@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { appState, setAppState } from '../../app/store.ts';
@@ -18,7 +18,7 @@ test('Import shows a valid file before replacing the log, and leaves it alone fo
       <ImportDialog />
     </>
   );
-  const input = screen.getByLabelText(/Import nms_state\.json/);
+  const input = screen.getByLabelText(/Import an atlas/);
   await userEvent.upload(input, new File(['not json'], 'nms_state.json', { type: 'application/json' }));
   expect(appState.systems).toHaveLength(0);
   const file = new File([JSON.stringify({ systems: [{ name: 'Ekwa Nexus' }] })], 'nms_state.json', {
@@ -36,12 +36,16 @@ test('Import shows a valid file before replacing the log, and leaves it alone fo
   expect(appState.systems).toHaveLength(0);
 });
 
-test('the Guides row shows checklist progress', () => {
-  const state = buildState();
-  state.checklists = { crossSaveLinked: true, anomalyUnlocked: true }; // only these
-  setAppState(state);
+test('Settings lists your data and this device, and Sync opens its own screen', () => {
   render(<More />);
-  expect(screen.getByRole('link', { name: /Guides/ }).textContent).toContain('6% of checklists done');
+  expect(screen.getByRole('heading', { level: 1, name: 'Settings' })).toBeTruthy();
+  const data = screen.getByRole('region', { name: 'Your data' });
+  expect(within(data).getByRole('link', { name: /^Sync/ }).getAttribute('href')).toBe('#sync');
+  expect(within(data).getByRole('link', { name: /^Sync/ }).textContent).toContain('Off');
+  expect(within(data).getByRole('button', { name: /Export your atlas/ })).toBeTruthy();
+  expect(
+    within(screen.getByRole('region', { name: 'This device' })).getByRole('link', { name: /Offline Codex/ })
+  ).toBeTruthy();
 });
 
 test('past play sessions are listed, newest first', () => {
@@ -52,13 +56,13 @@ test('past play sessions are listed, newest first', () => {
   ];
   setAppState(state);
   render(<More />);
-  const rows = screen.getByRole('heading', { name: 'Play sessions' }).nextElementSibling?.textContent ?? '';
+  const rows = screen.getByRole('region', { name: 'Play sessions' }).textContent;
   expect(rows.indexOf('2h 30m · 0 visits · 3 timers')).toBeLessThan(rows.indexOf('1h · 0 visits'));
 });
 
 test('Support opens the Ko-fi page in a new tab', () => {
   render(<More />);
-  const link = screen.getByRole('link', { name: /Support ATLAS on Ko-fi/ });
+  const link = screen.getByRole('link', { name: /Buy me a coffee/ });
   expect(link.getAttribute('href')).toBe('https://ko-fi.com/mlizardo');
   expect(link.getAttribute('target')).toBe('_blank');
   expect(link.getAttribute('rel')).toContain('noopener');
@@ -69,6 +73,6 @@ test('About says ATLAS is fan-made and links to the issues for feedback', () => 
   const link = screen.getByRole('link', { name: /Feedback and source code/ });
   expect(link.getAttribute('href')).toBe('https://github.com/Relmaur/nms-os/issues');
   expect(link.getAttribute('target')).toBe('_blank');
-  expect(document.body.textContent).toContain('not affiliated with Hello Games');
+  expect(document.body.textContent).toContain('Not affiliated with Hello Games');
   expect(document.body.textContent).toContain('CC BY-NC-SA 3.0');
 });

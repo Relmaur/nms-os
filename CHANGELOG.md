@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **Settings are redesigned** (from the gear on Home): your data, this device, support and about, as one short list. **Sync has its own screen**, where pairing links now open.
 - **Search is redesigned.** The search key opens it with quick actions (log this system, start a timer, new note, resume your run) and what you opened last. Type, and chips narrow the results to gear, notes, systems, the Codex or the guides, with how many each holds.
 - **Guides are redesigned.** Each book is a path of milestones you tick, now spread across the books they belong to (your ticks keep), with the next one to tick on the Guides screen. A book opens on its milestones, a rule quoted from the wiki where it leans on one, your pinned notes, then the chapter. A milestone that names a ship or tool says when your fleet has one.
 - **The Codex is redesigned.** The landing has search, a tile per group and recently edited pages; filters wait behind a Filters chip. An article reads as cards: Quick Facts as pairs, recipes as a table, then the pages it's used in and links to. **On this page** opens from the header, and mid-scroll a bar names the section you're in, with find in the article, how much you've read, and back to top. **Pin to a note** starts a note in the app that links the page.

@@ -17,15 +17,17 @@ test('a tap on Start session does nothing; holding it starts one', async ({ page
   expect((await storedState(page)).session).not.toBeNull();
 });
 
-test('on a phone, Home has its own header with Settings, and the app header steps aside', async ({
+test('on a phone, Home has its own header with Settings, and the app header steps aside there and in Settings', async ({
   page
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'phone', 'from lg the sidebar and app header carry them');
   await page.goto('./');
   await expect(page.locator('#headerRoot')).toBeHidden();
   await page.locator('#sec-home').getByRole('link', { name: 'Settings' }).click();
-  await expect(page.locator('#sec-more')).toBeVisible();
-  await expect(page.locator('#headerRoot')).toBeVisible();
+  await expect(page.locator('#sec-more h1')).toHaveText('Settings');
+  await expect(page.locator('#headerRoot')).toBeHidden(); // Settings has its own back bar
+  await page.locator('#sec-more').getByRole('button', { name: 'Back to Home' }).click();
+  await expect(page.locator('#sec-home')).toBeVisible();
 });
 
 test('Log visit records a visit on the current system', async ({ page }) => {
