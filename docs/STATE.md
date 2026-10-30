@@ -59,7 +59,10 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - Interim: Share copies a text summary where the share sheet isn't available, until 23 Share sheet.
   - Flaky, seen once: `player.spec` "the slot picker states the wiki's rule" (passed on rerun ×3).
 
-**Next:** 06 System editor (Location block), 04 Timers & Session.
+- **06 System editor is rebuilt** (`ui/systems/SystemEditor.tsx`, `LocationBlock.tsx`, `editor-parts.tsx`). The Location block: a galaxy picker (the 256 numbered galaxies from the new derived `wiki/galaxies.json`), portal address ↔ galactic coordinates (`@atlas/core/location`, tested on the wiki's own worked examples), and a preview with the distance from the centre in light years (cited fact `region-light-years`, 400 ly per region, Portal address page). The system gains `planetCount` (the design's Planets field; additive, missing reads as 0). Notes are editable on existing systems again (they had no home since 03).
+  - Deviations: the galaxy picker is the phone's own list behind the design's button; race, wealth and conflict clear when the chosen segment is tapped again (the design has no Unknown segment for them); "Abandoned" shows only for systems already logged so; the rating is five tappable stars in the design's single segment; tag suggestions are gone (not in the design); a new system keeps "I'm here now"; the desktop panel keeps its ✕. The design's example says 767k ly; by the wiki's rule that address is 421k ly, so the design's figure was a placeholder. Nothing reads `planetCount` outside the editor yet.
+
+**Next:** 04 Timers & Session, then 08 Fleet, 09 Ship detail, 12 Gear editor.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

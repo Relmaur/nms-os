@@ -26,6 +26,8 @@ export interface System {
   race: Race | '';
   economy: string;
   wealth: number;
+  /** How many planets and moons the game lists for the system (0: not logged); the logged ones are in `planets`. */
+  planetCount: number;
   conflict: ConflictLevel | '';
   tags: string[];
   favorite: boolean;
@@ -166,6 +168,7 @@ export function normalizeSystem(raw: Record<string, unknown>): System {
     race: oneOf(RACES, raw.race),
     economy: toText(raw.economy, ''),
     wealth: clampInt(raw.wealth, 0, 3),
+    planetCount: clampInt(raw.planetCount, 0, 15), // a portal's planet index is one hex digit
     conflict: oneOf(CONFLICT_LEVELS, raw.conflict),
     tags: tagList(raw.tags),
     favorite: !!raw.favorite,

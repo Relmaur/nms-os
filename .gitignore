@@ -3,6 +3,7 @@ wiki/index.json
 wiki/offline-bundle.js
 wiki/game-data.json
 wiki/facts.json
+wiki/galaxies.json
 
 node_modules/
 .DS_Store

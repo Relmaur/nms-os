@@ -81,6 +81,11 @@ export const FACTS = {
     page: 'Biome',
     quote: 'Exotic worlds are characterized by having various mysterious objects not found in any other biomes',
     value: { biome: 'Exotic', family: 'exotic' }
+  },
+  'region-light-years': {
+    page: 'Portal address',
+    quote: 'the proportions of each region are roughly 400ly x 400 ly x 400 ly',
+    value: 400
   }
 } satisfies { [Id in FactId]: FactSource<Id> };
 

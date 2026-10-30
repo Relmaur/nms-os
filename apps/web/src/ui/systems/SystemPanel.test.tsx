@@ -4,7 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { DEFAULT_FILTER } from '@atlas/core/systems-list';
 import { appState, setAppState } from '../../app/store.ts';
+import { setFactsForTests } from '../gear/facts-store.ts';
 import { SystemPanel } from './SystemPanel.tsx';
+import { setGalaxiesForTests } from './galaxies-store.ts';
 import { closeSystemPanel, getPanel, openSystemEditor, setSystemFilter } from './panel-store.ts';
 
 vi.mock('../shell/section-store.ts', () => ({ showSection: vi.fn() }));
@@ -14,6 +16,8 @@ const system = (id: string) => appState.systems.find(item => item.id === id);
 beforeEach(() => {
   localStorage.clear();
   vi.clearAllMocks();
+  setGalaxiesForTests([{ n: 1, name: 'Euclid', type: 'Norm', path: 'wiki/galaxies/Euclid.md' }]);
+  setFactsForTests({ schema: 1, facts: {} });
   setAppState(
     buildState({
       systems: [
@@ -74,14 +78,14 @@ test('editor: validates the name and glyphs, normalises glyphs, adds tags, logs 
   fireEvent.submit(form); // the browser's `required` check is bypassed here, so the app's own check shows
   expect(screen.getByRole('alert').textContent).toBe('The system needs a name.');
 
-  await userEvent.type(screen.getByRole('textbox', { name: /System name/ }), 'Test Prime');
-  await userEvent.type(screen.getByRole('textbox', { name: 'Portal glyphs' }), '1a2b');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Name' }), 'Test Prime');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Portal address' }), '1a2b');
   await userEvent.click(screen.getByRole('button', { name: 'Add system' }));
   expect(screen.getByRole('alert').textContent).toBe(
-    'Portal glyphs are 12 hex digits (0–9, A–F), or leave them empty.'
+    'A portal address is 12 characters, 0–9 and A–F, or leave it empty.'
   );
 
-  await userEvent.type(screen.getByRole('textbox', { name: 'Portal glyphs' }), '3c4d5e6f');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Portal address' }), '3c4d5e6f');
   const tags = screen.getByRole('textbox', { name: 'Tags' });
   await userEvent.type(tags, 'Mining Base{Enter}scrap,temp');
   await userEvent.type(tags, '{Backspace}{Backspace}{Backspace}{Backspace}{Backspace}');
@@ -98,7 +102,7 @@ test('editor: validates the name and glyphs, normalises glyphs, adds tags, logs 
 
 test('editor: sets your rating; Cancel discards changes', async () => {
   edit('sys-a');
-  await userEvent.click(screen.getByRole('radio', { name: '4' }));
+  await userEvent.click(screen.getByRole('radio', { name: '4 stars' }));
   await userEvent.click(screen.getByRole('button', { name: 'Save changes' }));
   expect(system('sys-a')?.rating).toBe(4);
 
@@ -140,9 +144,72 @@ test('on a phone the grab bar closes the editor, but refuses while there are uns
   act(() => {
     openSystemEditor('sys-a');
   });
-  await userEvent.type(screen.getByRole('textbox', { name: /System name/ }), ' Prime');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Name' }), ' Prime');
   await userEvent.click(handle());
   expect(getPanel()).toMatchObject({ open: true, mode: 'edit' });
   await userEvent.click(screen.getAllByRole('button', { name: 'Cancel' })[1]!); // Cancel still discards
   expect(getPanel().open).toBe(false);
+});
+
+test('location: pick a galaxy, type galactic coordinates, see the portal address and the distance; planets and notes save', async () => {
+  setGalaxiesForTests([
+    { n: 1, name: 'Euclid', type: 'Norm', path: 'wiki/galaxies/Euclid.md' },
+    { n: 2, name: 'Hilbert Dimension', type: 'Norm', path: 'wiki/galaxies/Hilbert_Dimension.md' }
+  ]);
+  setFactsForTests({
+    schema: 1,
+    facts: {
+      'region-light-years': {
+        page: 'Portal address',
+        path: 'wiki/mechanics/Portal_address.md',
+        url: 'https://nomanssky.fandom.com/wiki/Portal_address',
+        revId: 1,
+        quote: '…',
+        value: 400
+      }
+    }
+  });
+  edit('sys-a');
+  const galaxy = screen.getByRole('combobox', { name: 'Galaxy' });
+  expect(screen.getByText('1 of 256')).toBeTruthy();
+  await userEvent.selectOptions(galaxy, 'Hilbert Dimension');
+  expect(screen.getByText('2 of 256')).toBeTruthy();
+
+  await userEvent.click(screen.getByRole('radio', { name: 'Galactic coordinates' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Galactic coordinates' }), 'HUKYA:046A:0081:0D6D:0038');
+  // The wiki's worked example: this booster string is portal address 0038 0256 EC6B.
+  expect(document.getElementById('sysAddressConverted')?.textContent).toContain('0038 0256 EC6B');
+  screen.getByRole('img', { name: /^Preview: this system sits 6\d\dk ly from the centre of Hilbert Dimension$/ });
+
+  await userEvent.type(screen.getByRole('textbox', { name: 'Planets' }), '5');
+  const notes = screen.getByRole('textbox', { name: 'Notes' });
+  await userEvent.clear(notes);
+  await userEvent.type(notes, 'New notes');
+  await userEvent.click(screen.getByRole('button', { name: 'Save changes' }));
+  expect(system('sys-a')).toMatchObject({
+    galaxy: 'Hilbert Dimension',
+    glyphs: '00380256EC6B',
+    planetCount: 5,
+    notes: 'New notes'
+  });
+
+  // Back in the editor the address shows as a portal address, and switching keeps it.
+  act(() => {
+    openSystemEditor('sys-a');
+  });
+  expect(screen.getByRole<HTMLInputElement>('textbox', { name: 'Portal address' }).value).toBe('0038 0256 EC6B');
+  await userEvent.click(screen.getByRole('radio', { name: 'Galactic coordinates' }));
+  expect(screen.getByRole<HTMLInputElement>('textbox', { name: 'Galactic coordinates' }).value).toBe(
+    '046A:0081:0D6D:0038'
+  );
+});
+
+test('race, wealth and conflict clear when their segment is tapped again', async () => {
+  edit('sys-den');
+  await userEvent.click(screen.getByRole('radio', { name: 'Korvax' }));
+  await userEvent.click(screen.getByRole('radio', { name: '2 of 3' }));
+  await userEvent.click(screen.getByRole('radio', { name: 'Low' }));
+  await userEvent.click(screen.getByRole('radio', { name: 'Low' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Save changes' }));
+  expect(system('sys-den')).toMatchObject({ race: 'korvax', wealth: 2, conflict: '' });
 });

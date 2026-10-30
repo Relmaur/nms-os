@@ -1,32 +1,44 @@
-// Add or edit a system. The draft lives here until Save; the stored system changes only through saveSystem().
-import { useEffect, useId, useState, type SubmitEvent, type KeyboardEvent, type ReactNode } from 'react';
-import { tagSuggestions } from '@atlas/core/systems-list';
-import {
-  CONFLICT_LEVELS,
-  RACES,
-  STAR_CLASSES,
-  newId,
-  normalizeGlyphs,
-  normalizeSystem,
-  tagSlug,
-  type System
-} from '@atlas/core/systems-model';
+// Add or edit a system (design 06). The draft lives here until Save; the stored system changes only through
+// saveSystem().
+import { useEffect, useId, useState, type SubmitEvent, type KeyboardEvent } from 'react';
+import { groupGlyphs } from '@atlas/core/location';
+import { CONFLICT_LEVELS, STAR_CLASSES, newId, normalizeSystem, tagSlug, type System } from '@atlas/core/systems-model';
 import { saveSystem } from '../actions.ts';
-import { useAppState } from '../useAppState.ts';
 import { showToast } from '../../app/ui.ts';
 import { closeSystemPanel, dismissSystemPanel, openSystem, setCloseGuard, type EditorPreset } from './panel-store.ts';
 import { SheetGrab } from '../parts/Sheet.tsx';
+import { Button } from '../parts/Button.tsx';
+import { LocationBlock, locationGlyphs, type Location } from './LocationBlock.tsx';
+import { FIELD, LABEL_FIELD, Segments, type Option } from './editor-parts.tsx';
 
-type Draft = Omit<System, 'wealth'> & { wealth: string };
-type TextField = 'name' | 'region' | 'galaxy' | 'glyphs' | 'economy' | 'notes';
+type Draft = Omit<System, 'wealth' | 'planetCount'> & { wealth: string; planetCount: string };
+type TextField = 'name' | 'region' | 'economy' | 'notes';
+
+// The design's race segments; "Abandoned" joins them only for a system already logged as abandoned.
+const RACE_OPTIONS: Option[] = [
+  ['gek', 'Gek'],
+  ['korvax', 'Korvax'],
+  ['vykeen', "Vy'keen"],
+  ['none', 'None']
+];
 
 export function SystemEditor({ existing, preset }: { existing: System | undefined; preset: EditorPreset }) {
-  const state = useAppState();
   const isNew = !existing;
   const [draft, setDraft] = useState<Draft>(() => {
     const base = existing ? structuredClone(existing) : normalizeSystem({ ...preset, id: newId('sys') });
-    return { ...base, name: isNew && base.name === 'Unnamed system' ? '' : base.name, wealth: String(base.wealth) };
+    return {
+      ...base,
+      name: isNew && base.name === 'Unnamed system' ? '' : base.name,
+      wealth: String(base.wealth),
+      planetCount: base.planetCount ? String(base.planetCount) : ''
+    };
   });
+  const [location, setLocation] = useState<Location>(() => ({
+    galaxy: draft.galaxy,
+    format: 'portal',
+    address: draft.glyphs ? groupGlyphs(draft.glyphs) : '',
+    planet: draft.glyphs ? parseInt(draft.glyphs[0] ?? '0', 16) : 0
+  }));
   const [tags, setTags] = useState(draft.tags);
   const [typed, setTyped] = useState('');
   const [arrived, setArrived] = useState(true);
@@ -35,10 +47,11 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
     setDraft(current => ({ ...current, ...changes }));
   };
   const cancel = closeSystemPanel;
+  const subtitleId = useId();
 
   // A swipe or a tap on the bar leaves only when nothing would be lost; Cancel stays the way to discard.
-  const [original] = useState(() => JSON.stringify({ draft, tags }));
-  const dirty = typed.trim() !== '' || JSON.stringify({ draft, tags }) !== original;
+  const [original] = useState(() => JSON.stringify({ draft, tags, location }));
+  const dirty = typed.trim() !== '' || JSON.stringify({ draft, tags, location }) !== original;
   useEffect(() => {
     setCloseGuard(() => {
       if (dirty) showToast('Unsaved changes: save, or Cancel to discard.');
@@ -68,16 +81,27 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
     event.preventDefault();
     const pendingTag = tagSlug(typed); // a tag typed but not yet added still counts
     const allTags = pendingTag && !tags.includes(pendingTag) ? [...tags, pendingTag] : tags;
-    const glyphs = normalizeGlyphs(draft.glyphs);
+    const glyphs = locationGlyphs(location);
     if (!draft.name.trim()) {
       setError('The system needs a name.');
       return;
     }
-    if (glyphs && glyphs.length !== 12) {
-      setError('Portal glyphs are 12 hex digits (0–9, A–F), or leave them empty.');
+    if (glyphs === null) {
+      setError(
+        location.format === 'portal'
+          ? 'A portal address is 12 characters, 0–9 and A–F, or leave it empty.'
+          : 'Galactic coordinates are four groups like 046A:0081:0D6D:0038, or leave them empty.'
+      );
+      document.getElementById('sysAddress')?.focus();
       return;
     }
-    const system = normalizeSystem({ ...draft, glyphs, tags: allTags, galaxy: draft.galaxy.trim() || 'Euclid' });
+    const system = normalizeSystem({
+      ...draft,
+      glyphs,
+      tags: allTags,
+      galaxy: location.galaxy.trim() || 'Euclid',
+      planetCount: Number(draft.planetCount) || 0
+    });
     saveSystem(system, { arrived: isNew && arrived });
     // A new system opens on its own screen; an edited one is already showing under the sheet.
     if (isNew) openSystem(system.id);
@@ -93,144 +117,145 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
   });
 
   return (
-    <form id="systemEditor" onSubmit={submit} className="flex flex-col min-h-full">
-      <div
-        data-sheet-grab
-        className="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-slate-800 px-5 pt-3 md:pt-5 pb-4"
-      >
+    <form id="systemEditor" onSubmit={submit} aria-describedby={subtitleId} className="flex flex-col min-h-full">
+      <div data-sheet-grab className="sticky top-0 z-10 bg-slate-deep/95 backdrop-blur px-5 pt-3 md:pt-5 pb-1">
         <SheetGrab onClose={dismissSystemPanel} />
-        <div className="flex items-center justify-between gap-3">
-          <h2 id="systemPanelTitle" className="font-display font-bold text-lg text-white">
-            {isNew ? 'Add system' : 'Edit system'}
-          </h2>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-col gap-1">
+            <h2 id="systemPanelTitle" className="font-display font-extrabold text-[22px] leading-tight text-ink-bright">
+              {isNew ? 'Add system' : 'Edit system'}
+            </h2>
+            <p id={subtitleId} className="text-sub text-ink-muted">
+              What the game shows, plus your own tags and notes.
+            </p>
+          </div>
           <button
             type="button"
             onClick={cancel}
             aria-label="Cancel"
-            className="hidden md:flex w-9 h-9 -mr-1.5 rounded-xl items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900"
+            className="hidden md:flex w-9 h-9 -mr-1.5 shrink-0 rounded-control items-center justify-center text-ink-muted hover:text-ink-bright hover:bg-slate-ground"
           >
             <i className="ph-bold ph-x text-lg" />
           </button>
         </div>
       </div>
-      <div className="flex-1 px-5 py-5 space-y-5">
-        <label className="field">
-          System name <span className="text-rose-300">*</span>
+
+      <div className="flex-1 px-5 pt-3.5 pb-6 flex flex-col gap-4">
+        <label className={LABEL_FIELD}>
+          Name
           <input
             id="sysName"
             required
             maxLength={80}
-            placeholder="As shown in the Discoveries / Galaxy Map"
+            placeholder="As the Discoveries page shows it"
             autoFocus
+            className={FIELD}
             {...text('name')}
           />
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <label className="field">
+        <div className="grid grid-cols-2 gap-2.5">
+          <label className={LABEL_FIELD}>
             Region
-            <input maxLength={80} placeholder="e.g. Ezdaranit Spur" {...text('region')} />
+            <input maxLength={80} placeholder="e.g. Aeushne Sector" className={FIELD} {...text('region')} />
           </label>
-          <label className="field">
-            Galaxy
-            <input maxLength={40} placeholder="Euclid" {...text('galaxy')} />
-          </label>
-          <label className="field">
-            Portal glyphs
+          <label className={LABEL_FIELD}>
+            Planets
             <input
-              maxLength={16}
-              placeholder="0123456789AB"
-              autoCapitalize="characters"
-              spellCheck={false}
-              className="font-mono uppercase"
-              {...text('glyphs')}
+              name="planetCount"
+              inputMode="numeric"
+              maxLength={2}
+              placeholder="e.g. 5"
+              value={draft.planetCount}
+              onChange={event => {
+                set({ planetCount: event.target.value.replace(/\D/g, '') });
+              }}
+              className={`${FIELD} font-mono`}
             />
           </label>
-          <label className="field">
-            Economy
-            <input list="economyOptions" maxLength={40} placeholder="e.g. Trading" {...text('economy')} />
-          </label>
         </div>
-        <Segmented
+
+        <LocationBlock value={location} star={draft.star} onChange={setLocation} />
+
+        <Segments
           label="Star colour"
+          rows={2}
           value={draft.star}
           onChange={star => {
             set({ star: star as Draft['star'] });
           }}
           options={[
-            ['', 'Unknown'],
             ...Object.entries(STAR_CLASSES).map(([key, star]): Option => [
               key,
               star.label,
-              <span className="w-2.5 h-2.5 rounded-full" style={{ background: star.color }} />
-            ])
+              <span key="dot" className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: star.color }} />
+            ]),
+            ['', 'Unknown']
           ]}
         />
-        <Segmented
+        <Segments
           label="Dominant race"
+          clearable
           value={draft.race}
           onChange={race => {
             set({ race: race as Draft['race'] });
           }}
-          options={[['', 'Unknown'], ...Object.entries(RACES)]}
+          options={draft.race === 'abandoned' ? [...RACE_OPTIONS, ['abandoned', 'Abandoned']] : RACE_OPTIONS}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Segmented
+        <label className={LABEL_FIELD}>
+          Economy
+          <input
+            list="economyOptions"
+            maxLength={40}
+            placeholder="e.g. High Tech"
+            className={FIELD}
+            {...text('economy')}
+          />
+        </label>
+        <div className="grid grid-cols-2 gap-2.5">
+          <Segments
             label="Wealth"
-            value={draft.wealth}
+            clearable
+            value={draft.wealth === '0' ? '' : draft.wealth}
             onChange={wealth => {
-              set({ wealth });
+              set({ wealth: wealth || '0' });
             }}
             options={[
-              ['0', 'Unknown'],
-              ['1', '★'],
-              ['2', '★★'],
-              ['3', '★★★']
+              ['1', '★', undefined, '1 of 3'],
+              ['2', '★★', undefined, '2 of 3'],
+              ['3', '★★★', undefined, '3 of 3']
             ]}
           />
-          <Segmented
-            label="Conflict"
-            value={draft.conflict}
-            onChange={conflict => {
-              set({ conflict: conflict as Draft['conflict'] });
+          <Rating
+            value={draft.rating}
+            onChange={rating => {
+              set({ rating });
             }}
-            options={[
-              ['', '?'],
-              ...Object.entries(CONFLICT_LEVELS).map(([key, label]): Option => [
-                key,
-                key === 'pirate' ? 'Pirate' : label
-              ])
-            ]}
           />
         </div>
-        {/* System detail (03) shows the rating; this is where it's set, as in the editor's design (06). */}
-        <Segmented
-          label="Your rating"
-          value={String(draft.rating)}
-          onChange={rating => {
-            set({ rating: Number(rating) });
+        <Segments
+          label="Conflict"
+          clearable
+          value={draft.conflict}
+          onChange={conflict => {
+            set({ conflict: conflict as Draft['conflict'] });
           }}
-          options={[
-            ['0', 'None'],
-            ...[1, 2, 3, 4, 5].map((n): Option => [
-              String(n),
-              String(n),
-              <i key="star" className="ph-fill ph-star text-amber-300 mr-1" aria-hidden="true" />
-            ])
-          ]}
+          options={Object.entries(CONFLICT_LEVELS).map(([key, label]): Option => [
+            key,
+            key === 'pirate' ? 'Pirate' : label
+          ])}
         />
-        <div className="space-y-1.5">
-          <p className="field-label">
-            <label htmlFor="tagInput">Tags</label>
-          </p>
+
+        <div className={LABEL_FIELD}>
+          <label htmlFor="tagInput">Tags</label>
           <div
             id="tagEditor"
-            className="flex flex-wrap items-center gap-1.5 min-h-10 p-1.5 rounded-xl bg-slate-900 border border-slate-700 focus-within:border-emerald-400"
+            className="flex flex-wrap items-center gap-1.5 min-h-11 p-1.5 rounded-control bg-slate-ground border border-control-edge focus-within:border-scanner-cyan-edge-strong"
             onClick={() => document.getElementById('tagInput')?.focus()}
           >
             {tags.map(tag => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 h-7 pl-2 pr-1 rounded-md bg-emerald-500/15 border border-emerald-500/40 text-xs text-emerald-100"
+                className="inline-flex items-center gap-1.5 h-[30px] pl-2.5 pr-1.5 rounded-full bg-scanner-cyan-tint border border-scanner-cyan-edge text-[13px] font-medium text-[#a5f3fc]"
               >
                 {tag}
                 <button
@@ -238,8 +263,8 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
                   onClick={() => {
                     setTags(tags.filter(item => item !== tag));
                   }}
-                  aria-label={`Remove ${tag}`}
-                  className="w-5 h-5 rounded flex items-center justify-center hover:bg-emerald-500/20"
+                  aria-label={`Remove tag ${tag}`}
+                  className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-scanner-cyan-edge"
                 >
                   <i className="ph-bold ph-x text-[10px]" />
                 </button>
@@ -254,110 +279,87 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
                 setTyped(event.target.value);
               }}
               onKeyDown={onTagKey}
-              placeholder={tags.length ? 'Add tag' : 'Type a tag and press Enter'}
-              className="flex-1 min-w-[8rem] h-7 bg-transparent px-1.5 text-base sm:text-sm text-white focus:outline-hidden"
+              placeholder="Type a tag and press Enter"
+              className="flex-1 min-w-[8rem] h-[30px] bg-transparent px-1.5 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:outline-hidden"
             />
           </div>
-          <div id="tagSuggestions" className="flex flex-wrap gap-1.5">
-            {tagSuggestions(state.systems, tags, tagSlug(typed))
-              .slice(0, 12)
-              .map(tag => (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => {
-                    addTag(tag);
-                  }}
-                  className="h-7 px-2 rounded-md border border-dashed border-slate-600 text-xs text-slate-300 hover:text-white hover:border-slate-400"
-                >
-                  {`+ ${tag}`}
-                </button>
-              ))}
-          </div>
         </div>
-        {isNew ? (
-          <>
-            <label className="field">
-              Notes
-              <textarea
-                rows={4}
-                maxLength={5000}
-                placeholder="First impressions, what's here, why it matters"
-                {...text('notes')}
-              />
-            </label>
-            <label className="flex items-center gap-2.5 text-sm text-slate-200">
-              <input
-                name="logVisit"
-                type="checkbox"
-                checked={arrived}
-                onChange={event => {
-                  setArrived(event.target.checked);
-                }}
-                className="w-4 h-4 accent-emerald-400"
-              />
-              I'm here now (log a visit)
-            </label>
-          </>
-        ) : null}
+        <label className={LABEL_FIELD}>
+          Notes
+          <textarea
+            rows={3}
+            maxLength={5000}
+            placeholder="First impressions, what's here, why it matters"
+            className={`${FIELD} h-auto py-2.5 leading-snug resize-y`}
+            {...text('notes')}
+          />
+        </label>
+        {isNew && (
+          <label className="flex items-center gap-2.5 text-sm text-ink">
+            <input
+              name="logVisit"
+              type="checkbox"
+              checked={arrived}
+              onChange={event => {
+                setArrived(event.target.checked);
+              }}
+              className="w-4 h-4 accent-emerald-400"
+            />
+            I'm here now (log a visit)
+          </label>
+        )}
       </div>
-      <div className="sticky bottom-0 bg-slate-950/95 backdrop-blur border-t border-slate-800 px-5 py-3 flex items-center justify-end gap-2">
-        <p id="editorError" role="alert" className="mr-auto text-xs text-rose-300">
-          {error}
-        </p>
-        <button
-          type="button"
-          onClick={cancel}
-          className="h-10 px-4 rounded-xl border border-slate-700 text-sm text-slate-300 hover:bg-slate-900"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold"
-        >
-          {isNew ? 'Add system' : 'Save changes'}
-        </button>
+
+      <div className="sticky bottom-0 bg-slate-deep/95 backdrop-blur border-t border-hairline px-5 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex flex-col gap-2">
+        {error && (
+          <p id="editorError" role="alert" className="text-caption text-danger-rose-text">
+            {error}
+          </p>
+        )}
+        <div className="grid grid-cols-[1fr_2fr] gap-2.5">
+          <Button size="L" onClick={cancel}>
+            Cancel
+          </Button>
+          <Button variant="primary" type="submit">
+            {isNew ? 'Add system' : 'Save changes'}
+          </Button>
+        </div>
       </div>
     </form>
   );
 }
 
-type Option = [value: string, label: string, extra?: ReactNode];
-
-function Segmented({
-  label,
-  value,
-  options,
-  onChange
-}: {
-  label: string;
-  value: string;
-  options: Option[];
-  onChange: (value: string) => void;
-}) {
+// Your rating, 1–5 stars in one track that lights up once rated (the design's single star segment); tapping the
+// current rating again clears it.
+function Rating({ value, onChange }: { value: number; onChange: (value: number) => void }) {
   const labelId = useId();
   return (
-    <div className="space-y-1.5">
-      <p id={labelId} className="field-label">
-        {label}
+    <div className="flex flex-col gap-1.5">
+      <p id={labelId} className="text-caption text-ink-soft">
+        Your rating
       </p>
-      <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-labelledby={labelId}>
-        {options.map(([key, text, extra]) => (
-          <button
-            key={key}
-            type="button"
-            role="radio"
-            aria-checked={value === key}
-            onClick={() => {
-              onChange(key);
-            }}
-            className={`seg ${value === key ? 'is-on' : ''}`}
-          >
-            {extra}
-            {text}
-          </button>
-        ))}
+      <div className="p-1 rounded-control bg-slate-ground border border-hairline">
+        <div
+          role="radiogroup"
+          aria-labelledby={labelId}
+          className={`flex h-9 rounded-segment transition-colors ${value ? 'bg-[rgba(16,185,129,0.18)] shadow-[inset_0_0_0_1px_rgba(52,211,153,0.45)]' : ''}`}
+        >
+          {[1, 2, 3, 4, 5].map(n => (
+            <button
+              key={n}
+              type="button"
+              role="radio"
+              aria-checked={value === n}
+              aria-label={n === 1 ? '1 star' : `${String(n)} stars`}
+              onClick={() => {
+                onChange(value === n ? 0 : n);
+              }}
+              className={`flex-1 flex items-center justify-center text-[15px] ${n <= value ? 'text-units-amber-text' : 'text-ink-disabled hover:text-ink-soft'}`}
+            >
+              ★
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

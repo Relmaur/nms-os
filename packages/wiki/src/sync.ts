@@ -324,6 +324,19 @@ async function buildIndexes(): Promise<void> {
     `${JSON.stringify({ schema: 1, source: WIKI_BASE, license: LICENSE, aliases, items })}\n`,
     'utf8'
   );
+  // The galaxy picker's list: the current Galaxy pages numbered 1–256 (variants like "Euclid (NEXT)" are obsolete).
+  const galaxies = new Map<number, { n: number; name: string; type: string; path: string }>();
+  for (const item of items as { category: string; title: string; path: string; fields: Record<string, string>; obsolete?: boolean; removed?: boolean }[]) {
+    const n = Number(item.fields.order);
+    if (item.category !== 'galaxies' || item.obsolete || item.removed || !Number.isInteger(n) || n < 1 || n > 256) continue;
+    if (!galaxies.has(n)) galaxies.set(n, { n, name: item.title, type: item.fields.type ?? '', path: item.path });
+  }
+  if (galaxies.size !== 256) console.warn(`⚠️  ${galaxies.size} of 256 galaxies have a numbered page; the picker lists those.`);
+  await fs.writeFile(
+    path.join(WIKI_DIR, 'galaxies.json'),
+    `${JSON.stringify({ schema: 1, galaxies: [...galaxies.values()].sort((a, b) => a.n - b.n) })}\n`,
+    'utf8'
+  );
   // The cited facts whose quote is in the archived page; the app applies none other.
   const factPages = new Map<string, FactPage>();
   for (const article of articles) {

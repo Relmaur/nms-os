@@ -31,7 +31,9 @@ export const FACT_VALUES = {
   'biome-frozen': BiomeFamilySchema,
   'biome-toxic': BiomeFamilySchema,
   'biome-irradiated': BiomeFamilySchema,
-  'biome-exotic': BiomeFamilySchema
+  'biome-exotic': BiomeFamilySchema,
+  // Light years per region (one step of a portal address's X, Y or Z): distances from a galaxy's centre.
+  'region-light-years': z.int().positive()
 } as const;
 export type FactId = keyof typeof FACT_VALUES;
 export type FactValue<Id extends FactId> = z.infer<(typeof FACT_VALUES)[Id]>;
