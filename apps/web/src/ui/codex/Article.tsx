@@ -106,6 +106,7 @@ export function Article({
 
   useEffect(() => {
     document.title = `${entry?.title ?? 'Article not found'} · Wiki Codex`;
+    picked = null;
     window.scrollTo({ top: 0 });
   }, [entry]);
 
@@ -148,6 +149,7 @@ export function Article({
   const kind = [categoryLabel(entry.category), facts.get('Category')].filter(Boolean).join(' · ');
   const goTo = (id: string) => {
     setSheet(null);
+    pickPart(id);
     if (id === 'articleTop') window.scrollTo({ top: 0, behavior: smooth() });
     else document.getElementById(id)?.scrollIntoView({ behavior: smooth() });
   };
@@ -347,6 +349,7 @@ export function Article({
       <button
         type="button"
         onClick={() => {
+          picked = null;
           window.scrollTo({ top: 0, behavior: smooth() });
         }}
         aria-label="Back to top"
@@ -514,29 +517,48 @@ function RelationCard(props: { id: string; title: string; items: PreparedEntry[]
   );
 }
 
-// The section being read (the last one whose top is above the reading line) and how far through the article.
-const READING_LINE = 120;
+// The section being read: the last one whose top has reached the line a jump lands it on (the page's scroll padding
+// plus its own scroll margin), or, after a jump, the section picked until the player scrolls themselves, since the last
+// few can't scroll up that far.
+let picked: string | null = null;
+function pickPart(id: string): void {
+  picked = id;
+  window.dispatchEvent(new Event('scroll'));
+}
+const px = (value: string) => parseFloat(value) || 0;
 function useReading(parts: Part[]): { current: number; read: number } {
   const [state, setState] = useState({ current: 0, read: 0 });
   useEffect(() => {
     let frame = 0;
     const measure = () => {
       frame = 0;
+      const padding = px(getComputedStyle(document.documentElement).scrollPaddingTop);
       let current = 0;
       parts.forEach((part, i) => {
         const node = document.getElementById(part.id);
-        if (i > 0 && node && node.getBoundingClientRect().top <= READING_LINE) current = i;
+        if (!node || i === 0) return;
+        if (node.getBoundingClientRect().top <= padding + px(getComputedStyle(node).scrollMarginTop) + 8) current = i;
       });
+      const choice = parts.findIndex(part => part.id === picked);
       const room = document.documentElement.scrollHeight - innerHeight;
-      setState({ current, read: room > 0 ? Math.min(100, Math.round((scrollY / room) * 100)) : 100 });
+      setState({
+        current: choice === -1 ? current : choice,
+        read: room > 0 ? Math.min(100, Math.round((scrollY / room) * 100)) : 100
+      });
     };
     measure();
     const onScroll = () => {
       frame ||= requestAnimationFrame(measure);
     };
+    const onOwnScroll = () => {
+      picked = null;
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
+    for (const type of ['wheel', 'touchstart', 'keydown'])
+      window.addEventListener(type, onOwnScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
+      for (const type of ['wheel', 'touchstart', 'keydown']) window.removeEventListener(type, onOwnScroll);
       cancelAnimationFrame(frame);
     };
   }, [parts]);

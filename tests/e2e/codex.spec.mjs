@@ -65,6 +65,22 @@ test('on a phone, On this page opens from the header; mid-scroll a bar names the
   await expect(page.locator('#articleHeader h1')).toBeInViewport();
 });
 
+test('On this page marks the section it jumped to, even the last ones', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'the rail is desktop’s; the sheet shares its tracking');
+  await page.goto('./wiki/#/a/' + encodeURIComponent('wiki/resources/Oxygen.md'));
+  const links = page.locator('#articleRail ol a');
+  const middle = links.nth(2);
+  await middle.click();
+  await expect(middle).toHaveAttribute('aria-current', 'true');
+  // Scrolling on from where the jump landed keeps it: the jump puts it on the reading line.
+  await page.mouse.move(400, 400);
+  await page.mouse.wheel(0, 20);
+  await expect(middle).toHaveAttribute('aria-current', 'true');
+  const last = links.last();
+  await last.click();
+  await expect(last).toHaveAttribute('aria-current', 'true');
+});
+
 test('an article’s Pin to a note starts a note in the app that links it', async ({ page }) => {
   await page.goto('./wiki/#/a/' + encodeURIComponent('wiki/resources/Oxygen.md'));
   await page.getByRole('link', { name: 'Pin to a note' }).click();
