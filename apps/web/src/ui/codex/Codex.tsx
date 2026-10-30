@@ -1,5 +1,5 @@
-// The Codex page (wiki/index.html): the header search, then browsing or an article, with the quick look and the
-// New article sheet. Keyboard: / or ⌘K searches; on results ↑/↓ (or j/k) select, Space peeks, Enter opens.
+// The Codex page (wiki/index.html): browsing (design 15) or an article (16), with the quick look and the New article
+// sheet. The search field sits at the top of browsing; from lg a slim header carries the way back to the app. Keyboard: / or ⌘K searches; on results ↑/↓ (or j/k) select, Space peeks, Enter opens.
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
 import { DEFAULTS, articleHref, browse, browseHref, isLanding, pageOf } from '@atlas/core/codex';
 import { isOld } from '@atlas/core/search';
@@ -71,7 +71,11 @@ export function Codex() {
       if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '')) return;
       if (event.key === '/' || (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey))) {
         event.preventDefault();
-        search.current?.focus();
+        if (search.current) search.current.focus();
+        else {
+          navigate('#/'); // an article has no search field: browse, then search
+          requestAnimationFrame(() => document.getElementById('codexSearch')?.focus());
+        }
         return;
       }
       if (currentRoute().view !== 'browse' || !listed.length) return;
@@ -105,21 +109,11 @@ export function Codex() {
   return (
     <>
       <Header
-        q={params.q}
-        ref={search}
         onNew={() => {
           setCreating(true);
         }}
-        onDown={() => {
-          if (!listed.length) return false;
-          select(0);
-          return true;
-        }}
-        onEnter={() => {
-          selectFirst.current = true;
-        }}
       />
-      <main id="codexMain" className="app-main max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:py-8">
+      <main id="codexMain" className="app-main max-w-[1400px] mx-auto px-4 sm:px-6 pt-5 pb-28 lg:py-8">
         {data.status !== 'ready' ? (
           <p className="text-sm text-slate-400 py-8">Loading the Codex…</p>
         ) : route.view === 'article' ? (
@@ -132,6 +126,23 @@ export function Codex() {
           />
         ) : (
           <Browse
+            search={
+              <SearchField
+                q={params.q}
+                ref={search}
+                onDown={() => {
+                  if (!listed.length) return false;
+                  select(0);
+                  return true;
+                }}
+                onEnter={() => {
+                  selectFirst.current = true;
+                }}
+              />
+            }
+            onNew={() => {
+              setCreating(true);
+            }}
             params={params}
             view={view}
             entries={entries}
@@ -164,13 +175,12 @@ export function Codex() {
 }
 
 // The search box keeps what's typed while focused; otherwise it shows the route's query (Back, a cleared chip).
-function Header({
+export function SearchField({
   ref,
   ...props
 }: {
   q: string;
   ref: RefObject<HTMLInputElement | null>;
-  onNew: () => void;
   onDown: () => boolean;
   onEnter: () => void;
 }) {
@@ -199,67 +209,69 @@ function Header({
     } else if (event.key === 'Escape') event.currentTarget.blur();
   };
   return (
-    <header className="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-      <div className="max-w-[1400px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
+    <label className="relative block">
+      <i
+        className="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-label pointer-events-none"
+        aria-hidden="true"
+      />
+      <input
+        ref={ref}
+        type="search"
+        id="codexSearch"
+        autoComplete="off"
+        spellCheck={false}
+        aria-label="Search the Codex"
+        placeholder="Search items, tech, mechanics"
+        value={shown}
+        onFocus={() => {
+          setValue(props.q);
+          setFocused(true);
+        }}
+        onBlur={() => {
+          setFocused(false);
+        }}
+        onChange={event => {
+          const text = event.target.value;
+          setValue(text);
+          clearTimeout(timer.current);
+          timer.current = setTimeout(() => {
+            apply(text);
+          }, 80);
+        }}
+        onKeyDown={onKeyDown}
+        className="w-full h-11 rounded-control border border-control-edge bg-slate-ground pl-10 pr-10 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:border-scanner-cyan-edge-strong focus:outline-hidden"
+      />
+      <kbd className="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-ink-label border border-control-edge rounded px-1.5 py-0.5 pointer-events-none">
+        /
+      </kbd>
+    </label>
+  );
+}
+
+// From lg: the way back to the app, the Codex's own name, and New article. Below lg the tab bar does this.
+function Header({ onNew }: { onNew: () => void }) {
+  return (
+    <header className="app-header hidden lg:block sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+      <div className="max-w-[1400px] mx-auto h-16 px-6 flex items-center gap-4">
         <a href="../" title="Back to ATLAS:OS" className="flex items-center gap-2.5 shrink-0 rounded-lg">
           <span className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center">
             <i className="ph-fill ph-planet text-xl text-red-500" aria-hidden="true" />
           </span>
-          <span className="hidden md:inline font-display font-bold tracking-wider text-white">
+          <span className="font-display font-bold tracking-wider text-white">
             ATLAS<span className="text-scanner-cyan-pale">:OS</span>
           </span>
-          <span className="sr-only md:hidden">ATLAS:OS</span>
         </a>
-        <a
-          href="#/"
-          className="font-display font-bold text-sm sm:text-base tracking-wider text-emerald-300 shrink-0 rounded-lg"
-        >
+        <a href="#/" className="font-display font-bold tracking-wider text-emerald-300 shrink-0 rounded-lg">
           CODEX
         </a>
-        <div className="relative flex-1 max-w-2xl mx-auto">
-          <i
-            className="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
-            aria-hidden="true"
-          />
-          <input
-            ref={ref}
-            type="search"
-            id="codexSearch"
-            autoComplete="off"
-            spellCheck={false}
-            aria-label="Search the Codex"
-            placeholder="Search titles and full text…"
-            value={shown}
-            onFocus={() => {
-              setValue(props.q);
-              setFocused(true);
-            }}
-            onBlur={() => {
-              setFocused(false);
-            }}
-            onChange={event => {
-              const text = event.target.value;
-              setValue(text);
-              clearTimeout(timer.current);
-              timer.current = setTimeout(() => {
-                apply(text);
-              }, 80);
-            }}
-            onKeyDown={onKeyDown}
-            className="w-full h-10 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-emerald-400 rounded-xl pl-9 pr-10 text-base md:text-sm text-white placeholder:text-slate-500 focus:outline-hidden transition"
-          />
-          <kbd className="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 border border-slate-700 rounded px-1.5 py-0.5 pointer-events-none">
-            /
-          </kbd>
-        </div>
         <button
           type="button"
-          onClick={props.onNew}
+          onClick={onNew}
           aria-label="New article"
-          className="shrink-0 h-10 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold flex items-center gap-2 transition"
+          className="ml-auto shrink-0 h-10 px-3 rounded-xl border border-ready-emerald-edge bg-ready-emerald-tint text-ready-emerald-text text-sm font-semibold flex items-center gap-2"
         >
           <i className="ph-bold ph-note-pencil text-base" aria-hidden="true" />
-          <span className="hidden sm:inline">New article</span>
+          New article
         </button>
       </div>
     </header>

@@ -19,8 +19,8 @@ const OXYGEN = encodeURIComponent('wiki/resources/Oxygen.md');
 const openPeek = page => page.locator('#browseBody .result button').first().click();
 // The index bar is the phone and tablet layout; from lg the same index is the rail, already on screen.
 const openIndex = async page => {
-  const bar = page.locator('#articleIndexBar button').first();
-  if (await bar.isVisible()) await bar.click();
+  const button = page.locator('#articleHeader').getByRole('button', { name: 'On this page' });
+  if (await button.isVisible()) await button.click();
 };
 const openGearEditor = page => page.locator('#sec-ship').getByRole('button', { name: 'Edit Starship' }).click();
 const writeNote = page => page.locator('#sec-note').getByRole('radio', { name: 'Write' }).click();

@@ -44,25 +44,72 @@ beforeEach(() => {
   });
 });
 
-test('an article puts its index first: a bar with counts, opening a sheet at the chosen list', async () => {
+test('an article reads as section cards, with On this page in a sheet and the pages it’s used in', async () => {
   render(<Codex />);
   at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);
   expect(screen.getByRole('heading', { level: 1, name: 'Oxygen' })).toBeTruthy();
-  const bar = document.getElementById('articleIndexBar')!;
-  expect(bar.textContent).toContain('Contents2');
-  expect(bar.textContent).toContain('Used in1');
-  await userEvent.click(within(bar).getByRole('button', { name: /Used in/ }));
+  const body = document.getElementById('articleBody')!;
+  expect(within(body).getByRole('region', { name: 'Quick Facts' }).textContent).toContain('Breathe.');
+  expect(within(body).getByRole('region', { name: /Used in/ }).textContent).toContain('Life Support Gel');
+  await userEvent.click(screen.getAllByRole('button', { name: 'On this page' })[0]!);
   const sheet = document.getElementById('articleIndexSheet')!;
   expect(sheet.getAttribute('aria-hidden')).toBe('false');
-  expect(within(sheet).getAllByRole('link', { name: 'Life Support Gel' }).length).toBeGreaterThan(0); // used in, and mentioned in
-  await userEvent.click(sheet.querySelector<HTMLButtonElement>('[data-sheet-handle]')!); // the bar (the ✕ shows from md)
+  const titles = within(sheet)
+    .getAllByRole('link')
+    .map(link => link.textContent);
+  expect(titles[0]).toContain('Overview');
+  expect(titles.some(title => title.includes('Uses'))).toBe(true);
+  await userEvent.click(sheet.querySelector<HTMLButtonElement>('[data-sheet-handle]')!);
   expect(sheet.getAttribute('aria-hidden')).toBe('true');
+  expect(screen.getByRole('link', { name: 'Pin to a note' }).getAttribute('href')).toBe('../#note-about/Oxygen');
+});
+
+test('find in this article marks every match in the text', async () => {
+  render(<Codex />);
+  at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);
+  await userEvent.click(screen.getAllByRole('button', { name: 'On this page' })[0]!);
+  const sheet = document.getElementById('articleIndexSheet')!;
+  await userEvent.type(within(sheet).getByRole('searchbox', { name: 'Find in this article' }), 'many');
+  expect(document.querySelectorAll('#articleBody mark[data-find]')).toHaveLength(1);
+  expect(within(sheet).getByRole('status').textContent).toContain('1 match');
+});
+
+test('Quick Facts read as pairs and recipe lines as a table', () => {
+  act(() => {
+    setCodexForTests({
+      status: 'ready',
+      index: makeIndex(
+        [
+          ...entries,
+          prepare({
+            title: 'Chromatic Metal',
+            category: 'resources',
+            path: 'wiki/resources/Chromatic_Metal.md',
+            source: 'wiki',
+            body:
+              '# Chromatic Metal\n\nIntro.\n\n## Quick Facts\n\n- **Symbol:** Ch\n- **Value:** 88\n\n## Source\n\n- Pirate ships\n\n' +
+              '- **Refiner** · *Extract* · 0.36 s per unit: 2 × [[Oxygen]] → 1 × Chromatic Metal'
+          })
+        ],
+        {}
+      ),
+      verification: null
+    });
+  });
+  render(<Codex />);
+  at(`#/a/${encodeURIComponent('wiki/resources/Chromatic_Metal.md')}`);
+  const facts = screen.getByRole('region', { name: 'Quick Facts' });
+  expect(within(facts).getByText('Value').nextElementSibling?.textContent).toBe('88');
+  const table = within(screen.getByRole('region', { name: 'Source' })).getByRole('table');
+  expect(table.textContent).toContain('2 × Oxygen');
+  expect(table.textContent).toContain('→ 1');
+  expect(table.textContent).toContain('0.36 s');
 });
 
 test('wiki links resolve to Codex articles, or stay plain text when the page isn’t archived', () => {
   render(<Codex />);
   at(`#/a/${encodeURIComponent('wiki/products/Life_Support_Gel.md')}`);
-  const body = document.getElementById('articleBody')!;
+  const body = document.querySelector<HTMLElement>('#articleBody [data-md]')!; // the text, not the Links to card
   expect(within(body).getByRole('link', { name: 'Oxygen' }).getAttribute('href')).toBe(
     `#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`
   );
@@ -107,10 +154,10 @@ test('the Codex says which dump of the wiki it was copied from, on articles and 
     month: 'short',
     year: 'numeric'
   });
-  expect(document.body.textContent).toContain(`Wiki copy from ${day}: 2 of 2 pages match it`);
+  expect(document.getElementById('codexCheck')?.textContent).toContain(`Wiki copy from ${day}: 2 of 2 pages match it`);
   at(`#/a/${encodeURIComponent('wiki/resources/Oxygen.md')}`);
   const source = screen.getByRole('link', { name: /revision 42/ });
-  expect(source.parentElement?.textContent).toContain(`Wiki copy from ${day}`);
+  expect(source.parentElement?.textContent).toContain(`wiki copy from ${day}`);
   // Corrections still go to the live page.
   expect(screen.getByRole('link', { name: 'Fix this on the wiki' }).getAttribute('href')).toBe(
     'https://nomanssky.fandom.com/wiki/Oxygen?action=edit'

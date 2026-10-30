@@ -13,7 +13,8 @@ export interface Rendered {
   headings: Heading[];
 }
 
-export function renderMarkdown(markdown: string, index: CodexIndex, q = ''): Rendered {
+// `prefix` keeps heading ids unique when an article is rendered a section at a time.
+export function renderMarkdown(markdown: string, index: CodexIndex, q = '', prefix = ''): Rendered {
   const body = markdown.replace(/^\s*#\s+[^\n]*\n*/, ''); // the page header already shows the title
   const linked = body.replace(WIKI_LINK, (_, inner: string) => {
     const { target, label } = splitLink(inner);
@@ -25,7 +26,7 @@ export function renderMarkdown(markdown: string, index: CodexIndex, q = ''): Ren
   const nodes = [...holder.querySelectorAll('h2, h3')];
   const ids = headingIds(nodes.map(node => node.textContent));
   const headings = nodes.map((node, i) => {
-    const id = ids[i] ?? '';
+    const id = `${prefix}${ids[i] ?? ''}`;
     node.id = id;
     return { id, text: node.textContent.trim(), depth: node.tagName === 'H3' ? 3 : 2 } satisfies Heading;
   });

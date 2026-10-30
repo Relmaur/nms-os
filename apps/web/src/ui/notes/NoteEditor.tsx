@@ -12,7 +12,7 @@ import { ArmButton } from '../parts/Gesture.tsx';
 import { FIELD, Segments, TagEditor } from '../systems/editor-parts.tsx';
 import { KINDS } from '../gear/kinds.ts';
 import { renderNote } from './NoteCard.tsx';
-import { freshPins } from './note-nav.ts';
+import { freshNote } from './note-nav.ts';
 import { PinPills, TOP_BUTTON, shortDate } from './note-bits.tsx';
 
 const SAVE_DELAY_MS = 600;
@@ -38,11 +38,11 @@ export function NoteScreen() {
   // rather than vanishing mid-sentence.
   const [opened, setOpened] = useState('');
   const existing = notes.find(note => note.id === id);
-  const pins = freshPins(id);
-  if ((existing || pins) && opened !== id) setOpened(id);
+  const fresh = freshNote(id);
+  if ((existing || fresh) && opened !== id) setOpened(id);
   // Every screen stays mounted; leaving this one unmounts the editor, which stores what's left.
   if (section !== 'note') return null;
-  if (!existing && !pins && opened !== id)
+  if (!existing && !fresh && opened !== id)
     return (
       <div className="flex flex-col items-start gap-section pt-[env(safe-area-inset-top)]">
         <h1 className="font-display text-screen-title text-ink-bright">Not in your notes</h1>
@@ -58,15 +58,25 @@ export function NoteScreen() {
         </Button>
       </div>
     );
-  return <NoteEditor key={id} id={id} existing={existing} pins={pins ?? []} />;
+  return <NoteEditor key={id} id={id} existing={existing} pins={fresh?.pins ?? []} body={fresh?.body ?? ''} />;
 }
 
-function NoteEditor({ id, existing, pins }: { id: string; existing: Note | undefined; pins: string[] }) {
+function NoteEditor({
+  id,
+  existing,
+  pins,
+  body
+}: {
+  id: string;
+  existing: Note | undefined;
+  pins: string[];
+  body: string;
+}) {
   const { gear } = useAppState();
   const [draft, setDraft] = useState<Note>(() => {
     if (existing) return structuredClone(existing);
     const now = new Date().toISOString();
-    return { id, title: '', body: '', pins, tags: [], createdAt: now, updatedAt: now };
+    return { id, title: '', body, pins, tags: [], createdAt: now, updatedAt: now };
   });
   const [mode, setMode] = useState(existing ? 'preview' : 'write');
   const [typed, setTyped] = useState('');

@@ -1,15 +1,33 @@
 // Notes open on their own screen (#note/<id>, design 11). A new one gets its id here, starting pinned to where it was
-// begun (a book, Home), and is stored only once it has a title or some text: leaving a blank one leaves nothing.
+// begun (a book, Home) or linking the Codex page it was begun from, and is stored only once the player writes a title
+// or some text: leaving it untouched leaves nothing.
 import { newId } from '@atlas/core/systems-model';
 
-let fresh: { id: string; pins: string[] } | null = null;
+let fresh: { id: string; pins: string[]; body: string } | null = null;
 
 export function openNote(id: string): void {
   location.hash = `#note/${encodeURIComponent(id)}`;
 }
-export function newNote(pins: string[] = []): void {
-  fresh = { id: newId('note'), pins };
+export function newNote(pins: string[] = [], body = ''): void {
+  fresh = { id: newId('note'), pins, body };
   openNote(fresh.id);
 }
-/** The pins a just-begun note starts with, or null when `id` isn't one (a reload forgets it: it was never stored). */
-export const freshPins = (id: string): string[] | null => (fresh?.id === id ? fresh.pins : null);
+/** What a just-begun note starts with, or null when `id` isn't one (a reload forgets it: it was never stored). */
+export const freshNote = (id: string): { pins: string[]; body: string } | null => (fresh?.id === id ? fresh : null);
+
+// "Pin to a note" on a Codex article (../#note-about/<title>): a new note whose text links that page. The address is
+// swapped for the note's own, so Back doesn't make another.
+export function takeNoteAbout(): void {
+  const match = /^#note-about\/(.+)$/.exec(location.hash);
+  if (!match?.[1]) return;
+  let title = '';
+  try {
+    title = decodeURIComponent(match[1])
+      .replace(/[[\]|]/g, '')
+      .trim();
+  } catch {
+    // a mangled address: start the note blank
+  }
+  fresh = { id: newId('note'), pins: [], body: title ? `[[${title}]]\n\n` : '' };
+  history.replaceState(null, '', `#note/${encodeURIComponent(fresh.id)}`);
+}

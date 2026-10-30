@@ -5,8 +5,10 @@ import { browseHref, parseRoute, type BrowseParams, type Route } from '@atlas/co
 const listeners = new Set<() => void>();
 let hash = location.hash;
 let route = parseRoute(hash);
+let moved = false; // the reader got here inside the Codex, so Back has somewhere of ours to go
 function refresh(): void {
   if (location.hash === hash) return;
+  moved = true;
   hash = location.hash;
   route = parseRoute(hash);
   listeners.forEach(listener => {
@@ -28,6 +30,12 @@ export function navigate(href: string, { replace = false } = {}): void {
     history.replaceState(null, '', href);
     refresh();
   } else location.hash = href;
+}
+
+/** Back where the reader came from inside the Codex; opened from outside (a link, a reload), to `fallback`. */
+export function goBack(fallback: string): void {
+  if (moved) history.back();
+  else navigate(fallback);
 }
 
 export function setParams(changes: Partial<BrowseParams>, options?: { replace?: boolean }): void {
