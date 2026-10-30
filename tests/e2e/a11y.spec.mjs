@@ -24,18 +24,18 @@ const openIndex = async page => {
 const openGearEditor = page => page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
 const openNoteEditor = page => page.locator('#sec-notes').getByRole('button', { name: 'New note' }).click();
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
-const openSession = async page => {
+const liveSession = async page => {
   await holdToStartSession(page);
   await page.locator('#sessionBar').click();
-  await page
-    .locator('#sessionSheet')
-    .getByRole('button', { name: /Custom/ })
-    .click();
+  await page.locator('#sessionClock').waitFor();
+};
+const openTimerSheet = async page => {
+  await liveSession(page);
+  await page.getByRole('button', { name: 'Custom timer' }).click();
 };
 const showRecap = async page => {
-  await holdToStartSession(page);
-  await page.locator('#sessionBar').click();
-  await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
+  await liveSession(page);
+  await page.locator('#sec-session').getByRole('button', { name: 'End session' }).click();
 };
 
 const openBestCrafts = async page => {
@@ -49,8 +49,10 @@ for (const [name, path, ready, region, setup] of [
   ['Page frame (header, sidebar, tab bar)', './', '#homeNow', 'body'],
   ['Page frame on Systems', './#systems', '#systemList', 'body'],
   ['Page frame on Outlaw Run', './#outlaw', '#outlawStationList', 'body'],
-  ['Session sheet', './', '#homeNow', '#sessionSheet', openSession],
-  ['Session recap', './', '#homeNow', '#sessionSheet', showRecap],
+  ['Session', './#session', '#timersTitle', '#sec-session'],
+  ['Session live', './', '#timersTitle', '#sec-session', liveSession],
+  ['Timer sheet', './', '#timersTitle', '#timerSheet', openTimerSheet],
+  ['Session recap', './', '#timersTitle', '#sec-session', showRecap],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Outlaw Run', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System detail', './#system/sys-ekwa', '#systemTitle', '#sec-system'],

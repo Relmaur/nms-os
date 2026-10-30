@@ -22,6 +22,7 @@ import { TabBar } from './shell/TabBar.tsx';
 import { StorageBanner } from './shell/StorageBanner.tsx';
 import { CapacityBanner } from './shell/CapacityBanner.tsx';
 import { SessionBar } from './session/SessionBar.tsx';
+import { Session } from './session/Session.tsx';
 import { SessionSheet } from './session/SessionSheet.tsx';
 
 const FRAME: [string, ReactNode][] = [
@@ -43,6 +44,7 @@ const SCREENS: [string, ReactNode][] = [
   ['homeRoot', <Home />],
   ['systemsRoot', <Systems />],
   ['systemDetailRoot', <SystemDetails />],
+  ['sessionRoot', <Session />],
   ['outlawRoot', <Outlaw />],
   ['calculatorsRoot', <Calculators />],
   ['systemPanelRoot', <SystemPanel />],

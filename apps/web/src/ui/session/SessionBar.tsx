@@ -1,11 +1,11 @@
 // The session bar: a slim strip at the top of every screen while you play (a session is on, or a timer is listed).
 // It answers "how long have I played, what's next to finish, what did I log" in one glance, and opens the Session
-// sheet for the rest.
+// screen for the rest.
 import { formatCountdown, formatDuration } from '@atlas/core/format';
 import { sessionRecap } from '@atlas/core/session';
 import { timerStatus, type Timer } from '@atlas/core/timers';
 import { useAppState } from '../useAppState.ts';
-import { openSessionSheet } from './sheet-store.ts';
+import { openSession } from './sheet-store.ts';
 import { useClock } from './useClock.ts';
 import { TIMER_ICON } from './TimerRow.tsx';
 
@@ -35,9 +35,7 @@ export function SessionBar() {
     <button
       type="button"
       id="sessionBar"
-      onClick={openSessionSheet}
-      aria-haspopup="dialog"
-      aria-controls="sessionSheet"
+      onClick={openSession}
       data-live={session ? 'true' : 'false'}
       className={`session-bar ${done.length ? 'is-done' : ''} group w-full mb-5 flex items-center gap-3 h-12 pl-3.5 pr-2.5 rounded-xl text-left`}
     >

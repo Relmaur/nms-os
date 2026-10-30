@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { exportState, importState } from '../../app/backup.ts';
 import { Search } from './Search.tsx';
 import { showSection } from './section-store.ts';
-import { openSessionSheet } from '../session/sheet-store.ts';
+import { openSession } from '../session/sheet-store.ts';
 import { useAppState } from '../useAppState.ts';
 
 export function Header() {
@@ -88,7 +88,7 @@ export function Header() {
   );
 }
 
-// Opens the Session sheet (timers and the session), with a dot while something runs: cyan, or emerald once a timer is
+// Opens the Session screen (timers and the session), with a dot while something runs: cyan, or emerald once a timer is
 // done. In the app header, and in Home's own header below lg until Search's quick actions can start a timer.
 export function SessionButton({ id, className }: { id: string; className: string }) {
   const { session, timers } = useAppState();
@@ -98,7 +98,7 @@ export function SessionButton({ id, className }: { id: string; className: string
     <button
       type="button"
       id={id}
-      onClick={openSessionSheet}
+      onClick={openSession}
       aria-label={
         done ? 'Session and timers (a timer is done)' : active ? 'Session and timers (running)' : 'Session and timers'
       }

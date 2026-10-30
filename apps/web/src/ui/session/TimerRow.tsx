@@ -1,59 +1,81 @@
-// One countdown in the Session sheet: your timers (with Dismiss once done) and outlaw stations still restocking.
+// One countdown on the Session screen (design 04): your timers, as cards with a ring (Dismiss once done), and outlaw
+// stations still restocking (read-only).
 import { formatCountdown } from '@atlas/core/format';
 import type { TimerKind, TimerRow as Row } from '@atlas/core/timers';
 import { dismissTimer } from '../actions.ts';
+import { TimerRing, type RingTone } from '../parts/TimerRing.tsx';
 
 export const TIMER_ICON: Record<TimerKind, string> = { refine: 'ph-flask', crop: 'ph-plant', custom: 'ph-timer' };
-const KIND_LABEL: Record<TimerKind, string> = { refine: 'Refiner', crop: 'Crop', custom: 'Timer' };
+const KIND: Record<TimerKind, { label: string; tone: RingTone; text: string }> = {
+  refine: { label: 'Refiner', tone: 'cyan', text: 'text-scanner-cyan-pale' },
+  crop: { label: 'Crops', tone: 'amber', text: 'text-units-amber-text' },
+  custom: { label: 'Custom', tone: 'cyan', text: 'text-ink-label' }
+};
+const HOUR = 3_600_000;
 
-export function TimerRow({ row, now }: { row: Row; now: number }) {
-  if (row.type === 'outlaw')
+const minutes = (ms: number) => Math.round(ms / 60_000);
+// Where the time came from: the wiki for a refiner run, the player for the rest.
+function source(kind: TimerKind, span: number): string {
+  if (kind === 'refine') return 'From the wiki’s refining time';
+  const total = minutes(span);
+  return `Your timing · ${total < 120 ? `${String(total)} min` : `${String(Math.round(total / 6) / 10)} h`}`;
+}
+const clock = (iso: string) => new Date(iso).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+const percent = (progress: number) => `${String(Math.floor(Math.min(1, Math.max(0, progress)) * 100))}%`;
+
+const CARD = 'rounded-card p-3.5 border flex items-center gap-3.5';
+const KICKER = 'text-[10px] font-bold uppercase tracking-[0.14em]';
+
+export function TimerRow({ row, now, restockHours }: { row: Row; now: number; restockHours: number }) {
+  if (row.type === 'outlaw') {
+    const progress = 1 - (row.endsAt - now) / (restockHours * HOUR);
     return (
-      <li className="timer-row">
-        <span className="timer-icon text-red-300">
-          <i className="ph-bold ph-skull" aria-hidden="true" />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm text-white">{row.system.name}</span>
-          <span className="block text-xs text-slate-400">Outlaw restock</span>
-        </span>
-        <span className="min-w-[5ch] text-right font-mono text-lg font-semibold text-cyan-300 tabular-nums">
-          {formatCountdown(row.endsAt - now)}
-        </span>
+      <li className={`${CARD} bg-panel-glass border-hairline`}>
+        <TimerRing progress={progress} done={false} size={64} tone="rose" label={percent(progress)} />
+        <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+          <span className={`${KICKER} text-[#fda4af]`}>Outlaw station</span>
+          <span className="text-[15px] font-semibold text-ink-bright truncate">{row.system.name}</span>
+          <span className="text-caption text-ink-muted">Restocking · your Outlaw Run setting</span>
+        </div>
+        <span className="font-mono text-lg text-ink-bright tabular-nums">{formatCountdown(row.endsAt - now)}</span>
       </li>
     );
+  }
   const { timer, status } = row;
-  return (
-    <li className={`timer-row ${status.done ? 'is-done' : ''}`}>
-      <span className={`timer-icon ${status.done ? 'text-emerald-300' : 'text-cyan-300'}`}>
-        <i className={`ph-bold ${status.done ? 'ph-check' : TIMER_ICON[timer.kind]}`} aria-hidden="true" />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block truncate text-sm text-white">{timer.label}</span>
-        <span className="block text-xs text-slate-400">
-          {status.done ? `${KIND_LABEL[timer.kind]} · done` : KIND_LABEL[timer.kind]}
-        </span>
-        {!status.done && (
-          <span className="timer-track mt-1.5" aria-hidden="true">
-            <span style={{ transform: `scaleX(${String(status.progress)})` }} />
-          </span>
-        )}
-      </span>
-      {status.done ? (
+  const kind = KIND[timer.kind];
+  if (status.done)
+    return (
+      <li className={`${CARD} bg-ready-emerald-wash border-ready-emerald-edge-soft`}>
+        <TimerRing progress={1} done size={64} />
+        <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+          <span className={`${KICKER} text-ready-emerald-pale`}>{kind.label} · done</span>
+          <span className="text-[15px] font-semibold text-ink-bright truncate">{timer.label}</span>
+          <span className="text-caption text-ready-emerald-text">Finished at {clock(timer.endsAt)}</span>
+        </div>
         <button
           type="button"
           onClick={() => {
             dismissTimer(timer.id);
           }}
-          className="h-10 px-3 rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-xs font-semibold text-emerald-200 hover:bg-emerald-500/20"
+          className="shrink-0 h-9 px-3 rounded-[10px] border border-ready-emerald-edge bg-transparent text-[13px] font-semibold text-ready-emerald-text hover:bg-ready-emerald-tint"
         >
           Dismiss<span className="sr-only"> {timer.label}</span>
         </button>
-      ) : (
-        <span className="min-w-[5ch] text-right font-mono text-lg font-semibold text-cyan-300 tabular-nums">
-          {formatCountdown(status.remaining)}
+      </li>
+    );
+  return (
+    <li
+      className={`${CARD} bg-panel-glass ${timer.kind === 'refine' ? 'border-[rgba(34,211,238,0.3)]' : 'border-hairline'}`}
+    >
+      <TimerRing progress={status.progress} done={false} size={64} tone={kind.tone} label={percent(status.progress)} />
+      <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+        <span className={`${KICKER} ${kind.text}`}>{kind.label}</span>
+        <span className="text-[15px] font-semibold text-ink-bright truncate">{timer.label}</span>
+        <span className="text-caption text-ink-muted">
+          {source(timer.kind, Date.parse(timer.endsAt) - Date.parse(timer.startedAt))}
         </span>
-      )}
+      </div>
+      <span className="font-mono text-lg text-ink-bright tabular-nums">{formatCountdown(status.remaining)}</span>
     </li>
   );
 }

@@ -22,12 +22,13 @@ test('after one online visit, the app and the Codex work offline', async ({ page
   await page.goto('./#home');
   await holdToStartSession(page);
   await page.locator('#sessionBar').click();
-  await page.locator('#sessionSheet').getByLabel('What it makes').fill('Enriched Carbon');
+  await page.getByRole('button', { name: 'Refiner timer' }).click();
+  await page.locator('#timerSheet').getByLabel('What it makes').fill('Enriched Carbon');
   await page
-    .locator('#sessionSheet')
+    .locator('#timerSheet')
     .getByRole('button', { name: /Start refiner timer/ })
     .click();
-  await expect(page.locator('#sessionBar')).toContainText('Enriched Carbon');
+  await expect(page.locator('#timerList')).toContainText('Enriched Carbon');
 
   await page.goto('./wiki/#/?q=oxygen');
   await expect(page.locator('#browseBody .result').first()).toContainText('Oxygen');

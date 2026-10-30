@@ -44,8 +44,7 @@ test('the alerts switch keeps the relay’s schedule in step, with names kept on
 
   await page.goto('./');
   await sessionButton(page).click();
-  const sheet = page.locator('#sessionSheet');
-  const toggle = sheet.getByRole('switch', { name: 'Alerts when the app is asleep' });
+  const toggle = page.locator('#sec-session').getByRole('switch', { name: 'Alerts when the app is asleep' });
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-checked', 'true');
   await expect.poll(() => calls.length).toBe(1);
@@ -54,7 +53,8 @@ test('the alerts switch keeps the relay’s schedule in step, with names kept on
     body: { subscription: SUBSCRIPTION, now: expect.any(Number), timers: [] }
   });
 
-  await sheet.getByRole('button', { name: /Custom/ }).click();
+  await page.getByRole('button', { name: 'Custom timer' }).click();
+  const sheet = page.locator('#timerSheet');
   await sheet.getByLabel('Name').fill('Frigate back');
   await sheet.getByRole('button', { name: '15m' }).click();
   await sheet.getByRole('button', { name: /^Start timer/ }).click();

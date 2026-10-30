@@ -14,7 +14,7 @@ import { logVisit, startSession } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
 import { useClock } from '../session/useClock.ts';
-import { openSessionSheet } from '../session/sheet-store.ts';
+import { openSession } from '../session/sheet-store.ts';
 import { loadFacts, useFacts } from '../gear/facts-store.ts';
 import { useSyncAttention, useSyncStatus } from '../../app/sync.ts';
 import { Button } from '../parts/Button.tsx';
@@ -211,7 +211,7 @@ function Hero({ system, now }: { system: System | undefined; now: number }) {
   );
 }
 
-// Up to two timers, the soonest running first; either opens the Session sheet, where timers are added and dismissed.
+// Up to two timers, the soonest running first; either opens the Session screen, where timers are added and dismissed.
 function Timers({ timers }: { timers: { timer: Timer; status: TimerStatus }[] }) {
   return (
     <section aria-label="Timers" className="grid grid-cols-2 gap-2.5">
@@ -219,7 +219,7 @@ function Timers({ timers }: { timers: { timer: Timer; status: TimerStatus }[] })
         <button
           key={timer.id}
           type="button"
-          onClick={openSessionSheet}
+          onClick={openSession}
           className={`rounded-card p-3.5 border flex items-center gap-3 text-left min-w-0 ${
             status.done
               ? 'bg-ready-emerald-wash border-ready-emerald-edge-soft'

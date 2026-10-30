@@ -5,7 +5,7 @@ import { buildState } from '@atlas/core/state';
 import { HOUR_MS } from '@atlas/core/systems-model';
 import { appState, setAppState } from '../../app/store.ts';
 import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
-import { openSessionSheet } from '../session/sheet-store.ts';
+import { openSession } from '../session/sheet-store.ts';
 import { setFactsForTests } from '../gear/facts-store.ts';
 import { Home } from './Home.tsx';
 
@@ -14,7 +14,7 @@ vi.mock('../systems/panel-store.ts', () => ({
   openSystem: vi.fn(),
   openSystemEditor: vi.fn()
 }));
-vi.mock('../session/sheet-store.ts', () => ({ openSessionSheet: vi.fn() }));
+vi.mock('../session/sheet-store.ts', () => ({ openSession: vi.fn() }));
 
 const ago = (hours: number) => new Date(Date.now() - hours * HOUR_MS).toISOString();
 const inHours = (hours: number) => new Date(Date.now() + hours * HOUR_MS).toISOString();
@@ -112,7 +112,7 @@ test('Log visit saves a visit and the screen follows; "I’m here" makes a recen
   expect(container.querySelector('#homeNow')?.textContent).toContain('Hesper Drift');
 });
 
-test('timers show the soonest running first, then the finished, and open the Session sheet', async () => {
+test('timers show the soonest running first, then the finished, and open the Session screen', async () => {
   const timer = (id: string, label: string, kind: string, startedAt: string, endsAt: string) => ({
     id,
     label,
@@ -138,7 +138,7 @@ test('timers show the soonest running first, then the finished, and open the Ses
     'ReadyCrops · Frost Crystal'
   ]);
   await userEvent.click(cards[0]!);
-  expect(openSessionSheet).toHaveBeenCalledTimes(1);
+  expect(openSession).toHaveBeenCalledTimes(1);
 });
 
 test('no timers, no timer cards; holding starts a session, which then shows as live', () => {

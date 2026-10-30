@@ -4,16 +4,19 @@ test('a session with a one-minute timer: the bar counts down, then announces it 
   await page.clock.install();
   await page.goto('./');
   await holdToStartSession(page, { fakeClock: true });
-  await page.locator('#sessionBar').click(); // starting shows the bar; the bar opens the sheet
-  const sheet = page.locator('#sessionSheet');
+  await page.locator('#sessionBar').click(); // starting shows the bar; the bar opens the Session screen
+  await expect(page.locator('#sessionClock')).toBeVisible();
+  await page.getByRole('button', { name: 'Custom timer' }).click();
+  const sheet = page.locator('#timerSheet');
   await expect(sheet).toHaveAttribute('aria-hidden', 'false');
-  await sheet.getByRole('button', { name: /Custom/ }).click();
   await sheet.getByLabel('Name').fill('Storm passes');
   await sheet.getByLabel('Minutes').fill('1');
   await sheet.getByRole('button', { name: /^Start timer/ }).click();
-  await expect(sheet.locator('#timerList')).toContainText('Storm passes');
-  await page.keyboard.press('Escape'); // closes the sheet on a phone and on desktop
-  await expect(sheet).toHaveAttribute('aria-hidden', 'true');
+  await expect(sheet).toHaveAttribute('aria-hidden', 'true'); // starting closes the sheet
+  await expect(page.locator('#timerList')).toContainText('Storm passes');
+  await page.evaluate(() => {
+    location.hash = '#home';
+  });
   await expect(page.locator('#sessionBar')).toContainText('Storm passes');
   await page.clock.fastForward('01:05');
   await expect(page.locator('#toastMessage')).toHaveText('Timer done: Storm passes.');
@@ -27,19 +30,18 @@ test('timers and the session survive a reload and end in a recap', async ({ page
   await page.goto('./');
   await holdToStartSession(page);
   await page.locator('#sessionBar').click();
-  const sheet = page.locator('#sessionSheet');
-  await sheet.getByRole('button', { name: /Crop/ }).click();
+  await page.getByRole('button', { name: 'Crop timer' }).click();
+  const sheet = page.locator('#timerSheet');
   await sheet.getByLabel('Crop').fill('Frostwort');
   await sheet.getByLabel('Minutes').fill('60');
   await sheet.getByRole('button', { name: /Start crop timer/ }).click();
-  await page.reload();
-  await expect(page.locator('#sessionBar')).toContainText('Frostwort');
-  await page.locator('#sessionBar').click();
-  await page.locator('#sessionSheet').getByRole('button', { name: 'End session' }).click();
+  await page.reload(); // still on the Session screen
+  await expect(page.locator('#timerList')).toContainText('Frostwort');
+  await page.locator('#sec-session').getByRole('button', { name: 'End session' }).click();
   await expect(page.locator('#sessionRecap')).toContainText('Played');
   expect((await storedState(page)).sessions).toHaveLength(1);
   // An End tapped by mistake is undone from the recap.
-  await page.locator('#sessionSheet').getByRole('button', { name: 'Resume session' }).click();
-  await expect(page.locator('#sessionBar')).toContainText('Session');
+  await page.locator('#sec-session').getByRole('button', { name: 'Resume session' }).click();
+  await expect(page.locator('#sessionClock')).toBeVisible();
   expect((await storedState(page)).sessions).toHaveLength(0);
 });

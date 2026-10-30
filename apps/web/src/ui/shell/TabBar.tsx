@@ -12,6 +12,7 @@ import { useSyncAttention } from '../../app/sync.ts';
 // stations, the first run, until the Runs screen lands; the Codex tab's books and Guides live on this page.
 const TAB_OF: Record<string, string> = {
   home: 'home',
+  session: 'home',
   more: 'home',
   systems: 'log',
   system: 'log',

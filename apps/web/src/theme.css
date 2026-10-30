@@ -518,10 +518,10 @@ label,
     linear-gradient(90deg, var(--color-orbit-grid) 1px, transparent 1px);
   background-size: 22px 22px;
 }
-/* Below lg, rebuilt screens (Home, Systems, System detail) draw their own header, so the app's is hidden there; it comes back while
+/* Below lg, rebuilt screens (Home, Systems, System detail, Session) draw their own header, so the app's is hidden there; it comes back while
    the search is open, since the search lives in it. */
 @media (max-width: 1023px) {
-  body:is([data-section='home'], [data-section='systems'], [data-section='system']):not(.search-open) .app-header {
+  body:is([data-section='home'], [data-section='systems'], [data-section='system'], [data-section='session']):not(.search-open) .app-header {
     display: none;
   }
   /* Home shows timers as cards, so the session bar appears there (and on Systems) only while a session is live
@@ -532,6 +532,10 @@ label,
   body:is([data-section='home'], [data-section='systems'], [data-section='system']) #sessionBarRoot:not(:has([data-live='true'])) {
     display: none;
   }
+}
+/* The Session screen is what the session bar opens, so the bar isn't shown on it. */
+body[data-section='session'] #sessionBarRoot {
+  display: none;
 }
 /* The orbit diagram (StarChart.tsx): planets drift ±3° along their arcs, the star's corona breathes. Under reduced
    motion both stop at their seeded, resting state. */

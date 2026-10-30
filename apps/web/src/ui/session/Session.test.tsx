@@ -1,14 +1,15 @@
 import { beforeEach, expect, test } from 'vitest';
-import { act, render, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { makeCatalog } from '@atlas/core/planner';
 import { appState, setAppState } from '../../app/store.ts';
 import { setGameDataForTests } from '../calculators/game-data.ts';
 import { markAlerted, resumeSession } from '../actions.ts';
+import { Session } from './Session.tsx';
 import { SessionBar } from './SessionBar.tsx';
 import { SessionSheet } from './SessionSheet.tsx';
-import { closeSessionSheet, openSessionSheet } from './sheet-store.ts';
+import { clearRecap, closeAddTimer } from './sheet-store.ts';
 import subset from '../../../../../tests/fixtures/game-data-subset.json';
 
 // The trimmed wiki subset goes straight to makeCatalog (see Calculators.test.tsx).
@@ -20,39 +21,50 @@ beforeEach(() => {
   act(() => {
     setAppState(buildState({ systems: [] }));
     setGameDataForTests({ status: 'ready', catalog, verification: null });
-    closeSessionSheet();
+    closeAddTimer();
+    clearRecap();
   });
 });
 
-const sheet = () => document.getElementById('sessionSheet')!;
-const open = () => {
-  act(() => {
-    openSessionSheet();
-  });
-};
-
-test('a session starts from the sheet, the bar shows it, and ending it shows the recap', async () => {
+const sheet = () => document.getElementById('timerSheet')!;
+const screenWithSheet = () =>
   render(
     <>
       <SessionBar />
+      <Session />
       <SessionSheet />
     </>
   );
+const add = async (kind: 'Refiner' | 'Crop' | 'Custom') => {
+  await userEvent.click(screen.getByRole('button', { name: `${kind} timer` }));
+};
+
+test('a session starts on the screen with a hold, shows its clock and tallies, and ending it shows the recap', async () => {
+  screenWithSheet();
   expect(document.getElementById('sessionBar')).toBeNull(); // nothing on: no bar
-  open();
-  await userEvent.click(within(sheet()).getByRole('button', { name: /Start session/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Hold to start session.*, press and hold$/ }), { detail: 0 });
   expect(appState.session).not.toBeNull();
   expect(document.getElementById('sessionBar')?.textContent).toContain('Session');
-  await userEvent.click(within(sheet()).getByRole('button', { name: 'End session' }));
+  expect(screen.getByText('Session live')).toBeTruthy();
+  expect(document.getElementById('sessionClock')?.textContent).toMatch(/^0:00:0\d$/);
+  expect(
+    within(screen.getByRole('list', { name: 'This session' }))
+      .getAllByRole('listitem')
+      .map(item => item.textContent)
+  ).toEqual(['0new systems', '0visits', '0timers done']);
+  await userEvent.click(screen.getByRole('button', { name: 'End session' }));
   expect(appState.session).toBeNull();
   expect(appState.sessions).toHaveLength(1);
-  expect(within(sheet()).getByRole('heading', { name: 'Session recap' })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'Session recap' })).toBeTruthy();
   expect(document.getElementById('sessionRecap')?.textContent).toContain('Visits0 · 0 systems');
+  await userEvent.click(screen.getByRole('button', { name: 'Done' }));
+  expect(screen.queryByRole('heading', { name: 'Session recap' })).toBeNull();
 });
 
 test('a refiner timer takes the wiki’s time for whole batches', async () => {
-  render(<SessionSheet />);
-  open();
+  screenWithSheet();
+  await add('Refiner');
+  expect(sheet().getAttribute('aria-hidden')).toBe('false');
   const form = within(sheet());
   await userEvent.type(form.getByLabelText('What it makes'), 'Enriched Carbon');
   await userEvent.clear(form.getByLabelText('Amount made'));
@@ -62,7 +74,10 @@ test('a refiner timer takes the wiki’s time for whole batches', async () => {
   const [timer] = appState.timers;
   expect(timer?.label).toBe('4 Enriched Carbon');
   expect(Date.parse(timer?.endsAt ?? '') - Date.parse(timer?.startedAt ?? '')).toBe(180_000);
-  expect(within(document.getElementById('timerList')!).getByText('4 Enriched Carbon')).toBeTruthy();
+  expect(sheet().getAttribute('aria-hidden')).toBe('true'); // started: the sheet closes
+  const card = within(document.getElementById('timerList')!).getByText('4 Enriched Carbon').closest('li')!;
+  expect(card.textContent).toContain('Refiner');
+  expect(card.textContent).toContain('From the wiki’s refining time');
 });
 
 test('a crop starts from the time last set for it; a custom timer takes a quick time', async () => {
@@ -73,14 +88,13 @@ test('a crop starts from the time last set for it; a custom timer takes a quick 
   act(() => {
     setAppState(state);
   });
-  render(<SessionSheet />);
-  open();
+  screenWithSheet();
+  await add('Crop');
   const form = within(sheet());
-  await userEvent.click(form.getByRole('button', { name: /Crop/ }));
   await userEvent.type(form.getByLabelText('Crop'), 'Frostwort');
   expect(form.getByLabelText<HTMLInputElement>('Minutes').value).toBe('75');
   await userEvent.click(form.getByRole('button', { name: /Start crop timer/ }));
-  await userEvent.click(form.getByRole('button', { name: /Custom/ }));
+  await add('Custom');
   await userEvent.type(form.getByLabelText('Name'), 'Frigate');
   await userEvent.click(form.getByRole('button', { name: '15m' }));
   await userEvent.click(form.getByRole('button', { name: /^Start timer/ }));
@@ -103,15 +117,13 @@ test('a finished timer is announced once and counts toward the session; Dismiss 
   expect(markAlerted(['done']).map(timer => timer.id)).toEqual(['done']);
   expect(markAlerted(['done'])).toEqual([]); // another tab or a reload: not again
   expect(appState.session?.timersDone).toBe(1);
-  render(
-    <>
-      <SessionBar />
-      <SessionSheet />
-    </>
-  );
+  screenWithSheet();
   expect(document.getElementById('sessionBar')?.textContent).toContain('Storm done');
-  open();
-  await userEvent.click(within(sheet()).getByRole('button', { name: 'Dismiss Storm' }));
+  const card = screen.getByRole('button', { name: 'Dismiss Storm' }).closest('li')!;
+  expect(card.textContent).toContain('Custom · done');
+  expect(card.textContent).toMatch(/Finished at \d/);
+  expect(within(screen.getByRole('list', { name: 'This session' })).getByText('timer done')).toBeTruthy();
+  await userEvent.click(screen.getByRole('button', { name: 'Dismiss Storm' }));
   expect(appState.timers).toEqual([]);
 });
 

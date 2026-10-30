@@ -30,7 +30,7 @@ nms-os/                          pnpm workspace
 │   ├── index.html               Main app: Home, Systems, Outlaw Run, Calculators, Guides (6 books), More
 │   ├── wiki/index.html          The Codex page, served at /wiki/ (hash routes #/?q=… and #/a/<path>)
 │   ├── src/ui/                  The whole UI in React (ADR-0004), mounted by mount.tsx
-│   │   ├── session/             The session bar, the Session sheet (timers, add a timer, recap) and timer-runner.ts (alerts)
+│   │   ├── session/             The Session screen (#session: the session, timers, recap), the add-timer sheet, the session bar and timer-runner.ts (alerts)
 │   │   ├── shell/               The main page's frame: header + search, sidebar, tab bar, storage banner; section-store.ts (hash routing), wiki-index.ts
 │   │   ├── home/ systems/ outlaw/ calculators/ guides/ more/   One folder per screen; systems/ also holds the system panel and editor; guides/books/ holds the six books; more/device-store.ts is keep-awake, install and storage protection
 │   │   ├── systems/panel-store.ts   Which system the panel shows + the Systems filter (shared by several screens)

@@ -15,7 +15,7 @@ export function Sidebar() {
   const loaded = useLoaded();
   const syncAttention = useSyncAttention();
   // A book is part of Guides; one system is part of Systems.
-  const at = section.startsWith('book') ? 'guides' : section === 'system' ? 'systems' : section;
+  const at = section.startsWith('book') ? 'guides' : section === 'system' ? 'systems' : section === 'session' ? 'home' : section;
   const item = (key: string, icon: string, color: string, label: string, count?: ReactNode, countId?: string) => (
     <li>
       <button

@@ -1,4 +1,4 @@
-// "Alerts when the app is asleep" (ADR-0006): the opt-in switch for timer pushes, in the Session sheet and More.
+// "Alerts when the app is asleep" (ADR-0006): the opt-in switch for timer pushes, on the Session screen and More.
 import { disablePush, enablePush, usePushStatus, type PushStatus } from '../../app/push.ts';
 import { untilText, useRelayStatus } from '../../app/relay-status.ts';
 
@@ -11,7 +11,8 @@ const NOTE: Record<NonNullable<PushStatus['problem']>, (until: string) => string
   busy: until => `The alert server isn’t taking new devices today; this one joins after ${until}.`
 };
 
-export function AlertsSwitch({ id }: { id: string }) {
+// `subtitle` replaces the privacy line under the label where the screen states it nearby (the Session screen).
+export function AlertsSwitch({ id, subtitle }: { id: string; subtitle?: string }) {
   const push = usePushStatus();
   const relay = useRelayStatus();
   if (push.support === 'no') return null;
@@ -28,11 +29,12 @@ export function AlertsSwitch({ id }: { id: string }) {
     <div>
       <div className="flex items-center gap-3">
         <span className="flex-1 min-w-0">
-          <span id={label} className="block text-sm text-white">
+          <span id={label} className="block text-sm font-semibold text-white">
             Alerts when the app is asleep
           </span>
           <span id={note} className="block text-xs text-slate-400">
-            Your device’s push address and each timer’s end time go to the alert server; timer names stay here.
+            {subtitle ??
+              'Your device’s push address and each timer’s end time go to the alert server; timer names stay here.'}
           </span>
         </span>
         <button

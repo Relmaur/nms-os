@@ -65,7 +65,8 @@ export function timerStatus(timer: Pick<Timer, 'startedAt' | 'endsAt'>, now: num
   return { remaining, done: remaining === 0, progress: span > 0 ? Math.min(1, (now - start) / span) : 1 };
 }
 
-// Everything counting down, soonest first: your timers, then outlaw stations still restocking (read-only rows).
+// Everything counting down, soonest first (your timers and outlaw stations still restocking, read-only), then your
+// finished timers waiting to be dismissed, the latest first.
 export type TimerRow =
   | { type: 'timer'; timer: Timer; status: TimerStatus; endsAt: number }
   | { type: 'outlaw'; system: System; endsAt: number };
@@ -83,7 +84,8 @@ export function timerRows(
   const restocking = rankOutlaw(state.systems, state.outlaw.restockHours, now)
     .filter(row => !row.status.ready)
     .map(row => ({ type: 'outlaw' as const, system: row.system, endsAt: row.status.readyAt }));
-  return [...own, ...restocking].sort((a, b) => a.endsAt - b.endsAt);
+  const running = [...own.filter(row => !row.status.done), ...restocking].sort((a, b) => a.endsAt - b.endsAt);
+  return [...running, ...own.filter(row => row.status.done).sort((a, b) => b.endsAt - a.endsAt)];
 }
 
 export const runningTimers = (timers: Timer[], now: number): Timer[] =>

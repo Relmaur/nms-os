@@ -45,7 +45,7 @@ test('status counts down to done, with progress', () => {
   assert.equal(timerStatus(timer({ endsAt: at(-1) }), now).progress, 1);
 });
 
-test('rows put the soonest first and include outlaw stations still restocking', () => {
+test('rows put the soonest first, include outlaw stations still restocking, and finished timers last', () => {
   const restocking = normalizeSystem({
     name: 'Den',
     tags: ['outlaw'],
@@ -54,7 +54,12 @@ test('rows put the soonest first and include outlaw stations still restocking', 
   const ready = normalizeSystem({ name: 'Ready', tags: ['outlaw'] });
   const rows = timerRows(
     {
-      timers: [timer({ id: 'late', endsAt: at(120) }), timer({ id: 'soon', endsAt: at(5) })],
+      timers: [
+        timer({ id: 'done-early', endsAt: at(-30) }),
+        timer({ id: 'late', endsAt: at(120) }),
+        timer({ id: 'done-just', endsAt: at(-1) }),
+        timer({ id: 'soon', endsAt: at(5) })
+      ],
       systems: [restocking, ready],
       outlaw: { restockHours: 24 }
     },
@@ -62,7 +67,7 @@ test('rows put the soonest first and include outlaw stations still restocking', 
   );
   assert.deepEqual(
     rows.map(row => (row.type === 'timer' ? row.timer.id : row.system.name)),
-    ['soon', 'Den', 'late']
+    ['soon', 'Den', 'late', 'done-just', 'done-early'] // finished ones last, the latest first
   );
 });
 
