@@ -52,6 +52,20 @@ test('sorting by gain per step favours short chains; filters by category and ste
   assert.ok(sortCrafts(crafts, { category: 'cooking' }).every(craft => craft.item.category === 'cooking'));
 });
 
+test('by multiplier, by fewest steps, and without crops', () => {
+  const { crafts } = rankCrafts(subset);
+  const byMultiplier = sortCrafts(crafts, { sort: 'multiplier' });
+  for (let i = 1; i < byMultiplier.length; i++)
+    assert.ok((byMultiplier[i - 1]?.multiplier ?? 0) >= (byMultiplier[i]?.multiplier ?? 0));
+  const bySteps = sortCrafts(crafts, { sort: 'steps' });
+  for (let i = 1; i < bySteps.length; i++) assert.ok((bySteps[i - 1]?.steps ?? 0) <= (bySteps[i]?.steps ?? 0));
+  const stasis = crafts.find(craft => craft.item.title === 'Stasis Device');
+  assert.equal(stasis?.farmed, true); // Frost Crystal, Star Bulb, Gamma Root…
+  const noCrops = sortCrafts(crafts, { noFarming: true });
+  assert.ok(noCrops.length > 0 && noCrops.every(craft => !craft.farmed));
+  assert.ok(!noCrops.some(craft => craft.item.title === 'Stasis Device'));
+});
+
 test('on the real mirror, the well-known money crafts lead', () => {
   let catalog: Catalog;
   try {

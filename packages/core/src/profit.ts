@@ -14,14 +14,19 @@ export interface RankedCraft {
   multiplier: number | null; // value ÷ rawValue (null when the raw materials have no value)
   steps: number; // crafting and cooking steps, the product included
   blueprint: boolean; // some step needs a learned blueprint
+  farmed: boolean; // a raw material is a crop: the wiki's "Harvested Agricultural Substance" (Frost Crystal, Star Bulb…)
 }
 
-export type CraftSort = 'gain' | 'per-step';
+// gain: most Units gained; per-step: gain per crafting step; multiplier: value over raw value; steps: fewest steps
+// first (then most gained).
+export type CraftSort = 'gain' | 'per-step' | 'multiplier' | 'steps';
 export interface RankOptions {
   sort?: CraftSort;
   category?: string; // a Codex category ("products", "cooking"), or every category
   maxSteps?: number;
+  noFarming?: boolean; // leave out crafts that need a crop
 }
+const CROP = 'Harvested Agricultural Substance';
 
 // Every current item with a wiki value and a crafting or cooking recipe, ranked once; filter and sort with
 // sortCrafts(). Items with a raw material the wiki gives no value are left out and counted, never guessed.
@@ -34,8 +39,11 @@ export function rankCrafts(catalog: Catalog): { crafts: RankedCraft[]; skipped: 
     if (!plan) continue;
     let rawValue = 0;
     let unknown = false;
+    let farmed = false;
     for (const raw of plan.raw) {
-      const value = (raw.item ?? findItem(catalog, raw.title))?.value;
+      const found = raw.item ?? findItem(catalog, raw.title);
+      if (found?.fields.type === CROP) farmed = true;
+      const value = found?.value;
       if (value === undefined) unknown = true;
       else rawValue += value * raw.qty;
     }
@@ -53,7 +61,8 @@ export function rankCrafts(catalog: Catalog): { crafts: RankedCraft[]; skipped: 
       gain: value - rawValue,
       multiplier: rawValue > 0 ? value / rawValue : null,
       steps: plan.steps,
-      blueprint: [plan.product, ...plan.rounds.flat()].some(step => step.recipe.blueprint)
+      blueprint: [plan.product, ...plan.rounds.flat()].some(step => step.recipe.blueprint),
+      farmed
     });
   }
   return { crafts, skipped };
@@ -61,10 +70,25 @@ export function rankCrafts(catalog: Catalog): { crafts: RankedCraft[]; skipped: 
 
 export function sortCrafts(
   crafts: RankedCraft[],
-  { sort = 'gain', category, maxSteps }: RankOptions = {}
+  { sort = 'gain', category, maxSteps, noFarming }: RankOptions = {}
 ): RankedCraft[] {
-  const score = (craft: RankedCraft) => (sort === 'per-step' ? craft.gain / craft.steps : craft.gain);
+  const score = (craft: RankedCraft) =>
+    sort === 'per-step'
+      ? craft.gain / craft.steps
+      : sort === 'multiplier'
+        ? (craft.multiplier ?? 0)
+        : sort === 'steps'
+          ? -craft.steps
+          : craft.gain;
   return crafts
-    .filter(craft => (!category || craft.item.category === category) && (!maxSteps || craft.steps <= maxSteps))
-    .sort((a, b) => score(b) - score(a) || a.item.title.localeCompare(b.item.title));
+    .filter(
+      craft =>
+        (!category || craft.item.category === category) &&
+        (!maxSteps || craft.steps <= maxSteps) &&
+        (!noFarming || !craft.farmed)
+    )
+    .sort(
+      (a, b) =>
+        score(b) - score(a) || (sort === 'steps' ? b.gain - a.gain : 0) || a.item.title.localeCompare(b.item.title)
+    );
 }

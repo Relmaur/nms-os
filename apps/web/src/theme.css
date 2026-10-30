@@ -518,8 +518,8 @@ label,
     linear-gradient(90deg, var(--color-orbit-grid) 1px, transparent 1px);
   background-size: 22px 22px;
 }
-/* Below lg, rebuilt screens (Home, Systems, System detail, Session, Fleet, Ship detail, Notes, a note, the planner)
-   draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
+/* Below lg, rebuilt screens (Home, Systems, System detail, Session, Fleet, Ship detail, Notes, a note, the planner,
+   Best crafts) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
    lives in it. */
 @media (max-width: 1023px) {
   body:is(
@@ -531,7 +531,8 @@ label,
       [data-section='ship'],
       [data-section='notes'],
       [data-section='note'],
-      [data-section='plan']
+      [data-section='plan'],
+      [data-section='crafts']
     ):not(.search-open)
     .app-header {
     display: none;
@@ -546,7 +547,8 @@ label,
       [data-section='ship'],
       [data-section='notes'],
       [data-section='note'],
-      [data-section='plan']
+      [data-section='plan'],
+      [data-section='crafts']
     )
     #sessionBarRoot {
     top: calc(env(safe-area-inset-top) + 0.5rem);
@@ -559,7 +561,8 @@ label,
       [data-section='ship'],
       [data-section='notes'],
       [data-section='note'],
-      [data-section='plan']
+      [data-section='plan'],
+      [data-section='crafts']
     )
     #sessionBarRoot:not(:has([data-live='true'])) {
     display: none;

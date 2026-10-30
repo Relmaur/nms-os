@@ -16,13 +16,8 @@ vi.mock('../shell/section-store.ts', () => ({
   useSectionParam: () => param
 }));
 
-// The frozen wiki subset the core tests use, trimmed (see Calculators.test.tsx); the peek reads `fields`, which the
-// trim dropped, so each item gets an empty one.
-const trimmed = subset as unknown as { items: object[] };
-const catalog = makeCatalog({
-  ...trimmed,
-  items: trimmed.items.map(item => ({ fields: {}, ...item }))
-} as unknown as Parameters<typeof makeCatalog>[0]);
+// The frozen wiki subset the core tests use, trimmed: it goes straight to makeCatalog (see Calculators.test.tsx).
+const catalog = makeCatalog(subset as unknown as Parameters<typeof makeCatalog>[0]);
 const cargo = (): Record<string, number> =>
   Object.fromEntries(
     [...document.querySelectorAll('#planCargo [data-raw]')].map(row => [

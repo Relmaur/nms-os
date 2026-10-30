@@ -15,7 +15,7 @@ beforeEach(() => {
   localStorage.clear();
   act(() => {
     setGameDataForTests({ status: 'ready', catalog, verification: null });
-    setTool('profit');
+    setTool('value');
   });
 });
 
@@ -62,17 +62,17 @@ test('the planner card names the plan in progress and opens it', () => {
 
 test('arrow keys, Home and End move along the dock', async () => {
   render(<Calculators />);
-  screen.getByRole('tab', { name: 'Best crafts' }).focus();
+  screen.getByRole('tab', { name: 'Base value' }).focus();
   await userEvent.keyboard('{ArrowRight}');
-  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Base value' }));
+  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Extractors' }));
   await userEvent.keyboard('{End}');
   expect(screen.getByRole('tab', { name: 'Registers' }).getAttribute('aria-selected')).toBe('true');
   await userEvent.keyboard('{ArrowRight}'); // wraps round
-  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Best crafts' }));
+  expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Base value' }));
   await userEvent.keyboard('{ArrowLeft}');
   expect(document.activeElement).toBe(screen.getByRole('tab', { name: 'Registers' }));
   await userEvent.keyboard('{Home}');
-  expect(screen.getByRole('tab', { name: 'Best crafts' }).getAttribute('aria-selected')).toBe('true');
+  expect(screen.getByRole('tab', { name: 'Base value' }).getAttribute('aria-selected')).toBe('true');
 });
 
 test('switching tools keeps what was typed in each', async () => {
@@ -81,23 +81,12 @@ test('switching tools keeps what was typed in each', async () => {
   const register = screen.getByRole('textbox', { name: /Register 2/ });
   await userEvent.clear(register);
   await userEvent.type(register, '7 * 6');
-  await userEvent.click(screen.getByRole('tab', { name: 'Best crafts' }));
+  await userEvent.click(screen.getByRole('tab', { name: 'Base value' }));
   await userEvent.click(screen.getByRole('tab', { name: 'Registers' }));
   expect(document.getElementById('calcAns2')?.textContent).toBe('42');
 });
 
-test('Best crafts ranks by value gained, filters, and opens a pick in the planner', async () => {
+test('Best crafts has its own screen, linked from here', () => {
   render(<Calculators />);
-  const list = () =>
-    [...document.querySelectorAll('#craftList [data-craft]')].map(row => row.getAttribute('data-craft'));
-  expect(list().length).toBeGreaterThan(0);
-  const first = document.querySelector('#craftList [data-craft]');
-  expect(first?.textContent).toMatch(/\+[\d.,]+[KM]?/); // a gain, signed
-  await userEvent.selectOptions(screen.getByLabelText('Length'), 'Up to 3 steps');
-  expect(list()).not.toContain('Stasis Device'); // a long chain
-  await userEvent.selectOptions(screen.getByLabelText('Length'), 'Any length');
-  await userEvent.click(screen.getByRole('button', { name: 'Most gained' }));
-  const top = list().find(title => title !== 'Stasis Device') ?? '';
-  await userEvent.click(screen.getByRole('button', { name: `Plan it: ${top}` }));
-  expect(decodeURIComponent(location.hash)).toBe(`#plan/${top}`);
+  expect(screen.getByRole('link', { name: /Best crafts/ }).getAttribute('href')).toBe('#crafts');
 });

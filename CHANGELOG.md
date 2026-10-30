@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **Best crafts has its own screen** (`#crafts`): rank by profit, multiplier or fewest steps, or leave out crafts that need a crop (No farming); the top pick leads, and every row opens the recipe planner. Calculators links it and the planner, and keeps Base value, Extractors and Registers.
 - **The recipe planner is its own screen** (`#plan/<item>`): what the item is worth, then one path in play order, Gather → each crafting round → the final craft, with progress. Tap any item for a Codex peek that leads with the wiki's Source section, then where your own log says you found it, what the plan needs and a way into the Codex. Best crafts' "Plan it" opens it; Calculators keeps its other tools and a card for the plan in progress.
 - **Notes are redesigned, and a note has its own screen** (`#note/<id>`): the list has search and chips for Pinned and each tag; a note opens to read, with Write beside it, a Pin menu (Home, a book or a ship) and a formatting toolbar (heading, bold, italic, list, table, Codex link). Notes save as you write: there's no Save button, and leaving keeps what's there. Notes can have tags.
 - **The wiki mirror is refreshed from Fandom's database dumps** (ADR-0009): `pnpm sync:wiki --from-dump <file>` reads the dump's XML (plain or gzipped) with the same scope, exclusions and rendering, and `pnpm verify:wiki --from-dump <file>` compares the archive with it. The dump stays outside the repo.

@@ -12,7 +12,8 @@ const PART_OF: Record<string, string> = {
   session: 'home',
   ship: 'gear',
   note: 'notes',
-  plan: 'calculators'
+  plan: 'calculators',
+  crafts: 'calculators'
 };
 
 export function Sidebar() {

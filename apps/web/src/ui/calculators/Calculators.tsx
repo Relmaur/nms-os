@@ -1,5 +1,5 @@
-// Calculators: the way into the recipe planner (its own screen, #plan/<item>) with the plan in progress, then a dock
-// for the small tools: the best crafts for money, a haul's base value, mineral extractors and Harmonic Camp registers.
+// Calculators: the ways into the recipe planner (#plan/<item>, with the plan in progress) and Best crafts (#crafts),
+// then a dock for the small tools: a haul's base value, mineral extractors and Harmonic Camp registers.
 // The new design has no place for these yet (owner, 2026-10-30: keep them here until a design round does).
 // Recipes and values come from the wiki mirror; anything the wiki can't know is an input the player sets.
 import { useMemo, useState, type SubmitEvent } from 'react';
@@ -11,7 +11,6 @@ import { showToast } from '../../app/ui.ts';
 import { useGameData, type GameDataState } from './game-data.ts';
 import { readProgress } from './progress.ts';
 import { planSummary } from './plan-bits.ts';
-import { BestCrafts } from './BestCrafts.tsx';
 import { panelId, tabId, ToolDock } from './ToolDock.tsx';
 import { useTool, type Tool } from './tool-store.ts';
 
@@ -42,20 +41,27 @@ export function Calculators() {
         <SourceLine data={data} />
       </div>
 
-      <PlannerLink catalog={catalog} />
+      <div className="max-w-3xl grid gap-2 sm:grid-cols-2">
+        <PlannerLink catalog={catalog} />
+        <a
+          id="calcCrafts"
+          href="#crafts"
+          className="flex items-center gap-3 px-3 h-14 rounded-xl border border-slate-700 bg-slate-900 text-white hover:border-slate-500"
+        >
+          <span className="flex w-9 h-9 shrink-0 rounded-lg items-center justify-center bg-amber-400/10 text-amber-300">
+            <i className="ph-bold ph-trophy text-lg" aria-hidden="true" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block font-display font-bold text-sm leading-5">Best crafts</span>
+            <span className="block truncate text-xs leading-4 text-slate-400">What to craft for Units</span>
+          </span>
+          <i className="ph-bold ph-caret-right text-slate-400" aria-hidden="true" />
+        </a>
+      </div>
       <ToolDock />
 
       {/* One wrapper, so the hidden panels never sit last in the page's space-y list (which would add a gap). */}
       <div>
-        <div {...panel('profit')} className="max-w-3xl">
-          {data.status === 'ready' ? (
-            <BestCrafts catalog={data.catalog} />
-          ) : (
-            <p className="text-sm text-slate-400">
-              {data.status === 'failed' ? 'No wiki data yet.' : 'Loading recipes…'}
-            </p>
-          )}
-        </div>
         <div {...panel('value')} className="max-w-3xl space-y-4">
           <BaseValue catalog={catalog} />
           <p className="text-xs text-slate-400 px-1">
@@ -86,7 +92,7 @@ function PlannerLink({ catalog }: { catalog: Catalog | null }) {
     <a
       id="calcPlanner"
       href={`#plan/${encodeURIComponent(title)}`}
-      className="max-w-3xl flex items-center gap-3 px-3 h-14 rounded-xl border border-cyan-400/50 bg-cyan-500/10 text-white hover:bg-cyan-500/15"
+      className="flex items-center gap-3 px-3 h-14 rounded-xl border border-cyan-400/50 bg-cyan-500/10 text-white hover:bg-cyan-500/15"
     >
       <span className="flex w-9 h-9 shrink-0 rounded-lg items-center justify-center bg-cyan-400/15 text-cyan-200">
         <i className="ph-bold ph-stack text-lg" aria-hidden="true" />

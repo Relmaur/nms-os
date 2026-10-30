@@ -1,11 +1,10 @@
-// The calculators' switcher: four tools (Best crafts first: it opens its picks in the recipe planner). ARIA tabs:
-// arrow keys, Home and End move between them. The planner is its own screen, linked above the dock.
+// The calculators' switcher between the three small tools. ARIA tabs: arrow keys, Home and End move between them.
+// The recipe planner and Best crafts are screens of their own, linked above the dock.
 import type { KeyboardEvent } from 'react';
 import { setTool, TOOLS, useTool, type Tool } from './tool-store.ts';
 
 // [name, icon, hue]
 const SMALL: Record<Tool, readonly [string, string, string]> = {
-  profit: ['Best crafts', 'ph-trend-up', 'text-cyan-300'],
   value: ['Base value', 'ph-coins', 'text-amber-300'],
   extractors: ['Extractors', 'ph-mountains', 'text-emerald-300'],
   registers: ['Registers', 'ph-terminal-window', 'text-purple-300']
@@ -69,7 +68,7 @@ export function ToolDock() {
       role="tablist"
       aria-label="Calculators"
       onKeyDown={onKeyDown}
-      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-4 gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
+      className="scroll-mt-[calc(4.5rem+env(safe-area-inset-top))] grid grid-cols-3 gap-1.5 sm:gap-2 sm:p-2 sm:rounded-2xl sm:bg-slate-950/70 sm:border sm:border-slate-800"
     >
       {TOOLS.map(tool => {
         const [name, icon, hue] = SMALL[tool];

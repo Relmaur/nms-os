@@ -75,15 +75,23 @@ test('base value and extractor yield use wiki values', async ({ page }) => {
 
 test('Best crafts ranks the real mirror and opens a pick in the planner', async ({ page }) => {
   await page.goto('./#calculators');
+  await page.getByRole('link', { name: /Best crafts/ }).click();
+  await expect(page).toHaveURL(/#crafts$/);
   const rows = page.locator('#craftList [data-craft]');
   await expect(rows.first()).toHaveAttribute('data-craft', /^(Stasis Device|Fusion Ignitor)$/);
+  await expect(page.locator('#craftTop')).toContainText(/Stasis Device|Fusion Ignitor/);
   await expect(rows).toHaveCount(15);
   await page.getByRole('button', { name: 'Show more' }).click();
   await expect(rows).toHaveCount(30);
-  await page.locator('#craftList').getByRole('button', { name: 'Plan it: Quantum Processor' }).click();
+  await page.getByRole('button', { name: 'No farming' }).click();
+  await expect(rows.first()).not.toHaveAttribute('data-craft', 'Stasis Device');
+  await page.getByRole('button', { name: 'No farming' }).click();
+  await page.locator('#craftList [data-craft="Quantum Processor"] a').click();
   await expect(page).toHaveURL(/#plan\/Quantum%20Processor$/);
   await expect(page.locator('#planTitle')).toHaveText('Quantum Processor');
-  await page.getByRole('button', { name: 'Back' }).click();
+  await page.locator('#sec-plan').getByRole('button', { name: 'Back' }).click();
+  await expect(page).toHaveURL(/#crafts$/);
+  await page.locator('#sec-crafts').getByRole('button', { name: 'Back' }).click();
   await expect(page.locator('#calcPlanSummary')).toContainText('Quantum Processor');
 });
 
@@ -97,7 +105,7 @@ test('Harmonic Camp registers evaluate the expressions', async ({ page }) => {
 
 test('the dock keeps the chosen tool while the app is open', async ({ page }) => {
   await page.goto('./#calculators');
-  await expect(page.getByRole('tab', { name: 'Best crafts' })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByRole('tab', { name: 'Base value' })).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#calcPlanSummary')).toContainText('Stasis Device');
   await page.getByRole('tab', { name: 'Registers' }).click();
   await page.locator('#calcReg1').fill('3 * 3');
@@ -109,5 +117,5 @@ test('the dock keeps the chosen tool while the app is open', async ({ page }) =>
     location.hash = '#calculators';
   });
   await expect(page.locator('#calcAns1')).toHaveText('9');
-  await expect(page.locator('#craftList')).toBeHidden();
+  await expect(page.locator('#valueTotal')).toBeHidden();
 });

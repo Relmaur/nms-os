@@ -23,6 +23,7 @@ const TAB_OF: Record<string, string> = {
   outlaw: 'runs',
   calculators: 'runs',
   plan: 'runs',
+  crafts: 'runs',
   guides: 'codex'
 };
 export function tabOf(section: string): string {

@@ -36,7 +36,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Highly Refined Technology"
+   }
   },
   {
    "title": "Quantum Processor",
@@ -65,7 +69,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Crafted Product"
+   }
   },
   {
    "title": "Circuit Board",
@@ -94,7 +102,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Heat Capacitor",
@@ -123,7 +135,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Component",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Frost Crystal",
@@ -216,7 +232,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Fc"
+   }
   },
   {
    "title": "Solanium",
@@ -330,7 +351,12 @@
      "seconds": 0.16,
      "label": "Sulphur Injection"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "So"
+   }
   },
   {
    "title": "Poly Fibre",
@@ -359,7 +385,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Cactus Flesh",
@@ -452,7 +482,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Cc"
+   }
   },
   {
    "title": "Star Bulb",
@@ -545,7 +580,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Sb"
+   }
   },
   {
    "title": "Superconductor",
@@ -574,7 +614,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Manufactured Gas Product"
+   }
   },
   {
    "title": "Enriched Carbon",
@@ -703,7 +747,11 @@
      "seconds": 45,
      "label": "High-Speed Sublimation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Enhanced Gas Product"
+   }
   },
   {
    "title": "Radon",
@@ -771,7 +819,12 @@
      "seconds": 0.36,
      "label": "Gas Catalysation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Compressed Atmospheric Gas",
+    "symbol": "Rn"
+   }
   },
   {
    "title": "Condensed Carbon",
@@ -940,7 +993,12 @@
      "seconds": 0.04,
      "label": "Harness Energy"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Fuel",
+    "type": "Refined Organic Element",
+    "symbol": "C+"
+   }
   },
   {
    "title": "Semiconductor",
@@ -969,7 +1027,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Manufactured Gas Product"
+   }
   },
   {
    "title": "Thermic Condensate",
@@ -1098,7 +1160,11 @@
      "seconds": 45,
      "label": "High-Speed Sublimation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Enhanced Gas Product"
+   }
   },
   {
    "title": "Sulphurine",
@@ -1166,7 +1232,12 @@
      "seconds": 0.36,
      "label": "Gas Catalysation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Compressed Atmospheric Gas",
+    "symbol": "Su"
+   }
   },
   {
    "title": "Nitrogen Salt",
@@ -1295,7 +1366,11 @@
      "seconds": 45,
      "label": "High-Speed Sublimation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Enhanced Gas Product"
+   }
   },
   {
    "title": "Nitrogen",
@@ -1422,7 +1497,12 @@
      "seconds": 0.36,
      "label": "Gas Catalysation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Compressed Atmospheric Gas",
+    "symbol": "N"
+   }
   },
   {
    "title": "Cryogenic Chamber",
@@ -1451,7 +1531,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Crafted Product"
+   }
   },
   {
    "title": "Living Glass",
@@ -1480,7 +1564,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Lubricant",
@@ -1509,7 +1597,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Faecium",
@@ -1661,7 +1753,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Fa"
+   }
   },
   {
    "title": "Gamma Root",
@@ -1754,7 +1851,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Gr"
+   }
   },
   {
    "title": "Glass",
@@ -1834,7 +1936,11 @@
      "seconds": 30,
      "label": "Polish Crystals"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Advanced Agricultural Product"
+   }
   },
   {
    "title": "Cryo-Pump",
@@ -1863,7 +1969,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Manufactured Gas Product"
+   }
   },
   {
    "title": "Hot Ice",
@@ -1892,7 +2002,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Manufactured Gas Product"
+   }
   },
   {
    "title": "Iridesite",
@@ -1925,7 +2039,11 @@
      ],
      "blueprint": true
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Enriched Alloy Metal"
+   }
   },
   {
    "title": "Aronium",
@@ -2154,7 +2272,11 @@
      "seconds": 45,
      "label": "Alloy Latticing"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Alloy Metal"
+   }
   },
   {
    "title": "Paraffinium",
@@ -2310,7 +2432,12 @@
      "seconds": 0.36,
      "label": "Loosen Bonds"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Localised Earth Element",
+    "symbol": "Pf"
+   }
   },
   {
    "title": "Ionised Cobalt",
@@ -2462,7 +2589,12 @@
      "seconds": 0.36,
      "label": "Ionise Bulbs"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Processed Subterranean Mineral",
+    "symbol": "Co+"
+   }
   },
   {
    "title": "Magno-Gold",
@@ -2691,7 +2823,11 @@
      "seconds": 45,
      "label": "Alloy Latticing"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Alloy Metal"
+   }
   },
   {
    "title": "Phosphorus",
@@ -2784,7 +2920,12 @@
      "seconds": 0.16,
      "label": "Organic Fusion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Localised Earth Element",
+    "symbol": "P"
+   }
   },
   {
    "title": "Grantine",
@@ -3013,7 +3154,11 @@
      "seconds": 45,
      "label": "Alloy Latticing"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Tradeable",
+    "type": "Alloy Metal"
+   }
   },
   {
    "title": "Dioxite",
@@ -3127,7 +3272,12 @@
      "seconds": 0.36,
      "label": "Environmental Element Transfer"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Earth",
+    "type": "Localized Earth Element",
+    "symbol": "CO2"
+   }
   },
   {
    "title": "Anomalous Doughnut",
@@ -3157,7 +3307,11 @@
      "seconds": 2.5,
      "label": "Nutrient Injection"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Lumpen Doughnut",
@@ -3191,7 +3345,11 @@
      "seconds": 2.5,
      "label": "Accelerated Fry"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Clarified Oil",
@@ -3305,7 +3463,11 @@
      "seconds": 2.5,
      "label": "Nutrient Refining"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Churned Butter",
@@ -3331,7 +3493,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Cream",
@@ -3374,7 +3540,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Fresh Milk",
@@ -3382,7 +3552,11 @@
    "category": "cooking",
    "revId": 1208164,
    "value": 3200,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Wild Milk",
@@ -3390,7 +3564,11 @@
    "category": "cooking",
    "revId": 1219621,
    "value": 1600,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Proto-Butter",
@@ -3416,7 +3594,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Proto-Cream",
@@ -3459,7 +3641,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Warm Proto-Milk",
@@ -3467,7 +3653,11 @@
    "category": "cooking",
    "revId": 1219841,
    "value": 3200,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Craw Milk",
@@ -3475,7 +3665,11 @@
    "category": "cooking",
    "revId": 1219917,
    "value": 3200,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Bone Butter",
@@ -3501,7 +3695,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Bone Cream",
@@ -3527,7 +3725,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Bone Milk",
@@ -3574,7 +3776,11 @@
      "seconds": 2.5,
      "label": "Stew Bones"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Bone Nuggets",
@@ -3582,14 +3788,22 @@
    "category": "cooking",
    "revId": 1219623,
    "value": 3200,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Ancient Bones",
    "path": "wiki/building/Ancient_Bones.md",
    "category": "building",
    "revId": 1276662,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Container",
+    "type": "Artifact"
+   }
   },
   {
    "title": "Dough",
@@ -3619,7 +3833,11 @@
      "seconds": 2.5,
      "label": "Component Churn"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Refined Flour",
@@ -3679,7 +3897,11 @@
      "seconds": 2.5,
      "label": "Extract Nutrients"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Heptaploid Wheat",
@@ -3687,7 +3909,11 @@
    "category": "cooking",
    "revId": 1220421,
    "value": 800,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Glass Grains",
@@ -3713,7 +3939,11 @@
      "seconds": 2.5,
      "label": "Extract Nutrients"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Kelp Rice",
@@ -3739,7 +3969,11 @@
      "seconds": 2.5,
      "label": "Extract Nutrients"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Kelp Sac",
@@ -3790,7 +4024,12 @@
      "seconds": 0.36,
      "label": "Organic Expansion"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Flora",
+    "type": "Harvested Agricultural Substance",
+    "symbol": "Ke"
+   }
   },
   {
    "title": "Wild Yeast",
@@ -3833,7 +4072,11 @@
      "seconds": 2.5,
      "label": "Fermentation"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Processed Sugar",
@@ -3893,7 +4136,11 @@
      "seconds": 2.5,
      "label": "Nutrient Refining"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Grahberry",
@@ -3901,7 +4148,11 @@
    "category": "cooking",
    "revId": 1219590,
    "value": 800,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Sweetroot",
@@ -3909,7 +4160,11 @@
    "category": "cooking",
    "revId": 1219835,
    "value": 800,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Cactus Nectar",
@@ -3935,7 +4190,11 @@
      "seconds": 2.5,
      "label": "Extract Nutrients"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Anomalous Jam",
@@ -3965,7 +4224,11 @@
      "seconds": 2.5,
      "label": "Preserve Fruit"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Edible Product"
+   }
   },
   {
    "title": "Hexaberry",
@@ -3973,7 +4236,11 @@
    "category": "cooking",
    "revId": 1271750,
    "value": 1600,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Consumable",
+    "type": "Raw Ingredient"
+   }
   },
   {
    "title": "Projectile Ammunition",
@@ -3997,7 +4264,11 @@
       }
      ]
     }
-   ]
+   ],
+   "fields": {
+    "category": "Consumable",
+    "type": "Universal Ammo Module"
+   }
   },
   {
    "title": "Ferrite Dust",
@@ -4159,7 +4430,12 @@
      "seconds": 0.36,
      "label": "Ferrite Dust Extraction"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Metal",
+    "type": "Metallic Mineral Extract",
+    "symbol": "Fe"
+   }
   },
   {
    "title": "Oxygen",
@@ -4377,7 +4653,12 @@
      "seconds": 3.6,
      "label": "Artificial Photosynthesis"
     }
-   ]
+   ],
+   "fields": {
+    "category": "Fuel",
+    "type": "Concentrated Liquid Fuel",
+    "symbol": "O2"
+   }
   },
   {
    "title": "Radiant Shard",
@@ -4385,7 +4666,11 @@
    "category": "products",
    "revId": 1336232,
    "value": 1900,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Component",
+    "type": "Glassy Reality Intrusion"
+   }
   },
   {
    "title": "Inverted Mirror",
@@ -4393,7 +4678,11 @@
    "category": "products",
    "revId": 1336198,
    "value": 17000,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Component",
+    "type": "Burning Glassy Remnant"
+   }
   },
   {
    "title": "Hyaline Brain",
@@ -4401,7 +4690,11 @@
    "category": "products",
    "revId": 1336000,
    "value": 35000,
-   "recipes": []
+   "recipes": [],
+   "fields": {
+    "category": "Component",
+    "type": "Sentience Vessel"
+   }
   }
  ]
 }

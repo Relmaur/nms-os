@@ -39,11 +39,6 @@ const showRecap = async page => {
   await page.locator('#sec-session').getByRole('button', { name: 'End session' }).click();
 };
 
-const openBestCrafts = async page => {
-  await page.getByRole('tab', { name: 'Best crafts' }).click();
-  await page.locator('#craftList [data-craft] >> nth=0').waitFor();
-};
-
 // [name, path, ready selector, gated region (or null to report only), setup]
 for (const [name, path, ready, region, setup] of [
   ['Home', './', '#homeNow', '#sec-home'],
@@ -59,7 +54,7 @@ for (const [name, path, ready, region, setup] of [
   ['System detail', './#system/sys-ekwa', '#systemTitle', '#sec-system'],
   ['Planet sheet', './#system/sys-ekwa', '#systemTitle', '#planetSheet', openPlanet],
   ['System editor', './#systems', '#systemEditor', '#systemPanel', openEditor],
-  ['Calculators', './#calculators', '#craftList [data-craft] >> nth=0', '#sec-calculators'],
+  ['Calculators', './#calculators', '#valueTotal', '#sec-calculators'],
   ['Recipe planner', './#plan/Stasis%20Device', '#planCargo', '#sec-plan'],
   ['Recipe planner, Codex peek', './#plan/Stasis%20Device', '#peekSource', '#codexPeek', openPlanPeek],
   ['Guides', './#guides', '#guidesList a >> nth=0', '#sec-guides'],
@@ -74,13 +69,7 @@ for (const [name, path, ready, region, setup] of [
   ['Note, writing', './#note/note-grid', '#noteBody', '#sec-note', writeNote],
   ['Recipe planner, mid-plan', './#plan/Stasis%20Device', '#planCargo', '#sec-plan', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
-  [
-    'Calculators, Best crafts',
-    './#calculators',
-    '#craftList [data-craft] >> nth=0',
-    '#sec-calculators',
-    openBestCrafts
-  ],
+  ['Best crafts', './#crafts', '#craftList [data-craft] >> nth=0', '#sec-crafts'],
   ['Codex', './wiki/', '#browseBody', '#codexRoot'],
   ['Codex results', './wiki/#/?q=oxygen', '#browseBody .result >> nth=0', '#codexRoot'],
   ['Codex quick look', './wiki/#/?q=oxygen', '#peekBody h2 >> nth=0', '#codexRoot', openPeek],
