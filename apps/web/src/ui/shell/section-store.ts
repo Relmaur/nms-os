@@ -32,14 +32,17 @@ export function goBack(fallback: string): void {
 
 // Old and shortcut addresses: the Logbook was folded into Systems; #new-system (a home-screen shortcut) opens Home
 // with the editor, and #search (the Codex page's search key) opens Home with the search; anything unknown opens Home.
-// A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>); without one it falls back to its list.
+// A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>, #note/<id>); without one it falls
+// back to its list.
 const SHORTCUTS = new Set(['new-system', 'search']);
-const PARAM_SECTIONS: Record<string, string> = { system: 'systems', ship: 'gear' };
+const PARAM_SECTIONS: Record<string, string> = { system: 'systems', ship: 'gear', note: 'notes' };
 function resolve(key: string): { section: string; shortcut: string; param: string } {
   const [head = '', ...rest] = key.split('/');
   if (head in PARAM_SECTIONS) {
     const id = decodeURIComponent(rest.join('/'));
-    return id ? { section: head, shortcut: '', param: id } : { section: PARAM_SECTIONS[head] ?? 'home', shortcut: '', param: '' };
+    return id
+      ? { section: head, shortcut: '', param: id }
+      : { section: PARAM_SECTIONS[head] ?? 'home', shortcut: '', param: '' };
   }
   if (key === 'logbook') return { section: 'systems', shortcut: '', param: '' };
   if (SHORTCUTS.has(key)) return { section: 'home', shortcut: key, param: '' };
@@ -60,7 +63,10 @@ export function showSection(key: string): Promise<void> {
     });
     window.scrollTo({ top: 0 });
   };
-  const animate = current !== '' && (current !== section || param !== next) && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animate =
+    current !== '' &&
+    (current !== section || param !== next) &&
+    !matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Switching again mid-animation skips the transition, which rejects its promises; the DOM still updates, so the
   // rejection is expected and must not surface as an uncaught error.
   let shown = Promise.resolve();

@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **Notes are redesigned, and a note has its own screen** (`#note/<id>`): the list has search and chips for Pinned and each tag; a note opens to read, with Write beside it, a Pin menu (Home, a book or a ship) and a formatting toolbar (heading, bold, italic, list, table, Codex link). Notes save as you write: there's no Save button, and leaving keeps what's there. Notes can have tags.
 - **The wiki mirror is refreshed from Fandom's database dumps** (ADR-0009): `pnpm sync:wiki --from-dump <file>` reads the dump's XML (plain or gzipped) with the same scope, exclusions and rendering, and `pnpm verify:wiki --from-dump <file>` compares the archive with it. The dump stays outside the repo.
 - **Fleet, a ship's own screen and a new gear editor:** cards open to the technology grid with supercharged slots in purple; a ship's screen shows what sits in each slot and whether your marks match the wiki; in the editor a tap marks and selects a slot to name its module. Notes can be linked to a ship, Multi-Tool or Exosuit and show on its screen.
 - **Timers and the session have their own screen** (from the session bar, Home's timers or the timer button): the live clock and what this session has logged, every countdown as a card with a ring, + Refiner, + Crop and + Custom, and the alerts switch. Finished timers wait at the end of the list.

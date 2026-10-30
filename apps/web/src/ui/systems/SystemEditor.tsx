@@ -1,6 +1,6 @@
 // Add or edit a system (design 06). The draft lives here until Save; the stored system changes only through
 // saveSystem().
-import { useEffect, useId, useState, type SubmitEvent, type KeyboardEvent } from 'react';
+import { useEffect, useId, useState, type SubmitEvent } from 'react';
 import { groupGlyphs } from '@atlas/core/location';
 import { CONFLICT_LEVELS, STAR_CLASSES, newId, normalizeSystem, tagSlug, type System } from '@atlas/core/systems-model';
 import { saveSystem } from '../actions.ts';
@@ -9,7 +9,7 @@ import { closeSystemPanel, dismissSystemPanel, openSystem, setCloseGuard, type E
 import { SheetGrab } from '../parts/Sheet.tsx';
 import { Button } from '../parts/Button.tsx';
 import { LocationBlock, locationGlyphs, type Location } from './LocationBlock.tsx';
-import { FIELD, LABEL_FIELD, Segments, type Option } from './editor-parts.tsx';
+import { FIELD, LABEL_FIELD, Segments, TagEditor, type Option } from './editor-parts.tsx';
 
 type Draft = Omit<System, 'wealth' | 'planetCount'> & { wealth: string; planetCount: string };
 type TextField = 'name' | 'region' | 'economy' | 'notes';
@@ -61,21 +61,6 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
       setCloseGuard(null);
     };
   }, [dirty]);
-
-  const addTag = (value: string) => {
-    const tag = tagSlug(value);
-    if (tag && !tags.includes(tag)) setTags([...tags, tag]);
-    setTyped('');
-    document.getElementById('tagInput')?.focus();
-  };
-  const onTagKey = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' || event.key === ',') {
-      event.preventDefault();
-      if (typed.trim()) addTag(typed);
-    } else if (event.key === 'Backspace' && !typed && tags.length) {
-      setTags(tags.slice(0, -1));
-    }
-  };
 
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -245,45 +230,7 @@ export function SystemEditor({ existing, preset }: { existing: System | undefine
           ])}
         />
 
-        <div className={LABEL_FIELD}>
-          <label htmlFor="tagInput">Tags</label>
-          <div
-            id="tagEditor"
-            className="flex flex-wrap items-center gap-1.5 min-h-11 p-1.5 rounded-control bg-slate-ground border border-control-edge focus-within:border-scanner-cyan-edge-strong"
-            onClick={() => document.getElementById('tagInput')?.focus()}
-          >
-            {tags.map(tag => (
-              <span
-                key={tag}
-                className="inline-flex items-center gap-1.5 h-[30px] pl-2.5 pr-1.5 rounded-full bg-scanner-cyan-tint border border-scanner-cyan-edge text-[13px] font-medium text-[#a5f3fc]"
-              >
-                {tag}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTags(tags.filter(item => item !== tag));
-                  }}
-                  aria-label={`Remove tag ${tag}`}
-                  className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-scanner-cyan-edge"
-                >
-                  <i className="ph-bold ph-x text-[10px]" />
-                </button>
-              </span>
-            ))}
-            <input
-              id="tagInput"
-              type="text"
-              maxLength={40}
-              value={typed}
-              onChange={event => {
-                setTyped(event.target.value);
-              }}
-              onKeyDown={onTagKey}
-              placeholder="Type a tag and press Enter"
-              className="flex-1 min-w-[8rem] h-[30px] bg-transparent px-1.5 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:outline-hidden"
-            />
-          </div>
-        </div>
+        <TagEditor tags={tags} onTags={setTags} typed={typed} onTyped={setTyped} />
         <label className={LABEL_FIELD}>
           Notes
           <textarea

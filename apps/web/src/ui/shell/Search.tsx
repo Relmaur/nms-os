@@ -16,6 +16,7 @@ import { showSection } from './section-store.ts';
 import { onWikiEntries, wikiEntries } from './wiki-index.ts';
 import { KINDS } from '../gear/kinds.ts';
 import { openGear } from '../gear/fleet-bits.tsx';
+import { openNote } from '../notes/note-nav.ts';
 
 const WIKI_LIMIT = 6;
 const BOOK_LIMIT = 6;
@@ -166,10 +167,7 @@ export function Search() {
     } else if (hit.type === 'gear') {
       openGear(hit.item.id);
     } else if (hit.type === 'note') {
-      void showSection('notes').then(() => {
-        const card = document.querySelector(`#sec-notes [data-note="${hit.note.id}"]`); // ids are SAFE_ID: no quotes
-        if (card) flash(card);
-      });
+      openNote(hit.note.id);
     } else if (hit.type === 'wiki') {
       location.assign(`wiki/#/a/${encodeURIComponent(hit.entry.path ?? '')}?q=${encodeURIComponent(query)}`);
     } else {

@@ -14,6 +14,7 @@ import { More } from './more/More.tsx';
 import { Gear } from './gear/Gear.tsx';
 import { ShipDetail } from './gear/ShipDetail.tsx';
 import { Notes } from './notes/Notes.tsx';
+import { NoteScreen } from './notes/NoteEditor.tsx';
 import { PlayerEditors } from './PlayerEditors.tsx';
 import { ImportDialog } from './shell/ImportDialog.tsx';
 import { BOOKS } from '@atlas/core/guides';
@@ -55,6 +56,7 @@ const SCREENS: [string, ReactNode][] = [
   ['gearRoot', <Gear />],
   ['shipRoot', <ShipDetail />],
   ['notesRoot', <Notes />],
+  ['noteRoot', <NoteScreen />],
   [
     'playerEditorRoot',
     <>

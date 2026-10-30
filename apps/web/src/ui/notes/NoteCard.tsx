@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { PIN_PLACES, type Note } from '@atlas/core/notes';
 import { markdownToHtml } from '../parts/safe-html.ts';
-import { openNoteEditor } from '../parts/editor-store.ts';
+import { openNote } from './note-nav.ts';
 
 const WIKI_LINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 const FOLD_CHARS = 600;
@@ -47,7 +47,7 @@ export function NoteCard({ note, showPins = true, level = 3 }: { note: Note; sho
         <button
           type="button"
           onClick={() => {
-            openNoteEditor(note.id);
+            openNote(note.id);
           }}
           aria-label={`Edit ${note.title}`}
           className="shrink-0 h-9 px-3 rounded-lg border border-slate-700 text-xs text-slate-300 hover:text-white hover:bg-slate-900 flex items-center gap-1.5"

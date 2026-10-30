@@ -1,13 +1,22 @@
-import { beforeEach, expect, test } from 'vitest';
-import { act, render, screen, within } from '@testing-library/react';
+import { beforeEach, expect, test, vi } from 'vitest';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { appState, setAppState } from '../../app/store.ts';
-import { closeEditor } from '../parts/editor-store.ts';
-import { PlayerEditors } from '../PlayerEditors.tsx';
 import { Book } from '../guides/Book.tsx';
+import { goBack } from '../shell/section-store.ts';
 import { Notes } from './Notes.tsx';
+import { NoteScreen } from './NoteEditor.tsx';
 import { renderNote } from './NoteCard.tsx';
+
+let param = '';
+vi.mock('../shell/section-store.ts', () => ({
+  showSection: vi.fn(),
+  onSection: vi.fn(),
+  goBack: vi.fn(),
+  useSection: () => 'note',
+  useSectionParam: () => param
+}));
 
 const note = {
   title: 'Grid',
@@ -17,9 +26,25 @@ const note = {
 
 beforeEach(() => {
   localStorage.clear();
+  param = 'n1';
+  location.hash = '';
   act(() => {
-    closeEditor();
-    setAppState(buildState({ notes: [{ ...note, id: 'n1', pins: ['book3'], updatedAt: '2026-10-01T00:00:00Z' }] }));
+    setAppState(
+      buildState({
+        notes: [
+          { ...note, id: 'n1', pins: ['book3'], tags: ['ships'], updatedAt: '2026-10-01T00:00:00Z' },
+          {
+            ...note,
+            id: 'n2',
+            title: 'Units plan',
+            body: 'Scrap it',
+            pins: [],
+            tags: ['units'],
+            updatedAt: '2026-10-02T00:00:00Z'
+          }
+        ]
+      })
+    );
   });
 });
 
@@ -30,58 +55,111 @@ test('[[Name]] links become Codex searches', () => {
   );
 });
 
-test('a note pinned to Book III shows under it, and a new one from there starts pinned to it', async () => {
-  render(
-    <>
-      <Book book="book3" />
-      <PlayerEditors />
-    </>
-  );
+test('the list searches, filters by Pinned and by tag, and each row opens its note', async () => {
+  render(<Notes />);
+  const list = () => screen.getByRole('list', { name: '' });
+  expect(screen.getByPlaceholderText('Search 2 notes')).toBeTruthy();
+  expect(
+    within(screen.getByRole('group', { name: 'Filters' }))
+      .getAllByRole('button')
+      .map(b => b.textContent)
+  ).toEqual(['All', 'Pinned', 'ships', 'units']);
+  await userEvent.click(screen.getByRole('button', { name: 'units' }));
+  expect(
+    within(list())
+      .getAllByRole('link')
+      .map(link => link.getAttribute('href'))
+  ).toEqual(['#note/n2']);
+  await userEvent.click(screen.getByRole('button', { name: 'Pinned' }));
+  expect(within(list()).getByRole('link').textContent).toContain('Grid');
+  await userEvent.click(screen.getByRole('button', { name: 'All' }));
+  await userEvent.type(screen.getByLabelText('Search your notes'), 'scrap');
+  expect(within(list()).getAllByRole('link')).toHaveLength(1);
+});
+
+test('a new note from Book III starts pinned there and saves as it’s written', async () => {
+  const { rerender } = render(<Book book="book3" />);
   const pinned = screen.getByRole('region', { name: 'Your notes' });
   expect(within(pinned).getByRole('heading', { name: 'Grid' })).toBeTruthy();
   expect(pinned.querySelector('strong')?.textContent).toBe('weapon');
 
   await userEvent.click(within(pinned).getByRole('button', { name: 'Add a note to Book III' }));
+  param = decodeURIComponent(location.hash.replace('#note/', ''));
+  rerender(<NoteScreen />);
+  expect(screen.getByRole('list', { name: 'Pinned to and tags' }).textContent).toContain('Book III');
   await userEvent.type(screen.getByLabelText('Title'), 'Second');
-  expect(screen.getByRole<HTMLInputElement>('checkbox', { name: 'Book III' }).checked).toBe(true);
-  await userEvent.click(screen.getByRole('button', { name: 'Add note' }));
-  expect(appState.notes.find(item => item.title === 'Second')?.pins).toEqual(['book3']);
-  expect(within(pinned).getByRole('heading', { name: 'Second' })).toBeTruthy();
+  await waitFor(() => {
+    expect(appState.notes.find(item => item.title === 'Second')?.pins).toEqual(['book3']);
+  });
+  rerender(<Book book="book3" />);
+  expect(
+    within(screen.getByRole('region', { name: 'Your notes' })).getByRole('heading', { name: 'Second' })
+  ).toBeTruthy();
 });
 
-test('a note deleted elsewhere while open isn’t brought back by a plain Save', async () => {
-  render(
-    <>
-      <Notes />
-      <PlayerEditors />
-    </>
-  );
-  await userEvent.click(screen.getByRole('button', { name: 'Edit Grid' }));
+test('a saved note opens in Preview; the toolbar formats the selection; leaving stores what’s left', async () => {
+  const { unmount } = render(<NoteScreen />);
+  expect(screen.getByRole('heading', { level: 1, name: 'Grid' })).toBeTruthy();
+  expect(screen.getByRole('radio', { name: 'Preview' }).getAttribute('aria-checked')).toBe('true');
+  await userEvent.click(screen.getByRole('radio', { name: 'Write' }));
+  const body = screen.getByLabelText<HTMLTextAreaElement>('Note');
+  body.setSelectionRange(0, 4); // "Main"
+  await userEvent.click(screen.getByRole('button', { name: 'Italic' }));
+  expect(body.value.startsWith('_Main_ **weapon**')).toBe(true);
+  unmount(); // before the pause: leaving saves it at once
+  expect(appState.notes.find(item => item.id === 'n1')?.body.startsWith('_Main_')).toBe(true);
+});
+
+test('Pin adds places, a ship among them; tags are added in Write', async () => {
+  act(() => {
+    setAppState(
+      buildState({
+        ...appState,
+        gear: [{ id: 'ship-1', kind: 'starship', name: 'Ythgall', createdAt: '2026-10-01T00:00:00Z' }]
+      })
+    );
+  });
+  render(<NoteScreen />);
+  await userEvent.click(screen.getByRole('button', { name: 'Pin' }));
+  const places = screen.getByRole('group', { name: 'Also show this note on' });
+  await userEvent.click(within(places).getByRole('checkbox', { name: 'Home' }));
+  await userEvent.click(within(places).getByRole('checkbox', { name: 'Ythgall' }));
+  expect(screen.getByRole('link', { name: 'Ythgall' }).getAttribute('href')).toBe('#ship/ship-1');
+  await userEvent.click(screen.getByRole('radio', { name: 'Write' }));
+  await userEvent.type(screen.getByLabelText('Tags'), 'Infra Knife{Enter}');
+  await waitFor(() => {
+    const saved = appState.notes.find(item => item.id === 'n1');
+    expect(saved?.pins).toEqual(['book3', 'home', 'gear:ship-1']);
+    expect(saved?.tags).toEqual(['ships', 'infra-knife']);
+  });
+});
+
+test('a note deleted elsewhere while open isn’t brought back unless kept', async () => {
+  render(<NoteScreen />);
+  await userEvent.click(screen.getByRole('radio', { name: 'Write' }));
   act(() => {
     setAppState(buildState({ notes: [] })); // another device's copy, adopted mid-edit
   });
-  await userEvent.click(screen.getByRole('button', { name: 'Save' }));
+  fireEvent.change(screen.getByLabelText('Title'), { target: { value: 'Grid 2' } });
   expect(screen.getByRole('alert').textContent).toContain('deleted on another device');
+  await new Promise(resolve => setTimeout(resolve, 700));
   expect(appState.notes).toHaveLength(0);
-  await userEvent.click(screen.getByRole('button', { name: 'Save' }));
-  expect(appState.notes.map(item => item.id)).toEqual(['n1']);
+  await userEvent.click(screen.getByRole('button', { name: 'Keep it' }));
+  expect(appState.notes.map(item => item.title)).toEqual(['Grid 2']);
 });
 
-test('an unsaved note isn’t lost to Escape; Delete asks before it removes', async () => {
-  render(
-    <>
-      <Notes />
-      <PlayerEditors />
-    </>
-  );
-  await userEvent.click(screen.getByRole('button', { name: 'Edit Grid' }));
-  await userEvent.type(screen.getByLabelText('Title'), '!');
-  await userEvent.keyboard('{Escape}');
-  expect(screen.getByRole('dialog', { name: 'Edit note' })).toBeTruthy();
-  await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
-  expect(appState.notes).toHaveLength(1);
-  await userEvent.click(screen.getByRole('button', { name: 'Delete for good' }));
-  expect(appState.notes).toHaveLength(0);
-  expect(screen.queryByRole('dialog')).toBeNull();
-  expect(screen.getByText(/No notes yet/)).toBeTruthy();
+test('Delete asks before it removes, then goes back', async () => {
+  render(<NoteScreen />);
+  await userEvent.click(screen.getByRole('radio', { name: 'Write' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Delete note' }));
+  expect(appState.notes).toHaveLength(2);
+  await userEvent.click(screen.getByRole('button', { name: 'Tap again to delete' }));
+  expect(appState.notes.map(item => item.id)).toEqual(['n2']);
+  expect(goBack).toHaveBeenCalledWith('notes');
+});
+
+test('an unknown id says so instead of opening a blank note', () => {
+  param = 'gone';
+  render(<NoteScreen />);
+  expect(screen.getByRole('heading', { name: 'Not in your notes' })).toBeTruthy();
 });

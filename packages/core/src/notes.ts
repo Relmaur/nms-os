@@ -2,12 +2,14 @@
 // to a Guide book, so a player's findings sit next to the general playbook on their own app only.
 import { SAFE_ID, isPlainObject } from './util.ts';
 import { BOOKS } from './guides.ts';
+import { tagSlug } from './systems-model.ts';
 
 export interface Note {
   id: string;
   title: string;
   body: string; // Markdown
   pins: string[]; // where it shows besides the Notes list: 'home', 'book1' … 'book6', or 'gear:<id>' (a ship's screen)
+  tags: string[]; // lowercase slugs, like a system's (added in the redesign; missing reads as none)
   createdAt: string;
   updatedAt: string;
 }
@@ -21,6 +23,7 @@ const PLACES = new Set(PIN_PLACES.map(place => place.key));
 export const gearPin = (id: string): string => `gear:${id}`;
 const isPin = (pin: string): boolean => PLACES.has(pin) || (pin.startsWith('gear:') && SAFE_ID.test(pin.slice(5)));
 export const MAX_NOTE_CHARS = 100_000; // a long guide is ~20k; past this a paste went wrong
+export const MAX_NOTE_TAGS = 12;
 
 const date = (value: unknown): string => (typeof value === 'string' && !Number.isNaN(Date.parse(value)) ? value : '');
 
@@ -38,9 +41,19 @@ export function normalizeNotes(value: unknown): Note[] {
     const pins = Array.isArray(item.pins)
       ? [...new Set(item.pins.filter((pin): pin is string => typeof pin === 'string' && isPin(pin)))]
       : [];
+    const tags = Array.isArray(item.tags)
+      ? [
+          ...new Set(
+            item.tags
+              .filter(tag => typeof tag === 'string')
+              .map(tagSlug)
+              .filter(Boolean)
+          )
+        ].slice(0, MAX_NOTE_TAGS)
+      : [];
     const createdAt = date(item.createdAt);
     return [
-      { id, title: title || 'Untitled note', body, pins, createdAt, updatedAt: date(item.updatedAt) || createdAt }
+      { id, title: title || 'Untitled note', body, pins, tags, createdAt, updatedAt: date(item.updatedAt) || createdAt }
     ];
   });
 }
@@ -70,10 +83,31 @@ export function searchNotes(notes: Note[], query: string): Note[] {
   const words = query.toLowerCase().split(/\s+/).filter(Boolean);
   return notes
     .filter(note => {
-      const hay = `${note.title}\n${note.body}`.toLowerCase();
+      const hay = `${note.title}\n${note.body}\n${note.tags.join(' ')}`.toLowerCase();
       return words.every(word => hay.includes(word));
     })
     .sort(byNewest);
+}
+
+// The Notes list's chips (design 10): All, Pinned (anywhere besides the list), then each tag, most used first.
+export type NoteFilter = 'all' | 'pinned' | `tag:${string}`;
+export function noteChips(notes: Note[]): { id: NoteFilter; label: string }[] {
+  const counts = new Map<string, number>();
+  for (const tag of notes.flatMap(note => note.tags)) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  const tags = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([tag]) => tag);
+  return [
+    { id: 'all', label: 'All' },
+    ...(notes.some(note => note.pins.length) ? [{ id: 'pinned' as const, label: 'Pinned' }] : []),
+    ...tags.map(tag => ({ id: `tag:${tag}` as const, label: tag }))
+  ];
+}
+
+// Search (every word, title, body or tag), then the chip; newest first.
+export function filterNotes(notes: Note[], query: string, filter: NoteFilter): Note[] {
+  const tag = filter.startsWith('tag:') ? filter.slice(4) : null;
+  return searchNotes(notes, query).filter(note =>
+    filter === 'pinned' ? note.pins.length > 0 : tag === null || note.tags.includes(tag)
+  );
 }
 
 // A Markdown file → a note's title and body: the first "# heading" is the title (and leaves the body), else the

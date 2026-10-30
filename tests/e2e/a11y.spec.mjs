@@ -22,7 +22,7 @@ const openIndex = async page => {
   if (await bar.isVisible()) await bar.click();
 };
 const openGearEditor = page => page.locator('#sec-ship').getByRole('button', { name: 'Edit Starship' }).click();
-const openNoteEditor = page => page.locator('#sec-notes').getByRole('button', { name: 'New note' }).click();
+const writeNote = page => page.locator('#sec-note').getByRole('radio', { name: 'Write' }).click();
 const openCamp = page => page.getByRole('tab', { name: 'Registers' }).click();
 const liveSession = async page => {
   await holdToStartSession(page);
@@ -67,7 +67,8 @@ for (const [name, path, ready, region, setup] of [
   ['Ship detail', './#ship/gear-kestrel', '#shipTitle', '#sec-ship'],
   ['Gear editor', './#ship/gear-kestrel', '#gearEditor', '#gearEditor', openGearEditor],
   ['Notes', './#notes', '#notesList [data-note] >> nth=0', '#sec-notes'],
-  ['Note editor', './#notes', '#noteEditor', '#noteEditor', openNoteEditor],
+  ['Note', './#note/note-grid', '#notePreview', '#sec-note'],
+  ['Note, writing', './#note/note-grid', '#noteBody', '#sec-note', writeNote],
   ['Calculators, mid-plan', './#calculators', '#planHold', '#sec-calculators', tickHalf],
   ['Calculators, Registers', './#calculators', '#calcReg1', '#sec-calculators', openCamp],
   [

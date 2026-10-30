@@ -1,81 +1,153 @@
-// Notes: everything the player wrote down, newest first, with search and a Markdown import. Each note can also be
-// pinned to Home or a Guide book (ADR-0007). They're part of the log: on this device, in Export, and in sync.
+// Notes (design 10): everything the player wrote down, newest first, with search and chips for Pinned and each tag.
+// A row opens the note on its own screen (11). Each note can be pinned to Home, a Guide book or a ship (ADR-0007);
+// they're part of the log: on this device, in Export, and in sync.
 import { useState } from 'react';
-import { byNewest, searchNotes } from '@atlas/core/notes';
+import { filterNotes, noteChips, noteExcerpt, type NoteFilter } from '@atlas/core/notes';
 import { useAppState } from '../useAppState.ts';
 import { importNoteFiles } from '../actions.ts';
-import { openNoteEditor } from '../parts/editor-store.ts';
-import { NoteCard } from './NoteCard.tsx';
 import { LogSegment } from '../parts/LogSegment.tsx';
+import { FIELD } from '../systems/editor-parts.tsx';
+import { newNote } from './note-nav.ts';
+import { TAG, shortDate } from './note-bits.tsx';
 
 export function Notes() {
   const { notes } = useAppState();
   const [query, setQuery] = useState('');
-  const shown = query.trim() ? searchNotes(notes, query) : [...notes].sort(byNewest);
+  const [chosen, setFilter] = useState<NoteFilter>('all');
+  const chips = noteChips(notes);
+  // A tag whose last note lost it no longer has a chip: show everything rather than an empty list.
+  const filter = chips.some(chip => chip.id === chosen) ? chosen : 'all';
+  const shown = filterNotes(notes, query, filter);
+
   return (
-    <>
-      <LogSegment />
-      <div className="hud-card rounded-2xl p-5 sm:p-6 space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="max-w-2xl">
-            <h1 className="font-display text-2xl font-bold text-white">Notes</h1>
-            <p className="text-sm text-slate-300 mt-1.5">
-              Your own findings: layouts, routes, what worked. Pin a note to Home or to a Guide book to keep it next to
-              what it’s about.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <label className="h-10 px-3 rounded-xl border border-slate-700 text-sm text-slate-200 hover:bg-slate-900 flex items-center gap-2 cursor-pointer focus-within:ring-2 focus-within:ring-cyan-400">
-              <i className="ph-bold ph-upload-simple" aria-hidden="true" />
-              Import .md
-              <input
-                type="file"
-                multiple
-                accept=".md,.markdown,.txt,text/markdown,text/plain"
-                onChange={event => {
-                  void importNoteFiles([...(event.target.files ?? [])]);
-                  event.target.value = ''; // the same files can be picked again
-                }}
-                className="sr-only"
-              />
-            </label>
-            <button
-              type="button"
-              onClick={() => {
-                openNoteEditor();
-              }}
-              className="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm flex items-center gap-2 transition"
-            >
-              <i className="ph-bold ph-plus" aria-hidden="true" /> New note
-            </button>
-          </div>
+    <div className="flex flex-col gap-4 max-w-2xl">
+      <header className="flex flex-col gap-1.5 pt-[env(safe-area-inset-top)]">
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="font-display text-screen-title text-ink-bright">Notes</h1>
+          <button
+            type="button"
+            onClick={() => {
+              newNote();
+            }}
+            aria-label="New note"
+            className="w-11 h-11 rounded-control border border-ready-emerald-edge bg-ready-emerald-tint grid place-items-center text-ready-emerald-text hover:bg-ready-emerald-tint-hover"
+          >
+            <i className="ph-bold ph-plus text-xl" aria-hidden="true" />
+          </button>
         </div>
-        {notes.length > 0 && (
+        <p className="text-sub text-ink-muted">Your own Markdown. Pin a note to Home, a ship or a guide.</p>
+      </header>
+      <LogSegment />
+
+      {notes.length > 0 && (
+        <label className="relative block">
+          <i
+            className="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-label"
+            aria-hidden="true"
+          />
           <input
             type="search"
             value={query}
             onChange={event => {
               setQuery(event.target.value);
             }}
-            placeholder="Search your notes"
+            placeholder={`Search ${String(notes.length)} note${notes.length === 1 ? '' : 's'}`}
             aria-label="Search your notes"
-            className="w-full h-10 bg-slate-900 border border-slate-700 rounded-xl px-3 text-base md:text-sm text-white placeholder:text-slate-400"
+            className={`${FIELD} pl-10`}
           />
-        )}
-      </div>
-      <div id="notesList" className="space-y-4">
-        {shown.map(note => (
-          <NoteCard key={note.id} note={note} level={2} />
-        ))}
-        {!notes.length && (
-          <p className="text-sm text-slate-400 px-1">
-            No notes yet. Write one, or import Markdown files you already keep.
-          </p>
-        )}
-        {notes.length > 0 && !shown.length && (
-          <p className="text-sm text-slate-400 px-1">Nothing matches “{query.trim()}”.</p>
-        )}
-      </div>
-    </>
+        </label>
+      )}
+
+      {chips.length > 1 && (
+        <div
+          role="group"
+          aria-label="Filters"
+          className="flex gap-2 overflow-x-auto -mx-4 px-4 pb-1 [scrollbar-width:none] lg:flex-wrap lg:overflow-visible lg:mx-0 lg:px-0"
+        >
+          {chips.map(chip => (
+            <button
+              key={chip.id}
+              type="button"
+              aria-pressed={filter === chip.id}
+              onClick={() => {
+                setFilter(chip.id);
+              }}
+              className={`relative shrink-0 h-[34px] px-3.5 rounded-full border text-[13px] font-semibold whitespace-nowrap ${
+                filter === chip.id
+                  ? 'bg-scanner-cyan-tint border-scanner-cyan-edge text-scanner-cyan-text'
+                  : 'bg-slate-ground border-control-edge text-ink-soft hover:text-ink-bright'
+              }`}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {shown.length > 0 && (
+        <ul
+          id="notesList"
+          className="rounded-card bg-panel-glass border border-hairline divide-y divide-hairline overflow-hidden"
+        >
+          {shown.map(note => (
+            <li key={note.id} data-note={note.id}>
+              <a
+                href={`#note/${encodeURIComponent(note.id)}`}
+                className="flex items-start gap-3 px-4 py-3.5 hover:bg-slate-ground"
+              >
+                <span
+                  aria-hidden="true"
+                  className="w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center bg-slate-ground border border-control-edge text-scanner-cyan-pale"
+                >
+                  <i className="ph-bold ph-file-text text-[17px]" />
+                </span>
+                <span className="flex-1 min-w-0 flex flex-col gap-0.5">
+                  <span className="text-[14px] font-semibold text-ink-bright break-words">{note.title}</span>
+                  {note.body.trim() && (
+                    <span className="text-caption leading-snug text-ink-muted line-clamp-2">{noteExcerpt(note)}</span>
+                  )}
+                  <span className="flex flex-wrap items-center gap-1.5 mt-1">
+                    {note.tags.map(tag => (
+                      <span key={tag} className={TAG}>
+                        {tag}
+                      </span>
+                    ))}
+                    {note.pins.length > 0 && (
+                      <i className="ph-fill ph-push-pin text-[12px] text-ready-emerald-text" aria-label="Pinned" />
+                    )}
+                    <span className="font-mono text-[11px] text-ink-label">{shortDate(note.updatedAt)}</span>
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      {!notes.length && (
+        <p className="text-sub text-ink-muted rounded-card border border-dashed border-control-edge px-4 py-3.5">
+          No notes yet. Write one, or import Markdown files you already keep.
+        </p>
+      )}
+      {notes.length > 0 && !shown.length && (
+        <p className="text-sub text-ink-muted">
+          {query.trim() ? `Nothing matches “${query.trim()}”.` : 'No notes match this filter.'}
+        </p>
+      )}
+
+      <label className="self-start inline-flex items-center gap-2 text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan cursor-pointer focus-within:outline-2 focus-within:outline-scanner-cyan-glow rounded">
+        <i className="ph-bold ph-upload-simple" aria-hidden="true" />
+        Import Markdown files
+        <input
+          type="file"
+          multiple
+          accept=".md,.markdown,.txt,text/markdown,text/plain"
+          onChange={event => {
+            void importNoteFiles([...(event.target.files ?? [])]);
+            event.target.value = ''; // the same files can be picked again
+          }}
+          className="sr-only"
+        />
+      </label>
+    </div>
   );
 }

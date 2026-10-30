@@ -115,9 +115,10 @@ test('a note pinned to Book III shows under the book and on Home, rendered and s
 test('a new note from a book starts pinned there; the header search finds it', async ({ page }, testInfo) => {
   await page.goto('./#book2');
   await page.getByRole('button', { name: 'Add a note to Book II' }).click();
+  await expect(page).toHaveURL(/#note\/note-/);
   await page.locator('#noteTitle').fill('Outlaw loop timing');
   await page.locator('#noteBody').fill('Go back after **24 h**. <img src=x onerror=alert(1)>');
-  await page.locator('#noteEditor').getByRole('button', { name: 'Add note' }).click();
+  await page.locator('#sec-note').getByRole('button', { name: 'Back' }).click(); // leaving saves it
   const card = page.locator('#sec-book2 [data-player] [data-note]').filter({ hasText: 'Outlaw loop timing' });
   await expect(card.locator('strong')).toHaveText('24 h');
   await expect(card.locator('img')).toHaveCount(0);
@@ -129,7 +130,8 @@ test('a new note from a book starts pinned there; the header search finds it', a
     .locator('#globalSearchResults')
     .getByRole('option', { name: /Outlaw loop timing/ })
     .click();
-  await expect(page).toHaveURL(/#notes$/);
+  await expect(page).toHaveURL(/#note\/note-/);
+  await expect(page.locator('#noteTitle')).toHaveText('Outlaw loop timing');
 });
 
 test('Markdown files import as notes', async ({ page }) => {
@@ -141,4 +143,22 @@ test('Markdown files import as notes', async ({ page }) => {
   await expect(page.locator('#toastMessage')).toHaveText('Imported 2 notes.');
   await expect(page.locator('#notesList')).toContainText('Trade routes');
   await expect(page.locator('#notesList')).toContainText('plain');
+});
+
+test('a note opens on its own screen and the toolbar formats what is selected', async ({ page }) => {
+  await page.goto('./#notes');
+  await page.locator('#notesList').getByRole('link', { name: /My scanner layout/ }).click();
+  await expect(page).toHaveURL(/#note\/note-grid$/);
+  await expect(page.locator('#notePreview table')).toContainText('Best scanner');
+  await page.locator('#sec-note').getByRole('radio', { name: 'Write' }).click();
+  const body = page.locator('#noteBody');
+  await body.evaluate(area => {
+    area.setSelectionRange(area.value.indexOf('Best'), area.value.indexOf('Best') + 4);
+  });
+  // The toolbar floats above the tab bar on a phone, and its buttons don't take the selection away.
+  await page.getByRole('group', { name: 'Formatting' }).getByRole('button', { name: 'Bold' }).click();
+  await expect(body).toHaveValue(/\*\*Best\*\* scanner/);
+  await expect
+    .poll(async () => (await storedState(page)).notes.find(note => note.id === 'note-grid').body)
+    .toContain('**Best** scanner');
 });

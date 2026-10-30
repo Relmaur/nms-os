@@ -1,8 +1,10 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import {
+  filterNotes,
   gearPin,
   linkNotes,
+  noteChips,
   noteExcerpt,
   noteFromMarkdown,
   normalizeNotes,
@@ -92,4 +94,34 @@ test('a note links to a ship through a gear pin; linking sets exactly the chosen
     [['home'], [], ['gear:ship-1']]
   );
   assert.equal(linked[1], notes[1]); // untouched notes stay the same object
+});
+
+test('tags are slugs, merge as a set, and drive the list’s chips and filter', () => {
+  const notes = normalizeNotes([
+    { ...note('a', ['home'], '2026-10-02T00:00:00Z'), tags: ['Ships', 'ships', 'Multi Tool', 7] },
+    { ...note('b', [], '2026-10-03T00:00:00Z', 'Units plan'), tags: ['units', 'ships'] },
+    note('c', [], '2026-10-01T00:00:00Z') // an older note without tags
+  ]);
+  assert.deepEqual(notes[0]?.tags, ['ships', 'multi-tool']);
+  assert.deepEqual(notes[2]?.tags, []);
+  assert.deepEqual(
+    noteChips(notes).map(chip => chip.label),
+    ['All', 'Pinned', 'ships', 'multi-tool', 'units']
+  );
+  assert.deepEqual(
+    filterNotes(notes, '', 'tag:ships').map(n => n.id),
+    ['b', 'a']
+  );
+  assert.deepEqual(
+    filterNotes(notes, '', 'pinned').map(n => n.id),
+    ['a']
+  );
+  assert.deepEqual(
+    filterNotes(notes, 'units', 'all').map(n => n.id),
+    ['b']
+  );
+  assert.deepEqual(
+    filterNotes(notes, 'multi', 'all').map(n => n.id),
+    ['a']
+  ); // tags are searched too
 });

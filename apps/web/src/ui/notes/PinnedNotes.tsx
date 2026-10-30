@@ -2,7 +2,7 @@
 // player's own, and out of the header search's book index (data-player): their text never reads as the guide's.
 import { notesPinnedTo } from '@atlas/core/notes';
 import { useAppState } from '../useAppState.ts';
-import { openNoteEditor } from '../parts/editor-store.ts';
+import { newNote } from './note-nav.ts';
 import { NoteCard } from './NoteCard.tsx';
 
 export function PinnedNotes({ place, label, hint }: { place: string; label: string; hint: string }) {
@@ -17,7 +17,7 @@ export function PinnedNotes({ place, label, hint }: { place: string; label: stri
         <button
           type="button"
           onClick={() => {
-            openNoteEditor(null, [place]);
+            newNote([place]);
           }}
           className="h-9 px-3 rounded-lg border border-slate-700 text-xs text-slate-200 hover:text-white hover:bg-slate-900 flex items-center gap-1.5"
         >

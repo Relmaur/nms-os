@@ -1,189 +1,316 @@
-// Write or edit a note: a title, Markdown with a preview, and where else it shows (Home, a book). The draft lives
-// here until Save.
-import { useCallback, useMemo, useState, type SubmitEvent } from 'react';
-import { newId } from '@atlas/core/systems-model';
-import { MAX_NOTE_CHARS, PIN_PLACES, type Note } from '@atlas/core/notes';
+// One note on its own screen (#note/<id>, design 11): read it (Preview) or write it (Write), with the formatting
+// toolbar floating above the tab bar. It saves as the player writes, since the design has no Save button: a pause
+// stores it, and so does leaving. Pin also shows it on Home, a Guide book or a ship's screen.
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { MAX_NOTE_CHARS, MAX_NOTE_TAGS, PIN_PLACES, gearPin, type Note } from '@atlas/core/notes';
+import { applyMarkdown, type MarkdownFormat } from '@atlas/core/markdown-edit';
 import { deleteNote, saveNote } from '../actions.ts';
-import { showToast } from '../../app/ui.ts';
-import { closeEditor } from '../parts/editor-store.ts';
-import { Modal } from '../parts/Modal.tsx';
+import { useAppState } from '../useAppState.ts';
+import { goBack, useSection, useSectionParam } from '../shell/section-store.ts';
+import { Button, buttonClass } from '../parts/Button.tsx';
+import { ArmButton } from '../parts/Gesture.tsx';
+import { FIELD, Segments, TagEditor } from '../systems/editor-parts.tsx';
+import { KINDS } from '../gear/kinds.ts';
 import { renderNote } from './NoteCard.tsx';
+import { freshPins } from './note-nav.ts';
+import { PinPills, TOP_BUTTON, shortDate } from './note-bits.tsx';
 
-export function NoteEditor({ existing, pins }: { existing: Note | undefined; pins: string[] }) {
+const SAVE_DELAY_MS = 600;
+const TOOLS: [MarkdownFormat, string, string][] = [
+  ['heading', 'Heading', '#'],
+  ['bold', 'Bold', 'B'],
+  ['italic', 'Italic', 'I'],
+  ['list', 'List', 'List'],
+  ['table', 'Table', 'Table'],
+  ['link', 'Link a Codex page', '']
+];
+const TOOL_LOOK: Partial<Record<MarkdownFormat, string>> = {
+  heading: 'font-mono',
+  bold: 'font-extrabold',
+  italic: 'italic'
+};
+
+export function NoteScreen() {
+  const section = useSection();
+  const id = useSectionParam();
+  const { notes } = useAppState();
+  // Once open, the editor stays for this id even if the note disappears (deleted on another device): it says so
+  // rather than vanishing mid-sentence.
+  const [opened, setOpened] = useState('');
+  const existing = notes.find(note => note.id === id);
+  const pins = freshPins(id);
+  if ((existing || pins) && opened !== id) setOpened(id);
+  // Every screen stays mounted; leaving this one unmounts the editor, which stores what's left.
+  if (section !== 'note') return null;
+  if (!existing && !pins && opened !== id)
+    return (
+      <div className="flex flex-col items-start gap-section pt-[env(safe-area-inset-top)]">
+        <h1 className="font-display text-screen-title text-ink-bright">Not in your notes</h1>
+        <p className="text-sub text-ink-muted">
+          It may have been deleted, or it’s a note that was never saved. Blank notes aren’t kept.
+        </p>
+        <Button
+          onClick={() => {
+            location.hash = '#notes';
+          }}
+        >
+          Your notes
+        </Button>
+      </div>
+    );
+  return <NoteEditor key={id} id={id} existing={existing} pins={pins ?? []} />;
+}
+
+function NoteEditor({ id, existing, pins }: { id: string; existing: Note | undefined; pins: string[] }) {
+  const { gear } = useAppState();
   const [draft, setDraft] = useState<Note>(() => {
     if (existing) return structuredClone(existing);
     const now = new Date().toISOString();
-    return { id: newId('note'), title: '', body: '', pins, createdAt: now, updatedAt: now };
+    return { id, title: '', body: '', pins, tags: [], createdAt: now, updatedAt: now };
   });
-  const [original] = useState(() => JSON.stringify(draft));
-  // Deleted on another device (or tab) while open: the first Save says so, a second one keeps it on purpose.
-  const [wasSaved] = useState(Boolean(existing));
-  const [restore, setRestore] = useState(false);
-  const [preview, setPreview] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [error, setError] = useState('');
-  const dirty = JSON.stringify(draft) !== original;
-  const html = useMemo(() => (preview ? renderNote(draft.body) : ''), [preview, draft.body]);
+  const [mode, setMode] = useState(existing ? 'preview' : 'write');
+  const [typed, setTyped] = useState('');
+  const [showPins, setShowPins] = useState(false);
+  const [stored, setStored] = useState(Boolean(existing));
+  const [kept, setKept] = useState(false);
+  const [removed, setRemoved] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const area = useRef<HTMLTextAreaElement>(null);
+  const saved = useRef(JSON.stringify(draft)); // what was last stored (or the note as opened)
+  const unsaved = useRef<Note | null>(null);
+  // Deleted on another device (or tab) while open: nothing is written back unless the player says to keep it.
+  const gone = stored && !existing && !kept && !removed;
+  const empty = !draft.title.trim() && !draft.body.trim();
 
-  const dismiss = useCallback(() => {
-    if (dirty) showToast('Unsaved note: save it, or Cancel to discard.');
-    else closeEditor();
-  }, [dirty]);
-
-  const submit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!draft.title.trim() && !draft.body.trim()) {
-      setError('Write a title or some text first.');
+  const flush = useCallback((): void => {
+    const note = unsaved.current;
+    unsaved.current = null;
+    if (!note || (!note.title.trim() && !note.body.trim())) return; // an empty note isn't kept
+    const ok = saveNote({ ...note, title: note.title.trim() || 'Untitled note' });
+    saved.current = JSON.stringify(note);
+    setFailed(!ok);
+    if (ok) setStored(true);
+  }, []);
+  useEffect(() => {
+    if (gone || removed || JSON.stringify(draft) === saved.current) {
+      unsaved.current = null;
       return;
     }
-    if (wasSaved && !existing && !restore) {
-      setRestore(true);
-      setError('This note was deleted on another device. Save again to keep it.');
-      return;
-    }
-    saveNote({ ...draft, title: draft.title.trim() || 'Untitled note' });
-    closeEditor();
+    unsaved.current = draft;
+    const timer = setTimeout(flush, SAVE_DELAY_MS);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [draft, gone, removed, flush]);
+  useEffect(() => flush, [flush]); // leaving keeps what's there
+
+  const set = (changes: Partial<Note>) => {
+    setDraft(current => ({ ...current, ...changes }));
+  };
+  const setTags = (tags: string[]) => {
+    set({ tags });
   };
   const togglePin = (key: string) => {
-    setDraft(current => ({
-      ...current,
-      pins: current.pins.includes(key) ? current.pins.filter(pin => pin !== key) : [...current.pins, key]
-    }));
+    set({ pins: draft.pins.includes(key) ? draft.pins.filter(pin => pin !== key) : [...draft.pins, key] });
   };
+  const format = (kind: MarkdownFormat) => {
+    const writing = mode === 'write' ? area.current : null;
+    const start = writing?.selectionStart ?? draft.body.length;
+    const end = writing?.selectionEnd ?? draft.body.length;
+    const edit = applyMarkdown(draft.body, start, end, kind);
+    if (edit.text.length > MAX_NOTE_CHARS) return;
+    set({ body: edit.text });
+    setMode('write');
+    requestAnimationFrame(() => {
+      area.current?.focus();
+      area.current?.setSelectionRange(edit.start, edit.end);
+    });
+  };
+  const html = useMemo(() => (mode === 'preview' ? renderNote(draft.body) : ''), [mode, draft.body]);
+  const places = [
+    ...PIN_PLACES,
+    ...gear.map(item => ({ key: gearPin(item.id), label: item.name || KINDS[item.kind].label }))
+  ];
 
   return (
-    <Modal
-      id="noteEditor"
-      onSubmit={submit}
-      title={wasSaved ? 'Edit note' : 'New note'}
-      titleId="noteEditorTitle"
-      dismiss={dismiss}
-      onClose={closeEditor}
-      footer={
-        <>
-          <p role="alert" className="mr-auto text-xs text-rose-300">
-            {error}
-          </p>
-          {existing &&
-            (confirmDelete ? (
-              <button
-                type="button"
-                onClick={() => {
-                  deleteNote(existing.id);
-                  closeEditor();
-                }}
-                className="h-10 px-4 rounded-xl bg-rose-500 hover:bg-rose-400 text-slate-950 text-sm font-semibold"
-              >
-                Delete for good
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  setConfirmDelete(true);
-                }}
-                className="h-10 px-3 rounded-xl text-sm text-rose-300 hover:bg-rose-500/10"
-              >
-                Delete
-              </button>
-            ))}
-          <button
-            type="button"
-            onClick={closeEditor}
-            className="h-10 px-4 rounded-xl border border-slate-700 text-sm text-slate-300 hover:bg-slate-900"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold"
-          >
-            {wasSaved ? 'Save' : 'Add note'}
-          </button>
-        </>
-      }
-    >
-      <label className="field">
-        Title
-        <input
-          id="noteTitle"
-          maxLength={120}
-          autoFocus
-          placeholder="e.g. My flagship’s Infra-Knife layout"
-          value={draft.title}
-          onChange={event => {
-            setDraft({ ...draft, title: event.target.value });
+    <div className="flex flex-col gap-4 max-w-2xl pt-[env(safe-area-inset-top)] pb-20 lg:pb-0">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3">
+        <button
+          type="button"
+          onClick={() => {
+            goBack('notes');
           }}
-        />
-      </label>
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between gap-3">
-          <label htmlFor="noteBody" className="field-label">
-            Note
-          </label>
-          <div className="flex gap-1.5" role="radiogroup" aria-label="Write or preview">
-            {(['Write', 'Preview'] as const).map(mode => (
-              <button
-                key={mode}
-                type="button"
-                role="radio"
-                aria-checked={preview === (mode === 'Preview')}
-                onClick={() => {
-                  setPreview(mode === 'Preview');
-                }}
-                className={`seg ${preview === (mode === 'Preview') ? 'is-on' : ''}`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
-        </div>
-        {preview ? (
-          <div
-            id="notePreview"
-            className="md-body text-sm min-h-[12rem] bg-slate-900/50 border border-slate-800 rounded-xl p-4"
-            dangerouslySetInnerHTML={{ __html: html || '<p>Nothing to preview yet.</p>' }}
-          />
-        ) : (
-          <textarea
-            id="noteBody"
-            rows={12}
-            maxLength={MAX_NOTE_CHARS}
-            value={draft.body}
-            onChange={event => {
-              setDraft({ ...draft, body: event.target.value });
+          aria-label="Back"
+          className={TOP_BUTTON}
+        >
+          <i className="ph-bold ph-caret-left text-lg" aria-hidden="true" />
+        </button>
+        <div className="justify-self-center w-[180px]">
+          <Segments
+            label="Write or preview"
+            hideLabel
+            value={mode}
+            onChange={value => {
+              if (value) setMode(value);
             }}
-            placeholder={
-              'Markdown works: **bold**, - lists, | tables |.\nLink a Codex page with [[Infra-Knife Accelerator]].'
-            }
-            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-base md:text-sm font-mono text-white"
+            options={[
+              ['write', 'Write'],
+              ['preview', 'Preview']
+            ]}
           />
-        )}
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setShowPins(!showPins);
+          }}
+          aria-label="Pin"
+          aria-expanded={showPins}
+          aria-controls="notePins"
+          className={`${TOP_BUTTON} ${draft.pins.length ? 'text-ready-emerald-text border-ready-emerald-edge bg-ready-emerald-tint' : ''}`}
+        >
+          <i className={`${draft.pins.length ? 'ph-fill' : 'ph-bold'} ph-push-pin text-lg`} aria-hidden="true" />
+        </button>
       </div>
-      <fieldset className="space-y-1.5">
-        <legend className="field-label">Also show it on</legend>
-        <div className="flex flex-wrap gap-1.5">
-          {PIN_PLACES.map(place => (
-            <label
-              key={place.key}
-              className={`seg cursor-pointer focus-within:ring-2 focus-within:ring-cyan-400 ${draft.pins.includes(place.key) ? 'is-on' : ''}`}
-            >
+
+      {showPins && (
+        <fieldset id="notePins" className="rounded-card border border-hairline bg-panel-glass px-4 py-2">
+          <legend className="sr-only">Also show this note on</legend>
+          <p className="pt-1 pb-1.5 text-caption text-ink-soft">Also show it on</p>
+          {places.map(place => (
+            <label key={place.key} className="flex items-center gap-3 py-2 text-sub text-ink">
               <input
                 type="checkbox"
-                name="pins"
-                value={place.key}
                 checked={draft.pins.includes(place.key)}
                 onChange={() => {
                   togglePin(place.key);
                 }}
-                className="sr-only"
+                className="w-4 h-4 accent-emerald-400"
               />
-              {place.label}
+              <span className="truncate">{place.label}</span>
             </label>
           ))}
+        </fieldset>
+      )}
+
+      {gone && (
+        <div
+          role="alert"
+          className="rounded-card border border-danger-rose-edge bg-panel-glass p-4 flex flex-col gap-3"
+        >
+          <p className="text-sub text-danger-rose-text">
+            This note was deleted on another device. Changes here aren’t saved unless you keep it.
+          </p>
+          <Button
+            onClick={() => {
+              setKept(true);
+              unsaved.current = draft;
+              flush();
+            }}
+            className="self-start"
+          >
+            Keep it
+          </Button>
         </div>
-        <p className="text-xs text-slate-400">Every note is in Notes; pinned ones also show there.</p>
-      </fieldset>
-    </Modal>
+      )}
+      {failed && (
+        <p role="alert" className="text-caption text-danger-rose-text">
+          Couldn’t save on this device: its storage is full or blocked. Copy what you wrote before leaving.
+        </p>
+      )}
+
+      {mode === 'preview' ? (
+        <>
+          <h1
+            id="noteTitle"
+            className="font-display font-extrabold text-[22px] leading-tight text-ink-bright break-words"
+          >
+            {draft.title.trim() || 'Untitled note'}
+          </h1>
+          <PinPills note={draft} gear={gear} />
+          {draft.body.trim() ? (
+            <div id="notePreview" className="md-body text-[15px] text-ink" dangerouslySetInnerHTML={{ __html: html }} />
+          ) : (
+            <p className="text-sub text-ink-muted">Nothing written yet. Switch to Write to start.</p>
+          )}
+        </>
+      ) : (
+        <>
+          <h1 className="sr-only">{stored ? 'Edit note' : 'New note'}</h1>
+          <input
+            id="noteTitle"
+            aria-label="Title"
+            maxLength={120}
+            autoFocus={!existing}
+            placeholder="Title"
+            value={draft.title}
+            onChange={event => {
+              set({ title: event.target.value });
+            }}
+            className="w-full bg-transparent font-display font-extrabold text-[22px] leading-tight text-ink-bright placeholder:text-ink-disabled focus:outline-hidden"
+          />
+          <PinPills note={draft} gear={gear} />
+          <textarea
+            id="noteBody"
+            ref={area}
+            aria-label="Note"
+            rows={14}
+            maxLength={MAX_NOTE_CHARS}
+            value={draft.body}
+            onChange={event => {
+              set({ body: event.target.value });
+            }}
+            placeholder={
+              'Markdown works: **bold**, - lists, | tables |.\nLink a Codex page with [[Infra-Knife Accelerator]].'
+            }
+            className={`${FIELD} h-auto min-h-[40dvh] py-3 font-mono leading-relaxed resize-y`}
+          />
+          <TagEditor tags={draft.tags} onTags={setTags} typed={typed} onTyped={setTyped} max={MAX_NOTE_TAGS} />
+          {stored && (
+            <ArmButton
+              label="Delete note"
+              armedLabel="Tap again to delete"
+              onConfirm={() => {
+                setRemoved(true);
+                unsaved.current = null;
+                deleteNote(id);
+                goBack('notes');
+              }}
+            />
+          )}
+        </>
+      )}
+
+      <p id="noteStatus" className="text-caption text-ink-muted">
+        {empty
+          ? 'Write a title or some text to keep this note.'
+          : `Edited ${shortDate(existing?.updatedAt ?? draft.updatedAt)} · saved on this device`}
+      </p>
+
+      <div
+        role="group"
+        aria-label="Formatting"
+        className="fixed z-40 inset-x-4 bottom-[calc(var(--spacing-tabbar-inset)+var(--spacing-tabbar)+16px)] lg:sticky lg:inset-x-auto lg:bottom-6 p-2 rounded-2xl bg-panel-glass border border-hairline backdrop-blur-[18px] flex gap-2 overflow-x-auto [scrollbar-width:none]"
+      >
+        {TOOLS.map(([kind, label, text]) => (
+          <button
+            key={kind}
+            type="button"
+            aria-label={label === text ? undefined : label}
+            onMouseDown={event => {
+              event.preventDefault(); // keeps the selection in the note
+            }}
+            onClick={() => {
+              format(kind);
+            }}
+            className={`${buttonClass('secondary', 'M')} shrink-0 px-3.5 ${TOOL_LOOK[kind] ?? ''}`}
+          >
+            {kind === 'list' && <i className="ph-bold ph-list-bullets" aria-hidden="true" />}
+            {kind === 'link' && <i className="ph-bold ph-link" aria-hidden="true" />}
+            {text}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

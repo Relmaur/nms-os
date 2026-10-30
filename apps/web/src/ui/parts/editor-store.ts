@@ -1,12 +1,9 @@
-// Which of the player's own records is being edited: a ship or Multi-Tool, or a note. Home, the books, the Ships &
-// Multi-Tools and Notes screens and the header search all open the same editors (mounted once, in PlayerEditors).
+// Which ship, Multi-Tool or Exosuit is being edited. Home, Fleet, a ship's screen and the header search all open the
+// same editor (mounted once, in PlayerEditors). Notes open on their own screen instead (notes/note-nav.ts).
 import { useSyncExternalStore } from 'react';
 import type { GearKind } from '@atlas/core/gear';
 
-export type Editing =
-  | { kind: 'gear'; id: string | null; preset: GearKind; session: number }
-  | { kind: 'note'; id: string | null; pins: string[]; session: number }
-  | null;
+export type Editing = { kind: 'gear'; id: string | null; preset: GearKind; session: number } | null;
 
 let editing: Editing = null;
 let session = 0;
@@ -38,11 +35,6 @@ function remember(): void {
 export function openGearEditor(id: string | null = null, preset: GearKind = 'starship'): void {
   remember();
   set({ kind: 'gear', id, preset, session: ++session });
-}
-// A new note opened from a book or Home starts pinned there.
-export function openNoteEditor(id: string | null = null, pins: string[] = []): void {
-  remember();
-  set({ kind: 'note', id, pins, session: ++session });
 }
 export function closeEditor(): void {
   set(null);

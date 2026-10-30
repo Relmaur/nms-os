@@ -2,7 +2,7 @@
 
 Read this before starting work; update it before ending any non-trivial task. Keep it current, not historical: completed work moves to `CHANGELOG.md`.
 
-_Last updated: 2026-10-29_
+_Last updated: 2026-10-30_
 
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
@@ -70,7 +70,12 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - Deviations: the editor keeps an Exosuit kind (the design shows two); the module field has no suggestion chips (no wiki list of modules by kind yet); "Remove from hangar" reads "Remove from fleet"; Class is set by the C/B/A/S segments, so an upgrade written as "A -> S" stays until another class is tapped; a card added since Fleet opened starts closed; the Log segment still lacks Map.
   - The old `GearCard.tsx` was deleted with the owner's yes.
 
-**Next:** the rest per START-HERE: 10 and 11 Notes, 13 Recipe planner with its Codex peek (34), 14 Best crafts, 15 and 16 Codex (33), 17 and 18 Guides, 19 Search, 20 Settings, 21 Sync, 22 First run, then Runs.
+- **10 Notes and 11 Note editor are rebuilt** (`ui/notes/Notes.tsx`; `NoteEditor.tsx` is now a screen at `#note/<id>`, opened through `note-nav.ts`; `noteChips`, `filterNotes` in `@atlas/core/notes`, the toolbar's `applyMarkdown` in `@atlas/core/markdown-edit`). The list has search, chips (All, Pinned, each tag) and rows that open the note. A note opens in Preview (Write for a new one); Pin picks Home, a book or a ship; the formatting toolbar floats above the tab bar (sticky at the foot of the column from lg). The modal editor and `openNoteEditor` are gone; the system editor's tag field is shared as `TagEditor`.
+  - **Notes gain `tags`** (additive; `docs/state-schema.md`). Like gear pins, the deployed (main) app would drop them if it synced with a redesign device.
+  - **It saves as you write** (the design has no Save button): a 600ms pause stores it, and so does leaving. A blank new note is never stored; an emptied one keeps its last copy (Delete removes it). Deleted on another device while open, it says so and saves nothing unless the player taps Keep it.
+  - Deviations: the subtitle says "Pin a note to Home, a ship or a guide" (the design says "a system", but notes can't be pinned to systems; a system pin needs the owner's call and a place on 03); Import Markdown files stays, as a link under the list (not in the design); a pin icon on rows marks pinned notes; tags are edited in Write mode (the design shows them but not where they're set); Delete note sits in Write mode; the toolbar's Link inserts a Codex link `[[…]]`; formatting from Preview switches to Write and acts at the end of the note; the session bar moves to the top on both screens, as on Fleet.
+
+**Next:** the rest per START-HERE: 13 Recipe planner with its Codex peek (34), 14 Best crafts, 15 and 16 Codex (33), 17 and 18 Guides, 19 Search, 20 Settings, 21 Sync, 22 First run, then Runs.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

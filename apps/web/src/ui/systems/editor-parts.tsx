@@ -1,5 +1,7 @@
-// Form parts of the system editor (design 06): fields, labels and segmented tracks.
-import { useId, type ReactNode } from 'react';
+// Form parts of the system editor (design 06): fields, labels, segmented tracks and tags. The note editor (11) uses
+// them too.
+import { useId, type KeyboardEvent, type ReactNode } from 'react';
+import { tagSlug } from '@atlas/core/systems-model';
 
 export const FIELD =
   'w-full h-11 rounded-control border border-control-edge bg-slate-ground px-3.5 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:border-scanner-cyan-edge-strong focus:outline-hidden';
@@ -64,6 +66,80 @@ export function Segments({
             })}
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Tags as removable chips with a field to type the next one (Enter or a comma adds it, Backspace on an empty field
+ * removes the last). `typed` is the caller's, so a tag typed but not yet added can still count on Save.
+ */
+export function TagEditor({
+  tags,
+  onTags,
+  typed,
+  onTyped,
+  max = Infinity
+}: {
+  tags: string[];
+  onTags: (tags: string[]) => void;
+  typed: string;
+  onTyped: (typed: string) => void;
+  max?: number;
+}) {
+  const add = (value: string) => {
+    const tag = tagSlug(value);
+    if (tag && !tags.includes(tag) && tags.length < max) onTags([...tags, tag]);
+    onTyped('');
+    document.getElementById('tagInput')?.focus();
+  };
+  const onKey = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' || event.key === ',') {
+      event.preventDefault();
+      if (typed.trim()) add(typed);
+    } else if (event.key === 'Backspace' && !typed && tags.length) {
+      onTags(tags.slice(0, -1));
+    }
+  };
+  return (
+    <div className={LABEL_FIELD}>
+      <label htmlFor="tagInput">Tags</label>
+      <div
+        id="tagEditor"
+        className="flex flex-wrap items-center gap-1.5 min-h-11 p-1.5 rounded-control bg-slate-ground border border-control-edge focus-within:border-scanner-cyan-edge-strong"
+        onClick={() => document.getElementById('tagInput')?.focus()}
+      >
+        {tags.map(tag => (
+          <span
+            key={tag}
+            className="inline-flex items-center gap-1.5 h-[30px] pl-2.5 pr-1.5 rounded-full bg-scanner-cyan-tint border border-scanner-cyan-edge text-[13px] font-medium text-[#a5f3fc]"
+          >
+            {tag}
+            <button
+              type="button"
+              onClick={() => {
+                onTags(tags.filter(item => item !== tag));
+              }}
+              aria-label={`Remove tag ${tag}`}
+              className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-scanner-cyan-edge"
+            >
+              <i className="ph-bold ph-x text-[10px]" />
+            </button>
+          </span>
+        ))}
+        <input
+          id="tagInput"
+          type="text"
+          maxLength={40}
+          value={typed}
+          onChange={event => {
+            onTyped(event.target.value);
+          }}
+          onKeyDown={onKey}
+          placeholder="Type a tag and press Enter"
+          className="flex-1 min-w-[8rem] h-[30px] bg-transparent px-1.5 text-base md:text-sm text-ink-bright placeholder:text-ink-disabled focus:outline-hidden"
+        />
       </div>
     </div>
   );

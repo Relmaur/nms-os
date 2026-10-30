@@ -5,7 +5,8 @@ import { useEffect, useMemo } from 'react';
 import { rulesSummary, slotGrid, slotRules, type GearItem } from '@atlas/core/gear';
 import { noteExcerpt, notesForGear, type Note } from '@atlas/core/notes';
 import { useAppState } from '../useAppState.ts';
-import { openGearEditor, openNoteEditor } from '../parts/editor-store.ts';
+import { openGearEditor } from '../parts/editor-store.ts';
+import { openNote } from '../notes/note-nav.ts';
 import { Button } from '../parts/Button.tsx';
 import { renderNote } from '../notes/NoteCard.tsx';
 import { goBack, useSectionParam } from '../shell/section-store.ts';
@@ -203,7 +204,7 @@ function Ship({ item, linked }: { item: GearItem; linked: Note[] }) {
                 <button
                   type="button"
                   onClick={() => {
-                    openNoteEditor(note.id);
+                    openNote(note.id);
                   }}
                   className="w-full flex items-center gap-3 px-4 py-3.5 text-left hover:bg-slate-ground"
                 >

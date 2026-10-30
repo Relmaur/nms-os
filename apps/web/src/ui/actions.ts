@@ -241,14 +241,15 @@ export function linkGearNotes(gearId: string, ids: string[]): void {
   saveAppState();
 }
 
-export function saveNote(note: Note): void {
+// The note screen saves as the player writes (design 11 has no Save button), so this is quiet; false means it wasn't
+// stored (an empty note, or storage refused it) and the screen says so.
+export function saveNote(note: Note): boolean {
   const [clean] = normalizeNotes([{ ...note, updatedAt: new Date().toISOString() }]);
-  if (!clean) return;
+  if (!clean) return false;
   const index = appState.notes.findIndex(existing => existing.id === clean.id);
   if (index === -1) appState.notes.push(clean);
   else appState.notes[index] = clean;
-  saveAppState();
-  showToast(index === -1 ? `Added “${clean.title}”.` : `Saved “${clean.title}”.`);
+  return saveAppState();
 }
 
 export function deleteNote(id: string): void {
@@ -270,7 +271,7 @@ export async function importNoteFiles(files: File[]): Promise<void> {
       if (file.size > MAX_IMPORT_BYTES) throw new Error('too big');
       const { title, body } = noteFromMarkdown(await file.text(), file.name);
       if (body.length >= MAX_NOTE_CHARS) throw new Error('too long');
-      added.push({ id: newId('note'), title, body, pins: [], createdAt: now, updatedAt: now });
+      added.push({ id: newId('note'), title, body, pins: [], tags: [], createdAt: now, updatedAt: now });
     } catch {
       skipped.push(file.name);
     }
