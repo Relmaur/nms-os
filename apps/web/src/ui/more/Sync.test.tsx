@@ -52,15 +52,17 @@ const status = () => document.getElementById('syncStatus')?.textContent ?? '';
 test('turning sync on uploads a sealed copy and shows when it last synced', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced just now/);
+  await expect.poll(status).toMatch(/synced just now/i);
   expect(vaults.size).toBe(1);
   const [vault] = [...vaults.values()];
   expect(new TextDecoder().decode(vault?.blob)).not.toContain('Ekwa'); // the relay can't read it
   expect(status()).toMatch(/Copy ID [0-9A-F]{4}-[0-9A-F]{4}/);
-  await userEvent.click(screen.getByRole('button', { name: 'Pair another device' }));
+  // This device wrote itself into the log it synced, and lists itself.
+  expect(appState.devices).toHaveLength(1);
+  expect(screen.getByRole('list', { name: 'Devices' }).textContent).toContain('This device');
   expect(screen.queryByRole('img', { name: /QR code/ })).toBeNull(); // not until asked, with a warning first
   expect(document.getElementById('syncCodeCard')?.textContent).toMatch(/stream/);
-  await userEvent.click(screen.getByRole('button', { name: 'Show the code' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Show pairing code' }));
   expect(screen.getByRole('img', { name: /QR code/ })).toBeTruthy();
   expect(document.getElementById('syncCodeCard')?.textContent).toContain(syncCode() ?? 'missing');
 });
@@ -68,7 +70,7 @@ test('turning sync on uploads a sealed copy and shows when it last synced', asyn
 test('pairing with a code merges both logs; a later edit on either side reaches the other', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const code = syncCode() ?? '';
 
   // Another device: its own log, the same code.
@@ -79,7 +81,7 @@ test('pairing with a code merges both logs; a later edit on either side reaches 
   await userEvent.click(screen.getByRole('button', { name: 'I have a code' }));
   await userEvent.type(screen.getByLabelText(/sync code from your other device/), `#pair=${code}`);
   await userEvent.click(screen.getByRole('button', { name: 'Pair' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   expect(appState.systems.map(system => system.name).sort()).toEqual(['Ekwa Nexus', 'Hilbert Dimension']);
   expect([...vaults.values()][0]?.version).toBe(2);
 
@@ -105,13 +107,13 @@ test('a mistyped code is refused without sending anything', async () => {
   expect(vaults.size).toBe(0);
 });
 
-test('Delete cloud copy asks first, removes it, and turns sync off here', async () => {
+test('Delete the cloud copy asks first, removes it, and turns sync off here', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
-  await userEvent.click(screen.getByRole('button', { name: 'Delete cloud copy' }));
-  expect(vaults.size).toBe(1);
-  await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
+  await expect.poll(status).toMatch(/synced/i);
+  await userEvent.click(screen.getByRole('button', { name: 'Delete the cloud copy' }));
+  expect(vaults.size).toBe(1); // armed, not yet deleted
+  await userEvent.click(screen.getByRole('button', { name: /Tap again to delete/ }));
   await expect.poll(() => vaults.size).toBe(0);
   expect(await screen.findByRole('button', { name: 'Turn on sync' })).toBeTruthy();
   expect(appState.systems.map(system => system.name)).toEqual(['Ekwa Nexus']); // the log stays
@@ -120,7 +122,7 @@ test('Delete cloud copy asks first, removes it, and turns sync off here', async 
 test('an unreachable relay leaves the log alone and says so', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   vi.stubGlobal('fetch', () => Promise.reject(new TypeError('Failed to fetch')));
   vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   appState.systems[0]!.notes = 'kept';
@@ -139,7 +141,7 @@ test('a fresh device pairing takes the other log as it is: starter data removed 
   });
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const code = syncCode() ?? '';
 
   act(() => {
@@ -149,7 +151,7 @@ test('a fresh device pairing takes the other log as it is: starter data removed 
   await userEvent.click(screen.getByRole('button', { name: 'I have a code' }));
   await userEvent.type(screen.getByLabelText(/sync code from your other device/), code);
   await userEvent.click(screen.getByRole('button', { name: 'Pair' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   expect(appState.systems.map(system => system.id)).toEqual(['sys-real']);
   expect(appState.checklists.nutrientIngestorInstalled).toBe(true);
   expect(appState.outlaw.runSize).toBe(9);
@@ -158,7 +160,7 @@ test('a fresh device pairing takes the other log as it is: starter data removed 
 test('turning sync off while a sync is under way sends nothing more and stays off', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const real = globalThis.fetch;
   let release: () => void = () => undefined;
   const gate = new Promise<void>(resolve => {
@@ -186,7 +188,7 @@ test('turning sync off while a sync is under way sends nothing more and stays of
 test('pairing with another code while a sync is under way switches to the new vault', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const other = newSyncCode();
   const real = globalThis.fetch;
   let release: () => void = () => undefined;
@@ -217,7 +219,7 @@ test('pairing with another code while a sync is under way switches to the new va
 test('an old format-1 copy served again after format 2 is refused, not merged as deletions', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const keys = await deriveSyncKeys(syncCode() ?? '');
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const gz = new Uint8Array(
@@ -238,14 +240,14 @@ test('an old format-1 copy served again after format 2 is refused, not merged as
 test('pairing with an unknown code goes back to the sync it would have replaced', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const code = syncCode();
   await act(async () => {
     await pairWith(newSyncCode());
   });
   expect(syncCode()).toBe(code);
   await act(() => syncNow());
-  expect(status()).toMatch(/Synced/);
+  expect(status()).toMatch(/synced/i);
 });
 
 test('a code no device uploaded is refused: no vault is made for it, and sync stays off', async () => {
@@ -264,7 +266,7 @@ test('a copy that would empty this log waits for the person; applying keeps the 
   });
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   const keys = await deriveSyncKeys(syncCode() ?? '');
   const vault = vaults.get(keys.vaultId)!;
   const emptied = buildState(structuredClone(appState)); // another device (or a crafted copy) that lost four systems
@@ -284,7 +286,7 @@ test('a copy that would empty this log waits for the person; applying keeps the 
 test('the relay can’t pass an old copy off as new, or serve an older version than this device synced', async () => {
   render(<Sync />);
   await userEvent.click(screen.getByRole('button', { name: 'Turn on sync' }));
-  await expect.poll(status).toMatch(/Synced/);
+  await expect.poll(status).toMatch(/synced/i);
   appState.systems[0]!.notes = 'second';
   await act(() => syncNow());
   const keys = await deriveSyncKeys(syncCode() ?? '');

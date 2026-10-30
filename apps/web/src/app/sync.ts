@@ -16,6 +16,8 @@ import {
   type SyncKeys
 } from '@atlas/core/sync-crypto';
 import { isPlainObject, withinDepth } from '@atlas/core/util';
+import { deviceName, stampDevice } from '@atlas/core/devices';
+import { newId } from '@atlas/core/systems-model';
 import { readCapacity, relayPaused, relayStatus } from './relay-status.ts';
 import {
   adoptNewerStoredCopy,
@@ -31,6 +33,7 @@ import {
 export const SYNC_URL: string = import.meta.env.VITE_SYNC_URL ?? '';
 const SETTINGS_KEY = 'nms_master_os_sync'; // { code, version, at }: this device only, never exported
 const BASE_KEY = `${STORAGE_KEY}.synced`; // the copy both sides last agreed on
+const DEVICE_KEY = 'nms_master_os_device'; // this device's id in the log's devices list: this device only
 const TIMEOUT_MS = 10_000;
 const SAVE_DELAY_MS = 3_000; // after a save, so a burst of edits goes up as one copy
 const POLL_MS = 120_000; // while the app is visible, to pick up what another device logged meanwhile
@@ -221,6 +224,32 @@ function adoptQuietly(run: () => void): void {
   }
 }
 
+// ── This device in the log's devices list ──
+// Its own id, kept apart from the sync settings so turning sync off and on again doesn't list it twice.
+let deviceId: string | null = null;
+export function thisDeviceId(): string {
+  if (deviceId) return deviceId;
+  try {
+    const stored = localStorage.getItem(DEVICE_KEY);
+    deviceId = stored && /^[A-Za-z0-9_-]{1,80}$/.test(stored) ? stored : newId('dev');
+    if (stored !== deviceId) localStorage.setItem(DEVICE_KEY, deviceId);
+  } catch {
+    deviceId ??= newId('dev'); // storage blocked: sync can't run anyway
+  }
+  return deviceId;
+}
+// Writes this device's name and sync time into the log (at most hourly), as a merged change: no new save time.
+function stampThisDevice(): void {
+  const standalone = matchMedia('(display-mode: standalone)').matches;
+  const me = { id: thisDeviceId(), name: deviceName(navigator.userAgent, standalone) };
+  const stamped = stampDevice(appState.devices, me, Date.now());
+  if (!stamped) return;
+  adoptQuietly(() => {
+    adoptState(buildState({ ...snapshot(), devices: stamped }));
+  });
+  if (!persistState({ touch: false })) throw new SyncError('storage');
+}
+
 // Bumped whenever sync is turned on, paired or turned off here. A cycle checks it (and that the stored code is still
 // its code, which another tab may have changed) after every wait, and stops without writing or sending anything, so
 // an opt-out or a new pairing is never undone by a sync already in flight.
@@ -293,6 +322,7 @@ async function cycle(settings: Settings, started: number): Promise<void> {
         if (!persistState({ touch: false })) throw new SyncError('storage');
       }
     }
+    stampThisDevice();
     const local = snapshot();
     if (remote && deepEqual(local, remote.doc)) {
       if (remote.sealed2) settings.sealed2 = true;
@@ -495,9 +525,19 @@ export async function deleteCloudCopy(): Promise<boolean> {
   return true;
 }
 
+// The only way to drop a device: every device shares one code, so the cloud copy is deleted and sync starts again
+// here with a new code and a list of one. The others see "deleted from another device", and the ones kept pair again.
+export async function startOver(): Promise<boolean> {
+  if (!(await deleteCloudCopy())) return false;
+  adoptState(buildState({ ...snapshot(), devices: [] }));
+  persistState({ touch: false });
+  await turnOnSync();
+  return true;
+}
+
 // ── When to sync ──
 // A pairing link (#pair=<code>, from the QR code) is taken out of the address before the sections read it, on load
-// and on a hash change in an open tab, so it doesn't stay in the tab's history; the Sync screen then asks first.
+// and on a hash change in an open tab, so it doesn't stay in the tab's history; the Sync sheet then asks first.
 // (The browser's own history list may still note the link; it's on the device that receives the code anyway.)
 export function takePairingLink(): void {
   if (!location.hash.startsWith('#pair=')) return;

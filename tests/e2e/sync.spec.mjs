@@ -51,12 +51,11 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
   await page.route(RELAY, handler);
   await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
-  await expect(syncStatus(page)).toContainText('Synced just now');
+  await expect(syncStatus(page)).toContainText(/synced just now/i);
   expect(vaults.size).toBe(1);
   const [vault] = vaults.values();
   expect(vault.blob.toString('latin1')).not.toContain('Ekwa'); // sealed before it left
-  await page.getByRole('button', { name: 'Pair another device' }).click();
-  await page.getByRole('button', { name: 'Show the code' }).click(); // behind a streamer warning
+  await page.getByRole('button', { name: 'Show pairing code' }).click(); // behind a streamer warning
   await expect(page.getByRole('img', { name: /QR code/ })).toBeVisible();
   const code = (await page.locator('#syncCodeCard .font-mono').textContent()).trim();
 
@@ -71,9 +70,9 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
     sessionStorage.setItem('seeded', '1');
   }, JSON.stringify(own));
   await other.goto(`./#pair=${code}`);
-  await expect(other).toHaveURL(/#sync$/); // the code never stays in the address or the history
+  await expect(other).toHaveURL(/#more$/); // the code never stays in the address or the history
   await other.getByRole('button', { name: 'Pair', exact: true }).click();
-  await expect(syncStatus(other)).toContainText('Synced');
+  await expect(syncStatus(other)).toContainText(/synced/i);
   const names = state => state.systems.map(system => system.name).sort();
   expect(names(await storedState(other))).toEqual(['Ekwa Nexus', 'Hesper Drift', 'Outlaw Den', 'Vy’keen Outpost']);
 
@@ -86,16 +85,20 @@ test('two devices pair with the QR link, merge what each logged, and keep the co
     .toBe(2);
   await other.goto('./#sync');
   await other.getByRole('button', { name: 'Sync now' }).click();
-  await expect(syncStatus(other)).toContainText('Synced');
+  await expect(syncStatus(other)).toContainText(/synced/i);
   await page.goto('./#sync');
   await page.getByRole('button', { name: 'Sync now' }).click();
-  await expect(syncStatus(page)).toContainText('Synced');
+  await expect(syncStatus(page)).toContainText(/synced/i);
   await expect.poll(async () => names(await storedState(page))).toContain('Vy’keen Outpost');
   await expect
     .poll(async () => (await storedState(page)).systems.find(s => s.id === 'sys-ekwa').visits.length, {
       timeout: 10_000
     })
     .toBeGreaterThan(1);
+  // Each device wrote itself into the shared log; the relay only ever saw sealed copies.
+  await expect(page.getByRole('list', { name: 'Devices' }).getByRole('listitem')).toHaveCount(2);
+  await expect(page.getByRole('list', { name: 'Devices' })).toContainText('This device');
+  for (const vault of vaults.values()) expect(vault.blob.toString('latin1')).not.toContain('lastSync');
   await phone.close();
 });
 
@@ -104,7 +107,7 @@ test('offline, sync says the log is safe here and nothing else changes', async (
   await page.route(RELAY, handler);
   await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
-  await expect(syncStatus(page)).toContainText('Synced');
+  await expect(syncStatus(page)).toContainText(/synced/i);
   await context.setOffline(true);
   await page.getByRole('button', { name: 'Sync now' }).click();
   await expect(syncStatus(page)).toContainText('Offline. Changes stay on this device');
@@ -116,11 +119,10 @@ test('axe: the Sync group with sync on and the code shown', async ({ page }) => 
   await page.route(RELAY, handler);
   await page.goto('./#sync');
   await page.getByRole('button', { name: 'Turn on sync' }).click();
-  await expect(syncStatus(page)).toContainText('Synced');
-  await page.getByRole('button', { name: 'Pair another device' }).click();
-  await page.getByRole('button', { name: 'Show the code' }).click();
-  await page.getByRole('button', { name: 'Delete cloud copy' }).click();
-  const { violations } = await new AxeBuilder({ page }).include('#syncPanel').analyze();
+  await expect(syncStatus(page)).toContainText(/synced/i);
+  await page.getByRole('button', { name: 'Show pairing code' }).click();
+  await page.getByRole('button', { name: 'Delete the cloud copy' }).click();
+  const { violations } = await new AxeBuilder({ page }).include('#syncSheet').analyze();
   expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
 });
 

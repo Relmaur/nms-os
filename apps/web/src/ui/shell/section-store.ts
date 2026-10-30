@@ -31,7 +31,8 @@ export function goBack(fallback: string): void {
 }
 
 // Old and shortcut addresses: the Logbook was folded into Systems; #new-system (a home-screen shortcut) opens Home
-// with the editor, and #search (the Codex page's search key) opens Home with the search; anything unknown opens Home.
+// with the editor, #search (the Codex page's search key) opens Home with the search, and #sync (where a pairing link
+// lands) opens Settings with the Sync sheet; anything unknown opens Home.
 // A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>, #note/<id>, #plan/<item>); without one it falls
 // back to its list.
 const SHORTCUTS = new Set(['new-system', 'search']);
@@ -46,6 +47,7 @@ function resolve(key: string): { section: string; shortcut: string; param: strin
   }
   if (key === 'logbook') return { section: 'systems', shortcut: '', param: '' };
   if (SHORTCUTS.has(key)) return { section: 'home', shortcut: key, param: '' };
+  if (key === 'sync') return { section: 'more', shortcut: key, param: '' }; // Settings, with the Sync sheet open
   return { section: document.getElementById(`sec-${key}`) ? key : 'home', shortcut: '', param: '' };
 }
 

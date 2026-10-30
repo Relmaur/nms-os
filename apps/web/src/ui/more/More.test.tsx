@@ -36,12 +36,14 @@ test('Import shows a valid file before replacing the log, and leaves it alone fo
   expect(appState.systems).toHaveLength(0);
 });
 
-test('Settings lists your data and this device, and Sync opens its own screen', () => {
+test('Settings lists your data and this device, and Sync opens as a sheet', async () => {
   render(<More />);
   expect(screen.getByRole('heading', { level: 1, name: 'Settings' })).toBeTruthy();
   const data = screen.getByRole('region', { name: 'Your data' });
-  expect(within(data).getByRole('link', { name: /^Sync/ }).getAttribute('href')).toBe('#sync');
-  expect(within(data).getByRole('link', { name: /^Sync/ }).textContent).toContain('Off');
+  const row = within(data).getByRole('button', { name: /^Sync/ });
+  expect(row.textContent).toContain('Off');
+  await userEvent.click(row); // the Sync sheet, over Settings
+  expect(screen.getByRole('dialog', { name: 'Sync' }).getAttribute('aria-hidden')).toBe('false');
   expect(within(data).getByRole('button', { name: /Export your atlas/ })).toBeTruthy();
   expect(
     within(screen.getByRole('region', { name: 'This device' })).getByRole('link', { name: /Offline Codex/ })

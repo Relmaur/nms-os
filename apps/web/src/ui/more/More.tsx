@@ -13,6 +13,7 @@ import { FEEDBACK_URL, KOFI_URL } from '../../app/support.ts';
 import { AlertsSwitch } from '../session/AlertsSwitch.tsx';
 import { usePushStatus } from '../../app/push.ts';
 import { goBack } from '../shell/section-store.ts';
+import { SyncSheet, openSyncSheet } from './SyncSheet.tsx';
 
 const TOP_BUTTON =
   'w-11 h-11 rounded-control bg-slate-ground border border-control-edge grid place-items-center text-ink hover:border-control-edge-hover';
@@ -48,7 +49,7 @@ export function More() {
       <Group title="Your data">
         {SYNC_URL && (
           <li>
-            <a href="#sync" className={LINK_ROW}>
+            <button type="button" aria-haspopup="dialog" onClick={openSyncSheet} className={LINK_ROW}>
               <Tile icon="ph-arrows-clockwise" lit />
               <Text title="Sync">
                 {!sync.enabled
@@ -70,7 +71,7 @@ export function More() {
               >
                 {syncAttention ? 'Check' : sync.enabled ? 'On' : 'Off'}
               </span>
-            </a>
+            </button>
           </li>
         )}
         <li>
@@ -252,6 +253,7 @@ export function More() {
           </a>
         </div>
       </section>
+      <SyncSheet />
     </div>
   );
 }

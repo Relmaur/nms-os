@@ -1,5 +1,6 @@
-// More → Sync: turn sync on, pair another device (QR code or the code typed in), see how it's going, and turn it off
-// or delete the cloud copy (ADR-0005). Opt-in; nothing leaves the device before Turn on or Pair.
+// Settings → Sync (design 21), a sheet over Settings: turn sync on, pair another device (QR code or the code typed
+// in), see how it's going and which devices share the log, and turn it off or delete the cloud copy (ADR-0005).
+// Opt-in; nothing leaves the device before Turn on or Pair.
 import { useState, type ReactNode, type SyntheticEvent } from 'react';
 import { encode } from 'uqr';
 import { formatAgo } from '@atlas/core/format';
@@ -8,6 +9,8 @@ import {
   answerPairing,
   answerReview,
   deleteCloudCopy,
+  startOver,
+  thisDeviceId,
   pairWith,
   restoreBeforeSync,
   SYNC_URL,
@@ -22,13 +25,16 @@ import { useClock } from '../session/useClock.ts';
 import { untilText, useRelayStatus } from '../../app/relay-status.ts';
 import { KOFI_URL } from '../../app/support.ts';
 import type { Removal } from '@atlas/core/sync';
+import { useAppState } from '../useAppState.ts';
+import { buttonClass } from '../parts/Button.tsx';
+import { ArmButton } from '../parts/Gesture.tsx';
 
 // When the free server is the limit: one quiet invitation to help upgrade it.
 export function SupportLine() {
   return (
-    <p className="text-xs text-slate-400">
+    <p className="text-caption text-ink-muted">
       ATLAS runs on donations.{' '}
-      <a href={KOFI_URL} target="_blank" rel="noopener" className="text-cyan-300 underline underline-offset-2">
+      <a href={KOFI_URL} target="_blank" rel="noopener" className="text-scanner-cyan-pale underline underline-offset-2">
         A coffee on Ko-fi
       </a>{' '}
       helps upgrade the server.
@@ -53,21 +59,21 @@ const PROBLEM: Record<NonNullable<SyncStatus['problem']>, (until: string) => str
   review: () => 'This sync would remove a lot from your log, so it’s waiting for you.'
 };
 
+// The sheet's body (design 21): this device's sync, the devices in the log, pairing, and the ways out. A prompt for a
+// scanned pairing link, a big removal waiting for the person, or a log to put back come first.
 export function Sync() {
   const status = useSyncStatus();
   if (!SYNC_URL) return null; // a build without a relay (e.g. a fork): Export/Import still move the log
   return (
-    <div>
-      <div id="syncPanel" className="list-group p-4 space-y-4">
-        {status.pending && <PairPrompt replacing={status.enabled} />}
-        {status.review && <Review removal={status.review} />}
-        {status.restorable && <Restore />}
-        {status.enabled ? <On status={status} /> : <Off problem={status.problem} />}
-        <p className="text-xs text-slate-400 leading-relaxed">
-          Your log is encrypted on this device before it’s sent; the server keeps a locked copy it can’t open, and
-          deletes it after a year without syncing. Lose every device and the code, and that copy can’t be recovered.
-        </p>
-      </div>
+    <div id="syncPanel" className="flex flex-col gap-4">
+      {status.pending && <PairPrompt replacing={status.enabled} />}
+      {status.review && <Review removal={status.review} />}
+      {status.restorable && <Restore />}
+      {status.enabled ? <On status={status} /> : <Off problem={status.problem} />}
+      <p className="text-caption text-ink-muted leading-relaxed">
+        The relay deletes a copy after a year without syncing. Lose every device and the code, and it can’t be
+        recovered.
+      </p>
     </div>
   );
 }
@@ -77,14 +83,14 @@ export function Sync() {
 function PairPrompt({ replacing }: { replacing: boolean }) {
   const [sure, setSure] = useState(false);
   return (
-    <div role="alert" className="rounded-xl border border-cyan-500/40 bg-cyan-500/[0.07] p-3.5 space-y-3">
-      <p className="text-sm text-slate-200">
+    <div role="alert" className="rounded-card border border-scanner-cyan-edge bg-scanner-cyan-tint p-4 space-y-3">
+      <p className="text-sm text-ink">
         Pair this device with the code you scanned? Its log and the synced log are merged.{' '}
-        <strong className="text-white">Only pair with a code from your own device:</strong> whoever made it can read,
-        change and erase your log.
+        <strong className="text-ink-bright">Only pair with a code from your own device:</strong> whoever made it can
+        read, change and erase your log.
       </p>
       {replacing && (
-        <p className="text-sm text-amber-200">
+        <p className="text-sm text-units-amber-pale">
           This device already syncs with another code. Pairing replaces that sync here (the other copy stays in the
           cloud).
         </p>
@@ -96,15 +102,11 @@ function PairPrompt({ replacing }: { replacing: boolean }) {
             if (replacing && !sure) setSure(true);
             else void answerPairing(true);
           }}
-          className="h-10 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-sm font-semibold"
+          className={buttonClass('jump', 'M')}
         >
           {replacing && !sure ? 'Replace and pair' : replacing ? 'Yes, replace it' : 'Pair'}
         </button>
-        <button
-          type="button"
-          onClick={() => void answerPairing(false)}
-          className="h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
-        >
+        <button type="button" onClick={() => void answerPairing(false)} className={buttonClass('secondary', 'M')}>
           Not now
         </button>
       </div>
@@ -126,26 +128,18 @@ function Review({ removal }: { removal: Removal }) {
     <div
       id="syncReview"
       role="alert"
-      className="rounded-xl border border-amber-500/40 bg-amber-500/[0.07] p-3.5 space-y-3"
+      className="rounded-card border border-units-amber-edge bg-units-amber-tint p-4 space-y-3"
     >
-      <p className="text-sm text-slate-200">
-        This sync would remove <strong className="text-white">{parts.join(', ')}</strong> ({removal.total} of{' '}
+      <p className="text-sm text-ink">
+        This sync would remove <strong className="text-ink-bright">{parts.join(', ')}</strong> ({removal.total} of{' '}
         {removal.before} records). If you deleted them on another device, apply it: your log from before is kept here,
         so you can put it back. If not, keep this device’s log: it replaces the cloud copy.
       </p>
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => void answerReview('apply')}
-          className="h-10 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-semibold"
-        >
+        <button type="button" onClick={() => void answerReview('apply')} className={buttonClass('primary', 'M')}>
           Apply the removal
         </button>
-        <button
-          type="button"
-          onClick={() => void answerReview('keep')}
-          className="h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
-        >
+        <button type="button" onClick={() => void answerReview('keep')} className={buttonClass('secondary', 'M')}>
           Keep this device’s log
         </button>
       </div>
@@ -155,14 +149,14 @@ function Review({ removal }: { removal: Removal }) {
 
 function Restore() {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/60 p-3">
-      <p className="text-xs text-slate-300">Your log from before the last big removal is kept on this device.</p>
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-card border border-hairline bg-panel-glass p-3.5">
+      <p className="text-caption text-ink-soft">Your log from before the last big removal is kept on this device.</p>
       <button
         type="button"
         onClick={() => {
           showToast(restoreBeforeSync() ? 'Put back. It syncs to your other devices next.' : 'Couldn’t put it back.');
         }}
-        className="h-9 px-3 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
+        className={buttonClass('secondary', 'S')}
       >
         Put it back
       </button>
@@ -174,17 +168,16 @@ function Off({ problem }: { problem: SyncStatus['problem'] }) {
   const [entering, setEntering] = useState(problem === 'unknown');
   return (
     <>
-      <Line icon="ph-arrows-clockwise text-slate-400" title="Sync between your devices" live>
+      <Head icon="ph-arrows-clockwise" tone="off" title="Sync is off">
         {problem === 'unknown'
           ? PROBLEM.unknown('')
-          : 'Your log on your PC and your phone, kept in step. No account needed.'}
-      </Line>
+          : 'Your atlas on your PC and your phone, kept in step. No account needed.'}
+      </Head>
+      <p className="text-sub text-ink-soft">
+        Your atlas is encrypted on this device before it leaves. The relay only ever holds a sealed box it can’t open.
+      </p>
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => void turnOnSync()}
-          className="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold"
-        >
+        <button type="button" onClick={() => void turnOnSync()} className={buttonClass('primary', 'M')}>
           Turn on sync
         </button>
         <button
@@ -194,7 +187,7 @@ function Off({ problem }: { problem: SyncStatus['problem'] }) {
           onClick={() => {
             setEntering(!entering);
           }}
-          className="h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
+          className={buttonClass('secondary', 'M')}
         >
           I have a code
         </button>
@@ -215,10 +208,10 @@ function CodeForm() {
   };
   return (
     <form id="syncCodeForm" onSubmit={submit} className="space-y-2">
-      <label htmlFor="syncCodeInput" className="block text-xs text-slate-400">
-        The sync code from your other device (More → Sync → Pair another device). Only use a code from your own device:
-        whoever made it can read and change your log. On an iPhone, paste it here: the installed app doesn’t share
-        storage with Safari, so the QR code opens the wrong one.
+      <label htmlFor="syncCodeInput" className="block text-caption text-ink-muted">
+        The sync code from your other device (Settings → Sync → Pair another device). Only use a code from your own
+        device: whoever made it can read and change your log. On an iPhone, paste it here: the installed app doesn’t
+        share storage with Safari, so the QR code opens the wrong one.
       </label>
       <div className="flex gap-2">
         <input
@@ -228,17 +221,14 @@ function CodeForm() {
           spellCheck={false}
           aria-invalid={error}
           aria-describedby={error ? 'syncCodeError' : undefined}
-          className="min-w-0 flex-1 h-10 px-3 rounded-xl bg-slate-900 border border-slate-700 font-mono text-sm text-white focus:border-cyan-400 focus:outline-hidden"
+          className="min-w-0 flex-1 h-11 px-3 rounded-control bg-slate-ground border border-control-edge font-mono text-base md:text-sm text-ink-bright focus:border-scanner-cyan-edge-strong focus:outline-hidden"
         />
-        <button
-          type="submit"
-          className="h-10 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-sm font-semibold"
-        >
+        <button type="submit" className={buttonClass('jump', 'M')}>
           Pair
         </button>
       </div>
       {error && (
-        <p id="syncCodeError" className="text-xs text-amber-300">
+        <p id="syncCodeError" className="text-caption text-units-amber-text">
           That isn’t a sync code. It’s 43 letters, digits, - and _.
         </p>
       )}
@@ -248,8 +238,6 @@ function CodeForm() {
 
 function On({ status }: { status: SyncStatus }) {
   const now = useClock(false);
-  const [showing, setShowing] = useState(false);
-  const [confirming, setConfirming] = useState(false);
   const relay = useRelayStatus();
   const healthy = !status.problem;
   const text = status.busy
@@ -257,143 +245,206 @@ function On({ status }: { status: SyncStatus }) {
     : status.problem
       ? PROBLEM[status.problem](untilText(relay.until))
       : status.at
-        ? `Synced ${formatAgo(new Date(status.at).toISOString(), now)}.`
+        ? `Last synced ${formatAgo(new Date(status.at).toISOString(), now)}.`
         : 'On. The first sync runs when you’re online.';
   const id = status.fingerprint ? ` Copy ID ${status.fingerprint}: the same on all your devices.` : '';
   return (
     <>
-      <Line
-        icon={healthy ? 'ph-check-circle text-emerald-300' : 'ph-warning-circle text-amber-300'}
+      <Head
+        icon={healthy ? 'ph-check' : 'ph-warning'}
+        tone={healthy ? 'on' : 'warn'}
         title="Sync is on"
-        live
+        action={
+          status.problem !== 'gone' && (
+            <button
+              type="button"
+              onClick={() => void syncNow()}
+              disabled={status.busy}
+              className={buttonClass('secondary', 'S')}
+            >
+              Sync now
+            </button>
+          )
+        }
       >
         {text}
         {healthy && !status.busy && id}
-      </Line>
+      </Head>
+      <p className="text-sub text-ink-soft">
+        Your atlas is encrypted on this device before it leaves. The relay only ever holds a sealed box it can’t open.
+      </p>
       {(status.problem === 'capacity' || status.problem === 'busy') && <SupportLine />}
       {status.problem === 'older' && (
-        <button
-          type="button"
-          onClick={() => void answerReview('keep')}
-          className="self-start h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
-        >
+        <button type="button" onClick={() => void answerReview('keep')} className={buttonClass('secondary', 'M')}>
           Keep this device’s log (replaces the cloud copy)
         </button>
       )}
-      {status.problem === 'gone' ? (
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => void turnOnSync()}
-            className="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold"
-          >
-            Start sync again
-          </button>
-        </div>
-      ) : (
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => void syncNow()}
-            disabled={status.busy}
-            className="h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200 disabled:opacity-60"
-          >
-            Sync now
-          </button>
-          {/* Only once the copy is in the cloud: a code shared before that would pair with nothing. */}
-          {status.at !== null && (
-            <button
-              type="button"
-              aria-expanded={showing}
-              aria-controls="syncCodeCard"
-              onClick={() => {
-                setShowing(!showing);
-              }}
-              className="h-10 px-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200"
-            >
-              {showing ? 'Hide code' : 'Pair another device'}
-            </button>
-          )}
-        </div>
+      {status.problem === 'gone' && (
+        <button type="button" onClick={() => void turnOnSync()} className={buttonClass('primary', 'M')}>
+          Start sync again
+        </button>
       )}
-      {showing && status.at !== null && status.problem !== 'gone' && <CodeCard />}
-      <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-800 pt-3">
+      <Devices now={now} />
+      {/* Only once the copy is in the cloud: a code shared before that would pair with nothing. */}
+      {status.at !== null && status.problem !== 'gone' && <PairCard />}
+      <div className="flex items-center justify-between gap-3 px-0.5">
+        <span id="syncHereLabel" className="text-[14px] text-ink-bright">
+          Sync on this device
+        </span>
         <button
           type="button"
+          role="switch"
+          aria-checked="true"
+          aria-labelledby="syncHereLabel"
           onClick={turnOffSync}
-          className="h-9 text-sm text-slate-300 hover:text-white underline-offset-4 hover:underline"
-        >
-          Turn off on this device
-        </button>
-        {confirming ? (
-          <span className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-slate-300">Delete the cloud copy for every device?</span>
-            <button
-              type="button"
-              onClick={() => {
-                void deleteCloudCopy().then(ok => {
-                  showToast(
-                    ok
-                      ? 'Cloud copy deleted. Your log stays on this device.'
-                      : 'Couldn’t reach the sync server; the cloud copy is still there.'
-                  );
-                  setConfirming(false);
-                });
-              }}
-              className="h-9 px-3 rounded-lg border border-red-500/50 bg-red-500/10 text-sm font-semibold text-red-200 hover:bg-red-500/20"
-            >
-              Delete
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setConfirming(false);
-              }}
-              className="h-9 px-3 text-sm text-slate-300 hover:text-white"
-            >
-              Cancel
-            </button>
-          </span>
-        ) : (
-          <button
-            type="button"
-            onClick={() => {
-              setConfirming(true);
-            }}
-            className="h-9 text-sm text-red-300 hover:text-red-200 underline-offset-4 hover:underline"
-          >
-            Delete cloud copy
-          </button>
-        )}
+          className="switch"
+        />
       </div>
+      <ArmButton
+        label="Delete the cloud copy"
+        armedLabel="Tap again to delete it for every device"
+        onConfirm={() => {
+          void deleteCloudCopy().then(ok => {
+            showToast(
+              ok
+                ? 'Cloud copy deleted. Your log stays on this device.'
+                : 'Couldn’t reach the sync server; the cloud copy is still there.'
+            );
+          });
+        }}
+      />
+      <p className="-mt-2 text-caption text-ink-muted text-center">Your atlas stays on your devices either way.</p>
     </>
   );
 }
 
-// The code as a QR (a link that opens the app and offers to pair) and as text to paste. Hidden until asked for: it's
-// the key to the whole log, and screens get streamed and screenshotted.
-function CodeCard() {
-  const code = syncCode();
-  const [revealed, setRevealed] = useState(false);
-  if (!code) return null;
-  if (!revealed)
-    return (
-      <div id="syncCodeCard" className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
-        <p className="text-sm text-amber-200">
-          The code is the key to your whole log: anyone who sees it can read and change it. Don’t show it on a stream or
-          in a screenshot.
-        </p>
-        <button
-          type="button"
-          onClick={() => {
-            setRevealed(true);
+// The devices this log knows, from the log itself (each one writes its own entry when it syncs, at most hourly).
+function Devices({ now }: { now: number }) {
+  const { devices } = useAppState();
+  const me = thisDeviceId();
+  if (!devices.length) return null;
+  const list = [...devices].sort(
+    (a, b) => Number(b.id === me) - Number(a.id === me) || Date.parse(b.lastSync) - Date.parse(a.lastSync)
+  );
+  return (
+    <div className="flex flex-col gap-2">
+      <ul
+        aria-label="Devices"
+        className="rounded-card bg-panel-glass border border-hairline divide-y divide-hairline overflow-hidden"
+      >
+        {list.map(device => (
+          <li key={device.id} className="flex items-center gap-3 px-4 py-3">
+            <span
+              aria-hidden="true"
+              className="w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center bg-slate-ground border border-control-edge text-scanner-cyan-pale"
+            >
+              <i className={`ph-bold ${/iPhone|iPad|Android/.test(device.name) ? 'ph-device-mobile' : 'ph-desktop'}`} />
+            </span>
+            <span className="flex-1 min-w-0">
+              <span className="block text-[14px] font-semibold text-ink-bright truncate">
+                {device.name || 'A device'}
+              </span>
+              <span className="block text-caption text-ink-muted">Synced {formatAgo(device.lastSync, now)}</span>
+            </span>
+            {device.id === me && (
+              <span className="h-6 px-2.5 rounded-full grid place-items-center border border-ready-emerald-edge-soft bg-ready-emerald-tint text-[11px] font-semibold text-ready-emerald-text">
+                This device
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+      {list.length > 1 && <StartOver />}
+    </div>
+  );
+}
+
+// Every device shares one code, so dropping one means a new code for the ones kept.
+function StartOver() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="px-0.5">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls="syncStartOver"
+        onClick={() => {
+          setOpen(!open);
+        }}
+        className="text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan"
+      >
+        Remove a device?
+      </button>
+      {open && (
+        <div id="syncStartOver" className="mt-2 flex flex-col gap-2">
+          <p className="text-caption text-ink-muted">
+            Your devices share one code, so one can’t be removed on its own. Start over with a new code: the cloud copy
+            is deleted, sync starts again here, and you pair the devices you keep.
+          </p>
+          <ArmButton
+            label="Start over with a new code"
+            armedLabel="Tap again to start over"
+            icon="ph-arrow-counter-clockwise"
+            onConfirm={() => {
+              void startOver().then(ok => {
+                showToast(
+                  ok
+                    ? 'Started over with a new code. Pair the devices you keep.'
+                    : 'Couldn’t reach the sync server; nothing changed.'
+                );
+              });
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Pairing (design 21's amber card): the code behind a warning first, since screens get streamed and screenshotted.
+function PairCard() {
+  const [shown, setShown] = useState(false);
+  return (
+    <section
+      id="syncCodeCard"
+      aria-labelledby="syncPairTitle"
+      className="rounded-card border border-[rgba(251,191,36,0.4)] bg-[rgba(245,158,11,0.06)] p-4 flex flex-col gap-3"
+    >
+      <h3 id="syncPairTitle" className="font-display font-bold text-[14px] text-ink-bright flex items-center gap-2">
+        <i className="ph-bold ph-qr-code text-units-amber-text" aria-hidden="true" />
+        Pair another device
+      </h3>
+      {shown ? (
+        <CodeCard
+          onHide={() => {
+            setShown(false);
           }}
-          className="h-10 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-sm font-semibold"
-        >
-          Show the code
-        </button>
-      </div>
-    );
+        />
+      ) : (
+        <>
+          <p className="text-sub text-units-amber-pale">
+            The pairing code opens your whole atlas. Don’t show it on stream or in a screenshot.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setShown(true);
+            }}
+            className={buttonClass('primary', 'M')}
+          >
+            <i className="ph-bold ph-eye" aria-hidden="true" />
+            Show pairing code
+          </button>
+        </>
+      )}
+    </section>
+  );
+}
+
+// The code as a QR (a link that opens the app and offers to pair) and as text to paste.
+function CodeCard({ onHide }: { onHide: () => void }) {
+  const code = syncCode();
+  if (!code) return null;
   const link = `${location.origin}${location.pathname}#pair=${code}`;
   const copy = () => {
     navigator.clipboard
@@ -406,37 +457,37 @@ function CodeCard() {
       });
   };
   return (
-    <div id="syncCodeCard" className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
+    <>
       <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
         <QrCode text={link} />
-        <p className="text-sm text-slate-300">
-          Scan with the other device’s camera, or open More → Sync → I have a code there and paste the code below.
+        <p className="text-sub text-ink-soft">
+          Scan it with the other device’s camera, or open Settings → Sync → I have a code there and paste the code.
         </p>
       </div>
-      <p className="break-all select-all rounded-lg bg-slate-950 px-3 py-2 font-mono text-sm text-cyan-200">{code}</p>
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs text-amber-300">Anyone with this code can read your log. Share it only with yourself.</p>
-        <button
-          type="button"
-          onClick={copy}
-          className="h-9 px-3 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-sm text-slate-200 flex items-center gap-2"
-        >
+      <p className="break-all select-all rounded-control bg-slate-deep px-3 py-2 font-mono text-sm text-quantity-cyan">
+        {code}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        <button type="button" onClick={copy} className={buttonClass('secondary', 'S')}>
           <i className="ph-bold ph-copy" aria-hidden="true" /> Copy code
         </button>
+        <button type="button" onClick={onHide} className={buttonClass('ghost', 'S')}>
+          Hide code
+        </button>
       </div>
-      <p className="text-xs text-slate-400">
+      <p className="text-caption text-ink-muted">
         AI assistants can read this log too, through{' '}
         <a
           href="https://github.com/Relmaur/nms-os/blob/main/docs/mcp.md"
           target="_blank"
           rel="noopener"
-          className="text-cyan-300 hover:text-cyan-200 underline"
+          className="text-scanner-cyan-pale hover:text-quantity-cyan underline"
         >
           ATLAS’s MCP server
         </a>{' '}
         on your computer, with this code. It only reads, but what it reads goes to the assistant you connect it to.
       </p>
-    </div>
+    </>
   );
 }
 
@@ -458,22 +509,42 @@ function QrCode({ text }: { text: string }) {
   );
 }
 
-function Line({ icon, title, live, children }: { icon: string; title: string; live?: boolean; children: ReactNode }) {
+// The sheet's head: the state as an icon and a title, and the live line under it (#syncStatus).
+function Head({
+  icon,
+  tone,
+  title,
+  action,
+  children
+}: {
+  icon: string;
+  tone: 'on' | 'warn' | 'off';
+  title: string;
+  action?: ReactNode;
+  children: ReactNode;
+}) {
+  const tile = {
+    on: 'bg-ready-emerald-tint border-ready-emerald-edge text-ready-emerald-pale shadow-[0_0_14px_rgba(16,185,129,0.3)]',
+    warn: 'bg-units-amber-tint border-units-amber-edge text-units-amber-text',
+    off: 'bg-slate-ground border-control-edge text-ink-soft'
+  }[tone];
   return (
-    <div className="flex items-start gap-3.5">
-      <span className="nav-tile" aria-hidden="true">
+    <div className="flex items-center gap-3">
+      <span
+        aria-hidden="true"
+        className={`w-[46px] h-[46px] shrink-0 rounded-[12px] grid place-items-center border text-xl ${tile}`}
+      >
         <i className={`ph-bold ${icon}`} />
       </span>
-      <span className="flex-1 min-w-0">
-        <span className="block text-sm text-white">{title}</span>
-        <span
-          id={live ? 'syncStatus' : undefined}
-          role={live ? 'status' : undefined}
-          className="block text-xs text-slate-400"
-        >
+      <div className="flex-1 min-w-0">
+        <h2 id="syncTitle" className="font-display font-bold text-[20px] text-ink-bright">
+          {title}
+        </h2>
+        <p id="syncStatus" role="status" className="text-caption text-ink-muted">
           {children}
-        </span>
-      </span>
+        </p>
+      </div>
+      {action}
     </div>
   );
 }

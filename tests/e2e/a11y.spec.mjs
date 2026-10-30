@@ -76,7 +76,7 @@ for (const [name, path, ready, region, setup] of [
   ['Book I (checklists)', './#book1', '#checklist-milestones input >> nth=0', '#sec-book1'],
   ['Book III (tables)', './#book3', '#sec-book3 table >> nth=0', '#sec-book3'],
   ['Settings', './#more', '#installRow', '#sec-more'],
-  ['Sync', './#sync', '#syncPanel', '#sec-sync'],
+  ['Sync sheet', './#sync', '#syncPanel', '#syncSheet'],
   ['Fleet', './#gear', '#sec-gear [data-gear] >> nth=0', '#sec-gear'],
   ['Ship detail', './#ship/gear-kestrel', '#shipTitle', '#sec-ship'],
   ['Gear editor', './#ship/gear-kestrel', '#gearEditor', '#gearEditor', openGearEditor],

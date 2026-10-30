@@ -13,7 +13,6 @@ import { BestCrafts } from './calculators/BestCrafts.tsx';
 import { Guides } from './guides/Guides.tsx';
 import { Book } from './guides/Book.tsx';
 import { More } from './more/More.tsx';
-import { SyncScreen } from './more/SyncScreen.tsx';
 import { Gear } from './gear/Gear.tsx';
 import { ShipDetail } from './gear/ShipDetail.tsx';
 import { Notes } from './notes/Notes.tsx';
@@ -58,7 +57,6 @@ const SCREENS: [string, ReactNode][] = [
   ['guidesRoot', <Guides />],
   ...BOOKS.map(({ key }): [string, ReactNode] => [`${key}Root`, <Book book={key} />]),
   ['moreRoot', <More />],
-  ['syncRoot', <SyncScreen />],
   ['gearRoot', <Gear />],
   ['shipRoot', <ShipDetail />],
   ['notesRoot', <Notes />],

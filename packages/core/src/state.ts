@@ -5,6 +5,7 @@ import { normalizeTimers, type Timer } from './timers.ts';
 import { normalizeSession, normalizeSessions, type PastSession, type Session } from './session.ts';
 import { gearFromFleet, normalizeGear, type GearItem } from './gear.ts';
 import { normalizeNotes, type Note } from './notes.ts';
+import { normalizeDevices, type SyncDevice } from './devices.ts';
 
 export interface OutlawSettings {
   restockHours: number;
@@ -27,6 +28,7 @@ export interface AppState {
   sessions: PastSession[];
   gear: GearItem[]; // the player's ships and Multi-Tools
   notes: Note[]; // the player's own Markdown notes
+  devices: SyncDevice[]; // the devices that sync this log, each written by itself
 }
 const OUTLAW_KEYS = ['restockHours', 'packetsPerVisit', 'runSize', 'unitsPerPacket', 'nanitesPerPacket'] as const;
 
@@ -97,6 +99,7 @@ export function buildState(...layers: unknown[]): AppState {
   // Added in 3.14.0: a log without gear gets its old fleet notes as records, once (an emptied list stays empty).
   state.gear = state.gear === undefined || state.gear === null ? gearFromFleet(state.fleet) : normalizeGear(state.gear);
   state.notes = normalizeNotes(state.notes);
+  state.devices = normalizeDevices(state.devices); // added in the redesign: a log from before has none
   const outlaw = state.outlaw as Record<string, unknown>; // made an object two lines up; migrateToSystems keeps it one
   for (const key of OUTLAW_KEYS) {
     const value = Number(outlaw[key]);
