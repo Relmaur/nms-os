@@ -39,8 +39,16 @@ export const SCOPE: Record<string, string> = {
   'Mission infobox': 'mission',
   'Milestone infobox': 'milestone',
   'Galaxy infobox': 'galaxy',
-  'Update infobox': 'update'
+  'Update infobox': 'update',
+  // The wider game content (approved 2026-10-30). These infoboxes are shared with players' pages, so the rules in
+  // gameKind() decide which pages of theirs are the game's own.
+  'General infobox': 'general',
+  'Flora infobox': 'flora',
+  'Mineral infobox': 'mineral',
+  'Starship infobox': 'starship',
+  'Multitool infobox': 'multitool'
 };
+const WIDER = new Set(['general', 'flora', 'mineral', 'starship', 'multitool']);
 export const SCOPE_KEYS = new Set(Object.keys(SCOPE).map(name => name.toLowerCase()));
 // Game-mechanics pages have no game-data infobox: they are mirrored by title (kind "mechanic") for the rules they
 // state in prose, which packages/wiki/src/facts.ts cites. A page already in scope through an infobox keeps its kind.
@@ -66,8 +74,124 @@ export const FOLDERS = [
   'missions',
   'galaxies',
   'updates',
-  'mechanics'
+  'mechanics',
+  'world',
+  'lore'
 ];
+
+// Pages without an infobox are the game's own when they sit in one of these categories (first match sets the kind).
+// Categories that also gather players' pages (regions, Euclid, monoliths, derelict-freighter logs) are left out.
+export const CATEGORY_KINDS: [category: string, kind: string][] = [
+  ...['Lore', 'Autophage'].map(category => [category, 'lore'] as [string, string]),
+  ['Biomes', 'biome'],
+  ...[
+    'Mechanics',
+    'Starships',
+    'Game Content',
+    'Space Anomaly',
+    'Technology',
+    'Multi-Tool',
+    'Journey milestones',
+    'Point of Interest',
+    'Exosuit',
+    'Exocraft',
+    'Freighter',
+    'Interactions',
+    'Terminal',
+    'Specialist Terminal',
+    'Secondary missions',
+    'Blueprints',
+    'Farming',
+    'Artifact',
+    'Resources',
+    'Raw Materials',
+    'Glyph',
+    'Pre-Order',
+    'AtlasPass',
+    'Atlas Path',
+    'Updates',
+    'Community Research',
+    'Daily Research',
+    'Technology components',
+    'Damaged Component',
+    'Junk',
+    'Trade commodities',
+    'Raw Ingredient',
+    'Edible Product',
+    'Products - Base Building',
+    'Animal Byproduct',
+    'Harvested Agricultural Substance',
+    'Compressed Atmospheric Gas',
+    'Stabilised Reality Glitch',
+    'Localised Earth Element',
+    ...['Earth', 'Exotic', 'Fuel', 'Metal', 'Neutral', 'Oxide', 'Silicate', 'Special', 'Stellar'].map(e => `${e} elements`),
+    'Exotic elements (Atlas)',
+    ...['Health', 'Stamina', 'Utilities', 'Grenade', 'Laser', 'Projectile', 'Scan', 'Hyperdrive', 'Propulsion', 'Weapons'].map(
+      t => `${t} technology`
+    ),
+    ...['Rail gun', 'Compact', 'Circle Blaze', 'Angle muzzle', 'Hose muzzle', 'Scrimshaw'].map(w => `Weapons - ${w}`)
+  ].map(category => [category, 'mechanic'] as [string, string])
+];
+// A General-infobox page's kind follows its categories: story and people, rules, or else the living world.
+const LORE_GROUPS = new Set(['Lore', 'Storyline', 'Storyline NPC', 'Travellers', 'NPC', 'Hirable NPC', 'Guilds', 'Sentinels', 'Korvax', 'Gek', "Vy'keen", 'Autophage']);
+const MECHANIC_GROUPS = new Set(['Mechanics', 'Star systems', 'Galaxies', 'Anomalies', 'Planetary Settlement', 'Egg Sequencer', 'Terminal', 'Derelict Freighter', 'Pre-release', 'Resources']);
+// The only Starship- and Multitool-infobox pages that are the game's own: the pre-order bonuses. Every other one is
+// a ship or tool a player found.
+export const GAME_SHIPS = ['Horizon Omega', 'Alpha Vector', 'Final Shadow XIV', 'Vertic-LX', 'Artios-VI'];
+
+// Players' pages that the rules above would otherwise take: community catalogues and research, projects, hubs.
+const COMMUNITY_TITLE =
+  /^(Genus Catalog|GMEF)\b|Galactic Hub|EisHub|^HUB\d|^GHSH|\b(Starship|Multi-tool|Freighter) Catalogs?$|Starship Album$|Catalogs$|(Features|Horns|Documentation) Research$|Research Institute$/i;
+const COMMUNITY_CATEGORIES = new Set([
+  'Galactic Hub Exobiology Corps',
+  'Fan Fiction',
+  'Civilized Space',
+  'Civilized Space - Support',
+  'Community',
+  'Album',
+  'Unification Day 2022',
+  'Rasamama Collectors Club',
+  'Alliance of Galactic Travellers - Garden Worlds'
+]);
+const COMMUNITY_PAGES = new Set([
+  'Nesdorinux Project',
+  'Third-Party Tools',
+  'Trouvaille',
+  'Hertan Capital Portal',
+  'League of Galactic Powers',
+  'Galactic Authority Ascendancy',
+  'Rezehnan Union',
+  'Total Perspective Vortex',
+  'The Economy of Activated Indium',
+  'Companion Catalogue',
+  'Egg Sequencer - Gene Splitter Results',
+  'Handorch S99',
+  'The Apostle of the Sun',
+  'Sumoha Starfleet Starships Catalogue',
+  'Damatagam Coalition Starship Catalogue',
+  "No Man's Sky Unofficial Player Survey",
+  'Property:Planet weather',
+  'Strażnicy',
+  'Strażnik/pl',
+  'Project Elskyvin',
+  'Eisvana Lore',
+  'Community Farms',
+  'Community Farms (Atlas)',
+  'Woforssonsi Technology',
+  'Ideal Tech Synergies',
+  '2 Glyph Travellers'
+]);
+// Infobox fields only a player's page fills: who discovered it, the civilization that claims it.
+const DISCOVERY_FIELD = /discover|civili[sz]/i;
+
+const CATEGORY_LINK = /\[\[\s*category\s*:\s*([^\]|]+)/gi;
+/** The categories a page's own wikitext puts it in (not those a template adds). */
+export function pageCategories(content: string): string[] {
+  return [...content.matchAll(CATEGORY_LINK)].map(match => {
+    const name = (match[1] ?? '').replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  });
+}
 
 // Pages the wiki keeps for an older version of the game, e.g. "Blaze Javelin (Atlas)".
 export const ARCHIVED_VARIANT =
@@ -651,7 +775,16 @@ export function categoryFor(kind: string, fields: Record<string, string>): strin
     case 'update':
       return 'updates';
     case 'mechanic':
+    case 'starship':
+    case 'multitool':
       return 'mechanics';
+    case 'world':
+    case 'flora':
+    case 'mineral':
+    case 'biome':
+      return 'world';
+    case 'lore':
+      return 'lore';
   }
   const category = (fields.category || '').toLowerCase();
   const type = (fields.type || '').toLowerCase();
@@ -725,6 +858,38 @@ export interface Article {
     data: { fields: Record<string, string>; value?: number; recipes: Recipe[] };
   };
   body: string;
+}
+
+const SCOPE_ORDER = Object.entries(SCOPE).map(([template, kind]) => [template.toLowerCase(), kind] as const);
+
+/**
+ * The kind of a main-namespace article when it's game content, else null. In order: one of the original game-data
+ * infoboxes; a mechanics page named in MECHANICS; then the wider scope, where players' pages are told apart from the
+ * game's by their discovery fields, titles and categories; last, a page with no infobox in a CATEGORY_KINDS category.
+ */
+export function gameKind(title: string, content: string): string | null {
+  const templates = /infobox/i.test(content) ? topTemplates(cleanSource(content)) : [];
+  const keys = new Set(templates.map(template => template.key));
+  const match = SCOPE_ORDER.find(([key]) => keys.has(key));
+  if (match && !WIDER.has(match[1])) return match[1];
+  if (MECHANICS.includes(title)) return 'mechanic';
+  const categories = pageCategories(content);
+  if (COMMUNITY_PAGES.has(title) || COMMUNITY_TITLE.test(title) || categories.some(c => COMMUNITY_CATEGORIES.has(c)))
+    return null;
+  if (match) {
+    const [key, kind] = match;
+    if (kind === 'starship' || kind === 'multitool') return GAME_SHIPS.includes(title) ? kind : null;
+    const box = templates.find(template => template.key === key);
+    if (Object.entries(box?.named ?? {}).some(([field, value]) => value.trim() && DISCOVERY_FIELD.test(field))) return null;
+    if (kind !== 'general') return kind;
+    // An uncategorised General page is a player's draft or list, never one the wiki files under the game.
+    if (!categories.length) return null;
+    if (categories.some(c => LORE_GROUPS.has(c))) return 'lore';
+    return categories.some(c => MECHANIC_GROUPS.has(c)) ? 'mechanic' : 'world';
+  }
+  // Any other infobox (planet, system, creature, base, civilization…) is a player's discovery or a community page.
+  if (templates.some(template => template.key.includes('infobox'))) return null;
+  return CATEGORY_KINDS.find(([category]) => categories.includes(category))?.[1] ?? null;
 }
 
 export const MAX_PAGE_CHARS = 256 * 1024; // the largest game-data page is ~60 KB; past this a page is broken or hostile

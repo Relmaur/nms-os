@@ -48,7 +48,9 @@ export const CATEGORIES: Record<string, { label: string; icon: string; blurb: st
   missions: { label: 'Missions', icon: 'ph-flag-banner', blurb: 'Missions and journey milestones' },
   galaxies: { label: 'Galaxies', icon: 'ph-shooting-star', blurb: 'All 256 galaxies' },
   updates: { label: 'Updates', icon: 'ph-newspaper', blurb: 'Every patch, with its notes' },
-  mechanics: { label: 'Mechanics', icon: 'ph-gear-six', blurb: 'Inventories, supercharged slots, ship classes' }
+  mechanics: { label: 'Mechanics', icon: 'ph-gear-six', blurb: 'How the game works: ships, tools, terminals, rules' },
+  world: { label: 'Life and worlds', icon: 'ph-paw-print', blurb: 'Creature genera, flora, minerals, biomes' },
+  lore: { label: 'Lore', icon: 'ph-scroll', blurb: 'The story, the races, guilds and Sentinels' }
 };
 const CUSTOM_SOURCE = {
   label: 'Custom',

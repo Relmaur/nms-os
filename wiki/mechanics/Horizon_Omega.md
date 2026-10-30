@@ -1,0 +1,75 @@
+---
+title: "Horizon Omega"
+category: "mechanics"
+kind: "starship"
+summary: "Horizon Omega, later renamed to the Nojose's Crystal Folly, and later renamed again to the Prime Vector is a starship."
+pageId: 1614
+revId: 1333672
+revTimestamp: "2026-09-22T14:30:07Z"
+version: "Outlaws"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Horizon_Omega"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{"name":"Horizon Omega","image":"Prepurchasebonus_Steam_Banner.png","type":"Fighter","class":"C","inventory":"Small","slots":"16","damage":"0","shield":"0","warp":"0","release":"Release","techslots":"21"},"recipes":[]}
+---
+
+# Horizon Omega
+
+## Quick Facts
+
+- **Type:** Fighter
+- **Class:** C
+- **Inventory:** Small
+- **Slots:** 16
+- **Damage:** 0
+- **Shield:** 0
+- **Warp:** 0
+- **Added in:** Release
+- **Techslots:** 21
+
+**Horizon Omega**, later renamed to the **Nojose's Crystal Folly**, and later renamed again to the **Prime Vector** is a starship.
+
+## Summary
+
+**Horizon Omega** is an exclusive [[starship]] for players who pre-ordered [[No Man's Sky]] on PC prior to initial game release. To claim the ship, go into the Options menu and under Extras select Redeem Bonus Content. Its original in-game name was Ekinokaz S64. After the Oulaws update ([[Update 3.85]]) **The Horizon Omega** is now called **Prime Vector**. The ship is still named Horizon Omega during the redemption.
+
+## Location
+
+If you didn't pre-order No Mans Sky, you can still get the **Horizon Omega** though save editors.
+
+**Seed:** 0xC4C9C1AABCA59FE6
+Alternatively, a replica of the **Horizon Omega** can be created using the [[Starship Fabricator Terminal]] and using a Class C (or any) reactor, along with the Omega Cockpit, Mono-Booster, and Horizon Wings. Not to be confused with Horizon Wings (Fin). Then the ship would be painted using default Matte paint, Primary Blue and Secondary White with White Accent.
+
+To recreate a **Nojose's Crystal Folly**, simply follow all of the same instructions, but use Yellow as a Primary instead.
+
+To recreate a **Prime Vector**, simply follow all of the same instructions, but use Red as a Primary instead.
+
+## Description
+
+Kickstart your adventure in **No Man's Sky**'s vast, mysterious universe with the Horizon Omega starship, equipped with an upgraded [[hyperdrive technology|hyperdrive]] and increased firepower to help you [[travel]] faster and survive longer on your interstellar journey.
+
+## Default loadout
+
+The Horizon Omega starship has 16 cargo slots and 21 technology slots and comes equipped with the following [[technology]]:
+- [[Launch Thruster]]
+- [[Pulse Engine]]
+- [[Deflector Shield]]
+- [[Photon Cannon]]
+- [[Hyperdrive]]
+- [[Phase Beam]]
+
+Players can only redeem this ship after playing part of the tutorial. It replaces the default Rasamama. With the Horizon Omega players have a quicker start due to the presence of the Hyperdrive and Phase Beam technologies that are not present with the default ship. However, players will still need to repair the Launch Thrusters and Pulse Engine before taking off.
+
+## See also
+
+- [[Alpha Vector]]
+
+## Release history
+
+- [[NEXT]] -  ships of this style are now called **Nojose's Crystal Folly**. The ship type however is still named Horizon Omega during the redemption.
+- [[Outlaws]] -  ships of this style are now called **Prime Vector**. The ship type however is still named Horizon Omega during the redemption.
+
+## Notes
+
+&lt;references group="Note" />

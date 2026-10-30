@@ -2,7 +2,7 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { buildArticle, categoryFor, cleanSource, escapeStrayHtml, parseFrontmatter, parseTemplate, plainText, renderWikitext, slugify, toFrontmatter, type Article, type Page } from '../src/wikitext.ts';
+import { buildArticle, categoryFor, cleanSource, gameKind, pageCategories, escapeStrayHtml, parseFrontmatter, parseTemplate, plainText, renderWikitext, slugify, toFrontmatter, type Article, type Page } from '../src/wikitext.ts';
 
 const FIXTURES = new URL('../../../tests/fixtures/wikitext/', import.meta.url);
 const pages = JSON.parse(fs.readFileSync(new URL('pages.json', FIXTURES), 'utf8')) as Record<
@@ -148,4 +148,42 @@ test('a list item ending in bold stays its own item; bold opened at a line end c
     title: 'X'
   });
   assert.equal(md, '- holds **Ion Batteries**\n- up to 100 **food** items\nBefore **bold** text');
+});
+
+test('the wider scope: game pages from the shared infoboxes land in Lore, Life and worlds, or Mechanics', () => {
+  const source = (slug: string) => fs.readFileSync(new URL(`${slug}.wiki`, FIXTURES), 'utf8');
+  const cases: [slug: string, kind: string, folder: string][] = [
+    ['sentinel', 'lore', 'lore'],
+    ['rangifae', 'world', 'world'],
+    ['perpetuus-thesaurophilus', 'flora', 'world'],
+    ['stratofossilite', 'mineral', 'world'],
+    ['horizon-omega', 'starship', 'mechanics'],
+    ['final-shadow-xiv', 'multitool', 'mechanics']
+  ];
+  for (const [slug, kind, folder] of cases) {
+    assert.equal(gameKind(pages[slug]!.title, source(slug)), kind, slug);
+    const { category, meta, body } = article(slug);
+    assert.equal(category, folder, slug);
+    assert.ok(meta.summary.length > 20, `${slug} has a summary`);
+    assert.ok(!body.includes('{{'), `${slug} renders without template braces`);
+  }
+});
+
+test('the wider scope leaves players’ pages out', () => {
+  const general = (fields: string, categories = '[[Category:Sentinels]]') =>
+    `{{General infobox\n|name=X\n${fields}}}\nText.\n${categories}`;
+  assert.equal(gameKind('Sentinel', general('')), 'lore');
+  assert.equal(gameKind('Some Hub', general('|civilized=Galactic Hub')), null); // a civilization claims it
+  assert.equal(gameKind('X', general('', '')), null); // uncategorised
+  assert.equal(gameKind('Genus Catalog - Bos-Spider-Crab', general('', '[[Category:Bos]]')), null);
+  assert.equal(gameKind('Rezehnan Union', general('', '[[Category:Rezehnan Union]]')), null);
+  assert.equal(gameKind('Umigusuku S33', '{{Starship infobox\n|name=Umigusuku S33}}\n[[Category:Starships]]'), null);
+  assert.equal(gameKind('Daiman IX', '{{System infobox\n|name=Daiman IX}}\n[[Category:Mechanics]]'), null);
+  assert.equal(gameKind('Cave', 'Prose.\n[[Category:Biomes]]'), 'biome');
+  assert.equal(gameKind('Hu - Starship Catalog', 'Prose.\n[[Category:Starships]]'), null);
+  assert.equal(gameKind('Josirolle Terminus', 'Prose.\n[[Category:Euclid]]'), null);
+  // The original scope wins over the wider one, and the mechanics pages keep their kind.
+  assert.equal(gameKind('Freighter', '{{General infobox\n|name=Freighter}}\n[[Category:Mechanics]]'), 'mechanic');
+  assert.equal(gameKind('Y', '{{General infobox}}{{Product infobox}}'), 'product');
+  assert.deepEqual(pageCategories('[[Category:Space_Anomaly]] [[category: lore|sort]]'), ['Space Anomaly', 'Lore']);
 });

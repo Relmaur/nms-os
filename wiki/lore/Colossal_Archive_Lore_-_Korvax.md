@@ -1,0 +1,182 @@
+---
+title: "Colossal Archive Lore - Korvax"
+category: "lore"
+kind: "lore"
+summary: "Colossal Archive Lore - Korvax is part of the lore of No Man's Sky."
+pageId: 277835
+revId: 1125876
+revTimestamp: "2023-05-21T18:12:56Z"
+version: "Waypoint"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Colossal_Archive_Lore_-_Korvax"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{},"recipes":[]}
+---
+
+# Colossal Archive Lore - Korvax
+
+**Colossal Archive Lore - Korvax** is part of the lore of No Man's Sky.
+
+## Summary
+
+**Colossal Archive Lore** are entries found at [[Colossal Archive|Colossal Archives]]. Different lore can be found depending on the system's [[faction]]. The lore holds new cultural and literary histories.
+
+- [[Colossal Archive Lore - Gek]]
+- [[Colossal Archive Lore - Korvax]]
+- [[Colossal Archive Lore - Vy'keen]]
+
+## Theories on the Origin of Korvax
+
+The archive requires the user to place their body against its sensors. It whispers of what the Korvax might once have been.
+
+Eheu. Growth and life are words. Stars and worlds are machines. The Atlas teaches this. The Sentinels deliver the equation.
+
+The Atlas Interfaces uplifted the early civilisations of this universe. We became more than we were.
+
+Hypothesis 1: The Korvax were once organic. We gradually / rapidly altered our beings. We uploaded / improved our own minds. This was our choice / was forced upon us.
+
+Hypothesis 2: The Korvax have always been machines. We evolved from the noise of stars / we were created through Atlas imperative. We were once as Sentinels / we learned from Sentinels.
+
+Hypothesis 3: There is no cause, no effect, no time. To impose it is to misunderstand the sadness of the Atlas. We are the dreams of metal.
+
+## Fragments of Ancient Entities
+
+The archive holds shards of thoughts, recovered from fallen Convergences. These are the last remaining minds of electronic lifeforms, destroyed and melted down in their millions.
+
+[Journey]<br>
+Brain - kzzkt - formed in void, spontaneous, complete - kzzkt - Atlas protocol made flesh.
+
+The Atlantid, called Void Mother by lesser voices, brought pilgrims - kzzkt - its mass -
+
+Lived for millennia - kzzkt - died, whispering of the nineteenth minute.
+
+[Rebirth]<br>
+Left secrets beyond computation, beyond - kzzkt - mind arcs... carapace... convergence...
+
+Korvax honoured fallen - tried to bring back Atlantid, birthed failed Eggs...
+
+On the shoulders of a sleeping god, from flesh built a metal world.
+
+[Home]<br>
+The Void Mother lived - kzzkt - the Prime -
+
+## An Experiment
+
+This archive has been severed from all others of its kind. The entities that built it appear to be running secret experiments.
+
+I am here.
+
+I am here. I am here.
+
+These words continue on for hours, an electronic being sometimes launching into a sequence of tonal cries, weeping expressed in numbers.
+
+I - kzzkt - 19 - kzzkt - back -
+I would like to come back.
+
+A sequence of lights flash, registering the request. The entity is reconnected to its group mind.
+
+I am we are I - I -
+
+The entity is disconnected and reconnected, again and again with increasing rapidity. They grow silent. Eventually, even when reconnected, they refuse to speak.
+
+An individual has been re-created. The experiment is deemed a success.
+
+## Remembrance
+
+The entry appears to record a history of electronic intelligences across known space.
+
+[Prime Era]<br>
+Korvax Convergence born on leylines of Korvax-Prime, gift of first Monolith. [ Murdered ]
+
+[Second Era]<br>
+Second Convergence Era, formed in Dark Times. Collectives hiding on Balaron established new networks. [ Subverted / Enslaved ]
+
+[REDACTED]<br>
+
+Third -kzzkt -
+
+The archive refuses access to the next entries in this log.
+
+[Final Entries]<br>
+Seventh Convergence. Must not fall. Must not forget. Atlas imperative: Discover. Harvest. Know. Korvax will do the same.
+
+Physical markers must remain until the end. Must endure for Traveller-Return. Must be known. Even in reality-fall, they see who we were. What we could have been. Our shadows of a greater being.
+
+Traveller has come back... will forgive... will read... will know...
+
+## Poems of Praise
+
+There are old Korvax prayers, recovered from dim recollections of a long-since obliterated Convergence.
+
+The Korvax of that time appeared to worship Sentinels, reciting short poems of praise and observation to their silent gods.
+
+Voyage across mass // Aerons glide with unspoiled time // Communion waits
+
+Walker concession // Aeron slumbers in green field // Contemplating day
+
+Craft tallies fallen toil // Pirates, thieves of Monolith // Korvax will tend stream
+
+## Imitation
+
+The archive has been changed, distorted from its original purpose as a place of peace. The entries here hum with a distant corruption.
+
+Prior empire had the logic. Remove Korvax identity through alteration of metallic appearance to anonymous flesh. Flesh generated by appearance modification device. Machine, just like Korvax.
+
+Xnt-Echo first to override system. Initiated change to First Spawn appearance. Mimicked their ways. Slew, devoured fellow Korvax in the waves of Halacan.
+
+Even now, we learn the new logic. Even a cruel world could be understood. Even hate can be manipulated. We will not lose ourselves again.
+
+## Vy-Synth
+
+The archive is a secure facility, accessible only by a splinter-sect of the Korvax. The Exosuit struggles to overcome its encryption.
+
+Infiltration of Vy'keen proposed in multiple Convergence eras. Species resistant to attempts. But failure is a teacher.
+
+Each Vy-Synth elicited screaming, violent reactions within moments of contact.  Code of honour highly specific / contradictory / born from old trauma. Causality established.
+
+Evidence of multiple progenitor species. Vy variant = last survivors of family doomed to self-destruction. The Vy'keen fear replacement, just as they replaced their siblings. They are unconscious of the fear's origin.
+
+Hirk, Nal - it is the old pattern. Brother against brother. Patterns can be understood. Patterns are logical. Failure is a teacher.
+
+## The Observer
+
+The archive contains recordings by an entity known as the Observer. They appear to have been invited by the Korvax to attend the birth of their offspring.
+
+The young of the species appear to be indistinguishable from other individuals, but refer to themselves as 'New Korvax Entity'.
+
+I was invited to watch. To report. To provide my observations on the process. Even the First Spawn did not understand how to forge new Korvax in this manner.
+
+The carapace and the nanite clusters undulate in the heart of the monolith. Three figures dance above a red orb. I break my contract. I look away.
+
+The observer continues to write about their observations, noticing the emotional changes in the new Korvax as they grow.
+
+They experience loneliness/isolation/fear for a long time. They are frequently tested by examiners in their ability to convert reams of tech data into accurate holograms.
+
+If information is missing/they do not understand what they are doing, they can be disconnected. The examiners do not enjoy or like the involvement of strangers. I fear I do not - I - I -
+
+This is the last entry. There are thousands of these logs... repeating themselves again and again.
+
+When the New Korvax Entities reach a certain age, they appear to terminate their Observer, erasing the entity's memory for a new crop.
+
+It is an age-old custom, a dedication to the Atlas itself. An echo of what once befell the universe itself, though few understand the primordial secret.
+
+## Disconnection
+
+Disconnected choose to be what they are. They choose the errors that lead to their ejection. They choose, in other cases, to leave of their own free will. 98% attempt to rejoin the Convergence, once they are alone.
+
+They do not understand what we are, even those who have lived their entire lives in our light. We are not a hive mind. We are not individuals. We are in-between.
+
+We are an ocean of many creatures, one mass containing multitudes, an eco-system of living and dead, of thoughts and feelings, constantly merging and unmerging.
+
+The weeping of the disconnected is just vapour, liquid drifting into uncharted skies.
+
+## A History
+
+The archive contains a multitude of Korvax holograms. Planets dance in their orbits, towers and cities rise and fall like the bloom of wildlife. The nuclear fire of Sentinels reaps the harvest.
+
+Shell upon shell collapses across the universe, the flow of a river of souls filling each dormant vessel, red orbs ever blinking in their wake.
+
+A trillion Korvax bow before a spherical mass, living, biological ships orbiting the sentient world. It goes to sleep, encased in metal as the long centuries pass.
+
+It is all wiped out, in a war of light and greed.

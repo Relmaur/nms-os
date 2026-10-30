@@ -1,0 +1,44 @@
+{{Version|Release}}
+{{Multitool infobox
+| name = Final Shadow XIV
+| image = nmsMultiTool_Rezosu_AZ65.jpg
+| galaxy = 
+| region = 
+| system = 
+| planet = 
+| coordinates = 
+| type = Pistol
+| category = 
+| class = 
+| slots = 0
+| cost = 
+| discovered = 
+| mode = 
+| platform = PS4
+| release = Release
+| damage = 
+| mining = 
+| scanner = 
+}}
+'''Final Shadow XIV''' is a multi-tool.
+
+==Summary==
+Provided as a pre-order upgrade bonus, the '''Final Shadow XIV''' [[Multi-tool]] comes with the plasma upgrade pre-installed, helping the player to "stay safe and mine resources faster as you explore the infinite unknown frontier."
+
+It is orange and silver in color, with a black handgrip.
+
+==Acquirement==
+Final Shadow XIV is an exclusive Multi-Tool available only for players who pre-ordered [[No Man's Sky]] on Playstation 4 from Amazon and GameStop. 
+
+==Additional information==
+[[File:NoManSky_bonus_GameStop.jpg|thumb|GameStop pre-order exclusives. Pre-game flier labeled Rezosu Z65]]
+In the pre-game fliers released in the United States, this tool was originally referred to as the '''Rezosu AZ65''' or the '''Rezosu Z65'''.
+
+==See also==
+The Alpha Vector starship was also part of the pre-order package.
+* [[Alpha Vector]]
+
+[[Category:Multi-tool Pistol]]
+[[Category:Pre-Order]]
+
+[[it:Rezosu Z65]]

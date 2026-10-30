@@ -7,6 +7,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 ## [Unreleased]
 ### Added
 - **The wiki mirror is refreshed from Fandom's database dumps** (ADR-0009): `pnpm sync:wiki --from-dump <file>` reads the dump's XML (plain or gzipped) with the same scope, exclusions and rendering, and `pnpm verify:wiki --from-dump <file>` compares the archive with it. The dump stays outside the repo.
+- **The Codex has 534 more game pages (3,705 in all)**, from the 29 Oct 2026 wiki dump: two new groups, **Lore** (the story, the races, guilds, NPCs and Sentinels) and **Life and worlds** (creature genera, flora and mineral types, biomes), plus more Mechanics (terminals, the Space Anomaly, game guides, ship and tool types). Players' discoveries and community pages stay out.
 - `pnpm sync:wiki --discover <dump> --out <report.md>`: a scope report of every infobox and large category in the dump, with a proposed verdict (game, community, mixed, or review when there's nothing to judge by), for widening the mirror. It writes nothing in `wiki/`. Fandom's dumps give the site as `http://`, which the reader accepts.
 - The Codex says which copy of the wiki it holds: "Wiki copy from 29 Oct 2026" beside each article's source and on its landing. "Fix this on the wiki" still opens the live page.
 - **A new tab bar** on phones and tablets: a floating glass bar with four tabs, Home · Log · Runs · Codex, and a round search key beside it. Runs lights a dot when an outlaw station is ready. The Codex page has the same bar, and its search key opens the app's search.

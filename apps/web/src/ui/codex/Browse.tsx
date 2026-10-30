@@ -327,8 +327,8 @@ function Landing(props: Parameters<typeof Browse>[0]) {
       <div>
         <h1 className="font-display font-bold text-2xl sm:text-3xl text-white">Wiki Codex</h1>
         <p className="text-sm text-slate-300 mt-1">
-          {current.length.toLocaleString()} game-data pages from the No Man’s Sky Wiki: items, technology, places,
-          missions, galaxies and patch notes.
+          {current.length.toLocaleString()} game pages from the No Man’s Sky Wiki: items, technology, places,
+          missions, galaxies, patch notes, mechanics, life and lore.
         </p>
       </div>
       <div id="browseBody" className="space-y-10">

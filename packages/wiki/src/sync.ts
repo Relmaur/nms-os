@@ -8,9 +8,9 @@
 //   pnpm sync:wiki --discover <file> --out <report.md>
 //                                              the scope report for widening the mirror (writes nothing in wiki/)
 //
-// Scope: main-namespace pages that use one of the game-data infoboxes in SCOPE, plus the game-mechanics pages named in
-// MECHANICS (for the rules facts.ts cites). Player discoveries (planets, creatures, bases, player-found ships and
-// multi-tools) and community pages are out of scope.
+// Scope (gameKind() in wikitext.ts): the game's own pages, found by infobox, by title (MECHANICS, for the rules
+// facts.ts cites) and by category. Player discoveries (planets, creatures, bases, player-found ships and multi-tools)
+// and community pages are out of scope.
 // Every article is rendered from the page's wikitext at a recorded revision id. MediaWiki revisions are immutable,
 // so an archived revId equal to the dump's revId means the copy matches the wiki's source at the dump's date.
 //
@@ -165,7 +165,7 @@ async function sync({ dump, dryRun }: { dump: string; dryRun: boolean }): Promis
     return false;
   }
   const livePages = scan.pages;
-  console.log(`🔎 ${livePages.length} pages in scope in ${dumpName} (game-data infoboxes and mechanics pages).`);
+  console.log(`🔎 ${livePages.length} pages in scope in ${dumpName} (the game's own pages: infoboxes, mechanics and game categories).`);
   // A renamed or deleted mechanics page: its archived copy is marked removed, and the facts citing it go stale.
   if (scan.mechanicsMissing.length) console.warn(`⚠️  Mechanics pages not in the dump: ${scan.mechanicsMissing.join(', ')}`);
 

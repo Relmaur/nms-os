@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-10-30T18:03:21.473Z",
+  "checkedAt": "2026-10-30T18:18:55.956Z",
   "wiki": "https://nomanssky.fandom.com",
   "source": "dump",
   "dump": "nomanssky_gamepedia_pages_current.xml",
   "dumpDate": "2026-10-29T01:40:20Z",
   "status": "match",
-  "pages": 3171,
-  "matched": 3171,
-  "obsolete": 281,
+  "pages": 3705,
+  "matched": 3705,
+  "obsolete": 339,
   "excluded": 105,
   "removed": [],
   "aliases": 2,
@@ -42,7 +42,6 @@
     "Depleted Razorjaw",
     "Erased Clam",
     "Evaporating Snail",
-    "Ferrite",
     "Field's Dartfish",
     "Fish",
     "Forktailed Splicer",
@@ -110,9 +109,5 @@
     "Writhing Brainworm"
   ],
   "facts": 13,
-  "staleFacts": [],
-  "outdated": [],
-  "missing": [],
-  "removedUpstream": [],
-  "filesToRewrite": 0
+  "staleFacts": []
 }

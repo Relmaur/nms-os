@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import zlib from 'node:zlib';
 import { z } from 'zod';
-import { MECHANICS, SCOPE, WIKI_BASE, cleanSource, topTemplates, type Page } from './wikitext.ts';
+import { MECHANICS, WIKI_BASE, gameKind, type Page } from './wikitext.ts';
 
 export class InvalidDump extends Error {
   constructor(message: string) {
@@ -123,20 +123,10 @@ export function normalizeTitle(title: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
-const SCOPE_ORDER = Object.entries(SCOPE).map(([template, kind]) => [template.toLowerCase(), kind] as const);
-
-/**
- * The page's kind when it's in the mirror's scope, else null: a main-namespace article that uses one of the game-data
- * infoboxes (the first in SCOPE's order wins), or one of the mechanics pages named in MECHANICS.
- */
+/** The page's kind when it's in the mirror's scope (gameKind: game content, not players' pages), else null. */
 export function scopeKind(page: Pick<DumpPage, 'ns' | 'redirect' | 'title' | 'content'>): string | null {
   if (page.ns !== 0 || page.redirect !== null) return null;
-  if (/infobox/i.test(page.content)) {
-    const keys = new Set(topTemplates(cleanSource(page.content)).map(template => template.key));
-    const match = SCOPE_ORDER.find(([key]) => keys.has(key));
-    if (match) return match[1];
-  }
-  return MECHANICS.includes(page.title) ? 'mechanic' : null;
+  return gameKind(page.title, page.content);
 }
 
 export interface DumpScan {

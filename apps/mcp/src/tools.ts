@@ -110,7 +110,7 @@ export function createServer({ loadWiki, loadLog, logSetupError, now = Date.now 
     {
       title: 'Search the Codex',
       description:
-        "Search ATLAS's mirror of the No Man's Sky Wiki (items, technology, places, missions, mechanics, patch notes). " +
+        "Search ATLAS's mirror of the No Man's Sky Wiki (items, technology, places, missions, mechanics, life and worlds, lore, patch notes). " +
         'Returns titles, summaries and links; use read_article for a page’s full text.',
       inputSchema: {
         query: z.string().min(1).max(200),

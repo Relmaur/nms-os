@@ -1,0 +1,201 @@
+---
+title: "Sentinel"
+category: "lore"
+kind: "lore"
+summary: "The Sentinels are policing drones of mysterious origins and unclear motives. They are one of the most common antagonists in No Man's Sky."
+pageId: 441
+revId: 1234326
+revTimestamp: "2025-07-24T22:14:20Z"
+version: "Orbital"
+obsolete: false
+status: "current"
+source: "https://nomanssky.fandom.com/wiki/Sentinel"
+license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
+data: {"fields":{"image":"SentinelArmy.jpg","type":"Sentinels","description":"Authorities enforcement drones","release":"Orbital"},"recipes":[]}
+---
+
+# Sentinel
+
+## Quick Facts
+
+- **Type:** Sentinels
+- **Description:** Authorities enforcement drones
+- **Added in:** Orbital
+
+The **Sentinels** are policing drones of mysterious origins and unclear motives. They are one of the most common antagonists in No Man's Sky.
+
+## Summary
+
+The Sentinels are Mechanical Lifeforms; self-replicating, non-organic machines that are similar to the [[Korvax]], another Mechanical Lifeform in No Man's Sky's Universe. Their origins are unknown but they are seemingly deployed on every known planet to balance the efforts and actions of the player within the procedurally generated ecosystem. Sentinels act as the workhorse machines of [[The Atlas]] and as universal police, policing the actions of those who reside within the universe.
+
+They are, in essence, the "gardeners" of the No Man's Sky universe. If the player makes an attempt to alter the environment while they are around, they will not hesitate to defend their "garden." They will attack the player if caught harming the ecosystem of a [[planet]]. A Sentinel will also defend itself if the player shoots it, alerting other Sentinels in the area.
+
+On planets with rare [[tradeable|tradeables]] like [[Gravitino Ball|Gravitino Balls]], the Sentinels will attack the Player instantly after scanning them once. These Sentinels are classified as "Aggressive," "Frenzied" or "High-Security", and that planet is considered an extreme planet for the purposes of fulfilling [[Extreme Survival]] milestones.
+
+Some sentinels have become corrupted and appear to follow similar goals as their uncorrupted counterparts, but with a more radical solution. They most commonly appear on **corrupted planets** but can also be found near dig sites and attacking settlements. They are uncommon in creative mode.
+
+## Lore
+
+According to records scavenged from various ruins, traveller logs, and plaques, Sentinels are also known as The Aerons, and have existed longer than most of the entities. The exact time of their first appearance in the Outer Edge is yet to be discovered. They quickly spread across the entire No Man's Sky universe and were finally confronted by the [[Vy'keen|Vy'keen Alliance]] under the Prophet Hirk. As the most powerful race in the galaxy, the Vy'keen nearly won the Aeron War, but were attacked by the [[Gek|Gek Dominion]] coming from the core while they desperately tried to remove the Aerons from existence. Weakened, they had no way to resist the First Spawn Empire.
+
+To end the war between the Dominion, the Sentinels, and the Alliance, the then enslaved Korvax 'injected' the breeding pools of the Gek with their nanites. This forced the First Spawns to work for the Atlas and its loyal Aerons. During their short conflicts, the Gek quickly came to realize that these sentinels were far more vicious than they themselves. They are so powerful that even the more intellectual entities such as the Korvax started to worship them and deemed the Aerons to be the rule-keepers among the galaxy in the name of their god Atlas. While the Sentinels are still at war with the Vy'keen Alliance, they also still seek to eliminate anomalous entities such as renegade Gek and non-convergent Korvax lifeforms. This forced Nada and Polo to permanently be on the run and was another root cause for Polo's continued interest in studying the Sentinels.
+
+On all exotic worlds, [[Boundary Failure|Boundary Failures]] can be found that tell the story of the multiverse in the point of view of a person referred to as "Telamon". Telamon is colloquially used similarly to the word "Administrator" in technology fields, and it is not out of the question that Telamon is the original creator (see [[Rogue Data]]). When referring to the Traveler, Sentinel Pillar lore often interchangeably compares them to Telamon, as the Traveler is effectively the same thing as outlined by Rogue Data.
+
+One of these Boundary Failures describe that the Sentinels did go out of control once before and the entire universe had to be deleted from the multiverse. This could happen again, but this time unchecked, as the Atlas is slowly losing control of its own defense program. Some black box reports of [[Crashed Freighter|crashed freighters]] also state that they come from a universe with different skies. Some of them were attacked by Sentinels which during their last moments fought among themselves for an unknown reason.
+
+It is possible that those were the rogue sentinels which annihilated all life in their respective multiverses and had to be deleted by the Atlas Protection Program 'Telamon' in return. It is likely Telamon used some sentinels to fight the corrupted ones, before giving the order to wipe the universe clean. Similar behaviour can be seen in No Man's Sky, as some branches of sentinels are overly aggressive, although for now only to foreigners, especially the player who is accompanied by the Telamon AI as their guide.
+
+### Sentinel Lore Update
+
+Additional pieces of lore can be gathered from the sentinel pillars added in the [[Update 3.80|Sentinel]] update. According to the new lore, sentinels were initially invisible pieces of program recording, sorting and deleting things directly from within the code of the simulation. They started to fail from the moment the Atlas decided to give them physical form, from a lack of new instructions.
+
+The sentinels were close to the Korvax and [[Korvax Prime]] from the beginning, as they were all machine lifeforms. Korvax Prime, the planet itself, was an AI similar to the Atlas within the simulation, and over multiple universes, it has been destroyed over and over again. The cries of the planet could only be heard by the sentinels, and upon its destruction, Korvax Prime became the entity known within the lore as "The Abyss" or "The Void Mother".
+
+Over time, a few sentinels decided to retaliate, and started attacking Vy'keen and Gek attempting to damage the planet. Upon seeing that the Atlas didn't do anything to prevent or punish this behaviour, the Sentinels decided that they would change and become more aggressive. They cut themselves from Telamon, cut themselves from the Atlas, and over centuries, became the sentinels we know today, attacking anyone trying to damage the planets, as it reminds them of the murder of Korvax Prime. They also transferred their blood, nanite clusters, to the Korvax so that they would fight back against their oppressors.
+
+[[Laylaps]], the Sentinel drone that the player can repair during the "Trace of Metal" questline, got its name from the Abyss, formerly known as Korvax Prime. It may have ulterior motives, and an agenda given by the Abyss with the player travelers. A way to avoid the end of the Atlas, which would require both the player travelers, and Telamon, the voice within the player's exosuit. They seem to believe the creators of the Atlas itself are at fault.
+
+Their exact plan is not yet clear, but it seems to involve the contamination of water with nanites (which would explain the multiple warnings to "not drink the water" within the lore). Half of the water of the entire universe is contaminated now, apparently updating and changing the universe in a similar way to how the Korvax changed the Gek. However, their end goal seem to be a way to gain freedom, and escape the simulation, in some way.
+
+## Motivations
+
+According to an article published in the January 2015 Game Informer, it is suggested that Sentinels, formerly known as The Malevolent Force, were not all that malevolent to start off with:
+
+*"This robotic enemy army isn't all that malevolent as far as motivations go. They are simply trying to maintain the balance of the universe. On some planets they patrol, keeping an eye out for anyone who kills creatures, carves out resources, or generally changes the environment. If you're just strolling around scanning things in, they leave you alone. If you draw their attention, they attack like traditional first-person shooter enemies, shooting lasers, strafing, and taking cover."*
+
+In a separate interview with The Guardian published in October 2014, Sean Murray said:
+
+*"It's dangerous on planets. Each one has an ecology, and you're not always at the top of the food chain; we've shown large creatures that attack you. There's also something else we haven't shown. There is a malevolent force in the universe that does provide a lot of combat and more core gameplay at times. We wanted that; we wanted players to wander around exploring planets but never to feel entirely safe."*
+
+Background information has been found within abandoned structures on 'Derelict' consoles. These belong to a race that was active before the Vy'Keen, but were annihilated during a war with the sentinels. This information describes the inability of any race to ever truly destroy enough of the Sentinels to eliminate them, and alludes to the mystery of how they are produced.
+
+### Sentinel Lore Update
+
+The sentinels seem to have an ulterior motive other than protecting the planets. To begin with, the reason they protect worlds so vehemently is because it is a reminder of the destruction and "murder" of Korvax Prime, the sentient home planet of the Korvax. Their end goal is to earn some form of freedom from the simulation, and apparently requires that they contaminate all the water in the universe with nanites to update and change every life form from within.
+
+## Types
+
+**Regular Sentinels:**
+
+**Corrupted Sentinels:**
+
+**Rogue Sentinels:**
+
+The most common type of Sentinels are flying drones, which will hover above the ground, patrolling the planets and scanning for threats. However, armoured drones (introduced in [[NEXT]]) and [[Sentinel Walker|bipedal]] and [[Sentinel Quad|quadrupedal]] combat units will also appear if the unarmoured drones are unable to subdue threats to the planet by themselves. Damaged quadrupedal units can be healed by flying drones. This may apply to bipeds as well. All of these are equipped with sensors and turrets meant to protect planets from harm.
+
+In space, Sentinel starships behaving similarly to [[Pirate]] starships will attack players which attack [[Space Station|Space Stations]] and [[Space Fleets]] or leave a planet on which they have maximum planet alert. At maximum space alert, a Sentinel starship carrier will replace starship spawns but will itself release starships until maximum alert ends. The carrier itself can be destroyed and it will drop a dreadnought ai fragment.
+
+For Sentinel units with armour, the armour has its own health and will usually greatly reduce, if not completely nullify, damage to the unit itself. The armour of armoured drones, however, has a weak spot in the centre which can be targeted to bypass the armour and deal significant damage to the drone.
+
+An offshoot of the basic drone are referred to as Corrupted Sentinels, and must be dealt with when harvesting [[Salvageable Scrap]]. These are a tougher variety of the regular drones. It is possible that these are the rogue drones described in the [[freighter]] logs.
+
+Additional drone types include Heavy Combat Drones, Repair Drones, and Summoner Drones.
+
+## Behaviour
+
+Each planet has one of three types of Sentinel behaviour that determines where Sentinels can be encountered and how they will react to the player. This activity level can be determined by a scan from the player's Starship while in space. On a planet with Low or High Sentinel Activity, Sentinels only react to players when witnessing them violate a universal law (as listed below under Sentinel Alerts). On planets with Aggressive Sentinels, Sentinels will attack as soon as they recognise the player.
+
+- **Low Sentinel Activity** - Sentinels only guard [[Point of Interest|secure facilities]] but can be seen elsewhere (no icon) Most common type of Sentinel behaviour.
+- **High Sentinel Activity** - Sentinel patrols are present throughout the planet (orange icon)
+- **Aggressive Sentinels** - Patrols are present throughout the planet and Sentinels will attack on sight (red icon)
+- **Corrupted Sentinels** - Regular sentinels have been replaced with Corrupted Sentinels. Corrupted Sentinels seems to spawn everywhere on the planet at a rather low rate, and always present around Secured Points of Interest and [[Dissonance Resonator|Dissonance Resonators]] (purple icon)
+
+Once a player has landed on a planet, the Sentinel behaviour type is described by an adjective, which is recorded in the player's [[Discoveries]] tab. For each activity level, these adjectives are listed in the following table (along with an example planetary scan tool-tip).
+<br><br>
+
+|   |   |   |   |   |
+| --- | --- | --- | --- | --- |
+|   |   |   |   |   |
+| Low Sentinel Activity | High Sentinel Activity | Aggressive Sentinels | Corrupted Sentinels |   |
+| Absent | Attentive | Aggressive | Answer To None |   |
+| Few | Enforcing | Frenzied | Corrupted |   |
+| Infrequent | Ever-present | Hateful | De-Harmonised |   |
+| Intermittent | Frequent | High Security | Dissonant |   |
+| Irregular Patrols | Observant | Hostile Patrols | Forsaken |   |
+| Isolated | Regular Patrols | Inescapable | Rebellious |   |
+| Limited | Require Obedience | Malicious | Sharded from the Atlas |   |
+| Low | Require Orthodoxy | Threatening |   |   |
+| Low Security | Unwavering | Zealous |   |   |
+| Minimal |   |   |   |   |
+| Missing |   |   |   |   |
+| None |   |   |   |   |
+| None Present |   |   |   |   |
+| Not Present |   |   |   |   |
+| Remote |   |   |   |   |
+| Sparse |   |   |   |   |
+| Spread Thin |   |   |   |   |
+
+## Wanted Level
+
+Violating their laws, damaging the Sentinels directly, or being seen by Aggressive Sentinels will cause nearby Sentinels to attack the player and increase the player's Wanted Level (represented by a red diamond inside a black square). Wanted level ranges from 1 to 5 and is separated into 'PWL' on planets and 'SWL' in space, indicated in the top right corner of player's HUD. At higher Wanted Levels, the Sentinel response is accordingly more severe. In addition, High activity sentinel planets will produce a more severe response. Once all the Sentinels from the current Wanted Level are defeated, the Wanted Level is increased by 1, and the next wave of Sentinels is sent after a delay if the player doesn't avoid detection (see below under Avoiding Detection). Here are some examples of what a player will encounter at each level:
+
+| Planet | Response<br>(Low/medium activity) | Response<br>(High activity) | Notes |
+| --- | --- | --- | --- |
+| Level 1 | 2 heavy drones, 1 repair, 1 summoner | 3 heavy drones, 1 repair, 2 summoners | If less than 3 total drones are within attack range when level 1 first triggers, armoured drones appear to make up the difference. |
+| Level 2 | 2 heavy drones, 2 repair, 1 summoner | 3 heavy drones, 1 repair, 2 summoners |   |
+| Level 3 | 3 heavy drones, 2 repair, 2 summoners, 1 sentinel Quad | 4 heavy drones, 3 repair, 3 summoners, 1 sentinel Quad | A second summoner drone will appear if the first one is destroyed. The sentinel quad appears once heavy drones are engaged. |
+| Level 4 | 2 heavy drones, 3 repair, 2 summoners, 1 sentinel Mech | 4 heavy drones, 3 repair, 3 summoners, 1 sentinel Mech, 1 sentinel Quad | A second summoner drone will appear if the first one is destroyed. The sentinel Mech appears once heavy drones are engaged. |
+| Level 5 | 2 heavy drones, 4 repair, 3 summoners, 1 sentinel Mech, 1 sentinel Walker | 5 heavy drones, 4 repair, 4 summoners, 1 sentinel Mech, 1 sentinel Walker | Obtained after destroying all Sentinels from level 4 twice. A second summoner drone will appear if the first one is destroyed, then a third one. After defeating this wave of sentinels, all sentinels on that planet will be deactivated temporarily and the location of the nearest [[Sentinel Pillar]] will be revealed. |
+
+| Space | Response |   | Notes |
+| --- | --- | --- | --- |
+| Level 1 | 1 Sentinel Starship |   | Can also be obtained by leaving a planet before the "Sentinels Searching" counter runs out. |
+| Level 2 | 2 Sentinel Starships |   |   |
+| Level 3 | 4 Sentinel Starships |   |   |
+| Level 4 | 6 Sentinel Starships |   |   |
+| Level 5 | 1 Sentinel Starship Carrier |   | Carrier spawning 3-5 Sentinel Starships at once. More Starships will spawn each time a wave is defeated. The Carrier will immediately disappear when SWL drops below 5. If blown up, all Sentinel Starships will immediately disappear and reward the player with a rare reward. |
+
+## Sentinel Laws
+
+Performing these actions always alerts Sentinels (regardless of Sentinel presence), raising either Planet Wanted Level (PWL) or Space Wanted Level (SWL) to at least 1:
+- Overharvesting resources (When a Sentinel is scanning you)
+- Picking up a Gravitino Ball from the ground or from flora (PWL 3)
+- Picking up [[Sac Venom]] from the ground (PWL 3)
+- Interacting with a [[Sentient Plant]] (PWL 3)
+- Attempting to destroy [[Depot|Depots]], or the reinforced door of a [[Manufacturing Facility]] or [[Operations Centre]] (PWL 3)
+- Removing an [[Albumen Pearl]] from a Sentient Plant (not from a [[Humming Sac]]) (PWL 3)
+- Attacking a [[Space Fleets|Space Fleet]] (SWL 1)
+- Attacking a Space Station (SWL 4)
+- Attacking a [[Dyson Lens]] (SWL 5)
+- Attacking a non-hostile [[Starship]]
+- Attacking a Sentinel drone (PWL 1)
+
+Performing these actions with a Sentinel drone witnessing the action will alert the Sentinels and set the player's PWL to 1:
+- Attacking [[Fauna]] nearby
+- Harvesting [[Mineral|Minerals]] or [[Flora]] nearby
+- Removing an [[Ancient Data Structure]] from a pedestal
+
+## Avoiding detection
+
+If a player attracts a Sentinel's attention from the use of the mining beam, the player can switch to another weapon in their multitool before the Sentinels finish scanning the player. This will prevent being registered as the lawbreaker, therefore avoiding aggression.
+
+If a player provokes a Sentinel on a planet, the usual way to disengage from combat is to flee and avoid detection by Drones until they give up the search. As of the Sentinel update, Sentinels should still detect you inside caves and buildings, although it is still difficult for them to follow you in narrow spaces. You can dig a hole using your [[Geology Cannon]] or [[Terrain Manipulator]]. It's best to make an L-shaped hole, since Drones can spot you from overhead, and may fly into your dugout. Alternatively, maintaining some distance from the Drones; landing and exiting the starship and running while they catch up can cause the sentinels to scan your ship and hover around it rather than searching for the player, possibly registering the ship itself as the threat.
+
+After 20+ (wanted level x 10) seconds of evasion, Drones will be "deactivated" and return to their passive behaviour. However, Quadrupedal and Bipedal Sentinels act differently. After deactivation, they will wander around the terrain and simply make noises. In this state, they are passive, and will only attack when attacked or the Sentinel force is alerted once more.
+
+While a Drone can follow a player through an open door, they can become trapped as they cannot trigger the door themselves.
+
+Players can also disengage from combat with planet Sentinels by leaving the planet. However, as of NEXT, leaving a planet with a non-zero PWL will set the player's SWL (Space Wanted Level) equal to 1, causing Sentinel starships to begin pursuing the player.
+
+Disengaging from combat with Sentinels in space is much more difficult. While Sentinel starships are present or arriving in at most 7 seconds, the player starship's [[Pulse Engine]] is jammed and the player is unable to access the Galaxy Map; additionally, Sentinel starships will relentlessly follow players, even into the atmospheres of planets. Entering a freighter or space station is a good way to reset the player's space wanted level back to 0. You can also lose Sentinel starships by flying in one direction while boosting. Entering a planet's atmosphere prevents additional waves from spawning in for the duration, but does not reduce the player's space wanted level. Landing on a planet will set the players PWL equal to their SWL (usually at a minimum of PWL 2.) The player can disengage as normal after being detected by the ground Sentinels. If the player can move far enough away from pursuing Sentinels, the alert will be cancelled immediately, cutting short the evasion timer.
+
+As of the sentinel update, a cloaking device has been added as a secondary module for multitools. This cloaking device allows the user to temporarily become invisible. This time can be used to either avoid detection from aggressive sentinels, or flee a scene in order to let the wanted level go down
+
+## Engagement
+
+Each type of sentinel requires different engagement tactics. For specifics, refer to the [[Sentinel Engagement]] page.
+
+## Loot information
+
+If a Sentinel Drone, Quad, or Walker is destroyed, [[pugneum]] is immediately granted to the player’s inventory (see list below). If a Sentinel Starship is destroyed, the pugneum goes to the starship inventory. Sentinels can also drop a cylindrical combat supplies container which can be destroyed for a partial shield recharge and additional [[resource|resources]]. They have been known to drop:
+
+Sentinel Starships:
+- 1 [[Explosive Drones]] or 1 [[Mind Control Device]] [temporary [[frigate]] upgrades]
+**Note:** Blueprint drops have been replaced by Nanite Clusters.
+
+Sentinel presence may also be used to determine a building's type while exploring on foot - a locked building will have multiple Drones, and occasionally may also have Quads roaming the immediate grounds. Most other building types will only have one or two Drones patrolling them. Sentinel presence may also heighten for certain mission types, and Walkers will spawn immediately upon the starship landing by the building or when the player is within foot range.
+
+## Additional information
+
+- The behaviour terms are extracted from the NMS_LOC1_ENGLISH.MBIN (1.77) game file.

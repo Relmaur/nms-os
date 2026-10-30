@@ -47,5 +47,47 @@
     "revId": 349807,
     "revTimestamp": "2019-02-11T22:06:23Z",
     "kind": "technology"
+  },
+  "sentinel": {
+    "title": "Sentinel",
+    "pageId": 441,
+    "revId": 1234326,
+    "revTimestamp": "2025-07-24T22:14:20Z",
+    "kind": "lore"
+  },
+  "horizon-omega": {
+    "title": "Horizon Omega",
+    "pageId": 1614,
+    "revId": 1333672,
+    "revTimestamp": "2026-09-22T14:30:07Z",
+    "kind": "starship"
+  },
+  "final-shadow-xiv": {
+    "title": "Final Shadow XIV",
+    "pageId": 1623,
+    "revId": 840681,
+    "revTimestamp": "2021-08-26T15:16:20Z",
+    "kind": "multitool"
+  },
+  "rangifae": {
+    "title": "Rangifae",
+    "pageId": 11228,
+    "revId": 1278451,
+    "revTimestamp": "2026-01-11T19:07:15Z",
+    "kind": "world"
+  },
+  "perpetuus-thesaurophilus": {
+    "title": "Perpetuus thesaurophilus",
+    "pageId": 633832,
+    "revId": 1298185,
+    "revTimestamp": "2026-03-20T00:34:44Z",
+    "kind": "flora"
+  },
+  "stratofossilite": {
+    "title": "Stratofossilite",
+    "pageId": 634643,
+    "revId": 1299570,
+    "revTimestamp": "2026-03-25T04:59:10Z",
+    "kind": "mineral"
   }
 }

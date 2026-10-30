@@ -11,10 +11,17 @@ obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Freighter"
 license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
-data: {"fields":{},"recipes":[]}
+data: {"fields":{"name":"Freighter","image":"Base Profile Screenshot 2021.06.19 - 17.26.31.33.png","type":"Starship","description":"A colossal interstellar starship","platform":"All","release":"WorldsOne"},"recipes":[]}
 ---
 
 # Freighter
+
+## Quick Facts
+
+- **Type:** Starship
+- **Description:** A colossal interstellar starship
+- **Platforms:** All
+- **Added in:** WorldsOne
 
 A **Freighter** is a massive starship.
 
