@@ -1,18 +1,24 @@
-// Mark supercharged slots by tapping the inventory grid: tap to mark, tap again to clear. Each cell is a toggle button;
-// one is in the Tab order at a time, and the arrow keys move between them (Space or Enter toggles), so 40 cells
-// don't cost 40 Tab presses. "Add a row" grows the grid up to the largest inventory the wiki gives (slotRules), and
-// each marked slot gets a field for what sits in it. The rules shown come from cited facts and link to their Codex
-// pages; marks that disagree get a note, never a block: the player's inventory screen is the truth.
+// The editor's technology grid (design 12): tap a slot to mark it supercharged and select it, then say what sits in
+// it. Tapping a marked slot selects it, and tapping it again unmarks it (as does "Unmark supercharged"). Each cell is
+// a toggle button; one is in the Tab order at a time and the arrow keys move between them, so 60 cells don't cost 60
+// Tab presses. The grid is as tall as the Rows control says, up to the largest inventory the wiki gives (slotRules).
+// The rules come from cited facts and link to their Codex pages; marks that disagree get a note, never a block: the
+// player's inventory screen is the truth.
 import { useRef, useState, type KeyboardEvent } from 'react';
 import {
   MAX_LABEL,
   classLetter,
+  rulesSummary,
   slotGrid,
+  slotShort,
   slotWarnings,
   toggleSlot,
   type GearKind,
   type SlotRules
 } from '@atlas/core/gear';
+import { FIELD, LABEL_FIELD, Segments } from '../systems/editor-parts.tsx';
+import { Button } from '../parts/Button.tsx';
+import { CELL_OFF, CELL_ON, slotKey } from './fleet-bits.tsx';
 import { KINDS } from './kinds.ts';
 
 const MIN_ROWS = 4; // the wiki: supercharged slots are "almost always in the first 3 or 4 lines"
@@ -41,19 +47,29 @@ export function SlotPicker({
   rules: SlotRules;
   onChange: (slots: string[], labels: Record<string, string>) => void;
 }) {
-  const [rows, setRows] = useState(MIN_ROWS);
+  // The rows shown: the wiki's maximum for this kind and class, at most 6 to start (an S-class ship's whole grid),
+  // and never fewer than the marks need.
+  // Until the player picks, it follows the class (a C-class tool upgraded to S grows).
+  const [picked, setRows] = useState<number | null>(null);
+  const rows = picked ?? Math.min(rules.maxRows, 6);
   const grid = slotGrid(slots, { rows: Math.min(rows, rules.maxRows), cols: rules.columns });
   const warn = slotWarnings(rules, slots);
+  const summary = rulesSummary(rules, kind, cls, slots);
   const letter = classLetter(cls);
   const name = KINDS[kind].label;
   const pages = [...new Map(rules.sources.map(fact => [fact.path, fact.page])).entries()];
   const fixed = rules.fixed;
   const missing = fixed?.filter(slot => !slots.includes(slot)) ?? [];
   const keep = (next: string[]) => Object.fromEntries(Object.entries(labels).filter(([key]) => next.includes(key)));
+  const [selected, setSelected] = useState<string | null>(slots[0] ?? null);
   const [moved, setFocus] = useState<[number, number]>([1, 1]);
   // Kept inside the grid: a lower class shrinks it, and the cell in the Tab order must still exist.
   const focus: [number, number] = [Math.min(moved[0], grid.rows), Math.min(moved[1], grid.cols)];
   const root = useRef<HTMLDivElement>(null);
+  const rowOptions = Array.from(
+    { length: Math.max(0, rules.maxRows - Math.min(MIN_ROWS, rules.maxRows) + 1) },
+    (_, i) => Math.min(MIN_ROWS, rules.maxRows) + i
+  ).filter(n => n <= 12);
 
   const onKey = (event: KeyboardEvent) => {
     const step = STEP[event.key];
@@ -67,17 +83,28 @@ export function SlotPicker({
     if (!target) return;
     event.preventDefault();
     setFocus(target);
-    root.current?.querySelector<HTMLButtonElement>(`[data-slot="R${String(target[0])}C${String(target[1])}"]`)?.focus();
+    root.current?.querySelector<HTMLButtonElement>(`[data-slot="${slotKey(target[0], target[1])}"]`)?.focus();
+  };
+  const tap = (slot: string) => {
+    const on = slots.includes(slot);
+    if (on && selected !== slot) {
+      setSelected(slot);
+      return;
+    }
+    const next = toggleSlot(slots, slot);
+    onChange(next, keep(next));
+    setSelected(on ? null : slot);
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex flex-col gap-2.5">
       <div className="flex items-baseline justify-between gap-3">
-        <p id="slotPickerLabel" className="field-label">
-          Supercharged slots
+        <p id="slotPickerLabel" className="text-caption text-ink-soft">
+          Technology grid · tap slots to mark supercharged
         </p>
-        <p className="text-xs font-mono text-amber-200/90" aria-live="polite">
-          {slots.length ? slots.join(' · ') : 'none marked'}
+        <p className="font-mono text-caption text-ink-soft shrink-0" aria-live="polite">
+          {rules.supercharged !== null ? `${String(slots.length)} / ${String(rules.supercharged)}` : slots.length}
+          <span className="sr-only"> marked</span>
         </p>
       </div>
       <div
@@ -87,13 +114,13 @@ export function SlotPicker({
         aria-labelledby="slotPickerLabel"
         aria-describedby="slotPickerHint"
         onKeyDown={onKey}
-        className="grid gap-1 sm:gap-1.5 max-w-md"
+        className="grid gap-1.5"
         style={{ gridTemplateColumns: `repeat(${String(grid.cols)}, minmax(0, 1fr))` }}
       >
         {Array.from({ length: grid.rows * grid.cols }, (_, i) => {
           const row = Math.floor(i / grid.cols) + 1;
           const col = (i % grid.cols) + 1;
-          const slot = `R${String(row)}C${String(col)}`;
+          const slot = slotKey(row, col);
           const on = grid.marked.has(slot);
           return (
             <button
@@ -101,63 +128,60 @@ export function SlotPicker({
               type="button"
               data-slot={slot}
               aria-pressed={on}
-              aria-label={`Row ${String(row)}, column ${String(col)}`}
+              aria-label={`Row ${String(row)}, column ${String(col)}${on && labels[slot] ? `: ${labels[slot]}` : ''}`}
               tabIndex={row === focus[0] && col === focus[1] ? 0 : -1}
               onClick={() => {
                 setFocus([row, col]);
-                const next = toggleSlot(slots, slot);
-                onChange(next, keep(next));
+                tap(slot);
               }}
-              className={`aspect-square min-h-6 rounded-md border transition-colors focus-visible:outline-2 focus-visible:outline-cyan-400 ${
-                on
-                  ? 'bg-amber-300 border-amber-200 shadow-[0_0_8px_rgba(252,211,77,0.55)]'
-                  : 'bg-slate-900 border-slate-700 hover:border-slate-500'
-              }`}
-            />
+              className={`aspect-square min-w-0 rounded-[6px] border grid place-items-center overflow-hidden transition-colors focus-visible:outline-2 focus-visible:outline-scanner-cyan-glow ${
+                on ? CELL_ON : `${CELL_OFF} hover:border-control-edge-hover`
+              } ${on && selected === slot ? 'outline-2 outline-offset-1 outline-scanner-cyan-glow' : ''}`}
+            >
+              {on && labels[slot] && (
+                <span
+                  className="text-[9px] font-semibold leading-none text-[#f3e8ff] truncate px-0.5"
+                  aria-hidden="true"
+                >
+                  {slotShort(labels[slot])}
+                </span>
+              )}
+            </button>
           );
         })}
       </div>
-      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-        <p id="slotPickerHint" className="flex-1 min-w-[12rem] text-xs text-slate-400">
-          Tap the cells where the inventory shows a supercharged slot; tap again to clear. Row 1 is the top row.
-        </p>
-        {grid.rows < rules.maxRows && (
-          <button
-            type="button"
-            onClick={() => {
-              setRows(grid.rows + 1);
-            }}
-            className="h-8 px-2.5 rounded-lg border border-dashed border-slate-600 text-xs text-slate-300 hover:text-white hover:border-slate-400"
-          >
-            + Add a row
-          </button>
-        )}
-      </div>
-      {pages.length > 0 && (
-        <p id="slotRules" className="text-xs text-slate-400">
-          {rules.supercharged !== null &&
-            (kind === 'exosuit'
-              ? `${String(rules.supercharged)} supercharged slots, in the same places for every player. `
-              : `${letter ?? ''}-class: ${String(rules.supercharged)} supercharged slot${rules.supercharged === 1 ? '' : 's'}. `)}
-          Technology grid: {rules.columns} wide, up to {rules.maxRows} rows. From the wiki:{' '}
-          {pages.map(([path, page], i) => (
-            <span key={path}>
-              {i > 0 && ', '}
-              <a
-                href={codexHref(path)}
-                target="_blank"
-                rel="noopener"
-                className="text-cyan-300 hover:text-cyan-200 underline"
-              >
-                {page}
-              </a>
-            </span>
-          ))}
-          .
+      <p id="slotPickerHint" className="sr-only">
+        Mark the cells where the inventory shows a supercharged slot. Tap a marked one to select it, again to unmark it.
+        Row 1 is the top row.
+      </p>
+
+      {summary && (
+        <p id="slotRules" className="text-caption text-ink-soft flex items-start gap-1.5">
+          <i
+            className={`ph-bold mt-0.5 ${summary.status === 'off' ? 'ph-warning text-units-amber-text' : summary.status === 'match' ? 'ph-check text-ready-emerald-lit' : 'ph-info text-scanner-cyan-pale'}`}
+            aria-hidden="true"
+          />
+          <span>
+            {summary.status === 'match' ? 'Matches the wiki: ' : 'The wiki: '}
+            {rules.supercharged !== null &&
+              (kind === 'exosuit'
+                ? `the Exosuit has ${String(rules.supercharged)}, in the same places for every player`
+                : `${letter ?? ''}-class has ${String(rules.supercharged)}`)}
+            {rules.supercharged !== null ? ', ' : ''}grid up to {rules.columns} × {rules.maxRows}. From{' '}
+            {pages.map(([path, page], i) => (
+              <span key={path}>
+                {i > 0 && ', '}
+                <a href={codexHref(path)} target="_blank" rel="noopener" className="text-scanner-cyan-pale underline">
+                  {page}
+                </a>
+              </span>
+            ))}
+            .
+          </span>
         </p>
       )}
       {(warn.tooMany || warn.outside.length > 0 || warn.offPreset.length > 0) && (
-        <ul id="slotWarnings" className="space-y-1 text-xs text-amber-200" aria-live="polite">
+        <ul id="slotWarnings" className="flex flex-col gap-1 text-caption text-units-amber-text" aria-live="polite">
           {warn.tooMany && !warn.offPreset.length && (
             <li>
               {kind === 'exosuit' ? 'The Exosuit has' : `${letter ?? ''}-class has`} {rules.supercharged} supercharged
@@ -180,38 +204,77 @@ export function SlotPicker({
         </ul>
       )}
       {missing.length > 0 && (
-        <button
-          type="button"
-          id="slotPreset"
+        <Button
+          size="S"
           onClick={() => {
             const next = missing.reduce(toggleSlot, slots); // adds the missing ones; marks already there stay
             onChange(next, labels);
           }}
-          className="h-8 px-2.5 rounded-lg border border-amber-300/40 text-xs text-amber-200 hover:bg-amber-300/10"
+          className="self-start"
         >
-          Mark the Exosuit’s slots ({list(missing)})
-        </button>
+          <span id="slotPreset">Mark the Exosuit’s slots ({list(missing)})</span>
+        </Button>
       )}
-      {slots.length > 0 && (
-        <div className="space-y-2 pt-1">
-          <p className="field-label">What’s in each one</p>
-          {slots.map(slot => (
-            <label key={slot} className="flex items-center gap-2">
-              <span className="w-12 shrink-0 font-mono text-xs text-amber-200">{slot}</span>
-              <input
-                data-slot-label={slot}
-                maxLength={MAX_LABEL}
-                value={labels[slot] ?? ''}
-                placeholder="e.g. Infra-Knife Accelerator"
-                aria-label={`What’s in ${slot}`}
-                onChange={event => {
-                  onChange(slots, { ...labels, [slot]: event.target.value });
-                }}
-                className="flex-1 min-w-0 h-9 bg-slate-900 border border-slate-700 rounded-lg px-2.5 text-base sm:text-sm text-white placeholder:text-slate-500"
-              />
-            </label>
-          ))}
+
+      {rowOptions.length > 1 && (
+        <div className="flex items-center justify-between gap-3">
+          <span aria-hidden="true" className="text-caption text-ink-soft">
+            Rows
+          </span>
+          <div className="w-1/2">
+            <Segments
+              label="Rows"
+              hideLabel
+              value={String(grid.rows)}
+              onChange={value => {
+                setRows(Number(value) || grid.rows);
+              }}
+              options={rowOptions.map(n => [String(n), String(n)])}
+            />
+          </div>
         </div>
+      )}
+
+      {selected && slots.includes(selected) && (
+        <section
+          aria-labelledby="selectedSlotTitle"
+          className="rounded-2xl border border-scanner-cyan-edge bg-panel p-3.5 flex flex-col gap-3"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <h3
+              id="selectedSlotTitle"
+              className="text-[11px] font-bold uppercase tracking-[0.16em] text-scanner-cyan-pale"
+            >
+              Selected slot
+            </h3>
+            <span className="inline-flex items-center h-7 px-3 rounded-full border border-[rgba(192,132,252,0.5)] bg-[rgba(168,85,247,0.12)] text-[12px] font-semibold text-[#e9d5ff]">
+              {selected} · supercharged
+            </span>
+          </div>
+          <label className={LABEL_FIELD}>
+            Module in this slot
+            <input
+              data-slot-label={selected}
+              maxLength={MAX_LABEL}
+              value={labels[selected] ?? ''}
+              placeholder="e.g. Infra-Knife Accelerator"
+              onChange={event => {
+                onChange(slots, { ...labels, [selected]: event.target.value });
+              }}
+              className={FIELD}
+            />
+          </label>
+          <Button
+            wide
+            onClick={() => {
+              const next = toggleSlot(slots, selected);
+              onChange(next, keep(next));
+              setSelected(null);
+            }}
+          >
+            Unmark supercharged
+          </Button>
+        </section>
       )}
     </div>
   );

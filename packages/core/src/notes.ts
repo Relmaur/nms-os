@@ -7,7 +7,7 @@ export interface Note {
   id: string;
   title: string;
   body: string; // Markdown
-  pins: string[]; // where it shows besides the Notes list: 'home', 'book1' … 'book6'
+  pins: string[]; // where it shows besides the Notes list: 'home', 'book1' … 'book6', or 'gear:<id>' (a ship's screen)
   createdAt: string;
   updatedAt: string;
 }
@@ -17,6 +17,9 @@ export const PIN_PLACES: { key: string; label: string }[] = [
   ...BOOKS.map(book => ({ key: book.key, label: `Book ${book.numeral}` }))
 ];
 const PLACES = new Set(PIN_PLACES.map(place => place.key));
+// A note linked to a ship, Multi-Tool or Exosuit (the redesign's Linked notes) is pinned to `gear:<its id>`.
+export const gearPin = (id: string): string => `gear:${id}`;
+const isPin = (pin: string): boolean => PLACES.has(pin) || (pin.startsWith('gear:') && SAFE_ID.test(pin.slice(5)));
 export const MAX_NOTE_CHARS = 100_000; // a long guide is ~20k; past this a paste went wrong
 
 const date = (value: unknown): string => (typeof value === 'string' && !Number.isNaN(Date.parse(value)) ? value : '');
@@ -33,7 +36,7 @@ export function normalizeNotes(value: unknown): Note[] {
     if (seen.has(id)) return [];
     seen.add(id);
     const pins = Array.isArray(item.pins)
-      ? [...new Set(item.pins.filter((pin): pin is string => typeof pin === 'string' && PLACES.has(pin)))]
+      ? [...new Set(item.pins.filter((pin): pin is string => typeof pin === 'string' && isPin(pin)))]
       : [];
     const createdAt = date(item.createdAt);
     return [
@@ -45,6 +48,19 @@ export function normalizeNotes(value: unknown): Note[] {
 // Most recently changed first.
 export function notesPinnedTo(notes: Note[], place: string): Note[] {
   return notes.filter(note => note.pins.includes(place)).sort(byNewest);
+}
+export const notesForGear = (notes: Note[], id: string): Note[] => notesPinnedTo(notes, gearPin(id));
+
+// The notes after linking exactly `ids` to one gear item: others linked to it are unlinked. Only changed notes are new
+// objects, so the caller can tell which to save.
+export function linkNotes(notes: Note[], gearId: string, ids: string[]): Note[] {
+  const pin = gearPin(gearId);
+  return notes.map(note => {
+    const linked = note.pins.includes(pin);
+    const wanted = ids.includes(note.id);
+    if (linked === wanted) return note;
+    return { ...note, pins: wanted ? [...note.pins, pin] : note.pins.filter(item => item !== pin) };
+  });
 }
 export function byNewest(a: Note, b: Note): number {
   return (Date.parse(b.updatedAt) || 0) - (Date.parse(a.updatedAt) || 0);

@@ -234,3 +234,106 @@ export function slotWarnings(
     offPreset: rules.fixed ? slots.filter(slot => !rules.fixed?.includes(slot)) : []
   };
 }
+
+// ---------------------------------------------------------------------------
+// The Fleet screen (design 08) and a ship's own screen (09)
+// ---------------------------------------------------------------------------
+export interface FleetFilter {
+  kind: GearKind | null;
+  sClass: boolean;
+  supercharged: boolean;
+}
+export const ALL_GEAR: FleetFilter = { kind: null, sClass: false, supercharged: false };
+
+export function filterGear(items: GearItem[], filter: FleetFilter): GearItem[] {
+  return items.filter(
+    item =>
+      (!filter.kind || item.kind === filter.kind) &&
+      (!filter.sClass || classLetter(item.class) === 'S') &&
+      (!filter.supercharged || item.superchargedSlots.length > 0)
+  );
+}
+
+export interface FleetChip {
+  id: string;
+  label: string;
+  on: boolean;
+  next: FleetFilter;
+}
+
+// All · n, then a chip per kind present (with its count), then S-class and Supercharged, which narrow any kind.
+export function fleetChips(items: GearItem[], filter: FleetFilter): FleetChip[] {
+  const kinds: [GearKind, string][] = [
+    ['starship', 'Ships'],
+    ['multitool', 'Multi-Tools'],
+    ['exosuit', 'Exosuit']
+  ];
+  return [
+    {
+      id: 'all',
+      label: `All · ${String(items.length)}`,
+      on: !filter.kind && !filter.sClass && !filter.supercharged,
+      next: ALL_GEAR
+    },
+    ...kinds
+      .map(([kind, label]) => [kind, label, items.filter(item => item.kind === kind).length] as const)
+      .filter(([, , count]) => count > 0)
+      .map(([kind, label, count]) => ({
+        id: kind,
+        label: `${label} · ${String(count)}`,
+        on: filter.kind === kind,
+        next: { ...filter, kind: filter.kind === kind ? null : kind }
+      })),
+    { id: 's-class', label: 'S-class', on: filter.sClass, next: { ...filter, sClass: !filter.sClass } },
+    {
+      id: 'supercharged',
+      label: 'Supercharged',
+      on: filter.supercharged,
+      next: { ...filter, supercharged: !filter.supercharged }
+    }
+  ];
+}
+
+/** "Sentinel Interceptor · Flagship": the type and role, whichever the player wrote. */
+export const gearLine = (item: GearItem): string => [item.type, item.role].filter(Boolean).join(' · ');
+
+/** The class as the pill shows it: "A -> S" → "A → S". */
+export const classPill = (value: string): string => value.replace(/\s*-+>\s*/g, ' → ').trim();
+
+/** What a marked slot's cell can show: the first word of its label, short ("Infra-Knife Accelerator" → "Infra"). */
+export function slotShort(label: string | undefined): string {
+  const word = (label ?? '').trim().split(/[\s-]+/)[0] ?? '';
+  return word.length > 5 ? word.slice(0, 5) : word;
+}
+
+/**
+ * The wiki's rules for this item as one sentence ("S-class starships have 4 supercharged slots, on a tech grid up to
+ * 10 columns by 6 rows."), and whether the marked slots agree; null when no cited fact applies.
+ */
+export function rulesSummary(
+  rules: SlotRules,
+  kind: GearKind,
+  cls: string,
+  slots: string[]
+): { sentence: string; status: 'match' | 'short' | 'off'; count: string } | null {
+  if (!rules.sources.length) return null;
+  const letter = classLetter(cls);
+  const plural = kind === 'multitool' ? 'Multi-Tools' : 'starships';
+  const who = kind === 'exosuit' ? 'The Exosuit has' : letter ? `${letter}-class ${plural} have` : null;
+  const grid = `a tech grid up to ${String(rules.columns)} columns by ${String(rules.maxRows)} rows`;
+  const sentence =
+    rules.supercharged !== null && who
+      ? `${who} ${String(rules.supercharged)} supercharged slot${rules.supercharged === 1 ? '' : 's'}, on ${grid}.`
+      : `${kind === 'exosuit' ? 'The Exosuit has' : kind === 'multitool' ? 'Multi-Tools have' : 'Starships have'} ${grid}.`;
+  const warn = slotWarnings(rules, slots);
+  // Off: a mark the wiki disagrees with. Short: fewer marked than the wiki gives (not wrong, just not all marked yet).
+  const status =
+    warn.tooMany || warn.outside.length || warn.offPreset.length
+      ? 'off'
+      : rules.supercharged !== null && slots.length < rules.supercharged
+        ? 'short'
+        : 'match';
+  const count =
+    rules.supercharged === null ? String(slots.length) : `${String(slots.length)} of ${String(rules.supercharged)}`;
+  return { sentence, status, count };
+}

@@ -6,7 +6,7 @@ import { MAX_SESSIONS, type PastSession } from '@atlas/core/session';
 import { MAX_TIMER_MS, type Timer, type TimerKind } from '@atlas/core/timers';
 import type { ParsedOutlawSystem } from '@atlas/core/systems-list';
 import { normalizeGear, type GearItem } from '@atlas/core/gear';
-import { MAX_NOTE_CHARS, noteFromMarkdown, normalizeNotes, type Note } from '@atlas/core/notes';
+import { MAX_NOTE_CHARS, linkNotes, noteFromMarkdown, normalizeNotes, type Note } from '@atlas/core/notes';
 import { appState, saveAppState } from '../app/store.ts';
 import { showToast, haptic } from '../app/ui.ts';
 
@@ -231,6 +231,14 @@ export function deleteGear(id: string): void {
   appState.gear = appState.gear.filter(existing => existing.id !== id);
   saveAppState();
   showToast(`Deleted ${item?.name ?? 'it'}.`);
+}
+
+// The notes linked to a ship, Multi-Tool or Exosuit (its Linked notes): exactly `ids`, saved with the gear itself.
+export function linkGearNotes(gearId: string, ids: string[]): void {
+  const next = linkNotes(appState.notes, gearId, ids);
+  if (next.every((note, i) => note === appState.notes[i])) return;
+  appState.notes = next;
+  saveAppState();
 }
 
 export function saveNote(note: Note): void {

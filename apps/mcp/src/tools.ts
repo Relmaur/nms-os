@@ -34,7 +34,9 @@ const source = (entry: { title: string; path?: string | undefined; url?: unknown
   revision: typeof entry.revId === 'number' ? entry.revId : undefined
 });
 const itemSource = (item: GameItem) => source(item);
-const pinLabel = (key: string) => PIN_PLACES.find(place => place.key === key)?.label ?? key;
+const pinLabel = (key: string) =>
+  PIN_PLACES.find(place => place.key === key)?.label ??
+  (key.startsWith('gear:') ? 'Linked to a ship, Multi-Tool or Exosuit' : key);
 const iso = (ms: number) => new Date(ms).toISOString();
 
 export interface Deps {

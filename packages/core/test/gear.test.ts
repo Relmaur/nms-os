@@ -1,8 +1,15 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import {
+  ALL_GEAR,
   classLetter,
+  classPill,
+  filterGear,
+  fleetChips,
   gearFromFleet,
+  gearLine,
+  rulesSummary,
+  slotShort,
   gearOrder,
   normalizeGear,
   parseSlots,
@@ -192,4 +199,67 @@ test('an Exosuit record keeps its kind; an unknown kind still loads as a starshi
     { id: 'odd', kind: 'freighter', name: 'Odd' }
   ]);
   assert.deepEqual([suit?.kind, odd?.kind], ['exosuit', 'starship']);
+});
+
+test('Fleet: chips per kind present, S-class and Supercharged narrow any kind', () => {
+  const items = normalizeGear([
+    {
+      id: 'a',
+      kind: 'starship',
+      name: 'Ythgall',
+      class: 'S',
+      type: 'Sentinel Interceptor',
+      role: 'Flagship',
+      superchargedSlots: ['R2C2']
+    },
+    { id: 'b', kind: 'starship', name: 'Aeron', class: 'S' },
+    { id: 'c', kind: 'multitool', name: 'Defiance', class: 'A -> S' },
+    { id: 'd', kind: 'multitool', name: 'Light Capacitor', class: 'A', superchargedSlots: ['R1C1'] }
+  ]);
+  assert.deepEqual(
+    fleetChips(items, ALL_GEAR).map(chip => [chip.label, chip.on]),
+    [
+      ['All · 4', true],
+      ['Ships · 2', false],
+      ['Multi-Tools · 2', false],
+      ['S-class', false],
+      ['Supercharged', false]
+    ]
+  );
+  const ships = fleetChips(items, ALL_GEAR)[1]!.next;
+  assert.deepEqual(
+    filterGear(items, ships).map(item => item.id),
+    ['a', 'b']
+  );
+  const sClass = fleetChips(items, ALL_GEAR).find(chip => chip.id === 's-class')!.next;
+  assert.deepEqual(
+    filterGear(items, sClass).map(item => item.id),
+    ['a', 'b', 'c']
+  ); // "A -> S" is S now
+  const charged = fleetChips(items, sClass).find(chip => chip.id === 'supercharged')!.next;
+  assert.deepEqual(
+    filterGear(items, charged).map(item => item.id),
+    ['a']
+  );
+  assert.equal(gearLine(items[0]!), 'Sentinel Interceptor · Flagship');
+  assert.equal(classPill('A -> S'), 'A → S');
+  assert.equal(slotShort('Infra-Knife Accelerator'), 'Infra');
+  assert.equal(slotShort('S-Class Infra Mod'), 'S');
+  assert.equal(slotShort(undefined), '');
+});
+
+test('the wiki’s rules as one sentence, and whether the marks match, fall short or disagree', () => {
+  const rules = slotRules(facts, 'starship', 'S');
+  assert.deepEqual(rulesSummary(rules, 'starship', 'S', ['R2C2', 'R2C3', 'R2C4', 'R3C7']), {
+    sentence: 'S-class starships have 4 supercharged slots, on a tech grid up to 10 columns by 6 rows.',
+    status: 'match',
+    count: '4 of 4'
+  });
+  assert.equal(rulesSummary(rules, 'starship', 'S', ['R2C2'])?.status, 'short');
+  assert.equal(rulesSummary(rules, 'starship', 'S', ['R9C1'])?.status, 'off');
+  assert.equal(
+    rulesSummary(slotRules(facts, 'exosuit', ''), 'exosuit', '', [])?.sentence,
+    'The Exosuit has 3 supercharged slots, on a tech grid up to 10 columns by 6 rows.'
+  );
+  assert.equal(rulesSummary(slotRules(null, 'starship', 'S'), 'starship', 'S', []), null);
 });

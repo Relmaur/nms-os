@@ -37,11 +37,12 @@ test('the tab bar lights Runs for ready outlaw stations and marks where you are'
   await expect(page.locator('#tabBar [data-tab="runs"]')).toContainText('1 station ready');
   await expect(page.locator('#tabBar [data-tab="runs"] .tab-live')).toBeVisible();
   await expect(page.locator('#tabBar [data-tab="codex"]')).toHaveAttribute('aria-current', 'page');
-  // Fleet and Notes sit behind Log's segmented control; Settings behind the header's gear.
+  // Fleet and Notes sit behind Log's segmented control; Settings behind the gear in Home's header.
   await page.locator('#tabBar [data-tab="log"]').click();
   await page.getByRole('navigation', { name: 'Log sections' }).getByRole('link', { name: 'Fleet' }).click();
   await expect(page).toHaveURL(/#gear$/);
   await expect(page.locator('#tabBar [data-tab="log"]')).toHaveAttribute('aria-current', 'page');
+  await page.locator('#tabBar [data-tab="home"]').click(); // on a phone, Settings is in Home's header
   await page.getByRole('link', { name: 'Settings' }).click();
   await expect(page.locator('#sec-more')).toBeVisible();
   await expect(page.locator('#tabBar [data-tab="home"]')).toHaveAttribute('aria-current', 'page');

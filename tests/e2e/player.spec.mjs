@@ -47,48 +47,53 @@ test.describe('a note synced from a paired device', () => {
 
 test('a ship added in Fleet shows its supercharged slots and is saved', async ({ page }) => {
   await page.goto('./#gear');
-  await page.locator('#sec-gear').getByRole('button', { name: 'Add starship' }).click();
+  await page.locator('#sec-gear').getByRole('button', { name: 'Add gear' }).click();
   await page.locator('#gearName').fill('Vela Run');
-  await page.locator('#gearEditor').getByLabel('Class', { exact: true }).fill('A');
-  await page.locator('#slotPicker [data-slot="R1C2"]').click();
+  await page.locator('#gearEditor').getByRole('radio', { name: 'A-class' }).click();
   await page.locator('#slotPicker [data-slot="R1C1"]').click();
+  await page.locator('#slotPicker [data-slot="R1C2"]').click(); // marked and selected
   await page.locator('#gearEditor [data-slot-label="R1C2"]').fill('Pulse Drive upgrade');
-  await page.locator('#gearEditor').getByRole('button', { name: 'Add', exact: true }).click();
+  await page.locator('#gearEditor').getByRole('button', { name: 'Add to fleet' }).click();
   await expect(page.locator('#toastMessage')).toHaveText('Added Vela Run.');
   const card = page.locator('#sec-gear [data-gear]').filter({ hasText: 'Vela Run' });
-  await expect(card.getByRole('list', { name: 'Supercharged slots' })).toHaveText(/R1C1\s*R1C2\s*Pulse Drive upgrade/);
+  await card.locator('summary').click(); // a card added since the screen opened starts closed
+  await card.getByRole('link', { name: 'Open Vela Run →' }).click();
+  await expect(page.locator('#shipTitle')).toHaveText('Vela Run');
+  await expect(page.locator('#sec-ship').getByRole('list', { name: 'Supercharged slots' })).toHaveText(/R1C1\s*R1C2/);
+  await expect(page.locator('#sec-ship').getByRole('img', { name: /R1C2 \(Pulse Drive upgrade\)/ })).toBeVisible();
   const saved = (await storedState(page)).gear.find(item => item.name === 'Vela Run');
   expect(saved.superchargedSlots).toEqual(['R1C1', 'R1C2']);
 });
 
-test('a supercharged slot is marked with a tap and cleared with another', async ({ page }) => {
-  await page.goto('./#gear');
-  await page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
-  await page.locator('#gearEditor').getByRole('button', { name: '+ Add a row' }).click();
-  await expect(page.locator('#slotPicker [data-slot="R5C1"]')).toBeVisible();
+test('a supercharged slot is selected with a tap and cleared with another', async ({ page }) => {
+  await page.goto('./#ship/gear-kestrel');
+  await page.locator('#sec-ship').getByRole('button', { name: 'Edit Starship' }).click();
+  await expect(page.locator('#slotPicker [data-slot="R6C1"]')).toBeVisible(); // an S-class ship: 6 rows
   const cell = page.locator('#slotPicker [data-slot="R2C3"]');
   await expect(cell).toHaveAttribute('aria-pressed', 'true');
-  await cell.click();
+  await cell.click(); // selects it
+  await expect(page.locator('#gearEditor [data-slot-label="R2C3"]')).toHaveValue('Infra-Knife Accelerator');
+  await cell.click(); // and clears it
   await expect(cell).toHaveAttribute('aria-pressed', 'false');
-  await page.locator('#gearEditor').getByRole('button', { name: 'Save' }).click();
-  await expect(
-    page.locator('#sec-gear [data-gear="gear-kestrel"]').getByRole('list', { name: 'Supercharged slots' })
-  ).toHaveText(/R2C2\s*R2C4/);
+  await page.locator('#gearEditor').getByRole('button', { name: 'Save changes' }).click();
+  await expect(page.locator('#sec-ship').getByRole('list', { name: 'Supercharged slots' })).toHaveText(/R2C2\s*R2C4/);
 });
 
 test('the slot picker states the wiki’s rule, from the cited facts, and links to its Codex page', async ({ page }) => {
-  await page.goto('./#gear');
-  await page.locator('#sec-gear').getByRole('button', { name: 'Edit Kestrel IV' }).click();
+  await page.goto('./#ship/gear-kestrel');
+  await expect(page.locator('#shipRules')).toContainText(
+    'S-class starships have 4 supercharged slots, on a tech grid up to 10 columns by 6 rows.'
+  );
+  await page.locator('#sec-ship').getByRole('button', { name: 'Edit Starship' }).click();
   const rules = page.locator('#slotRules');
-  await expect(rules).toContainText('S-class: 4 supercharged slots.');
-  await expect(rules).toContainText('10 wide, up to 6 rows');
+  await expect(rules).toContainText('S-class has 4, grid up to 10 × 6');
   await expect(rules.getByRole('link', { name: 'Supercharged Slot' })).toHaveAttribute(
     'href',
     'wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md'
   );
-  await page.locator('#gearEditor').getByLabel('Class').fill('C');
+  await page.locator('#gearEditor').getByRole('radio', { name: 'C-class' }).click();
   await expect(page.locator('#slotWarnings')).toContainText('C-class has 1 supercharged slot; 3 are marked');
-  await page.locator('#gearEditor').getByRole('button', { name: 'Cancel' }).click();
+  await page.locator('#gearEditor').getByRole('button', { name: 'Cancel' }).last().click(); // the footer's
 
   // Book III's rules cite the same page, mirrored in the Codex's new Mechanics category.
   await page.goto('./#book3');

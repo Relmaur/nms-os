@@ -1,6 +1,15 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { noteExcerpt, noteFromMarkdown, normalizeNotes, notesPinnedTo, searchNotes } from '../src/notes.ts';
+import {
+  gearPin,
+  linkNotes,
+  noteExcerpt,
+  noteFromMarkdown,
+  normalizeNotes,
+  notesForGear,
+  notesPinnedTo,
+  searchNotes
+} from '../src/notes.ts';
 import { buildState } from '../src/state.ts';
 import { mergeStates } from '../src/sync.ts';
 
@@ -61,4 +70,26 @@ test('notes from two devices merge by id, and pins merge as a set', () => {
   const merged = buildState(mergeStates(base, local, remote));
   assert.deepEqual(merged.notes.map(n => n.id).sort(), ['a', 'l', 'r']);
   assert.deepEqual(merged.notes.find(n => n.id === 'a')?.pins.sort(), ['book1', 'book3', 'home']);
+});
+
+test('a note links to a ship through a gear pin; linking sets exactly the chosen notes', () => {
+  const notes = normalizeNotes([
+    note('a', ['home', gearPin('ship-1')], '2026-10-02T00:00:00Z'),
+    note('b', ['gear:bad id!'], '2026-10-01T00:00:00Z'), // not a safe id: dropped
+    note('c', [], '2026-10-03T00:00:00Z')
+  ]);
+  assert.deepEqual(
+    notes.map(item => item.pins),
+    [['home', 'gear:ship-1'], [], []]
+  );
+  assert.deepEqual(
+    notesForGear(notes, 'ship-1').map(item => item.id),
+    ['a']
+  );
+  const linked = linkNotes(notes, 'ship-1', ['c']);
+  assert.deepEqual(
+    linked.map(item => item.pins),
+    [['home'], [], ['gear:ship-1']]
+  );
+  assert.equal(linked[1], notes[1]); // untouched notes stay the same object
 });

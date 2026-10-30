@@ -15,6 +15,7 @@ import { findBookHits, flash, snippetAround, type BookHit } from './book-search.
 import { showSection } from './section-store.ts';
 import { onWikiEntries, wikiEntries } from './wiki-index.ts';
 import { KINDS } from '../gear/kinds.ts';
+import { openGear } from '../gear/fleet-bits.tsx';
 
 const WIKI_LIMIT = 6;
 const BOOK_LIMIT = 6;
@@ -162,11 +163,11 @@ export function Search() {
     if (hit.type === 'system') {
       void showSection('systems');
       openSystem(hit.system.id);
-    } else if (hit.type === 'gear' || hit.type === 'note') {
-      const [section, selector] =
-        hit.type === 'gear' ? ['gear', `[data-gear="${hit.item.id}"]`] : ['notes', `[data-note="${hit.note.id}"]`];
-      void showSection(section).then(() => {
-        const card = document.querySelector(`#sec-${section} ${selector}`); // ids are SAFE_ID: no quotes
+    } else if (hit.type === 'gear') {
+      openGear(hit.item.id);
+    } else if (hit.type === 'note') {
+      void showSection('notes').then(() => {
+        const card = document.querySelector(`#sec-notes [data-note="${hit.note.id}"]`); // ids are SAFE_ID: no quotes
         if (card) flash(card);
       });
     } else if (hit.type === 'wiki') {

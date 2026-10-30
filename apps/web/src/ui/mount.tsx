@@ -12,6 +12,7 @@ import { Guides } from './guides/Guides.tsx';
 import { Book } from './guides/Book.tsx';
 import { More } from './more/More.tsx';
 import { Gear } from './gear/Gear.tsx';
+import { ShipDetail } from './gear/ShipDetail.tsx';
 import { Notes } from './notes/Notes.tsx';
 import { PlayerEditors } from './PlayerEditors.tsx';
 import { ImportDialog } from './shell/ImportDialog.tsx';
@@ -52,6 +53,7 @@ const SCREENS: [string, ReactNode][] = [
   ...BOOKS.map(({ key }): [string, ReactNode] => [`${key}Root`, <Book book={key} />]),
   ['moreRoot', <More />],
   ['gearRoot', <Gear />],
+  ['shipRoot', <ShipDetail />],
   ['notesRoot', <Notes />],
   [
     'playerEditorRoot',
