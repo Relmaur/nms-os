@@ -6,6 +6,7 @@ import { HOUR_MS } from '@atlas/core/systems-model';
 import { appState, setAppState } from '../../app/store.ts';
 import { openSystem, openSystemEditor } from '../systems/panel-store.ts';
 import { openSession } from '../session/sheet-store.ts';
+import { openGearEditor } from '../parts/editor-store.ts';
 import { setFactsForTests } from '../gear/facts-store.ts';
 import { Home } from './Home.tsx';
 
@@ -15,6 +16,9 @@ vi.mock('../systems/panel-store.ts', () => ({
   openSystemEditor: vi.fn()
 }));
 vi.mock('../session/sheet-store.ts', () => ({ openSession: vi.fn() }));
+vi.mock('../parts/editor-store.ts', () => ({ openGearEditor: vi.fn() }));
+// Anything logged, so Home shows the log rather than the first run.
+const SHIP = { id: 'g1', kind: 'starship', name: 'Kestrel IV' };
 
 const ago = (hours: number) => new Date(Date.now() - hours * HOUR_MS).toISOString();
 const inHours = (hours: number) => new Date(Date.now() + hours * HOUR_MS).toISOString();
@@ -37,8 +41,22 @@ beforeEach(() => {
   });
 });
 
-test('an empty log asks for the first system, and the slide opens the editor', () => {
+test('an empty atlas is the first run: the first system, three other ways in, and pairing', async () => {
   setAppState(buildState({ systems: [] }));
+  render(<Home />);
+  expect(screen.getByRole('heading', { level: 1, name: 'Your atlas is empty' })).toBeTruthy();
+  await userEvent.click(screen.getByRole('button', { name: /Log your first system/ }));
+  expect(openSystemEditor).toHaveBeenCalledTimes(1);
+  await userEvent.click(screen.getByRole('button', { name: /Add your ship/ }));
+  expect(openGearEditor).toHaveBeenCalledTimes(1);
+  await userEvent.click(screen.getByRole('button', { name: /Start a timer/ }));
+  expect(openSession).toHaveBeenCalled();
+  expect(screen.getByRole('link', { name: /Pair it/ }).getAttribute('href')).toBe('#sync');
+  expect(screen.queryByRole('button', { name: /Hold to start session/ })).toBeNull();
+});
+
+test('with something logged but no system yet, Home asks for the first system, and the slide opens the editor', () => {
+  setAppState(buildState({ systems: [], gear: [SHIP] }));
   render(<Home />);
   expect(screen.getByRole('heading', { name: 'Log your first system' })).toBeTruthy();
   fireEvent.keyDown(
@@ -142,7 +160,7 @@ test('timers show the soonest running first, then the finished, and open the Ses
 });
 
 test('no timers, no timer cards; holding starts a session, which then shows as live', () => {
-  setAppState(buildState({ systems: [] }));
+  setAppState(buildState({ systems: [], gear: [SHIP] }));
   render(<Home />);
   expect(screen.queryByRole('region', { name: 'Timers' })).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: /^Hold to start session.*, press and hold$/ }), { detail: 0 });

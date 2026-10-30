@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { test, expect, storedState, expectNoHorizontalOverflow, holdToStartSession } from './fixtures.mjs';
 
 test('Home shows the current system, its orbits and the warp-back list', async ({ page }) => {
@@ -75,4 +76,21 @@ test('no section scrolls sideways', async ({ page }) => {
     await expect(page.locator(`#sec-${section.split('/')[0]}`)).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
+});
+
+test.describe('a new visitor', () => {
+  test.use({ seed: null }); // nothing in this browser: the starter log, which is empty
+
+  test('meets the first run: the empty atlas, the ways in, and pairing', async ({ page }) => {
+    await page.goto('./');
+    await expect(page.locator('#sec-home h1')).toHaveText('Your atlas is empty');
+    const { violations } = await new AxeBuilder({ page }).include('#sec-home').analyze();
+    expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
+    await page.getByRole('button', { name: /Add your ship/ }).click();
+    await expect(page.locator('#gearEditor')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await page.getByRole('link', { name: /Pair it/ }).click();
+    await expect(page.locator('#sec-more')).toBeVisible(); // Settings, with the Sync sheet up
+    await expect(page.getByRole('dialog', { name: 'Sync' })).toBeVisible();
+  });
 });

@@ -4,7 +4,7 @@
 import { useEffect } from 'react';
 import { biomeFamily } from '@atlas/core/facts';
 import { formatClock, formatCountdown } from '@atlas/core/format';
-import { heroPlace, heroStatus, homeSummary, homeTimers, warpBackLine } from '@atlas/core/home';
+import { heroPlace, heroStatus, homeSummary, homeTimers, isEmptyAtlas, warpBackLine } from '@atlas/core/home';
 import { systemOrbit } from '@atlas/core/orbit';
 import { notesPinnedTo } from '@atlas/core/notes';
 import type { System } from '@atlas/core/systems-model';
@@ -23,6 +23,7 @@ import { OrbitDiagram, StarMark } from '../parts/StarChart.tsx';
 import { TimerRing } from '../parts/TimerRing.tsx';
 import { PinnedNotes } from '../notes/PinnedNotes.tsx';
 import { SessionButton } from '../shell/Header.tsx';
+import { openGearEditor } from '../parts/editor-store.ts';
 
 const KIND_LABEL: Record<TimerKind, string> = { refine: 'Refiner', crop: 'Crops', custom: 'Timer' };
 const HOUR = 3_600_000;
@@ -37,6 +38,13 @@ export function Home() {
   useEffect(() => {
     void loadFacts(); // biome families, for the planets' colours
   }, []);
+  if (isEmptyAtlas(state))
+    return (
+      <div className="flex flex-col gap-section max-w-2xl">
+        <HomeHeader />
+        <FirstRun />
+      </div>
+    );
   return (
     <div className="flex flex-col gap-section max-w-2xl">
       <HomeHeader />
@@ -66,6 +74,107 @@ export function Home() {
       <WarpBack systems={summary.recent} now={now} />
       {notesPinnedTo(state.notes, 'home').length > 0 && <PinnedNotes place="home" label="Home" hint="" />}
     </div>
+  );
+}
+
+// First run (design 22): an empty atlas says so, offers the first system, and three other ways in.
+const FIRST_STEPS: { title: string; sub: string; icon: string; run: () => void }[] = [
+  {
+    title: 'Log the system you’re in',
+    sub: 'Name, star colour, planets. A minute, in the pause menu.',
+    icon: 'ph-planet',
+    run: () => {
+      openSystemEditor();
+    }
+  },
+  {
+    title: 'Add your ship',
+    sub: 'Mark its supercharged slots once, never forget them.',
+    icon: 'ph-rocket',
+    run: () => {
+      openGearEditor();
+    }
+  },
+  {
+    title: 'Start a timer',
+    sub: 'Refiners, farms, run restocks. We’ll ping you.',
+    icon: 'ph-timer',
+    run: openSession
+  }
+];
+
+function FirstRun() {
+  return (
+    <section id="homeNow" aria-labelledby="firstRunTitle" className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1.5">
+        <p className="text-label uppercase text-scanner-cyan-pale">Welcome, Traveller</p>
+        <h1 id="firstRunTitle" className="font-display text-[28px] leading-tight font-bold text-ink-bright">
+          Your atlas is empty
+        </h1>
+        <p className="text-sub text-ink-muted">Everything you log stays on this device. No account needed.</p>
+      </div>
+      <EmptyOrbit />
+      <Button
+        variant="primary"
+        icon="ph-plus"
+        wide
+        onClick={() => {
+          openSystemEditor();
+        }}
+      >
+        Log your first system
+      </Button>
+      <h2 className="text-label uppercase text-ink-label mt-2">Or start with</h2>
+      <ul className="rounded-card bg-panel-glass border border-hairline divide-y divide-hairline overflow-hidden">
+        {FIRST_STEPS.map(step => (
+          <li key={step.title}>
+            <button
+              type="button"
+              onClick={step.run}
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-ground"
+            >
+              <span
+                aria-hidden="true"
+                className="w-[34px] h-[34px] shrink-0 rounded-[10px] grid place-items-center bg-scanner-cyan-tint border border-scanner-cyan-edge text-scanner-cyan-pale"
+              >
+                <i className={`ph-bold ${step.icon} text-[17px]`} />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-[14px] font-semibold text-ink-bright">{step.title}</span>
+                <span className="block text-caption text-ink-muted">{step.sub}</span>
+              </span>
+              <i className="ph-bold ph-caret-right text-ink-label" aria-hidden="true" />
+            </button>
+          </li>
+        ))}
+      </ul>
+      <a href="#sync" className="self-center text-[13px] text-scanner-cyan-pale hover:text-quantity-cyan text-center">
+        Already use ATLAS on another device? Pair it
+      </a>
+    </section>
+  );
+}
+
+// A system not logged yet: a star at the edge, empty orbits, and planets still dashed outlines.
+function EmptyOrbit() {
+  return (
+    <svg viewBox="0 0 390 210" aria-hidden="true" className="-mx-4 w-[calc(100%+2rem)] max-w-none h-auto">
+      <g fill="none">
+        <circle cx="16" cy="105" r="96" stroke="#1e3a5f" />
+        <circle cx="16" cy="105" r="60" stroke="rgba(202,138,4,0.35)" strokeDasharray="4 5" />
+        <circle cx="16" cy="105" r="46" stroke="rgba(202,138,4,0.45)" />
+        <path d="M105 0 A190 190 0 0 1 105 210" stroke="#1e3a5f" />
+        <path d="M168 0 A240 240 0 0 1 168 210" stroke="#1e3a5f" />
+        <path d="M232 2 A300 300 0 0 1 232 208" stroke="#1e3a5f" strokeDasharray="4 6" />
+        <path d="M292 2 A340 340 0 0 1 292 208" stroke="#1e3a5f" strokeDasharray="4 6" />
+        <circle cx="144" cy="72" r="8" stroke="#334155" strokeDasharray="3 3" />
+        <circle cx="192" cy="122" r="11" stroke="#334155" strokeDasharray="3 3" />
+        <circle cx="248" cy="88" r="7" stroke="#334155" strokeDasharray="3 3" />
+        <circle cx="304" cy="110" r="9" stroke="#334155" strokeDasharray="3 3" />
+      </g>
+      <circle cx="16" cy="105" r="22" fill="#ca8a04" opacity="0.9" />
+      <circle cx="16" cy="105" r="15" fill="#d6cfb8" opacity="0.85" />
+    </svg>
   );
 }
 

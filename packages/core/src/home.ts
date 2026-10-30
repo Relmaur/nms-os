@@ -27,6 +27,20 @@ export function lastActivity(system: System): number {
   return Date.parse(lastVisit(system)?.at ?? system.createdAt) || 0;
 }
 
+/**
+ * An atlas with nothing of the player's in it yet (design 22): no system, ship, note, timer or session. Anything
+ * logged, even a note, and Home shows the log instead.
+ */
+export function isEmptyAtlas(state: {
+  systems: unknown[];
+  gear: unknown[];
+  notes: unknown[];
+  timers: unknown[];
+  session: unknown;
+}): boolean {
+  return !state.systems.length && !state.gear.length && !state.notes.length && !state.timers.length && !state.session;
+}
+
 export function homeSummary(state: { systems: System[]; outlaw: OutlawSettings }, now: number): HomeSummary {
   const [current, ...rest] = [...state.systems].sort((a, b) => lastActivity(b) - lastActivity(a));
   const outlaw = outlawSummary(state, now);

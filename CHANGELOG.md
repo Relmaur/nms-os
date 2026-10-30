@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **A first run for a new atlas:** an empty Home welcomes you, offers to log your first system, add your ship or start a timer, and links to pairing if you already use ATLAS elsewhere.
 - **Sync is redesigned, and lists your devices.** Each device writes its name and when it last synced into your encrypted log, so the sync server learns nothing new. Pair another device from one card, turn sync off here with a switch, and delete the cloud copy with tap to arm. To drop a device, start over with a new code.
 - **Settings are redesigned** (from the gear on Home): your data, this device, support and about, as one short list. **Sync opens as a sheet over Settings**, where pairing links now land.
 - **Search is redesigned.** The search key opens it with quick actions (log this system, start a timer, new note, resume your run) and what you opened last. Type, and chips narrow the results to gear, notes, systems, the Codex or the guides, with how many each holds.

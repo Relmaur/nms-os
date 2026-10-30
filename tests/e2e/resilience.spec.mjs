@@ -117,11 +117,10 @@ test('an unreadable copy is never overwritten when there is no room to keep it a
   );
   await page.goto('./');
   await expect(page.locator('#storageBannerText')).toContainText('no room to keep a copy aside');
-  await page
-    .locator('#homeNow')
-    .getByRole('button', { name: /Log visit|log a new system/ })
-    .first()
-    .click();
+  // The defaults it fell back to are an empty atlas (the first run): log a system, which tries to save.
+  await page.getByRole('button', { name: /Log your first system/ }).click();
+  await page.locator('#sysName').fill('Test Prime');
+  await page.locator('#systemEditor button[type="submit"]').click();
   expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
 });
 

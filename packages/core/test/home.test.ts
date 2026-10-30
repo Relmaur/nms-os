@@ -1,6 +1,7 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { heroPlace, heroStatus, homeSummary, homeTimers, warpBackLine } from '../src/home.ts';
+import { heroPlace, heroStatus, homeSummary, homeTimers, isEmptyAtlas, warpBackLine } from '../src/home.ts';
+import { buildState } from '../src/state.ts';
 import { formatClock } from '../src/format.ts';
 import { systemOrbit } from '../src/orbit.ts';
 import type { Timer } from '../src/timers.ts';
@@ -143,4 +144,12 @@ test("a system's orbit: seeded by galaxy and address (or its id), bases ringed, 
     { name: 'Dune', family: null, size: 1, base: false }
   ]);
   assert.deepEqual(systemOrbit({ ...system, glyphs: '0123456789AB' }, () => null).seed, ['Euclid', '0123456789AB']);
+});
+
+test('the atlas is empty until the player logs anything at all', () => {
+  const state = buildState();
+  assert.equal(isEmptyAtlas(state), true);
+  assert.equal(isEmptyAtlas({ ...state, notes: [{}] }), false);
+  assert.equal(isEmptyAtlas({ ...state, gear: [{}] }), false);
+  assert.equal(isEmptyAtlas({ ...state, systems: [normalizeSystem({ name: 'Ekwa Nexus' })] }), false);
 });

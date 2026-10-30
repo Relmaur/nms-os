@@ -105,7 +105,10 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - Deviations: devices show "Synced 2h ago", not "Paired 27 Oct" (the log has no pairing date) and no Unpair; the names come from the browser ("iPhone · Safari"), not "This phone" / "Desktop browser"; Sync now, the copy ID, I have a code and the one-year note are kept; the sheet replaces last round's `#sync` screen (never shipped).
   - **Compatibility:** `devices` is additive. The deployed app (main) carries unknown keys along and merges this list like any list of records by `id`; it just doesn't stamp itself.
 
-**Next:** the rest per START-HERE: 22 First run, then Runs (28, 07, 32).
+- **22 First run is built** (Home, `isEmptyAtlas` in `@atlas/core/home`): while the atlas holds nothing of the player's (no system, ship, note, timer or session; a new player starts there, since the starter log is empty), Home shows "Welcome, Traveller · Your atlas is empty", the empty orbit, Log your first system, then Log the system you're in, Add your ship (the gear editor), Start a timer (the Session screen), and "Already use ATLAS on another device? Pair it" (Settings with the Sync sheet). Anything logged and Home is the usual Home (with no system yet, its "Log your first system" hero).
+  - Deviations: Home's header (wordmark, timers, Settings) stays, so Settings and Import are reachable from an empty atlas; "this device", not "this phone"; Log the system you're in opens the same editor as the main button; the orbit is drawn as a small inline picture, not the StarChart component; no Hold to start session until something is logged.
+
+**Next:** Runs per START-HERE: 28 Runs, 07 Run · Outlaw stations, 32 Run editor (ask Marco before Runs suggestions and before sharing runs between players).
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.
