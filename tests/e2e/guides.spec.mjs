@@ -2,16 +2,21 @@ import { test, expect, storedState } from './fixtures.mjs';
 
 test('a checklist step ticks from the keyboard, counts in Guides and survives a reload', async ({ page }) => {
   await page.goto('./#book1');
-  const step = page.getByRole('checkbox', { name: /Nutrient Ingestor Installed/ });
+  const step = page.getByRole('checkbox', { name: /Capital Freighter Claimed/ });
   await step.focus();
   await page.keyboard.press('Space');
   await expect(step).toBeChecked();
-  expect((await storedState(page)).checklists.nutrientIngestorInstalled).toBe(true);
+  expect((await storedState(page)).checklists.capitalFreighterClaimed).toBe(true);
   await page.reload();
-  await expect(page.getByRole('checkbox', { name: /Nutrient Ingestor Installed/ })).toBeChecked();
-  await page.locator('#sec-book1').getByRole('link', { name: 'Guides', exact: true }).click();
+  await expect(page.getByRole('checkbox', { name: /Capital Freighter Claimed/ })).toBeChecked();
+  await page.locator('#sec-book1').getByRole('button', { name: 'Back' }).click();
   await expect(page).toHaveURL(/#guides$/);
   await expect(page.locator('#guidesList')).toContainText('Cross-Save & First Hours');
+  await expect(page.locator('#guidesProgressText')).toContainText('1 / 35');
+  // The next milestone opens its book.
+  await expect(page.locator('#guidesNext')).toContainText('Cross-Save Linked');
+  await page.locator('#guidesNext').click();
+  await expect(page.locator('#sec-book1')).toBeVisible();
 });
 
 test('the book pager walks to the next book', async ({ page }) => {

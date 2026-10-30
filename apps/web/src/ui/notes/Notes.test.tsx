@@ -79,9 +79,8 @@ test('the list searches, filters by Pinned and by tag, and each row opens its no
 
 test('a new note from Book III starts pinned there and saves as it’s written', async () => {
   const { rerender } = render(<Book book="book3" />);
-  const pinned = screen.getByRole('region', { name: 'Your notes' });
-  expect(within(pinned).getByRole('heading', { name: 'Grid' })).toBeTruthy();
-  expect(pinned.querySelector('strong')?.textContent).toBe('weapon');
+  const pinned = screen.getByRole('region', { name: 'Pinned notes' });
+  expect(within(pinned).getByRole('button', { name: /^Grid/ })).toBeTruthy();
 
   await userEvent.click(within(pinned).getByRole('button', { name: 'Add a note to Book III' }));
   param = decodeURIComponent(location.hash.replace('#note/', ''));
@@ -93,7 +92,7 @@ test('a new note from Book III starts pinned there and saves as it’s written',
   });
   rerender(<Book book="book3" />);
   expect(
-    within(screen.getByRole('region', { name: 'Your notes' })).getByRole('heading', { name: 'Second' })
+    within(screen.getByRole('region', { name: 'Pinned notes' })).getByRole('button', { name: /^Second/ })
   ).toBeTruthy();
 });
 

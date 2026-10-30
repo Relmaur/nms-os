@@ -3,15 +3,6 @@
 export function Book4() {
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-amber-400">
-        <span className="text-xs font-mono uppercase text-amber-400">
-          Book IV of VI • Automated Sanctuary Engineering
-        </span>
-        <h1 className="font-display text-2xl font-bold text-white mt-1">
-          The Ultimate Self-Sufficient & Cozy Base Blueprint
-        </h1>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-5 hud-card rounded-2xl p-5 space-y-4">
           <h2 className="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">

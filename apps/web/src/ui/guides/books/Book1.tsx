@@ -1,45 +1,25 @@
 // Book 1: ported as written from the vanilla page (the hand-written playbook; see docs/STATE.md).
-import { Checklist } from '../Checklist.tsx';
 import { useAppState } from '../../useAppState.ts';
 
 export function Book1() {
   const phase = useAppState().meta.currentPhase ?? '';
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-cyan-400">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <span className="text-xs font-mono uppercase text-cyan-400">
-              Book I of VI • Initialization & Foundation
-            </span>
-            <h1 className="font-display text-2xl font-bold text-white mt-1">
-              Cross-Save Setup, Game Modes & First 5 Hours
-            </h1>
-          </div>
-          <a
-            href="https://cloud.nomanssky.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition"
-          >
-            <i className="ph-bold ph-arrow-square-out" aria-hidden="true" /> cloud.nomanssky.com
-          </a>
-        </div>
-      </div>
-
-      {/* 0. Campaign Milestones (nms_state.json → checklists) */}
-      <div className="hud-card rounded-2xl p-5 space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-          <h2 className="font-display font-bold text-base text-white flex items-center gap-2">
-            <i className="ph-duotone ph-flag-banner text-cyan-400 text-xl" aria-hidden="true" />
-            Campaign Milestones
-          </h2>
-          <span id="currentPhaseText" className="text-xs font-mono text-cyan-300">
+      <p className="text-xs text-slate-400 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <a
+          href="https://cloud.nomanssky.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-300 hover:text-cyan-200 underline inline-flex items-center gap-1"
+        >
+          <i className="ph-bold ph-arrow-square-out" aria-hidden="true" /> cloud.nomanssky.com
+        </a>
+        {phase && (
+          <span id="currentPhaseText" className="font-mono text-cyan-300">
             {phase}
           </span>
-        </div>
-        <Checklist group="milestones" className="grid grid-cols-1 md:grid-cols-2 gap-2" />
-      </div>
+        )}
+      </p>
 
       {/* 1. Cross-Save Checklist & Parity Checker */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -51,7 +31,7 @@ export function Book1() {
             </h2>
             <span className="text-xs font-mono text-cyan-300">PC / Mac / Switch / iOS (Oct 28, 2026)</span>
           </div>
-          <Checklist group="crosssave" className="space-y-2" />
+          <p className="text-xs text-slate-400">Tick these in Milestones, under Cross-save, at the top of this book.</p>
           <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 space-y-1">
             <div className="font-bold flex items-center gap-1.5 text-amber-300">
               <i className="ph-fill ph-warning" aria-hidden="true" /> The Golden Rule of Cross-Play (Patch Parity):
@@ -158,7 +138,9 @@ export function Book1() {
             <i className="ph-duotone ph-rocket-launch text-purple-400 text-xl" aria-hidden="true" />
             3. The "First 5 Hours" Optimal Roadmap
           </h2>
-          <Checklist group="roadmap" className="space-y-2" />
+          <p className="text-xs text-slate-400">
+            Tick these in Milestones, under First five hours, at the top of this book.
+          </p>
         </div>
 
         <div className="lg:col-span-5 hud-card rounded-2xl p-5 space-y-4 border border-red-500/30">

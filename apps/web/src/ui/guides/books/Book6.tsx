@@ -1,16 +1,8 @@
 // Book 6: ported as written from the vanilla page (the hand-written playbook; see docs/STATE.md).
-import { Checklist } from '../Checklist.tsx';
 
 export function Book6() {
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-red-500">
-        <span className="text-xs font-mono uppercase text-red-400">Book VI of VI • Deep Space & Endgame Mastery</span>
-        <h1 className="font-display text-2xl font-bold text-white mt-1">
-          The 7 Pillars of Post-Wealth & Endgame Progression
-        </h1>
-      </div>
-
       <div className="hud-card rounded-2xl p-5 space-y-4">
         <div
           className="overflow-x-auto"
@@ -107,13 +99,7 @@ export function Book6() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="hud-card rounded-2xl p-5 space-y-3">
-          <h2 className="font-display font-bold text-base text-white border-b border-slate-800 pb-2">
-            Endgame Pillars Checklist
-          </h2>
-          <Checklist group="endgame" className="space-y-2" />
-        </div>
+      <div>
         <div className="hud-card rounded-2xl p-5 space-y-3 border border-red-500/30">
           <h2 className="font-display font-bold text-base text-red-300 border-b border-slate-800 pb-2">
             How to Force a Pirate Dreadnought to Surrender in 45 Seconds

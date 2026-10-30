@@ -1,5 +1,6 @@
 // The six-book playbook: book metadata, the checklists inside the books, and how far along they are. Checklist ids
 // are keys of nms_state.json → checklists, so renaming one loses that tick on every saved state.
+import { classLetter, type GearItem } from './gear.ts';
 
 export type BookKey = 'book1' | 'book2' | 'book3' | 'book4' | 'book5' | 'book6';
 
@@ -17,42 +18,42 @@ export const BOOKS: Book[] = [
     numeral: 'I',
     color: 'text-cyan-300',
     title: 'Cross-Save & First Hours',
-    blurb: 'Cross-save setup, game modes and your first five hours'
+    blurb: 'Bring your save across, then the first evenings that set you up.'
   },
   {
     key: 'book2',
     numeral: 'II',
     color: 'text-emerald-300',
     title: 'Units & Nanites',
-    blurb: 'The 4.29B Unit and Nanite wealth blueprint'
+    blurb: 'Steady money: profit runs, crafting chains, stasis devices.'
   },
   {
     key: 'book3',
     numeral: 'III',
     color: 'text-purple-300',
     title: 'Ship & Multi-Tool Meta',
-    blurb: 'Supercharged slots, choosing a flagship, Multi-Tool archetypes'
+    blurb: 'S-class hunting, supercharged slots and the builds worth keeping.'
   },
   {
     key: 'book4',
     numeral: 'IV',
     color: 'text-amber-300',
     title: 'Self-Sufficient Base',
-    blurb: 'Hotspots, farms and an automated, cozy base'
+    blurb: 'Farms, refiners and power that run while you’re away.'
   },
   {
     key: 'book5',
     numeral: 'V',
     color: 'text-sky-300',
     title: 'Expeditions & Porting',
-    blurb: 'Community expeditions and carrying items home'
+    blurb: 'Run an expedition and carry your best gear in safely.'
   },
   {
     key: 'book6',
     numeral: 'VI',
     color: 'text-red-300',
     title: 'Endgame Pillars',
-    blurb: 'Seven pillars of post-wealth progression'
+    blurb: 'Harmonic camps, sentinels, settlements, the long game.'
   }
 ];
 
@@ -64,13 +65,33 @@ export interface CheckItem {
 
 export type ChecklistKey = 'milestones' | 'crosssave' | 'roadmap' | 'expedition' | 'endgame';
 
-// Which book each checklist sits in (the Guides list counts per book).
-export const CHECKLIST_BOOK: Record<ChecklistKey, BookKey> = {
-  milestones: 'book1',
+// Which book each checklist sits in (the Guides list counts per book). The Campaign Milestones are spread across the
+// books instead, each in the one it belongs to (MILESTONE_BOOK).
+export const CHECKLIST_BOOK: Record<Exclude<ChecklistKey, 'milestones'>, BookKey> = {
   crosssave: 'book1',
   roadmap: 'book1',
   expedition: 'book5',
   endgame: 'book6'
+};
+export const MILESTONE_BOOK: Record<string, BookKey> = {
+  crossSaveLinked: 'book1',
+  anomalyUnlocked: 'book1',
+  capitalFreighterClaimed: 'book1',
+  nutrientIngestorInstalled: 'book2',
+  anomalousDoughnutBatchCooked: 'book2',
+  sClassInterceptorSecured: 'book3',
+  sentinelRifleSecured: 'book3',
+  oxygenAlchemyBaseBuilt: 'book4',
+  harmonicCampUnlocked: 'book6',
+  autophageUnlocked: 'book6'
+};
+// Shown as subheads when a book holds more than one list.
+export const CHECKLIST_LABEL: Record<ChecklistKey, string> = {
+  milestones: 'Milestones',
+  crosssave: 'Cross-save',
+  roadmap: 'First five hours',
+  expedition: 'Care package',
+  endgame: 'Endgame pillars'
 };
 
 export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
@@ -250,6 +271,25 @@ export const CHECKLISTS: Record<ChecklistKey, CheckItem[]> = {
   ]
 };
 
+export interface BookChecks {
+  key: ChecklistKey;
+  label: string;
+  items: CheckItem[];
+}
+
+/** A book's ticks in reading order: its milestones, then each checklist it holds. */
+export function bookChecks(book: BookKey): BookChecks[] {
+  const groups: BookChecks[] = [];
+  const milestones = CHECKLISTS.milestones.filter(item => MILESTONE_BOOK[item.id] === book);
+  if (milestones.length) groups.push({ key: 'milestones', label: CHECKLIST_LABEL.milestones, items: milestones });
+  for (const [key, at] of Object.entries(CHECKLIST_BOOK)) {
+    // CHECKLIST_BOOK is typed by ChecklistKey, so its keys are exactly those.
+    const group = key as Exclude<ChecklistKey, 'milestones'>;
+    if (at === book) groups.push({ key: group, label: CHECKLIST_LABEL[group], items: CHECKLISTS[group] });
+  }
+  return groups;
+}
+
 export interface Progress {
   done: number;
   total: number;
@@ -257,21 +297,43 @@ export interface Progress {
 
 export interface GuideProgress extends Progress {
   pct: number;
-  perBook: Partial<Record<BookKey, Progress>>;
+  perBook: Record<BookKey, Progress>;
 }
 
 export function guideProgress(checklists: Record<string, boolean>): GuideProgress {
-  const perBook: Partial<Record<BookKey, Progress>> = {};
   let done = 0;
   let total = 0;
-  // CHECKLISTS is typed Record<ChecklistKey, …>, so its keys are exactly ChecklistKey.
-  for (const [key, items] of Object.entries(CHECKLISTS) as [ChecklistKey, CheckItem[]][]) {
-    const book = (perBook[CHECKLIST_BOOK[key]] ??= { done: 0, total: 0 });
-    const ticked = items.filter(item => checklists[item.id] === true).length;
-    book.done += ticked;
-    book.total += items.length;
-    done += ticked;
-    total += items.length;
-  }
+  const perBook = Object.fromEntries(
+    BOOKS.map(book => {
+      const items = bookChecks(book.key).flatMap(group => group.items);
+      const ticked = items.filter(item => checklists[item.id] === true).length;
+      done += ticked;
+      total += items.length;
+      return [book.key, { done: ticked, total: items.length }];
+    })
+  ) as Record<BookKey, Progress>; // one entry per book, from BOOKS
   return { done, total, pct: total ? Math.round((done / total) * 100) : 0, perBook };
+}
+
+/** The first tick not yet made, in book order, or null when every one is. */
+export function nextMilestone(checklists: Record<string, boolean>): { item: CheckItem; book: Book } | null {
+  for (const book of BOOKS)
+    for (const group of bookChecks(book.key))
+      for (const item of group.items) if (checklists[item.id] !== true) return { item, book };
+  return null;
+}
+
+/**
+ * What the player's own fleet says about a milestone ("Ythgall · logged in your fleet"), or null. A hint only: the
+ * player still ticks it, since a logged ship isn't proof of which one they meant.
+ */
+export function milestoneHint(id: string, gear: GearItem[]): string | null {
+  const logged = (item: GearItem | undefined) => (item ? `${item.name} · logged in your fleet` : null);
+  if (id === 'sClassInterceptorSecured')
+    return logged(
+      gear.find(item => item.kind === 'starship' && /interceptor/i.test(item.type) && classLetter(item.class) === 'S')
+    );
+  if (id === 'sentinelRifleSecured')
+    return logged(gear.find(item => item.kind === 'multitool' && /sentinel/i.test(item.type)));
+  return null;
 }

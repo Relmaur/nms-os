@@ -4,11 +4,6 @@
 export function Book3() {
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-purple-400">
-        <span className="text-xs font-mono uppercase text-purple-400">Book III of VI • Custom Hardware Schematics</span>
-        <h1 className="font-display text-2xl font-bold text-white mt-1">Starship & Multi-Tool Meta</h1>
-      </div>
-
       {/* 1. The 3 Golden Rules of Supercharged Slots */}
       <div className="hud-card rounded-2xl p-5 space-y-3">
         <h2 className="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">

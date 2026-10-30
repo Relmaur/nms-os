@@ -1,16 +1,8 @@
 // Book 5: expeditions and bringing items home (hand-written playbook; see docs/STATE.md).
-import { Checklist } from '../Checklist.tsx';
 
 export function Book5() {
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-cyan-400">
-        <span className="text-xs font-mono uppercase text-cyan-400">Book V of VI • Omega Terminus Protocol</span>
-        <h1 className="font-display text-2xl font-bold text-white mt-1">
-          The Complete Community Expeditions & Item Porting Manual
-        </h1>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4">
           <h2 className="font-display font-bold text-base text-white border-b border-slate-800 pb-2.5">
@@ -34,7 +26,9 @@ export function Book5() {
           <h3 className="font-display font-bold text-sm text-cyan-300 pt-2">
             2. Pre-Loading Your 8 Tech + 24 Cargo "Care Package"
           </h3>
-          <Checklist group="expedition" className="space-y-2" />
+          <p className="text-xs text-slate-400">
+            Tick these in Milestones, under Care package, at the top of this book.
+          </p>
         </div>
 
         <div className="lg:col-span-6 hud-card rounded-2xl p-5 space-y-4 border border-purple-500/30">

@@ -97,19 +97,28 @@ test('the slot picker states the wiki’s rule, from the cited facts, and links 
 
   // Book III's rules cite the same page, mirrored in the Codex's new Mechanics category.
   await page.goto('./#book3');
-  await page.locator('#sec-book3').getByRole('link', { name: 'Supercharged Slot' }).click();
+  // The book quotes the rule, with the revision the sync checked it against.
+  const rule = page.locator('#sec-book3').getByRole('region', { name: 'From the wiki' });
+  await expect(rule).toContainText('4 in Class S');
+  await expect(rule).toContainText(/revision \d+/);
+  await page
+    .locator('#sec-book3')
+    .getByRole('region', { name: 'The chapter' })
+    .getByRole('link', { name: 'Supercharged Slot' })
+    .click();
   await expect(page.locator('#articleHeader h1')).toHaveText('Supercharged Slot');
   await expect(page.locator('#articleHeader')).toContainText('Mechanics');
   await expect(page.locator('#articleBody')).toContainText('1 supercharged slot in Class C, 2 in Class B');
 });
 
-test('a note pinned to Book III shows under the book and on Home, rendered and safe', async ({ page }) => {
+test('a note pinned to Book III is listed under the book and shown on Home, rendered and safe', async ({ page }) => {
   await page.goto('./#book3');
   const pinned = page.locator('#sec-book3 [data-player]');
-  await expect(pinned.locator('[data-note="note-grid"] table')).toContainText('Best scanner');
-  await expect(pinned.getByRole('link', { name: 'Oxygen' })).toHaveAttribute('href', 'wiki/#/?q=Oxygen');
+  await expect(pinned.locator('[data-note="note-grid"]')).toBeVisible();
   await page.goto('./');
-  await expect(page.locator('#sec-home [data-note="note-grid"]')).toBeVisible();
+  const home = page.locator('#sec-home [data-note="note-grid"]');
+  await expect(home.locator('table')).toContainText('Best scanner');
+  await expect(home.getByRole('link', { name: 'Oxygen' })).toHaveAttribute('href', 'wiki/#/?q=Oxygen');
 });
 
 test('a new note from a book starts pinned there; the header search finds it', async ({ page }, testInfo) => {
@@ -119,9 +128,9 @@ test('a new note from a book starts pinned there; the header search finds it', a
   await page.locator('#noteTitle').fill('Outlaw loop timing');
   await page.locator('#noteBody').fill('Go back after **24 h**. <img src=x onerror=alert(1)>');
   await page.locator('#sec-note').getByRole('button', { name: 'Back' }).click(); // leaving saves it
-  const card = page.locator('#sec-book2 [data-player] [data-note]').filter({ hasText: 'Outlaw loop timing' });
-  await expect(card.locator('strong')).toHaveText('24 h');
-  await expect(card.locator('img')).toHaveCount(0);
+  const row = page.locator('#sec-book2 [data-player] [data-note]').filter({ hasText: 'Outlaw loop timing' });
+  await expect(row).toContainText('Go back after 24 h');
+  await expect(row.locator('img')).toHaveCount(0);
   expect((await storedState(page)).notes.find(note => note.title === 'Outlaw loop timing').pins).toEqual(['book2']);
 
   if (testInfo.project.name === 'phone') await page.getByRole('button', { name: 'Search and quick actions' }).click();

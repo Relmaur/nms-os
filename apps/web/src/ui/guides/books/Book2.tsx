@@ -4,17 +4,10 @@
 export function Book2() {
   return (
     <>
-      <div className="hud-card rounded-2xl p-6 border-l-4 border-l-emerald-400">
-        <span className="text-xs font-mono uppercase text-emerald-400">Book II of VI • Post-Nerf Economic Engine</span>
-        <h1 className="font-display text-2xl font-bold text-white mt-1">
-          The "Zero-to-Hero" 4.29B Unit & Nanite Wealth Blueprint
-        </h1>
-        <p className="text-xs text-slate-300 mt-1">
-          Maximum hard-coded wallet limit:{' '}
-          <span className="font-mono text-emerald-300 font-bold">4,294,967,295 Units</span> (32-bit unsigned integer
-          cap).
-        </p>
-      </div>
+      <p className="text-xs text-slate-300">
+        Maximum hard-coded wallet limit:{' '}
+        <span className="font-mono text-emerald-300 font-bold">4,294,967,295 Units</span> (32-bit unsigned integer cap).
+      </p>
 
       {/* Immediate 15-Minute Recovery Plan */}
       <div className="hud-card rounded-2xl p-5 border border-amber-500/40 space-y-4">
