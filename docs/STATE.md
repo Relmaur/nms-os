@@ -9,10 +9,9 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 ## In progress
 **Task W, the full game-content Codex, from dumps only (owner, 2026-10-29; ADR-0009).** Fandom suggested waiting for a database dump over calling the API, so the mirror is fed only by dumps:
 - Done (unreleased): `--from-dump`, `--verify --from-dump` and `--discover` in `pnpm sync:wiki` (`packages/wiki/src/dump.ts`, `discover.ts`); the API path removed; CI's schedule, sync step and commit-back job retired; `verification.json` tracked; "Wiki copy from <date>" in the Codex.
-- Waiting on the owner: the dump file (they download it from Special:Statistics and say where it is).
-- Then: run `--discover` on it; the report goes to the owner's private planning folder for approval (never the repo); widen `SCOPE` and add category allow-lists and exclusions with a renderer and fixture per new infobox; import; split the offline bundle (core built in, the rest an optional Full Codex download); report sizes.
-- First dump sync: check what it reports as "removed upstream". The scope rule is now a top-level infobox in the page's own wikitext; the API also counted infoboxes pulled in through other templates.
-- The local `wiki/verification.json` is still the last API sync's: commit the one the first dump sync writes, not this one.
+- First dump (29 Oct 2026, current pages) received and read offline; it stays outside the repo. `verify:wiki --from-dump` on it: 3,171/3,171 pages match, nothing removed upstream or missing, so the dump's scope rule finds the same pages the API did. `wiki/verification.json` is now the dump-era record.
+- The reader accepts the dump's `http://` site base (Fandom writes it that way); `--discover` marks categories it can't judge as `review` instead of guessing `game`.
+- Waiting on the owner: approval of the scope report (in their private planning folder). Then widen `SCOPE` with category allow-lists and exclusions, a renderer and fixture per new infobox; import; split the offline bundle (core built in, the rest an optional Full Codex download); report sizes.
 - `packages/wiki/src/api-schema.ts` and its test were deleted with the owner's yes (unused once the API path went).
 
 **The app is now ATLAS:OS, and the repo runs on build prompt v2.0** (`docs/process/build-prompt.md`; owner, 2026-10-28). The docs use the new name. The public rename waits for the owner's yes (Public surface gate): the repo, the URL, `nms-atlas-mcp`, the PWA manifest and the in-app title. The redesign runs in this order: tokens and `apps/web/DESIGN.md`, the shell (a four-tab bar plus a search key), shared components, then the core-loop screens.

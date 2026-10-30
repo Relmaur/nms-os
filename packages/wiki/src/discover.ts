@@ -1,6 +1,6 @@
 // The scope report for widening the mirror (`pnpm sync:wiki --discover <dump> --out <file>`): every infobox the wiki's
-// articles use and every large category of articles without one, each with a proposed verdict (game, community or
-// mixed). Read-only: it never touches wiki/. The verdicts are proposals for a person to approve, not rules.
+// articles use and every large category of articles without one, each with a proposed verdict (game, community, mixed
+// or review). Read-only: it never touches wiki/. The verdicts are proposals for a person to approve, not rules.
 import { cleanSource, topTemplates } from './wikitext.ts';
 import { normalizeTitle, readDump, scopeKind, type DumpPage } from './dump.ts';
 
@@ -10,9 +10,11 @@ export const CATEGORY_MIN = 20;
 // Infobox fields that mark a page as a player's discovery rather than a part of the game.
 const DISCOVERY_FIELD = /discover|civili[sz]|uploaded|player|galaxy hub|hub/i;
 // Names that point at community content: discoveries, civilizations and hubs, bases, people.
-const COMMUNITY_NAME = /discover|civili[sz]|\bhub\b|player|\bbases?\b|user|catalog(ue)?|fan |community|wiki/i;
+const COMMUNITY_NAME =
+  /discover|civili[sz]|\bhub\b|player|\bbases?\b|user|catalog(ue)?|fan |community|wiki|alliance|census|album|archives?|corps|documentation|expedition/i;
 
-export type Verdict = 'game' | 'community' | 'mixed';
+// review: nothing on the page to judge by, so a person decides.
+export type Verdict = 'game' | 'community' | 'mixed' | 'review';
 export interface InfoboxRow {
   name: string;
   pages: number;
@@ -38,7 +40,7 @@ export interface DiscoverReport {
   categories: CategoryRow[];
 }
 
-const INFOBOX_NAME = /\{\{\s*(?:template:)?([^{}|\n]*?infobox[^{}|\n]*?)\s*(?:\||\}\})/gi;
+const INFOBOX_NAME = /\{\{\s*(?:template:)?([^{}|\n<]*?infobox[^{}|\n<]*?)\s*(?:\||\}\})/gi;
 const CATEGORY = /\[\[\s*category\s*:\s*([^\]|]+)/gi;
 
 interface Tally {
@@ -63,7 +65,7 @@ export function infoboxVerdict(name: string, pages: number, fields: Record<strin
 }
 
 export function categoryVerdict(name: string): [Verdict, string] {
-  return COMMUNITY_NAME.test(name) ? ['community', 'the name points at community pages'] : ['game', 'by name'];
+  return COMMUNITY_NAME.test(name) ? ['community', 'the name points at community pages'] : ['review', 'no infobox to judge by'];
 }
 
 // Tallies pages one at a time, so a dump of any size streams through in constant memory.

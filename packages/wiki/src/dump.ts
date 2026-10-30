@@ -79,9 +79,10 @@ export function parsePage(xml: string): DumpPage {
 }
 
 // The dump's own address for the wiki (<siteinfo><base>): a dump of another wiki is refused before anything is read.
+// Fandom's dumps write the base as http://, so only the host is compared.
 function checkSite(siteinfo: string): void {
   const base = inner(siteinfo, 'base') ?? '';
-  if (!base.startsWith(`${WIKI_BASE}/`))
+  if (!base.replace(/^http:/, 'https:').startsWith(`${WIKI_BASE}/`))
     throw new InvalidDump(`this is a dump of ${base || 'an unknown wiki'}, not ${WIKI_BASE}`);
 }
 

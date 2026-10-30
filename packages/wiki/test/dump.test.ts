@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import { InvalidDump, decodeXml, followRedirect, normalizeTitle, parsePage, readDump, scanDump, scopeKind } from '../src/dump.ts';
-import { collector, discover, infoboxVerdict, reportMarkdown } from '../src/discover.ts';
+import { categoryVerdict, collector, discover, infoboxVerdict, reportMarkdown } from '../src/discover.ts';
 
 const page = (id: number, title: string, text: string, { ns = 0, rev = id * 10, at = '2026-10-20T10:00:00Z', redirect = '' } = {}) => `
   <page>
@@ -80,6 +80,8 @@ test('reads a plain or gzipped dump, and refuses another wiki or a 7z', async ()
   const plain = await titles(write('nms.xml', DUMP));
   assert.equal(plain.length, 8);
   assert.deepEqual(await titles(write('nms.xml.gz', zlib.gzipSync(DUMP))), plain);
+  const http = DUMP.replace(site(), site('http://nomanssky.fandom.com/wiki/No_Man%27s_Sky_Wiki')); // as Fandom writes it
+  assert.deepEqual(await titles(write('http.xml', http)), plain);
   await assert.rejects(titles(write('other.xml', DUMP.replace(site(), site('https://other.fandom.com/wiki/Main')))), /not https:\/\/nomanssky/);
   await assert.rejects(titles(write('nms.7z', 'x')), /extract the \.xml first/);
 });
@@ -131,7 +133,7 @@ test('discover: infoboxes with counts, samples and discovery fields; large categ
     tallies.add({ pageId: 100 + i, title: `Race ${String(i)}`, ns: 0, redirect: null, revId: 1, revTimestamp: '2026-01-01T00:00:00Z', content: '[[Category:Races]]' });
   assert.deepEqual(
     tallies.report().categories.map(row => [row.name, row.pages, row.verdict]),
-    [['Races', 25, 'game']]
+    [['Races', 25, 'review']]
   );
   const markdown = reportMarkdown(report, 'nms.xml');
   assert.match(markdown, /\| Planet infobox \| 2 \| 0 \| discovered 1, civilized 1 \| \*\*mixed\*\* \|/);
@@ -142,4 +144,6 @@ test('verdicts: nearly all filled is community, some is mixed, none is game unle
   assert.equal(infoboxVerdict('Starship infobox', 100, { discovered: 30 })[0], 'mixed');
   assert.equal(infoboxVerdict('Resource infobox', 100, {})[0], 'game');
   assert.equal(infoboxVerdict('Civilization infobox', 100, {})[0], 'community');
+  assert.equal(categoryVerdict('AGT Galactic Archives')[0], 'community');
+  assert.equal(categoryVerdict('InExCor')[0], 'review'); // no infobox and an unknown name: a person decides
 });
