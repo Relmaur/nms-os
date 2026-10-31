@@ -1,7 +1,7 @@
 # State schema & merge rules (`nms_state.json`)
 The application state MUST be serializable to and from `nms_state.json` (the shared copy lives at `apps/web/public/nms_state.json` and is published at the site root).
 - On load, the app attempts to `fetch('./nms_state.json')` to hydrate initial state, merging with `localStorage.getItem('nms_master_os_state')`.
-- Provide an **"Export nms_state.json"** button and **"Import nms_state.json"** file dropzone in the top header.
+- Provide an **Export** button and an **Import** file dropzone in the top header. An export is named `atlas_os_<date>_<time>.json`; Import goes by the contents, so any name loads, older `nms_state.json` exports included.
 
 ## Default `nms_state.json` Schema:
 See [`nms_state.json`](../apps/web/public/nms_state.json): the canonical default (identical to `DEFAULT_STATE`, a test checks), and a new player's starting point. Since 3.14.0 it holds nobody's save: no ships, notes, systems, checklist ticks or phase.

@@ -10,7 +10,7 @@ test('Export then Import round-trips the save', async ({ page }) => {
       .getByRole('button', { name: /Export your atlas/ })
       .click()
   ]);
-  expect(download.suggestedFilename()).toBe('nms_state.json');
+  expect(download.suggestedFilename()).toMatch(/^atlas_os_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}\.json$/);
   const file = await download.path();
   const exported = JSON.parse(await fs.readFile(file, 'utf8'));
   expect(exported.systems.map(system => system.name)).toContain('Ekwa Nexus');

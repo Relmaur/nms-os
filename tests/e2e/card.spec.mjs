@@ -19,6 +19,46 @@ test('the Traveller Card from Settings: the front, then its back, both accessibl
   expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
 });
 
+test('on an iPhone, after the prompt, tilt turns the whole card and holds', async ({ page }) => {
+  await page.addInitScript(() => {
+    class Orientation extends Event {
+      constructor(beta, gamma) {
+        super('deviceorientation');
+        this.beta = beta;
+        this.gamma = gamma;
+      }
+      static requestPermission() {
+        window.motionAsked = true;
+        return Promise.resolve('granted');
+      }
+    }
+    window.DeviceOrientationEvent = Orientation;
+  });
+  await page.goto('./#card');
+  const stage = page.locator('#travellerCard');
+  await stage.click({ position: { x: 60, y: 300 } });
+  await stage.click({ position: { x: 60, y: 300 } }); // and back to the front
+  await expect.poll(() => page.evaluate(() => window.motionAsked)).toBe(true);
+  await expect(page.getByRole('region', { name: 'Traveller Card, front' })).toBeVisible();
+
+  const card = page.locator('.card-tilt');
+  const turn = () => card.evaluate(el => Math.abs(new DOMMatrix(getComputedStyle(el).transform).m13));
+  const orient = gamma =>
+    page.evaluate(g => {
+      window.dispatchEvent(new DeviceOrientationEvent(50, g));
+    }, gamma);
+  await orient(0); // how it's held is level
+  await orient(10);
+  await expect.poll(turn).toBeGreaterThan(Math.sin((6 * Math.PI) / 180));
+  await page.waitForTimeout(1500);
+  await orient(10);
+  await expect.poll(turn).toBeGreaterThan(Math.sin((5 * Math.PI) / 180)); // a held tilt doesn't fade away
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect.poll(() => card.evaluate(el => getComputedStyle(el).transform)).toBe('none');
+});
+
 test('full screen: the card alone, clear of the notch, flips on a tap and closes', async ({
   page,
   context

@@ -54,7 +54,7 @@ The package's page (`apps/mcp/README.md`) has the short version: add `npx -y nms
 | Variable | Meaning |
 |---|---|
 | `ATLAS_SYNC_CODE` | Your sync code (or the pairing link). Takes precedence over the file. |
-| `ATLAS_STATE_FILE` | Path to an exported `nms_state.json`. |
+| `ATLAS_STATE_FILE` | Path to an exported log (`atlas_os_<date>_<time>.json`, or an older `nms_state.json`). |
 | `ATLAS_SYNC_URL` | Another relay (https; `http://localhost` for development). Default: ATLAS's own. |
 | `ATLAS_WIKI_DIR` | Another wiki folder. Default: the repo's `wiki/` when run from a clone, otherwise the live site's copy, downloaded. |
 | `ATLAS_CACHE_DIR` | Where the downloaded copy is kept. Default: the system's cache folder (`nms-atlas-mcp`). |

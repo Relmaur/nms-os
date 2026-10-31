@@ -1075,8 +1075,9 @@ label.list-row:active {
   }
 }
 
-/* The Traveller Card (05, 29). The flip turns the card in 3D; tilt moves only the art and the class badge (c09), from
-   --tilt-x and --tilt-y set by the screen. The art's pulses run along each line (.cf); the faint base is .cb. The
+/* The Traveller Card (05, 29). The flip turns the card in 3D; tilt turns the whole card (owner, 2026-10-31), with the
+   art and the class badge floating above it and a light sweeping across, from --tilt-x and --tilt-y (each ±0.5) set by
+   the screen. The art's pulses run along each line (.cf); the faint base is .cb. The
    class letter is foil from the first log, and at S the foil runs round the edge. Reduced motion: no tilt, no
    pulses, an instant flip, and the foil at rest. */
 .card-stage {
@@ -1094,20 +1095,49 @@ label.list-row:active {
 .card-side {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  /* Some WebKit builds show a turned-away face, mirrored and on top. Hide it outright, once the flip passes edge-on. */
+  transition: visibility 0s 110ms;
+}
+.card-flip:not(.is-flipped) > .card-side-back,
+.card-flip.is-flipped > .card-side:not(.card-side-back) {
+  visibility: hidden;
 }
 .card-side-back {
   transform: rotateY(180deg);
 }
+.card-tilt,
 .card-tilt-art,
 .card-tilt-badge {
   transition: transform 180ms ease-out;
 }
+.card-tilt {
+  transform-style: preserve-3d;
+  transform: rotateX(calc(var(--tilt-y) * -24deg)) rotateY(calc(var(--tilt-x) * 24deg));
+}
 .card-tilt-art {
-  transform: perspective(800px) rotateX(calc(var(--tilt-y) * -10deg)) rotateY(calc(var(--tilt-x) * 12deg))
-    translate(calc(var(--tilt-x) * 8px), calc(var(--tilt-y) * 8px));
+  transform: perspective(900px) translate(calc(var(--tilt-x) * 20px), calc(var(--tilt-y) * 20px))
+    rotateX(calc(var(--tilt-y) * -14deg)) rotateY(calc(var(--tilt-x) * 14deg));
 }
 .card-tilt-badge {
-  transform: translate(calc(var(--tilt-x) * -5px), calc(var(--tilt-y) * -5px));
+  transform: perspective(600px) translate(calc(var(--tilt-x) * 10px), calc(var(--tilt-y) * 10px))
+    rotateX(calc(var(--tilt-y) * -20deg)) rotateY(calc(var(--tilt-x) * 20deg));
+}
+.card-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.2) 47%,
+    rgba(253, 230, 138, 0.14) 53%,
+    transparent 68%
+  );
+  background-size: 240% 240%;
+  background-position: calc(50% + var(--tilt-x) * 90%) calc(50% + var(--tilt-y) * 90%);
+  mix-blend-mode: screen;
+  transition: background-position 180ms ease-out;
 }
 .cf {
   stroke-dasharray: 12 88;
@@ -1138,10 +1168,14 @@ label.list-row:active {
 }
 @media (prefers-reduced-motion: reduce) {
   .card-flip,
+  .card-side,
+  .card-tilt,
   .card-tilt-art,
-  .card-tilt-badge {
+  .card-tilt-badge,
+  .card-sheen {
     transition: none;
   }
+  .card-tilt,
   .card-tilt-art,
   .card-tilt-badge {
     transform: none;
@@ -1244,13 +1278,13 @@ label.list-row:active {
   transition: transform 180ms ease-out;
 }
 .card-lay-1 {
-  transform: translate(calc(var(--tilt-x, 0) * 4px), calc(var(--tilt-y, 0) * 4px));
+  transform: translate(calc(var(--tilt-x, 0) * 8px), calc(var(--tilt-y, 0) * 8px));
 }
 .card-lay-2 {
-  transform: translate(calc(var(--tilt-x, 0) * 9px), calc(var(--tilt-y, 0) * 9px));
+  transform: translate(calc(var(--tilt-x, 0) * 18px), calc(var(--tilt-y, 0) * 18px));
 }
 .collect-card {
-  transform: perspective(900px) rotateX(calc(var(--tilt-y, 0) * -8deg)) rotateY(calc(var(--tilt-x, 0) * 8deg));
+  transform: perspective(900px) rotateX(calc(var(--tilt-y, 0) * -16deg)) rotateY(calc(var(--tilt-x, 0) * 16deg));
   transition: transform 180ms ease-out;
 }
 .finish-logged {

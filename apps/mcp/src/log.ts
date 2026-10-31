@@ -1,7 +1,7 @@
 // The player's own log, read-only (ADR-0008), from one of two places the player chooses in the MCP client's config:
 //   ATLAS_SYNC_CODE   the sync code from More → Sync: the sealed copy is fetched from the relay (GET only) and opened
 //                     here, with the same code as the app (@atlas/core/sync-crypto); the relay still sees ciphertext.
-//   ATLAS_STATE_FILE  an exported nms_state.json: nothing leaves the computer.
+//   ATLAS_STATE_FILE  an exported log file: nothing leaves the computer.
 // Either way the log goes through the same checks as an import or a synced copy before any tool reads it.
 import fs from 'node:fs/promises';
 import { deriveSyncKeys, openState, parseSyncCode, type SyncKeys } from '@atlas/core/sync-crypto';

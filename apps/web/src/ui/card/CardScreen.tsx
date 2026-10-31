@@ -1,5 +1,5 @@
 // The Traveller Card's own screen (#card; Home tab): the card large, tilt to inspect, tap or Flip for its back, and full
-// screen for the card alone. Tilt follows the pointer or the phone's motion; only the art and the class badge move. iOS
+// screen for the card alone. Tilt follows the pointer or the phone's motion and turns the whole card. iOS
 // shows motion only after a permission prompt, which must come from a tap, so the first tap on the card asks. Reduced
 // motion: no tilt, no pulses, and the flip is instant.
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from 'react';
@@ -18,6 +18,10 @@ const CARD_H = (CARD_W * 16) / 9;
 const FLICK_PX = 70;
 const FLICK_MS = 350;
 const TAP_SLOP_PX = 10;
+// A turn of the wrist this far is the full tilt.
+const MOTION_DEG = 15;
+// How slowly level follows the hand: slow enough that a held tilt stays visible.
+const REST_MS = 10_000;
 
 // iOS only, so it isn't in TypeScript's DOM types; the typeof check below is what proves it's callable.
 type AskingOrientation = { requestPermission?: () => Promise<'granted' | 'denied'> };
@@ -83,13 +87,19 @@ export function CardScreen() {
   // drifts slowly after the hand, so a change of grip doesn't leave the card leaning.
   useEffect(() => {
     if (!shown || still || !motionOn) return;
-    let rest: { beta: number; gamma: number } | null = null;
+    let rest: { beta: number; gamma: number; at: number } | null = null;
     const tilt = (event: DeviceOrientationEvent) => {
       if (event.beta === null || event.gamma === null) return;
-      rest ??= { beta: event.beta, gamma: event.gamma };
-      rest.beta += (event.beta - rest.beta) * 0.01;
-      rest.gamma += (event.gamma - rest.gamma) * 0.01;
-      setTilt(stage.current, ((event.gamma - rest.gamma) / 25) * 0.5, ((event.beta - rest.beta) / 25) * 0.5);
+      rest ??= { beta: event.beta, gamma: event.gamma, at: event.timeStamp };
+      const drift = Math.min(1, (event.timeStamp - rest.at) / REST_MS);
+      rest.at = event.timeStamp;
+      rest.beta += (event.beta - rest.beta) * drift;
+      rest.gamma += (event.gamma - rest.gamma) * drift;
+      setTilt(
+        stage.current,
+        ((event.gamma - rest.gamma) / MOTION_DEG) * 0.5,
+        ((event.beta - rest.beta) / MOTION_DEG) * 0.5
+      );
     };
     window.addEventListener('deviceorientation', tilt);
     return () => {
@@ -237,29 +247,31 @@ export function CardScreen() {
           }
           className={`card-stage cursor-pointer select-none ${full ? '' : 'w-full max-w-[380px] aspect-[9/16]'}`}
         >
-          <div className={`card-flip relative w-full h-full ${flipped ? 'is-flipped' : ''}`}>
-            <section
-              aria-label="Traveller Card, front"
-              aria-hidden={flipped}
-              inert={flipped}
-              className="card-side absolute inset-0"
-            >
-              <CardFront
-                card={card}
-                art={art}
-                lyPerRegion={lyPerRegion}
-                game={game}
-                animate={shown && !still && !flipped}
-              />
-            </section>
-            <section
-              aria-label="Traveller Card, back"
-              aria-hidden={!flipped}
-              inert={!flipped}
-              className="card-side card-side-back absolute inset-0"
-            >
-              <CardBack card={card} art={art} />
-            </section>
+          <div className="card-tilt relative w-full h-full">
+            <div className={`card-flip relative w-full h-full ${flipped ? 'is-flipped' : ''}`}>
+              <section
+                aria-label="Traveller Card, front"
+                aria-hidden={flipped}
+                inert={flipped}
+                className="card-side absolute inset-0"
+              >
+                <CardFront
+                  card={card}
+                  art={art}
+                  lyPerRegion={lyPerRegion}
+                  game={game}
+                  animate={shown && !still && !flipped}
+                />
+              </section>
+              <section
+                aria-label="Traveller Card, back"
+                aria-hidden={!flipped}
+                inert={!flipped}
+                className="card-side card-side-back absolute inset-0"
+              >
+                <CardBack card={card} art={art} />
+              </section>
+            </div>
           </div>
         </div>
       </div>

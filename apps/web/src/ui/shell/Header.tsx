@@ -44,8 +44,8 @@ export function Header() {
         <button
           type="button"
           onClick={exportState}
-          title="Export nms_state.json"
-          aria-label="Export nms_state.json"
+          title="Export your log"
+          aria-label="Export your log"
           className="hidden md:flex h-10 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-emerald-300 items-center gap-2 transition"
         >
           <i className="ph-bold ph-download-simple text-base" aria-hidden="true" />
@@ -53,7 +53,7 @@ export function Header() {
         </button>
         <label
           id="importDropzone"
-          title="Import nms_state.json (click or drop the file here)"
+          title="Import a log (click or drop the file here)"
           onDragOver={event => {
             event.preventDefault();
             setDropping(true);
@@ -78,7 +78,7 @@ export function Header() {
               event.target.value = ''; // allow re-importing the same file
             }}
             className="sr-only"
-            aria-label="Import nms_state.json"
+            aria-label="Import a log"
           />
         </label>
       </div>

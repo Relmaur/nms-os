@@ -1,7 +1,7 @@
 // Export and Import of nms_state.json (ADR-0002), shared by More and the main page's header. Export is one of the
 // ways the log leaves this device, with the opt-in encrypted sync (ADR-0005) and alert schedules (ADR-0006).
 import { isPlainObject } from '@atlas/core/util';
-import { buildState, migrateLegacyState } from '@atlas/core/state';
+import { buildState, exportFileName, migrateLegacyState } from '@atlas/core/state';
 import { validateState, describeErrors } from '@atlas/core/schema';
 import { useSyncExternalStore } from 'react';
 import type { AppState } from '@atlas/core/state';
@@ -12,14 +12,15 @@ import { showToast } from './ui.ts';
 export function exportState(): void {
   const blob = new Blob([JSON.stringify(appState, null, 2) + '\n'], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
+  const name = exportFileName(new Date());
   const anchor = document.createElement('a');
   anchor.href = url;
-  anchor.download = 'nms_state.json';
+  anchor.download = name;
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
   URL.revokeObjectURL(url);
-  showToast('Exported nms_state.json: keep it somewhere safe.');
+  showToast(`Exported ${name}: keep it somewhere safe.`);
 }
 
 // Import is two steps: the file is read and checked, then shown (what it holds, what happens to this log and to sync)

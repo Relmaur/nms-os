@@ -37,7 +37,7 @@ Then ask, for example: "What do I need to craft 3 Warp Cells?", "Which of my out
 
 ## Your log
 - **`ATLAS_SYNC_CODE`:** the code from ATLAS → More → Sync → Show the code. The server fetches your encrypted synced copy and opens it on your computer, as a paired device does; the sync server only ever sees ciphertext.
-- **`ATLAS_STATE_FILE`:** the path to an exported `nms_state.json` (More → Your data → Export). Nothing is fetched.
+- **`ATLAS_STATE_FILE`:** the path to an exported log file (More → Your data → Export). Nothing is fetched.
 - **Neither:** the game tools still work.
 
 **Before you paste the code:** it's the key to your whole log. Anything holding it can read and change the log through the sync server. This server only reads, but the code sits in your client's config file. If you'd rather not, use an exported file.
@@ -50,7 +50,7 @@ On first run the server downloads the wiki data (about 10 MB) from ATLAS's site 
 | Setting | Meaning |
 |---|---|
 | `ATLAS_SYNC_CODE` | Your sync code (or the pairing link). |
-| `ATLAS_STATE_FILE` | An exported `nms_state.json`. |
+| `ATLAS_STATE_FILE` | An exported log file. |
 | `ATLAS_CACHE_DIR` | Another cache folder. |
 | `ATLAS_WIKI_DIR` | Use a local wiki folder instead of downloading (a clone of the repo after `pnpm index:wiki`). |
 | `ATLAS_SYNC_URL` | Another sync server (https). |

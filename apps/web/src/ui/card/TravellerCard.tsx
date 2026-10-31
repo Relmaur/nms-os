@@ -1,6 +1,6 @@
 // The Traveller Card's two faces: the front (design 05; info A, c13) and the back, "Reading this card" (29, c12).
 // The frame grows with the class (c09): slate on day one, a gold hairline at C and B, a double gold frame at A, a foil
-// edge at S. Only the art and the class badge move with tilt (.card-tilt in theme.css); the body stays still.
+// edge at S. Tilt turns the whole card, with the art and the class badge above it (.card-tilt in theme.css).
 import { useState, type ReactNode } from 'react';
 import type { CurrentArt } from '@atlas/core/current';
 import type { GameVersion } from '@atlas/core/facts';
@@ -95,6 +95,7 @@ export function CardFront({
         </div>
       </div>
       <div className="mt-3 h-px bg-[linear-gradient(90deg,rgba(103,232,249,0.5),rgba(167,139,250,0.5),rgba(252,211,77,0.3))]" />
+      <div className="card-sheen" aria-hidden="true" />
       <div className="card-tilt-art -mx-2.5 mt-1 flex-1 min-h-0 grid place-items-center">
         <CardArt art={art} animate={animate} className="w-full max-h-full" />
       </div>

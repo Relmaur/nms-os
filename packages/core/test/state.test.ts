@@ -1,6 +1,13 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
-import { DEFAULT_STATE, buildState, deepMerge, migrateLegacyState, stateTimestamp } from '../src/state.ts';
+import {
+  DEFAULT_STATE,
+  buildState,
+  deepMerge,
+  exportFileName,
+  migrateLegacyState,
+  stateTimestamp
+} from '../src/state.ts';
 
 test('deepMerge merges objects key by key and replaces arrays wholesale', () => {
   const merged = deepMerge({ a: { x: 1, y: 2 }, list: [1, 2] }, { a: { y: 3 }, list: [9] });
@@ -98,4 +105,8 @@ test('a damaged timer is dropped on load, the rest of the log kept', () => {
     ['Fine']
   );
   assert.equal(state.systems[0]?.name, 'Kept');
+});
+
+test('an export is named for the app and the moment, in local time', () => {
+  assert.equal(exportFileName(new Date(2026, 9, 31, 7, 5, 9)), 'atlas_os_2026-10-31_07-05-09.json');
 });

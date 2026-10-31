@@ -67,6 +67,13 @@ export function deepMerge(base: unknown, patch: unknown): unknown {
   return merged;
 }
 
+// Named for the app and the moment, in the player's own time, so backups sort by date and none overwrites another.
+export function exportFileName(at: Date): string {
+  const two = (n: number) => String(n).padStart(2, '0');
+  const day = `${String(at.getFullYear())}-${two(at.getMonth() + 1)}-${two(at.getDate())}`;
+  return `atlas_os_${day}_${two(at.getHours())}-${two(at.getMinutes())}-${two(at.getSeconds())}.json`;
+}
+
 // Pre-2.0 shape ({ checkedItems, logEntries }) → nms_state.json shape.
 export function migrateLegacyState(legacy: Record<string, unknown>): Record<string, unknown> {
   if (!('checkedItems' in legacy) && !('logEntries' in legacy)) return legacy;

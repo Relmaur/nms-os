@@ -5,6 +5,14 @@ All notable changes to ATLAS:OS (called ATLAS // MASTER OS up to 3.20.0). The fo
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Changed
+- The Traveller Card now tilts as a whole, with its art and class badge floating above it and a light sweeping across.
+
+- Exports are named for the app and the moment: `atlas_os_2026-10-31_17-05-36.json`. Older `nms_state.json` files still import.
+
+### Fixed
+- Tilt on a phone was too faint to see and faded away while you held the phone still. A small turn of the wrist now moves the card, and it stays where you hold it. Tilt on the collection's cards is twice as strong too.
+- A card's hidden side can no longer show through, mirrored, in browsers that don't hide a turned-away face.
 
 ## [3.21.0] - 2026-10-31
 ### Added

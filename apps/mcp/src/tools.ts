@@ -50,7 +50,7 @@ export interface Deps {
 
 const NO_LOG =
   'No ATLAS log is connected. Set ATLAS_SYNC_CODE (the code from More → Sync) or ATLAS_STATE_FILE (an exported ' +
-  'nms_state.json) in this MCP server’s configuration. See docs/mcp.md in the ATLAS repo.';
+  'log file) in this MCP server’s configuration. See docs/mcp.md in the ATLAS repo.';
 
 function systemSummary(system: System) {
   const visit = lastVisit(system);
