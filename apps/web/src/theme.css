@@ -618,7 +618,9 @@ label,
       [data-section='guides'],
       [data-section^='book'],
       [data-section='more'],
-      [data-section='card']
+      [data-section='card'],
+      [data-section='cards'],
+      [data-section='frontier']
     ):not(.search-open)
     .app-header {
     display: none;
@@ -1214,5 +1216,111 @@ label.list-row:active {
   .loading-in,
   #bootSplash svg {
     animation: none;
+  }
+}
+
+/* Collectible cards: a slow turn for rosettes and worlds; a still end state under reduced motion. */
+.art-spin {
+  animation: art-spin linear infinite;
+  transform-box: view-box;
+}
+@keyframes art-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.card-rail {
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.card-rail::-webkit-scrollbar {
+  display: none;
+}
+.card-lay-0,
+.card-lay-1,
+.card-lay-2 {
+  position: absolute;
+  inset: 0;
+  transition: transform 180ms ease-out;
+}
+.card-lay-1 {
+  transform: translate(calc(var(--tilt-x, 0) * 4px), calc(var(--tilt-y, 0) * 4px));
+}
+.card-lay-2 {
+  transform: translate(calc(var(--tilt-x, 0) * 9px), calc(var(--tilt-y, 0) * 9px));
+}
+.collect-card {
+  transform: perspective(900px) rotateX(calc(var(--tilt-y, 0) * -8deg)) rotateY(calc(var(--tilt-x, 0) * 8deg));
+  transition: transform 180ms ease-out;
+}
+.finish-logged {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+}
+.finish-addressed {
+  border: 1px solid rgba(103, 232, 249, 0.45);
+}
+.finish-first {
+  border: 1px solid rgba(252, 211, 77, 0.65);
+}
+.finish-fleet {
+  border: 1px solid rgba(192, 132, 252, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-spin {
+    animation: none;
+  }
+  .card-lay-1,
+  .card-lay-2,
+  .collect-card {
+    transform: none;
+  }
+}
+
+/* The Traveller Card alone: over everything but the start-up screen, on black. */
+.card-full {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #020409;
+}
+.card-full-inset {
+  position: absolute;
+  top: env(safe-area-inset-top);
+  width: 0;
+  height: 0;
+}
+.card-full-close {
+  position: absolute;
+  z-index: 1;
+  top: calc(env(safe-area-inset-top) + 8px);
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #e2e8f0;
+  opacity: 0.6;
+  background: rgba(5, 8, 17, 0.5);
+}
+.card-full-hint {
+  position: absolute;
+  z-index: 1;
+  bottom: calc(env(safe-area-inset-bottom) + 10px);
+  font-size: 12px;
+  color: #cbd5e1;
+  background: rgba(5, 8, 17, 0.7);
+  padding: 4px 12px;
+  border-radius: 999px;
+  pointer-events: none;
+  animation: card-hint-out 0.4s ease 2.6s forwards;
+}
+@keyframes card-hint-out {
+  to {
+    opacity: 0;
   }
 }

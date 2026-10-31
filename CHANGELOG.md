@@ -5,6 +5,15 @@ All notable changes to ATLAS:OS (called ATLAS // MASTER OS up to 3.20.0). The fo
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+
+## [3.21.0] - 2026-10-31
+### Added
+- **Your card collection** (Traveller Card › Collection): every system, ship and first becomes a generative card, seeded by the place itself. Swipe through them, tilt, flip, copy the address, or save one as a picture.
+- **Frontier** (Traveller Card › Frontier): the star colours, biomes, races and ship types still out there for you, and the next first to chase.
+- Settings › About says which build you're on: the version, the commit and the day it was built.
+- The Traveller Card can be saved as a picture, and has a full screen: the card alone, with nothing around it.
+- The Traveller Card tilts with an iPhone's motion. The first tap on the card asks for permission.
+
 ### Changed
 - A new logo and app icon: the cyan diamond replaces the red planet.
 - **ATLAS moves to https://atlas-os.cloud/app/**, served by Cloudflare (ADR-0010), with sync on the same address. The old address keeps working for now. Your log stays in the browser it was saved in, so move it with Export → Import, or pair the two with your sync code, and install the app again from the new address. Other sites can no longer frame ATLAS.

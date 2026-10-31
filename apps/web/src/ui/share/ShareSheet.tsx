@@ -93,7 +93,7 @@ function Choice({
   );
 }
 
-function ShareShell({
+export function ShareShell({
   title,
   size,
   open,
@@ -117,6 +117,8 @@ function ShareShell({
   copy?: () => void;
   children: ReactNode;
 }) {
+  // Several screens keep a sheet mounted at once; only the open one carries the ids.
+  const titleId = useId();
   const sheet = useRef<HTMLDivElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -136,6 +138,15 @@ function ShareShell({
       current = false;
     };
   }, [open, draw]);
+
+  // Going anywhere else closes it: it belongs to the screen it was opened from.
+  useEffect(() => {
+    if (!open) return;
+    window.addEventListener('hashchange', onClose);
+    return () => {
+      window.removeEventListener('hashchange', onClose);
+    };
+  }, [open, onClose]);
 
   const sharing = open && canShareFiles();
   const phone = sharing && matchMedia('(pointer: coarse)').matches;
@@ -168,10 +179,10 @@ function ShareShell({
       />
       <div
         ref={sheet}
-        id="shareSheet"
+        id={open ? 'shareSheet' : undefined}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="shareSheetTitle"
+        aria-labelledby={titleId}
         aria-hidden={!open}
         inert={!open}
         className={`fixed z-[56] flex flex-col bg-slate-deep border-control-edge transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] inset-x-0 bottom-0 max-h-[92dvh] rounded-t-sheet border-t ${open ? '' : 'translate-y-full'} md:inset-x-auto md:right-0 md:top-0 md:bottom-0 md:max-h-none md:w-[min(28rem,92vw)] md:rounded-none md:border-t-0 md:border-l md:translate-y-0 ${open ? '' : 'md:translate-x-full'}`}
@@ -182,20 +193,23 @@ function ShareShell({
             <div className="flex items-baseline justify-between gap-3">
               <h2
                 ref={heading}
-                id="shareSheetTitle"
+                id={titleId}
                 tabIndex={-1}
                 className="font-display text-lg font-bold text-ink-bright focus:outline-hidden"
               >
                 {title}
               </h2>
-              <span id="shareSize" className="font-mono text-caption text-ink-muted whitespace-nowrap">
+              <span
+                id={open ? 'shareSize' : undefined}
+                className="font-mono text-caption text-ink-muted whitespace-nowrap"
+              >
                 {size.width} × {size.height}
               </span>
             </div>
           </div>
           <canvas
             ref={canvas}
-            id="sharePreview"
+            id={open ? 'sharePreview' : undefined}
             role="img"
             aria-label={label}
             width={size.width}

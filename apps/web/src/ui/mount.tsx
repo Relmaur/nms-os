@@ -10,6 +10,8 @@ import { Outlaw } from './outlaw/Outlaw.tsx';
 import { Runs } from './runs/Runs.tsx';
 import { MapScreen } from './map/Map.tsx';
 import { CardScreen } from './card/CardScreen.tsx';
+import { Collection } from './collection/Collection.tsx';
+import { Frontier } from './frontier/Frontier.tsx';
 import { Calculators } from './calculators/Calculators.tsx';
 import { PlanScreen } from './calculators/Planner.tsx';
 import { BestCrafts } from './calculators/BestCrafts.tsx';
@@ -54,6 +56,8 @@ const SCREENS: [string, ReactNode][] = [
   ['sessionRoot', <Session />],
   ['mapRoot', <MapScreen />],
   ['cardRoot', <CardScreen />],
+  ['cardsRoot', <Collection />],
+  ['frontierRoot', <Frontier />],
   ['runsRoot', <Runs />],
   ['outlawRoot', <Outlaw />],
   ['calculatorsRoot', <Calculators />],

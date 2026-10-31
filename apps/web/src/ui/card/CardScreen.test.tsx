@@ -53,3 +53,43 @@ test('the front reads the log; Flip shows the back, which explains the class and
   expect(back.textContent).toContain('★ First yellow star');
   expect(document.querySelector('[aria-label="Traveller Card, front"]')?.getAttribute('aria-hidden')).toBe('true');
 });
+
+test('full screen shows the card alone, and closes with the × or Escape', async () => {
+  render(<CardScreen />);
+  await userEvent.click(screen.getByRole('button', { name: 'Full screen' }));
+  expect(screen.getByRole('dialog', { name: 'Traveller Card, full screen' })).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Back' }).closest('[inert]')).toBeTruthy(); // the rest of the screen
+  await userEvent.click(screen.getByRole('button', { name: 'Close full screen' }));
+  expect(screen.queryByRole('dialog')).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Full screen' }));
+  await userEvent.keyboard('{Escape}');
+  expect(screen.queryByRole('dialog')).toBeNull();
+});
+
+test('on iOS the first tap asks for motion, once, and then the phone tilts the card', async () => {
+  const requestPermission = vi.fn(() => Promise.resolve('granted'));
+  class Orientation extends Event {
+    static requestPermission = requestPermission;
+    beta: number | null;
+    gamma: number | null;
+    constructor(beta: number, gamma: number) {
+      super('deviceorientation');
+      this.beta = beta;
+      this.gamma = gamma;
+    }
+  }
+  vi.stubGlobal('DeviceOrientationEvent', Orientation);
+  render(<CardScreen />);
+  expect(requestPermission).not.toHaveBeenCalled(); // never on load: iOS would refuse
+  const card = document.getElementById('travellerCard');
+  expect(card).toBeTruthy();
+  await userEvent.click(card as HTMLElement);
+  await userEvent.click(card as HTMLElement);
+  expect(requestPermission).toHaveBeenCalledOnce();
+  await vi.waitFor(() => {
+    window.dispatchEvent(new Orientation(50, 0)); // how it's held is level
+    window.dispatchEvent(new Orientation(50, 12));
+    expect(Number(card?.style.getPropertyValue('--tilt-x'))).toBeGreaterThan(0.1);
+  });
+  vi.unstubAllGlobals();
+});

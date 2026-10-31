@@ -18,3 +18,40 @@ test('the Traveller Card from Settings: the front, then its back, both accessibl
   ({ violations } = await new AxeBuilder({ page }).include('#sec-card').analyze());
   expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
 });
+
+test('full screen: the card alone, clear of the notch, flips on a tap and closes', async ({
+  page,
+  context
+}, testInfo) => {
+  if (testInfo.project.name === 'phone') {
+    const cdp = await context.newCDPSession(page);
+    await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 47, bottom: 34, left: 0, right: 0 } });
+  }
+  await page.goto('./#card');
+  await page.getByRole('button', { name: 'Full screen' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Traveller Card, full screen' });
+  await expect(dialog).toBeVisible();
+  const { violations } = await new AxeBuilder({ page }).include('.card-full').analyze();
+  expect(violations.map(v => `${v.id}: ${v.help}`)).toEqual([]);
+
+  const viewport = page.viewportSize();
+  const box = await page.locator('#travellerCard').boundingBox();
+  expect(box.x).toBeGreaterThanOrEqual(-0.5);
+  expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 0.5);
+  if (testInfo.project.name === 'phone') expect(box.y).toBeGreaterThanOrEqual(47);
+  // Nothing else shows: not the tab bar, not the screen's buttons.
+  const atBottom = await page.evaluate(
+    ([x, y]) => document.elementFromPoint(x, y)?.closest('.tab-bar, nav') === null,
+    [viewport.width / 2, viewport.height - 20]
+  );
+  expect(atBottom).toBe(true);
+
+  await page.locator('#travellerCard').click({ position: { x: 60, y: 300 } });
+  await expect(page.locator('#travellerCard [aria-label="Traveller Card, back"]')).toHaveAttribute(
+    'aria-hidden',
+    'false'
+  );
+  await page.getByRole('button', { name: 'Close full screen' }).click();
+  await expect(dialog).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Back' })).toBeVisible();
+});

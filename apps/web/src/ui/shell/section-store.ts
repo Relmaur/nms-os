@@ -42,7 +42,8 @@ const PARAM_SECTIONS: Record<string, string> = {
   ship: 'gear',
   note: 'notes',
   plan: 'calculators',
-  map: 'map'
+  map: 'map',
+  cards: 'cards'
 };
 function resolve(key: string): { section: string; shortcut: string; param: string } {
   const [head = '', ...rest] = key.split('/');

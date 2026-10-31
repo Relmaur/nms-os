@@ -15,7 +15,7 @@ function useSvgId(): string {
 }
 
 // A fine film grain over a disc, for an organic finish (components 01 and 02). One filter per drawing, by id.
-function Grain({ id }: { id: string }) {
+export function Grain({ id }: { id: string }) {
   return (
     <filter id={id} x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={3} seed={7} stitchTiles="stitch" result="n" />

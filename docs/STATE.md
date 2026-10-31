@@ -156,7 +156,20 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - **Rank** follows what the player logs most: Pathfinder (systems + 5 per extra galaxy), Collector (3 per ship or tool), Trader (packet runs + 3 per own run), Scholar (guide ticks + 2 per note); under three things logged, Traveller.
   - Deviations: no new state: the card is issued when the first thing was logged (its ID is seeded from that time), and says "Issued today" on day one; "updated" shows the newest record's date; no tilt from the phone's motion on iOS (it asks permission; the pointer works); no class-up reveal yet; firsts are the builder's list (the design's "First paradise" and "5 worlds" aren't defined anywhere); a deepest distance past the rim along an axis reads 0% of the way in; the Share button and the collection come with 23 and 27.
 
-**Next:** 27 Card viewer and 26 Frontier.
+- **27 Card viewer and 26 Frontier are built, with the c05 card system** (`ui/collection/`, `ui/frontier/`; `@atlas/core/collectible`, `frontier()` in `@atlas/core/frontier`). The art is plain shapes, so the screen's SVG and the saved picture's canvas draw the same thing; rosettes and the seed are tested against vectors from the design's reference code. Saving is 4:5 (1080 × 1350); the Traveller Card gets Share too.
+  - Per START-HERE, the log earns Logged, Addressed, First and Fleet. Witnessed and Verified aren't built: nothing can award them before the Community Atlas.
+  - Deviations:
+    - No Pre-Worlds/Vintage or Set cards. Vintage needs a system logged before Worlds Part I, which this log can't hold; the Set card waits for a call.
+    - No edition numbers ("Ed. 03 / 14"): they need other players' visits.
+    - The seed leaves out the game version, which the log doesn't record per system: otherwise every update would redraw every card.
+    - Economy → layers uses a small table of the builder's. Exosuits use the reticle art (the design draws ships and tools only).
+    - The ⋯ menu is left out (nothing designed behind it); the back has "Open in your log".
+    - Frontier's next first runs purple, blue, green, red, yellow, then biomes and races. It links to a Codex search. Its Share picture and the entry points (Traveller Card, Card viewer, Map) have no design; the Log segment stays at four.
+    - Starship types show six slots, since the game data has no list of types yet.
+
+- **The Traveller Card has a full screen** (owner, 2026-10-31; no design): the card alone on black, scaled as one piece, with a faint × and a hint that fades. Tap flips, a finger tilts, a quick flick down closes. On iOS the first tap on the card asks for motion, once, and tilt is measured from how the phone is held. Motion readings stay on the device. iOS only offers motion on HTTPS, so test it on the live site, not the LAN address.
+
+**Next:** the design's screens are all built. Remaining: the product page (Task L), and the open owner decisions below.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

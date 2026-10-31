@@ -18,6 +18,8 @@ const SCREENS = [
   '#runs',
   '#outlaw',
   '#card',
+  '#cards',
+  '#frontier',
   '#calculators',
   '#crafts',
   '#plan/Carbon',

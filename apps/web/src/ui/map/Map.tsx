@@ -86,6 +86,9 @@ export function MapScreen() {
           </div>
         </div>
       )}
+      <a href="#frontier" className="text-sub text-scanner-cyan-pale underline self-start">
+        What’s still out there: Frontier
+      </a>
     </div>
   );
 }

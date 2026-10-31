@@ -1,5 +1,8 @@
 // Draws the shared pictures on a canvas (designs 24 and 25). The preview is this same canvas, so what the player sees
 // is what they save. A canvas rather than an SVG image: an SVG drawn into a canvas can't reach the page's fonts.
+import type { ArtGroup, CardArt, CollectionCard } from '@atlas/core/collectible';
+import { groupAddress } from '@atlas/core/collectible';
+import type { Frontier } from '@atlas/core/frontier';
 import { orbitLayout, type OrbitPlanet } from '@atlas/core/orbit';
 import {
   FAN_LINE,
@@ -10,7 +13,7 @@ import {
   type ShareFormat
 } from '@atlas/core/share';
 import { Rng, seedOf } from '@atlas/core/seed';
-import { STAR_CLASSES, type StarClass } from '@atlas/core/systems-model';
+import { RACES, STAR_CLASSES, type StarClass } from '@atlas/core/systems-model';
 
 const DISPLAY = 'Orbitron, sans-serif';
 const BODY = 'Inter, sans-serif';
@@ -520,6 +523,294 @@ export function drawFleetCard(
   }
   footer(c, W, H, (u * 60) / 68, card.footer);
 }
+
+function paintShapes(c: CanvasRenderingContext2D, group: ArtGroup, art: CardArt) {
+  c.save();
+  if (group.start) {
+    c.translate(art.cx, art.cy);
+    c.rotate((group.start * Math.PI) / 180);
+    c.translate(-art.cx, -art.cy);
+  }
+  for (const shape of group.shapes) {
+    if (shape.kind === 'star') {
+      const main = shape.colour ? STAR_CLASSES[shape.colour].color : UNLOGGED_STAR;
+      for (const [k, alpha] of [
+        [2.8, '33'],
+        [2.1, '59'],
+        [1.5, '99']
+      ] as const)
+        ring(c, shape.cx, shape.cy, shape.r * k, `${main}${alpha}`, 0.8, k === 2.8 ? [4, 5] : []);
+      disc(c, shape.cx, shape.cy, shape.r, main);
+      disc(c, shape.cx, shape.cy, shape.r * 0.6, token(`--color-star-${shape.colour}-core`, '#fff7d6'), 0.9);
+    } else if (shape.kind === 'planet') {
+      planetDisc(c, shape.cx, shape.cy, shape.r, shape.family);
+      if (shape.base) ring(c, shape.cx, shape.cy, shape.r + 5, '#22d3ee', 1.4);
+    } else if (shape.kind === 'text') {
+      put(c, shape.text, shape.x, shape.y, { font: `400 9px ${MONO}`, colour: '#64748b', align: 'center', spacing: 2 });
+    } else {
+      const path = shape.kind === 'path' ? new Path2D(shape.d) : new Path2D();
+      if (shape.kind === 'circle') path.arc(shape.cx, shape.cy, shape.r, 0, Math.PI * 2);
+      if (shape.fill) {
+        c.globalAlpha = shape.fillOpacity ?? 1;
+        c.fillStyle = shape.fill;
+        c.fill(path);
+      }
+      if (shape.stroke) {
+        c.globalAlpha = shape.strokeOpacity ?? 1;
+        c.strokeStyle = shape.stroke;
+        c.lineWidth = shape.width ?? 1;
+        c.setLineDash(shape.dash ?? []);
+        c.stroke(path);
+        c.setLineDash([]);
+      }
+      c.globalAlpha = 1;
+    }
+  }
+  c.restore();
+}
+
+function planetDisc(c: CanvasRenderingContext2D, x: number, y: number, r: number, family: string | null) {
+  if (!family) {
+    disc(c, x, y, r, '#475569');
+    return;
+  }
+  disc(c, x, y, r, token(`--color-biome-${family}`, '#94a3b8'));
+  c.save();
+  c.globalAlpha = 0.85;
+  c.fillStyle = token(`--color-biome-${family}-shade`, '#475569');
+  c.beginPath();
+  c.arc(x, y, r, -Math.PI / 2, Math.PI / 2);
+  c.ellipse(x, y, r * 0.45, r, 0, Math.PI / 2, -Math.PI / 2, true);
+  c.fill();
+  c.restore();
+}
+
+export const CARD_EXPORT = { width: 1080, height: 1350 };
+const FINISH_EDGE: Record<string, string> = {
+  logged: 'rgba(148,163,184,0.4)',
+  addressed: 'rgba(103,232,249,0.6)',
+  first: 'rgba(252,211,77,0.8)',
+  fleet: 'rgba(192,132,252,0.6)'
+};
+const RARITY_INK: Record<string, string> = { first: '#fcd34d', fleet: '#e9d5ff', addressed: '#a5f3fc', logged: LABEL };
+
+/** The export layout (c05): 4:5, the art on top, the name and the mark below. */
+function drawExport(
+  canvas: HTMLCanvasElement,
+  parts: {
+    paint: (c: CanvasRenderingContext2D) => void;
+    title: string;
+    sub: string;
+    rarity: string;
+    finish: string;
+    address: string;
+  }
+) {
+  const { width: W, height: H } = CARD_EXPORT;
+  canvas.width = W;
+  canvas.height = H;
+  const c = canvas.getContext('2d');
+  if (!c) return;
+  frame(c, W, H);
+  c.save();
+  c.beginPath();
+  c.rect(0, 0, W, 1080);
+  c.clip();
+  parts.paint(c);
+  c.restore();
+  grain(c, W, H, parts.title);
+  c.fillStyle = 'rgba(148,163,184,0.18)';
+  c.fillRect(0, 1080, W, 2);
+  const left = 56;
+  const size = parts.title.length > 22 ? 44 : 58;
+  put(c, wrap(c, parts.title, `900 ${String(size)}px ${DISPLAY}`, W - 420, 1)[0] ?? '', left, 1166, {
+    font: `900 ${String(size)}px ${DISPLAY}`,
+    colour: '#fff'
+  });
+  put(c, [parts.sub, parts.address && groupAddress(parts.address)].filter(Boolean).join(' · '), left, 1222, {
+    font: `400 27px ${BODY}`,
+    colour: MUTED
+  });
+  put(c, parts.rarity, W - left, 1160, {
+    font: `700 22px ${BODY}`,
+    colour: RARITY_INK[parts.finish] ?? LABEL,
+    align: 'right',
+    spacing: 3.6
+  });
+  const mark = `800 24px ${DISPLAY}`;
+  c.font = mark;
+  c.letterSpacing = '4px';
+  const os = c.measureText(':OS').width;
+  const atlas = c.measureText('ATLAS').width;
+  c.letterSpacing = '0px';
+  put(c, ':OS', W - left - os, 1222, { font: mark, colour: CYAN, spacing: 4 });
+  put(c, 'ATLAS', W - left - os - atlas, 1222, { font: mark, colour: '#fff', spacing: 4 });
+  put(c, `${SHARE_SITE} · fan-made, not affiliated with Hello Games`, W / 2, 1296, {
+    font: `400 20px ${BODY}`,
+    colour: '#64748b',
+    align: 'center'
+  });
+  c.strokeStyle = FINISH_EDGE[parts.finish] ?? FINISH_EDGE.logged ?? '';
+  c.lineWidth = 3;
+  c.beginPath();
+  c.roundRect(2, 2, W - 4, H - 4, 44);
+  c.stroke();
+}
+
+export function drawCollectionCard(canvas: HTMLCanvasElement, card: CollectionCard, art: CardArt): void {
+  drawExport(canvas, {
+    title: card.title,
+    sub: card.sub,
+    rarity: card.rarity,
+    finish: card.kind,
+    address: card.address,
+    paint: c => {
+      c.fillStyle = art.base;
+      c.fillRect(0, 0, 1080, 1080);
+      const scale = 1080 / art.width;
+      c.translate(0, 540 - art.cy * scale);
+      c.scale(scale, scale);
+      for (const group of [...art.bg, ...art.mid, ...art.fg]) paintShapes(c, group, art);
+    }
+  });
+}
+
+export function drawTravellerExport(
+  canvas: HTMLCanvasElement,
+  parts: {
+    lines: { d: string; colour: string }[];
+    eyes: { x: number; y: number; r: number; colour: string }[];
+    title: string;
+    sub: string;
+    rarity: string;
+  }
+): void {
+  drawExport(canvas, {
+    ...parts,
+    finish: 'first',
+    address: '',
+    paint: c => {
+      const scale = 1080 / 300;
+      c.scale(scale, scale);
+      c.lineWidth = 0.7;
+      for (const line of parts.lines) {
+        c.globalAlpha = 0.55;
+        c.strokeStyle = line.colour;
+        c.stroke(new Path2D(line.d));
+      }
+      c.globalAlpha = 1;
+      for (const eye of parts.eyes) disc(c, eye.x, eye.y, eye.r, eye.colour);
+    }
+  });
+}
+
+const FRONTIER_FAMILIES = ['toxic', 'hot', 'radioactive', 'frozen', 'exotic', 'lush'];
+
+export function drawFrontier(canvas: HTMLCanvasElement, view: Frontier): void {
+  const { width: W, height: H } = CARD_EXPORT;
+  canvas.width = W;
+  canvas.height = H;
+  const c = canvas.getContext('2d');
+  if (!c) return;
+  frame(c, W, H);
+  grain(c, W, H, 'frontier');
+  chrome(c, W, H, 1, 'FRONTIER');
+  const left = 68;
+  const right = W - 68;
+  put(c, 'Frontier', left, 230, { font: `900 72px ${DISPLAY}`, colour: '#fff' });
+  put(c, `${String(view.firsts)} first${view.firsts === 1 ? '' : 's'}`, right, 226, {
+    font: `600 30px ${BODY}`,
+    colour: '#6ee7b7',
+    align: 'right'
+  });
+  const empty = (x: number, y: number, r: number) => {
+    ring(c, x, y, r, '#475569', 2, [5, 6]);
+  };
+  const row = (y: number, title: string, count: string, draw: (top: number) => void, note: string) => {
+    put(c, title, left, y, { font: `800 32px ${DISPLAY}`, colour: '#fff' });
+    put(c, count, right, y, { font: `500 28px ${MONO}`, colour: CYAN, align: 'right' });
+    draw(y + 66);
+    put(c, wrap(c, note, `400 25px ${BODY}`, right - left, 1)[0] ?? '', left, y + 142, {
+      font: `400 25px ${BODY}`,
+      colour: MUTED
+    });
+  };
+  const STARS: StarClass[] = ['yellow', 'red', 'green', 'blue', 'purple'];
+  const have = STARS.filter(star => view.stars.have.includes(star));
+  row(
+    320,
+    'Star colours',
+    `${String(have.length)} / ${String(view.stars.total)}`,
+    y => {
+      for (let i = 0; i < view.stars.total; i++) {
+        const x = left + 34 + i * 120;
+        const star = have[i];
+        if (star) disc(c, x, y, 26, STAR_CLASSES[star].color);
+        else empty(x, y, 24);
+      }
+    },
+    view.stars.note
+  );
+  const families = FRONTIER_FAMILIES.filter(kind => (view.biomes.have as string[]).includes(kind));
+  row(
+    560,
+    'Biome families',
+    `${String(families.length)} / ${String(view.biomes.total)}`,
+    y => {
+      for (let i = 0; i < view.biomes.total; i++) {
+        const x = left + 34 + i * 120;
+        const kind = families[i];
+        if (kind) planetDisc(c, x, y, 26, kind);
+        else empty(x, y, 24);
+      }
+    },
+    view.biomes.note
+  );
+  const chips = (y: number, labels: string[], total: number, width: number) => {
+    for (let i = 0; i < total; i++) {
+      const x = left + i * (width + 14);
+      const label = labels[i];
+      c.strokeStyle = label ? 'rgba(103,232,249,0.5)' : '#475569';
+      c.lineWidth = 2;
+      c.setLineDash(label ? [] : [6, 6]);
+      c.beginPath();
+      c.roundRect(x, y - 30, width, 60, 16);
+      c.stroke();
+      c.setLineDash([]);
+      put(c, wrap(c, label ?? '?', `600 24px ${BODY}`, width - 20, 1)[0] ?? '', x + width / 2, y + 8, {
+        font: `600 24px ${BODY}`,
+        colour: label ? '#fff' : LABEL,
+        align: 'center'
+      });
+    }
+  };
+  row(
+    800,
+    'Races met',
+    `${String(view.races.have.length)} / ${String(view.races.total)}`,
+    y => {
+      chips(
+        y,
+        view.races.have.map(race => RACE_NAME[race]),
+        view.races.total,
+        300
+      );
+    },
+    view.races.note
+  );
+  const shipTotal = Math.min(view.ships.slots, 3);
+  row(
+    1030,
+    'Starship types',
+    `${String(view.ships.have.length)} logged`,
+    y => {
+      chips(y, view.ships.have.slice(0, 3), shipTotal, 300);
+    },
+    view.ships.note
+  );
+  footer(c, W, H, 1, '');
+}
+const RACE_NAME = RACES;
 
 export function pictureBlob(canvas: HTMLCanvasElement): Promise<Blob> {
   return new Promise((resolve, reject) => {
