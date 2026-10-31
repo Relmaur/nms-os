@@ -35,7 +35,7 @@ import {
 } from './wikitext.ts';
 import { InvalidDump, followRedirect, scanDump } from './dump.ts';
 import { discover, reportMarkdown } from './discover.ts';
-import { FACTS, checkFacts, type FactPage } from './facts.ts';
+import { FACTS, checkFacts, currentGameVersion, type FactPage, type UpdatePage } from './facts.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const WIKI_DIR = path.join(ROOT, 'wiki');
@@ -350,7 +350,15 @@ async function buildIndexes(): Promise<void> {
   }
   const { found, stale } = checkFacts(factPages);
   for (const fact of stale) console.warn(`⚠️  Cited fact ${fact.id} (${fact.page}) left out: ${fact.reason}.`);
-  await fs.writeFile(path.join(WIKI_DIR, 'facts.json'), `${JSON.stringify({ schema: 1, facts: found }, null, 2)}\n`, 'utf8');
+  // The game version the runs are checked against: the newest Update page.
+  // Every item above was built with a title, category, path, url and fields, which is all an UpdatePage reads.
+  const game = currentGameVersion(items as UpdatePage[]);
+  if (!game) console.warn('⚠️  No current Update page: runs can\'t say which game version they were checked against.');
+  await fs.writeFile(
+    path.join(WIKI_DIR, 'facts.json'),
+    `${JSON.stringify({ schema: 1, facts: found, ...(game ? { game } : {}) }, null, 2)}\n`,
+    'utf8'
+  );
   console.log(
     `🎉 Indexed ${articles.length} articles (${items.length} wiki pages) into wiki/index.json, offline-bundle.js and game-data.json`
   );

@@ -32,6 +32,14 @@ test('buildState repairs invalid outlaw settings with the defaults', () => {
   assert.equal(state.outlaw.nanitesPerPacket, DEFAULT_STATE.outlaw.nanitesPerPacket);
 });
 
+test('the outlaw run in progress is kept only as a time; an older log has none', () => {
+  assert.equal(buildState({}).outlaw.runStartedAt, undefined);
+  assert.equal(buildState({ outlaw: { runStartedAt: 'soon' } }).outlaw.runStartedAt, undefined);
+  assert.equal(buildState({ outlaw: { runStartedAt: 7 } }).outlaw.runStartedAt, undefined);
+  const at = '2026-10-30T12:00:00.000Z';
+  assert.equal(buildState({ outlaw: { runStartedAt: at } }).outlaw.runStartedAt, at);
+});
+
 test('the pre-2.0 save shape migrates into systems', () => {
   const legacy = {
     lastUpdated: '2025-01-01T00:00:00Z',

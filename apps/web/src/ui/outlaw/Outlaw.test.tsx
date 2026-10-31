@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { HOUR_MS } from '@atlas/core/systems-model';
 import { appState, setAppState } from '../../app/store.ts';
+import { setFactsForTests } from '../gear/facts-store.ts';
 import { Outlaw } from './Outlaw.tsx';
 
 const ago = (hours: number) => new Date(Date.now() - hours * HOUR_MS).toISOString();
@@ -17,6 +18,7 @@ const runList = () => within(document.getElementById('outlawRunList')!);
 
 beforeEach(() => {
   localStorage.clear();
+  setFactsForTests({ schema: 1, facts: {} }); // no fetch
   setAppState(
     buildState({
       outlaw: { runSize: 2 },
@@ -62,14 +64,14 @@ test('Undo removes the last packet run; the filter shows ready or restocking sta
 
 test('settings are kept on change (blur or a spinner step), within their bounds', async () => {
   render(<Outlaw />);
-  const nanites = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Nanites you get per packet/ });
+  const nanites = screen.getByRole<HTMLInputElement>('spinbutton', { name: 'Nanites per packet' });
   await userEvent.clear(nanites);
   await userEvent.type(nanites, '500');
   expect(appState.outlaw.nanitesPerPacket).toBe(350); // not while typing
   await userEvent.tab();
   expect(appState.outlaw.nanitesPerPacket).toBe(500);
 
-  const restock = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Restock timer/ });
+  const restock = screen.getByRole<HTMLInputElement>('spinbutton', { name: 'Restock' });
   await userEvent.clear(restock);
   await userEvent.type(restock, '9999');
   await userEvent.tab(); // happy-dom doesn't fire change on Enter as browsers do; the probe covers that
@@ -77,7 +79,7 @@ test('settings are kept on change (blur or a spinner step), within their bounds'
   expect(restock.value).toBe('720');
 
   // A spinner step fires a native change straight away, without leaving the field.
-  const packets = screen.getByRole<HTMLInputElement>('spinbutton', { name: /Packets bought per visit/ });
+  const packets = screen.getByRole<HTMLInputElement>('spinbutton', { name: 'Packets per station' });
   packets.value = '16';
   fireEvent.change(packets);
   expect(appState.outlaw.packetsPerVisit).toBe(16);
@@ -86,7 +88,8 @@ test('settings are kept on change (blur or a spinner step), within their bounds'
 test('pasting a list: errors name the line; a good list adds outlaw systems', async () => {
   setAppState(buildState({ systems: [] }));
   render(<Outlaw />);
-  expect(screen.getByText('Add outlaw systems to plan a run.')).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'No outlaw stations yet' })).toBeTruthy();
+  expect(screen.getByRole<HTMLButtonElement>('button', { name: 'Start a run · needs a station' }).disabled).toBe(true);
   await userEvent.click(screen.getByRole('button', { name: 'Paste a list' }));
   const input = screen.getByRole('textbox', { name: /One system per line/ });
   await userEvent.type(input, 'Den Two | 123');
@@ -101,4 +104,33 @@ test('pasting a list: errors name the line; a good list adds outlaw systems', as
     ['Den Three', '', 'pirate', ['outlaw']]
   ]);
   expect(document.getElementById('outlawBulkForm')?.classList.contains('hidden')).toBe(true);
+});
+
+test('one full run is estimated from the settings, whatever is ready', () => {
+  render(<Outlaw />);
+  // run size 2 × 15 packets
+  expect(document.getElementById('outlawEstimate')?.textContent).toBe('Packets30Units2,250,000Nanites10,500');
+});
+
+test('a started run counts the stations logged since, then ends on its own when they are done', async () => {
+  render(<Outlaw />);
+  await userEvent.click(screen.getByRole('button', { name: 'Start a run' }));
+  expect(Date.parse(appState.outlaw.runStartedAt ?? '')).toBeGreaterThan(Date.now() - 60_000);
+  expect(screen.getByRole('heading', { name: 'Station 1 of 2' })).toBeTruthy();
+
+  await userEvent.click(runList().getAllByRole('button', { name: 'Visited' })[0]!);
+  expect(screen.getByRole('heading', { name: 'Station 2 of 2' })).toBeTruthy();
+  expect(runList().getAllByRole('listitem')).toHaveLength(1); // only what the run still needs
+  expect(screen.getByRole('progressbar', { name: 'Stations done this run' }).getAttribute('aria-valuenow')).toBe('1');
+
+  await userEvent.click(runList().getByRole('button', { name: 'Visited' }));
+  expect(screen.getByRole('heading', { name: 'Next run' })).toBeTruthy();
+});
+
+test('End run closes the run in progress', async () => {
+  appState.outlaw.runStartedAt = new Date().toISOString();
+  render(<Outlaw />);
+  await userEvent.click(screen.getByRole('button', { name: 'End run' }));
+  expect(appState.outlaw.runStartedAt).toBeUndefined();
+  expect(screen.getByRole('button', { name: 'Start a run' })).toBeTruthy();
 });

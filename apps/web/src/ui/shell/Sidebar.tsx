@@ -11,6 +11,7 @@ const PART_OF: Record<string, string> = {
   system: 'systems',
   session: 'home',
   ship: 'gear',
+  outlaw: 'runs',
   note: 'notes',
   plan: 'calculators',
   crafts: 'calculators'
@@ -63,10 +64,10 @@ export function Sidebar() {
             'sidebarSystemsCount'
           )}
           {item(
-            'outlaw',
-            'ph-skull',
+            'runs',
+            'ph-path',
             'text-red-300',
-            'Outlaw Run',
+            'Runs',
             outlaw.total ? `${String(outlaw.ready)}/${String(outlaw.total)}` : '0',
             'sidebarOutlawCount'
           )}

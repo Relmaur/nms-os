@@ -35,6 +35,7 @@ export const StateDocumentSchema = object({
     runSize: positive.nullish(),
     unitsPerPacket: positive.nullish(),
     nanitesPerPacket: positive.nullish(),
+    runStartedAt: date.nullish(),
     stations: list(withId).nullish() // legacy, migrated by buildState()
   }).nullish(),
   systems: list(

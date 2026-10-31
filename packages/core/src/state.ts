@@ -21,7 +21,7 @@ export interface AppState {
   meta: { version?: string; lastUpdated?: string; currentPhase?: string; [key: string]: unknown };
   fleet: Record<string, unknown>;
   checklists: Record<string, boolean>;
-  outlaw: OutlawSettings & Record<string, unknown>;
+  outlaw: OutlawSettings & { runStartedAt?: string } & Record<string, unknown>; // runStartedAt: the run in progress
   systems: System[];
   timers: Timer[];
   session: Session | null; // the play session in progress
@@ -105,6 +105,9 @@ export function buildState(...layers: unknown[]): AppState {
     const value = Number(outlaw[key]);
     outlaw[key] = value > 0 ? value : DEFAULT_STATE.outlaw[key];
   }
+  // Added in the redesign: the start of the outlaw run in progress. Anything but a time means no run.
+  if (typeof outlaw.runStartedAt !== 'string' || Number.isNaN(Date.parse(outlaw.runStartedAt)))
+    delete outlaw.runStartedAt;
   // Every key AppState promises was checked or filled in above; documents were validated before merging.
   return state as AppState;
 }

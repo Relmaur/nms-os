@@ -8,8 +8,8 @@ import { useSection } from './section-store.ts';
 import { toggleSearch, useSearchOpen } from './Search.tsx';
 import { useSyncAttention } from '../../app/sync.ts';
 
-// Which tab each section of the main page belongs to. More is Settings, reached from Home. The Runs tab opens Outlaw
-// stations, the first run, until the Runs screen lands; the Codex tab's books and Guides live on this page.
+// Which tab each section of the main page belongs to. More is Settings, reached from Home; a run and the calculators
+// belong to Runs; the Codex tab's books and Guides live on this page.
 const TAB_OF: Record<string, string> = {
   home: 'home',
   session: 'home',
@@ -20,6 +20,7 @@ const TAB_OF: Record<string, string> = {
   ship: 'log',
   notes: 'log',
   note: 'log',
+  runs: 'runs',
   outlaw: 'runs',
   calculators: 'runs',
   plan: 'runs',
@@ -82,7 +83,7 @@ export function TabBar() {
         {tab('log', '#systems', 'ph-planet', 'Log')}
         {tab(
           'runs',
-          '#outlaw',
+          '#runs',
           'ph-path',
           'Runs',
           ready ? 'live' : undefined,

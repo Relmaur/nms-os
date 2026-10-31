@@ -120,6 +120,19 @@ export function logOutlawRun(systems: System[]): void {
   showToast(`Logged a run of ${systems.length} stations.`);
 }
 
+// A run is its start time; the stations it covers are the packet runs logged from now on (@atlas/core/outlaw).
+export function startOutlawRun(): void {
+  appState.outlaw.runStartedAt = new Date().toISOString();
+  haptic();
+  saveAppState();
+}
+
+export function endOutlawRun(): void {
+  delete appState.outlaw.runStartedAt;
+  saveAppState();
+  showToast('Run ended.');
+}
+
 export function undoPacketRun(id: string): void {
   const system = find(id);
   if (!system) return;

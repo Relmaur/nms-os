@@ -56,6 +56,7 @@ test('no section scrolls sideways', async ({ page }) => {
   for (const section of [
     'home',
     'systems',
+    'runs',
     'outlaw',
     'calculators',
     'guides',

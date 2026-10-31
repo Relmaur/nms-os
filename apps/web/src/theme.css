@@ -598,7 +598,7 @@ label,
   background-size: 22px 22px;
 }
 /* Below lg, rebuilt screens (Home, Systems, System detail, Session, Fleet, Ship detail, Notes, a note, the planner,
-   Best crafts, Guides and its books, Settings) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
+   Best crafts, Runs and a run, Guides and its books, Settings) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
    lives in it. */
 @media (max-width: 1023px) {
   body:is(
@@ -612,6 +612,8 @@ label,
       [data-section='note'],
       [data-section='plan'],
       [data-section='crafts'],
+      [data-section='runs'],
+      [data-section='outlaw'],
       [data-section='guides'],
       [data-section^='book'],
       [data-section='more']
@@ -631,6 +633,8 @@ label,
       [data-section='note'],
       [data-section='plan'],
       [data-section='crafts'],
+      [data-section='runs'],
+      [data-section='outlaw'],
       [data-section='guides'],
       [data-section^='book'],
       [data-section='more']
@@ -648,6 +652,8 @@ label,
       [data-section='note'],
       [data-section='plan'],
       [data-section='crafts'],
+      [data-section='runs'],
+      [data-section='outlaw'],
       [data-section='guides'],
       [data-section^='book'],
       [data-section='more']

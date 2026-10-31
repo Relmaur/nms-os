@@ -6,6 +6,7 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 
 ## [Unreleased]
 ### Added
+- **Runs has its own tab screen**, and the Outlaw Run becomes **Outlaw stations**, its first run. Start a run and Runs shows it in progress (which station is next, when the first one restocks) until you've hit your stations or a restock has passed. Each run says which game version it was checked against, from the wiki's newest update page. The run settings sit on the run's screen with what one full run earns at your averages.
 - **A first run for a new atlas:** an empty Home welcomes you, offers to log your first system, add your ship or start a timer, and links to pairing if you already use ATLAS elsewhere.
 - **Sync is redesigned, and lists your devices.** Each device writes its name and when it last synced into your encrypted log, so the sync server learns nothing new. Pair another device from one card, turn sync off here with a switch, and delete the cloud copy with tap to arm. To drop a device, start over with a new code.
 - **Settings are redesigned** (from the gear on Home): your data, this device, support and about, as one short list. **Sync opens as a sheet over Settings**, where pairing links now land.

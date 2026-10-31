@@ -2,7 +2,7 @@
 // The value is typed by @atlas/core/facts; the quote must appear, word for word, in the page's archived text (bold,
 // links and line breaks aside). The sync checks it at every run: a quote the wiki no longer has makes the fact stale,
 // `verify:wiki` fails, and the fact is left out of wiki/facts.json until someone rereads the page and updates it here.
-import type { CitedFact, FactId, FactValue } from '@atlas/core/facts';
+import type { CitedFact, FactId, FactValue, GameVersion } from '@atlas/core/facts';
 import { plainText } from '@atlas/core/search';
 
 interface FactSource<Id extends FactId> {
@@ -122,4 +122,34 @@ export function checkFacts(pages: Map<string, FactPage>): {
       };
   }
   return { found, stale };
+}
+
+export interface UpdatePage {
+  title: string; // "Update 7.10"
+  category: string;
+  path: string;
+  url?: unknown; // the page's wiki address, a string on every mirrored page
+  fields: Record<string, unknown>; // the infobox: date, previous, next
+  obsolete?: boolean;
+  removed?: boolean;
+}
+
+/**
+ * The current game version: the Update page with no next update (the wiki adds `next` once a newer one is out), the
+ * latest-dated if more than one. Version numbers aren't compared, since the wiki writes them both "7.1" and "7.10".
+ */
+export function currentGameVersion(items: UpdatePage[]): GameVersion | null {
+  const latest = items
+    .filter(item => item.category === 'updates' && !item.obsolete && !item.removed && !item.fields.next)
+    .map(item => ({ item, version: /^Update (\d+(?:\.\d+)+)$/.exec(item.title)?.[1], date: typeof item.fields.date === 'string' ? item.fields.date : '' }))
+    .filter(entry => entry.version && !Number.isNaN(Date.parse(entry.date)))
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
+  if (!latest?.version) return null;
+  return {
+    version: latest.version,
+    page: latest.item.title,
+    path: latest.item.path,
+    url: typeof latest.item.url === 'string' ? latest.item.url : '',
+    date: latest.date
+  };
 }

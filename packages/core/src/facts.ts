@@ -48,9 +48,21 @@ export const CitedFactSchema = z.object({
 });
 export type CitedFact = z.infer<typeof CitedFactSchema>;
 
+// The game version the mirror describes: the wiki's newest Update page. Runs say what they were checked against with
+// it, and a run that relied on a value an update changed is retired.
+export const GameVersionSchema = z.object({
+  version: z.string(), // "7.10"
+  page: z.string(), // "Update 7.10"
+  path: z.string(),
+  url: z.string(),
+  date: z.string() // as the page writes it: "28 October, 2026"
+});
+export type GameVersion = z.infer<typeof GameVersionSchema>;
+
 export const FactsFileSchema = z.object({
   schema: z.literal(1),
-  facts: z.record(z.string(), CitedFactSchema)
+  facts: z.record(z.string(), CitedFactSchema),
+  game: GameVersionSchema.optional() // added in the redesign; an older file has none
 });
 export type FactsFile = z.infer<typeof FactsFileSchema>;
 
