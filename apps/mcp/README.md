@@ -3,7 +3,7 @@
 **ATLAS for AI assistants.** A local, read-only [MCP](https://modelcontextprotocol.io) server for No Man's Sky. Your AI assistant (Claude Desktop, Claude Code, or any MCP client) can answer from:
 
 - **A verified mirror of the No Man's Sky Wiki:** search and read articles, plan a craft (what to gather, then each crafting round), value items, and the game rules the wiki states (supercharged slots per class, inventory grid sizes). Every answer links to its wiki page and revision.
-- **Your own [ATLAS](https://relmaur.github.io/nms-os/) log, if you connect it:** your systems and planets, outlaw stations ready to run, ships and Multi-Tools, notes and timers.
+- **Your own [ATLAS](https://atlas-os.cloud) log, if you connect it:** your systems and planets, outlaw stations ready to run, ships and Multi-Tools, notes and timers.
 
 It runs on your computer and only reads. It never changes your log.
 

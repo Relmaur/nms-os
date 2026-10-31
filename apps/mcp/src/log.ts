@@ -10,7 +10,7 @@ import { buildState, migrateLegacyState, type AppState } from '@atlas/core/state
 import { isPlainObject, withinDepth } from '@atlas/core/util';
 
 // The relay the web app syncs with (apps/web/.env, VITE_SYNC_URL).
-export const DEFAULT_SYNC_URL = 'https://atlas-sync.nms-os.workers.dev';
+export const DEFAULT_SYNC_URL = 'https://atlas-os.cloud/api/sync';
 const TIMEOUT_MS = 15_000;
 const MAX_COPY_BYTES = 512 * 1024; // as the app: the relay refuses copies over 256 KB
 const MAX_FILE_BYTES = 5 * 1024 * 1024; // as Import

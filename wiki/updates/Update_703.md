@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.03 is the 293rd official update to No Man's Sky."
 pageId: 656825
-revId: 1336508
-revTimestamp: "2026-10-05T17:32:13Z"
+revId: 1342723
+revTimestamp: "2026-10-30T23:35:11Z"
 version: "Cosmos"
 obsolete: false
 status: "current"
@@ -28,7 +28,7 @@ data: {"fields":{"image":"CosmosCover.webp","date":"16 September, 2026","platfor
 
 ## Summary
 
-**Update 7.02** is the 293rd official [[Patch notes|update]] to [[No Man's Sky]]. It was released on September 16, 2026 on PC, Mac and PS.
+**Update 7.03** is the 293rd official [[Patch notes|update]] to [[No Man's Sky]]. It was released on September 16, 2026 on PC, Mac and PS.
 
 ## Actual text
 

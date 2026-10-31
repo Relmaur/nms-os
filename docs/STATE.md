@@ -2,11 +2,20 @@
 
 Read this before starting work; update it before ending any non-trivial task. Keep it current, not historical: completed work moves to `CHANGELOG.md`.
 
-_Last updated: 2026-10-30_
+_Last updated: 2026-10-31_
 
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
+**One home on Cloudflare, atlas-os.cloud** (owner, 2026-10-31; ADR-0010). Site at `/`, app at `/app/`, relay at `/api/sync`. What would trip Workers Paid is in `docs/deploy.md`. Still open:
+- Until the product page ships, `/` redirects to `/app/`.
+- The owner's log still has to make the trip (Export → Import, or pair).
+- **The owner's yes first:** the old site's "moved" build, raising HSTS past a day or preloading, anything paid.
+- Publishing `nms-atlas-mcp` with the new addresses. Published versions keep using workers.dev and the Pages wiki files, so those must stay up.
+- After that: `github.io` leaves `ALLOWED_ORIGINS`.
+- The redesign is merged into `main` and live (owner, 2026-10-31), so its screens are public; the Pages build carries them too. Before the merge CI still synced from the wiki's API, so a few pages (Updates 7.11 and 7.12 among them) are newer than the 29 Oct dump that `wiki/verification.json` records. The next dump sync settles them.
+- To do with the full Codex: R2 at `dl.atlas-os.cloud`, `/api/wiki`. Also `hello@atlas-os.cloud` (Email Routing), then the contact in About and the wiki User-Agent.
+
 **Task W, the full game-content Codex, from dumps only (owner, 2026-10-29; ADR-0009).** Fandom suggested waiting for a database dump over calling the API, so the mirror is fed only by dumps:
 - Done (unreleased): `--from-dump`, `--verify --from-dump` and `--discover` in `pnpm sync:wiki` (`packages/wiki/src/dump.ts`, `discover.ts`); the API path removed; CI's schedule, sync step and commit-back job retired; `verification.json` tracked; "Wiki copy from <date>" in the Codex.
 - First dump (29 Oct 2026, current pages) received and read offline; it stays outside the repo. `verify:wiki --from-dump` on it: 3,171/3,171 pages match, nothing removed upstream or missing, so the dump's scope rule finds the same pages the API did. `wiki/verification.json` is now the dump-era record.
@@ -145,7 +154,7 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
   - **Rank** follows what the player logs most: Pathfinder (systems + 5 per extra galaxy), Collector (3 per ship or tool), Trader (packet runs + 3 per own run), Scholar (guide ticks + 2 per note); under three things logged, Traveller.
   - Deviations: no new state: the card is issued when the first thing was logged (its ID is seeded from that time), and says "Issued today" on day one; "updated" shows the newest record's date; no tilt from the phone's motion on iOS (it asks permission; the pointer works); no class-up reveal yet; firsts are the builder's list (the design's "First paradise" and "5 worlds" aren't defined anywhere); a deepest distance past the rim along an axis reads 0% of the way in; the Share button and the collection come with 23 and 27.
 
-**Next:** 23 Share sheet with 24 System postcard and 25 Fleet card (ask Marco about sharing images if it needs a decision), then 27 Card viewer and 26 Frontier.
+**Next:** 27 Card viewer and 26 Frontier.
 
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.

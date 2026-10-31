@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.01 is the 291st official update to No Man's Sky."
 pageId: 656427
-revId: 1336506
-revTimestamp: "2026-10-05T17:31:30Z"
+revId: 1342684
+revTimestamp: "2026-10-30T22:57:45Z"
 version: "Cosmos"
 obsolete: false
 status: "current"

@@ -4,8 +4,8 @@ category: "places"
 kind: "encounter"
 summary: "Messenger of Atlas is a space encounter."
 pageId: 182899
-revId: 1287562
-revTimestamp: "2026-02-05T23:53:15Z"
+revId: 1342754
+revTimestamp: "2026-10-31T02:55:44Z"
 version: "WorldsOne"
 obsolete: false
 status: "current"
@@ -69,3 +69,4 @@ Messenger of Atlas has been found in these systems before:
 | Odnasikk | LEEV:0806:0080:0803:00EB | Euclid | Fought a Pirate dreadnought upon jumping in. Encountered while heading to "Meirouns Nuyam" planet after that. |
 | Maku-uchi | 0AB4:007F:0DE0:01ED | Euclid |   |
 | Liwelwy-Razai | OPRA:OE72:007E:0AC8:01A1 | Euclid | Found while traveling from Space Station to Negyan XI |
+| Nasogdoin | 0ACC:007B:019F:0072 | Budullangr |   |

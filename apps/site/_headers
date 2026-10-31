@@ -1,0 +1,30 @@
+# Response headers for atlas-os.cloud (ADR-0010). The policy matches the pages' meta CSP, plus what only a header can
+# say: frame-ancestors. HSTS stays short until the move is proven: raising it is the owner's call, and hard to undo.
+/*
+  Strict-Transport-Security: max-age=86400
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(self)
+
+# Vite's output carries a content hash in its name, so it can be cached for good. The icons sit beside it unhashed.
+/app/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/app/assets/icons/*
+  ! Cache-Control
+  Cache-Control: no-cache
+
+# Always asked for again: these say which hashed files are current. no-transform keeps Cloudflare from rewriting the
+# pages, which is how its analytics beacon gets in: no dashboard setting can turn that back on.
+/app/
+  Cache-Control: no-cache, no-transform
+/app/index.html
+  Cache-Control: no-cache, no-transform
+/app/wiki/
+  Cache-Control: no-cache, no-transform
+/app/wiki/index.html
+  Cache-Control: no-cache, no-transform
+/app/manifest.webmanifest
+  Cache-Control: no-cache, no-transform
+/app/sw.js
+  Cache-Control: no-cache, no-transform

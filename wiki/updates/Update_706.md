@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.06 is the 297th official update to No Man's Sky."
 pageId: 658308
-revId: 1341722
-revTimestamp: "2026-10-28T14:05:19Z"
+revId: 1342742
+revTimestamp: "2026-10-31T01:21:36Z"
 version: "Cosmos"
 obsolete: false
 status: "current"

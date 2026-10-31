@@ -7,7 +7,7 @@ import path from 'node:path';
 import { z } from 'zod';
 import { WIKI_FILES, WikiMissing, parseWiki, type Wiki, type WikiFile, type WikiTexts } from './wiki.ts';
 
-export const SITE_WIKI = 'https://relmaur.github.io/nms-os/wiki/';
+export const SITE_WIKI = 'https://atlas-os.cloud/app/wiki/';
 export const REFRESH_MS = 24 * 3_600_000;
 const TIMEOUT_MS = 60_000; // the Codex bundle is ~7 MB
 const MAX_FILE_BYTES = 64 * 1024 * 1024;

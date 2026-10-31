@@ -4,14 +4,14 @@ category: "updates"
 kind: "update"
 summary: "Update 7.10 is the 298th official update to No Man's Sky."
 pageId: 660983
-revId: 1341891
-revTimestamp: "2026-10-28T21:13:06Z"
+revId: 1342827
+revTimestamp: "2026-10-31T10:46:37Z"
 version: "Forsaken"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_7.10"
 license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
-data: {"fields":{"image":"ForsakenCover.png","date":"28 October, 2026","platform":"PC, Mac, PS, XB","link":"Forsaken 7.10","release":"Forsaken","previous":"7.06"},"recipes":[]}
+data: {"fields":{"image":"ForsakenCover.png","date":"28 October, 2026","platform":"PC, Mac, PS, XB","link":"Forsaken 7.10","release":"Forsaken","previous":"7.06","next":"7.11"},"recipes":[]}
 ---
 
 # Update 7.10
@@ -22,6 +22,7 @@ data: {"fields":{"image":"ForsakenCover.png","date":"28 October, 2026","platform
 - **Platforms:** PC, Mac, PS, XB
 - **Added in:** Forsaken
 - **Previous:** 7.06
+- **Next:** 7.11
 
 **Update 7.10** is the 298th official update to No Man's Sky.
 

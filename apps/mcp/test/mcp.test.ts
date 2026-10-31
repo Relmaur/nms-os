@@ -104,7 +104,7 @@ test('game answers come from the wiki mirror, with their Codex page and revision
     results: [
       {
         title: 'Oxygen',
-        codex: 'https://relmaur.github.io/nms-os/wiki/#/a/wiki%2Fresources%2FOxygen.md',
+        codex: 'https://atlas-os.cloud/app/wiki/#/a/wiki%2Fresources%2FOxygen.md',
         wiki: 'https://nomanssky.fandom.com/wiki/Oxygen',
         revision: expect.any(Number)
       }
@@ -117,7 +117,7 @@ test('game answers come from the wiki mirror, with their Codex page and revision
     license: expect.stringContaining('CC BY-NC-SA 3.0')
   });
   const byLink = await call('read_article', {
-    title: 'https://relmaur.github.io/nms-os/wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md'
+    title: 'https://atlas-os.cloud/app/wiki/#/a/wiki%2Fmechanics%2FSupercharged_Slot.md'
   });
   expect(byLink.json).toMatchObject({ title: 'Supercharged Slot' });
   expect((await call('read_article', { title: 'No Such Page' })).error).toContain('No Codex article');
@@ -245,7 +245,7 @@ test('with a sync code, the copy is fetched with GET only, opened locally, check
   const relay = await fakeRelay(code);
   let now = NOW;
   const source = logSourceFromEnv({ ATLAS_SYNC_CODE: `https://relmaur.github.io/nms-os/#pair=${code}` });
-  expect(source).toEqual({ kind: 'sync', code, url: 'https://atlas-sync.nms-os.workers.dev' });
+  expect(source).toEqual({ kind: 'sync', code, url: 'https://atlas-os.cloud/api/sync' });
   if (!source) throw new Error('no source');
   const load = makeLogLoader(source, { fetcher: relay.fetcher, now: () => now });
   const state: AppState = await load();
@@ -256,7 +256,7 @@ test('with a sync code, the copy is fetched with GET only, opened locally, check
   expect(relay.requests).toEqual([
     {
       method: 'GET',
-      url: `https://atlas-sync.nms-os.workers.dev/v1/vaults/${relay.keys.vaultId}`,
+      url: `https://atlas-os.cloud/api/sync/v1/vaults/${relay.keys.vaultId}`,
       auth: `Bearer ${relay.keys.token}`
     },
     expect.objectContaining({ method: 'GET' })
