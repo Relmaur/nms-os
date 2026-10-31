@@ -11,6 +11,7 @@ const PART_OF: Record<string, string> = {
   system: 'systems',
   map: 'systems',
   session: 'home',
+  card: 'more',
   ship: 'gear',
   outlaw: 'runs',
   note: 'notes',

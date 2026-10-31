@@ -75,6 +75,13 @@ export function More() {
           </li>
         )}
         <li>
+          <a href="#card" className={LINK_ROW}>
+            <Tile icon="ph-identification-card" lit />
+            <Text title="Traveller Card">Your travels as a living card</Text>
+            <Chevron />
+          </a>
+        </li>
+        <li>
           <button type="button" onClick={exportState} className={LINK_ROW}>
             <Tile icon="ph-download-simple" />
             <Text title="Export your atlas">One JSON file, yours to keep</Text>

@@ -617,7 +617,8 @@ label,
       [data-section='outlaw'],
       [data-section='guides'],
       [data-section^='book'],
-      [data-section='more']
+      [data-section='more'],
+      [data-section='card']
     ):not(.search-open)
     .app-header {
     display: none;
@@ -1069,5 +1070,85 @@ label.list-row:active {
   }
   .chain-here {
     animation: none;
+  }
+}
+
+/* The Traveller Card (05, 29). The flip turns the card in 3D; tilt moves only the art and the class badge (c09), from
+   --tilt-x and --tilt-y set by the screen. The art's pulses run along each line (.cf); the faint base is .cb. The
+   class letter is foil from the first log, and at S the foil runs round the edge. Reduced motion: no tilt, no
+   pulses, an instant flip, and the foil at rest. */
+.card-stage {
+  perspective: 1400px;
+  --tilt-x: 0;
+  --tilt-y: 0;
+}
+.card-flip {
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.card-flip.is-flipped {
+  transform: rotateY(180deg);
+}
+.card-side {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-side-back {
+  transform: rotateY(180deg);
+}
+.card-tilt-art,
+.card-tilt-badge {
+  transition: transform 180ms ease-out;
+}
+.card-tilt-art {
+  transform: perspective(800px) rotateX(calc(var(--tilt-y) * -10deg)) rotateY(calc(var(--tilt-x) * 12deg))
+    translate(calc(var(--tilt-x) * 8px), calc(var(--tilt-y) * 8px));
+}
+.card-tilt-badge {
+  transform: translate(calc(var(--tilt-x) * -5px), calc(var(--tilt-y) * -5px));
+}
+.cf {
+  stroke-dasharray: 12 88;
+  animation: card-flow linear infinite;
+}
+@keyframes card-flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.card-foil-text {
+  background: linear-gradient(135deg, #fde68a, #67e8f9 35%, #f0abfc 60%, #fcd34d);
+  background-size: 200% 200%;
+  background-position: calc(50% + var(--tilt-x, 0) * 60%) 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.card-foil-edge {
+  border-width: 1.5px;
+  background:
+    linear-gradient(160deg, #0b1222, #060a15 55%, #0b1020) padding-box,
+    conic-gradient(from calc(var(--tilt-x, 0) * 120deg), #fde68a, #67e8f9, #f0abfc, #a78bfa, #fcd34d, #fde68a)
+      border-box;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-flip,
+  .card-tilt-art,
+  .card-tilt-badge {
+    transition: none;
+  }
+  .card-tilt-art,
+  .card-tilt-badge {
+    transform: none;
+  }
+  .cf {
+    animation: none;
+    stroke-opacity: 0;
+  }
+  .cb {
+    stroke-opacity: 0.55;
   }
 }

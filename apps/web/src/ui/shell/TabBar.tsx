@@ -14,6 +14,7 @@ const TAB_OF: Record<string, string> = {
   home: 'home',
   session: 'home',
   more: 'home',
+  card: 'home',
   systems: 'log',
   map: 'log',
   system: 'log',
