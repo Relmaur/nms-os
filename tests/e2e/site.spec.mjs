@@ -16,7 +16,7 @@ test('the product page: named right, accessible, nothing from anyone else, no si
   await page.evaluate(() => {
     scrollTo(0, document.body.scrollHeight);
   });
-  await expect(page.getByText('Not affiliated with Hello Games')).toBeVisible();
+  await expect(page.locator('footer').getByText('Not affiliated with Hello Games')).toBeVisible();
   expect(offsite).toEqual([]);
 });
 
@@ -82,4 +82,33 @@ test('on a desktop the phone stays pinned and its screen changes with the chapte
   await expect(page.locator('.stack .layer').nth(3)).toHaveClass(/\bon\b/);
   await expect(page.locator('#banner')).toHaveClass(/\bon\b/); // Refiner done
   await expect(page.locator('.dots i').nth(3)).toHaveClass(/\bon\b/);
+});
+
+test("the live cards are the app's own, at each stage, and the page never touches a visitor's log", async ({
+  page
+}) => {
+  const log = JSON.stringify({ systems: [{ name: 'My own system', galaxy: 'Euclid', glyphs: '0123456789AB' }] });
+  await page.addInitScript(saved => {
+    localStorage.setItem('nms_master_os_state', saved);
+  }, log);
+  await page.goto('./');
+  await page.locator('#card').scrollIntoViewIfNeeded();
+  for (const [stage, cls] of [
+    ['C', 'C'],
+    ['B', 'B'],
+    ['S', 'S']
+  ]) {
+    const card = page.locator(`.rung [data-live-card="${stage}"]`);
+    await expect(card.locator(`[aria-label="Class ${cls}"]`)).toBeAttached();
+  }
+  // Laid out as in the app: the page's own rules mustn't reach inside the card. The art fills the card's width.
+  const big = await page.locator('#cardframe').boundingBox();
+  await expect
+    .poll(async () => (await page.locator('#cardframe .card-tilt-art svg').boundingBox())?.width)
+    .toBeGreaterThan(big.width * 0.7);
+  await expect(page.locator('.rung [data-live-card="S"]')).toContainText('168');
+  await expect(page.locator('.rung [data-live-card="B"]')).toContainText('30');
+  await expect(page.locator('[data-live-card]').first()).not.toContainText('My own system');
+  expect(await page.evaluate(() => localStorage.getItem('nms_master_os_state'))).toBe(log);
+  expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['nms_master_os_state']);
 });

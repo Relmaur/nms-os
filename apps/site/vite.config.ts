@@ -2,6 +2,8 @@
 // into the HTML, so they can't drift and the page is complete without a script.
 import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { GameDataSchema } from '@atlas/core/game-data';
 import { makeCatalog } from '@atlas/core/planner';
 import { rankCrafts } from '@atlas/core/profit';
@@ -30,4 +32,4 @@ function fillPage(): Plugin {
   };
 }
 
-export default defineConfig({ base: './', plugins: [fillPage()] });
+export default defineConfig({ base: './', plugins: [react(), tailwindcss(), fillPage()] });

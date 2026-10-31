@@ -1,4 +1,5 @@
 /* The product page (Task L's layout at rest). Fonts are self-hosted, like the app's: no third-party requests here. */
+@import './live.css';
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
@@ -550,12 +551,12 @@ footer {
   color: var(--cyan-2);
   letter-spacing: 0.14em;
 }
-.chapter h3 {
+.chapter > h3 {
   font-size: clamp(26px, 3vw, 40px);
   line-height: 1.1;
   font-weight: 800;
 }
-.chapter p {
+.chapter > p {
   font-size: 18px;
   color: var(--ink-2);
   max-width: 42ch;
@@ -600,6 +601,20 @@ footer {
   opacity: 1;
   transform: none;
 }
+/* The app's own components, at their natural size and scaled as one piece (live.tsx). */
+.live-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 380px;
+  height: 675.56px;
+  transform-origin: 0 0;
+}
+.live-map {
+  width: 390px;
+  padding: 190px 16px 0;
+  transform-origin: 0 0;
+}
 /* Placeholders with a little character, so the crossfade and the scroll show until the real screens go in. */
 .shot {
   position: absolute;
@@ -617,7 +632,7 @@ footer {
   background-color: #10182f;
 }
 .shot-2 {
-  background-color: #0a1a2a;
+  background: #050811;
 }
 .shot-3 {
   background-color: #151a2d;
@@ -725,7 +740,7 @@ footer {
 }
 
 /* the card */
-.cardsec .grid {
+.card-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 56px;
@@ -762,7 +777,7 @@ footer {
   flex-direction: column;
   gap: 22px;
 }
-.ladder p:not(.eyebrow) {
+.ladder > p:not(.eyebrow) {
   font-size: 18px;
   color: var(--ink-2);
   max-width: 48ch;
@@ -789,16 +804,16 @@ footer {
   transform: translateY(calc((1 - var(--rp, 1)) * 40px));
   opacity: calc(0.35 + var(--rp, 1) * 0.65);
 }
-.rung b {
+.rung > b {
   font: 700 13px var(--f-display);
 }
-.rung span {
+.rung > span {
   font-size: 12.5px;
   color: var(--ink-3);
   line-height: 1.45;
 }
 @media (max-width: 900px) {
-  .cardsec .grid {
+  .card-layout {
     grid-template-columns: minmax(0, 1fr);
   }
   .bigcard {
@@ -860,6 +875,9 @@ footer {
   gap: 14px;
   transform: translateY(calc((1 - var(--rp, 1)) * 50px));
 }
+.device a {
+  text-decoration: underline;
+}
 .device h3 {
   font-size: 18px;
   font-weight: 700;
@@ -867,6 +885,7 @@ footer {
 .device ol {
   margin: 0;
   padding-left: 20px;
+  list-style: decimal;
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -1,0 +1,6 @@
+/* What the app's own card and chain need: its component styles, its tokens and the utilities they use. Tailwind's base
+   sits in a layer, so everything in page.css wins over it. */
+@import '../../web/src/theme.css';
+@import '../../web/src/tailwind.css';
+@source '../../web/src/ui/card';
+@source '../../web/src/ui/map';

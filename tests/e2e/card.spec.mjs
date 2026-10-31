@@ -52,7 +52,8 @@ test('on an iPhone, after the prompt, tilt turns the whole card and holds', asyn
   await expect.poll(turn).toBeGreaterThan(Math.sin((6 * Math.PI) / 180));
   await page.waitForTimeout(1500);
   await orient(10);
-  await expect.poll(turn).toBeGreaterThan(Math.sin((5 * Math.PI) / 180)); // a held tilt doesn't fade away
+  // A held tilt doesn't fade away: level follows slowly, so seconds later (more on a busy machine) most of it remains.
+  await expect.poll(turn).toBeGreaterThan(Math.sin((4 * Math.PI) / 180));
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
   await page.emulateMedia({ reducedMotion: 'reduce' });

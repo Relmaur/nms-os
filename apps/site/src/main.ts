@@ -272,14 +272,21 @@ if (!reduce) {
   const frameEl = document.getElementById('cardframe');
   const box = frameEl?.parentElement;
   if (frameEl && box) {
+    // The same variables the card has in the app: its art, badge, foil and sheen follow them.
+    const setCardLight = (x: number, y: number) => {
+      frameEl.style.setProperty('--tilt-x', x.toFixed(3));
+      frameEl.style.setProperty('--tilt-y', y.toFixed(3));
+    };
     box.addEventListener('pointermove', event => {
       const area = box.getBoundingClientRect();
       const x = (event.clientX - area.left) / area.width - 0.5;
       const y = (event.clientY - area.top) / area.height - 0.5;
       frameEl.style.transform = `rotateY(${(x * 16).toFixed(2)}deg) rotateX(${(-y * 12).toFixed(2)}deg)`;
+      setCardLight(x, y);
     });
     box.addEventListener('pointerleave', () => {
       frameEl.style.transform = '';
+      setCardLight(0, 0);
     });
     let swaying = false;
     const sway = (now: number) => {
@@ -287,6 +294,7 @@ if (!reduce) {
       if (!box.matches(':hover')) {
         const t = now / 1000;
         frameEl.style.transform = `rotateY(${(Math.sin(t * 0.6) * 7).toFixed(2)}deg) rotateX(${(Math.cos(t * 0.5) * 4).toFixed(2)}deg)`;
+        setCardLight(Math.sin(t * 0.6) * 0.45, -Math.cos(t * 0.5) * 0.35);
       }
       requestAnimationFrame(sway);
     };
@@ -297,6 +305,27 @@ if (!reduce) {
     }).observe(box);
   }
 }
+
+// The live cards and Map load as they come near, so the first screen doesn't wait for them. If they can't, the
+// frames simply stay empty.
+const liveParts = all('[data-live-card], [data-live-map]');
+const nearing = new IntersectionObserver(
+  entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    nearing.disconnect();
+    import('./live.tsx')
+      .then(live => {
+        live.mountLive();
+      })
+      .catch((err: unknown) => {
+        console.warn('[atlas]', { event: 'site-live-failed', message: String(err) });
+      });
+  },
+  { rootMargin: '800px 0px' }
+);
+liveParts.forEach(el => {
+  nearing.observe(el);
+});
 
 makeStars();
 fitShots();
