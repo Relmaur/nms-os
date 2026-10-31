@@ -14,16 +14,17 @@
   ! Cache-Control
   Cache-Control: no-cache
 
-# Always asked for again: these say which hashed files are current.
+# Always asked for again: these say which hashed files are current. no-transform keeps Cloudflare from rewriting the
+# pages, which is how its analytics beacon gets in: no dashboard setting can turn that back on.
 /app/
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 /app/index.html
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 /app/wiki/
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 /app/wiki/index.html
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 /app/manifest.webmanifest
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 /app/sw.js
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
