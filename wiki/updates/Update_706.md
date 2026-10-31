@@ -4,14 +4,14 @@ category: "updates"
 kind: "update"
 summary: "Update 7.06 is the 297th official update to No Man's Sky."
 pageId: 658308
-revId: 1336505
-revTimestamp: "2026-10-05T17:19:12Z"
+revId: 1342742
+revTimestamp: "2026-10-31T01:21:36Z"
 version: "Cosmos"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Update_7.06"
 license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
-data: {"fields":{"image":"CosmosCover.webp","date":"5 October, 2026","platform":"PC, Mac","link":"Cosmos 7.06","release":"Cosmos","previous":"7.05"},"recipes":[]}
+data: {"fields":{"image":"CosmosCover.webp","date":"5 October, 2026","platform":"PC, Mac","link":"Cosmos 7.06","release":"Cosmos","previous":"7.05","next":"7.10"},"recipes":[]}
 ---
 
 # Update 7.06
@@ -22,6 +22,7 @@ data: {"fields":{"image":"CosmosCover.webp","date":"5 October, 2026","platform":
 - **Platforms:** PC, Mac
 - **Added in:** Cosmos
 - **Previous:** 7.05
+- **Next:** 7.10
 
 **Update 7.06** is the 297th official update to No Man's Sky.
 

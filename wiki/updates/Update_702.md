@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.02 is the 292nd official update to No Man's Sky."
 pageId: 656740
-revId: 1336507
-revTimestamp: "2026-10-05T17:31:51Z"
+revId: 1342705
+revTimestamp: "2026-10-30T23:20:40Z"
 version: "Cosmos"
 obsolete: false
 status: "current"

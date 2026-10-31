@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.05 is the 296th official update to No Man's Sky."
 pageId: 657766
-revId: 1336504
-revTimestamp: "2026-10-05T17:18:50Z"
+revId: 1342837
+revTimestamp: "2026-10-31T11:45:54Z"
 version: "Cosmos"
 obsolete: false
 status: "current"
@@ -50,7 +50,7 @@ We are listening closely to your feedback, and have identified and resolved a nu
 - Fixed a rare issue that could cause the mission marker for the Home in the Stars mission to appear in the wrong place.
 
 - Fixed an issue that could cause some settlement buildings to fail to place correctly, blocking progress.
-Reduced waiting times when upgrading settlement buildings for the Beacon milestone.
+- Reduced waiting times when upgrading settlement buildings for the Beacon milestone.
 
 - Balanced the alliance scoring algorithm to reduce the effectiveness of a small number of members gathering a large number of stations. Additional server-side balancing changes will continue.
 

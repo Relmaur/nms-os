@@ -4,8 +4,8 @@ category: "updates"
 kind: "update"
 summary: "Update 7.03.1 is the 294th official update to No Man's Sky."
 pageId: 656838
-revId: 1336509
-revTimestamp: "2026-10-05T17:32:34Z"
+revId: 1342725
+revTimestamp: "2026-10-30T23:40:23Z"
 version: "Cosmos"
 obsolete: false
 status: "current"

@@ -4,14 +4,14 @@ category: "building"
 kind: "product"
 summary: "Deep-Space Base Computer is a base building product."
 pageId: 657519
-revId: 1335192
-revTimestamp: "2026-10-01T08:10:41Z"
-version: "Cosmos"
+revId: 1341733
+revTimestamp: "2026-10-28T14:27:31Z"
+version: "Forsaken"
 obsolete: false
 status: "current"
 source: "https://nomanssky.fandom.com/wiki/Deep-Space_Base_Computer"
 license: "CC BY-NC-SA 3.0 (No Man's Sky Wiki contributors)"
-data: {"fields":{"category":"Base Building","name":"Deep-Space Base Computer","image":"BUILDABLE.SPACEBASECOREFLAG.png","type":"Site Evaluation Device","release":"Cosmos"},"recipes":[{"type":"craft","inputs":[{"name":"Reactor Core","qty":1},{"name":"Viral Heart","qty":1},{"name":"Condensed Stellar Ice","qty":1}],"outputs":[{"name":"Deep-Space Base Computer","qty":1}],"blueprint":true}]}
+data: {"fields":{"category":"Base Building","name":"Deep-Space Base Computer","image":"BUILDABLE.SPACEBASECOREFLAG.png","type":"Site Evaluation Device","release":"Forsaken"},"recipes":[{"type":"craft","inputs":[{"name":"Reactor Core","qty":1},{"name":"Viral Heart","qty":1},{"name":"Condensed Stellar Ice","qty":1}],"outputs":[{"name":"Deep-Space Base Computer","qty":1}],"blueprint":true}]}
 ---
 
 # Deep-Space Base Computer
@@ -20,7 +20,7 @@ data: {"fields":{"category":"Base Building","name":"Deep-Space Base Computer","i
 
 - **Category:** Base Building
 - **Type:** Site Evaluation Device
-- **Added in:** Cosmos
+- **Added in:** Forsaken
 
 **Deep-Space Base Computer** is a base building product.
 
@@ -40,13 +40,15 @@ Once a base is established, the Base Computer can also be interacted with to ren
 
 ### Limitations
 
-A self-build space station can not be uploaded to the Hello Games network, which prevents it from being shown to any other instance of your own game or other players. It is yet unknown if other players in a shared game instance as a group can see and use other players self-build space stations.
-
-This seems to be a similar limitation like the claimable space stations, which can upload a screenshot and allegedly the base, but none of those changes is shown to other players.
-
-In case of the standard space stations this is reasonable, as a troll owner could block access to elements by building walls inside of it. For self-build deep space outposts, this is odd.
-
 To generate gravity it is necessary to build outside walkways on which landing pads can be build. Further to supply electricity to any "freighter" building complexes, the electrical line has to be linked to a consumer inside of it (the standalone wormhole portal works). After one consumer is linked up with a solar array, all objects inside the freighter halls are supplied with energy automatically. This oddity seems to stem from the bastard system which allows combining planetary base parts with stellar base parts.
+
+### Former Limitations
+
+During its initial release in Cosmos, a self-build space station could not be uploaded to the Hello Games network, which prevented it from being shown to any other instance of your own game or other players.
+
+A similar limitation remains for claimable space stations, which can upload a screenshot and allegedly the base, but none of those changes is shown to other players.
+
+In case of the standard space stations this is reasonable, as a troll owner could block access to elements by building walls inside of it. For self-build deep space outposts, this was odd. With Forsaken, this has been corrected and the feature is now fully implemented.
 
 ### Bugs
 
