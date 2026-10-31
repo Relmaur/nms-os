@@ -24,3 +24,4 @@ apps/mcp/dist/
 # Wrangler secrets for local development (apps/sync); never committed
 .dev.vars*
 apps/mcp/.bundle-test-*/
+apps/site/dist/

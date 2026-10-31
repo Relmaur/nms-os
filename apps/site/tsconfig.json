@@ -1,0 +1,9 @@
+{
+  // The product page's TypeScript: its Vite config (Node) and its small script (DOM).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"]
+  },
+  "include": ["vite.config.ts", "src/**/*.ts"]
+}

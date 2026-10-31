@@ -3,6 +3,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4173;
+const SITE_PORT = 4190; // the product page, its own build
 const phone = {
   ...devices['Desktop Chrome'],
   viewport: { width: 390, height: 844 },
@@ -26,16 +27,33 @@ export default defineConfig({
   projects: [
     {
       name: 'desktop',
-      testIgnore: /offline\.spec/,
+      testIgnore: /offline\.spec|site\.spec/,
       use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } }
     },
-    { name: 'phone', testIgnore: /offline\.spec/, use: phone },
+    { name: 'phone', testIgnore: /offline\.spec|site\.spec/, use: phone },
     // The one place the service worker runs: install, go offline, and the app must still work.
-    { name: 'offline', testMatch: /offline\.spec/, use: { ...phone, serviceWorkers: 'allow' } }
+    { name: 'offline', testMatch: /offline\.spec/, use: { ...phone, serviceWorkers: 'allow' } },
+    {
+      name: 'site-desktop',
+      testMatch: /site\.spec/,
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1440, height: 900 },
+        baseURL: `http://localhost:${SITE_PORT}/`
+      }
+    },
+    { name: 'site-phone', testMatch: /site\.spec/, use: { ...phone, baseURL: `http://localhost:${SITE_PORT}/` } }
   ],
-  webServer: {
-    command: `pnpm preview --port ${PORT} --strictPort`,
-    url: `http://localhost:${PORT}/`,
-    reuseExistingServer: !process.env.CI
-  }
+  webServer: [
+    {
+      command: `pnpm preview --port ${PORT} --strictPort`,
+      url: `http://localhost:${PORT}/`,
+      reuseExistingServer: !process.env.CI
+    },
+    {
+      command: `pnpm --filter @atlas/site preview --port ${SITE_PORT} --strictPort`,
+      url: `http://localhost:${SITE_PORT}/`,
+      reuseExistingServer: !process.env.CI
+    }
+  ]
 });
