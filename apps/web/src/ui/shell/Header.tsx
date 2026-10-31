@@ -19,9 +19,7 @@ export function Header() {
         }}
         className="flex items-center gap-3 shrink-0 min-w-0 rounded-lg"
       >
-        <span className="w-8 h-8 lg:w-9 lg:h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center">
-          <i className="ph-fill ph-planet text-lg lg:text-xl text-red-500" aria-hidden="true" />
-        </span>
+        <i className="ph-bold ph-diamond text-[22px] text-scanner-cyan-glow" aria-hidden="true" />
         <span className="font-display font-bold text-sm sm:text-base tracking-wider text-white whitespace-nowrap">
           ATLAS<span className="text-scanner-cyan-pale">:OS</span>
         </span>

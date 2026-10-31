@@ -254,9 +254,7 @@ function Header({ onNew }: { onNew: () => void }) {
     <header className="app-header hidden lg:block sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-[1400px] mx-auto h-16 px-6 flex items-center gap-4">
         <a href="../" title="Back to ATLAS:OS" className="flex items-center gap-2.5 shrink-0 rounded-lg">
-          <span className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center">
-            <i className="ph-fill ph-planet text-xl text-red-500" aria-hidden="true" />
-          </span>
+          <i className="ph-bold ph-diamond text-[22px] text-scanner-cyan-glow" aria-hidden="true" />
           <span className="font-display font-bold tracking-wider text-white">
             ATLAS<span className="text-scanner-cyan-pale">:OS</span>
           </span>
