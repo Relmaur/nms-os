@@ -8,6 +8,7 @@ import { SystemPanel } from './systems/SystemPanel.tsx';
 import { SystemDetails } from './systems/SystemDetails.tsx';
 import { Outlaw } from './outlaw/Outlaw.tsx';
 import { Runs } from './runs/Runs.tsx';
+import { MapScreen } from './map/Map.tsx';
 import { Calculators } from './calculators/Calculators.tsx';
 import { PlanScreen } from './calculators/Planner.tsx';
 import { BestCrafts } from './calculators/BestCrafts.tsx';
@@ -50,6 +51,7 @@ const SCREENS: [string, ReactNode][] = [
   ['systemsRoot', <Systems />],
   ['systemDetailRoot', <SystemDetails />],
   ['sessionRoot', <Session />],
+  ['mapRoot', <MapScreen />],
   ['runsRoot', <Runs />],
   ['outlawRoot', <Outlaw />],
   ['calculatorsRoot', <Calculators />],

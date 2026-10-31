@@ -597,13 +597,14 @@ label,
     linear-gradient(90deg, var(--color-orbit-grid) 1px, transparent 1px);
   background-size: 22px 22px;
 }
-/* Below lg, rebuilt screens (Home, Systems, System detail, Session, Fleet, Ship detail, Notes, a note, the planner,
+/* Below lg, rebuilt screens (Home, Systems, the Map, System detail, Session, Fleet, Ship detail, Notes, a note, the planner,
    Best crafts, Runs and a run, Guides and its books, Settings) draw their own header, so the app's is hidden there; it comes back while the search is open, since the search
    lives in it. */
 @media (max-width: 1023px) {
   body:is(
       [data-section='home'],
       [data-section='systems'],
+      [data-section='map'],
       [data-section='system'],
       [data-section='session'],
       [data-section='gear'],
@@ -626,6 +627,7 @@ label,
   body:is(
       [data-section='home'],
       [data-section='systems'],
+      [data-section='map'],
       [data-section='system'],
       [data-section='gear'],
       [data-section='ship'],
@@ -645,6 +647,7 @@ label,
   body:is(
       [data-section='home'],
       [data-section='systems'],
+      [data-section='map'],
       [data-section='system'],
       [data-section='gear'],
       [data-section='ship'],
@@ -1034,6 +1037,37 @@ label.list-row:active {
 }
 @media (prefers-reduced-motion: reduce) {
   .session-bar.is-done {
+    animation: none;
+  }
+}
+
+/* The galaxy chain (Map, design 30): pulses run along the arcs between galaxies, and the "you are here" ring turns.
+   Reduced motion keeps both still. */
+.chain-pulse {
+  animation: chain-pulse linear infinite;
+}
+@keyframes chain-pulse {
+  from {
+    stroke-dashoffset: 76;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.chain-here {
+  animation: chain-turn 40s linear infinite;
+}
+@keyframes chain-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chain-pulse {
+    animation: none;
+    stroke-opacity: 0;
+  }
+  .chain-here {
     animation: none;
   }
 }

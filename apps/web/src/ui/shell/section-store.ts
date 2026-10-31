@@ -36,7 +36,14 @@ export function goBack(fallback: string): void {
 // A screen for one thing carries its id after a slash (#system/<id>, #ship/<id>, #note/<id>, #plan/<item>); without one it falls
 // back to its list.
 const SHORTCUTS = new Set(['new-system', 'search']);
-const PARAM_SECTIONS: Record<string, string> = { system: 'systems', ship: 'gear', note: 'notes', plan: 'calculators' };
+// The section a parameter belongs to, and where the address goes without one (#map is the chain, #map/<galaxy> one).
+const PARAM_SECTIONS: Record<string, string> = {
+  system: 'systems',
+  ship: 'gear',
+  note: 'notes',
+  plan: 'calculators',
+  map: 'map'
+};
 function resolve(key: string): { section: string; shortcut: string; param: string } {
   const [head = '', ...rest] = key.split('/');
   if (head in PARAM_SECTIONS) {

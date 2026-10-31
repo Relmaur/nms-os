@@ -1,10 +1,10 @@
-// The Log tab's segmented control, at the top of Systems, Fleet and Notes. It's navigation, not a setting, so the
+// The Log tab's segmented control, at the top of Systems, Map, Fleet and Notes. It's navigation, not a setting, so the
 // open segment takes the scanner cyan of the active tab (with aria-current), not the emerald of a selected segment.
-// Map joins it when the Map screens land.
 import { useSection } from '../shell/section-store.ts';
 
 const SEGMENTS = [
   { section: 'systems', label: 'Systems' },
+  { section: 'map', label: 'Map' },
   { section: 'gear', label: 'Fleet' },
   { section: 'notes', label: 'Notes' }
 ] as const;

@@ -9,6 +9,7 @@ import { useSyncAttention } from '../../app/sync.ts';
 
 const PART_OF: Record<string, string> = {
   system: 'systems',
+  map: 'systems',
   session: 'home',
   ship: 'gear',
   outlaw: 'runs',

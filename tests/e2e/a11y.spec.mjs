@@ -66,6 +66,8 @@ for (const [name, path, ready, region, setup] of [
   ['Session recap', './', '#timersTitle', '#sec-session', showRecap],
   ['Systems', './#systems', '#systemList', '#sec-systems'],
   ['Runs', './#runs', '#runsOutlaw', '#sec-runs'],
+  ['Map', './#map', '#mapChain', '#sec-map'],
+  ['Map · one galaxy', './#map/Euclid', '#mapGalaxy', '#sec-map'],
   ['Outlaw stations', './#outlaw', '#outlawStationList', '#sec-outlaw'],
   ['System detail', './#system/sys-ekwa', '#systemTitle', '#sec-system'],
   ['Planet sheet', './#system/sys-ekwa', '#systemTitle', '#planetSheet', openPlanet],
