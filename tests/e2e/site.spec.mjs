@@ -112,3 +112,13 @@ test("the live cards are the app's own, at each stage, and the page never touche
   expect(await page.evaluate(() => localStorage.getItem('nms_master_os_state'))).toBe(log);
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['nms_master_os_state']);
 });
+
+test('the phones show real screens, sized by the screenshots', async ({ page }) => {
+  await page.goto('./');
+  const visible = page.locator('.screen-img:visible').first();
+  await visible.scrollIntoViewIfNeeded();
+  await expect.poll(() => visible.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+  await page.locator('.chapter').nth(2).scrollIntoViewIfNeeded(); // the Map's phones are live: they fill as they near
+  await expect.poll(() => page.locator('.phone .screen-pending').count()).toBeLessThanOrEqual(1); // the hero's, for now
+  expect(await page.content()).not.toContain('{{');
+});

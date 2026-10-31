@@ -2,6 +2,7 @@
 // into the HTML, so they can't drift and the page is complete without a script.
 import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vite';
+import { z } from 'zod';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { GameDataSchema } from '@atlas/core/game-data';
@@ -19,6 +20,18 @@ function counts() {
 
 const STATUS_BAR = `<div class="sb" aria-hidden="true"><span class="sb-t">9:41</span><span class="sb-i"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg><svg viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0zM3.3 6.8a6.6 6.6 0 0 1 9.4 0l-1.6 1.6a4.4 4.4 0 0 0-6.2 0zM1 4.5a9.9 9.9 0 0 1 14 0l-1.6 1.6a7.6 7.6 0 0 0-10.8 0z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="2" y="2" width="17" height="8" rx="2"/><rect x="24.6" y="4" width="1.8" height="4" rx=".8" fill-opacity=".45"/></svg></span></div><span class="island"></span>`;
 
+// The phone screens: real app screenshots (scripts/site-screens.mjs), which say how tall they came out.
+const screens = z
+  .record(z.string(), z.number())
+  .parse(JSON.parse(readFileSync(new URL('public/screens/sizes.json', import.meta.url), 'utf8')));
+function screenHeight(name: string) {
+  const height = screens[name];
+  if (!height) throw new Error(`No screen called ${name}: run scripts/site-screens.mjs`);
+  return height;
+}
+const screenImage = (name: string) =>
+  `<img class="screen-img" src="./screens/${name}-2x.webp" srcset="./screens/${name}-2x.webp 780w, ./screens/${name}-3x.webp 1170w" sizes="340px" width="390" height="${String(screenHeight(name))}" loading="lazy" decoding="async" alt="">`;
+
 function fillPage(): Plugin {
   return {
     name: 'atlas-site-page',
@@ -27,7 +40,9 @@ function fillPage(): Plugin {
       return html
         .replaceAll('{{pages}}', pages.toLocaleString('en-US'))
         .replaceAll('{{crafts}}', crafts.toLocaleString('en-US'))
-        .replaceAll('{{statusBar}}', STATUS_BAR);
+        .replaceAll('{{statusBar}}', STATUS_BAR)
+        .replace(/\{\{img:(\w+)\}\}/g, (_, name: string) => screenImage(name))
+        .replace(/\{\{h:(\w+)\}\}/g, (_, name: string) => String(screenHeight(name)));
     }
   };
 }

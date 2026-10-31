@@ -615,7 +615,6 @@ footer {
   padding: 190px 16px 0;
   transform-origin: 0 0;
 }
-/* Placeholders with a little character, so the crossfade and the scroll show until the real screens go in. */
 .shot {
   position: absolute;
   left: 0;
@@ -623,22 +622,14 @@ footer {
   width: 100%;
   min-height: 100%;
   will-change: transform;
-  background: repeating-linear-gradient(180deg, transparent 0 56px, rgba(148, 163, 184, 0.08) 56px 58px);
 }
-.shot-0 {
-  background-color: #0b1325;
-}
-.shot-1 {
-  background-color: #10182f;
-}
-.shot-2 {
+.shot-map {
   background: #050811;
 }
-.shot-3 {
-  background-color: #151a2d;
-}
-.shot-4 {
-  background-color: #0c1e24;
+.screen-img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .banner {
   position: absolute;

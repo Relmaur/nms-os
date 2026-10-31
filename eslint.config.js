@@ -30,7 +30,7 @@ export default [
   },
   {
     // Callbacks passed to page.evaluate() run in the browser.
-    files: ['tests/e2e/**/*.mjs'],
+    files: ['tests/e2e/**/*.mjs', 'scripts/*.mjs'],
     languageOptions: { globals: { ...globals.node, ...globals.browser } }
   },
   {
