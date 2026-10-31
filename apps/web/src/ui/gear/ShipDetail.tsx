@@ -1,7 +1,7 @@
 // One ship, Multi-Tool or Exosuit on its own screen (#ship/<id>, design 09): its class, role and type, the technology
 // grid with what sits in each supercharged slot, how that compares with the wiki's cited rules, the player's note, and
 // the notes linked to it.
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { rulesSummary, slotGrid, slotRules, type GearItem } from '@atlas/core/gear';
 import { noteExcerpt, notesForGear, type Note } from '@atlas/core/notes';
 import { useAppState } from '../useAppState.ts';
@@ -9,6 +9,7 @@ import { openGearEditor } from '../parts/editor-store.ts';
 import { openNote } from '../notes/note-nav.ts';
 import { Button } from '../parts/Button.tsx';
 import { renderNote } from '../notes/NoteCard.tsx';
+import { ShareShipSheet } from '../share/ShareSheet.tsx';
 import { goBack, useSectionParam } from '../shell/section-store.ts';
 import { loadFacts, useFacts } from './facts-store.ts';
 import { ClassPill, TechGrid, gridLabel } from './fleet-bits.tsx';
@@ -44,6 +45,10 @@ export function ShipDetail() {
 }
 
 function Ship({ item, linked }: { item: GearItem; linked: Note[] }) {
+  const [sharing, setSharing] = useState(false);
+  const closeShare = useCallback(() => {
+    setSharing(false);
+  }, []);
   const facts = useFacts();
   const rules = slotRules(facts, item.kind, item.class);
   const grid = slotGrid(item.superchargedSlots, { rows: Math.min(rules.maxRows, 6), cols: rules.columns });
@@ -222,6 +227,16 @@ function Ship({ item, linked }: { item: GearItem; linked: Note[] }) {
           </ul>
         </section>
       )}
+
+      <Button
+        icon="ph-link-simple"
+        onClick={() => {
+          setSharing(true);
+        }}
+      >
+        Share
+      </Button>
+      <ShareShipSheet item={item} open={sharing} onClose={closeShare} />
     </div>
   );
 }

@@ -7,7 +7,6 @@ import { biomeFamily } from '@atlas/core/facts';
 import { homeSummary } from '@atlas/core/home';
 import { systemOrbit } from '@atlas/core/orbit';
 import { CONFLICT_LEVELS, RACES, STAR_CLASSES, lastVisit, type Planet, type System } from '@atlas/core/systems-model';
-import { showToast } from '../../app/ui.ts';
 import { deletePlanet, logVisit, savePlanet, toggleFavorite } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
@@ -17,6 +16,7 @@ import { Button } from '../parts/Button.tsx';
 import { ArmButton } from '../parts/Gesture.tsx';
 import { SheetGrab, useSheetDrag, useSheetOpen } from '../parts/Sheet.tsx';
 import { OrbitDiagram, PlanetMarker } from '../parts/StarChart.tsx';
+import { copyText, ShareSystemSheet } from '../share/ShareSheet.tsx';
 import { openSystemEditor } from './panel-store.ts';
 
 const HERO_BUTTON =
@@ -31,6 +31,10 @@ export function SystemDetails() {
   const facts = useFacts();
   // The planet stays set while the sheet slides closed, so its title doesn't flip mid-animation.
   const [planetSheet, setPlanetSheet] = useState({ open: false, planetId: null as string | null, session: 0 });
+  const [sharing, setSharing] = useState(false);
+  const closeShare = useCallback(() => {
+    setSharing(false);
+  }, []);
   const closePlanet = useCallback(() => {
     setPlanetSheet(sheet => ({ ...sheet, open: false }));
   }, []);
@@ -126,7 +130,10 @@ export function SystemDetails() {
             You are here
           </span>
         )}
-        <h1 id="systemTitle" className="font-display text-[28px] font-extrabold leading-[1.1] text-ink-bright break-words">
+        <h1
+          id="systemTitle"
+          className="font-display text-[28px] font-extrabold leading-[1.1] text-ink-bright break-words"
+        >
           {system.name}
         </h1>
         {place && <p className="text-sub text-ink-muted">{place}</p>}
@@ -183,13 +190,14 @@ export function SystemDetails() {
         <Button
           size="L"
           onClick={() => {
-            shareSystem(system);
+            setSharing(true);
           }}
         >
           Share
         </Button>
       </div>
 
+      <ShareSystemSheet system={system} open={sharing} onClose={closeShare} />
       <PlanetSheet
         system={system}
         open={planetSheet.open}
@@ -369,30 +377,6 @@ function Journal({ system }: { system: System }) {
       </div>
     </section>
   );
-}
-
-// Falls back to the clipboard where the share sheet isn't available (most desktops); the design's share sheet (23)
-// replaces this.
-function shareSystem(system: System) {
-  const text = [
-    system.name,
-    [system.region, system.galaxy].filter(Boolean).join(' · '),
-    system.glyphs ? `Portal address: ${system.glyphs}` : ''
-  ]
-    .filter(Boolean)
-    .join('\n');
-  if ('share' in navigator) navigator.share({ title: system.name, text }).catch(() => undefined); // dismissing rejects
-  else copyText(text, `Copied ${system.name} to share.`);
-}
-
-function copyText(text: string, done: string) {
-  ('clipboard' in navigator ? navigator.clipboard.writeText(text) : Promise.reject(new Error('no clipboard')))
-    .then(() => {
-      showToast(done);
-    })
-    .catch(() => {
-      showToast(text);
-    });
 }
 
 const SHEET_LAYOUT = '(min-width: 0px)';

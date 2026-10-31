@@ -5,7 +5,11 @@ All notable changes to ATLAS:OS (called ATLAS // MASTER OS up to 3.20.0). The fo
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Changed
+- A new logo and app icon: the cyan diamond replaces the red planet.
+
 ### Added
+- **Share a system or a ship as a picture.** A system's Share opens a postcard: square, story or wide, with your choice of planet names, rating and tags, notes and portal address (the last two start off). A ship, Multi-Tool or Exosuit gets a Fleet card with its technology grid. Pictures are made on your device and nothing is uploaded.
 - **Your Traveller Card** (Settings › Traveller Card): one living card that grows with your log. Its art is a current drawn from every system you've placed, an island per galaxy in the colour of when you reached it; it shows your class (C to S), a rank that follows how you play, your stats, star colours, how deep you've gone toward a core, and your newest firsts. Tilt it, tap to flip: the back explains every part, including how close you are to the next class.
 - **A Map of your travels** (Log › Map). Every galaxy you've reached, in order, as a chain with your systems dotted at their true places and the next galaxies waiting; then one galaxy close up, your systems magnified with the way to the centre, zoom and drag, and a card for each system with its distance from the centre in light years. Positions come from portal addresses; systems without one are counted, not guessed.
 - **Make your own runs.** "+ New run" on Runs: name it, then add steps (go to a system from your log, farm, refine, craft or sell an item from the wiki, or anything in your own words), how long it takes and how often it repeats. Each step is checked against the wiki, and the estimate shows the Units per run and per hour from wiki prices, or from your own. Your runs are listed under Yours; if a game update changes a value one relied on, it moves to Retired until you check it again.
