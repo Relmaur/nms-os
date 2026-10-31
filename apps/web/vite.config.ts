@@ -1,5 +1,7 @@
 // Builds the two pages (the app and the Codex) with relative URLs, since the app lives in a subfolder: /app/ on
 // atlas-os.cloud (`pnpm build`, into dist-site/app) and /nms-os/ on GitHub Pages (plain `vite build`, into dist). public/wiki is a symlink to the repo's wiki mirror, copied into the build as-is.
+import { execSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
@@ -31,8 +33,28 @@ function contentSecurityPolicy(relay: string): Plugin {
   };
 }
 
+// What Settings says this build is: the release, the commit and the day it was built. Cloudflare and GitHub name the
+// commit in their build environment; a local build asks git.
+function commit(): string {
+  const named = process.env.WORKERS_CI_COMMIT_SHA ?? process.env.GITHUB_SHA;
+  if (named) return named.slice(0, 7);
+  try {
+    return execSync('git rev-parse --short=7 HEAD', { encoding: 'utf8' }).trim();
+  } catch {
+    return 'local';
+  }
+}
+const { version } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')) as {
+  version: string;
+};
+
 export default defineConfig(({ mode }) => ({
   base: './',
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(version),
+    'import.meta.env.VITE_APP_COMMIT': JSON.stringify(commit()),
+    'import.meta.env.VITE_APP_BUILT': JSON.stringify(new Date().toISOString().slice(0, 10))
+  },
   plugins: [
     contentSecurityPolicy(loadEnv(mode, import.meta.dirname, 'VITE_').VITE_SYNC_URL ?? ''),
     react(),

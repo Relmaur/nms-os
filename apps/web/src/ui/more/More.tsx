@@ -245,6 +245,15 @@ export function More() {
         <div className="rounded-card bg-panel-glass border border-hairline p-4 flex flex-col gap-1.5">
           <p className="font-display font-bold text-[14px] text-ink-bright">ATLAS:OS</p>
           <p className="font-mono text-caption text-ink-muted">local-first · open source</p>
+          <p id="appVersion" className="font-mono text-caption text-ink-muted">
+            {[
+              `v${import.meta.env.VITE_APP_VERSION ?? 'dev'}`,
+              import.meta.env.VITE_APP_COMMIT,
+              import.meta.env.VITE_APP_BUILT
+            ]
+              .filter(Boolean)
+              .join(' · ')}
+          </p>
           <p className="text-caption text-ink-muted">
             Fan-made. Not affiliated with Hello Games. It doesn’t connect to the game or read your save. Codex text from
             the No Man’s Sky Wiki and its contributors, CC BY-NC-SA 3.0; the code is MIT-licensed.

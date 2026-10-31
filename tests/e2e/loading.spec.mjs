@@ -43,3 +43,8 @@ test('the start-up screen leaves once the app has drawn', async ({ page }) => {
   await expect(page.locator('#bootSplash')).toHaveCount(0);
   await expect(page.locator('#sec-home')).toBeVisible();
 });
+
+test('Settings says which build this is', async ({ page }) => {
+  await page.goto('./#more');
+  await expect(page.locator('#appVersion')).toHaveText(/^v\d+\.\d+\.\d+ · \w{5,7} · \d{4}-\d{2}-\d{2}$/);
+});
