@@ -75,6 +75,9 @@ test('About says ATLAS is fan-made and links to the issues for feedback', () => 
   const link = screen.getByRole('link', { name: /Feedback and source code/ });
   expect(link.getAttribute('href')).toBe('https://github.com/Relmaur/nms-os/issues');
   expect(link.getAttribute('target')).toBe('_blank');
+  expect(screen.getByRole('link', { name: 'hello@atlas-os.cloud' }).getAttribute('href')).toBe(
+    'mailto:hello@atlas-os.cloud'
+  );
   expect(document.body.textContent).toContain('Not affiliated with Hello Games');
   expect(document.body.textContent).toContain('CC BY-NC-SA 3.0');
 });

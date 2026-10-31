@@ -267,6 +267,13 @@ export function More() {
             Feedback and source code
             <i className="ph-bold ph-arrow-square-out" aria-hidden="true" />
           </a>
+          <a
+            href="mailto:hello@atlas-os.cloud"
+            className="self-start inline-flex items-center gap-1.5 text-caption font-semibold text-scanner-cyan-pale hover:text-quantity-cyan"
+          >
+            hello@atlas-os.cloud
+            <i className="ph-bold ph-envelope-simple" aria-hidden="true" />
+          </a>
         </div>
       </section>
       <SyncSheet />
