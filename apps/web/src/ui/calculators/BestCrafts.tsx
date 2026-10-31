@@ -1,10 +1,11 @@
 // Best crafts (design 14), its own screen at #crafts: what to craft for money, ranked by the Units it gains over what
 // its raw materials would sell for (@atlas/core/profit, on the planner's own build order). Chips rank by profit,
 // multiplier or fewest steps, and leave out crafts that need a crop. A row opens the item in the recipe planner.
+import { LoadFailed, RowsLoading } from '../parts/Loading.tsx';
 import { useMemo, useState } from 'react';
 import { rankCrafts, sortCrafts, type CraftSort, type RankedCraft } from '@atlas/core/profit';
 import { goBack, useSection } from '../shell/section-store.ts';
-import { useGameData } from './game-data.ts';
+import { loadGameData, useGameData } from './game-data.ts';
 
 const PAGE = 15;
 const SORTS: [CraftSort, string][] = [
@@ -51,12 +52,10 @@ export function BestCrafts() {
       </header>
       {data.status === 'ready' ? (
         <Ranking catalog={data.catalog} />
+      ) : data.status === 'failed' ? (
+        <LoadFailed what="The recipe data" onRetry={() => void loadGameData()} />
       ) : (
-        <p className="text-sub text-ink-muted" role={data.status === 'failed' ? 'alert' : undefined}>
-          {data.status === 'failed'
-            ? 'The wiki data couldn’t be loaded. Check your connection, then open Best crafts again.'
-            : 'Loading recipes…'}
-        </p>
+        <RowsLoading label="Loading recipes" rows={6} />
       )}
     </div>
   );

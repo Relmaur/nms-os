@@ -2,6 +2,7 @@
 // Gather (a cargo checklist), each crafting round, the final craft. Every item opens a Codex peek (34). Every number
 // is the wiki's recipes and base values, or arithmetic on them (docs/calculators.md). Opened from Best crafts, a
 // Codex item or Calculators; "Change item" plans another (owner, 2026-10-30: the design has no picker).
+import { LoadFailed, RowsLoading } from '../parts/Loading.tsx';
 import { useCallback, useMemo, useState } from 'react';
 import { formatQty } from '@atlas/core/calc';
 import {
@@ -22,7 +23,7 @@ import { showToast } from '../../app/ui.ts';
 import { goBack, useSection, useSectionParam } from '../shell/section-store.ts';
 import { Button } from '../parts/Button.tsx';
 import { FIELD } from '../systems/editor-parts.tsx';
-import { useGameData } from './game-data.ts';
+import { loadGameData, useGameData } from './game-data.ts';
 import { readProgress, writeProgress, type PlanSettings } from './progress.ts';
 import { CodexPeek } from './CodexPeek.tsx';
 import { openPlan, rawValue, ratioText, recipeSwitch, type RecipeSwitch } from './plan-bits.ts';
@@ -45,11 +46,13 @@ export function PlanScreen() {
   if (section !== 'plan') return null;
   if (data.status !== 'ready')
     return (
-      <p className="text-sub text-ink-muted pt-[env(safe-area-inset-top)]">
-        {data.status === 'failed'
-          ? 'The wiki data couldn’t be loaded. Check your connection, then open the planner again.'
-          : 'Loading recipes…'}
-      </p>
+      <div className="pt-[env(safe-area-inset-top)]">
+        {data.status === 'failed' ? (
+          <LoadFailed what="The recipe data" onRetry={() => void loadGameData()} />
+        ) : (
+          <RowsLoading label="Loading recipes" />
+        )}
+      </div>
     );
   const item = findItem(data.catalog, title);
   if (!item || !planRecipes(data.catalog, item).length)

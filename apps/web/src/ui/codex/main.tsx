@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { registerServiceWorker } from '../../app/pwa.js';
 import { Codex } from './Codex.tsx';
 import { loadCodex } from './codex-data.ts';
+import { endBoot } from '../parts/boot.ts';
 
 registerServiceWorker();
 const root = document.getElementById('codexRoot');
@@ -14,4 +15,5 @@ if (root)
       <Codex />
     </StrictMode>
   );
+endBoot(); // the Codex draws its own placeholders from here
 void loadCodex();

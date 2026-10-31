@@ -301,3 +301,10 @@ test('the relay can’t pass an old copy off as new, or serve an older version t
   expect(status()).toMatch(/older than one this device already synced/);
   expect(appState.systems[0]?.notes).toBe('second');
 });
+
+test('at an address without encryption, sync says so instead of blaming the server', () => {
+  vi.stubGlobal('crypto', {}); // what a browser gives a page on plain http
+  render(<Sync />);
+  expect(screen.getByRole('status').textContent).toMatch(/browsers only allow encryption on a secure/);
+  expect(screen.queryByRole('button', { name: 'Turn on sync' })).toBeNull();
+});

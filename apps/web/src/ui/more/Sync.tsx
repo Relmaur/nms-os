@@ -64,6 +64,18 @@ const PROBLEM: Record<NonNullable<SyncStatus['problem']>, (until: string) => str
 export function Sync() {
   const status = useSyncStatus();
   if (!SYNC_URL) return null; // a build without a relay (e.g. a fork): Export/Import still move the log
+  // Browsers only give pages encryption on HTTPS or localhost. Without it sync can't seal anything, so say that, rather
+  // than let it fail and blame the server. Only a dev server on a LAN address gets here.
+  if (!('subtle' in crypto))
+    return (
+      <p id="syncInsecure" role="status" className="text-sub text-ink-muted">
+        Sync can’t run at this address, because browsers only allow encryption on a secure one. Open ATLAS:OS at{' '}
+        <a href="https://atlas-os.cloud/app/" className="text-scanner-cyan-pale underline">
+          atlas-os.cloud
+        </a>{' '}
+        to sync. Your log is safe on this device.
+      </p>
+    );
   return (
     <div id="syncPanel" className="flex flex-col gap-4">
       {status.pending && <PairPrompt replacing={status.enabled} />}

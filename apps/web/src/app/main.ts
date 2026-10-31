@@ -17,6 +17,7 @@ import { startTimerRunner } from '../ui/session/timer-runner.ts';
 import { startSync, takePairingLink } from './sync.ts';
 import { startPush } from './push.ts';
 import { takeNoteAbout } from '../ui/notes/note-nav.ts';
+import { endBoot } from '../ui/parts/boot.ts';
 
 // First of all: a #pair=<code> link (from the QR code) leaves the address before anything else runs, so nothing that
 // starts below (the service worker, a fetch, an error report) ever sees the code. More then asks before pairing.
@@ -43,3 +44,4 @@ startSync(); // after the state loads, so the first sync merges with the saved l
 startPush(); // resends this device's timer schedule if its alerts are on
 takeNoteAbout(); // a note begun from a Codex article
 startSections(); // after the state loads, so #new-system can open the editor
+endBoot();

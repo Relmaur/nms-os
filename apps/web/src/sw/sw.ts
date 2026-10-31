@@ -39,7 +39,8 @@ self.addEventListener('install', event => {
 registerRoute(
   ({ url, sameOrigin }) =>
     sameOrigin && (url.pathname.endsWith('/nms_state.json') || url.pathname.endsWith('/wiki/verification.json')),
-  new NetworkFirst({ cacheName: DATA_CACHE, networkTimeoutSeconds: 5 })
+  // Short: start-up and the Codex wait on these, and a network that hangs (a captive Wi-Fi) must not hold the app up.
+  new NetworkFirst({ cacheName: DATA_CACHE, networkTimeoutSeconds: 2 })
 );
 
 // Wiki articles (3,000+ files): answered from cache instantly once read, refreshed in the background.

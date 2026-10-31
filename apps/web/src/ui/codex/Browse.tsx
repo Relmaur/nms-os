@@ -1,6 +1,7 @@
 // Browsing the Codex (design 15): the landing (title, how fresh the copy is, search, a tile per group, recently edited
 // pages) or the results, whose filters (group, source, sort, older items, first letter) wait behind a Filters chip
 // (owner, 2026-10-30: the design's leaner page, keeping these).
+import { LoadFailed } from '../parts/Loading.tsx';
 import { useState, type ReactNode } from 'react';
 import { DEFAULTS, LETTERS, browseHref, type Browse as BrowseView, type BrowseParams } from '@atlas/core/codex';
 import { CATEGORIES, isOld, snippet, tokenize, type PreparedEntry } from '@atlas/core/search';
@@ -57,16 +58,19 @@ export function Browse(props: Props) {
 
 function Empty() {
   return (
-    <div id="browseBody">
-      <div className="rounded-card border border-dashed border-control-edge p-8 text-center space-y-3">
-        <i className="ph-duotone ph-books text-4xl text-scanner-cyan-pale" aria-hidden="true" />
-        <h1 className="font-display font-bold text-lg text-ink-bright">The Codex is empty</h1>
-        <p className="text-sub text-ink-soft max-w-md mx-auto">
-          Run <code className="text-ready-emerald-text">pnpm index:wiki</code> to index the committed archive (or{' '}
-          <code className="text-ready-emerald-text">pnpm sync:wiki --from-dump &lt;file&gt;</code> to refresh it from a
-          wiki dump), then reload this page.
+    <div id="browseBody" className="flex flex-col gap-3">
+      <h1 className="font-display text-screen-title text-ink-bright">Codex</h1>
+      <LoadFailed
+        what="The Codex"
+        onRetry={() => {
+          location.reload();
+        }}
+      />
+      {import.meta.env.DEV && (
+        <p className="text-caption text-ink-muted">
+          Building locally? Run <code>pnpm index:wiki</code>, then reload.
         </p>
-      </div>
+      )}
     </div>
   );
 }

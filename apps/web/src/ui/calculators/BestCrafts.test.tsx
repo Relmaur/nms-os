@@ -51,5 +51,5 @@ test('loading and failure say so', () => {
     setGameDataForTests({ status: 'failed' });
   });
   render(<BestCrafts />);
-  expect(screen.getByRole('alert').textContent).toContain('couldn’t be loaded');
+  expect(screen.getByRole('alert').textContent).toContain('Couldn’t load');
 });

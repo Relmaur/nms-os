@@ -1152,3 +1152,67 @@ label.list-row:active {
     stroke-opacity: 0.55;
   }
 }
+
+/* Start-up screen: in the page's HTML, so it paints first. If a script ever fails it fades by itself, rather than
+   covering the page for good. */
+#bootSplash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #050811;
+  animation: boot-giveup 0.2s linear 8s forwards;
+  transition: opacity 0.2s ease;
+}
+#bootSplash.boot-done {
+  opacity: 0;
+  pointer-events: none;
+}
+#bootSplash svg {
+  animation: bone-pulse 1.6s ease-in-out infinite;
+}
+.boot-word {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.26em;
+  color: #fff;
+}
+.boot-word span {
+  color: #67e8f9;
+}
+@keyframes boot-giveup {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+/* Placeholders: a slow breath, after a beat, so a fast load never flashes them. */
+.bone {
+  background: rgba(148, 163, 184, 0.09);
+  animation: bone-pulse 1.6s ease-in-out infinite;
+}
+.loading-in {
+  animation: loading-in 0.2s ease 0.15s both;
+}
+@keyframes bone-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes loading-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bone,
+  .loading-in,
+  #bootSplash svg {
+    animation: none;
+  }
+}

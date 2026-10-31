@@ -13,6 +13,8 @@ CI runs typecheck + lint + unit tests only (owner's decision: browser tests run 
 - **The owner's yes first:** the old site's "moved" build, raising HSTS past a day or preloading, anything paid.
 - Publishing `nms-atlas-mcp` with the new addresses. Published versions keep using workers.dev and the Pages wiki files, so those must stay up.
 - After that: `github.io` leaves `ALLOWED_ORIGINS`.
+- **Loading and failure states** (owner, 2026-10-31, after trying airplane mode; `ui/parts/Loading.tsx`, `boot.ts`). No design draws them, so they're the builder's, from the brief's "every state" rule: a start-up screen in each page's HTML, placeholders in the shape of what's coming (Codex, planner, Best crafts), and a failure card with Try again. The service worker's network-first files wait 2 s, not 5.
+- Sync can't run on a dev server's LAN address (`http://<LAN>:5173`): browsers give only HTTPS and localhost `crypto.subtle`. Sync now says so. To test sync locally, use localhost or the live site.
 - The redesign is merged into `main` and live (owner, 2026-10-31), so its screens are public; the Pages build carries them too. Before the merge CI still synced from the wiki's API, so a few pages (Updates 7.11 and 7.12 among them) are newer than the 29 Oct dump that `wiki/verification.json` records. The next dump sync settles them.
 - To do with the full Codex: R2 at `dl.atlas-os.cloud`, `/api/wiki`. Also `hello@atlas-os.cloud` (Email Routing), then the contact in About and the wiki User-Agent.
 

@@ -30,7 +30,7 @@ export function Session() {
   const { session } = state;
 
   return (
-    <div className="relative flex flex-col gap-6 max-w-2xl">
+    <div className="relative flex flex-col gap-6 max-w-2xl pt-[env(safe-area-inset-top)]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -inset-x-4 -top-6 h-[380px] -z-10 bg-[radial-gradient(110%_45%_at_50%_0%,#0b2a33_0%,transparent_100%)]"

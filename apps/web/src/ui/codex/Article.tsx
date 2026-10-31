@@ -186,7 +186,7 @@ export function Article({
 
   return (
     <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-12">
-      <article className="min-w-0 flex flex-col gap-section max-w-2xl pt-[env(safe-area-inset-top)]">
+      <article className="min-w-0 flex flex-col gap-section max-w-2xl">
         <header ref={header} id="articleHeader" className="flex flex-col gap-4">
           <div className="flex items-center justify-between gap-3">
             <BackButton fallback={fallback} />

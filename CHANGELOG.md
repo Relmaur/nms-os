@@ -70,6 +70,9 @@ Versions up to 2.6.0 were reconstructed from git history when the changelog was 
 - **Design tokens for the redesign** (`apps/web/src/tokens.css`): the new look's colours, type, radii, rhythm, state glows and motion, each a CSS variable and a Tailwind utility. `apps/web/DESIGN.md` describes the new design (tint-and-edge buttons, a four-tab bar with a search key, gesture buttons in three places, glow only as state). Orbitron 800 is bundled for the new titles. No screen changes yet: each moves to the tokens as it is rebuilt.
 
 ### Fixed
+- **Gentler waits, offline and online.** The app opens on its logo instead of a blank page, the Codex, planner and Best crafts show placeholders while they load, and data that isn't on the device yet says so and offers Try again, instead of a message meant for developers.
+- The Codex, Timers and Fleet no longer sit under the phone's status bar.
+- At an address without encryption, Sync explains that, instead of saying it couldn't reach the server.
 - On a phone, the search covers the whole screen again; the page behind it showed through.
 
 ## [3.20.0] - 2026-10-28

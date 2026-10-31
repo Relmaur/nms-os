@@ -44,7 +44,7 @@ export function Gear() {
 
   return (
     <div className="flex flex-col gap-4 max-w-2xl">
-      <header className="flex flex-col gap-1.5">
+      <header className="flex flex-col gap-1.5 pt-[env(safe-area-inset-top)]">
         <div className="flex items-center justify-between gap-3">
           <h1 className="font-display text-screen-title text-ink-bright">Fleet</h1>
           <button

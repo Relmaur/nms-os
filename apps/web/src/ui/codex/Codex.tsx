@@ -1,5 +1,6 @@
 // The Codex page (wiki/index.html): browsing (design 15) or an article (16), with the quick look and the New article
 // sheet. The search field sits at the top of browsing; from lg a slim header carries the way back to the app. Keyboard: / or ⌘K searches; on results ↑/↓ (or j/k) select, Space peeks, Enter opens.
+import { CodexLoading } from '../parts/Loading.tsx';
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
 import { DEFAULTS, articleHref, browse, browseHref, isLanding, pageOf } from '@atlas/core/codex';
 import { isOld } from '@atlas/core/search';
@@ -113,9 +114,12 @@ export function Codex() {
           setCreating(true);
         }}
       />
-      <main id="codexMain" className="app-main max-w-[1400px] mx-auto px-4 sm:px-6 pt-5 pb-28 lg:py-8">
+      <main
+        id="codexMain"
+        className="app-main max-w-[1400px] mx-auto px-4 sm:px-6 pt-[calc(1.25rem+env(safe-area-inset-top))] lg:pt-5 pb-28 lg:py-8"
+      >
         {data.status !== 'ready' ? (
-          <p className="text-sm text-slate-400 py-8">Loading the Codex…</p>
+          <CodexLoading />
         ) : route.view === 'article' ? (
           <Article
             key={route.path}
