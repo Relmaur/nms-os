@@ -626,6 +626,12 @@ footer {
 .shot-map {
   background: #050811;
 }
+.phone video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .screen-img {
   display: block;
   width: 100%;

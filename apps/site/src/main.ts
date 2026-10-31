@@ -152,6 +152,15 @@ addEventListener('resize', () => {
 if (!reduce) {
   story?.classList.add('js');
 
+  // The hero video plays only while it's on screen. With reduced motion, or no script, its poster stands still.
+  const video = document.querySelector<HTMLVideoElement>('#heroVideo');
+  if (video) {
+    new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) void video.play().catch(() => undefined);
+      else video.pause();
+    }).observe(video);
+  }
+
   // Numbers count up once, to what the build wrote into the page.
   const counters = new IntersectionObserver(
     entries => {

@@ -119,6 +119,17 @@ test('the phones show real screens, sized by the screenshots', async ({ page }) 
   await visible.scrollIntoViewIfNeeded();
   await expect.poll(() => visible.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
   await page.locator('.chapter').nth(2).scrollIntoViewIfNeeded(); // the Map's phones are live: they fill as they near
-  await expect.poll(() => page.locator('.phone .screen-pending').count()).toBeLessThanOrEqual(1); // the hero's, for now
+  await expect.poll(() => page.locator('.phone .screen-pending').count()).toBe(0);
   expect(await page.content()).not.toContain('{{');
+});
+
+test('the hero video is muted, inline and labelled, and holds still with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./');
+  const video = page.getByRole('img', { name: /ATLAS in use/ }).or(page.locator('#heroVideo'));
+  await expect(video).toHaveAttribute('aria-label', /ATLAS in use/);
+  await expect(video).toHaveAttribute('poster', './poster.jpg');
+  expect(await video.evaluate(el => el.muted && el.playsInline && el.paused)).toBe(true);
+  const poster = await page.request.get('./poster.jpg');
+  expect(poster.ok()).toBe(true);
 });
