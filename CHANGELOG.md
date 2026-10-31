@@ -5,6 +5,11 @@ All notable changes to ATLAS // MASTER OS. The format follows [Keep a Changelog]
 Versions up to 2.6.0 were reconstructed from git history when the changelog was introduced.
 
 ## [Unreleased]
+### Changed
+- **ATLAS moves to https://atlas-os.cloud/app/**, served by Cloudflare (ADR-0010), with sync on the same address. The old address keeps working for now. Your log stays in the browser it was saved in, so move it with Export → Import, or pair the two with your sync code, and install the app again from the new address. Other sites can no longer frame ATLAS.
+- The app is now called ATLAS:OS for No Man's Sky.
+- `nms-atlas-mcp` uses the new addresses from its next published version.
+- `pnpm build` indexes the committed wiki archive first, so a fresh clone builds a complete site.
 
 ## [3.20.0] - 2026-10-28
 ### Added

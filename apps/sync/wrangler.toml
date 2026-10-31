@@ -1,10 +1,12 @@
-# The relay (ADR-0005 sync, ADR-0006 push), deployed from a developer machine with `wrangler deploy` to
-# atlas-sync.nms-os.workers.dev.
+# The relay (ADR-0005 sync, ADR-0006 push), deployed from a developer machine with `wrangler deploy`. It answers at
+# atlas-os.cloud/api/sync/* (ADR-0010) and at atlas-sync.nms-os.workers.dev, which the GitHub Pages build and published
+# MCP servers still use.
 # Setup and secrets: docs/deploy.md.
 name = "atlas-sync"
 main = "src/index.ts"
 compatibility_date = "2026-10-01"
 workers_dev = true
+send_metrics = false
 
 # Logs would hold request URLs (vault ids); the relay keeps none.
 [observability]
@@ -13,9 +15,10 @@ enabled = false
 [vars]
 # "free" or "paid": the plan's daily limits drive the relay's guardrails (src/capacity.ts). Set "paid" after upgrading.
 PLAN = "free"
-ALLOWED_ORIGINS = "https://relmaur.github.io,http://localhost:5173,http://localhost:4173"
+# github.io goes once the old site has shipped its "moved" build.
+ALLOWED_ORIGINS = "https://atlas-os.cloud,https://relmaur.github.io,http://localhost:5173,http://localhost:4173"
 # The contact push services see with each push (VAPID). The private key is a secret: wrangler secret put VAPID_PRIVATE_JWK
-VAPID_SUBJECT = "https://relmaur.github.io/nms-os/"
+VAPID_SUBJECT = "https://atlas-os.cloud/"
 
 [[d1_databases]]
 binding = "DB"
@@ -44,3 +47,7 @@ simple = { limit = 4, period = 60 }
 # Every minute: send the timer pushes that are due (ADR-0006).
 [triggers]
 crons = ["23 4 * * *", "* * * * *"]
+
+[[routes]]
+pattern = "atlas-os.cloud/api/sync/*"
+zone_name = "atlas-os.cloud"

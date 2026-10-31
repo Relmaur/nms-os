@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      RELAY: https://atlas-sync.nms-os.workers.dev
+      RELAY: https://atlas-os.cloud/api/sync
       THRESHOLD: 60
       TITLE: 'Sync relay: time to upgrade?'
       # Vaults used in the last 30 days that make the milestone: the owner's to tune.

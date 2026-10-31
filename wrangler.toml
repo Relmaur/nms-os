@@ -1,0 +1,18 @@
+# The site (ADR-0010): a Worker that only serves built files, at https://atlas-os.cloud, with the app under /app/.
+# Cloudflare's Git integration builds every push to main (`pnpm build`) and runs `npx wrangler deploy`.
+# Setup: docs/deploy.md.
+name = "atlas-os"
+compatibility_date = "2026-10-01"
+workers_dev = false
+send_metrics = false
+
+# Logs would hold every request's URL and the visitor's address; the site keeps none.
+[observability]
+enabled = false
+
+[assets]
+directory = "apps/web/dist-site"
+
+[[routes]]
+pattern = "atlas-os.cloud"
+custom_domain = true

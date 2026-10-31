@@ -81,7 +81,8 @@ async function route(request: Request, store: VaultStore, options: Options, repl
   const allowed = (kind: LimitKind) => (options.allow ? options.allow(key, kind) : Promise.resolve(true));
   if (!(await allowed('any'))) return reply(429);
 
-  const path = new URL(request.url).pathname;
+  // The same relay answers on workers.dev (installed apps, published MCP servers) and at atlas-os.cloud/api/sync/*.
+  const path = new URL(request.url).pathname.replace(/^\/api\/sync(?=\/)/, '');
   if (path === '/v1/status' && request.method === 'GET' && options.status)
     return reply(200, JSON.stringify(await options.status()), { 'Content-Type': 'application/json' });
 

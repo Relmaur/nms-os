@@ -221,3 +221,13 @@ test('a body sent without Content-Length is still cut at the cap', async () => {
   expect(response.status).toBe(413);
   expect(store.vaults.size).toBe(0);
 });
+
+test('the relay answers the same under the site’s /api/sync path', async () => {
+  const at = (path: string) =>
+    handle(new Request(`https://atlas-os.cloud${path}`), store, {
+      origins: [],
+      status: () => Promise.resolve({ plan: 'free', days: [] })
+    });
+  expect((await at('/api/sync/v1/status')).status).toBe(200);
+  expect((await at('/api/synced/v1/status')).status).toBe(404);
+});

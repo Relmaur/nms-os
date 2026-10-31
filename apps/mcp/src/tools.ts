@@ -18,7 +18,7 @@ import { findArticle, type Wiki } from './wiki.ts';
 import { LogError } from './log.ts';
 import pkg from '../package.json' with { type: 'json' };
 
-export const SITE = 'https://relmaur.github.io/nms-os/';
+export const SITE = 'https://atlas-os.cloud/app/';
 const MAX_BODY = 30_000; // characters of an article; the longest patch notes run past 100k
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 

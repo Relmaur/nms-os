@@ -150,7 +150,7 @@ export function startDevice(): void {
   window.addEventListener('appinstalled', () => {
     installPrompt = null;
     changed();
-    showToast('Installed. Atlas OS is on your home screen.');
+    showToast('Installed. ATLAS:OS is on your home screen.');
   });
   // Coming back to the app (e.g. after an hour in-game) re-takes the wake lock the system released.
   document.addEventListener('visibilitychange', () => {

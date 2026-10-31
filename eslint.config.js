@@ -13,6 +13,7 @@ export default [
       'test-results/',
       'playwright-report/',
       '**/dist/',
+      '**/dist-site/',
       '**/.wrangler/'
     ]
   },

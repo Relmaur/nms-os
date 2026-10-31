@@ -42,7 +42,7 @@ export function Codex() {
     setSelected(selectFirst.current ? 0 : -1);
     selectFirst.current = false;
     setPeek(-1);
-    if (route.view === 'browse') document.title = 'Wiki Codex · ATLAS // MASTER OS';
+    if (route.view === 'browse') document.title = 'Wiki Codex · ATLAS:OS';
   }, [route]);
 
   const select = useCallback(
@@ -195,14 +195,14 @@ function Header({
   return (
     <header className="app-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-[1400px] mx-auto h-16 px-3 sm:px-6 flex items-center gap-2 sm:gap-4">
-        <a href="../" title="Back to ATLAS // MASTER OS" className="flex items-center gap-2.5 shrink-0 rounded-lg">
+        <a href="../" title="Back to ATLAS:OS" className="flex items-center gap-2.5 shrink-0 rounded-lg">
           <span className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center">
             <i className="ph-fill ph-planet text-xl text-red-500" aria-hidden="true" />
           </span>
           <span className="hidden md:inline font-display font-bold tracking-wider text-white">
             ATLAS<span className="text-cyan-400">//</span>
           </span>
-          <span className="sr-only md:hidden">ATLAS // MASTER OS</span>
+          <span className="sr-only md:hidden">ATLAS:OS</span>
         </a>
         <a
           href="#/"

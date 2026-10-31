@@ -2,11 +2,19 @@
 
 Read this before starting work; update it before ending any non-trivial task. Keep it current, not historical: completed work moves to `CHANGELOG.md`.
 
-_Last updated: 2026-10-28_
+_Last updated: 2026-10-31_
 
 CI runs typecheck + lint + unit tests only (owner's decision: browser tests run locally via `pnpm check` before pushing).
 
 ## In progress
+**One home on Cloudflare, atlas-os.cloud** (owner, 2026-10-31; ADR-0010). Site at `/`, app at `/app/`, relay at `/api/sync`. What would trip Workers Paid is in `docs/deploy.md`. Still open:
+- Until the product page ships, `/` redirects to `/app/`.
+- The owner's log still has to make the trip (Export → Import, or pair).
+- **The owner's yes first:** the old site's "moved" build, raising HSTS past a day or preloading, anything paid.
+- Publishing `nms-atlas-mcp` with the new addresses. Published versions keep using workers.dev and the Pages wiki files, so those must stay up.
+- After that: `github.io` leaves `ALLOWED_ORIGINS`.
+- To do with the full Codex: R2 at `dl.atlas-os.cloud`, `/api/wiki`. Also `hello@atlas-os.cloud` (Email Routing), then the contact in About and the wiki User-Agent.
+
 **3.14.0, getting ready to share with the NMS community** (owner, 2026-10-27; ADR-0007). The owner is still the only user; nothing has been shared yet:
 - The app holds nobody's save: the starter data and Books II, III and V are general.
 - Players keep their own ships & Multi-Tools (`gear`) and Markdown notes (`notes`, pinnable to Home or a book).

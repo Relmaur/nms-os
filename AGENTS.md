@@ -1,6 +1,6 @@
-# AGENTS.md — ATLAS // MASTER OS
+# AGENTS.md — ATLAS:OS
 
-Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems log, Outlaw Run, calculators on a verified wiki mirror, the Codex, a six-book guide, opt-in encrypted sync through a small Cloudflare Worker (`apps/sync`), and a local, read-only MCP server for AI assistants (`apps/mcp`). Installable PWA on GitHub Pages: https://relmaur.github.io/nms-os/
+Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems log, Outlaw Run, calculators on a verified wiki mirror, the Codex, a six-book guide, opt-in encrypted sync through a small Cloudflare Worker (`apps/sync`), and a local, read-only MCP server for AI assistants (`apps/mcp`). Installable PWA at https://atlas-os.cloud/app/ (Cloudflare, ADR-0010; GitHub Pages still serves https://relmaur.github.io/nms-os/ until the move is done)
 
 ## Read first
 - `docs/STATE.md`: current work, blockers, open decisions, next steps. Update it before ending any non-trivial task.
@@ -18,7 +18,7 @@ Local-first No Man's Sky companion (TypeScript, pnpm workspace, Vite): Systems l
 - **Stack (ADR-0004):** strict TypeScript in `packages/`; Vite builds `apps/web`; the whole UI is React (`apps/web/src/ui/`); no inline handlers. Every dependency is bundled and pinned by `pnpm-lock.yaml`; nothing loads from a CDN at run time.
 - **`packages/core` stays pure:** no DOM, no Node APIs. The web app, the wiki scripts and a future API all import it.
 - **Parse, don't cast:** data from outside the code (files, storage, network) goes through a Zod schema before use.
-- **Relative paths everywhere**, since the site lives under `/nms-os/`.
+- **Relative paths everywhere**, since the app lives in a subfolder (`/app/`).
 - **User data stays on the device** (`localStorage` key `nms_master_os_state`). Nothing is sent anywhere except by an explicit Export (ADR-0002), the opt-in sync copy, encrypted on the device with a key the relay never sees (ADR-0005), with "Alerts when the app is asleep" on, a push address plus running timers' ids and end times (ADR-0006), and, when the player sets up the MCP server on their computer, tool answers from their log to the AI client they chose (ADR-0008; it only reads). Any other change is a Data Privacy gate.
 - **State compatibility:** every saved or exported `nms_state.json` must keep loading. Shape changes are additive, with a migration in the state module, or a MAJOR release.
 - **Game facts come only from the wiki mirror** (`wiki/game-data.json`), never hand-typed. Anything the wiki can't know is a labelled user input (ADR-0003).

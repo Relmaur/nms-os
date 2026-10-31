@@ -1,13 +1,13 @@
-// Builds the two pages (the app and the Codex) into dist/ with relative URLs, since GitHub Pages serves the site
-// under /nms-os/. public/wiki is a symlink to the repo's wiki mirror, copied into the build as-is.
+// Builds the two pages (the app and the Codex) with relative URLs, since the app lives in a subfolder: /app/ on
+// atlas-os.cloud (`pnpm build`, into dist-site/app) and /nms-os/ on GitHub Pages (plain `vite build`, into dist). public/wiki is a symlink to the repo's wiki mirror, copied into the build as-is.
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // A Content Security Policy for both built pages: everything comes from the site itself, except the sync relay it
-// talks to; no inline or injected scripts, styles, frames or plugins. Build only: the dev server injects inline styles.
-// (frame-ancestors can't be set from a meta tag, and GitHub Pages sets no headers.)
+// talks to, when that's on another origin; no inline or injected scripts, styles, frames or plugins. Build only: the
+// dev server injects inline styles. (frame-ancestors can't be set from a meta tag: apps/site/_headers sets it.)
 function contentSecurityPolicy(relay: string): Plugin {
   const policy = [
     "default-src 'self'",
@@ -15,7 +15,7 @@ function contentSecurityPolicy(relay: string): Plugin {
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self' data:",
-    `connect-src 'self'${relay ? ` ${new URL(relay).origin}` : ''}`,
+    `connect-src 'self'${relay.startsWith('http') ? ` ${new URL(relay).origin}` : ''}`,
     "manifest-src 'self'",
     "worker-src 'self'",
     "object-src 'none'",
