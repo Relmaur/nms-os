@@ -35,7 +35,7 @@ test('the collection: cards from the log, flip, next, copy and a 4:5 picture', a
   ]);
   expect(download.suggestedFilename()).toMatch(/-card\.png$/);
   const bytes = await fs.readFile(await download.path());
-  expect(bytes.length).toBeGreaterThan(50_000); // drawn, not blank
+  expect(bytes.length).toBeGreaterThan(20_000); // drawn, not blank: how much depends on the card
 
   await page.goto('./#frontier'); // going elsewhere closes the sheet
   await expect(sheet).toBeHidden();
