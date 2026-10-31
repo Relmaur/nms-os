@@ -1,11 +1,23 @@
 // Runs (design 28): routes that turn time into Units, each checked against the game version the wiki describes.
-// Outlaw stations is the first run; it sits under In progress while the player is flying one. Suggestions are a
-// later phase.
+// Outlaw stations is the first run; it sits under In progress while the player is flying one. Yours are the runs the
+// player made (Run editor, 32); one an update has changed a value for moves to Retired. Suggestions are a later phase.
+import { useEffect } from 'react';
 import { formatCountdown } from '@atlas/core/format';
 import { outlawSummary } from '@atlas/core/outlaw';
+import { runEstimate, runStatus, type PlayerRun } from '@atlas/core/runs';
+import type { Catalog } from '@atlas/core/planner';
+import type { GameVersion } from '@atlas/core/facts';
+import { addTimer } from '../actions.ts';
 import { useAppState } from '../useAppState.ts';
 import { useNow } from '../useNow.ts';
+import { Button } from '../parts/Button.tsx';
+import { loadGameData, useGameData } from '../calculators/game-data.ts';
+import { useSection } from '../shell/section-store.ts';
 import { RUN_CARD, SECTION_LABEL, WorksPill, useGameVersion } from './run-bits.tsx';
+import { RunEditor } from './RunEditor.tsx';
+import { closeRunEditor, openRunEditor, useRunEditing } from './run-editor-store.ts';
+
+const formatUnits = (n: number) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n.toLocaleString());
 
 export function Runs() {
   const state = useAppState();
@@ -13,10 +25,35 @@ export function Runs() {
   const game = useGameVersion();
   const summary = outlawSummary(state, now);
   const { progress, rows, ready } = summary;
+  const editing = useRunEditing();
+  const section = useSection();
+  const data = useGameData();
+  const catalog = data.status === 'ready' ? data.catalog : null;
+  // The game data (~2.5 MB, precached) checks the player's runs; it isn't needed until there's one to check.
+  const needsData = state.runs.length > 0 || editing !== null;
+  useEffect(() => {
+    if (needsData) void loadGameData();
+  }, [needsData]);
+  // Leaving Runs (a tab, Back) closes the editor, or the page behind would stay locked.
+  useEffect(() => {
+    if (section !== 'runs') closeRunEditor();
+  }, [section]);
+  const retired = state.runs.filter(run => runStatus(run, catalog) === 'changed');
+  const yours = state.runs.filter(run => !retired.includes(run));
   return (
     <div className="flex flex-col gap-4 max-w-2xl pt-[env(safe-area-inset-top)]">
       <header className="flex flex-col gap-1.5">
-        <h1 className="font-display text-screen-title text-ink-bright mt-4 lg:mt-0">Runs</h1>
+        <div className="flex items-center justify-between gap-3 mt-4 lg:mt-0">
+          <h1 className="font-display text-screen-title text-ink-bright">Runs</h1>
+          <Button
+            icon="ph-plus"
+            onClick={() => {
+              openRunEditor();
+            }}
+          >
+            New run
+          </Button>
+        </div>
         <p className="text-sub text-ink-muted">
           Routes that turn time into Units{game ? `, checked against the game data for v${game.version}` : ''}.
         </p>
@@ -79,6 +116,113 @@ export function Runs() {
           )}
         </a>
       </section>
+
+      {yours.length > 0 && (
+        <section aria-labelledby="runsYoursLabel" className="flex flex-col">
+          <h2 id="runsYoursLabel" className={SECTION_LABEL}>
+            Yours
+          </h2>
+          <ul id="runsYours" className="flex flex-col gap-3">
+            {yours.map(run => (
+              <YourRun key={run.id} run={run} catalog={catalog} game={game} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {retired.length > 0 && (
+        <section aria-labelledby="runsRetiredLabel" className="flex flex-col">
+          <h2 id="runsRetiredLabel" className={SECTION_LABEL}>
+            Retired
+          </h2>
+          <ul id="runsRetired" className="flex flex-col gap-3">
+            {retired.map(run => (
+              <li key={run.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    openRunEditor(run.id);
+                  }}
+                  className={`${RUN_CARD} w-full text-left opacity-80 hover:opacity-100 hover:border-control-edge-hover`}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <i className="ph-bold ph-path text-xl text-ink-muted" aria-hidden="true" />
+                    <span className="flex-1 min-w-0 font-display font-bold text-[15px] text-ink-soft truncate">
+                      {run.name}
+                    </span>
+                    <span className="h-6 px-2.5 shrink-0 rounded-full inline-flex items-center border border-units-amber-edge bg-units-amber-tint text-[11px] font-semibold text-units-amber-pale">
+                      Values changed
+                    </span>
+                  </span>
+                  <span className="text-sub text-ink-muted">
+                    An update changed the numbers this run relied on. Kept in your history.
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {editing && section === 'runs' && (
+        <RunEditor key={editing.session} existing={state.runs.find(run => run.id === editing.id)} catalog={catalog} />
+      )}
     </div>
+  );
+}
+
+function YourRun({ run, catalog, game }: { run: PlayerRun; catalog: Catalog | null; game: GameVersion | null }) {
+  const { systems } = useAppState();
+  const estimate = runEstimate(run, catalog, systems);
+  const status = runStatus(run, catalog);
+  return (
+    <li className={`${RUN_CARD} relative hover:border-control-edge-hover`}>
+      <span className="flex items-center gap-2.5">
+        {/* The whole card opens the editor; the timer button sits above that layer. */}
+        <button
+          type="button"
+          onClick={() => {
+            openRunEditor(run.id);
+          }}
+          className="flex-1 min-w-0 text-left font-display font-bold text-[15px] text-ink-bright truncate after:absolute after:inset-0 after:content-['']"
+        >
+          {run.name}
+        </button>
+        {status === 'works' ? (
+          <WorksPill game={game} />
+        ) : (
+          run.checked.version === '' && (
+            <span className="h-6 px-2.5 shrink-0 rounded-full inline-flex items-center border border-control-edge text-[11px] font-semibold text-ink-soft">
+              Not checked
+            </span>
+          )
+        )}
+      </span>
+      <span className="text-sub text-ink-muted">
+        {[run.line, `${String(run.steps.length)} step${run.steps.length === 1 ? '' : 's'}`].filter(Boolean).join(' · ')}
+      </span>
+      {(estimate.units > 0 || run.repeatMinutes) && (
+        <span className="flex items-baseline justify-between gap-3">
+          <span className="font-mono text-[15px] text-units-amber-text">
+            {estimate.units > 0 ? `≈ ${formatUnits(estimate.units)} per run` : ''}
+          </span>
+          {run.repeatMinutes && (
+            <span className="font-mono text-[13px] text-ink-muted">repeat every {run.repeatMinutes} min</span>
+          )}
+        </span>
+      )}
+      {run.timer && run.repeatMinutes && (
+        <Button
+          size="S"
+          icon="ph-timer"
+          className="relative self-start"
+          onClick={() => {
+            addTimer('custom', run.name, (run.repeatMinutes ?? 0) * 60_000);
+          }}
+        >
+          Finished a run · start the {run.repeatMinutes} min timer
+        </Button>
+      )}
+    </li>
   );
 }

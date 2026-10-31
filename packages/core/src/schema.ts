@@ -55,7 +55,8 @@ export const StateDocumentSchema = object({
   sessions: list(object({})).nullish(),
   gear: list(object({})).nullish(),
   notes: list(object({})).nullish(),
-  devices: list(object({})).nullish()
+  devices: list(object({})).nullish(),
+  runs: list(object({})).nullish()
 });
 
 export type StateDocument = z.infer<typeof StateDocumentSchema>;

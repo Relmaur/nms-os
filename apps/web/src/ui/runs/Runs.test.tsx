@@ -1,10 +1,16 @@
-import { afterEach, beforeEach, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { buildState } from '@atlas/core/state';
 import { HOUR_MS } from '@atlas/core/systems-model';
-import { setAppState } from '../../app/store.ts';
+import { makeCatalog } from '@atlas/core/planner';
+import type { GameItem } from '@atlas/core/game-data';
+import { appState, setAppState } from '../../app/store.ts';
 import { setFactsForTests } from '../gear/facts-store.ts';
+import { setGameDataForTests } from '../calculators/game-data.ts';
 import { Runs } from './Runs.tsx';
+
+vi.mock('../shell/section-store.ts', () => ({ useSection: () => 'runs' }));
 
 const ago = (hours: number) => new Date(Date.now() - hours * HOUR_MS).toISOString();
 const station = (id: string, runs: number[]) => ({
@@ -27,7 +33,34 @@ beforeEach(() => {
 });
 afterEach(() => {
   setFactsForTests(null);
+  setGameDataForTests({ status: 'idle' });
 });
+
+const item = (title: string, value: number, recipes: GameItem['recipes'] = []): GameItem => ({
+  title,
+  slug: title,
+  category: 'products',
+  path: `wiki/products/${title}.md`,
+  summary: '',
+  source: 'wiki',
+  revId: 1,
+  fields: {},
+  value,
+  recipes
+});
+const PUMP = item('Cryo-Pump', 1_500_000, [
+  {
+    type: 'craft',
+    inputs: [
+      { name: 'Hot Ice', qty: 1 },
+      { name: 'Thermic Condensate', qty: 1 }
+    ],
+    outputs: [{ name: 'Cryo-Pump', qty: 1 }]
+  }
+]);
+const useCatalog = (items: GameItem[]) => {
+  setGameDataForTests({ status: 'ready', catalog: makeCatalog({ items }), verification: null });
+};
 
 test('Outlaw stations is built in, checked against the wiki’s game version', () => {
   render(<Runs />);
@@ -58,4 +91,87 @@ test('without the facts file, nothing claims a version', () => {
   render(<Runs />);
   expect(screen.queryByText(/Works in/)).toBeNull();
   expect(screen.getByText('Routes that turn time into Units.')).toBeTruthy();
+});
+
+test('a new run: steps checked against the wiki, a live estimate, saved under Yours', async () => {
+  useCatalog([PUMP]);
+  render(<Runs />);
+  await userEvent.click(screen.getByRole('button', { name: 'New run' }));
+  const editor = within(screen.getByRole('dialog', { name: 'New run' }));
+  await userEvent.type(editor.getByRole('textbox', { name: 'Name' }), 'Cryo-Pump loop');
+  await userEvent.click(editor.getByRole('button', { name: 'Add a step' }));
+  await userEvent.type(editor.getByRole('combobox', { name: 'Step 1: system' }), 'Somewhere');
+  expect(editor.getByText('not in your log')).toBeTruthy();
+  await userEvent.click(editor.getByRole('button', { name: 'Add a step' }));
+  await userEvent.selectOptions(editor.getByRole('combobox', { name: 'Step 2 verb' }), 'craft');
+  await userEvent.type(editor.getByRole('combobox', { name: 'Step 2: item' }), 'cryo-pump');
+  expect(editor.getByText(/Hot Ice \+ Thermic Condensate/).textContent).toContain('in the wiki');
+  await userEvent.click(editor.getByRole('button', { name: 'Add a step' }));
+  await userEvent.selectOptions(editor.getByRole('combobox', { name: 'Step 3 verb' }), 'sell');
+  await userEvent.type(editor.getByRole('combobox', { name: 'Step 3: item' }), 'Cryo-Pump');
+  await userEvent.type(editor.getByRole('spinbutton', { name: 'Sold' }), '2');
+  await userEvent.type(editor.getByRole('spinbutton', { name: 'One run takes (minutes)' }), '30');
+  const estimate = document.getElementById('runEstimate')!;
+  expect(estimate.textContent).toContain('checked · v7.10');
+  expect(estimate.textContent).toContain('≈ 3,000,000');
+  expect(estimate.textContent).toContain('≈ 6.0M'); // per hour
+  expect(estimate.textContent).toContain('Steps 2–3 use wiki values.');
+
+  // A price of the player's own replaces the wiki's, and the estimate says so.
+  await userEvent.type(editor.getByRole('spinbutton', { name: 'Your price' }), '1000000');
+  expect(estimate.textContent).toContain('Units, by your numbers');
+  await userEvent.click(editor.getByRole('button', { name: 'Save run' }));
+
+  expect(screen.queryByRole('dialog')).toBeNull();
+  const [saved] = appState.runs;
+  expect(saved?.checked).toEqual({
+    version: '7.10',
+    values: { 'craft:Cryo-Pump': 'Hot Ice×1+Thermic Condensate×1>1', 'sell:Cryo-Pump': '1500000' }
+  });
+  const yours = within(document.getElementById('runsYours')!);
+  expect(yours.getByText('Cryo-Pump loop')).toBeTruthy();
+  expect(yours.getByText('Works in v7.10')).toBeTruthy();
+  expect(yours.getByText('≈ 2.0M per run')).toBeTruthy();
+});
+
+test('an update that changes a value it relied on moves the run to Retired; saving checks it again', async () => {
+  useCatalog([PUMP]);
+  setAppState(
+    buildState({
+      runs: [
+        {
+          id: 'run-1',
+          name: 'Cryo-Pump loop',
+          steps: [{ id: 's1', verb: 'sell', target: 'Cryo-Pump', qty: 1 }],
+          checked: { version: '7.06', values: { 'sell:Cryo-Pump': '1200000' } }
+        }
+      ]
+    })
+  );
+  render(<Runs />);
+  const retired = within(document.getElementById('runsRetired')!);
+  expect(retired.getByText('Values changed')).toBeTruthy();
+  expect(document.getElementById('runsYours')).toBeNull();
+  await userEvent.click(retired.getByRole('button', { name: /Cryo-Pump loop/ }));
+  expect(document.getElementById('runEstimate')?.textContent).toContain('Checked in v7.06');
+  await userEvent.click(screen.getByRole('button', { name: 'Save run' }));
+  expect(within(document.getElementById('runsYours')!).getByText('Works in v7.10')).toBeTruthy();
+});
+
+test('a run with a repeat timer starts it when the player finishes one; a run can be deleted', async () => {
+  useCatalog([PUMP]);
+  setAppState(
+    buildState({
+      runs: [{ id: 'run-1', name: 'Loop', steps: [{ verb: 'do', target: 'Fly' }], repeatMinutes: 40, timer: true }]
+    })
+  );
+  render(<Runs />);
+  expect(screen.getByText('Not checked')).toBeTruthy(); // saved before the game data could load
+  await userEvent.click(screen.getByRole('button', { name: /Finished a run · start the 40 min timer/ }));
+  expect(appState.timers.map(timer => [timer.kind, timer.label])).toEqual([['custom', 'Loop']]);
+
+  await userEvent.click(screen.getByRole('button', { name: 'Loop' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Delete run' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Tap again to delete' }));
+  expect(appState.runs).toEqual([]);
 });
